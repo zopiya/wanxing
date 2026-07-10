@@ -1,43 +1,67 @@
-# Wenxin for OpenDesign
+# Wenxin for Open Design
 
-This directory adapts [`wenxin/`](../wenxin/README.md) (design spec / soul) and [`wanxing/`](../wanxing/README.md) (form reference) into a design-system plugin consumable by **Open Design** (nexu-io/open-design, Apache-2.0) — an open-source, local-first coding-agent workspace that turns a repo's design language into something an AI agent can load and build from directly.
+This directory packages [`wenxin/`](../wenxin/README.md) (design spec / soul) and [`wanxing/`](../wanxing/README.md) (form reference) as a **`DESIGN.md`** — the open, machine-readable format ([`google-labs-code/design.md`](https://github.com/google-labs-code/design.md)) that Open Design (nexu-io/open-design), Google's Stitch, and a growing set of AI design tools read directly.
 
-## What Open Design expects
+## The actual format (confirmed against Open Design's UI)
 
-Open Design's design systems live one-per-brand under `design-systems/<slug>/`, each following a fixed 4-file layout:
+A `DESIGN.md` file is **YAML frontmatter (machine-readable tokens) + a Markdown body (human-readable rationale)**:
 
+```yaml
+---
+name: <string>            # required
+description: <string>     # optional
+colors:
+  <token-name>: <CSS color>
+typography:
+  <token-name>: { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing, ... }
+rounded:
+  <scale-level>: <dimension>
+spacing:
+  <scale-level>: <dimension|number>
+components:
+  <component-name>:
+    <property>: <value or {colors.x} / {typography.x} reference>
+---
+
+## Overview
+## Colors
+## Typography
+## Layout
+## Elevation & Depth
+## Shapes
+## Components
+## Do's and Don'ts
 ```
-design-systems/<slug>/
-├── manifest.json     — machine-readable entry (schema version, id, name, category, file locations)
-├── DESIGN.md          — the canonical spec, a fixed 9-section schema:
-│                        1. Visual Theme & Atmosphere   6. Depth & Elevation
-│                        2. Color Palette & Roles       7. Do's and Don'ts
-│                        3. Typography Rules             8. Responsive Behavior
-│                        4. Component Stylings           9. Agent Prompt Guide
-│                        5. Layout Principles
-├── tokens.css         — compiled CSS custom properties
-└── components.html    — an optional component fixture the agent can render/inspect
-```
 
-The first `H1` in `DESIGN.md` is the title shown in Open Design's picker; a `> Category: <Group>` line under it groups it in the dropdown. Dropping a new folder with a `DESIGN.md` in it is enough for Open Design to discover it on next refresh — no build step, no account, no export.
+`{path.to.token}` is the cross-reference syntax — write `{colors.accent}` in a component definition instead of repeating the hex value. This is the format Open Design's "粘贴 DESIGN.md" import box expects (confirmed by its own UI example: `name` / `colors: primary / tertiary` / `typography: h1: ...`).
+
+## How to actually build the template (step by step)
+
+1. Open [`opendesign/wenxin/DESIGN.md`](./wenxin/DESIGN.md) in this repo — it's already written to this spec, with every token distilled from [`wenxin/tokens.css`](../wenxin/tokens.css) and every rule cross-referenced back to `wenxin/*.md`.
+2. In Open Design, go to the creation screen shown in your screenshot ("从 GitHub、网站或源素材提取").
+3. Use the **"粘贴 DESIGN.md"** box — paste the full contents of `wenxin/DESIGN.md` (frontmatter included) directly in. This is the precise path: it uses our already-curated tokens and rules as-is, instead of Open Design guessing them from a URL crawl.
+4. Optionally also use **"添加文件"** to upload the brand SVGs in [`wenxin/assets/`](./wenxin/assets/) (logo-wenxin.svg, brand-mark.svg, etc.) so Open Design has the real logo files, not just a text description of them.
+5. You can *also* fill in the top **"GitHub 或网站"** field with this repo's URL — Open Design will crawl it and auto-derive a starting system — but that path re-derives colors/type from scratch and will not carry over the deliberate constraints (single accent, no shadows, no cards, the ■ mark's exact behavior). Prefer step 3 for fidelity; use the URL field only if you want Open Design's own auto-extraction as a starting point instead.
 
 ## What's here
 
 ```
 opendesign/wenxin/
-├── manifest.json
-├── DESIGN.md          — distilled from wenxin/*.md + wanxing/page-archetypes.md
-├── tokens.css          — verbatim copy of wenxin/tokens.css (the single authoritative token source)
-├── components.html     — fixture demonstrating links/buttons/forms/code/tags/table/blockquote/brand mark
-└── assets/              — brand mark + logo SVGs, copied from wanxing/examples/f3-brand/assets/
+├── DESIGN.md          — the file to paste into Open Design (frontmatter + 8-section body)
+├── tokens.css          — verbatim copy of wenxin/tokens.css, for local reference/dev use
+├── components.html     — a fixture rendering the components with real CSS, for visual sanity-checking outside Open Design
+├── manifest.json        — optional bookkeeping entry for this repo; Open Design's own import flow doesn't require it
+└── assets/               — brand mark + logo SVGs (upload alongside DESIGN.md via "添加文件")
 ```
 
-`DESIGN.md` is Open Design's format for a **single, medium-agnostic brand voice** — it maps most directly onto `wenxin/` (the soul layer: color, type, spacing, motion, brand, forbidden list). It does **not** replace `wanxing/`: Open Design's schema has no concept of "nine output media," so `DESIGN.md` §5 (Layout Principles) instead links out to each `wanxing/fN-*.md` file for medium-specific layout rules (web, mobile, print, presentation, poster, diagram, report, etc.). An agent using this plugin should read `DESIGN.md` first for the soul, then the matching `wanxing/fN-*.md` file for the shape — same split as the rest of this repo, just packaged the way Open Design expects.
+`DESIGN.md`'s body follows the canonical 8-section order (Overview → Colors → Typography → Layout → Elevation & Depth → Shapes → Components → Do's and Don'ts), plus one extra "Agent notes" appendix at the end — that appendix isn't part of the spec, it's just this repo's own pointer back to `wanxing/how-to-use.md` and is safe to ignore if a stricter tool trims unknown sections.
+
+`DESIGN.md`'s **Layout** section intentionally does not try to encode all nine `wanxing/fN-*.md` output-medium files — `design.md`'s schema has no "medium" concept. Layout instead links out to `wanxing/` for anything medium-specific (web nav, print grids, poster canvas ratios). Once a design system is loaded into Open Design, tell the agent which medium you're targeting and point it at the matching `wanxing/fN-*.md` file for the concrete layout rules; `DESIGN.md` alone only carries the soul.
 
 ## Keeping this in sync
 
-`tokens.css` here is a **copy**, not a symlink (Open Design reads a real file at a fixed relative path). If [`wenxin/tokens.css`](../wenxin/tokens.css) changes, re-copy it here. Everything else in `DESIGN.md` should stay a distillation of `wenxin/*.md` — if the soul-layer docs change, this file needs a matching update, not the other way around.
+`tokens.css` here is a copy, not a symlink — if [`wenxin/tokens.css`](../wenxin/tokens.css) changes, re-copy it and update the matching values in `DESIGN.md`'s frontmatter. If `wenxin/*.md` rules change, update `DESIGN.md`'s body to match — this file should always be a distillation, never a second source of truth.
 
 ## Caveat
 
-The exact `manifest.json` field names and the precise wording of the 9-section schema were reconstructed from Open Design's public docs and repository as of 2026-07-10, not from a local install of the tool. If a specific version of Open Design expects different manifest keys or file names, adjust `manifest.json` to match — the content of `DESIGN.md`/`tokens.css`/`components.html` is the part that should not need to change.
+The frontmatter schema above is the real, confirmed `design.md` spec (verified against `google-labs-code/design.md`'s own spec doc and cross-checked against a screenshot of Open Design's own paste-in UI). What's still unverified is Open Design-specific behavior beyond that: which frontmatter fields it actually reads vs. ignores, whether it validates strictly, and what its auto-extraction (GitHub/website URL path) produces. Treat step 3 above as the reliable path and steps 2/5 as things to sanity-check once you're in the actual product.
