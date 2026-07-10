@@ -1,0 +1,239 @@
+/* ==========================================================
+ * Wanxing Workbench — UI Components
+ * Wenxin-style outlined buttons, nav items, separators.
+ * ========================================================== */
+
+/* === Button — 线框型 === */
+
+.wenxin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wenxin-space-2);
+  border: var(--wenxin-btn-border);
+  border-radius: var(--wenxin-btn-radius);
+  background: var(--wenxin-btn-bg);
+  color: var(--wenxin-btn-color);
+  font-family: var(--wenxin-btn-font);
+  font-size: var(--wenxin-btn-font-size);
+  padding: var(--wenxin-btn-padding-y) var(--wenxin-btn-padding-x);
+  transition: var(--wenxin-btn-transition);
+  white-space: nowrap;
+}
+
+.wenxin-btn:hover {
+  border-color: var(--wenxin-btn-hover-border);
+  color: var(--wenxin-btn-hover-color);
+}
+
+.wenxin-btn:focus-visible {
+  outline: var(--wenxin-btn-focus-outline);
+  outline-offset: var(--wenxin-btn-focus-outline-offset);
+}
+
+.wenxin-btn:disabled {
+  color: var(--wenxin-btn-disabled-color);
+  border-color: var(--wenxin-btn-disabled-border);
+  pointer-events: none;
+}
+
+/* === Navigation Item === */
+
+.wenxin-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-2);
+  width: 100%;
+  padding: var(--wenxin-space-3) var(--wenxin-space-4);
+  font-family: var(--wenxin-font-ui);
+  font-size: var(--wenxin-text-sm);
+  color: var(--wenxin-color-text-secondary);
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color var(--wenxin-duration-fast) var(--wenxin-ease-default);
+  text-align: left;
+  line-height: var(--wenxin-leading-snug);
+}
+
+.wenxin-nav-item:hover {
+  color: var(--wenxin-color-text-primary);
+}
+
+.wenxin-nav-item.active {
+  color: var(--wenxin-color-accent);
+  font-weight: 600;
+}
+
+.wenxin-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 1em;
+  background-color: var(--wenxin-color-accent);
+}
+
+/* === Separator === */
+
+.wenxin-separator {
+  border: none;
+  border-top: var(--wenxin-separator-width) solid var(--wenxin-separator-color);
+  margin: var(--wenxin-space-4) 0;
+}
+
+/* === Section Label === */
+
+.wenxin-section-label {
+  font-family: var(--wenxin-font-ui);
+  font-size: var(--wenxin-text-xs);
+  color: var(--wenxin-color-text-muted);
+  letter-spacing: var(--wenxin-tracking-wider);
+  text-transform: uppercase;
+  padding: var(--wenxin-space-3) var(--wenxin-space-4);
+  padding-top: var(--wenxin-space-6);
+}
+
+/* === Empty State === */
+
+.wenxin-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--wenxin-color-text-muted);
+  font-family: var(--wenxin-font-body);
+  font-size: var(--wenxin-text-lg);
+  gap: var(--wenxin-space-4);
+}
+
+.wenxin-empty-hint {
+  font-family: var(--wenxin-font-ui);
+  font-size: var(--wenxin-text-sm);
+  color: var(--wenxin-color-text-muted);
+}
+
+/* === Server Status Banner === */
+
+.server-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wenxin-space-2) var(--wenxin-space-4);
+  font-family: var(--wenxin-font-ui);
+  font-size: var(--wenxin-text-sm);
+  background-color: var(--wenxin-color-accent-subtle);
+  color: var(--wenxin-color-accent);
+  border-bottom: 1px solid var(--wenxin-color-border-subtle);
+  flex-shrink: 0;
+}
+
+.server-status-banner[data-status="checking"] {
+  color: var(--wenxin-color-text-secondary);
+  background-color: var(--wenxin-color-bg-subtle);
+}
+
+/* === Error Banner === */
+
+.error-banner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-3);
+  padding: var(--wenxin-space-3) var(--wenxin-space-4);
+  background-color: var(--wenxin-color-accent-subtle);
+  border-bottom: 1px solid var(--wenxin-color-accent);
+  font-family: var(--wenxin-font-ui);
+  font-size: var(--wenxin-text-sm);
+  color: var(--wenxin-color-accent);
+  pointer-events: auto;
+  animation: error-banner-in var(--wenxin-duration-slow) var(--wenxin-ease-out);
+}
+
+@keyframes error-banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-banner-message {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.error-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-2);
+  flex-shrink: 0;
+}
+
+.error-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wenxin-space-1) var(--wenxin-space-3);
+  border: 1px solid var(--wenxin-color-accent);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--wenxin-color-accent);
+  font-family: var(--wenxin-font-ui);
+  font-size: var(--wenxin-text-xs);
+  cursor: pointer;
+  transition: background-color var(--wenxin-duration-fast) var(--wenxin-ease-default),
+              color var(--wenxin-duration-fast) var(--wenxin-ease-default);
+}
+
+.error-banner-btn:hover {
+  background-color: var(--wenxin-color-accent);
+  color: #FFFFFF;
+}
+
+.error-banner-btn:focus-visible {
+  outline: var(--wenxin-focus-outline);
+  outline-offset: var(--wenxin-focus-outline-offset);
+}
+
+.error-banner-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.error-banner-dismiss {
+  border: none;
+  padding: var(--wenxin-space-1) var(--wenxin-space-2);
+  font-size: var(--wenxin-text-sm);
+  line-height: 1;
+}
+
+.error-banner-count {
+  font-size: var(--wenxin-text-xs);
+  color: var(--wenxin-color-text-muted);
+  flex-shrink: 0;
+}
+
+/* === Preview Audit Button === */
+
+.preview-audit-btn {
+  margin-left: auto;
+}

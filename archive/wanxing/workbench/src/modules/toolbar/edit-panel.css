@@ -1,0 +1,99 @@
+/* Edit Panel — CSS property editor */
+.edit-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background-color: var(--wenxin-color-bg-base, #fff);
+  border-left: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+  overflow-y: auto;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--wenxin-text-xs, 12px);
+}
+
+.edit-panel-empty {
+  padding: var(--wenxin-space-4, 16px);
+  color: var(--wenxin-color-text-secondary, #999);
+  text-align: center;
+}
+
+.edit-panel-header {
+  padding: var(--wenxin-space-3, 12px);
+  border-bottom: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-2, 8px);
+  font-size: var(--wenxin-text-xs, 11px);
+}
+
+.edit-panel-tag {
+  padding: 1px 6px;
+  background-color: var(--wenxin-color-accent, #8B3525);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.edit-panel-selector {
+  color: var(--wenxin-color-text-secondary, #999);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit-panel-group {
+  padding: var(--wenxin-space-2, 8px) var(--wenxin-space-3, 12px);
+  border-bottom: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+}
+
+.edit-panel-group-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--wenxin-color-text-secondary, #999);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--wenxin-space-2, 8px);
+}
+
+.edit-panel-row {
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-2, 8px);
+  margin-bottom: var(--wenxin-space-1, 4px);
+}
+
+.edit-panel-prop-label {
+  width: 50px;
+  flex-shrink: 0;
+  color: var(--wenxin-color-text-primary, #3A3837);
+  font-size: 11px;
+}
+
+.edit-panel-input,
+.edit-panel-select {
+  flex: 1;
+  min-width: 0;
+  padding: 3px 6px;
+  border: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+  background: var(--wenxin-color-bg-warm, #F2F0EB);
+  color: var(--wenxin-color-text-primary, #3A3837);
+  font-size: 11px;
+  font-family: var(--wenxin-font-mono, monospace);
+}
+
+.edit-panel-input:focus,
+.edit-panel-select:focus {
+  outline: 1px solid var(--wenxin-color-accent, #8B3525);
+  border-color: var(--wenxin-color-accent, #8B3525);
+}
+
+.edit-panel-color {
+  width: 32px;
+  height: 24px;
+  border: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+  padding: 0;
+  cursor: pointer;
+}

@@ -1,0 +1,211 @@
+/* ==========================================================
+ * Wanxing Workbench — Shell Layout (Flexbox)
+ * top-bar (40px) + [chat (400px) | preview (flex)]
+ * ========================================================== */
+
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition:
+    color var(--wenxin-duration-base) var(--wenxin-ease-default),
+    background-color var(--wenxin-duration-base) var(--wenxin-ease-default),
+    border-color var(--wenxin-duration-base) var(--wenxin-ease-default) !important;
+}
+
+.workbench-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* === Top Bar === */
+
+.workbench-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 var(--wenxin-space-4);
+  background-color: var(--wenxin-color-bg-base);
+  border-bottom: 1px solid var(--wenxin-color-border-subtle);
+  z-index: 10;
+}
+
+.workbench-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-3);
+}
+
+.workbench-topbar-title {
+  font-family: var(--wenxin-font-display);
+  font-size: var(--wenxin-text-md);
+  color: var(--wenxin-color-text-heading);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-2);
+}
+
+.workbench-topbar-title .brand-mark {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: var(--wenxin-brand-mark-color);
+}
+
+.workbench-topbar-project {
+  font-size: var(--wenxin-text-sm);
+  color: var(--wenxin-color-text-secondary);
+}
+
+.workbench-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--wenxin-space-2);
+}
+
+/* === Main Area (Chat + Preview) === */
+
+.workbench-main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* === Chat Panel (left) === */
+
+.workbench-chat-panel {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  min-width: 280px;
+  max-width: 600px;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--wenxin-color-bg-base, #fff);
+  border-right: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+  flex-shrink: 0;
+}
+
+/* === Preview Panel (right) === */
+
+.workbench-preview-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* === Workbench Content (fills preview panel) === */
+
+.workbench-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Status Slot === */
+
+.workbench-status-slot {
+  display: none;
+  overflow: hidden;
+  border-top: 1px solid var(--wenxin-color-border-subtle);
+}
+
+.workbench-status-slot.open {
+  display: block;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+/* === Project Picker === */
+
+.workbench-project-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: var(--wenxin-space-8);
+}
+
+.workbench-project-picker-title {
+  font-family: var(--wenxin-font-display);
+  font-size: var(--wenxin-text-xl);
+  color: var(--wenxin-color-text-heading);
+  margin-bottom: var(--wenxin-space-6);
+}
+
+.workbench-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--wenxin-space-4);
+  max-width: 800px;
+  width: 100%;
+}
+
+.workbench-project-card {
+  padding: var(--wenxin-space-4);
+  border: 1px solid var(--wenxin-color-border-subtle);
+  background-color: var(--wenxin-color-bg-base);
+  cursor: pointer;
+  transition: border-color var(--wenxin-duration-fast) var(--wenxin-ease-default);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.workbench-project-card:hover {
+  border-color: var(--wenxin-color-accent, #8B3525);
+}
+
+.workbench-project-card-name {
+  font-size: var(--wenxin-text-md);
+  font-weight: 600;
+  color: var(--wenxin-color-text-heading);
+  margin-bottom: var(--wenxin-space-1);
+}
+
+.workbench-project-card-meta {
+  font-size: var(--wenxin-text-xs);
+  color: var(--wenxin-color-text-secondary);
+}
+
+/* === Project Tabs === */
+
+.workbench-tabs {
+  display: flex;
+  gap: 2px;
+  margin-left: 12px;
+}
+
+.workbench-tab {
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--wenxin-color-text-secondary, #999);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.workbench-tab:hover {
+  color: var(--wenxin-color-text-primary, #333);
+  background-color: var(--wenxin-color-bg-warm, #F2F0EB);
+}
+
+.workbench-tab.active {
+  color: var(--wenxin-color-accent, #8B3525);
+  border-color: var(--wenxin-color-accent, #8B3525);
+  background-color: var(--wenxin-color-bg-base, #fff);
+}

@@ -1,0 +1,11 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]: 万形
+    - button "切换主题" [ref=e9] [cursor=pointer]: ◐
+  - generic [ref=e11]:
+    - generic [ref=e12]: 选择一个项目
+    - link "demo 可预览" [ref=e14] [cursor=pointer]:
+      - /url: "#/project/demo"
+      - generic [ref=e15]: demo
+      - generic [ref=e16]: 可预览
+  - alert

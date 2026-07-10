@@ -1,0 +1,658 @@
+/* ==========================================================
+ * Wenxin (文心) Design Tokens
+ * Derived from: .opencode/agents/wenxin/design.md
+ * DO NOT EDIT DIRECTLY — canonical source is design.md
+ * ==========================================================
+ *
+ * Usage:
+ *   @import '.opencode/tokens/wenxin-tokens.css';
+ *
+ * Token Architecture:
+ *   Layer 1: Reference Tokens — raw values (HEX, px, ms, rem)
+ *   Layer 2: Semantic Tokens  — functional names (bg, text, accent, etc.)
+ *   Layer 3: Component Tokens — component-specific bindings (btn, input, etc.)
+ *
+ * All values are derived from design.md §2–§8.
+ */
+
+/* ----------------------------------------------------------
+ * LAYER 1: Reference Tokens
+ * Raw values extracted directly from design.md.
+ * These are the single source of truth — never use directly
+ * in component styles; always go through Layer 2 or 3.
+ * ---------------------------------------------------------- */
+
+:root {
+  /* === Colors (Reference) — design.md §2 色彩系统 === */
+
+  /* Background layer */
+  --wenxin-ref-warm-white:  #F2F0EB;  /* 暖白·羊皮纸质感 */
+  --wenxin-ref-base-white:  #FAFAF8;  /* 内页背景 */
+  --wenxin-ref-pure-white:  #FFFFFF;  /* 纯白·文章正文区 */
+  --wenxin-ref-subtle-bg:   #F0EDE7;  /* 微弱底色·代码块/引用块/标签 */
+
+  /* Text layer */
+  --wenxin-ref-ink:          #3A3837;  /* 主体·深炭色·带暖调 */
+  --wenxin-ref-ink-heading:  #2C2B29;  /* 标题·比正文略深 */
+  --wenxin-ref-warm-gray:    #888580;  /* 辅助·日期/元数据 */
+  --wenxin-ref-muted:        #B0ABA4;  /* 弱化·版权/占位符 */
+
+  /* Accent (点睛之色 — 全页 ≤ 2 处) */
+  --wenxin-ref-brick:        #8B3525;  /* 砖红·朱砂 */
+  --wenxin-ref-brick-hover:  #A84030;
+  --wenxin-ref-brick-subtle: #F5E8E5;  /* accent 极淡背景版 */
+
+  /* Borders */
+  --wenxin-ref-border-subtle:  #E5E1DA;  /* 极细·谨慎使用 */
+  --wenxin-ref-border-strong:  #C8C3BA;  /* 较明显·极少使用 */
+
+  /* Interactive */
+  --wenxin-ref-focus-ring: rgba(139, 53, 37, 0.4);  /* accent 40% 透明度 */
+
+  /* === Dark Mode Reference Colors — design.md §2 暗色模式 === */
+
+  --wenxin-ref-dark-bg:           #1A1816;  /* 暖暗色背景 */
+  --wenxin-ref-dark-base:         #201E1B;
+  --wenxin-ref-dark-pure:         #242220;
+  --wenxin-ref-dark-subtle:       #2A2724;
+
+  --wenxin-ref-dark-ivory:        #E8E3DC;  /* 暖象牙白·非纯白 */
+  --wenxin-ref-dark-ivory-heading:#F0EBE3;
+  --wenxin-ref-dark-warm-gray:    #8A857D;
+  --wenxin-ref-dark-muted:        #5A5550;
+
+  --wenxin-ref-dark-brick:        #C4533E;  /* 暗色下略亮·保持可见性 */
+  --wenxin-ref-dark-brick-hover:  #D9614A;
+  --wenxin-ref-dark-brick-subtle: #2E1A16;
+
+  --wenxin-ref-dark-border-subtle: #2E2B27;
+  --wenxin-ref-dark-border-strong: #403C37;
+
+  --wenxin-ref-dark-focus-ring: rgba(196, 83, 62, 0.4);
+
+  /* === Typography Reference — design.md §3 字体系统 === */
+
+  /* Type scale (Major Third 1.250) */
+  --wenxin-ref-type-scale-xs:   0.694rem;    /* ~11px · 极小标注、版权 */
+  --wenxin-ref-type-scale-sm:   0.833rem;    /* ~13px · 元数据、标签、面包屑 */
+  --wenxin-ref-type-scale-base: 1rem;        /* 16px  · 基准 */
+  --wenxin-ref-type-scale-md:   1.0625rem;   /* 17px  · 正文阅读推荐 */
+  --wenxin-ref-type-scale-lg:   1.25rem;     /* 20px  · 摘要、小节引导 */
+  --wenxin-ref-type-scale-xl:   1.5rem;      /* 24px  · h3 */
+  --wenxin-ref-type-scale-2xl:  1.875rem;    /* 30px  · h2 */
+  --wenxin-ref-type-scale-3xl:  2.25rem;     /* 36px  · h1、文章标题 */
+  --wenxin-ref-type-scale-4xl:  3rem;        /* 48px  · 导航大字、章节 */
+  --wenxin-ref-type-scale-5xl:  4.5rem;      /* 72px  · 品牌/英雄区 */
+
+  /* Line heights */
+  --wenxin-ref-leading-tight:   1.25;   /* 大号展示标题 */
+  --wenxin-ref-leading-snug:    1.45;   /* 小标题、UI 元素 */
+  --wenxin-ref-leading-normal:  1.6;    /* 列表项、辅助文字 */
+  --wenxin-ref-leading-relaxed: 1.85;   /* 中文正文阅读 */
+  --wenxin-ref-leading-loose:   2.0;    /* 英文长文阅读 */
+
+  /* Letter spacing / tracking */
+  --wenxin-ref-tracking-tight:   -0.02em;  /* 大号展示标题微收紧 */
+  --wenxin-ref-tracking-normal:   0;
+  --wenxin-ref-tracking-wide:     0.05em;
+  --wenxin-ref-tracking-wider:    0.15em;  /* 英文全大写标注 */
+  --wenxin-ref-tracking-chinese:  0.1em;   /* 中文展示大字舒展 */
+
+  /* Font stacks — design.md §3 字族定义 */
+  --wenxin-ref-font-display: "Lora", "Georgia", "Noto Serif SC", "Source Han Serif SC", serif;
+  --wenxin-ref-font-body:    "EB Garamond", "Crimson Text", "Noto Serif SC", "Source Han Serif SC", serif;
+  --wenxin-ref-font-ui:      "SF Pro Text", system-ui, "Noto Sans SC", "PingFang SC", sans-serif;
+  --wenxin-ref-font-mono:    "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+
+  /* === Spacing Scale (4px grid) — design.md §4 间距与栅格 === */
+  --wenxin-ref-space-1:  0.25rem;   /* 4px   · 极细间隙 */
+  --wenxin-ref-space-2:  0.5rem;    /* 8px   · 图标与文字间距 */
+  --wenxin-ref-space-3:  0.75rem;   /* 12px  · 表格单元格、小标签内边距 */
+  --wenxin-ref-space-4:  1rem;      /* 16px  · 引用块/代码块内边距 */
+  --wenxin-ref-space-5:  1.25rem;   /* 20px  · 正文段落间距 */
+  --wenxin-ref-space-6:  1.5rem;    /* 24px  · 列表项间距 */
+  --wenxin-ref-space-8:  2rem;      /* 32px  · 标题与下方正文 */
+  --wenxin-ref-space-10: 2.5rem;    /* 40px  */
+  --wenxin-ref-space-12: 3rem;      /* 48px  · h3 与上方内容 */
+  --wenxin-ref-space-16: 4rem;      /* 64px  · h2 与上方内容 */
+  --wenxin-ref-space-24: 6rem;      /* 96px  · 大区块间距 */
+  --wenxin-ref-space-32: 8rem;      /* 128px · 页面顶部 padding */
+
+  /* === Icon Sizes — design.md §4 图标尺寸 === */
+  --wenxin-ref-icon-sm: 16px;  /* 行内文字配图 */
+  --wenxin-ref-icon-md: 20px;  /* 标准 UI 元素 */
+  --wenxin-ref-icon-lg: 24px;  /* 独立功能图标 */
+
+  /* === Motion Durations — design.md §5 动效系统 === */
+  --wenxin-ref-duration-instant: 80ms;   /* 即时反馈·checkbox/toggle */
+  --wenxin-ref-duration-fast:   180ms;   /* 颜色/透明度过渡 */
+  --wenxin-ref-duration-base:   260ms;   /* 标准交互·hover/展开 */
+  --wenxin-ref-duration-slow:   420ms;   /* 进场·重要状态变化 */
+  --wenxin-ref-duration-crawl:  600ms;   /* 特殊仪式感动效 */
+
+  /* === Easing Functions — design.md §5 === */
+  --wenxin-ref-ease-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --wenxin-ref-ease-out:     cubic-bezier(0, 0, 0.2, 1);   /* 进场·先快后慢 */
+  --wenxin-ref-ease-in:      cubic-bezier(0.4, 0, 1, 1);   /* 退场·先慢后快 */
+
+  /* === Border Radius — design.md §9 禁止清单 (圆角 ≤ 4px) === */
+  --wenxin-ref-radius-none: 0;
+  --wenxin-ref-radius-sm:   2px;
+  --wenxin-ref-radius-md:   4px;
+  --wenxin-ref-radius-full: 9999px;
+
+  /* === Content Widths — design.md §4 内容宽度 === */
+  --wenxin-ref-width-article:  clamp(520px, 55vw, 640px);   /* 纯阅读型 */
+  --wenxin-ref-width-content:  clamp(620px, 65vw, 760px);   /* 内容列表型 */
+  --wenxin-ref-width-showcase: clamp(700px, 72vw, 920px);   /* 展示型 */
+  --wenxin-ref-padding-page-x: clamp(20px, 5vw, 72px);      /* 页面水平内边距 */
+}
+
+/* ----------------------------------------------------------
+ * LAYER 2: Semantic Tokens
+ * Functional names that map reference tokens to roles.
+ * Use these in component styles, not Layer 1 references.
+ * ---------------------------------------------------------- */
+
+:root {
+  /* === Background Colors === */
+  --wenxin-color-bg-warm:   var(--wenxin-ref-warm-white);
+  --wenxin-color-bg-base:   var(--wenxin-ref-base-white);
+  --wenxin-color-bg-pure:   var(--wenxin-ref-pure-white);
+  --wenxin-color-bg-subtle: var(--wenxin-ref-subtle-bg);
+
+  /* === Text Colors === */
+  --wenxin-color-text-primary:   var(--wenxin-ref-ink);
+  --wenxin-color-text-secondary: var(--wenxin-ref-warm-gray);
+  --wenxin-color-text-muted:     var(--wenxin-ref-muted);
+  --wenxin-color-text-heading:   var(--wenxin-ref-ink-heading);
+
+  /* === Accent (点睛之色 — 全页 ≤ 2 处，图标激活态除外) === */
+  --wenxin-color-accent:        var(--wenxin-ref-brick);
+  --wenxin-color-accent-hover:  var(--wenxin-ref-brick-hover);
+  --wenxin-color-accent-subtle: var(--wenxin-ref-brick-subtle);
+
+  /* === Borders === */
+  --wenxin-color-border-subtle: var(--wenxin-ref-border-subtle);
+  --wenxin-color-border-strong: var(--wenxin-ref-border-strong);
+
+  /* === Interactive === */
+  --wenxin-color-link:       var(--wenxin-ref-ink);
+  --wenxin-color-link-hover: var(--wenxin-ref-brick);
+  --wenxin-color-focus:      var(--wenxin-ref-focus-ring);
+
+  /* === Typography (Semantic) === */
+  --wenxin-font-display: var(--wenxin-ref-font-display);
+  --wenxin-font-body:    var(--wenxin-ref-font-body);
+  --wenxin-font-ui:      var(--wenxin-ref-font-ui);
+  --wenxin-font-mono:    var(--wenxin-ref-font-mono);
+
+  /* === Font Sizes === */
+  --wenxin-text-xs:   var(--wenxin-ref-type-scale-xs);
+  --wenxin-text-sm:   var(--wenxin-ref-type-scale-sm);
+  --wenxin-text-base: var(--wenxin-ref-type-scale-base);
+  --wenxin-text-md:   var(--wenxin-ref-type-scale-md);
+  --wenxin-text-lg:   var(--wenxin-ref-type-scale-lg);
+  --wenxin-text-xl:   var(--wenxin-ref-type-scale-xl);
+  --wenxin-text-2xl:  var(--wenxin-ref-type-scale-2xl);
+  --wenxin-text-3xl:  var(--wenxin-ref-type-scale-3xl);
+  --wenxin-text-4xl:  var(--wenxin-ref-type-scale-4xl);
+  --wenxin-text-5xl:  var(--wenxin-ref-type-scale-5xl);
+
+  /* === Leading (Line Height) === */
+  --wenxin-leading-tight:   var(--wenxin-ref-leading-tight);
+  --wenxin-leading-snug:    var(--wenxin-ref-leading-snug);
+  --wenxin-leading-normal:  var(--wenxin-ref-leading-normal);
+  --wenxin-leading-relaxed: var(--wenxin-ref-leading-relaxed);
+  --wenxin-leading-loose:   var(--wenxin-ref-leading-loose);
+
+  /* === Tracking (Letter Spacing) === */
+  --wenxin-tracking-tight:   var(--wenxin-ref-tracking-tight);
+  --wenxin-tracking-normal:  var(--wenxin-ref-tracking-normal);
+  --wenxin-tracking-wide:    var(--wenxin-ref-tracking-wide);
+  --wenxin-tracking-wider:   var(--wenxin-ref-tracking-wider);
+  --wenxin-tracking-chinese: var(--wenxin-ref-tracking-chinese);
+
+  /* === Spacing === */
+  --wenxin-space-1:  var(--wenxin-ref-space-1);
+  --wenxin-space-2:  var(--wenxin-ref-space-2);
+  --wenxin-space-3:  var(--wenxin-ref-space-3);
+  --wenxin-space-4:  var(--wenxin-ref-space-4);
+  --wenxin-space-5:  var(--wenxin-ref-space-5);
+  --wenxin-space-6:  var(--wenxin-ref-space-6);
+  --wenxin-space-8:  var(--wenxin-ref-space-8);
+  --wenxin-space-10: var(--wenxin-ref-space-10);
+  --wenxin-space-12: var(--wenxin-ref-space-12);
+  --wenxin-space-16: var(--wenxin-ref-space-16);
+  --wenxin-space-24: var(--wenxin-ref-space-24);
+  --wenxin-space-32: var(--wenxin-ref-space-32);
+
+  /* === Icon Sizes === */
+  --wenxin-icon-sm: var(--wenxin-ref-icon-sm);
+  --wenxin-icon-md: var(--wenxin-ref-icon-md);
+  --wenxin-icon-lg: var(--wenxin-ref-icon-lg);
+
+  /* === Motion === */
+  --wenxin-duration-instant: var(--wenxin-ref-duration-instant);
+  --wenxin-duration-fast:    var(--wenxin-ref-duration-fast);
+  --wenxin-duration-base:    var(--wenxin-ref-duration-base);
+  --wenxin-duration-slow:    var(--wenxin-ref-duration-slow);
+  --wenxin-duration-crawl:   var(--wenxin-ref-duration-crawl);
+
+  --wenxin-ease-default: var(--wenxin-ref-ease-default);
+  --wenxin-ease-out:     var(--wenxin-ref-ease-out);
+  --wenxin-ease-in:      var(--wenxin-ref-ease-in);
+
+  /* === Radius === */
+  --wenxin-radius-none: var(--wenxin-ref-radius-none);
+  --wenxin-radius-sm:   var(--wenxin-ref-radius-sm);
+  --wenxin-radius-md:   var(--wenxin-ref-radius-md);
+  --wenxin-radius-full: var(--wenxin-ref-radius-full);
+
+  /* === Layout === */
+  --wenxin-width-article:  var(--wenxin-ref-width-article);
+  --wenxin-width-content:  var(--wenxin-ref-width-content);
+  --wenxin-width-showcase: var(--wenxin-ref-width-showcase);
+  --wenxin-padding-page-x: var(--wenxin-ref-padding-page-x);
+}
+
+/* ----------------------------------------------------------
+ * LAYER 3: Component Tokens
+ * Component-specific bindings built from Layer 2 semantic tokens.
+ * These are the values you apply directly in HTML/CSS.
+ * ---------------------------------------------------------- */
+
+:root {
+  /* === Button (线框型 — design.md §9 禁止填充色按钮) === */
+  --wenxin-btn-border:       1px solid var(--wenxin-color-border-strong);
+  --wenxin-btn-bg:           transparent;
+  --wenxin-btn-color:        var(--wenxin-color-text-primary);
+  --wenxin-btn-radius:       var(--wenxin-radius-md);
+  --wenxin-btn-padding-y:    var(--wenxin-space-3);
+  --wenxin-btn-padding-x:    var(--wenxin-space-6);
+  --wenxin-btn-font:         var(--wenxin-font-ui);
+  --wenxin-btn-font-size:    var(--wenxin-text-sm);
+  --wenxin-btn-transition:   color var(--wenxin-duration-fast) var(--wenxin-ease-default),
+                             border-color var(--wenxin-duration-fast) var(--wenxin-ease-default);
+  --wenxin-btn-hover-border: var(--wenxin-color-accent);
+  --wenxin-btn-hover-color:  var(--wenxin-color-accent);
+  --wenxin-btn-focus-outline:        2px solid var(--wenxin-color-focus);
+  --wenxin-btn-focus-outline-offset: 2px;
+  --wenxin-btn-disabled-color:  var(--wenxin-color-text-muted);
+  --wenxin-btn-disabled-border: var(--wenxin-color-border-subtle);
+
+  /* === Form Input — design.md §8 无障碍 === */
+  --wenxin-input-border:       1px solid var(--wenxin-color-border-subtle);
+  --wenxin-input-bg:           var(--wenxin-color-bg-pure);
+  --wenxin-input-radius:       var(--wenxin-radius-md);
+  --wenxin-input-padding-y:    var(--wenxin-space-3);
+  --wenxin-input-padding-x:    var(--wenxin-space-4);
+  --wenxin-input-font:         var(--wenxin-font-body);
+  --wenxin-input-font-size:    var(--wenxin-text-base);
+  --wenxin-input-placeholder:  var(--wenxin-color-text-muted);
+  --wenxin-input-focus-outline:        2px solid var(--wenxin-color-focus);
+  --wenxin-input-focus-outline-offset: 2px;
+  --wenxin-input-error-border: var(--wenxin-color-accent);
+  --wenxin-input-error-color:  var(--wenxin-color-accent);
+  --wenxin-input-label-font:   var(--wenxin-font-ui);
+  --wenxin-input-label-size:   var(--wenxin-text-sm);
+  --wenxin-input-label-color:  var(--wenxin-color-text-secondary);
+
+  /* === Link === */
+  --wenxin-link-color:           var(--wenxin-color-link);
+  --wenxin-link-hover-color:     var(--wenxin-color-link-hover);
+  --wenxin-link-transition:      color var(--wenxin-duration-fast) var(--wenxin-ease-default);
+  --wenxin-link-underline:       none;
+  --wenxin-link-hover-underline: underline;
+  --wenxin-link-focus-outline:        2px solid var(--wenxin-color-focus);
+  --wenxin-link-focus-outline-offset: 2px;
+
+  /* === Table — design.md output-formats §5.6 === */
+  --wenxin-table-border:        none;
+  --wenxin-table-row-border:    1px solid var(--wenxin-color-border-subtle);
+  --wenxin-table-header-border: 1px solid var(--wenxin-color-border-strong);
+  --wenxin-table-header-bg:     var(--wenxin-color-bg-subtle);
+  --wenxin-table-cell-padding-y: var(--wenxin-space-3);
+  --wenxin-table-cell-padding-x: var(--wenxin-space-3);
+  --wenxin-table-font:          var(--wenxin-font-body);
+  --wenxin-table-font-size:     var(--wenxin-text-sm);
+
+  /* === Tag — design.md output-formats §5.6 === */
+  --wenxin-tag-border:       1px solid var(--wenxin-color-border-subtle);
+  --wenxin-tag-bg:           transparent;
+  --wenxin-tag-radius:       var(--wenxin-radius-sm);
+  --wenxin-tag-padding-y:    2px;
+  --wenxin-tag-padding-x:    var(--wenxin-space-3);
+  --wenxin-tag-font:         var(--wenxin-font-ui);
+  --wenxin-tag-font-size:    var(--wenxin-text-xs);
+  --wenxin-tag-tracking:     var(--wenxin-tracking-wide);
+  --wenxin-tag-color:        var(--wenxin-color-text-secondary);
+  --wenxin-tag-hover-border: var(--wenxin-color-accent);
+  --wenxin-tag-hover-color:  var(--wenxin-color-accent);
+
+  /* === Code Block — design.md §6 Blockquote === */
+  --wenxin-code-bg:      var(--wenxin-color-bg-subtle);
+  --wenxin-code-color:   var(--wenxin-color-text-primary);
+  --wenxin-code-font:    var(--wenxin-font-mono);
+  --wenxin-code-font-size: var(--wenxin-text-sm);
+  --wenxin-code-radius:  var(--wenxin-radius-md);
+  --wenxin-code-padding: var(--wenxin-space-3);
+  --wenxin-code-border:  none;
+
+  /* === Blockquote — design.md §6 Blockquote·段落引用 === */
+  --wenxin-quote-border:      2px solid var(--wenxin-color-accent);
+  --wenxin-quote-bg:          var(--wenxin-color-bg-subtle);
+  --wenxin-quote-color:       var(--wenxin-color-text-secondary);
+  --wenxin-quote-font:        var(--wenxin-font-body);
+  --wenxin-quote-font-style:  italic;
+  --wenxin-quote-font-size:   var(--wenxin-text-md);
+  --wenxin-quote-padding-y:   var(--wenxin-space-4);
+  --wenxin-quote-padding-x:   var(--wenxin-space-6);
+  --wenxin-quote-margin:      var(--wenxin-space-8) 0;
+
+  /* === Pull Quote — design.md §6 Pull Quote·编辑型引语 === */
+  --wenxin-pullquote-border-left: 3px solid var(--wenxin-color-accent);
+  --wenxin-pullquote-bg:          var(--wenxin-color-bg-warm);
+  --wenxin-pullquote-font:        var(--wenxin-font-display);
+  --wenxin-pullquote-font-size:   var(--wenxin-text-3xl);
+  --wenxin-pullquote-font-style:  italic;
+  --wenxin-pullquote-color:       var(--wenxin-color-accent);
+  --wenxin-pullquote-padding:     var(--wenxin-space-6);
+
+  /* === Attribution Bar — design.md §6 归因区 === */
+  --wenxin-attribution-line-width:  40px;
+  --wenxin-attribution-line-border: 1px solid var(--wenxin-color-border-strong);
+  --wenxin-attribution-name-font:   var(--wenxin-font-body);
+  --wenxin-attribution-name-weight: 700;
+  --wenxin-attribution-name-color:  var(--wenxin-color-text-heading);
+  --wenxin-attribution-desc-font:   var(--wenxin-font-ui);
+  --wenxin-attribution-desc-size:   var(--wenxin-text-sm);
+  --wenxin-attribution-desc-color:  var(--wenxin-color-text-secondary);
+
+  /* === Card (Content Block — 无阴影、无边框、用留白分隔) === */
+  --wenxin-card-bg:             transparent;
+  --wenxin-card-border:         none;
+  --wenxin-card-shadow:         none;
+  --wenxin-card-radius:         var(--wenxin-radius-none);
+  --wenxin-card-padding:        0;
+  --wenxin-card-separator-space: var(--wenxin-space-8);
+
+  /* === Separator === */
+  --wenxin-separator-color: var(--wenxin-color-border-subtle);
+  --wenxin-separator-width: 1px;
+
+  /* === Focus Ring — design.md §8 键盘导航 === */
+  --wenxin-focus-outline:        2px solid var(--wenxin-color-focus);
+  --wenxin-focus-outline-offset: 2px;
+
+  /* === Brand Mark ■ — design.md output-formats §3.3 Mark === */
+  --wenxin-brand-mark-size:          8px;
+  --wenxin-brand-mark-mobile-size:   6px;
+  --wenxin-brand-mark-color:         var(--wenxin-color-accent);
+  --wenxin-brand-mark-breathe-duration: 4s;
+}
+
+/* ----------------------------------------------------------
+ * F4 Print & Editorial Tokens — wenxin-spec.md §3.3 文心书卷
+ * Reference tokens for print typography (pt units, CMYK, page sizes).
+ * These are Layer 1 reference tokens — use through semantic/component layers.
+ * ---------------------------------------------------------- */
+
+:root {
+  /* === Print Type Scale (pt units) — F4 Print === */
+  --wenxin-ref-print-text-xs:    7pt;     /* 极小标注、版权、页脚 */
+  --wenxin-ref-print-text-sm:    8.5pt;   /* 页眉/页脚、脚注、图注 */
+  --wenxin-ref-print-text-base:  10pt;    /* 基准字号（书籍正文） */
+  --wenxin-ref-print-text-md:    11pt;    /* 正文阅读推荐 */
+  --wenxin-ref-print-text-lg:    13pt;    /* 摘要、小节引导 */
+  --wenxin-ref-print-text-xl:    16pt;    /* h4 细分标题 */
+  --wenxin-ref-print-text-2xl:   20pt;    /* h3 小节标题 */
+  --wenxin-ref-print-text-3xl:   26pt;    /* h2 章节标题 */
+  --wenxin-ref-print-text-4xl:   36pt;    /* h1 书籍标题 */
+  --wenxin-ref-print-text-5xl:   48pt;    /* 章节起始页大标题 */
+
+  /* === Print Leading — F4 Print === */
+  --wenxin-ref-print-leading-tight:    1.2;   /* 大号展示标题 */
+  --wenxin-ref-print-leading-snug:     1.35;  /* 小标题 */
+  --wenxin-ref-print-leading-normal:   1.5;   /* 列表项、辅助文字 */
+  --wenxin-ref-print-leading-relaxed:  1.8;   /* 中文正文阅读 */
+  --wenxin-ref-print-leading-loose:    1.9;   /* 英文长文阅读 */
+
+  /* === Print Page Sizes — F4 Print === */
+  --wenxin-ref-print-page-a5:        148mm 210mm;   /* 小型书籍、诗集、手册 */
+  --wenxin-ref-print-page-b5:        176mm 250mm;   /* 学术期刊、杂志 */
+  --wenxin-ref-print-page-a4:        210mm 297mm;   /* 论文、报告、信头纸 */
+  --wenxin-ref-print-page-letter:     8.5in 11in;   /* 北美标准 */
+  --wenxin-ref-print-page-16k:       185mm 260mm;   /* 中文书籍常用 */
+
+  /* === Print CMYK Colors — F4 Print === */
+  --wenxin-ref-print-cmyk-ink:          "C45 M40 Y40 K65";   /* #3A3837 · 主文字·深炭墨色 */
+  --wenxin-ref-print-cmyk-ink-heading: "C50 M45 Y42 K70";   /* #2C2B29 · 标题 */
+  --wenxin-ref-print-cmyk-warm-gray:   "C25 M22 Y22 K35";   /* #888580 · 辅助文字 */
+  --wenxin-ref-print-cmyk-muted:       "C15 M12 Y14 K28";   /* #B0ABA4 · 弱化文字 */
+  --wenxin-ref-print-cmyk-brick:       "C20 M70 Y75 K30";   /* #8B3525 · 砖红·朱砂 */
+  --wenxin-ref-print-cmyk-border-subtle:"C5 M5 Y8 K5";      /* #E5E1DA · 细边框 */
+  --wenxin-ref-print-cmyk-border-strong:"C10 M10 Y12 K20";  /* #C8C3BA · 明显边框 */
+}
+
+/* ----------------------------------------------------------
+ * F6 Documentation Tokens — wenxin-spec.md §3.3 文心文档
+ * Reference tokens for documentation sites (sidebar, syntax highlighting).
+ * These are Layer 1 reference tokens — use through semantic/component layers.
+ * ---------------------------------------------------------- */
+
+:root {
+  /* === Code Text Size — F6 Documentation === */
+  --wenxin-ref-text-code: 0.875em;  /* 相对于父元素，约 14px 在 --text-md 上下文中 */
+
+  /* === Sidebar — F6 Documentation === */
+  --wenxin-ref-sidebar-width: 240px;
+  --wenxin-ref-sidebar-border: 1px solid var(--wenxin-color-border-subtle);
+
+  /* === Syntax Highlighting (Warm-Tone) — F6 Documentation === */
+  --wenxin-ref-syntax-keyword:     #8B3525;  /* 砖红·accent */
+  --wenxin-ref-syntax-string:      #6B5B3E;  /* 暖棕·深土色 */
+  --wenxin-ref-syntax-comment:     #9A948D;  /* 暖灰·弱化 */
+  --wenxin-ref-syntax-function:    #5C4A2F;  /* 深棕 */
+  --wenxin-ref-syntax-number:      #7A5C3A;  /* 中棕 */
+  --wenxin-ref-syntax-operator:    #3A3837;  /* 深炭·正文色 */
+  --wenxin-ref-syntax-variable:    #3A3837;  /* 深炭·正文色 */
+  --wenxin-ref-syntax-type:        #6B5B3E;  /* 暖棕·同字符串 */
+  --wenxin-ref-syntax-punctuation: #888580;  /* 辅助文字色 */
+  --wenxin-ref-syntax-property:    #5C4A2F;  /* 深棕·同函数名 */
+
+  /* === Syntax Highlighting Dark (Warm-Tone) — F6 Documentation === */
+  /* NOTE: These are dark-mode reference values. Application code should
+   * consume them via @media (prefers-color-scheme: dark) or [data-theme="dark"],
+   * not directly in light-mode styles. */
+  --wenxin-ref-syntax-dark-keyword:     #C4533E;  /* 暗色 accent */
+  --wenxin-ref-syntax-dark-string:      #C4A87A;  /* 暖金 */
+  --wenxin-ref-syntax-dark-comment:     #5A5550;  /* 暗色弱化 */
+  --wenxin-ref-syntax-dark-function:    #D4B88A;  /* 暖金·亮 */
+  --wenxin-ref-syntax-dark-number:      #B8976A;  /* 中暖金 */
+  --wenxin-ref-syntax-dark-operator:    #E8E3DC;  /* 暗色正文 */
+  --wenxin-ref-syntax-dark-variable:    #E8E3DC;  /* 暗色正文 */
+  --wenxin-ref-syntax-dark-type:        #C4A87A;  /* 暖金·同字符串 */
+  --wenxin-ref-syntax-dark-punctuation: #8A857D;  /* 暗色辅助 */
+  --wenxin-ref-syntax-dark-property:    #D4B88A;  /* 暖金·亮 */
+}
+
+/* ----------------------------------------------------------
+ * F5 Presentation Tokens — wenxin-spec.md §3.3 文心演示
+ * Reference tokens for presentation slides (16:9 canvas, display-first type scale).
+ * These are Layer 1 reference tokens — use through semantic/component layers.
+ * ---------------------------------------------------------- */
+
+:root {
+  /* === Slide Type Scale — F5 Presentation === */
+  --wenxin-ref-slide-text-sm:    0.875rem;   /* ~14px · 演讲者备注、页脚 */
+  --wenxin-ref-slide-text-base:  1.125rem;   /* ~18px · 辅助说明、图注 */
+  --wenxin-ref-slide-text-md:    1.375rem;   /* ~22px · 要点列表正文 */
+  --wenxin-ref-slide-text-lg:    1.75rem;    /* ~28px · 副标题 */
+  --wenxin-ref-slide-text-xl:    2.25rem;    /* ~36px · 小节标题 */
+  --wenxin-ref-slide-text-2xl:   3rem;       /* ~48px · 幻灯片标题 */
+  --wenxin-ref-slide-text-3xl:   4rem;       /* ~64px · 章节标题 */
+  --wenxin-ref-slide-text-4xl:   5.5rem;     /* ~88px · 标题幻灯片大标题 */
+
+  /* === Slide Layout — F5 Presentation === */
+  --wenxin-ref-slide-width:       1920px;
+  --wenxin-ref-slide-height:      1080px;
+  --wenxin-ref-slide-ratio:       16 / 9;
+  --wenxin-ref-slide-safe-margin: 5%;        /* 距边缘安全区域 */
+  --wenxin-ref-slide-grid-columns: 12;
+  --wenxin-ref-slide-grid-gutter: 24px;
+}
+
+/* ----------------------------------------------------------
+ * F7 Poster & Cover Tokens — wenxin-spec.md §3.3 文心海报
+ * Reference tokens for poster/cover design (display-first type scale,
+ * canvas ratios, safe area).
+ * These are Layer 1 reference tokens — use through semantic/component layers.
+ * ---------------------------------------------------------- */
+
+:root {
+  /* === Poster Type Scale — F7 Poster === */
+  --wenxin-ref-poster-text-xs:    0.75rem;    /* 12px · 极小标注、ISBN、条形码 */
+  --wenxin-ref-poster-text-sm:    0.875rem;   /* 14px · 日期、地点、署名、网址 */
+  --wenxin-ref-poster-text-base:  1.125rem;   /* 18px · 辅助说明 */
+  --wenxin-ref-poster-text-md:    1.5rem;     /* 24px · 副标题、次要信息 */
+  --wenxin-ref-poster-text-lg:    2rem;       /* 32px · 小标题、标签 */
+  --wenxin-ref-poster-text-xl:    3rem;       /* 48px · 中等标题 */
+  --wenxin-ref-poster-text-2xl:   4.5rem;     /* 72px · 大标题 */
+  --wenxin-ref-poster-text-3xl:   6rem;       /* 96px · 主标题（标准海报） */
+  --wenxin-ref-poster-text-4xl:   8rem;       /* 128px · 极大标题（展览海报） */
+  --wenxin-ref-poster-text-5xl:   12rem;      /* 192px · 全出血标题 */
+
+  /* === Poster Canvas Ratios — F7 Poster === */
+  --wenxin-ref-poster-ratio-2-3:     2 / 3;    /* 书籍封面、竖版海报 */
+  --wenxin-ref-poster-ratio-3-4:     3 / 4;    /* 竖版海报、宣传单页 */
+  --wenxin-ref-poster-ratio-1-1:     1 / 1;    /* 专辑封面、社交媒体头像 */
+  --wenxin-ref-poster-ratio-16-9:    16 / 9;   /* 横幅、社交媒体头图 */
+  --wenxin-ref-poster-ratio-4-3:     4 / 3;    /* 横版海报 */
+
+  /* === Poster Safe Area — F7 Poster === */
+  --wenxin-ref-poster-safe-margin:  8%;        /* 重要文字距边缘最小比例 */
+  --wenxin-ref-poster-bleed-print:  3mm;       /* 印刷裁切出血 */
+}
+
+/* ----------------------------------------------------------
+ * F8 Diagram & Knowledge Map Tokens — wenxin-spec.md §3.3 文心图解
+ * Reference tokens for standalone diagrams and knowledge maps.
+ * ---------------------------------------------------------- */
+
+:root {
+  --wenxin-ref-diagram-canvas-bg:      var(--wenxin-ref-warm-white);
+  --wenxin-ref-diagram-node-bg:        var(--wenxin-ref-base-white);
+  --wenxin-ref-diagram-node-width:     130px;
+  --wenxin-ref-diagram-node-height:    70px;
+  --wenxin-ref-diagram-node-radius:    2px;
+  --wenxin-ref-diagram-line-width:     1px;
+  --wenxin-ref-diagram-focus-width:    1.5px;
+  --wenxin-ref-diagram-label-offset:   15px;
+  --wenxin-ref-diagram-stagger-min:    20px;
+  --wenxin-ref-diagram-stagger-max:    60px;
+}
+
+/* ----------------------------------------------------------
+ * F9 Report & LaTeX Typesetting Tokens — wenxin-spec.md §3.3 文心报告
+ * Reference tokens for Markdown -> LaTeX/PDF report contracts.
+ * ---------------------------------------------------------- */
+
+:root {
+  --wenxin-ref-report-page-a4:          210mm 297mm;
+  --wenxin-ref-report-page-letter:      8.5in 11in;
+  --wenxin-ref-report-margin-top:       28mm;
+  --wenxin-ref-report-margin-side:      24mm;
+  --wenxin-ref-report-margin-bottom:    32mm;
+  --wenxin-ref-report-text-base:        10.5pt;
+  --wenxin-ref-report-text-footnote:    8.5pt;
+  --wenxin-ref-report-leading-body:     1.65;
+  --wenxin-ref-report-section-gap:      18pt;
+}
+
+/* ----------------------------------------------------------
+ * Dark Mode — Layer 2 & 3 overrides
+ * design.md §2 暗色模式·夜晚的羊皮纸
+ * ---------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* === Semantic Color Overrides === */
+    --wenxin-color-bg-warm:   var(--wenxin-ref-dark-bg);
+    --wenxin-color-bg-base:   var(--wenxin-ref-dark-base);
+    --wenxin-color-bg-pure:   var(--wenxin-ref-dark-pure);
+    --wenxin-color-bg-subtle: var(--wenxin-ref-dark-subtle);
+
+    --wenxin-color-text-primary:   var(--wenxin-ref-dark-ivory);
+    --wenxin-color-text-secondary: var(--wenxin-ref-dark-warm-gray);
+    --wenxin-color-text-muted:     var(--wenxin-ref-dark-muted);
+    --wenxin-color-text-heading:   var(--wenxin-ref-dark-ivory-heading);
+
+    --wenxin-color-accent:        var(--wenxin-ref-dark-brick);
+    --wenxin-color-accent-hover:  var(--wenxin-ref-dark-brick-hover);
+    --wenxin-color-accent-subtle: var(--wenxin-ref-dark-brick-subtle);
+
+    --wenxin-color-border-subtle: var(--wenxin-ref-dark-border-subtle);
+    --wenxin-color-border-strong: var(--wenxin-ref-dark-border-strong);
+
+    --wenxin-color-link:       var(--wenxin-ref-dark-ivory);
+    --wenxin-color-link-hover: var(--wenxin-ref-dark-brick);
+    --wenxin-color-focus:      var(--wenxin-ref-dark-focus-ring);
+
+    /* === Component overrides in dark mode === */
+    --wenxin-separator-color: var(--wenxin-ref-dark-border-subtle);
+    --wenxin-brand-mark-color: var(--wenxin-ref-dark-brick);
+    --wenxin-pullquote-bg:     var(--wenxin-ref-dark-bg);
+  }
+}
+
+/* Dark mode via data attribute (for manual toggle) */
+[data-theme="dark"] {
+  --wenxin-color-bg-warm:   var(--wenxin-ref-dark-bg);
+  --wenxin-color-bg-base:   var(--wenxin-ref-dark-base);
+  --wenxin-color-bg-pure:   var(--wenxin-ref-dark-pure);
+  --wenxin-color-bg-subtle: var(--wenxin-ref-dark-subtle);
+
+  --wenxin-color-text-primary:   var(--wenxin-ref-dark-ivory);
+  --wenxin-color-text-secondary: var(--wenxin-ref-dark-warm-gray);
+  --wenxin-color-text-muted:     var(--wenxin-ref-dark-muted);
+  --wenxin-color-text-heading:   var(--wenxin-ref-dark-ivory-heading);
+
+  --wenxin-color-accent:        var(--wenxin-ref-dark-brick);
+  --wenxin-color-accent-hover:  var(--wenxin-ref-dark-brick-hover);
+  --wenxin-color-accent-subtle: var(--wenxin-ref-dark-brick-subtle);
+
+  --wenxin-color-border-subtle: var(--wenxin-ref-dark-border-subtle);
+  --wenxin-color-border-strong: var(--wenxin-ref-dark-border-strong);
+
+  --wenxin-color-link:       var(--wenxin-ref-dark-ivory);
+  --wenxin-color-link-hover: var(--wenxin-ref-dark-brick);
+  --wenxin-color-focus:      var(--wenxin-ref-dark-focus-ring);
+
+  --wenxin-separator-color: var(--wenxin-ref-dark-border-subtle);
+  --wenxin-brand-mark-color: var(--wenxin-ref-dark-brick);
+  --wenxin-pullquote-bg:     var(--wenxin-ref-dark-bg);
+}
+
+/* ----------------------------------------------------------
+ * Reduced Motion — design.md §5 尊重用户动效偏好
+ * ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --wenxin-duration-instant: 0.01ms;
+    --wenxin-duration-fast:    0.01ms;
+    --wenxin-duration-base:    0.01ms;
+    --wenxin-duration-slow:    0.01ms;
+    --wenxin-duration-crawl:   0.01ms;
+  }
+}
+
+/* ----------------------------------------------------------
+ * Global font smoothing — design.md §3 字体平滑渲染
+ * ---------------------------------------------------------- */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

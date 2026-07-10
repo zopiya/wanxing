@@ -1,0 +1,96 @@
+/* ==========================================================
+ * Wanxing Workbench — Preview Module
+ * Iframe viewer container.
+ * ========================================================== */
+
+/* === Preview Container === */
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--wenxin-color-bg-warm, #F2F0EB);
+}
+
+/* === Viewer Slot (flex row for iframe + annotate panel) === */
+
+.preview-viewer-slot {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-viewer-slot > .preview-iframe-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+/* === Annotate Panel Slot === */
+
+.annotate-panel-slot {
+  display: none;
+  width: 280px;
+  min-width: 280px;
+  border-left: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+/* === Preview Toolbar === */
+
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  min-height: 32px;
+  padding: 0 8px;
+  background-color: var(--wenxin-color-bg-base, #fff);
+  border-bottom: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+}
+
+.preview-page-tabs {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.preview-page-tab {
+  padding: 3px 10px;
+  font-size: 11px;
+  color: var(--wenxin-color-text-secondary, #999);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.preview-page-tab:hover {
+  color: var(--wenxin-color-text-primary, #333);
+  background-color: var(--wenxin-color-bg-warm, #F2F0EB);
+}
+
+.preview-page-tab.active {
+  color: var(--wenxin-color-accent, #8B3525);
+  border-color: var(--wenxin-color-accent, #8B3525);
+  background-color: var(--wenxin-color-bg-base, #fff);
+}
+
+.preview-refresh-btn {
+  padding: 2px 8px;
+  font-size: 14px;
+  color: var(--wenxin-color-text-secondary, #999);
+  border: 1px solid var(--wenxin-color-border-subtle, #E5E1DA);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.preview-refresh-btn:hover {
+  color: var(--wenxin-color-text-primary, #333);
+  border-color: var(--wenxin-color-accent, #8B3525);
+}

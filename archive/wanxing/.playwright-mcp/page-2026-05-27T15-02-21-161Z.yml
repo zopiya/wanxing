@@ -1,0 +1,204 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: 万形
+      - generic [ref=e8]: / demo
+    - button "切换主题" [active] [pressed] [ref=e10] [cursor=pointer]: ☾
+  - generic [ref=e11]:
+    - generic [ref=e13]:
+      - button "折叠/展开 Chat 面板" [ref=e14] [cursor=pointer]:
+        - generic [ref=e15]: Chat
+        - generic "已连接" [ref=e16]
+        - generic [ref=e17]: ▾
+      - generic [ref=e19]: 暂无消息
+      - generic [ref=e20]:
+        - generic [ref=e21]: 1 条批注待处理
+        - generic [ref=e22]:
+          - textbox "Chat 输入框" [ref=e23]:
+            - /placeholder: 输入消息…
+          - button "发送消息" [ref=e24] [cursor=pointer]: 发送
+    - generic [ref=e26]:
+      - generic [ref=e28]:
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - button "Desktop" [pressed] [ref=e32] [cursor=pointer]
+            - button "Tablet" [ref=e33] [cursor=pointer]
+            - button "Mobile" [ref=e34] [cursor=pointer]
+          - radiogroup "预览模式" [ref=e35]:
+            - radio "标注" [checked] [ref=e36] [cursor=pointer]
+            - radio "编辑" [ref=e37] [cursor=pointer]
+        - iframe [ref=e40]:
+          - generic [active] [ref=f2e1]:
+            - link "跳过导航" [ref=f2e2] [cursor=pointer]:
+              - /url: "#main-content"
+            - banner [ref=f2e3]:
+              - generic [ref=f2e4]:
+                - link "文心■" [ref=f2e5] [cursor=pointer]:
+                  - /url: "#"
+                - navigation "主导航" [ref=f2e6]:
+                  - list [ref=f2e7]:
+                    - listitem [ref=f2e8]:
+                      - link "文章" [ref=f2e9] [cursor=pointer]:
+                        - /url: "#articles"
+                    - listitem [ref=f2e10]:
+                      - link "关于" [ref=f2e11] [cursor=pointer]:
+                        - /url: "#about"
+                    - listitem [ref=f2e12]:
+                      - link "数据" [ref=f2e13] [cursor=pointer]:
+                        - /url: "#data"
+                    - listitem [ref=f2e14]:
+                      - link "联系" [ref=f2e15] [cursor=pointer]:
+                        - /url: "#contact"
+            - main [ref=f2e16]:
+              - region "欢迎" [ref=f2e17]:
+                - heading "文字即界面" [level=1] [ref=f2e18]: 文字即界面
+                - paragraph [ref=f2e20]: 留白即设计，克制即力量。万形是一个专注于文心设计语言的项目，让内容自然呈现，设计退居幕后。
+                - link "开始阅读 →" [ref=f2e21] [cursor=pointer]:
+                  - /url: "#articles"
+              - region "近期文章" [ref=f2e22]:
+                - heading "近期文章" [level=2] [ref=f2e23]
+                - paragraph [ref=f2e24]: 探索设计、文字与克制之美。
+                - generic [ref=f2e25]:
+                  - article [ref=f2e26]:
+                    - generic [ref=f2e27]:
+                      - time [ref=f2e28]: 2026 年 5 月 20 日
+                      - generic [ref=f2e29]: 设计语言
+                    - heading "文心规范 1.0：从哲学到 Token 的完整设计体系" [level=3] [ref=f2e30]:
+                      - link "文心规范 1.0：从哲学到 Token 的完整设计体系" [ref=f2e31] [cursor=pointer]:
+                        - /url: "#"
+                    - paragraph [ref=f2e32]: 文心设计语言由两个层次构成：第一层是灵魂——色彩系统、字体哲学、留白密度、点睛之色、动效节奏，永远不变；第二层是形态——布局结构、导航形式、内容组织方式，随境而化。水的本质不因容器而改变，但在杯子里是杯子的形，在河道里是河道的形。
+                    - link "继续阅读 →" [ref=f2e33] [cursor=pointer]:
+                      - /url: "#"
+                  - article [ref=f2e34]:
+                    - generic [ref=f2e35]:
+                      - time [ref=f2e36]: 2026 年 5 月 15 日
+                      - generic [ref=f2e37]: 排版
+                    - heading "留白的力量：为什么间距比装饰更重要" [level=3] [ref=f2e38]:
+                      - link "留白的力量：为什么间距比装饰更重要" [ref=f2e39] [cursor=pointer]:
+                        - /url: "#"
+                    - paragraph [ref=f2e40]: 留白不是空缺，是设计的一部分。足够的留白让内容呼吸、让层次清晰、让眼睛休息。在移动端，留白尤其重要——小屏幕上拥挤的内容会导致认知过载。当觉得「间距是不是太大了」时，往往才是刚好。
+                    - link "继续阅读 →" [ref=f2e41] [cursor=pointer]:
+                      - /url: "#"
+                  - article [ref=f2e42]:
+                    - generic [ref=f2e43]:
+                      - time [ref=f2e44]: 2026 年 5 月 10 日
+                      - generic [ref=f2e45]: 动效
+                    - heading "春雨润物：文心动效的克制哲学" [level=3] [ref=f2e46]:
+                      - link "春雨润物：文心动效的克制哲学" [ref=f2e47] [cursor=pointer]:
+                        - /url: "#"
+                    - paragraph [ref=f2e48]: 动效的存在如同书页翻动时纸张的阻力：你感到用心，但不会停下来欣赏它。用户感受到「顺」，而非「炫」。品牌标识符 ■ 的呼吸动效是全页唯一的循环——出现越少，力量越大。
+                    - link "继续阅读 →" [ref=f2e49] [cursor=pointer]:
+                      - /url: "#"
+              - blockquote [ref=f2e51]:
+                - paragraph [ref=f2e52]: 「设计的力量来自克制而非张扬。通过精心控制的留白、温暖的色调和微妙的排版细节，创造一种安静而有力的视觉体验。」
+                - generic [ref=f2e53]:
+                  - text: —
+                  - strong [ref=f2e54]: 文心设计语言
+                  - text: ，A9 克制之美
+              - region "设计维度" [ref=f2e55]:
+                - heading "设计维度" [level=2] [ref=f2e56]
+                - paragraph [ref=f2e57]: 文心设计语言的七个核心维度。
+                - generic [ref=f2e58]:
+                  - generic [ref=f2e59]:
+                    - generic [ref=f2e60]: A · 设计哲学
+                    - generic [ref=f2e61]: A9
+                    - generic [ref=f2e62]: 克制之美 — Restrained Elegance
+                  - generic [ref=f2e63]:
+                    - generic [ref=f2e64]: B · 视觉性格
+                    - generic [ref=f2e65]: B9
+                    - generic [ref=f2e66]: 温暖极简 — Warm Minimal
+                  - generic [ref=f2e67]:
+                    - generic [ref=f2e68]: C · 排版节奏
+                    - generic [ref=f2e69]: C9
+                    - generic [ref=f2e70]: 温暖衬线 — Warm Serif
+                  - generic [ref=f2e71]:
+                    - generic [ref=f2e72]: D · 色彩基调
+                    - generic [ref=f2e73]: D9
+                    - generic [ref=f2e74]: 暖土调 — Warm Earth
+              - region "色彩系统" [ref=f2e75]:
+                - heading "色彩系统" [level=2] [ref=f2e76]
+                - paragraph [ref=f2e77]: 文心暖土调色板——来自泥土、陶器、茶叶、宣纸。
+                - table [ref=f2e78]:
+                  - rowgroup [ref=f2e79]:
+                    - row "Token 色值 用途" [ref=f2e80]:
+                      - columnheader "Token" [ref=f2e81]
+                      - columnheader "色值" [ref=f2e82]
+                      - columnheader "用途" [ref=f2e83]
+                  - rowgroup [ref=f2e84]:
+                    - 'row "--color-bg-warm #F2F0EB 暖白 · 羊皮纸质感" [ref=f2e85]':
+                      - cell "--color-bg-warm" [ref=f2e86]:
+                        - code [ref=f2e87]: "--color-bg-warm"
+                      - cell "#F2F0EB" [ref=f2e88]
+                      - cell "暖白 · 羊皮纸质感" [ref=f2e89]
+                    - 'row "--color-text-primary #3A3837 深炭色 · 主体文字" [ref=f2e90]':
+                      - cell "--color-text-primary" [ref=f2e91]:
+                        - code [ref=f2e92]: "--color-text-primary"
+                      - cell "#3A3837" [ref=f2e93]
+                      - cell "深炭色 · 主体文字" [ref=f2e94]
+                    - 'row "--color-text-heading #2C2B29 标题 · 比正文略深" [ref=f2e95]':
+                      - cell "--color-text-heading" [ref=f2e96]:
+                        - code [ref=f2e97]: "--color-text-heading"
+                      - cell "#2C2B29" [ref=f2e98]
+                      - cell "标题 · 比正文略深" [ref=f2e99]
+                    - 'row "--color-accent #8B3525 砖红 · 朱砂 · 全页 ≤ 2 处" [ref=f2e100]':
+                      - cell "--color-accent" [ref=f2e101]:
+                        - code [ref=f2e102]: "--color-accent"
+                      - cell "#8B3525" [ref=f2e103]
+                      - cell "砖红 · 朱砂 · 全页 ≤ 2 处" [ref=f2e104]
+                    - 'row "--color-border-subtle #E5E1DA 暖灰 · 极细边框" [ref=f2e105]':
+                      - cell "--color-border-subtle" [ref=f2e106]:
+                        - code [ref=f2e107]: "--color-border-subtle"
+                      - cell "#E5E1DA" [ref=f2e108]
+                      - cell "暖灰 · 极细边框" [ref=f2e109]
+              - generic [ref=f2e110]:
+                - heading "标签" [level=2] [ref=f2e111]
+                - paragraph [ref=f2e112]: 交互式标签组件，hover 时变为强调色。
+                - generic [ref=f2e113]:
+                  - generic [ref=f2e114]: 设计语言
+                  - generic [ref=f2e115]: 文心
+                  - generic [ref=f2e116]: 克制之美
+                  - generic [ref=f2e117]: 温暖极简
+                  - generic [ref=f2e118]: 衬线字体
+                  - generic [ref=f2e119]: 留白
+                  - generic [ref=f2e120]: 暖土调
+                  - generic [ref=f2e121]: 动效
+                  - generic [ref=f2e122]: 无障碍
+                  - generic [ref=f2e123]: 响应式
+              - generic [ref=f2e124]:
+                - heading "引用" [level=2] [ref=f2e125]
+                - blockquote [ref=f2e126]:
+                  - paragraph [ref=f2e127]: "「全页只允许一个强调色（砖红 #8B3525），它是整个设计的灵魂签名。就像水墨画里的朱砂印章——其他一切是黑白灰，它是唯一有温度的存在。」"
+                  - generic [ref=f2e128]: —— 文心设计语言 · D9 暖土调
+              - region "联系" [ref=f2e129]:
+                - heading "联系" [level=2] [ref=f2e130]
+                - paragraph [ref=f2e131]: 表单组件示例——focus 态使用强调色轮廓。
+                - generic [ref=f2e132]:
+                  - generic [ref=f2e133]:
+                    - generic [ref=f2e134]: 名称
+                    - textbox "名称" [ref=f2e135]:
+                      - /placeholder: 你的名字
+                  - generic [ref=f2e136]:
+                    - generic [ref=f2e137]: 邮箱
+                    - textbox "邮箱" [ref=f2e138]:
+                      - /placeholder: name@example.com
+                  - generic [ref=f2e139]:
+                    - generic [ref=f2e140]: 留言
+                    - textbox "留言" [ref=f2e141]:
+                      - /placeholder: 你想说什么……
+                  - button "发送" [ref=f2e142] [cursor=pointer]
+            - contentinfo [ref=f2e143]:
+              - generic [ref=f2e144]:
+                - generic [ref=f2e145]: 文心 ■
+                - list [ref=f2e146]:
+                  - listitem [ref=f2e147]:
+                    - link "GitHub" [ref=f2e148] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=f2e149]:
+                    - link "规范" [ref=f2e150] [cursor=pointer]:
+                      - /url: "#"
+                  - listitem [ref=f2e151]:
+                    - link "关于" [ref=f2e152] [cursor=pointer]:
+                      - /url: "#"
+                - paragraph [ref=f2e153]: © 2026 万形 · Wanxing. 文字即界面，留白即设计，克制即力量。
+      - button "切换标注模式" [ref=e41] [cursor=pointer]: 标注
+  - alert

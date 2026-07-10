@@ -1,0 +1,2 @@
+[     133ms] [LOG] [WS] Connected @ http://localhost:5173/src/ws-client.ts:29
+[   46292ms] [LOG] [SSE] Connection: connected @ http://localhost:5173/src/modules/chat/index.ts:85

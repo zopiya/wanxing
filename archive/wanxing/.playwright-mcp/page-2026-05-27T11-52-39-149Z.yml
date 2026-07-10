@@ -1,0 +1,31 @@
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e6]: 万形
+    - separator [ref=e8]
+    - navigation "项目列表" [ref=e9]:
+      - generic [ref=e10]: dist/ 项目
+      - link "fixture-bad-motion" [ref=e11] [cursor=pointer]:
+        - /url: "#/project/fixture-bad-motion"
+      - link "fixture-fade-up" [ref=e12] [cursor=pointer]:
+        - /url: "#/project/fixture-fade-up"
+      - link "fixture-no-animation" [ref=e13] [cursor=pointer]:
+        - /url: "#/project/fixture-no-animation"
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e16]: 选择一个项目开始
+      - generic [ref=e17]: 从左侧导航栏选择 dist/ 下的项目
+  - generic [ref=e19]:
+    - button "折叠/展开 Chat 面板" [ref=e20] [cursor=pointer]:
+      - generic [ref=e21]: Chat
+      - generic [ref=e22]: 收起
+    - generic [ref=e23]:
+      - generic [ref=e24]: 会话列表
+      - generic [ref=e26]: 暂无会话
+    - generic [ref=e28]: 暂无消息
+    - generic [ref=e29]:
+      - textbox "Chat 输入框" [ref=e30]:
+        - /placeholder: 输入消息…
+      - generic [ref=e31]:
+        - button "创建 Before/After 对比" [ref=e32] [cursor=pointer]: 对比
+        - button "截取当前预览截图" [ref=e33] [cursor=pointer]: 截图
+        - button "发送消息" [ref=e34] [cursor=pointer]: 发送

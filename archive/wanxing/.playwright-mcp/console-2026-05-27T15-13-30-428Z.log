@@ -1,0 +1,3 @@
+[     135ms] [LOG] [SSE] Connection: connected @ http://localhost:5173/src/modules/chat/index.ts:85
+[     232ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0
+[     283ms] [LOG] [WS] Connected @ http://localhost:5173/src/ws-client.ts:29

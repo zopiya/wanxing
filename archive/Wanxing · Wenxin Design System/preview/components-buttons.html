@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components · Buttons" subtitle="Wireframe only — default / hover / focus / disabled" viewport="700x180" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Buttons — wireframe only</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .btn {
+    display:inline-flex; align-items:center; gap:8px;
+    background: transparent;
+    border: 1px solid var(--line-2);
+    color: var(--fg-2);
+    font-family: var(--sans-ui);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: color 180ms, border-color 180ms;
+    cursor: pointer;
+  }
+  .btn:hover { color: var(--accent); border-color: var(--accent); }
+  .btn.disabled { color: var(--fg-4); border-color: var(--line-1); cursor:not-allowed; }
+  .row-b { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .stamp { font-family: var(--sans-ui); font-size: 10px; letter-spacing:0.15em; color:var(--fg-4); text-transform:uppercase; }
+</style>
+</head>
+<body class="card">
+  <div class="row-b">
+    <div class="col" style="gap:6px;"><button class="btn">View archive</button><span class="stamp">default</span></div>
+    <div class="col" style="gap:6px;"><button class="btn" style="color:var(--accent); border-color:var(--accent);">View archive</button><span class="stamp">hover</span></div>
+    <div class="col" style="gap:6px;"><button class="btn" style="outline:2px solid var(--focus-ring); outline-offset:2px;">View archive</button><span class="stamp">focus</span></div>
+    <div class="col" style="gap:6px;"><button class="btn disabled">View archive</button><span class="stamp">disabled</span></div>
+  </div>
+  <div class="spread" style="border-top:1px solid var(--line-1); padding-top:10px;">
+    <span class="label">Wireframe only. Transparent fill, 1 px border. Hover swaps to accent. No filled buttons, ever.</span>
+  </div>
+</body>
+</html>

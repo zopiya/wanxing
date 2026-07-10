@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-wanxing-profile="F3" data-wanxing-contract-version="1" data-animations-complete="false">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="万形品牌标识 — 文心设计语言的品牌视觉识别系统。朱砂印章 Logo、暖土调色彩、衬线字体系统。">
+<title>万形品牌标识 · Wanxing Brand Identity</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="wanxing-render-contract">
+{
+  "profile": "F3",
+  "title": "万形品牌标识",
+  "date": "2026-05-24",
+  "language": "zh-CN",
+  "project": {
+    "name": "万形品牌标识",
+    "slug": "wanxing-f3-brand"
+  },
+  "output": {
+    "entry": "examples/wanxing-f3-brand/index.html",
+    "tmpDir": "dist/wanxing-f3-brand/tmp"
+  },
+  "theme": { "darkModeRequired": true, "accentBudget": 2 },
+  "canvas": {
+    "kind": "responsive",
+    "viewports": ["desktop", "tablet", "mobile"]
+  },
+  "structure": {
+    "requiredRegions": ["header", "main", "footer"],
+    "primaryContent": "main",
+    "expectedH1": 1
+  },
+  "motion": {
+    "hasAnimation": true,
+    "intent": "brand-breath",
+    "intensity": "E9-2",
+    "maxDurationMs": 4000,
+    "maxTranslatePx": 0,
+    "allowsLoop": true,
+    "hasRuntimeSamplingTarget": true,
+    "completionSignal": "data-animations-complete"
+  },
+  "brand": {
+    "logoType": "cinnabar-seal",
+    "logoColors": ["#8B3525", "#FFFFFF"],
+    "logoStrokeWidth": 2.5,
+    "logoCornerRadius": 4,
+    "logoVariants": ["horizontal", "vertical", "monochrome", "reversed"]
+  },
+  "audit": {
+    "profileSpecificChecks": ["brand-logo-conformance", "dark-mode", "accent-budget"],
+    "allowedDeviations": []
+  }
+}
+</script>
+
+<style>
+/* ========================================
+   CSS Custom Properties — Light Mode
+   ======================================== */
+:root {
+  /* Background */
+  --color-bg-warm:    #F2F0EB;
+  --color-bg-base:    #FAFAF8;
+  --color-bg-pure:    #FFFFFF;
+  --color-bg-subtle:  #F0EDE7;
+
+  /* Text */
+  --color-text-primary:   #3A3837;
+  --color-text-secondary: #5A5550;
+  --color-text-muted:     #B0ABA4;
+  --color-text-heading:   #2C2B29;
+
+  /* Accent — ≤ 2 uses on entire page */
+  --color-accent:        #8B3525;
+  --color-accent-hover:  #A84030;
+  --color-accent-subtle: #F5E8E5;
+
+  /* Borders */
+  --color-border-subtle: #E5E1DA;
+  --color-border-strong: #C8C3BA;
+
+  /* Links */
+  --color-link:       #3A3837;
+  --color-link-hover: #6B5B3E;
+
+  /* Typography */
+  --font-display: "Lora", "Georgia", "Noto Serif SC", "Source Han Serif SC", serif;
+  --font-body:    "EB Garamond", "Crimson Text", "Noto Serif SC", "Source Han Serif SC", serif;
+  --font-ui:      "SF Pro Text", system-ui, "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+
+  /* Type Scale */
+  --text-xs:   0.694rem;
+  --text-sm:   0.833rem;
+  --text-base: 1rem;
+  --text-md:   1.0625rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  1.875rem;
+  --text-3xl:  2.25rem;
+  --text-4xl:  3rem;
+  --text-5xl:  4.5rem;
+
+  /* Leading */
+  --leading-tight:   1.25;
+  --leading-snug:    1.45;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.85;
+  --leading-loose:   2.0;
+
+  /* Tracking */
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.05em;
+  --tracking-wider:    0.15em;
+  --tracking-chinese:  0.1em;
+
+  /* Spacing */
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Content Width */
+  --width-showcase: clamp(700px, 72vw, 920px);
+  --padding-page-x: clamp(20px, 5vw, 72px);
+
+  /* Brand Logo */
+  --brand-logo-text-horizontal: 22px;
+  --brand-logo-text-vertical: 18px;
+
+  /* Motion */
+  --duration-fast:  180ms;
+  --duration-base:  260ms;
+  --duration-slow:  420ms;
+  --ease-default:   cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* ========================================
+   Dark Mode
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-warm:    #1A1816;
+    --color-bg-base:    #201E1B;
+    --color-bg-pure:    #242220;
+    --color-bg-subtle:  #2A2724;
+
+    --color-text-primary:   #E8E3DC;
+    --color-text-secondary: #9A948D;
+    --color-text-muted:     #5A5550;
+    --color-text-heading:   #F0EBE3;
+
+    --color-accent:        #C4533E;
+    --color-accent-hover:  #D9614A;
+    --color-accent-subtle: #2E1A16;
+
+    --color-border-subtle: #2E2B27;
+    --color-border-strong: #403C37;
+
+    --color-link:       #E8E3DC;
+    --color-link-hover: #C4A87A;
+  }
+}
+
+/* ========================================
+   Reset & Base
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  background: var(--color-bg-base);
+}
+
+main {
+  scroll-snap-type: y proximity;
+  overflow-y: visible;
+}
+
+/* ========================================
+   Layout
+   ======================================== */
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px);
+  scroll-snap-align: start;
+}
+
+.section--warm { background: var(--color-bg-warm); }
+.section--base { background: var(--color-bg-base); }
+
+.section__inner {
+  max-width: var(--width-showcase);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vh, var(--space-16));
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-chinese);
+  margin-bottom: var(--space-5);
+}
+
+.section__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+}
+
+.section__divider {
+  width: 60px;
+  height: 1px;
+  background: var(--color-border-strong);
+  margin: var(--space-8) auto 0;
+  border: none;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-bg-warm);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: var(--space-4) var(--padding-page-x);
+}
+
+.site-header__inner {
+  max-width: var(--width-showcase);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.site-header__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  letter-spacing: var(--tracking-chinese);
+}
+
+.brand-mark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  vertical-align: baseline;
+  flex-shrink: 0;
+  animation: brand-breath 4s ease-in-out infinite;
+}
+
+/* Demo-only: larger, static, for educational display */
+.brand-mark-demo {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: var(--color-border-strong);
+  vertical-align: baseline;
+  flex-shrink: 0;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+}
+
+.site-header__nav a {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.site-header__nav a:hover {
+  color: var(--color-link-hover);
+}
+
+/* ========================================
+   Hero
+   ======================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px);
+  background: var(--color-bg-warm);
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+.hero__inner {
+  max-width: var(--width-showcase);
+  margin: 0 auto;
+}
+
+.hero__logo {
+  margin-bottom: var(--space-10);
+  display: inline-block;
+}
+
+.hero__logo svg {
+  width: 96px;
+  height: 96px;
+  display: block;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, var(--text-5xl));
+  font-weight: 700;
+  color: var(--color-text-heading);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-chinese);
+  margin-bottom: var(--space-5);
+}
+
+.hero__tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 560px;
+  margin: 0 auto var(--space-6);
+}
+
+.hero__meta {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+/* ========================================
+   Philosophy
+   ======================================== */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-10);
+  margin-top: var(--space-8);
+}
+
+.philosophy-item {
+  text-align: center;
+}
+
+.philosophy-item__word {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  line-height: var(--leading-tight);
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.philosophy-item__desc {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+/* ========================================
+   Logo System
+   ======================================== */
+.logo-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin-top: var(--space-8);
+}
+
+.logo-showcase__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.logo-showcase__display {
+  flex-shrink: 0;
+  padding: var(--space-8);
+  background: var(--color-bg-pure);
+  border: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-showcase__display--main {
+  width: 160px;
+  height: 160px;
+}
+
+.logo-showcase__display--main svg {
+  width: 96px;
+  height: 96px;
+}
+
+.logo-showcase__specs {
+  flex: 1;
+  min-width: 280px;
+}
+
+.logo-showcase__specs h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-4);
+}
+
+.logo-showcase__specs dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-2) var(--space-6);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.logo-showcase__specs dt {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.logo-showcase__specs dd {
+  color: var(--color-text-primary);
+}
+
+.logo-showcase__specs code {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-subtle);
+  padding: 0 4px;
+}
+
+/* Variants row */
+.logo-variants {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.logo-variant {
+  padding: var(--space-8);
+  background: var(--color-bg-pure);
+  border: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+.logo-variant__label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-top: var(--space-4);
+}
+
+/* ========================================
+   Brand Identifier
+   ======================================== */
+.identifier-showcase {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.identifier-display {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  letter-spacing: var(--tracking-chinese);
+}
+
+.identifier-display .brand-mark-demo {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+}
+.identifier-specs {
+  flex: 1;
+  min-width: 280px;
+}
+
+.identifier-specs dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-2) var(--space-6);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.identifier-specs dt {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.identifier-specs dd {
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   Color System
+   ======================================== */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.swatch {
+  border: 1px solid var(--color-border-subtle);
+}
+
+.swatch__color {
+  height: 80px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-4);
+}
+
+.swatch__info {
+  padding: var(--space-4);
+  background: var(--color-bg-pure);
+}
+
+.swatch__name {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-2);
+}
+
+.swatch__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-snug);
+  margin-bottom: 4px;
+}
+.swatch__role {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.swatch--accent .swatch__color { border: 2px solid var(--color-border-strong); background: var(--color-accent-subtle); }
+.swatch--warm   .swatch__color { background: #F2F0EB; }
+.swatch--pure   .swatch__color { background: #FFFFFF; }
+.swatch--charcoal .swatch__color { background: #3A3837; }
+.swatch--gray   .swatch__color { background: #888580; }
+.swatch--light  .swatch__color { background: #E5E1DA; }
+
+.swatch__color-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+}
+
+.swatch--accent .swatch__color-label { color: var(--color-text-primary); }
+.swatch--charcoal .swatch__color-label { color: #E8E3DC; }
+
+.dark-note {
+  margin-top: var(--space-8);
+  padding: var(--space-5) var(--space-6);
+  border-left: 2px solid var(--color-border-strong);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  background: var(--color-bg-subtle);
+}
+
+.dark-note strong {
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   Typography System
+   ======================================== */
+.type-specimen {
+  margin-top: var(--space-8);
+  padding: var(--space-8);
+  background: var(--color-bg-pure);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.type-specimen + .type-specimen {
+  margin-top: var(--space-6);
+}
+
+.type-specimen__name {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.type-specimen__display {
+  font-family: var(--font-display);
+}
+
+.type-specimen__body {
+  font-family: var(--font-body);
+}
+
+.type-specimen__cjk {
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+}
+
+.specimen-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: flex-end;
+  margin-bottom: var(--space-4);
+}
+
+.specimen-sample {
+  line-height: var(--leading-tight);
+}
+
+.specimen-sample--bold {
+  font-weight: 700;
+}
+
+.specimen-sample--semibold {
+  font-weight: 600;
+}
+
+.specimen-sample--regular {
+  font-weight: 400;
+}
+
+.specimen-sample--italic {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.specimen-sample--xl {
+  font-size: var(--text-3xl);
+}
+
+.specimen-sample--lg {
+  font-size: var(--text-xl);
+}
+
+.specimen-sample--md {
+  font-size: var(--text-md);
+}
+
+.specimen-sample__label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  display: block;
+  margin-top: var(--space-2);
+}
+
+/* ========================================
+   Application Examples
+   ======================================== */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.app-card {
+  background: var(--color-bg-pure);
+  border: 1px solid var(--color-border-subtle);
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.app-card__illustration {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto var(--space-5);
+  display: block;
+}
+
+.app-card__label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+/* ========================================
+   Prohibition List
+   ======================================== */
+.prohibition-group {
+  margin-top: var(--space-8);
+}
+
+.prohibition-group + .prohibition-group {
+  margin-top: var(--space-10);
+}
+
+.prohibition-group h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.prohibition-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.prohibition-list li {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  padding-left: var(--space-6);
+  position: relative;
+}
+
+.prohibition-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-ui);
+}
+
+.prohibition-list li strong {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+/* ========================================
+   Wenxin Overview
+   ======================================== */
+.overview-text {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  max-width: 640px;
+  margin: 0 auto var(--space-8);
+  text-align: center;
+}
+
+.dimensions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+
+.dimension-item {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-pure);
+}
+
+.dimension-item__code {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.dimension-item__name {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-1);
+}
+
+.dimension-item__desc {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-snug);
+}
+
+.forms-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  list-style: none;
+}
+
+.forms-list li {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-pure);
+}
+
+.forms-list li strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-1);
+}
+
+.forms-list li span {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-snug);
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.site-footer {
+  padding: var(--space-12) var(--padding-page-x) var(--space-10);
+  background: var(--color-bg-warm);
+  border-top: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+.site-footer__inner {
+  max-width: var(--width-showcase);
+  margin: 0 auto;
+}
+
+.site-footer__brand {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  letter-spacing: var(--tracking-chinese);
+  margin-bottom: var(--space-3);
+}
+
+.site-footer__copy {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+.site-footer__link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.site-footer__link:hover {
+  color: var(--color-link-hover);
+}
+
+/* ========================================
+   Brand Mark Breathing Animation
+   ======================================== */
+@keyframes brand-breath {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 1024px) {
+  :root {
+    --text-5xl: 3.5rem;
+    --text-4xl: 2.5rem;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .swatch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .logo-showcase__row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .identifier-showcase {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --text-5xl: 2.5rem;
+    --text-4xl: 2rem;
+    --text-3xl: 1.75rem;
+    --text-2xl: 1.5rem;
+    --padding-page-x: 20px;
+  }
+
+  .section {
+    padding-top: clamp(48px, 6vh, 80px);
+    padding-bottom: clamp(48px, 6vh, 80px);
+  }
+
+  .section__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .hero {
+    padding-top: clamp(48px, 6vh, 80px);
+    padding-bottom: clamp(48px, 6vh, 80px);
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .swatch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-showcase__display--main {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logo-showcase__display--main svg {
+    width: 72px;
+    height: 72px;
+  }
+
+  .logo-variants {
+    grid-template-columns: 1fr;
+  }
+
+  .identifier-display {
+    font-size: var(--text-2xl);
+  }
+
+  .identifier-display .brand-mark-demo {
+    width: 12px;
+    height: 12px;
+  }
+
+  .brand-mark {
+    width: 6px;
+    height: 6px;
+  }
+
+  .site-header__nav {
+    gap: var(--space-4);
+  }
+
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dimensions-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .forms-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .brand-mark {
+    opacity: 1 !important;
+  }
+}
+
+/* ========================================
+   Focus
+   ======================================== */
+:focus-visible {
+  outline: 2px solid rgba(139, 53, 37, 0.4);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :focus-visible {
+    outline-color: rgba(196, 83, 62, 0.4);
+  }
+}
+
+/* ========================================
+   Print
+   ======================================== */
+@media print {
+  .site-header { position: static; }
+  .brand-mark { animation: none; opacity: 1; }
+}
+</style>
+<!-- Favicon: 朱砂印章 16×16 data-URI -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%238B3525'/%3E%3Crect x='16' y='16' width='32' height='32' rx='2' fill='none' stroke='%23FFFFFF' stroke-width='2.5'/%3E%3Cpath d='M32 28v16M24 36h16' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="site-header__brand">
+      <span class="site-header__name">万形</span>
+      <span class="brand-mark" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="主导航">
+      <ul class="site-header__nav">
+        <li><a href="#logo">Logo</a></li>
+        <li><a href="#colors">色彩</a></li>
+        <li><a href="#typography">字体</a></li>
+        <li><a href="#applications">应用</a></li>
+        <li><a href="#overview">万形</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__logo">
+      <!-- 朱砂印章 Logo — 全天候 #8B3525 红底白线，不随暗色模式变色 -->
+      <svg width="96" height="96" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="万形品牌标识 — 朱砂印章">
+        <rect width="64" height="64" rx="4" fill="#8B3525"/>
+        <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- 顶部 Π 型横梁 -->
+          <path d="M16 20 H48 M16 20 V26 M48 20 V26"/>
+          <!-- 底部 U 型横梁 -->
+          <path d="M16 38 V44 H48 V38"/>
+          <!-- 双柱连接 -->
+          <path d="M24 26 V38"/>
+          <path d="M40 26 V38"/>
+          <!-- 中央横撑 -->
+          <path d="M24 32 H40"/>
+        </g>
+      </svg>
+    </div>
+    <h1 class="hero__title">
+       万形品牌标识
+    </h1>
+    <p class="hero__tagline">文字即界面，留白即设计，克制即力量。一枚朱砂印章，承载万形设计的全部灵魂。</p>
+    <p class="hero__meta">Wenxin Design Language · Brand Identity System</p>
+  </div>
+</section>
+
+<!-- Brand Philosophy -->
+<section class="section section--base">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">品牌哲学</h2>
+      <p class="section__subtitle">四个关键词定义万形品牌的核心性格</p>
+      <hr class="section__divider">
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-item">
+        <span class="philosophy-item__word">克制</span>
+        <span class="philosophy-item__desc">Restrained</span>
+        <p style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3);line-height:var(--leading-snug);">设计退居幕后，<br>让内容成为主角。</p>
+      </div>
+      <div class="philosophy-item">
+        <span class="philosophy-item__word">温暖</span>
+        <span class="philosophy-item__desc">Warm</span>
+        <p style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3);line-height:var(--leading-snug);">暖白底色配深炭文字，<br>避免冷硬纯黑白。</p>
+      </div>
+      <div class="philosophy-item">
+        <span class="philosophy-item__word">精确</span>
+        <span class="philosophy-item__desc">Precise</span>
+        <p style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3);line-height:var(--leading-snug);">4px 网格，Major Third<br>字号阶梯，不留随意。</p>
+      </div>
+      <div class="philosophy-item">
+        <span class="philosophy-item__word">安静</span>
+        <span class="philosophy-item__desc">Quiet</span>
+        <p style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3);line-height:var(--leading-snug);">无装饰阴影，无渐变，<br>用户感受到「顺」而非「炫」。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Logo System -->
+<section class="section section--warm" id="logo">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">Logo 系统</h2>
+      <p class="section__subtitle">朱砂印章 — 创作者的署名、背书与思想的重量</p>
+      <hr class="section__divider">
+    </div>
+
+    <div class="logo-showcase">
+      <!-- Main Logo -->
+      <div class="logo-showcase__row">
+        <div class="logo-showcase__display logo-showcase__display--main">
+          <svg width="96" height="96" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="万形朱砂印章 Logo">
+            <rect width="64" height="64" rx="4" fill="#8B3525"/>
+            <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 20 H48 M16 20 V26 M48 20 V26"/>
+              <path d="M16 38 V44 H48 V38"/>
+              <path d="M24 26 V38"/>
+              <path d="M40 26 V38"/>
+              <path d="M24 32 H40"/>
+            </g>
+          </svg>
+        </div>
+        <div class="logo-showcase__specs">
+          <h3>朱砂印章 · 主标识</h3>
+          <p style="font-family:var(--font-body);font-size:var(--text-md);color:var(--color-text-secondary);margin-bottom:var(--space-5);line-height:var(--leading-normal);">
+            红底白线的「白文」印章风格，抽象几何图腾象征「万形」——从单一灵魂衍生的万千形态。图腾由 Π 型顶梁、U 型底梁、双柱连接与中央横撑构成，寓意结构的稳固与延展。
+          </p>
+          <dl>
+            <dt>尺寸</dt>
+            <dd>64 × 64 px（可缩放至 24px 最小尺寸）</dd>
+            <dt>底色</dt>
+            <dd><code>#8B3525</code> — 全天候不变，暗色模式下不调整</dd>
+            <dt>线条</dt>
+            <dd><code>2.5px</code> · <code>stroke-linecap: round</code> · <code>stroke-linejoin: round</code></dd>
+            <dt>圆角</dt>
+            <dd><code>rx="4"</code></dd>
+            <dt>安全区</dt>
+            <dd>Logo 高度的 50%（32px）</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Variants -->
+      <div class="logo-variants">
+        <div class="logo-variant">
+          <div style="display:flex;align-items:center;gap:12px;justify-content:center;height:80px;">
+            <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="64" height="64" rx="4" fill="#8B3525"/>
+              <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 20 H48 M16 20 V26 M48 20 V26"/>
+                <path d="M16 38 V44 H48 V38"/>
+                <path d="M24 26 V38 M40 26 V38"/>
+                <path d="M24 32 H40"/>
+              </g>
+            </svg>
+            <span style="font-family:'Lora','Georgia','Noto Serif SC',serif;font-size:var(--brand-logo-text-horizontal);font-weight:700;color:#3A3837;">万形</span>
+          </div>
+          <p class="logo-variant__label">横版 · Horizontal</p>
+        </div>
+        <div class="logo-variant">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;justify-content:center;height:100px;">
+            <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="64" height="64" rx="4" fill="#8B3525"/>
+              <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 20 H48 M16 20 V26 M48 20 V26"/>
+                <path d="M16 38 V44 H48 V38"/>
+                <path d="M24 26 V38 M40 26 V38"/>
+                <path d="M24 32 H40"/>
+              </g>
+            </svg>
+            <span style="font-family:'Lora','Georgia','Noto Serif SC',serif;font-size:var(--brand-logo-text-vertical);font-weight:700;color:#3A3837;">万形</span>
+          </div>
+          <p class="logo-variant__label">竖版 · Vertical</p>
+        </div>
+        <div class="logo-variant">
+          <div style="display:flex;align-items:center;justify-content:center;height:80px;">
+            <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="64" height="64" rx="4" fill="#3A3837"/>
+              <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 20 H48 M16 20 V26 M48 20 V26"/>
+                <path d="M16 38 V44 H48 V38"/>
+                <path d="M24 26 V38 M40 26 V38"/>
+                <path d="M24 32 H40"/>
+              </g>
+            </svg>
+          </div>
+          <p class="logo-variant__label">单色版 · Monochrome</p>
+        </div>
+        <div class="logo-variant">
+          <div style="display:flex;align-items:center;justify-content:center;height:80px;background:#1A1816;">
+            <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="64" height="64" rx="4" fill="#8B3525"/>
+              <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 20 H48 M16 20 V26 M48 20 V26"/>
+                <path d="M16 38 V44 H48 V38"/>
+                <path d="M24 26 V38 M40 26 V38"/>
+                <path d="M24 32 H40"/>
+              </g>
+            </svg>
+          </div>
+          <p class="logo-variant__label">反色版 · On Dark（红底全场景通行）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Identifier ■ -->
+<section class="section section--base">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">品牌标识符 ■</h2>
+      <p class="section__subtitle">全页唯一的几何强调 — 出现越少，力量越大</p>
+      <hr class="section__divider">
+    </div>
+    <div class="identifier-showcase">
+      <div class="identifier-display">
+        万形<span class="brand-mark-demo" aria-hidden="true"></span>
+      </div>
+      <div class="identifier-specs">
+        <p style="font-family:var(--font-body);font-size:var(--text-md);color:var(--color-text-secondary);margin-bottom:var(--space-5);line-height:var(--leading-normal);">
+          品牌标识符 ■ 是文心设计语言「点睛之色」原则的具象化。它紧随品牌名出现，全页仅此一处（与 Logo 底座共同构成 Accent ≤ 2 的约束）。在暗色模式下，■ 使用 <code>#C4533E</code> 确保感知亮度一致。
+        </p>
+        <dl>
+          <dt>形态</dt>
+          <dd>实心方块，使用文心点睛色填充</dd>
+          <dt>桌面</dt>
+          <dd>8 × 8px</dd>
+          <dt>移动端</dt>
+          <dd>6 × 6px</dd>
+          <dt>动效</dt>
+          <dd>呼吸动效：opacity 1 → 0.6 → 1，周期 4s，ease-in-out 循环</dd>
+          <dt>位置</dt>
+          <dd>紧随品牌名/署名之后，基线对齐</dd>
+          <dt>全局</dt>
+          <dd>全页唯一，不复制到其他位置</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Color System -->
+<section class="section section--warm" id="colors">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">色彩系统</h2>
+      <p class="section__subtitle">暖土调色板 — 来自泥土、陶器、茶叶、宣纸的自然色彩</p>
+      <hr class="section__divider">
+    </div>
+    <div class="swatch-grid">
+      <div class="swatch swatch--accent">
+        <div class="swatch__color"><span class="swatch__color-label">#8B3525</span></div>
+        <div class="swatch__info">
+          <p class="swatch__name">砖红 · 朱砂</p>
+          <p class="swatch__value">RGB: rgb(139, 53, 37)</p>
+          <p class="swatch__value">CMYK: C20 M70 Y75 K30</p>
+          <p class="swatch__value">PANTONE 7621 C</p>
+          <p class="swatch__role">点睛强调色 · 全页 ≤ 2 处</p>
+        </div>
+      </div>
+      <div class="swatch swatch--warm">
+        <div class="swatch__color"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">暖白</p>
+          <p class="swatch__value">HEX: #F2F0EB</p>
+          <p class="swatch__value">RGB: rgb(242, 240, 235)</p>
+          <p class="swatch__value">CMYK: C3 M3 Y6 K0</p>
+          <p class="swatch__role">首页/展示型背景 · 羊皮纸质感</p>
+        </div>
+      </div>
+      <div class="swatch swatch--pure">
+        <div class="swatch__color"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">纯白</p>
+          <p class="swatch__value">HEX: #FFFFFF</p>
+          <p class="swatch__value">RGB: rgb(255, 255, 255)</p>
+          <p class="swatch__value">CMYK: C0 M0 Y0 K0</p>
+          <p class="swatch__role">正文区背景 · Logo 冲压线条</p>
+        </div>
+      </div>
+      <div class="swatch swatch--charcoal">
+        <div class="swatch__color"><span class="swatch__color-label">#3A3837</span></div>
+        <div class="swatch__info">
+          <p class="swatch__name">深炭 · 墨色</p>
+          <p class="swatch__value">HEX: #3A3837</p>
+          <p class="swatch__value">RGB: rgb(58, 56, 55)</p>
+          <p class="swatch__value">CMYK: C45 M40 Y40 K65</p>
+          <p class="swatch__role">主文字色 · 非纯黑，带暖调</p>
+        </div>
+      </div>
+      <div class="swatch swatch--gray">
+        <div class="swatch__color"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">暖灰</p>
+          <p class="swatch__value">HEX: #888580</p>
+          <p class="swatch__value">RGB: rgb(136, 133, 128)</p>
+          <p class="swatch__value">CMYK: C25 M22 Y22 K35</p>
+          <p class="swatch__role">辅助文字 · 日期/元数据</p>
+        </div>
+      </div>
+      <div class="swatch swatch--light">
+        <div class="swatch__color"></div>
+        <div class="swatch__info">
+          <p class="swatch__name">浅暖灰</p>
+          <p class="swatch__value">HEX: #E5E1DA</p>
+          <p class="swatch__value">CMYK: C5 M5 Y8 K5</p>
+          <p class="swatch__role">边框 · 分隔线</p>
+        </div>
+      </div>
+    </div>
+    <div class="dark-note">
+      <strong>暗色模式映射：</strong>暖白底色转为暖暗色 <code>#1A1816</code>，文字转为暖象牙白 <code>#E8E3DC</code>。砖红强调色在暗色模式下使用 <code>#C4533E</code>（通过 OKLCH 保持感知亮度），其余色彩对应映射，非简单反转。
+    </div>
+  </div>
+</section>
+
+<!-- Typography System -->
+<section class="section section--base" id="typography">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">字体系统</h2>
+      <p class="section__subtitle">衬线优先 — 笔画有起伏、有呼吸，与文心气质吻合</p>
+      <hr class="section__divider">
+    </div>
+
+    <!-- Lora — Display -->
+    <div class="type-specimen">
+      <p class="type-specimen__name">Display · 展示字体 — Lora</p>
+      <div class="type-specimen__display">
+        <div class="specimen-row">
+          <div>
+            <span class="specimen-sample specimen-sample--bold specimen-sample--xl" style="font-size:var(--text-4xl);">文心</span>
+            <span class="specimen-sample__label">Bold 700 · 标题/品牌名</span>
+          </div>
+        </div>
+        <div class="specimen-row">
+          <div>
+            <span class="specimen-sample specimen-sample--bold specimen-sample--lg">Wenxin Brand Identity</span>
+            <span class="specimen-sample__label">Bold 700 · Latin</span>
+          </div>
+          <div>
+            <span class="specimen-sample specimen-sample--regular specimen-sample--lg">The quiet power of restraint</span>
+            <span class="specimen-sample__label">Regular 400 · Latin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EB Garamond — Body -->
+    <div class="type-specimen">
+      <p class="type-specimen__name">Body · 正文字体 — EB Garamond</p>
+      <div class="type-specimen__body">
+        <div class="specimen-row">
+          <div>
+            <span class="specimen-sample specimen-sample--regular specimen-sample--md">The design language is built on the principle that content itself is the most important visual subject. All UI decisions serve one goal: to let the user enter the content most naturally and quietly — without interruption.</span>
+            <span class="specimen-sample__label">Regular 400 · 正文</span>
+          </div>
+        </div>
+        <div class="specimen-row">
+          <div>
+            <span class="specimen-sample specimen-sample--semibold specimen-sample--lg">Content-first design philosophy.</span>
+            <span class="specimen-sample__label">Semi-bold 600 · 强调</span>
+          </div>
+          <div>
+            <span class="specimen-sample specimen-sample--italic specimen-sample--lg">every contact feels smooth, not flashy.</span>
+            <span class="specimen-sample__label">Italic 400 · 英文强调</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Noto Serif SC — CJK -->
+    <div class="type-specimen">
+      <p class="type-specimen__name">CJK · 中文衬线 — Noto Serif SC</p>
+      <div class="type-specimen__cjk">
+        <div class="specimen-row">
+          <div>
+            <span class="specimen-sample specimen-sample--bold specimen-sample--xl" style="font-size:var(--text-3xl);">文字即界面，留白即设计</span>
+            <span class="specimen-sample__label">Bold 700 · 中文展示标题</span>
+          </div>
+        </div>
+        <div class="specimen-row">
+          <div>
+            <span class="specimen-sample specimen-sample--regular specimen-sample--md">设计语言的核心命题是：内容本身是最重要的视觉主体。所有界面决策服务于同一目标——让用户最自然、最安静地进入内容，而不是被界面打断。</span>
+            <span class="specimen-sample__label">Regular 400 · 中文正文 · 行高 1.85</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Application Examples -->
+<section class="section section--warm" id="applications">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">品牌应用示例</h2>
+      <p class="section__subtitle">Logo 在名片、信头纸与社交媒体中的规范应用</p>
+      <hr class="section__divider">
+    </div>
+    <div class="app-grid">
+      <!-- Business Card -->
+      <div class="app-card">
+        <svg class="app-card__illustration" viewBox="0 0 360 216" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="名片应用示例">
+          <!-- Card background -->
+          <rect width="360" height="216" rx="2" fill="#FAFAF8" stroke="#E5E1DA" stroke-width="1"/>
+          <!-- Top-left: Logo + brand name + subtitle -->
+          <g transform="translate(24, 20)">
+            <rect width="24" height="24" rx="2.5" fill="#8B3525"/>
+            <g stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 7.5 H18 M6 7.5 V10 M18 7.5 V10"/>
+              <path d="M6 13.5 V16.5 H18 V13.5"/>
+              <path d="M9 10 V13.5 M15 10 V13.5"/>
+              <path d="M9 11.5 H15"/>
+            </g>
+            <text x="32" y="11" font-family="Lora, Georgia, 'Noto Serif SC', serif" font-size="13" font-weight="700" fill="#2C2B29">万形</text>
+            <text x="32" y="22" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="8" fill="#888580">设计工程师</text>
+          </g>
+          <!-- Divider line -->
+          <line x1="24" y1="58" x2="336" y2="58" stroke="#E5E1DA" stroke-width="0.5"/>
+          <!-- Center: Name + Title -->
+          <g transform="translate(180, 102)" text-anchor="middle">
+            <text x="0" y="0" font-family="Lora, Georgia, 'Noto Serif SC', serif" font-size="18" font-weight="700" fill="#2C2B29">张明远</text>
+            <text x="0" y="18" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="10" fill="#888580">设计负责人</text>
+          </g>
+          <!-- Bottom: Contact info (two-column) -->
+          <g transform="translate(24, 150)" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="8" fill="#888580">
+            <text x="0" y="0">mingyuan@wanxing.design</text>
+            <text x="0" y="14">wanxing.design</text>
+            <text x="180" y="0">+86 10 8888 0000</text>
+            <text x="180" y="14">北京市朝阳区</text>
+          </g>
+          <!-- Bottom-right: ■ brand marker -->
+          <rect x="330" y="188" width="6" height="6" fill="#8B3525"/>
+        </svg>
+        <p class="app-card__label">名片 · 90×54mm</p>
+      </div>
+
+      <!-- Letterhead -->
+      <div class="app-card">
+        <svg class="app-card__illustration" viewBox="0 0 360 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="信头纸应用示例">
+          <!-- Page background -->
+          <rect width="360" height="480" fill="#FAFAF8" stroke="#E5E1DA" stroke-width="1"/>
+          <!-- Header: Logo + brand name -->
+          <g transform="translate(36, 32)">
+            <rect width="22" height="22" rx="2.5" fill="#8B3525"/>
+            <g stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5.5 7 H16.5 M5.5 7 V9.5 M16.5 7 V9.5"/>
+              <path d="M5.5 12.5 V15 H16.5 V12.5"/>
+              <path d="M8 9.5 V12.5 M14 9.5 V12.5"/>
+              <path d="M8 11 H14"/>
+            </g>
+            <text x="30" y="10" font-family="Lora, Georgia, 'Noto Serif SC', serif" font-size="12" font-weight="700" fill="#2C2B29">万形 · Wanxing</text>
+            <text x="30" y="20" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="7" fill="#B0ABA4">wanxing.design</text>
+          </g>
+          <!-- Header divider -->
+          <line x1="36" y1="72" x2="324" y2="72" stroke="#E5E1DA" stroke-width="1"/>
+          <!-- Document title area -->
+          <g transform="translate(36, 96)">
+            <text x="0" y="0" font-family="Lora, Georgia, 'Noto Serif SC', serif" font-size="14" font-weight="700" fill="#2C2B29">关于品牌标识使用规范的说明</text>
+            <text x="0" y="16" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="8" fill="#B0ABA4">2026-05-24 · 文心设计语言品牌指南</text>
+          </g>
+          <!-- Body text lines (simulated paragraphs) -->
+          <g transform="translate(36, 136)">
+            <line x1="0" y1="0" x2="288" y2="0" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="14" x2="276" y2="14" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="28" x2="290" y2="28" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="42" x2="240" y2="42" stroke="#E5E1DA" stroke-width="0.5"/>
+            <!-- Paragraph break -->
+            <line x1="0" y1="64" x2="270" y2="64" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="78" x2="288" y2="78" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="92" x2="260" y2="92" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="106" x2="282" y2="106" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="120" x2="210" y2="120" stroke="#E5E1DA" stroke-width="0.5"/>
+            <!-- Paragraph break -->
+            <line x1="0" y1="142" x2="278" y2="142" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="156" x2="284" y2="156" stroke="#E5E1DA" stroke-width="0.5"/>
+            <line x1="0" y1="170" x2="250" y2="170" stroke="#E5E1DA" stroke-width="0.5"/>
+          </g>
+          <!-- Footer divider -->
+          <line x1="36" y1="424" x2="324" y2="424" stroke="#E5E1DA" stroke-width="0.5"/>
+          <!-- Footer -->
+          <g transform="translate(36, 440)">
+            <text x="0" y="0" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="7" fill="#B0ABA4">万形设计 · wanxing.design · contact@wanxing.design · 北京市朝阳区</text>
+            <text x="0" y="14" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="6.5" fill="#B0ABA4">Wenxin Design Language Brand Identity v1.0</text>
+          </g>
+        </svg>
+        <p class="app-card__label">信头纸 · A4</p>
+      </div>
+
+      <!-- Social Media Template -->
+      <div class="app-card">
+        <svg class="app-card__illustration" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="社交媒体模板应用示例">
+          <!-- Brand post card -->
+          <rect width="340" height="340" rx="2" fill="#F2F0EB" stroke="#E5E1DA" stroke-width="1"/>
+          <!-- Cover image area (warm white gradient simulation) -->
+          <rect x="0" y="0" width="340" height="120" fill="#FAFAF8"/>
+          <line x1="0" y1="120" x2="340" y2="120" stroke="#E5E1DA" stroke-width="1"/>
+          <!-- Profile picture (朱砂印章 Logo, overlapping cover) -->
+          <g transform="translate(20, 92)">
+            <rect width="48" height="48" rx="4" fill="#8B3525" stroke="#F2F0EB" stroke-width="3"/>
+            <g stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 15 H36 M12 15 V20 M36 15 V20"/>
+              <path d="M12 29 V34 H36 V29"/>
+              <path d="M18 20 V29 M30 20 V29"/>
+              <path d="M18 25 H30"/>
+            </g>
+          </g>
+          <!-- Brand name beside profile -->
+          <g transform="translate(80, 136)">
+            <text font-family="Lora, Georgia, 'Noto Serif SC', serif" font-size="14" font-weight="700" fill="#2C2B29">万形</text>
+            <text x="42" y="-4" font-size="14" fill="#8B3525">■</text>
+            <text y="16" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="9" fill="#888580">Wenxin Brand Identity</text>
+          </g>
+          <!-- Post content area -->
+          <g transform="translate(20, 172)">
+            <text x="0" y="0" font-family="Lora, Georgia, 'Noto Serif SC', serif" font-size="13" font-weight="700" fill="#2C2B29">文字即界面，留白即设计</text>
+            <text x="0" y="18" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="9" fill="#888580">设计语言的核心命题：内容本身是最重要的视觉主体。所有界面决策服务于同一目标——让用户最自然、最安静地进入内容。</text>
+          </g>
+          <!-- Post interaction bar -->
+          <g transform="translate(20, 280)">
+            <rect x="0" y="0" width="300" height="1" fill="#E5E1DA"/>
+            <g transform="translate(0, 16)" font-family="system-ui, 'Noto Sans SC', sans-serif" font-size="8" fill="#B0ABA4">
+              <text x="0" y="0">♡ 128</text>
+              <text x="60" y="0">💬 12</text>
+              <text x="140" y="0">↗ 分享</text>
+            </g>
+          </g>
+          <!-- Small logo watermark bottom-right -->
+          <g transform="translate(290, 310)" opacity="0.15">
+            <rect width="24" height="24" rx="2" fill="#8B3525"/>
+            <g stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 7.5 H18 M6 7.5 V10 M18 7.5 V10"/>
+              <path d="M6 13.5 V16.5 H18 V13.5"/>
+              <path d="M9 10 V13.5 M15 10 V13.5"/>
+            </g>
+          </g>
+        </svg>
+        <p class="app-card__label">社交媒体模板 · 1:1</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prohibition List -->
+<section class="section section--base">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">禁止清单</h2>
+      <p class="section__subtitle">保护品牌标识的一致性 — 以下是不可逾越的底线</p>
+      <hr class="section__divider">
+    </div>
+
+    <div class="prohibition-group">
+      <h3>Logo 使用禁止事项</h3>
+      <ul class="prohibition-list">
+        <li><strong>禁止透明底座：</strong>主 Logo 必须使用 <code>#8B3525</code> 实心底座，不得使用透明背景替代。</li>
+        <li><strong>禁止使用细线：</strong>主 Logo 中严禁 1.5px 线宽，必须使用 2.5px 品牌重量线条。</li>
+        <li><strong>禁止直角底座：</strong>严禁 <code>rx="0"</code>，必须使用 <code>rx="4"</code> 微圆角。</li>
+        <li><strong>禁止媒体查询变色：</strong>主 Logo 不编写 Dark Mode 变色逻辑，红底白线全场景通行。</li>
+        <li><strong>禁止具象图标：</strong>严禁使用 FontAwesome / Lucide 等具象图标库中的图标作为 Logo 核心元素。</li>
+        <li><strong>禁止拉伸或压缩：</strong>Logo 比例不可改变，缩放必须保持等比例。</li>
+        <li><strong>禁止旋转 Logo。</strong></li>
+        <li><strong>禁止在 Logo 上添加阴影、描边、渐变等额外效果。</strong></li>
+        <li><strong>禁止将 Logo 放置在复杂背景上导致不可识别。</strong></li>
+      </ul>
+    </div>
+
+    <div class="prohibition-group">
+      <h3>色彩使用禁止事项</h3>
+      <ul class="prohibition-list">
+        <li><strong>禁止使用色板之外的色彩作为主色。</strong></li>
+        <li><strong>禁止使用高饱和冷色调：</strong>蓝、绿、紫及高饱和橙均不可出现。</li>
+        <li><strong>禁止任何渐变色背景。</strong></li>
+        <li><strong>禁止在印刷中使用 RGB 色值：</strong>必须使用 CMYK / PANTONE 对应色值。</li>
+        <li><strong>禁止砖红作为大面积背景：</strong><code>#8B3525</code> 仅用于 Logo 底座和品牌标识符 ■。</li>
+      </ul>
+    </div>
+
+    <div class="prohibition-group">
+      <h3>字体使用禁止事项</h3>
+      <ul class="prohibition-list">
+        <li><strong>禁止使用文心字体规范之外的字体：</strong>标题用 Lora，正文用 EB Garamond，中文用 Noto Serif SC。</li>
+        <li><strong>禁止对品牌字体添加描边、阴影、变形等效果。</strong></li>
+        <li><strong>禁止将显示字体用于正文</strong>（反之亦然）。</li>
+        <li><strong>禁止大段正文居中对齐 — </strong>伤害可读性。</li>
+        <li><strong>禁止在 Logo 中替换品牌字体。</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Wenxin / Wanxing Overview -->
+<section class="section section--warm" id="overview">
+  <div class="section__inner">
+    <div class="section__header">
+      <h2 class="section__title">万形 · Wanxing</h2>
+      <p class="section__subtitle">文心为唯一设计底座的 OpenCode 设计工程</p>
+      <hr class="section__divider">
+    </div>
+
+    <p class="overview-text">
+      万形是一个专注于文心（Wenxin）设计语言的 OpenCode 设计工程项目。进入 wanxing 目录后，opencode 自动加载文心设计规范，用户描述需求即可产出 UI。
+    </p>
+
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-heading);text-align:center;margin-bottom:var(--space-6);">文心设计语言 · 七个维度</h3>
+    <div class="dimensions-grid">
+      <div class="dimension-item">
+        <p class="dimension-item__code">A9</p>
+        <p class="dimension-item__name">克制之美</p>
+        <p class="dimension-item__desc">设计的力量来自克制而非张扬。无装饰阴影、无渐变。</p>
+      </div>
+      <div class="dimension-item">
+        <p class="dimension-item__code">B9</p>
+        <p class="dimension-item__name">温暖极简</p>
+        <p class="dimension-item__desc">暖白底色 + 深炭文字。极简但不冰冷。</p>
+      </div>
+      <div class="dimension-item">
+        <p class="dimension-item__code">C9</p>
+        <p class="dimension-item__name">温暖衬线</p>
+        <p class="dimension-item__desc">衬线优先，舒适行高 ≥1.7 CJK，温暖阅读体验。</p>
+      </div>
+      <div class="dimension-item">
+        <p class="dimension-item__code">D9</p>
+        <p class="dimension-item__name">暖土调</p>
+        <p class="dimension-item__desc">暖白底 + 砖红/赭石强调，东方自然美学。</p>
+      </div>
+      <div class="dimension-item">
+        <p class="dimension-item__code">E9</p>
+        <p class="dimension-item__name">温和流动</p>
+        <p class="dimension-item__desc">微妙、呼吸感、水一般的流动。动效像自然界的运动。</p>
+      </div>
+      <div class="dimension-item">
+        <p class="dimension-item__code">F1–F9</p>
+        <p class="dimension-item__name">九种形态</p>
+        <p class="dimension-item__desc">Web · Mobile · Brand · Print · Presentation · Docs · Poster · Diagram · Report</p>
+      </div>
+      <div class="dimension-item">
+        <p class="dimension-item__code">G2</p>
+        <p class="dimension-item__name">东亚语境</p>
+        <p class="dimension-item__desc">CJK 排版规范 · 标点挤压 · 避头尾 · Noto Serif SC。</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text-heading);text-align:center;margin-top:var(--space-16);margin-bottom:var(--space-6);">九种正式输出形态</h3>
+    <ul class="forms-list">
+      <li><strong>F1 · HTML Web</strong><span>响应式网站，暗色模式就绪</span></li>
+      <li><strong>F2 · Mobile App</strong><span>移动应用适配，平台原生交互</span></li>
+      <li><strong>F3 · Brand Identity</strong><span>Logo + 品牌视觉识别系统</span></li>
+      <li><strong>F4 · Print &amp; Editorial</strong><span>书籍、论文、杂志、Zine 等印刷排版</span></li>
+      <li><strong>F5 · Presentation</strong><span>幻灯片、演讲、路演、内部汇报</span></li>
+      <li><strong>F6 · Documentation</strong><span>API 文档、知识库、Wiki、技术手册</span></li>
+      <li><strong>F7 · Poster &amp; Cover</strong><span>海报、封面、单页强视觉</span></li>
+      <li><strong>F8 · Diagram</strong><span>架构图、流程图、知识地图</span></li>
+      <li><strong>F9 · Report</strong><span>Markdown → LaTeX → PDF 的研究/策略报告</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">
+      万形
+    </p>
+    <p class="site-footer__copy">
+      Wenxin Design Language · Brand Identity v1.0 · 2026<br>
+      <a href="https://wanxing.design" class="site-footer__link">wanxing.design</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Animation Completion Signal -->
+<script>
+(function () {
+  var html = document.documentElement;
+  var MAX_WAIT = 3000;
+  var timedOut = false;
+
+  var safetyTimer = setTimeout(function () {
+    timedOut = true;
+    html.dataset.animationsComplete = "true";
+  }, MAX_WAIT);
+
+  function markComplete() {
+    if (timedOut) return;
+    clearTimeout(safetyTimer);
+    html.dataset.animationsComplete = "true";
+  }
+
+  function waitForAnimations() {
+    var animations = document.getAnimations();
+    if (!animations || animations.length === 0) {
+      setTimeout(markComplete, 200);
+      return;
+    }
+    var finite = Array.from(animations).filter(function (a) {
+      var t = a.effect && a.effect.getTiming ? a.effect.getTiming() : {};
+      return t.iterations !== Infinity;
+    });
+    if (finite.length === 0) {
+      setTimeout(markComplete, 400);
+      return;
+    }
+    Promise.allSettled(finite.map(function (a) { return a.finished; }))
+      .then(function () { markComplete(); });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", waitForAnimations);
+  } else {
+    waitForAnimations();
+  }
+})();
+</script>
+
+</body>
+</html>

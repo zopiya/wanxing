@@ -1,0 +1,35 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — F6 Documentation" name="F6 Documentation — UI kit" subtitle="240 px sidebar + content + sticky TOC + warm-tone code" viewport="1280x900" -->
+<html lang="en" data-wanxing-profile="F6">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文心 Wenxin · F6 Documentation</title>
+<meta name="description" content="The F6 (Documentation) UI kit: 240 px sidebar, content area, sticky TOC, warm-tone syntax highlighting, five callout variants.">
+
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="f6.css">
+<link rel="icon" type="image/svg+xml" href="../../assets/logo-wanxing.svg">
+</head>
+<body>
+
+<div id="root" data-screen-label="F6 Documentation · interactive demo"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="../f1-web/Brand.jsx"></script>
+<script type="text/babel" src="Sidebar.jsx"></script>
+<script type="text/babel" src="CodeBlock.jsx"></script>
+<script type="text/babel" src="Callout.jsx"></script>
+<script type="text/babel" src="Toc.jsx"></script>
+<script type="text/babel" src="ColorPage.jsx"></script>
+<script type="text/babel" src="App.jsx"></script>
+
+<script type="text/babel">
+  ReactDOM.createRoot(document.getElementById('root')).render(<DocsApp />);
+</script>
+
+</body>
+</html>

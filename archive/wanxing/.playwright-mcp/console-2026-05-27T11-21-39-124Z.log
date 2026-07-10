@@ -1,0 +1,6 @@
+[      63ms] [LOG] [SSE] Connection: connected @ http://localhost:5173/src/modules/chat/index.ts?t=1779880654135:59
+[      71ms] [ERROR] Failed to load sessions: TypeError: sessions.map is not a function
+    at loadSessions (http://localhost:5173/src/modules/chat/index.ts?t=1779880654135:250:31) @ http://localhost:5173/src/modules/chat/index.ts?t=1779880654135:257
+[      71ms] [LOG] [WS] Connected @ http://localhost:5173/src/ws-client.ts:29
+[   19259ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/api/annotations?slug=fixture-no-animation:0
+[   19317ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:5173/dist/fixture-no-animation/index.html:0

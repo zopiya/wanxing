@@ -1,0 +1,49 @@
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e6]: 万形
+    - separator [ref=e8]
+    - navigation "项目列表" [ref=e9]:
+      - generic [ref=e10]: dist/ 项目
+      - link "fixture-bad-motion" [ref=e11] [cursor=pointer]:
+        - /url: "#/project/fixture-bad-motion"
+      - link "fixture-fade-up" [ref=e12] [cursor=pointer]:
+        - /url: "#/project/fixture-fade-up"
+      - link "fixture-no-animation" [active] [ref=e13] [cursor=pointer]:
+        - /url: "#/project/fixture-no-animation"
+  - main [ref=e14]:
+    - generic [ref=e32]:
+      - status [ref=e34]:
+        - generic [ref=e35]: fixture-no-animation
+        - generic [ref=e36]: ·
+        - generic [ref=e37]: 1440 × 900
+        - generic [ref=e38]: ·
+        - generic [ref=e39]: 亮色
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - button "Desktop" [pressed] [ref=e43] [cursor=pointer]
+            - button "Tablet" [ref=e44] [cursor=pointer]
+            - button "Mobile" [ref=e45] [cursor=pointer]
+          - button "切换标注模式" [ref=e46] [cursor=pointer]: 标注
+        - generic [ref=e47]:
+          - button "运行 render-audit 审计" [ref=e48] [cursor=pointer]: 运行审计
+          - button "切换暗色模式" [ref=e50] [cursor=pointer]: ☀ 亮色
+          - button "切换审计状态面板" [ref=e51] [cursor=pointer]: 审计
+      - iframe [ref=e54]:
+        - generic [active] [ref=f1e1]:
+          - heading "Error response" [level=1] [ref=f1e2]
+          - paragraph [ref=f1e3]: "Error code: 404"
+          - paragraph [ref=f1e4]: "Message: File not found."
+          - paragraph [ref=f1e5]: "Error code explanation: 404 - Nothing matches the given URI."
+  - generic [ref=e19]:
+    - button "折叠/展开 Chat 面板" [ref=e20] [cursor=pointer]:
+      - generic [ref=e21]: Chat
+      - generic [ref=e22]: 收起
+    - generic [ref=e23]:
+      - generic [ref=e24]: 会话列表
+      - generic [ref=e26]: 暂无会话
+    - generic [ref=e28]: 暂无消息
+    - generic [ref=e29]:
+      - textbox "Chat 输入框" [ref=e30]:
+        - /placeholder: 输入消息…
+      - button "发送消息" [ref=e31] [cursor=pointer]: 发送

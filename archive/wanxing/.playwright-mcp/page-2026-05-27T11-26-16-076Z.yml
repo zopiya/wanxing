@@ -1,0 +1,628 @@
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e6]: 万形
+    - separator [ref=e8]
+    - navigation "项目列表" [ref=e9]:
+      - generic [ref=e10]: dist/ 项目
+      - link "fixture-bad-motion" [ref=e11] [cursor=pointer]:
+        - /url: "#/project/fixture-bad-motion"
+      - link "fixture-fade-up" [ref=e12] [cursor=pointer]:
+        - /url: "#/project/fixture-fade-up"
+      - link "fixture-no-animation" [ref=e13] [cursor=pointer]:
+        - /url: "#/project/fixture-no-animation"
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - status [ref=e17]:
+        - generic [ref=e18]: fixture-no-animation
+        - generic [ref=e19]: ·
+        - generic [ref=e20]: 1440 × 900
+        - generic [ref=e21]: ·
+        - generic [ref=e22]: 亮色
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - button "Desktop" [pressed] [ref=e26] [cursor=pointer]
+            - button "Tablet" [ref=e27] [cursor=pointer]
+            - button "Mobile" [ref=e28] [cursor=pointer]
+          - button "切换标注模式" [ref=e29] [cursor=pointer]: 标注
+        - generic [ref=e30]:
+          - button "运行 render-audit 审计" [ref=e31] [cursor=pointer]: 运行审计
+          - button "切换暗色模式" [ref=e33] [cursor=pointer]: ☀ 亮色
+          - button "切换审计状态面板" [ref=e34] [cursor=pointer]: 审计
+      - iframe [ref=e37]:
+        - generic [active] [ref=f11e1]:
+          - link "跳到内容" [ref=f11e2] [cursor=pointer]:
+            - /url: "#main-content"
+          - navigation "页面导航" [ref=f11e3]:
+            - button "第 1 屏 · Hero" [ref=f11e4] [cursor=pointer]
+            - button "第 2 屏 · 理念" [ref=f11e5] [cursor=pointer]
+            - button "第 3 屏 · 哲学" [ref=f11e6] [cursor=pointer]
+            - button "第 4 屏 · 工作流" [ref=f11e7] [cursor=pointer]
+            - button "第 5 屏 · 演化形态" [ref=f11e8] [cursor=pointer]
+            - button "第 6 屏 · 设计 Token" [ref=f11e9] [cursor=pointer]
+            - button "第 7 屏 · 输出契约" [ref=f11e10] [cursor=pointer]
+            - button "第 8 屏 · 审计闭环" [ref=f11e11] [cursor=pointer]
+            - button "第 9 屏 · 开始" [ref=f11e12] [cursor=pointer]
+          - main [ref=f11e13]:
+            - generic [ref=f11e14]:
+              - generic [ref=f11e16]:
+                - img "万形 Logo" [ref=f11e18]
+                - heading "万形 · Wanxing" [level=1] [ref=f11e22]:
+                  - text: 万形 · Wanxing
+                  - generic [ref=f11e23]: ■
+                - paragraph [ref=f11e24]: 文字即界面，留白即设计，克制即力量
+                - paragraph [ref=f11e25]: 东方极简设计工程 · OpenCode 原生
+                - paragraph [ref=f11e26]:
+                  - text: 不是一套静态模板，而是一条可复用的设计生产链：
+                  - text: 理解需求，映射形态，生成单文件 HTML，再用规则与视觉审计收束质量。
+                - generic "万形能力摘要" [ref=f11e27]:
+                  - generic [ref=f11e28]:
+                    - generic [ref=f11e29]: "7"
+                    - generic [ref=f11e30]: 输出形态
+                  - generic [ref=f11e31]:
+                    - generic [ref=f11e32]: "34"
+                    - generic [ref=f11e33]: 审计准则
+                  - generic [ref=f11e34]:
+                    - generic [ref=f11e35]: "1"
+                    - generic [ref=f11e36]: 文心底座
+              - generic [ref=f11e38]:
+                - paragraph [ref=f11e39]: 理念
+                - heading "万形是什么" [level=2] [ref=f11e40]
+                - generic [ref=f11e41]:
+                  - paragraph [ref=f11e42]:
+                    - text: 万形是一个专注于文心（Wenxin）设计语言的 OpenCode 设计工程。
+                    - text: 进入 wanxing 目录，描述需求，即可产出遵循东方极简美学的 UI。
+                  - paragraph [ref=f11e43]:
+                    - text: 它由两层 Agent 架构驱动——编排层理解意图、澄清约束，
+                    - text: 执行层将设计语言准确落地。设计即代码，代码即设计。
+                - generic [ref=f11e44]:
+                  - generic [ref=f11e45]:
+                    - generic [ref=f11e46]: 编排层
+                    - generic [ref=f11e47]: Meta Agent
+                    - paragraph [ref=f11e48]:
+                      - text: 需求理解、约束澄清、维度映射、分发至 Wenxin Agent、
+                      - text: 美学审计——不写一行 HTML，只做判断与编排。
+                  - generic [ref=f11e49]:
+                    - generic [ref=f11e50]: 执行层
+                    - generic [ref=f11e51]: Wenxin Agent
+                    - paragraph [ref=f11e52]:
+                      - text: 接收分发指令，严格执行文心设计语言——
+                      - text: 色彩、字体、留白、动效、组件——
+                      - text: 输出 HTML/CSS 到 dist/，交付前自审。
+                - paragraph [ref=f11e53]: 7 维度设计系统
+                - generic [ref=f11e54]:
+                  - generic [ref=f11e55]:
+                    - generic [ref=f11e56]: A9
+                    - text: 克制之美
+                  - generic [ref=f11e57]:
+                    - generic [ref=f11e58]: B9
+                    - text: 温暖极简
+                  - generic [ref=f11e59]:
+                    - generic [ref=f11e60]: C9
+                    - text: 温暖衬线
+                  - generic [ref=f11e61]:
+                    - generic [ref=f11e62]: D9
+                    - text: 暖土调
+                  - generic [ref=f11e63]:
+                    - generic [ref=f11e64]: E9
+                    - text: 温和流动
+                  - generic [ref=f11e65]:
+                    - generic [ref=f11e66]: F1
+                    - text: HTML Web
+                  - generic [ref=f11e67]:
+                    - generic [ref=f11e68]: G2
+                    - text: 东亚
+              - generic [ref=f11e70]:
+                - generic [ref=f11e72]:
+                  - paragraph [ref=f11e73]: 哲学
+                  - heading "三项灵魂原则" [level=2] [ref=f11e74]
+                  - paragraph [ref=f11e75]:
+                    - text: 万形的设计哲学，以水为喻——
+                    - text: 灵魂不变，形态随境而化
+                - generic [ref=f11e77]:
+                  - generic [ref=f11e78]: "01"
+                  - heading "减法优先" [level=2] [ref=f11e79]
+                  - paragraph [ref=f11e80]:
+                    - text: 任何元素若无法让内容更清晰，就不应存在。
+                    - text: 没有装饰阴影，没有多余边框，没有视觉噪声。
+                    - text: 设计的力量来自克制而非张扬——每一个留下的像素都经过审视。
+                - generic [ref=f11e82]:
+                  - generic [ref=f11e83]: "02"
+                  - heading "克制的惊喜" [level=2] [ref=f11e84]
+                  - paragraph [ref=f11e85]:
+                    - text: 动效的存在如同书页翻动时纸张的阻力——
+                    - text: 你感到用心，但不会停下来欣赏它。
+                    - text: 用户感受到「顺」，而非「炫」。
+                - generic [ref=f11e87]:
+                  - generic [ref=f11e88]: "03"
+                  - heading "点睛之色" [level=2] [ref=f11e89]
+                  - paragraph [ref=f11e90]:
+                    - text: 全页只有一个强调色
+                    - strong [ref=f11e91]: "#8B3525 砖红"
+                    - text: ，
+                    - text: 就像水墨画里的朱砂印章——
+                    - text: 其他一切是黑白灰，它是唯一有温度的存在。
+                    - text: 频率越低，力量越大。全页出现次数严格控制在 ≤ 2 处。
+              - generic [ref=f11e93]:
+                - paragraph [ref=f11e94]: 工作流
+                - heading "设计工作流" [level=2] [ref=f11e95]
+                - generic [ref=f11e96]:
+                  - generic [ref=f11e97]: 用户需求
+                  - generic [ref=f11e98]: →
+                  - generic [ref=f11e99]: Meta Agent
+                  - generic [ref=f11e100]: →
+                  - generic [ref=f11e101]: Wenxin Agent
+                  - generic [ref=f11e102]: →
+                  - generic [ref=f11e103]: 美学审计
+                  - generic [ref=f11e104]: →
+                  - generic [ref=f11e105]: 交付
+                - paragraph [ref=f11e106]: 你正在看的这个页面，正是这条工作流的产物
+              - generic [ref=f11e108]:
+                - paragraph [ref=f11e109]: 能力
+                - heading "演化形态" [level=2] [ref=f11e110]
+                - paragraph [ref=f11e111]:
+                  - text: 在保持灵魂层（A9/B9/D9）不变的前提下，
+                  - text: 文心可演化为多种输出形态——
+                  - text: 水倒入不同的容器，呈现不同的形状，但本质不变。
+                - generic [ref=f11e112]:
+                  - generic [ref=f11e113]:
+                    - text: 数字产品
+                    - generic [ref=f11e114]:
+                      - generic [ref=f11e115]:
+                        - generic [ref=f11e116]: F1
+                        - generic [ref=f11e117]: HTML Web
+                        - generic [ref=f11e118]: —
+                        - generic [ref=f11e119]: 响应式网站，暗色模式就绪，流体排版
+                      - generic [ref=f11e120]:
+                        - generic [ref=f11e121]: F2
+                        - generic [ref=f11e122]: Mobile App
+                        - generic [ref=f11e123]: —
+                        - generic [ref=f11e124]: 移动应用适配，平台原生交互
+                      - generic [ref=f11e125]:
+                        - generic [ref=f11e126]: F6
+                        - generic [ref=f11e127]: Documentation
+                        - generic [ref=f11e128]: —
+                        - generic [ref=f11e129]: API 文档·知识库·Wiki
+                  - generic [ref=f11e130]:
+                    - text: 品牌视觉
+                    - generic [ref=f11e131]:
+                      - generic [ref=f11e132]:
+                        - generic [ref=f11e133]: F3
+                        - generic [ref=f11e134]: Brand Identity
+                        - generic [ref=f11e135]: —
+                        - generic [ref=f11e136]: 朱砂印章 Logo，品牌视觉识别系统
+                      - generic [ref=f11e137]:
+                        - generic [ref=f11e138]: F7
+                        - generic [ref=f11e139]: Poster & Cover
+                        - generic [ref=f11e140]: —
+                        - generic [ref=f11e141]: 海报·封面·单页强视觉表达
+                  - generic [ref=f11e142]:
+                    - text: 印刷演讲
+                    - generic [ref=f11e143]:
+                      - generic [ref=f11e144]:
+                        - generic [ref=f11e145]: F4
+                        - generic [ref=f11e146]: Print & Editorial
+                        - generic [ref=f11e147]: —
+                        - generic [ref=f11e148]: 书籍·论文·杂志印刷排版
+                      - generic [ref=f11e149]:
+                        - generic [ref=f11e150]: F5
+                        - generic [ref=f11e151]: Presentation
+                        - generic [ref=f11e152]: —
+                        - generic [ref=f11e153]: 路演·会议·课堂幻灯片
+              - generic [ref=f11e155]:
+                - paragraph [ref=f11e156]: 基石
+                - heading "设计 Token" [level=2] [ref=f11e157]
+                - generic [ref=f11e158]:
+                  - heading "色彩系统" [level=3] [ref=f11e159]
+                  - generic [ref=f11e160]:
+                    - generic [ref=f11e161]:
+                      - generic [ref=f11e163]: "#F2F0EB"
+                      - generic [ref=f11e164]: 暖白·基底
+                    - generic [ref=f11e165]:
+                      - generic [ref=f11e167]: "#8B3525"
+                      - generic [ref=f11e168]: 砖红·点睛之色
+                    - generic [ref=f11e169]:
+                      - generic [ref=f11e171]: "#3A3837"
+                      - generic [ref=f11e172]: 深炭·正文
+                    - generic [ref=f11e173]:
+                      - generic [ref=f11e175]: "#888580"
+                      - generic [ref=f11e176]: 暖灰·辅助
+                - generic [ref=f11e177]:
+                  - heading "字体系统" [level=3] [ref=f11e178]
+                  - generic [ref=f11e179]:
+                    - generic [ref=f11e180]:
+                      - generic [ref=f11e181]: Wanxing 万形
+                      - text: Lora · 展示字体
+                    - generic [ref=f11e182]:
+                      - generic [ref=f11e183]: Wanxing 万形
+                      - text: EB Garamond · 正文字体
+                    - generic [ref=f11e184]:
+                      - generic [ref=f11e185]: WANXING 设计系统
+                      - text: system-ui · UI 标签
+                    - generic [ref=f11e186]:
+                      - generic [ref=f11e187]: npm install wanxing
+                      - text: JetBrains Mono · 代码
+                - generic [ref=f11e188]:
+                  - heading "排版参数" [level=3] [ref=f11e189]
+                  - generic [ref=f11e190]:
+                    - generic [ref=f11e191]:
+                      - generic [ref=f11e192]: "1.85"
+                      - text: 中文行高
+                    - generic [ref=f11e193]:
+                      - generic [ref=f11e194]: "2.0"
+                      - text: 英文行高
+                    - generic [ref=f11e195]:
+                      - generic [ref=f11e196]: 96px
+                      - text: 大区块间距
+                    - generic [ref=f11e197]:
+                      - generic [ref=f11e198]: 60–75
+                      - text: 拉文行长
+              - generic [ref=f11e200]:
+                - paragraph [ref=f11e201]: 契约
+                - heading "每一次输出，都有边界" [level=2] [ref=f11e202]
+                - paragraph [ref=f11e203]:
+                  - text: 万形的价值不只是“生成一个页面”，
+                  - text: 而是把输出形态、设计底座和交付格式固定下来，
+                  - text: 让每次产物都能被复用、检查和继续演化。
+                - generic [ref=f11e204]:
+                  - generic [ref=f11e205]:
+                    - generic [ref=f11e206]: "01"
+                    - heading "单文件交付" [level=3] [ref=f11e207]
+                    - paragraph [ref=f11e208]: HTML 与内联 CSS 汇聚在一个文件中，输出到 dist/，方便预览、审计、归档，也避免轻量设计任务被构建链绑架。
+                  - generic [ref=f11e209]:
+                    - generic [ref=f11e210]: "02"
+                    - heading "形态先行" [level=3] [ref=f11e211]
+                    - paragraph [ref=f11e212]: 先判断是 Web、Mobile、Brand、Print、Presentation、Documentation 还是 Poster，再选择对应布局与交互习惯。
+                  - generic [ref=f11e213]:
+                    - generic [ref=f11e214]: "03"
+                    - heading "灵魂不漂移" [level=3] [ref=f11e215]
+                    - paragraph [ref=f11e216]: 无论形态如何变化，暖白基底、深炭文字、衬线温度、克制留白和点睛之色都保持同一个文心身份。
+              - generic [ref=f11e218]:
+                - paragraph [ref=f11e219]: 质量
+                - heading "从规则，到视觉感知" [level=2] [ref=f11e220]
+                - paragraph [ref=f11e221]:
+                  - text: 参数正确不等于体验正确。
+                  - text: 万形把代码约束、可访问性底线和截图后的视觉判断放进同一条闭环，确保页面不是“看起来有规范”，
+                  - text: 而是真的舒服。
+                - generic "审计流程" [ref=f11e222]:
+                  - generic [ref=f11e223]: Token 检查
+                  - generic [ref=f11e224]: →
+                  - generic [ref=f11e225]: 34 条准则
+                  - generic [ref=f11e226]: →
+                  - generic [ref=f11e227]: 多视口截图
+                  - generic [ref=f11e228]: →
+                  - generic [ref=f11e229]: 迭代交付
+                - generic [ref=f11e230]:
+                  - generic [ref=f11e231]:
+                    - generic [ref=f11e232]: Coherence
+                    - heading "一致性" [level=3] [ref=f11e233]
+                    - paragraph [ref=f11e234]: 哲学、色彩、排版、动效与输出形态互相解释，避免页面只剩一组漂亮但孤立的参数。
+                  - generic [ref=f11e235]:
+                    - generic [ref=f11e236]: Modernity
+                    - heading "当代性" [level=3] [ref=f11e237]
+                    - paragraph [ref=f11e238]: 暗色模式、响应式、可访问性、性能与字体策略默认纳入，而不是交付后的补丁。
+                  - generic [ref=f11e239]:
+                    - generic [ref=f11e240]: Perception
+                    - heading "视觉感知" [level=3] [ref=f11e241]
+                    - paragraph [ref=f11e242]: 通过真实渲染检查留白、层级、节奏与点睛之色的实际权重，弥补纯代码审计的盲区。
+              - generic [ref=f11e244]:
+                - heading "始于克制，成于万形" [level=2] [ref=f11e245]
+                - link "在 GitHub 上查看 →" [ref=f11e246] [cursor=pointer]:
+                  - /url: https://github.com/zopiya/wanxing
+                - generic [ref=f11e247]:
+                  - generic [ref=f11e248]: 万形 · Wanxing
+                  - text: 文字即界面，留白即设计，克制即力量
+                  - link "github.com/zopiya/wanxing" [ref=f11e249] [cursor=pointer]:
+                    - /url: https://github.com/zopiya/wanxing
+  - generic [ref=e39]:
+    - button "折叠/展开 Chat 面板" [ref=e40] [cursor=pointer]:
+      - generic [ref=e41]: Chat
+      - generic [ref=e42]: 收起
+    - generic [ref=e43]:
+      - generic [ref=e44]: 会话列表
+      - generic [ref=e45]:
+        - 'button "切换到会话: New session - 2026-05-27T11:00:14.343Z" [ref=e46] [cursor=pointer]':
+          - generic [ref=e47]: New session - 2026-05-27T11:00:14.343Z
+          - generic [ref=e48]: 19:00
+        - 'button "切换到会话: yiyan项目全面审计" [ref=e49] [cursor=pointer]':
+          - generic [ref=e50]: yiyan项目全面审计
+          - generic [ref=e51]: 15:11
+        - 'button "切换到会话: UI布局优化 - 黄金比例 (@build subagent)" [ref=e52] [cursor=pointer]':
+          - generic [ref=e53]: UI布局优化 - 黄金比例 (@build subagent)
+          - generic [ref=e54]: 15:09
+        - 'button "切换到会话: 查看当前UI样式和布局 (@explore subagent)" [ref=e55] [cursor=pointer]':
+          - generic [ref=e56]: 查看当前UI样式和布局 (@explore subagent)
+          - generic [ref=e57]: 14:59
+        - 'button "切换到会话: 修复评论默认显示逻辑 (@build subagent)" [ref=e58] [cursor=pointer]':
+          - generic [ref=e59]: 修复评论默认显示逻辑 (@build subagent)
+          - generic [ref=e60]: 14:55
+        - 'button "切换到会话: 查看评论渲染代码 (@explore subagent)" [ref=e61] [cursor=pointer]':
+          - generic [ref=e62]: 查看评论渲染代码 (@explore subagent)
+          - generic [ref=e63]: 14:49
+        - 'button "切换到会话: 创建 justfile (@build subagent)" [ref=e64] [cursor=pointer]':
+          - generic [ref=e65]: 创建 justfile (@build subagent)
+          - generic [ref=e66]: 14:36
+        - 'button "切换到会话: 修复前端严重问题 (@build subagent)" [ref=e67] [cursor=pointer]':
+          - generic [ref=e68]: 修复前端严重问题 (@build subagent)
+          - generic [ref=e69]: 14:29
+        - 'button "切换到会话: 修复测试严重问题 (@build subagent)" [ref=e70] [cursor=pointer]':
+          - generic [ref=e71]: 修复测试严重问题 (@build subagent)
+          - generic [ref=e72]: 14:26
+        - 'button "切换到会话: 修复运维严重问题 (@build subagent)" [ref=e73] [cursor=pointer]':
+          - generic [ref=e74]: 修复运维严重问题 (@build subagent)
+          - generic [ref=e75]: 14:17
+        - 'button "切换到会话: 修复数据库严重问题 (@build subagent)" [ref=e76] [cursor=pointer]':
+          - generic [ref=e77]: 修复数据库严重问题 (@build subagent)
+          - generic [ref=e78]: 13:59
+        - 'button "切换到会话: 提取数据访问层 (@build subagent)" [ref=e79] [cursor=pointer]':
+          - generic [ref=e80]: 提取数据访问层 (@build subagent)
+          - generic [ref=e81]: 13:58
+        - 'button "切换到会话: 修复代码质量严重问题 (@build subagent)" [ref=e82] [cursor=pointer]':
+          - generic [ref=e83]: 修复代码质量严重问题 (@build subagent)
+          - generic [ref=e84]: 13:52
+        - 'button "切换到会话: 查看代码质量相关代码 (@explore subagent)" [ref=e85] [cursor=pointer]':
+          - generic [ref=e86]: 查看代码质量相关代码 (@explore subagent)
+          - generic [ref=e87]: 13:47
+        - 'button "切换到会话: 修复性能严重问题 (@build subagent)" [ref=e88] [cursor=pointer]':
+          - generic [ref=e89]: 修复性能严重问题 (@build subagent)
+          - generic [ref=e90]: 13:45
+        - 'button "切换到会话: 查看性能相关代码 (@explore subagent)" [ref=e91] [cursor=pointer]':
+          - generic [ref=e92]: 查看性能相关代码 (@explore subagent)
+          - generic [ref=e93]: 13:38
+        - 'button "切换到会话: 修复安全严重问题 (@build subagent)" [ref=e94] [cursor=pointer]':
+          - generic [ref=e95]: 修复安全严重问题 (@build subagent)
+          - generic [ref=e96]: 13:37
+        - 'button "切换到会话: 查看需要修复的安全相关代码 (@explore subagent)" [ref=e97] [cursor=pointer]':
+          - generic [ref=e98]: 查看需要修复的安全相关代码 (@explore subagent)
+          - generic [ref=e99]: 13:33
+        - 'button "切换到会话: 固化审计报告到根目录 (@build subagent)" [ref=e100] [cursor=pointer]':
+          - generic [ref=e101]: 固化审计报告到根目录 (@build subagent)
+          - generic [ref=e102]: 13:32
+        - 'button "切换到会话: 前端专项审计 (@review subagent)" [ref=e103] [cursor=pointer]':
+          - generic [ref=e104]: 前端专项审计 (@review subagent)
+          - generic [ref=e105]: 12:42
+        - 'button "切换到会话: 测试审计 (@review subagent)" [ref=e106] [cursor=pointer]':
+          - generic [ref=e107]: 测试审计 (@review subagent)
+          - generic [ref=e108]: 12:39
+        - 'button "切换到会话: 运维与部署审计 (@review subagent)" [ref=e109] [cursor=pointer]':
+          - generic [ref=e110]: 运维与部署审计 (@review subagent)
+          - generic [ref=e111]: 12:36
+        - 'button "切换到会话: 数据库审计 (@review subagent)" [ref=e112] [cursor=pointer]':
+          - generic [ref=e113]: 数据库审计 (@review subagent)
+          - generic [ref=e114]: 12:33
+        - 'button "切换到会话: 架构设计审计 (@review subagent)" [ref=e115] [cursor=pointer]':
+          - generic [ref=e116]: 架构设计审计 (@review subagent)
+          - generic [ref=e117]: 12:28
+        - 'button "切换到会话: 代码质量审计 (@review subagent)" [ref=e118] [cursor=pointer]':
+          - generic [ref=e119]: 代码质量审计 (@review subagent)
+          - generic [ref=e120]: 12:24
+        - 'button "切换到会话: 性能审计 (@review subagent)" [ref=e121] [cursor=pointer]':
+          - generic [ref=e122]: 性能审计 (@review subagent)
+          - generic [ref=e123]: 12:17
+        - 'button "切换到会话: 安全性审计 (@review subagent)" [ref=e124] [cursor=pointer]':
+          - generic [ref=e125]: 安全性审计 (@review subagent)
+          - generic [ref=e126]: 12:13
+        - 'button "切换到会话: 探索yiyan项目结构 (@explore subagent)" [ref=e127] [cursor=pointer]':
+          - generic [ref=e128]: 探索yiyan项目结构 (@explore subagent)
+          - generic [ref=e129]: 12:09
+        - 'button "切换到会话: 全量项目审计prompt" [ref=e130] [cursor=pointer]':
+          - generic [ref=e131]: 全量项目审计prompt
+          - generic [ref=e132]: 12:06
+        - 'button "切换到会话: 循环7次系统项目审计" [ref=e133] [cursor=pointer]':
+          - generic [ref=e134]: 循环7次系统项目审计
+          - generic [ref=e135]: 11:51
+        - 'button "切换到会话: Create test data script (@build subagent)" [ref=e136] [cursor=pointer]':
+          - generic [ref=e137]: Create test data script (@build subagent)
+          - generic [ref=e138]: 11:51
+        - 'button "切换到会话: Debug data persistence (@debug subagent)" [ref=e139] [cursor=pointer]':
+          - generic [ref=e140]: Debug data persistence (@debug subagent)
+          - generic [ref=e141]: 11:36
+        - 'button "切换到会话: Compatibility deployment review (@review subagent)" [ref=e142] [cursor=pointer]':
+          - generic [ref=e143]: Compatibility deployment review (@review subagent)
+          - generic [ref=e144]: 11:26
+        - 'button "切换到会话: Plan documentation structure (@plan subagent)" [ref=e145] [cursor=pointer]':
+          - generic [ref=e146]: Plan documentation structure (@plan subagent)
+          - generic [ref=e147]: 11:21
+        - 'button "切换到会话: Documentation maintainability (@review subagent)" [ref=e148] [cursor=pointer]':
+          - generic [ref=e149]: Documentation maintainability (@review subagent)
+          - generic [ref=e150]: 11:18
+        - 'button "切换到会话: Add tests and linter (@build subagent)" [ref=e151] [cursor=pointer]':
+          - generic [ref=e152]: Add tests and linter (@build subagent)
+          - generic [ref=e153]: 11:14
+        - 'button "切换到会话: Testing quality review (@review subagent)" [ref=e154] [cursor=pointer]':
+          - generic [ref=e155]: Testing quality review (@review subagent)
+          - generic [ref=e156]: 11:04
+        - 'button "切换到会话: Implement performance fixes (@build subagent)" [ref=e157] [cursor=pointer]':
+          - generic [ref=e158]: Implement performance fixes (@build subagent)
+          - generic [ref=e159]: 11:00
+        - 'button "切换到会话: Performance scalability review (@review subagent)" [ref=e160] [cursor=pointer]':
+          - generic [ref=e161]: Performance scalability review (@review subagent)
+          - generic [ref=e162]: 10:56
+        - 'button "切换到会话: Implement robustness fixes (@build subagent)" [ref=e163] [cursor=pointer]':
+          - generic [ref=e164]: Implement robustness fixes (@build subagent)
+          - generic [ref=e165]: 10:53
+        - 'button "切换到会话: Error handling robustness (@review subagent)" [ref=e166] [cursor=pointer]':
+          - generic [ref=e167]: Error handling robustness (@review subagent)
+          - generic [ref=e168]: 10:47
+        - 'button "切换到会话: Security audit review (@review subagent)" [ref=e169] [cursor=pointer]':
+          - generic [ref=e170]: Security audit review (@review subagent)
+          - generic [ref=e171]: 10:45
+        - 'button "切换到会话: Design CORS and identity (@plan subagent)" [ref=e172] [cursor=pointer]':
+          - generic [ref=e173]: Design CORS and identity (@plan subagent)
+          - generic [ref=e174]: 10:42
+        - 'button "切换到会话: Project architecture review (@review subagent)" [ref=e175] [cursor=pointer]':
+          - generic [ref=e176]: Project architecture review (@review subagent)
+          - generic [ref=e177]: 10:39
+        - 'button "切换到会话: Creating AGENTS.md for yiyan repo" [ref=e178] [cursor=pointer]':
+          - generic [ref=e179]: Creating AGENTS.md for yiyan repo
+          - generic [ref=e180]: 10:32
+        - 'button "切换到会话: Read final AGENTS.md (@explore subagent)" [ref=e181] [cursor=pointer]':
+          - generic [ref=e182]: Read final AGENTS.md (@explore subagent)
+          - generic [ref=e183]: 10:32
+        - 'button "切换到会话: Verify AGENTS.md content (@explore subagent)" [ref=e184] [cursor=pointer]':
+          - generic [ref=e185]: Verify AGENTS.md content (@explore subagent)
+          - generic [ref=e186]: 10:32
+        - 'button "切换到会话: Create AGENTS.md file (@build subagent)" [ref=e187] [cursor=pointer]':
+          - generic [ref=e188]: Create AGENTS.md file (@build subagent)
+          - generic [ref=e189]: 10:30
+        - 'button "切换到会话: Inspect key source files (@explore subagent)" [ref=e190] [cursor=pointer]':
+          - generic [ref=e191]: Inspect key source files (@explore subagent)
+          - generic [ref=e192]: 10:29
+        - 'button "切换到会话: Check instruction files and CI (@explore subagent)" [ref=e193] [cursor=pointer]':
+          - generic [ref=e194]: Check instruction files and CI (@explore subagent)
+          - generic [ref=e195]: 10:28
+        - 'button "切换到会话: Read configuration files (@explore subagent)" [ref=e196] [cursor=pointer]':
+          - generic [ref=e197]: Read configuration files (@explore subagent)
+          - generic [ref=e198]: 10:28
+        - 'button "切换到会话: Explore repository structure (@explore subagent)" [ref=e199] [cursor=pointer]':
+          - generic [ref=e200]: Explore repository structure (@explore subagent)
+          - generic [ref=e201]: 10:27
+        - 'button "切换到会话: memo — 命令行备忘录工具" [ref=e202] [cursor=pointer]':
+          - generic [ref=e203]: memo — 命令行备忘录工具
+          - generic [ref=e204]: 05/08
+        - 'button "切换到会话: Build memo CLI project (@build subagent)" [ref=e205] [cursor=pointer]':
+          - generic [ref=e206]: Build memo CLI project (@build subagent)
+          - generic [ref=e207]: 05/08
+        - 'button "切换到会话: Plan memo CLI architecture (@plan subagent)" [ref=e208] [cursor=pointer]':
+          - generic [ref=e209]: Plan memo CLI architecture (@plan subagent)
+          - generic [ref=e210]: 05/08
+        - 'button "切换到会话: Python SQLite 剪贴板历史 CLI" [ref=e211] [cursor=pointer]':
+          - generic [ref=e212]: Python SQLite 剪贴板历史 CLI
+          - generic [ref=e213]: 05/07
+        - 'button "切换到会话: Run pytest verification (@test subagent)" [ref=e214] [cursor=pointer]':
+          - generic [ref=e215]: Run pytest verification (@test subagent)
+          - generic [ref=e216]: 05/07
+        - 'button "切换到会话: Build cb CLI project (@build subagent)" [ref=e217] [cursor=pointer]':
+          - generic [ref=e218]: Build cb CLI project (@build subagent)
+          - generic [ref=e219]: 05/07
+        - 'button "切换到会话: Plan cb CLI architecture (@plan subagent)" [ref=e220] [cursor=pointer]':
+          - generic [ref=e221]: Plan cb CLI architecture (@plan subagent)
+          - generic [ref=e222]: 05/07
+        - 'button "切换到会话: Explore current project state (@explore subagent)" [ref=e223] [cursor=pointer]':
+          - generic [ref=e224]: Explore current project state (@explore subagent)
+          - generic [ref=e225]: 05/07
+        - 'button "切换到会话: Build Resend SMTP service (@build subagent)" [ref=e226] [cursor=pointer]':
+          - generic [ref=e227]: Build Resend SMTP service (@build subagent)
+          - generic [ref=e228]: 04/24
+        - 'button "切换到会话: Python Resend SMTP邮件发送服务" [ref=e229] [cursor=pointer]':
+          - generic [ref=e230]: Python Resend SMTP邮件发送服务
+          - generic [ref=e231]: 04/24
+        - 'button "切换到会话: Verify POSTMORTEM.md exists (@explore subagent)" [ref=e232] [cursor=pointer]':
+          - generic [ref=e233]: Verify POSTMORTEM.md exists (@explore subagent)
+          - generic [ref=e234]: 04/23
+        - 'button "切换到会话: Create AGENTS.md for Lingqian" [ref=e235] [cursor=pointer]':
+          - generic [ref=e236]: Create AGENTS.md for Lingqian
+          - generic [ref=e237]: 04/23
+        - 'button "切换到会话: Write project postmortem report (@build subagent)" [ref=e238] [cursor=pointer]':
+          - generic [ref=e239]: Write project postmortem report (@build subagent)
+          - generic [ref=e240]: 04/23
+        - 'button "切换到会话: Diagnose MVP issues (@debug subagent)" [ref=e241] [cursor=pointer]':
+          - generic [ref=e242]: Diagnose MVP issues (@debug subagent)
+          - generic [ref=e243]: 04/23
+        - 'button "切换到会话: Stage and commit MVP (@build subagent)" [ref=e244] [cursor=pointer]':
+          - generic [ref=e245]: Stage and commit MVP (@build subagent)
+          - generic [ref=e246]: 04/23
+        - 'button "切换到会话: Verify and test MVP (@test subagent)" [ref=e247] [cursor=pointer]':
+          - generic [ref=e248]: Verify and test MVP (@test subagent)
+          - generic [ref=e249]: 04/23
+        - 'button "切换到会话: Create CSS and error handling (@build subagent)" [ref=e250] [cursor=pointer]':
+          - generic [ref=e251]: Create CSS and error handling (@build subagent)
+          - generic [ref=e252]: 04/23
+        - 'button "切换到会话: Create requests and apply pages (@build subagent)" [ref=e253] [cursor=pointer]':
+          - generic [ref=e254]: Create requests and apply pages (@build subagent)
+          - generic [ref=e255]: 04/23
+        - 'button "切换到会话: Create transactions API and pages (@build subagent)" [ref=e256] [cursor=pointer]':
+          - generic [ref=e257]: Create transactions API and pages (@build subagent)
+          - generic [ref=e258]: 04/23
+        - 'button "切换到会话: Create accounts and dashboard (@build subagent)" [ref=e259] [cursor=pointer]':
+          - generic [ref=e260]: Create accounts and dashboard (@build subagent)
+          - generic [ref=e261]: 04/23
+        - 'button "切换到会话: Verify auth files created (@explore subagent)" [ref=e262] [cursor=pointer]':
+          - generic [ref=e263]: Verify auth files created (@explore subagent)
+          - generic [ref=e264]: 04/23
+        - 'button "切换到会话: Create auth files explicitly (@build subagent)" [ref=e265] [cursor=pointer]':
+          - generic [ref=e266]: Create auth files explicitly (@build subagent)
+          - generic [ref=e267]: 04/23
+        - 'button "切换到会话: Check project state after auth (@explore subagent)" [ref=e268] [cursor=pointer]':
+          - generic [ref=e269]: Check project state after auth (@explore subagent)
+          - generic [ref=e270]: 04/23
+        - 'button "切换到会话: Implement auth and login (@build subagent)" [ref=e271] [cursor=pointer]':
+          - generic [ref=e272]: Implement auth and login (@build subagent)
+          - generic [ref=e273]: 04/23
+        - 'button "切换到会话: Init project and database (@build subagent)" [ref=e274] [cursor=pointer]':
+          - generic [ref=e275]: Init project and database (@build subagent)
+          - generic [ref=e276]: 04/23
+        - 'button "切换到会话: Verify plan.md content (@explore subagent)" [ref=e277] [cursor=pointer]':
+          - generic [ref=e278]: Verify plan.md content (@explore subagent)
+          - generic [ref=e279]: 04/23
+        - 'button "切换到会话: Write plan.md with write tool (@build subagent)" [ref=e280] [cursor=pointer]':
+          - generic [ref=e281]: Write plan.md with write tool (@build subagent)
+          - generic [ref=e282]: 04/23
+        - 'button "切换到会话: Check if plan.md exists (@explore subagent)" [ref=e283] [cursor=pointer]':
+          - generic [ref=e284]: Check if plan.md exists (@explore subagent)
+          - generic [ref=e285]: 04/23
+        - 'button "切换到会话: Create docs/plan.md file (@build subagent)" [ref=e286] [cursor=pointer]':
+          - generic [ref=e287]: Create docs/plan.md file (@build subagent)
+          - generic [ref=e288]: 04/23
+        - 'button "切换到会话: Verify plan.md exists (@explore subagent)" [ref=e289] [cursor=pointer]':
+          - generic [ref=e290]: Verify plan.md exists (@explore subagent)
+          - generic [ref=e291]: 04/23
+        - 'button "切换到会话: Save development plan (@build subagent)" [ref=e292] [cursor=pointer]':
+          - generic [ref=e293]: Save development plan (@build subagent)
+          - generic [ref=e294]: 04/23
+        - 'button "切换到会话: Create development plan from PRD (@plan subagent)" [ref=e295] [cursor=pointer]':
+          - generic [ref=e296]: Create development plan from PRD (@plan subagent)
+          - generic [ref=e297]: 04/23
+        - 'button "切换到会话: Read updated .gitignore (@explore subagent)" [ref=e298] [cursor=pointer]':
+          - generic [ref=e299]: Read updated .gitignore (@explore subagent)
+          - generic [ref=e300]: 04/23
+        - 'button "切换到会话: Update .gitignore (@build subagent)" [ref=e301] [cursor=pointer]':
+          - generic [ref=e302]: Update .gitignore (@build subagent)
+          - generic [ref=e303]: 04/23
+        - 'button "切换到会话: Read created AGENTS.md (@explore subagent)" [ref=e304] [cursor=pointer]':
+          - generic [ref=e305]: Read created AGENTS.md (@explore subagent)
+          - generic [ref=e306]: 04/23
+        - 'button "切换到会话: Create AGENTS.md (@build subagent)" [ref=e307] [cursor=pointer]':
+          - generic [ref=e308]: Create AGENTS.md (@build subagent)
+          - generic [ref=e309]: 04/23
+        - 'button "切换到会话: Explore repo structure (@explore subagent)" [ref=e310] [cursor=pointer]':
+          - generic [ref=e311]: Explore repo structure (@explore subagent)
+          - generic [ref=e312]: 04/23
+        - 'button "切换到会话: 审计系统以提升兼容性健壮性稳定性" [ref=e313] [cursor=pointer]':
+          - generic [ref=e314]: 审计系统以提升兼容性健壮性稳定性
+          - generic [ref=e315]: 04/20
+        - 'button "切换到会话: 制定改进计划 (@plan subagent)" [ref=e316] [cursor=pointer]':
+          - generic [ref=e317]: 制定改进计划 (@plan subagent)
+          - generic [ref=e318]: 04/20
+        - 'button "切换到会话: 系统审计脚本质量 (@review subagent)" [ref=e319] [cursor=pointer]':
+          - generic [ref=e320]: 系统审计脚本质量 (@review subagent)
+          - generic [ref=e321]: 04/20
+        - 'button "切换到会话: 探索脚本结构和内容 (@explore subagent)" [ref=e322] [cursor=pointer]':
+          - generic [ref=e323]: 探索脚本结构和内容 (@explore subagent)
+          - generic [ref=e324]: 04/20
+        - 'button "切换到会话: 系统i全面审计与完善" [ref=e325] [cursor=pointer]':
+          - generic [ref=e326]: 系统i全面审计与完善
+          - generic [ref=e327]: 04/13
+        - 'button "切换到会话: Fix critical script issues (@build subagent)" [ref=e328] [cursor=pointer]':
+          - generic [ref=e329]: Fix critical script issues (@build subagent)
+          - generic [ref=e330]: 04/13
+        - 'button "切换到会话: Final review of script (@review subagent)" [ref=e331] [cursor=pointer]':
+          - generic [ref=e332]: Final review of script (@review subagent)
+          - generic [ref=e333]: 04/13
+        - 'button "切换到会话: Verify script completeness (@test subagent)" [ref=e334] [cursor=pointer]':
+          - generic [ref=e335]: Verify script completeness (@test subagent)
+          - generic [ref=e336]: 04/13
+        - 'button "切换到会话: Write improved deployment script (@build subagent)" [ref=e337] [cursor=pointer]':
+          - generic [ref=e338]: Write improved deployment script (@build subagent)
+          - generic [ref=e339]: 04/13
+        - 'button "切换到会话: Read full script content (@explore subagent)" [ref=e340] [cursor=pointer]':
+          - generic [ref=e341]: Read full script content (@explore subagent)
+          - generic [ref=e342]: 04/13
+        - 'button "切换到会话: Explore script structure (@explore subagent)" [ref=e343] [cursor=pointer]':
+          - generic [ref=e344]: Explore script structure (@explore subagent)
+          - generic [ref=e345]: 04/13
+    - generic [ref=e347]: 暂无消息
+    - generic [ref=e348]:
+      - textbox "Chat 输入框" [ref=e349]:
+        - /placeholder: 输入消息…
+      - button "发送消息" [ref=e350] [cursor=pointer]: 发送
