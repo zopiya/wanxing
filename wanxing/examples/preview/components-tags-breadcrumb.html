@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components · Tags & breadcrumb" subtitle="Wireframe tags with hover · slash-prefixed crumb" viewport="700x220" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tags & breadcrumb</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .tag {
+    font-family:var(--sans-ui); font-size:11px;
+    letter-spacing:0.05em; color:var(--fg-3);
+    border:1px solid var(--line-1);
+    border-radius: 2px;
+    padding: 2px 12px;
+    background: transparent;
+    display:inline-block;
+  }
+  .tag:hover, .tag.hover { color: var(--accent); border-color: var(--accent); }
+  .crumb { font-family:var(--sans-ui); font-size:13px; color:var(--fg-3); letter-spacing:0.02em; }
+  .crumb a { color: var(--fg-3); text-decoration:none; }
+  .crumb .sep { color:var(--line-2); margin: 0 6px; }
+  .crumb .curr { color:var(--fg-1); }
+</style>
+</head>
+<body class="card">
+  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+    <span class="tag">design</span>
+    <span class="tag">typography</span>
+    <span class="tag">restraint</span>
+    <span class="tag">wenxin</span>
+    <span class="tag hover">cinnabar</span>
+    <span class="tag" style="color:var(--fg-4); border-color:var(--line-1); border-style:dashed;">+ 3</span>
+  </div>
+  <div class="crumb">
+    <a href="#">/ Home</a>
+    <span class="sep">/</span>
+    <a href="#">Spec</a>
+    <span class="sep">/</span>
+    <a href="#">Design</a>
+    <span class="sep">/</span>
+    <span class="curr">Color system</span>
+  </div>
+  <div class="spread" style="border-top:1px solid var(--line-1); padding-top:10px;">
+    <span class="label">Tags: wireframe, 2 px radius, no fill. Breadcrumb: leading slash, sans-ui, secondary color, current page in ink.</span>
+  </div>
+</body>
+</html>

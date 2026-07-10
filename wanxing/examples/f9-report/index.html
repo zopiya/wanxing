@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<!--
+---
+title: "万形报告"
+subtitle: "文心设计语言的形态研究"
+author: "万形设计工程"
+date: "2026-05-24"
+language: "zh-CN"
+profile: "F9"
+source_format: "markdown"
+target_format: "latex-pdf"
+engine: "xelatex"
+sections:
+  - executive_summary
+  - context
+  - method
+  - findings
+  - evidence
+  - interpretation
+  - recommendations
+  - appendix
+citation_required: false
+---
+-->
+<html lang="zh-CN" data-wanxing-profile="F9" data-wanxing-contract-version="1" data-animations-complete="true">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="文心设计语言的形态研究报告 — 万形报告 · F9 Report &amp; LaTeX Typesetting">
+<title>万形报告 · 文心设计语言形态研究</title>
+
+<!-- Render Contract -->
+<script type="application/json" id="wanxing-render-contract">
+{
+  "profile": "F9",
+  "title": "万形报告",
+  "subtitle": "文心设计语言的形态研究",
+  "date": "2026-05-24",
+  "language": "zh-CN",
+  "project": {
+    "name": "万形报告",
+    "slug": "wanxing-f9-report"
+  },
+  "output": {
+    "entry": "examples/wanxing-f9-report/index.html",
+    "tmpDir": "dist/wanxing-f9-report/tmp"
+  },
+  "source": {
+    "format": "markdown"
+  },
+  "target": {
+    "format": "latex-pdf",
+    "engine": "xelatex"
+  },
+  "report": {
+    "sections": [
+      "executive_summary",
+      "context",
+      "method",
+      "findings",
+      "evidence",
+      "interpretation",
+      "recommendations",
+      "appendix"
+    ],
+    "citationRequired": false
+  },
+  "theme": {
+    "darkModeRequired": false,
+    "accentBudget": 2
+  },
+  "canvas": {
+    "kind": "report",
+    "viewports": ["desktop"]
+  },
+  "structure": {
+    "requiredRegions": ["header", "main", "footer"],
+    "primaryContent": "main",
+    "expectedH1": 1
+  },
+  "motion": {
+    "hasAnimation": false,
+    "intent": "none",
+    "intensity": "E9-0",
+    "maxDurationMs": 0,
+    "maxTranslatePx": 0,
+    "allowsLoop": false,
+    "hasRuntimeSamplingTarget": false,
+    "completionSignal": "data-animations-complete"
+  },
+  "audit": {
+    "profileSpecificChecks": ["report-sections", "accent-budget", "serif-typography", "token-tables"],
+    "allowedDeviations": []
+  }
+}
+</script>
+
+<!-- Font Preload -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Favicon: ZhuSha Seal SVG data-URI -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%238B3525'/%3E%3Crect x='16' y='16' width='32' height='32' rx='2' fill='none' stroke='%23FFFFFF' stroke-width='2.5'/%3E%3Cpath d='M32 28v16M24 36h16' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<style>
+/* ============================================================
+   文心报告 · F9 Report Stylesheet
+   设计语言: Wenxin Design Language v1.0
+   动效等级: E9-0 静水（无动效）
+   ============================================================ */
+
+/* --- CSS Variables / Design Tokens --- */
+:root {
+  /* Colors — Warm Earth Palette */
+  --color-bg-warm:       #F2F0EB;
+  --color-bg-base:       #FAFAF8;
+  --color-bg-pure:       #FFFFFF;
+  --color-bg-subtle:     #F0EDE7;
+
+  --color-text-primary:   #3A3837;
+  --color-text-secondary: #5A5550;
+  --color-text-muted:     #B0ABA4;
+  --color-text-heading:   #2C2B29;
+
+  --color-accent:         #8B3525;
+  --color-accent-hover:   #A84030;
+  --color-accent-subtle:  #F5E8E5;
+
+  --color-border-subtle:  #E5E1DA;
+  --color-border-strong:  #C8C3BA;
+
+  --color-link:           #3A3837;
+  --color-link-hover:     #5C4A2F;
+  --color-focus:          rgba(139, 53, 37, 0.4);
+
+  /* Typography */
+  --font-display: "Lora", "Georgia", "Noto Serif SC", "Source Han Serif SC", serif;
+  --font-body:    "EB Garamond", "Crimson Text", "Noto Serif SC", "Source Han Serif SC", serif;
+  --font-ui:      system-ui, -apple-system, "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+
+  /* Type Scale */
+  --text-xs:   0.694rem;
+  --text-sm:   0.833rem;
+  --text-base: 1rem;
+  --text-md:   1.0625rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  1.875rem;
+  --text-3xl:  2.25rem;
+  --text-4xl:  3rem;
+  --text-5xl:  4.5rem;
+
+  /* Leading */
+  --leading-tight:   1.25;
+  --leading-snug:    1.45;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.85;
+  --leading-loose:   2.0;
+
+  /* Tracking */
+  --tracking-tight:    -0.02em;
+  --tracking-normal:    0;
+  --tracking-wide:      0.05em;
+  --tracking-wider:     0.15em;
+  --tracking-chinese:   0.1em;
+
+  /* Spacing — 4px grid */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 2.5rem;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Content Width */
+  --width-report: clamp(640px, 58vw, 780px);
+  --padding-page-x: clamp(20px, 5vw, 72px);
+
+  /* Motion — E9-0: no animations in report */
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text-primary);
+  background: var(--color-bg-pure);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  background: var(--color-bg-pure);
+  counter-reset: footnote;
+}
+
+/* --- Skip Link --- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-text-heading);
+  color: #FFFFFF;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  border-radius: 2px;
+}
+.skip-link:focus {
+  top: var(--space-4);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* --- Running Header Bar --- */
+.runhead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  background: var(--color-bg-pure);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: var(--space-3) 0;
+  text-align: center;
+}
+.runhead-inner {
+  max-width: var(--width-report);
+  margin: 0 auto;
+  padding: 0 var(--padding-page-x);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+/* --- Cover Page --- */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-warm);
+  text-align: center;
+  padding: var(--space-24) var(--padding-page-x);
+  page-break-after: always;
+}
+
+.cover-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-8);
+}
+
+.cover-title {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: var(--tracking-chinese);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+.cover-subtitle-en {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.cover-divider {
+  width: 80px;
+  height: 1px;
+  background: var(--color-border-strong);
+  margin: 0 auto var(--space-8);
+}
+
+.cover-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.cover-meta {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+.cover-marker {
+  margin-top: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.cover-marker-symbol {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-border-strong);
+  display: block;
+}
+
+.brand-marker {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-border-strong);
+  display: inline-block;
+}
+
+.cover-marker-text {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+}
+
+/* --- Table of Contents --- */
+.toc {
+  min-height: 100vh;
+  background: var(--color-bg-pure);
+  padding: var(--space-32) 0 var(--space-24);
+  page-break-after: always;
+}
+
+.toc-inner {
+  max-width: var(--width-report);
+  margin: 0 auto;
+  padding: 0 var(--padding-page-x);
+}
+
+.toc-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-12);
+  letter-spacing: var(--tracking-chinese);
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+}
+
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  padding: var(--space-3) 0;
+  border-bottom: 1px dotted var(--color-border-subtle);
+}
+
+.toc-item a {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+.toc-num {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  min-width: 2em;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* --- Report Body --- */
+.report {
+  max-width: var(--width-report);
+  margin: 0 auto;
+  padding: 0 var(--padding-page-x);
+}
+
+/* --- Chapter --- */
+.chapter {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-16);
+  page-break-before: always;
+}
+
+.chapter:first-of-type {
+  padding-top: var(--space-12);
+}
+
+.chapter + .chapter {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.chapter-num {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-chinese);
+  margin-bottom: var(--space-8);
+}
+
+/* --- Section Headings --- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  line-height: var(--leading-snug);
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-4);
+}
+
+.subsection-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  line-height: var(--leading-snug);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+}
+
+/* --- Paragraph --- */
+.report p {
+  margin-bottom: var(--space-5);
+  text-align: justify;
+  hyphens: auto;
+}
+
+.report p.lead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-8);
+}
+
+/* --- Pull Quote (Accent #2: Executive Summary key insight) --- */
+.pull-quote {
+  margin: var(--space-10) 0;
+  padding: var(--space-4) var(--space-6);
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-bg-subtle);
+}
+
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-style: italic;
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-heading);
+  margin-bottom: 0;
+}
+
+/* --- Regular Blockquote --- */
+blockquote {
+  margin: var(--space-6) 0;
+  padding: var(--space-4) var(--space-6);
+  border-left: 2px solid var(--color-border-strong);
+  background: var(--color-bg-subtle);
+}
+
+blockquote p {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+/* --- Horizontal Rule --- */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border-subtle);
+  margin: var(--space-12) 0;
+}
+
+hr.accent-rule {
+  width: 60px;
+  border-top: 1px solid var(--color-border-strong);
+  margin: var(--space-8) auto;
+}
+
+/* --- Lists --- */
+.report ul,
+.report ol {
+  margin-bottom: var(--space-5);
+  padding-left: var(--space-6);
+}
+
+.report li {
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-normal);
+}
+
+.report li ul,
+.report li ol {
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+}
+
+/* --- Tables (Token Tables) --- */
+.table-wrapper {
+  overflow-x: auto;
+  margin: var(--space-8) 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+table caption {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  text-align: left;
+  margin-bottom: var(--space-3);
+}
+
+thead th {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 2px solid var(--color-border-strong);
+  background: var(--color-bg-subtle);
+}
+
+tbody td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid var(--color-border-strong);
+}
+
+td code,
+th code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-bg-subtle);
+  padding: 0 4px;
+  border-radius: 2px;
+  color: var(--color-text-heading);
+  white-space: nowrap;
+}
+
+td .swatch {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: var(--space-2);
+}
+
+/* --- Code --- */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-bg-subtle);
+  padding: 0 4px;
+  border-radius: 2px;
+  color: var(--color-text-heading);
+}
+
+pre {
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  background: var(--color-bg-subtle);
+  border-left: 3px solid var(--color-border-strong);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* --- Links --- */
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--color-border-strong);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* --- Strong & Emphasis --- */
+strong {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+em {
+  font-style: italic;
+}
+
+/* --- Report Footer --- */
+.report-footer {
+  max-width: var(--width-report);
+  margin: var(--space-24) auto 0;
+  padding: var(--space-8) var(--padding-page-x) var(--space-16);
+  border-top: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+.report-footer p {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+.report-footer-marker {
+  margin-top: var(--space-4);
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-border-strong);
+}
+
+/* --- Print Styles --- */
+@media print {
+  @page {
+    size: A4;
+    margin: 25mm 20mm 30mm 20mm;
+  }
+
+  @page :first {
+    margin: 0;
+  }
+
+  html {
+    font-size: 11pt;
+    color: #3A3837;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .cover {
+    background: #fff;
+    page-break-after: always;
+  }
+
+  .runhead {
+    display: none;
+  }
+
+  .chapter {
+    page-break-before: always;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .chapter + .chapter {
+    border-top: none;
+  }
+
+  .toc {
+    page-break-after: always;
+    min-height: auto;
+  }
+
+  .report-footer {
+    border-top: 0.5pt solid #3A3837;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  pre {
+    border-left: 2pt solid #888580;
+    background: #FAFAF8;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .skip-link {
+    display: none;
+  }
+}
+
+/* --- Respect User Motion Preferences --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  :root {
+    --text-5xl: 2.5rem;
+    --text-4xl: 2rem;
+    --text-3xl: 1.625rem;
+    --text-2xl: 1.5rem;
+  }
+
+  .cover {
+    min-height: 90vh;
+    padding: var(--space-12) var(--padding-page-x);
+  }
+
+  .chapter {
+    padding-top: var(--space-16);
+  }
+
+  .toc {
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .report p {
+    text-align: left;
+  }
+
+  .table-wrapper {
+    margin: var(--space-6) calc(-1 * var(--padding-page-x));
+    padding: 0 var(--padding-page-x);
+  }
+
+  .brand-marker,
+  .cover-marker-symbol,
+  .report-footer-marker {
+    width: 6px;
+    height: 6px;
+  }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">跳至正文</a>
+
+<!-- ============================================================
+     Running Header
+     ============================================================ -->
+<div class="runhead">
+  <div class="runhead-inner">万形报告 · 文心设计语言形态研究</div>
+</div>
+
+<!-- ============================================================
+     Cover Page
+     ============================================================ -->
+<header class="cover" aria-label="封面页">
+  <p class="cover-label">研究报告 · 第一版</p>
+  <h1 class="cover-title">万形报告</h1>
+  <p class="cover-subtitle-en">Wenxin Report</p>
+  <div class="cover-divider"></div>
+  <p class="cover-subtitle">关于文心设计语言的形态研究报告</p>
+  <p class="cover-meta">2026年5月 · 万形设计工程</p>
+  <div class="cover-marker">
+    <span class="cover-marker-symbol" aria-hidden="true"></span>
+    <span class="cover-marker-text">文心 F9</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     Table of Contents
+     ============================================================ -->
+<nav class="toc" aria-label="目录">
+  <div class="toc-inner">
+    <h2 class="toc-title">目&ensp;录</h2>
+    <ol class="toc-list">
+      <li class="toc-item"><a href="#ch1"><span class="toc-num">壹</span> 执行摘要</a></li>
+      <li class="toc-item"><a href="#ch2"><span class="toc-num">贰</span> 语境：文心设计语言的起源与问题</a></li>
+      <li class="toc-item"><a href="#ch3"><span class="toc-num">叁</span> 方法：设计Token体系与演化框架</a></li>
+      <li class="toc-item"><a href="#ch4"><span class="toc-num">肆</span> 发现：九种输出形态的分析</a></li>
+      <li class="toc-item"><a href="#ch5"><span class="toc-num">伍</span> 证据：设计审计数据</a></li>
+      <li class="toc-item"><a href="#ch6"><span class="toc-num">陆</span> 诠释：文心设计语言的价值</a></li>
+      <li class="toc-item"><a href="#ch7"><span class="toc-num">柒</span> 建议：适用场景与限制</a></li>
+      <li class="toc-item"><a href="#appendix"><span class="toc-num">附</span> 附录：完整设计Token表</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ============================================================
+     Report Body
+     ============================================================ -->
+<main class="report" id="main-content">
+
+  <!-- ==========================================================
+       Chapter 1 — Executive Summary
+       ========================================================== -->
+  <section class="chapter" id="ch1" aria-labelledby="ch1-title">
+    <p class="chapter-num">第一章</p>
+    <h2 class="chapter-title" id="ch1-title">壹&emsp;执行摘要</h2>
+
+    <p class="lead">文心（Wenxin）是一套根植于东方美学的当代设计语言。它以"文字即界面，留白即设计，克制即力量"为核心命题，通过七维度映射与九种输出形态，构建了从响应式Web到学术印刷、从品牌标识到知识图谱的完整设计表达体系。</p>
+
+    <div class="pull-quote" aria-label="核心发现">
+      <p>文心不是一套"看起来好看"的视觉风格——它是一种将设计决策显式化的方法论。每一个色彩、每一点留白、每一段动效曲线都有其哲学理由，这使得文心具备跨越产品类型和输出媒介的适应性。</p>
+    </div>
+
+    <p>本研究通过分析文心设计语言的架构、Token体系、演化框架和审计机制，论证了以下核心发现：</p>
+
+    <p><strong>第一，灵魂与形态的两层结构是文心适应性的关键。</strong>将A9（克制之美）、B9（温暖极简）、D9（暖土调）定义为不可改变的"灵魂"，而将布局、导航、动效节奏定义为随产品类型变化的"形态"，使得文心既能保持核心识别，又能适配从博客到研究报告的九种产品形态。</p>
+
+    <p><strong>第二，显式化的设计Token体系降低了设计复现成本。</strong>色彩、字体、间距、动效均以CSS变量形式明确定义，三层Token架构（参考层→语义层→组件层）使得从Web到印刷的色彩映射有据可循。</p>
+
+    <p><strong>第三，多层审计机制保障设计质量。</strong>Render Contract审计（机器事实层）配合34条美学准则（人工判断层）和截图视觉审计（体验层），形成从确定性约束到主观审美的完整质量保障链。</p>
+
+    <p><strong>第四，F9报告形态是文心的"集大成者"。</strong>它将论证结构本身作为阅读界面——摘要、问题、方法、发现、证据、建议——通过LaTeX排版编译为可独立阅读的PDF，标志着文心从"设计工具"到"思考工具"的跃迁。</p>
+
+    <p>本报告同时指出文心的适用边界：以内容/信息为核心的产品（博客、文档站、作品集、研究报告）是文心的最佳适配场景；数据密集型Dashboard、电商、游戏等产品不在文心的适用范围内。</p>
+  </section>
+
+  <!-- ==========================================================
+       Chapter 2 — Context
+       ========================================================== -->
+  <section class="chapter" id="ch2" aria-labelledby="ch2-title">
+    <p class="chapter-num">第二章</p>
+    <h2 class="chapter-title" id="ch2-title">贰&emsp;语境：文心设计语言的起源与问题</h2>
+
+    <h3 class="section-title">2.1 万形：OpenCode设计工程</h3>
+
+    <p>万形（Wanxing）是一个专注于文心设计语言的OpenCode设计工程项目。它的核心理念是：<strong>文字即界面，留白即设计，克制即力量。</strong>进入万形项目目录后，OpenCode自动加载文心设计规范，用户只需描述需求即可产出完整的UI设计。</p>
+
+    <p>万形的架构分为四层：Meta Agent负责需求理解和约束澄清；Wenxin Agent负责具体的HTML/CSS设计执行；Audit Agent负责Render Contract、规则适配、截图视觉和动画运行时的多层审计；Rules和Tokens提供完整的规范和变量定义。这套架构使得设计工程从灵感驱动转变为规范驱动，每一次设计决策都有据可循。</p>
+
+    <h3 class="section-title">2.2 当代设计系统面临的困境</h3>
+
+    <p>当代设计系统工程面临一个根本性的困境：<strong>刚性与柔性的张力</strong>。过于刚性的设计系统（组件库严格统一、色彩固定、布局模板化）虽然降低了协作成本，但抹杀了不同产品类型的独特气质——一个博客不应该看起来像一个SaaS后台。而过于柔性的设计系统（仅提供原则性指导、无强制约束）又导致品牌碎片化——同一品牌的不同产品看起来像来自不同的设计团队。</p>
+
+    <blockquote>
+      <p>设计的本质不是统一，而是协调。统一是花圃——所有花被修剪成同一高度；协调是草地——每一株草都在自己的位置生长，但整体形成一片自然的和谐。</p>
+    </blockquote>
+
+    <h3 class="section-title">2.3 文心的回应：灵魂与形态的两层结构</h3>
+
+    <p>文心设计语言提出的解决方案是一种<strong>"灵魂与形态"的两层结构</strong>。</p>
+
+    <p><strong>灵魂层（Soul）</strong>——永远不变：色彩系统（暖土调）、字体哲学（温暖衬线）、留白密度（高留白）、点睛之色（砖红Accent，全页≤2处）、动效节奏（春雨润物，细节有声）。这些是文心的身份标识，改变它们即改变文心的本质。</p>
+
+    <p><strong>形态层（Form）</strong>——随境而化：布局结构、导航形式、内容组织方式。形态层完全尊重该产品类型的行业UX最佳惯例——博客用单列居中，文档站用双栏侧边栏，演示文稿用16:9画布。文心不为了"风格统一"而强迫所有产品使用同一种布局。</p>
+
+    <p>这种结构可以类比于水：水的化学本质（H₂O）不会改变，但它在杯子里是杯子的形状，在河道里是河道的形状。用户感受到的不是"风格统一"，而是"说不出的舒服"——这就是润物细无声。</p>
+  </section>
+
+  <!-- ==========================================================
+       Chapter 3 — Method
+       ========================================================== -->
+  <section class="chapter" id="ch3" aria-labelledby="ch3-title">
+    <p class="chapter-num">第三章</p>
+    <h2 class="chapter-title" id="ch3-title">叁&emsp;方法：设计Token体系与演化框架</h2>
+
+    <h3 class="section-title">3.1 七维度映射</h3>
+
+    <p>文心设计语言对应七个维度的固定值，每个维度选择都有其哲学理由：</p>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>文心七维度映射表</caption>
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th>标识</th>
+          <th>取值</th>
+          <th>含义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>A · 设计哲学</td><td>A9</td><td>克制之美</td><td>设计的力量来自克制而非张扬。无装饰阴影、无渐变背景、无填充色按钮，留白密度极高。</td></tr>
+        <tr><td>B · 视觉性格</td><td>B9</td><td>温暖极简</td><td>极简但不冰冷——暖白色底色（非纯白）、衬线字体的人文温度（非几何无衬线的冷峻）。</td></tr>
+        <tr><td>C · 排版节奏</td><td>C9</td><td>温暖衬线</td><td>衬线优先，舒适行高（CJK≥1.85，拉丁≥2.0），温暖阅读体验。</td></tr>
+        <tr><td>D · 色彩基调</td><td>D9</td><td>暖土调</td><td>暖白底+砖红/赭石强调，色彩来自泥土、陶器、茶叶、宣纸。禁止高饱和蓝绿紫橙。</td></tr>
+        <tr><td>E · 动效理念</td><td>E9</td><td>温和流动</td><td>微妙、呼吸感、水一般的流动。禁止旋转、弹跳、强回弹、位移超过16px。</td></tr>
+        <tr><td>F · 输出形态</td><td>F1-F9</td><td>九种形态</td><td>Web→Mobile→Brand→Print→Presentation→Documentation→Poster→Diagram→Report。</td></tr>
+        <tr><td>G · 文化语境</td><td>G2</td><td>东亚</td><td>CJK排版规范（行高≥1.6、标点挤压、避头尾），东亚色彩语义。</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="section-title">3.2 设计Token三层体系</h3>
+
+    <p>文心的设计Token体系分为三层，确保从抽象到具体的完整映射路径：</p>
+
+    <p><strong>参考层（Reference）</strong>——原始色值定义。例如 <code>--color-accent: #8B3525</code>，这是最基础的色彩事实。</p>
+
+    <p><strong>语义层（Semantic）</strong>——功能性命名。例如 <code>--color-text-primary: #3A3837</code>、<code>--color-border-subtle: #E5E1DA</code>，语义Token使设计意图可读、可维护。</p>
+
+    <p><strong>组件层（Component）</strong>——组件级绑定。按钮hover态使用 <code>--color-accent</code>，表单错误态使用 <code>--color-accent</code>，语义Token在具体场景中的使用形成组件的一致性。</p>
+
+    <p>这种三层架构的价值在跨形态适配中尤为突出。当设计从Web（F1）演化到印刷（F4）时，语义层保持不变（"这是正文色"），但参考层的值从屏幕RGB映射到印刷CMYK。当设计从亮色模式切换到暗色模式时，语义层同样保持不变，但参考层的值被重新定义。</p>
+
+    <h3 class="section-title">3.3 演化框架：不可变之魂与可变之形</h3>
+
+    <p>文心的演化框架定义了哪些维度不可改变，哪些维度可以适配：</p>
+
+    <p><strong>不可变之魂（Invariant Soul）：</strong>A9（克制之美）、B9（温暖极简）、D9（暖土调）在任何演化中不可改变。改变即破坏文心身份。</p>
+
+    <p><strong>可变之形（Flexible Form）：</strong>F（输出形态）——Web到Report的九种适配；G（文化语境）——东亚到全球中性的本地化；C（排版节奏）——平台特定的字号阶梯；E（动效理念）——平台特定的交互反馈。</p>
+
+    <p>演化审计规则要求：任何演化提案必须声明可变维度并说明调整理由，执行34条美学审计，确保不变之魂完整，所有Token值从文心正典派生。</p>
+  </section>
+
+  <!-- ==========================================================
+       Chapter 4 — Findings
+       ========================================================== -->
+  <section class="chapter" id="ch4" aria-labelledby="ch4-title">
+    <p class="chapter-num">第四章</p>
+    <h2 class="chapter-title" id="ch4-title">肆&emsp;发现：九种输出形态的分析</h2>
+
+    <p class="lead">文心正式输出形态固定为F1-F9。每一种形态在保持灵魂层不变的前提下，适配目标媒介的行业惯例。以下是对九种形态的系统分析。</p>
+
+    <h3 class="section-title">4.1 形态全景</h3>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>文心九种输出形态总览</caption>
+      <thead>
+        <tr><th>形态</th><th>演化配置</th><th>适用场景</th><th>动效</th><th>暗色模式</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>F1 HTML Web</td><td>文心正典</td><td>博客、作品集、Landing Page、内容站</td><td>E9-1 春雨</td><td>是</td></tr>
+        <tr><td>F2 Mobile App</td><td>文心移动</td><td>iOS/Android原生或混合应用</td><td>E9-1 春雨</td><td>是</td></tr>
+        <tr><td>F3 Brand Identity</td><td>文心品牌</td><td>Logo系统、品牌视觉识别、品牌指南</td><td>E9-2 微澜</td><td>否（品牌）</td></tr>
+        <tr><td>F4 Print &amp; Editorial</td><td>文心书卷</td><td>书籍、论文、杂志、Zine</td><td>E8 印刷静止</td><td>否</td></tr>
+        <tr><td>F5 Presentation</td><td>文心演示</td><td>路演、演讲、课堂、汇报</td><td>E9-1 春雨</td><td>是（可选）</td></tr>
+        <tr><td>F6 Documentation</td><td>文心文档</td><td>API文档、知识库、Wiki、技术手册</td><td>E9-0 静水</td><td>是</td></tr>
+        <tr><td>F7 Poster &amp; Cover</td><td>文心海报</td><td>活动海报、书籍封面、社交媒体横幅</td><td>E8或E9-1</td><td>是（数字）</td></tr>
+        <tr><td>F8 Diagram</td><td>文心图解</td><td>架构图、流程图、知识地图</td><td>E8 静态</td><td>否</td></tr>
+        <tr><td><strong>F9 Report</strong></td><td><strong>文心报告</strong></td><td><strong>研究报告、策略报告、白皮书</strong></td><td><strong>E9-0 静水</strong></td><td><strong>否</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="section-title">4.2 F9文心报告：论证即界面</h3>
+
+    <p>F9是文心形态谱系中的特殊存在。它不追求浏览体验（如F1 Web）、搜索体验（如F6 Docs）、或视觉冲击（如F7 Poster）——它追求的是<strong>论证体验</strong>。</p>
+
+    <p>F9的核心命题是"论证即界面"。报告不是网页，也不是幻灯片。它是一种判断型文档：通过摘要、问题、方法、发现、证据、建议的结构化排列，让读者安静地进入一个结论。在F9中，标题的层级、段落的节奏、脚注的位置、图表caption的措辞——这些都是"界面元素"。</p>
+
+    <p><strong>核心路径：Markdown → Wenxin Report LaTeX → PDF。</strong>用户以Markdown撰写草稿，通过frontmatter声明报告结构，经由XeLaTeX编译引擎排版为PDF。HTML仅作预览<strong>——</strong>PDF是主交付物。这一设计确保F9报告可以独立阅读、独立存档、独立引用。</p>
+
+    <h3 class="section-title">4.3 与F4（印刷）和F6（文档站）的边界</h3>
+
+    <p>F9与F4、F6的边界需要精确划定，避免形态间功能重叠：</p>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>F9/F4/F6边界对比</caption>
+      <thead>
+        <tr><th>维度</th><th>F4 Print &amp; Editorial</th><th>F6 Documentation</th><th>F9 Report</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>核心目的</td><td>出版级内页排版</td><td>可浏览、可搜索的文档</td><td>可独立阅读的判断型报告</td></tr>
+        <tr><td>主交付物</td><td>印刷品/PDF</td><td>HTML文档站</td><td>LaTeX→PDF</td></tr>
+        <tr><td>导航方式</td><td>页码、目录</td><td>侧边栏、搜索、面包屑</td><td>章节编号、页眉页脚</td></tr>
+        <tr><td>结构特征</td><td>Van de Graaf版面、奇偶页</td><td>双栏布局、滚动跟踪TOC</td><td>论证章节链、摘要优先</td></tr>
+        <tr><td>动效</td><td>E8 静止</td><td>E9-0 最小反馈</td><td>E9-0 静止</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>F9可复用F4的印刷Token和页边距思想，但不承担书籍出版系统（奇偶页、首字下沉、章节装饰）。F9可包含F8图解，但图解本身作为独立实体遵循F8规范。这种"组合而非替代"的形态关系，使得文心九种形态可以灵活组合来满足复杂的设计需求。</p>
+  </section>
+
+  <!-- ==========================================================
+       Chapter 5 — Evidence
+       ========================================================== -->
+  <section class="chapter" id="ch5" aria-labelledby="ch5-title">
+    <p class="chapter-num">第五章</p>
+    <h2 class="chapter-title" id="ch5-title">伍&emsp;证据：设计审计数据</h2>
+
+    <h3 class="section-title">5.1 美学审计体系</h3>
+
+    <p>文心审计体系建立在34条当代美学准则之上，覆盖5个大类：</p>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>34条美学准则分类</caption>
+      <thead>
+        <tr><th>类别</th><th>准则数</th><th>核心关注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>一致性（Coherence）</td><td>7</td><td>哲学-视觉一致、色彩-情感一致、排版-内容一致、动效-交互一致、色彩语义角色</td></tr>
+        <tr><td>当代性（Modernity）</td><td>9</td><td>拒绝拟物、暗色模式就绪、可变字体优先、无障碍底线、响应式必须、现代布局优先</td></tr>
+        <tr><td>比例与层次（Proportion）</td><td>7</td><td>黄金比例参考、层次清晰、留白即设计、对比有目的、行长与行高、垂直节奏</td></tr>
+        <tr><td>文化敏感度（Cultural Sensitivity）</td><td>6</td><td>色彩文化、排版文化、图标文化、跨文化审查、RTL支持</td></tr>
+        <tr><td>无障碍与舒适度（Accessibility）</td><td>5</td><td>WCAG 2.2 AA对比度（阻断性）、焦点指示器、减少动效尊重、最小触控目标</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>其中<strong>WCAG 2.2 AA</strong>被设为阻断性准则——不达标即方案不可交付。这体现了文心对无障碍的底线态度：设计的美好不能以排除任何用户群体为代价。</p>
+
+    <h3 class="section-title">5.2 Render Contract审计</h3>
+
+    <p>Render Contract审计是Audit Agent之前的机器事实层。它读取HTML内嵌的<code>wanxing-render-contract</code> JSON，从DOM/CSS中自动提取结构、色彩、排版、动效、无障碍指标。</p>
+
+    <p><strong>Hard Gate（阻断条件）：</strong></p>
+    <ul>
+      <li>Accent出现次数超过2处</li>
+      <li>使用高饱和蓝、绿、紫、橙</li>
+      <li>使用渐变背景、装饰阴影、拟物纹理</li>
+      <li>动效中出现旋转、弹跳、位移超过16px</li>
+      <li>缺少Focus-visible样式</li>
+      <li>缺少<code>prefers-reduced-motion</code>支持</li>
+      <li>形态特定违规（F4有动画、F5非16:9等）</li>
+    </ul>
+
+    <p>Hard Gate失败时，审计流程立即阻断，不进入后续的截图视觉审计和动画运行时审计。这种"先阻断确定性错误"的策略避免了在无效输出上浪费审计资源。</p>
+
+    <h3 class="section-title">5.3 多层审计流程</h3>
+
+    <p>完整的审计流程由四层证据合并而成：</p>
+
+    <ol>
+      <li><strong>Render Contract</strong>——机器事实审计，提取DOM/CSS/动效指标</li>
+      <li><strong>Wenxin Rule Fit</strong>——检查A9/B9/D9/E9是否符合规范</li>
+      <li><strong>Visual Screenshot Review</strong>——Playwright多视口截图+多模态视觉审计（粗筛5项+细磨11条视觉准则）</li>
+      <li><strong>Motion Runtime Review</strong>——<code>document.getAnimations()</code>运行时采样，检查动效是否"春雨润物，细节有声"</li>
+    </ol>
+
+    <p>审计结果分为三级：✅通过（Hard Gate全过）、⚠️有条件通过（无Hard Gate失败，但有审美或动效歧义）、❌阻断（存在Hard Gate失败或灵魂层破坏）。机器可判定问题（Accent超标、纯黑纯白、焦点缺失）由Meta Agent自动修复，主观问题（整体调性、留白节奏）暂停等待用户决策。</p>
+  </section>
+
+  <!-- ==========================================================
+       Chapter 6 — Interpretation
+       ========================================================== -->
+  <section class="chapter" id="ch6" aria-labelledby="ch6-title">
+    <p class="chapter-num">第六章</p>
+    <h2 class="chapter-title" id="ch6-title">陆&emsp;诠释：文心设计语言的价值</h2>
+
+    <h3 class="section-title">6.1 从"看起来好看"到"决策可解释"</h3>
+
+    <p>主流设计系统的价值主张通常是"一致性"和"效率"——它们提供预制的组件库和样式指南，降低设计和开发成本。文心不否认这些价值，但它走了一条不同的路：<strong>让每一个设计决策都可以被解释。</strong></p>
+
+    <p>为什么正文的黑色不是<code>#000000</code>而是<code>#3A3837</code>？因为纯黑在暖白纸上会产生过强的对比，破坏阅读的温暖感——这是一种有意识的色彩决策，而不是"设计师觉得好看"。为什么Accent色全页不超过2处？因为朱砂印章的力量来自稀少——少即是多的设计原则被量化为了可执行、可审计的约束。</p>
+
+    <p>这种"显式化"的价值在团队协作和设计迭代中尤为突出。当设计师提议"这里加一个蓝色强调按钮"时，文心规范可以直接回应：蓝色不在色板中，且Accent预算已耗尽。这不是审美的冲突，而是规则的判断——规则是透明的，可以被讨论和修改，但不会被默默绕过。</p>
+
+    <h3 class="section-title">6.2 「克制即力量」的实践验证</h3>
+
+    <p>文心的Accent约束（全页≤2处，仅用于品牌标记区域）是"克制即力量"最典型的实践案例：</p>
+
+    <ul>
+      <li>砖红色<code>#8B3525</code>不在正文段落中用于强调（避免读者分心）</li>
+      <li>不在导航中用于当前页标记（用更轻量的排版手段）</li>
+      <li>不在图标系统中作为默认色（仅激活/选中态除外）</li>
+      <li>仅出现在品牌署名区和封面标题——出现越少，力量越大</li>
+    </ul>
+
+    <p>这与中国水墨画中的朱砂印章遵循同一原则：整幅画面前99%是黑白灰的水墨，只有最后1%的朱砂印章赋予画面"温度"和"署名"。如果到处盖印章，它就失去了意义。</p>
+
+    <h3 class="section-title">6.3 与主流设计系统的关系</h3>
+
+    <p>文心并不试图替代Material Design、Ant Design或Tailwind UI。这些系统的优势在于覆盖广泛的交互场景和组件变体，适合数据密集型应用。文心的优势在于<strong>内容优先场景的深度优化</strong>——当产品以文字和阅读为核心体验时，文心提供的排版节奏、留白密度和色彩克制是通用设计系统难以达到的。</p>
+
+    <p>可以将文心理解为一种"内容设计语言"（Content Design Language），而非"UI组件库"。它的最高成就不在于提供多少种按钮变体，而在于让用户忘记界面的存在——读者感受到的只是阅读的舒适，而非设计的存在。</p>
+  </section>
+
+  <!-- ==========================================================
+       Chapter 7 — Recommendations
+       ========================================================== -->
+  <section class="chapter" id="ch7" aria-labelledby="ch7-title">
+    <p class="chapter-num">第七章</p>
+    <h2 class="chapter-title" id="ch7-title">柒&emsp;建议：适用场景与限制</h2>
+
+    <h3 class="section-title">7.1 最佳适配场景</h3>
+
+    <p>文心设计语言最适合以下类型的产品：</p>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>文心适配场景推荐</caption>
+      <thead>
+        <tr><th>产品类型</th><th>推荐形态</th><th>适配理由</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>个人博客</td><td>F1 HTML Web</td><td>阅读型页面原型，单列居中，最高舒适度</td></tr>
+        <tr><td>作品集/简历</td><td>F1 HTML Web</td><td>展示型原型，时间线+技能标签</td></tr>
+        <tr><td>知识库/Wiki</td><td>F6 Documentation</td><td>双栏布局，暖色调代码高亮，搜索优先</td></tr>
+        <tr><td>API文档</td><td>F6 Documentation</td><td>增强代码块，提示框，版本选择器</td></tr>
+        <tr><td>品牌设计</td><td>F3 Brand Identity</td><td>朱砂印章Logo，品牌标识符■，多尺度变体</td></tr>
+        <tr><td>学术论文</td><td>F4 Print &amp; Editorial</td><td>Van de Graaf版面，奇偶页，脚注体系</td></tr>
+        <tr><td>技术演讲</td><td>F5 Presentation</td><td>16:9画布，构建动画，演讲者备注</td></tr>
+        <tr><td>海报/封面</td><td>F7 Poster &amp; Cover</td><td>单页极简，构图模式，展示字号</td></tr>
+        <tr><td>架构图/流程图</td><td>F8 Diagram</td><td>Mermaid转SVG，暖色线条，悬浮阶梯</td></tr>
+        <tr><td><strong>研究报告</strong></td><td><strong>F9 Report</strong></td><td><strong>论证即界面，Markdown→LaTeX→PDF</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="section-title">7.2 不适用场景</h3>
+
+    <p>以下产品类型不在文心的适用范围内：</p>
+
+    <ul>
+      <li><strong>数据密集型Dashboard</strong>——需要高密度数据可视化、实时图表、复杂筛选；这些需求与文心的留白哲学冲突</li>
+      <li><strong>电商产品</strong>——需要促销标签、价格强调、商品卡片阴影；高饱和色彩和多层级视觉权重是电商的必需品</li>
+      <li><strong>游戏/娱乐</strong>——需要丰富的视觉刺激、沉浸式体验、动效表演；文心的克制美学在此场景中反而成为限制</li>
+      <li><strong>复杂CRM/ERP</strong>——需要密集表单、多层级表格、复杂工作流；信息密度需求超出文心舒适空间</li>
+    </ul>
+
+    <p><strong>这些"不适用"不是文心的缺陷，而是它的边界意识。</strong>一个承认自己边界的工具比一个声称无所不能的工具更值得信任。</p>
+
+    <h3 class="section-title">7.3 形态上限与扩张原则</h3>
+
+    <p>文心正式输出形态固定为F1-F9，不再继续扩张。新增形态必须满足四个条件：</p>
+
+    <ol>
+      <li>可独立交付——不依赖其他形态作为前置</li>
+      <li>有独立使用场景——用户会明确说"我需要一个XX"</li>
+      <li>有独立审计规则——不能简单复用既有形态的审计项</li>
+      <li>不能被既有F1-F9优雅吸收——如果可以，就不需要新形态</li>
+    </ol>
+
+    <p>Newsletter/Email、Form/Wizard、Social Cards/Carousel、Dashboard、电商、游戏、复杂3D展示等场景明确不进入正式形态。它们要么可被F1/F2/F7覆盖，要么与文心"文字即界面"的哲学根本冲突。</p>
+  </section>
+
+  <!-- ==========================================================
+       Appendix — Complete Token Tables
+       ========================================================== -->
+  <section class="chapter" id="appendix" aria-labelledby="appendix-title">
+    <p class="chapter-num">附录</p>
+    <h2 class="chapter-title" id="appendix-title">附录&emsp;完整设计Token表</h2>
+
+    <h3 class="section-title">A.1 色彩Token（亮色模式）</h3>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>语义色彩Token — 亮色模式</caption>
+      <thead>
+        <tr><th>Token</th><th>值</th><th>色样</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--color-bg-warm</code></td><td>#F2F0EB</td><td><span class="swatch" style="background:#F2F0EB"></span></td><td>暖白·羊皮纸质感·首页/展示型</td></tr>
+        <tr><td><code>--color-bg-base</code></td><td>#FAFAF8</td><td><span class="swatch" style="background:#FAFAF8"></span></td><td>内页背景·内容列表/详情页</td></tr>
+        <tr><td><code>--color-bg-pure</code></td><td>#FFFFFF</td><td><span class="swatch" style="background:#FFFFFF"></span></td><td>纯白·文章正文区</td></tr>
+        <tr><td><code>--color-bg-subtle</code></td><td>#F0EDE7</td><td><span class="swatch" style="background:#F0EDE7"></span></td><td>微弱底色·代码块/引用块</td></tr>
+        <tr><td><code>--color-text-primary</code></td><td>#3A3837</td><td><span class="swatch" style="background:#3A3837"></span></td><td>主体·深炭色·带暖调</td></tr>
+        <tr><td><code>--color-text-secondary</code></td><td>#888580</td><td><span class="swatch" style="background:#888580"></span></td><td>辅助·日期/元数据</td></tr>
+        <tr><td><code>--color-text-muted</code></td><td>#B0ABA4</td><td><span class="swatch" style="background:#B0ABA4"></span></td><td>弱化·版权/占位符</td></tr>
+        <tr><td><code>--color-text-heading</code></td><td>#2C2B29</td><td><span class="swatch" style="background:#2C2B29"></span></td><td>标题·比正文略深</td></tr>
+        <tr><td><code>--color-accent</code></td><td>#8B3525</td><td><span class="swatch" style="background:#F5E8E5;border:1px solid #C8C3BA"></span></td><td>点睛之色·全页≤2处</td></tr>
+        <tr><td><code>--color-accent-subtle</code></td><td>#F5E8E5</td><td><span class="swatch" style="background:#F5E8E5"></span></td><td>Accent弱化·引用块背景</td></tr>
+        <tr><td><code>--color-border-subtle</code></td><td>#E5E1DA</td><td><span class="swatch" style="background:#E5E1DA"></span></td><td>细边框·分隔线</td></tr>
+        <tr><td><code>--color-border-strong</code></td><td>#C8C3BA</td><td><span class="swatch" style="background:#C8C3BA"></span></td><td>明显边框·表头底线</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="section-title">A.2 字体Token</h3>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>字体栈定义</caption>
+      <thead>
+        <tr><th>Token</th><th>字体栈</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--font-display</code></td><td>Lora, Georgia, Noto Serif SC, Source Han Serif SC, serif</td><td>展示/标题</td></tr>
+        <tr><td><code>--font-body</code></td><td>EB Garamond, Crimson Text, Noto Serif SC, Source Han Serif SC, serif</td><td>正文</td></tr>
+        <tr><td><code>--font-ui</code></td><td>system-ui, Noto Sans SC, PingFang SC, sans-serif</td><td>UI标签/元数据</td></tr>
+        <tr><td><code>--font-mono</code></td><td>JetBrains Mono, Fira Code, SF Mono, monospace</td><td>代码</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>字号阶梯（Major Third, 1.250）</caption>
+      <thead>
+        <tr><th>Token</th><th>值</th><th>约px</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--text-xs</code></td><td>0.694rem</td><td>~11px</td><td>极小标注、版权</td></tr>
+        <tr><td><code>--text-sm</code></td><td>0.833rem</td><td>~13px</td><td>元数据、标签、面包屑</td></tr>
+        <tr><td><code>--text-base</code></td><td>1rem</td><td>16px</td><td>基准</td></tr>
+        <tr><td><code>--text-md</code></td><td>1.0625rem</td><td>17px</td><td>正文阅读推荐</td></tr>
+        <tr><td><code>--text-lg</code></td><td>1.25rem</td><td>20px</td><td>摘要、小节引导</td></tr>
+        <tr><td><code>--text-xl</code></td><td>1.5rem</td><td>24px</td><td>h3/小节标题</td></tr>
+        <tr><td><code>--text-2xl</code></td><td>1.875rem</td><td>30px</td><td>h2/中标题</td></tr>
+        <tr><td><code>--text-3xl</code></td><td>2.25rem</td><td>36px</td><td>h1/文章标题</td></tr>
+        <tr><td><code>--text-4xl</code></td><td>3rem</td><td>48px</td><td>导航大字、章节</td></tr>
+        <tr><td><code>--text-5xl</code></td><td>4.5rem</td><td>72px</td><td>品牌/英雄区</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="section-title">A.3 间距Token</h3>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>间距系统（4px网格）</caption>
+      <thead>
+        <tr><th>Token</th><th>值</th><th>典型用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--space-1</code></td><td>4px</td><td>极细间隙</td></tr>
+        <tr><td><code>--space-2</code></td><td>8px</td><td>图标与文字间距</td></tr>
+        <tr><td><code>--space-3</code></td><td>12px</td><td>表格单元格、标签内边距</td></tr>
+        <tr><td><code>--space-4</code></td><td>16px</td><td>引用块/代码块内边距</td></tr>
+        <tr><td><code>--space-5</code></td><td>20px</td><td><strong>正文段落间距</strong></td></tr>
+        <tr><td><code>--space-6</code></td><td>24px</td><td>列表项间距、面包屑</td></tr>
+        <tr><td><code>--space-8</code></td><td>32px</td><td>标题与下方正文</td></tr>
+        <tr><td><code>--space-12</code></td><td>48px</td><td>h3与上方内容</td></tr>
+        <tr><td><code>--space-16</code></td><td>64px</td><td>h2与上方内容</td></tr>
+        <tr><td><code>--space-24</code></td><td>96px</td><td><strong>大区块间距</strong></td></tr>
+        <tr><td><code>--space-32</code></td><td>128px</td><td>页面顶部padding</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="section-title">A.4 内容宽度Token</h3>
+
+    <div class="table-wrapper">
+    <table>
+      <caption>响应式内容宽度</caption>
+      <thead>
+        <tr><th>Token</th><th>值</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--width-article</code></td><td>clamp(520px, 55vw, 640px)</td><td>纯阅读型正文</td></tr>
+        <tr><td><code>--width-content</code></td><td>clamp(620px, 65vw, 760px)</td><td>内容列表型</td></tr>
+        <tr><td><code>--width-showcase</code></td><td>clamp(700px, 72vw, 920px)</td><td>展示型页面</td></tr>
+        <tr><td><code>--width-report</code></td><td>clamp(640px, 58vw, 780px)</td><td><strong>报告型（F9专用）</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <hr>
+
+    <p style="text-align:center; color: var(--color-text-muted); font-family: var(--font-ui); font-size: var(--text-sm); margin-top: var(--space-12);">— 附录完 —</p>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     Report Footer
+     ============================================================ -->
+<footer class="report-footer">
+  <p>万形报告 · 文心设计语言的形态研究</p>
+  <p>2026年5月 · 第一版 · 万形设计工程</p>
+  <p style="margin-top: var(--space-2);">文心 F9 · Report &amp; LaTeX Typesetting</p>
+  <span class="report-footer-marker" aria-hidden="true"></span>
+</footer>
+
+<!-- ============================================================
+     Animation Completion Signal
+     E9-0: No animations, immediately mark complete
+     ============================================================ -->
+<script>
+(function () {
+  var html = document.documentElement;
+  var MAX_WAIT = 3000;
+  var timedOut = false;
+
+  var safetyTimer = setTimeout(function () {
+    timedOut = true;
+    html.dataset.animationsComplete = "true";
+  }, MAX_WAIT);
+
+  function markComplete() {
+    if (timedOut) return;
+    clearTimeout(safetyTimer);
+    html.dataset.animationsComplete = "true";
+  }
+
+  function waitForAnimations() {
+    var animations = document.getAnimations();
+    if (!animations || animations.length === 0) {
+      markComplete();
+      return;
+    }
+    Promise.allSettled(
+      Array.from(animations).map(function (a) {
+        return a.finished;
+      }),
+    ).then(function () {
+      markComplete();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", waitForAnimations);
+  } else {
+    waitForAnimations();
+  }
+})();
+</script>
+
+</body>
+</html>

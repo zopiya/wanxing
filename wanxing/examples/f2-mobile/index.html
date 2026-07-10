@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-wanxing-profile="F2" data-wanxing-contract-version="1" data-animations-complete="false">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>万形移动 · Wanxing Mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,700;1,700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =============================================================
+ * Wenxin (文心) Design Tokens — F2 Mobile
+ * Derived from .opencode/tokens/wenxin-tokens.css
+ * ============================================================= */
+
+:root {
+  /* Background */
+  --color-bg-warm:    #F2F0EB;
+  --color-bg-base:    #FAFAF8;
+  --color-bg-pure:    #FFFFFF;
+  --color-bg-subtle:  #F0EDE7;
+
+  /* Text */
+  --color-text-primary:   #3A3837;
+  --color-text-secondary: #5A5550;
+  --color-text-muted:     #B0ABA4;
+  --color-text-heading:   #2C2B29;
+
+  /* Accent */
+  --color-accent:        #8B3525;
+  --color-accent-hover:  #A84030;
+  --color-accent-subtle: #F5E8E5;
+
+  /* Border */
+  --color-border-subtle: #E5E1DA;
+  --color-border-strong: #C8C3BA;
+
+  /* Interactive */
+  --color-link:       #3A3837;
+  --color-link-hover: #8B3525;
+  --color-focus:      rgba(139,53,37,0.4);
+
+  /* Typography */
+  --font-display: "Lora","Georgia","Noto Serif SC","Source Han Serif SC",serif;
+  --font-body: "EB Garamond","Crimson Text","Noto Serif SC","Source Han Serif SC",serif;
+  --font-ui: "SF Pro Text",system-ui,"Noto Sans SC","PingFang SC",sans-serif;
+  --font-mono: "JetBrains Mono","Fira Code","SF Mono",monospace;
+
+  /* Type Scale */
+  --text-xs:  0.694rem;   --text-sm:  0.833rem;
+  --text-base:1rem;       --text-md:  1.0625rem;
+  --text-lg: 1.25rem;     --text-xl:  1.5rem;
+  --text-2xl:1.875rem;    --text-3xl: 2.25rem;
+
+  /* Leading */
+  --leading-tight:1.25;   --leading-snug:1.45;
+  --leading-normal:1.6;   --leading-relaxed:1.85;
+
+  /* Tracking */
+  --tracking-tight:-0.02em;  --tracking-normal:0;
+  --tracking-wide:0.05em;    --tracking-wider:0.15em;
+  --tracking-chinese:0.1em;
+
+  /* Spacing (4px grid) */
+  --space-1:4px;   --space-2:8px;   --space-3:12px;
+  --space-4:16px;  --space-5:20px;  --space-6:24px;
+  --space-8:32px;  --space-10:40px; --space-12:48px;
+  --space-16:64px; --space-24:96px;
+
+  /* Icon */
+  --icon-sm:16px;  --icon-md:20px;  --icon-lg:24px;
+
+  /* Radius */
+  --radius-sm:2px; --radius-md:4px;
+
+  /* Motion */
+  --duration-fast:180ms;   --duration-base:260ms;
+  --duration-slow:420ms;
+  --ease-default:cubic-bezier(0.25,0.1,0.25,1);
+  --ease-out:cubic-bezier(0,0,0.2,1);
+
+  /* Brand */
+  --brand-mark-size:6px;
+  --brand-mark-color:var(--color-accent);
+
+  /* Phone frame */
+  --phone-bg:#3A3837;
+  --phone-screen-bg:var(--color-bg-base);
+}
+
+/* =============================================================
+ * Dark Mode — 夜晚的羊皮纸
+ * ============================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-warm:    #1A1816;
+    --color-bg-base:    #201E1B;
+    --color-bg-pure:    #242220;
+    --color-bg-subtle:  #2A2724;
+
+    --color-text-primary:   #E8E3DC;
+    --color-text-secondary: #9A948D;
+    --color-text-muted:     #5A5550;
+    --color-text-heading:   #F0EBE3;
+
+    --color-accent:        #C4533E;
+    --color-accent-hover:  #D9614A;
+    --color-accent-subtle: #2E1A16;
+
+    --color-border-subtle: #2E2B27;
+    --color-border-strong: #403C37;
+
+    --color-link:       #E8E3DC;
+    --color-link-hover: #C4533E;
+    --color-focus:      rgba(196,83,62,0.4);
+
+    --brand-mark-color: var(--color-accent);
+    --phone-bg:#1A1816;
+    --phone-screen-bg:var(--color-bg-base);
+  }
+}
+
+/* =============================================================
+ * Global Reset & Base
+ * ============================================================= */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+body{
+  font-family:var(--font-body);
+  font-size:var(--text-md);
+  line-height:var(--leading-relaxed);
+  color:var(--color-text-primary);
+  background:var(--color-bg-warm);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  min-height:100dvh;
+  padding:var(--space-6);
+}
+
+/* =============================================================
+ * Phone Frame — iPhone 15 Pro Simulation
+ * ============================================================= */
+
+.phone-frame{
+  position:relative;
+  width:430px;
+  height:932px;
+  background:var(--phone-bg);
+  border-radius:56px;
+  padding:var(--space-4);
+  border:1px solid var(--color-border-subtle);
+  flex-shrink:0;
+}
+
+.phone-screen{
+  width:100%;
+  height:100%;
+  background:var(--phone-screen-bg);
+  border-radius:44px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Dynamic Island */
+.dynamic-island{
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:126px;
+  height:34px;
+  background:#1A1816;
+  border-radius:20px;
+  z-index:100;
+  pointer-events:none;
+}
+
+/* Status Bar */
+.status-bar{
+  height:54px;
+  padding:16px 28px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-family:var(--font-ui);
+  font-size:14px;
+  font-weight:600;
+  color:var(--color-text-primary);
+  flex-shrink:0;
+  position:relative;
+  z-index:50;
+}
+
+.status-bar .time{font-size:var(--text-base);font-weight:600;}
+
+.status-icons{
+  display:flex;
+  align-items:center;
+  gap:var(--space-2);
+}
+
+.status-icons svg{
+  width:16px;
+  height:16px;
+  stroke:var(--color-text-primary);
+  stroke-width:1.5;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* =============================================================
+ * App Navigation Bar
+ * ============================================================= */
+
+.nav-bar{
+  height:44px;
+  padding:0 var(--space-4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  position:relative;
+}
+
+.nav-bar-title{
+  font-family:var(--font-ui);
+  font-size:17px;
+  font-weight:600;
+  color:var(--color-text-primary);
+}
+
+/* =============================================================
+ * Content Area
+ * ============================================================= */
+
+.content-area{
+  flex:1;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
+}
+
+.content-area::-webkit-scrollbar{display:none;}
+
+.tab-content{
+  display:none;
+  padding:var(--space-4) var(--space-5);
+  animation:fadeUp var(--duration-slow) var(--ease-out);
+}
+
+.tab-content.active{
+  display:block;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(4px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* =============================================================
+ * Shared Component Styles
+ * ============================================================= */
+
+.section{
+  margin-bottom:var(--space-12);
+}
+
+.section:last-child{margin-bottom:var(--space-5);}
+
+.section + .divider{
+  margin-top:calc(var(--space-12) * -1 + var(--space-4));
+}
+
+.section-title{
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  font-weight:700;
+  color:var(--color-text-heading);
+  line-height:var(--leading-snug);
+  margin-bottom:var(--space-6);
+  letter-spacing:var(--tracking-chinese);
+}
+
+.section-subtitle{
+  font-family:var(--font-ui);
+  font-size:var(--text-sm);
+  font-weight:400;
+  color:var(--color-text-secondary);
+  text-transform:uppercase;
+  letter-spacing:var(--tracking-wider);
+  margin-bottom:var(--space-3);
+}
+
+.section-body{
+  font-family:var(--font-body);
+  font-size:var(--text-md);
+  line-height:var(--leading-relaxed);
+  color:var(--color-text-primary);
+  margin-bottom:var(--space-5);
+}
+
+.section-body:last-child{margin-bottom:0;}
+
+/* Hero Brand */
+.hero-brand{
+  text-align:center;
+  padding:var(--space-8) 0 var(--space-6);
+  margin-bottom:var(--space-8);
+  border-bottom:1px solid var(--color-border-subtle);
+}
+
+.hero-brand h1{
+  font-family:var(--font-display);
+  font-size:var(--text-3xl);
+  font-weight:700;
+  color:var(--color-text-heading);
+  letter-spacing:var(--tracking-chinese);
+  line-height:var(--leading-tight);
+}
+
+.brand-mark{
+  display:inline-block;
+  width:var(--brand-mark-size);
+  height:var(--brand-mark-size);
+  background:var(--brand-mark-color);
+  border-radius:1px;
+  vertical-align:baseline;
+  margin-left:var(--space-1);
+  animation:brandBreathe 4s ease-in-out infinite;
+}
+
+@keyframes brandBreathe{
+  0%,100%{opacity:1;}
+  50%{opacity:0.6;}
+}
+
+.hero-tagline{
+  font-family:var(--font-body);
+  font-size:var(--text-lg);
+  color:var(--color-text-secondary);
+  font-style:italic;
+  margin-top:var(--space-3);
+}
+
+/* Cards — 无阴影、用留白分隔 */
+.card{
+  background:var(--color-bg-pure);
+  border:1px solid var(--color-border-subtle);
+  border-radius:var(--radius-md);
+  padding:var(--space-5);
+  margin-bottom:var(--space-4);
+  transition:border-color var(--duration-fast) var(--ease-default);
+}
+
+.card:active{
+  background:var(--color-bg-subtle);
+}
+
+.card-title{
+  font-family:var(--font-ui);
+  font-size:var(--text-base);
+  font-weight:600;
+  color:var(--color-text-primary);
+  margin-bottom:var(--space-2);
+}
+
+.card-desc{
+  font-family:var(--font-body);
+  font-size:var(--text-sm);
+  line-height:var(--leading-normal);
+  color:var(--color-text-secondary);
+}
+
+.card-meta{
+  font-family:var(--font-ui);
+  font-size:var(--text-xs);
+  color:var(--color-text-muted);
+  text-transform:uppercase;
+  letter-spacing:var(--tracking-wide);
+  margin-bottom:var(--space-2);
+}
+
+/* Feature List */
+.feature-list{
+  list-style:none;
+  padding:0;
+}
+
+.feature-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:var(--space-3);
+  padding:var(--space-3) 0;
+  font-family:var(--font-body);
+  font-size:var(--text-md);
+  line-height:var(--leading-normal);
+  color:var(--color-text-primary);
+  border-bottom:1px solid var(--color-border-subtle);
+}
+
+.feature-list li:last-child{border-bottom:none;}
+
+.feature-list .feat-icon{
+  flex-shrink:0;
+  width:var(--icon-md);
+  height:var(--icon-md);
+  margin-top:var(--space-1);
+}
+
+.feature-list .feat-icon svg{
+  width:var(--icon-md);
+  height:var(--icon-md);
+  stroke:var(--color-text-secondary);
+  stroke-width:1.5;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* Token Tables */
+.token-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:var(--space-6);
+  font-family:var(--font-ui);
+  font-size:var(--text-sm);
+}
+
+.token-table th{
+  text-align:left;
+  font-weight:600;
+  color:var(--color-text-secondary);
+  text-transform:uppercase;
+  letter-spacing:var(--tracking-wide);
+  font-size:var(--text-xs);
+  padding:var(--space-2) var(--space-3);
+  border-bottom:1px solid var(--color-border-strong);
+}
+
+.token-table td{
+  padding:var(--space-2) var(--space-3);
+  border-bottom:1px solid var(--color-border-subtle);
+  color:var(--color-text-primary);
+  font-size:var(--text-sm);
+  line-height:var(--leading-normal);
+}
+
+.token-table .swatch{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  border-radius:2px;
+  border:1px solid var(--color-border-subtle);
+  vertical-align:middle;
+  margin-right:var(--space-2);
+}
+
+.token-table .val-mono{
+  font-family:var(--font-mono);
+  font-size:var(--text-xs);
+  color:var(--color-text-secondary);
+}
+
+/* Divider */
+.divider{
+  height:1px;
+  background:var(--color-border-subtle);
+  margin:var(--space-6) 0;
+}
+
+/* =============================================================
+ * Tab Bar
+ * ============================================================= */
+
+.tab-bar{
+  height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  background:var(--color-bg-base);
+  border-top:1px solid var(--color-border-subtle);
+  flex-shrink:0;
+  padding:0;
+  padding-bottom:0;
+}
+
+.tab-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:var(--space-1);
+  min-height:48px;
+  min-width:48px;
+  padding:4px 12px;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:color var(--duration-fast) var(--ease-default);
+  color:var(--color-text-muted);
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.tab-item.active{
+  color:var(--color-accent);
+}
+
+.tab-item svg{
+  width:var(--icon-md);
+  height:var(--icon-md);
+  stroke:currentColor;
+  stroke-width:1.5;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:stroke var(--duration-fast) var(--ease-default);
+}
+
+.tab-label{
+  font-family:var(--font-ui);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:var(--tracking-wide);
+}
+
+/* Home Indicator */
+.home-indicator{
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  padding-bottom:8px;
+}
+
+.home-indicator-bar{
+  width:134px;
+  height:5px;
+  background:var(--color-text-primary);
+  border-radius:100px;
+  opacity:0.2;
+}
+
+/* =============================================================
+ * Reduced Motion
+ * ============================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
+}
+
+/* =============================================================
+ * Responsive: shrink phone on small viewport
+ * ============================================================= */
+
+@media (max-width: 460px) {
+  body{padding:0;align-items:flex-start;}
+  .phone-frame{
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    border-radius:0;
+    padding:0;
+    border:none;
+  }
+  .phone-screen{border-radius:0;}
+  .dynamic-island,.status-bar,.home-indicator{ /* keep native feel */ }
+}
+
+/* =============================================================
+ * Focus Visible
+ * ============================================================= */
+
+.tab-item:focus-visible{
+  outline:2px solid var(--color-focus);
+  outline-offset:-4px;
+  border-radius:var(--radius-md);
+}
+
+a:focus-visible,.card:focus-visible{
+  outline:2px solid var(--color-focus);
+  outline-offset:2px;
+}
+</style>
+
+<!-- ==========================================================
+ * Render Contract
+ * ========================================================== -->
+<script type="application/json" id="wanxing-render-contract">
+{
+  "profile":"F2",
+  "title":"万形移动 · Wanxing Mobile",
+  "date":"2026-05-24",
+  "language":"zh-CN",
+  "project":{"name":"万形移动","slug":"wanxing-f2-mobile"},
+  "output":{"entry":"examples/wanxing-f2-mobile/index.html","tmpDir":"dist/wanxing-f2-mobile/tmp"},
+  "theme":{"darkModeRequired":true,"accentBudget":2},
+  "canvas":{"kind":"mobile","viewports":["iphone-15-pro"],"deviceWidth":393,"deviceHeight":852},
+  "structure":{"requiredRegions":["status-bar","nav-bar","content","tab-bar","home-indicator"],"primaryContent":"content","expectedH1":1},
+  "motion":{
+    "hasAnimation":true,
+    "intent":"entrance",
+    "intensity":"E9-1",
+    "maxDurationMs":420,
+    "maxTranslatePx":4,
+    "allowsLoop":true,
+    "loopItems":["brand-mark-breath"],
+    "hasRuntimeSamplingTarget":true,
+    "completionSignal":"data-animations-complete"
+  },
+  "mobile":{
+    "platform":"ios",
+    "touchTargetMinPt":48,
+    "tabCount":3,
+    "safeAreaSimulated":true
+  },
+  "audit":{"profileSpecificChecks":["touch-targets","safe-area","tab-bar","nav-stack","reduce-motion"],"allowedDeviations":[]}
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%238B3525'/%3E%3Crect x='16' y='16' width='32' height='32' rx='2' fill='none' stroke='%23FFFFFF' stroke-width='2.5'/%3E%3Cpath d='M32 28v16M24 36h16' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ==========================================================
+ * Phone Frame
+ * ========================================================== -->
+<div class="phone-frame" role="application" aria-label="万形移动应用模拟">
+  <div class="phone-screen">
+
+    <!-- Dynamic Island -->
+    <div class="dynamic-island" aria-hidden="true"></div>
+
+    <!-- Status Bar -->
+    <div class="status-bar" role="status" aria-label="状态栏">
+      <span class="time">9:41</span>
+      <div class="status-icons" aria-hidden="true">
+        <svg viewBox="0 0 16 16"><path d="M1 5.5h1.5M4.5 4v3M7.5 2.5v6M10.5 1.5v8M13.5 1v9"/><rect x="13.5" y="3" width="2.5" height="5.5" rx="0.5"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 3C5 3 2.5 4.5 2 6c.5 1.5 3 3 6 3s5.5-1.5 6-3c-.5-1.5-3-3-6-3z"/><path d="M8 5a1 1 0 110 2 1 1 0 010-2z"/></svg>
+        <svg viewBox="0 0 16 16"><rect x="1" y="4" width="2" height="8" rx="0.5"/><rect x="4.5" y="2.5" width="2" height="9.5" rx="0.5"/><rect x="8" y="1" width="2" height="11" rx="0.5"/><rect x="11.5" y="3" width="2" height="9" rx="0.5"/></svg>
+      </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar" aria-label="导航栏">
+      <span class="nav-bar-title" id="nav-title">探索</span>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="content-area" id="content-area" role="main" aria-label="内容区域">
+
+      <!-- ============ TAB 1: 探索 ============ -->
+      <div class="tab-content active" id="tab-explore" role="tabpanel" aria-labelledby="tab-btn-explore">
+
+        <!-- Hero Brand -->
+        <section class="hero-brand" aria-label="品牌标识">
+          <h1>万形<span class="brand-mark" aria-hidden="true"></span></h1>
+          <p class="hero-tagline">文字即界面，留白即设计，克制即力量</p>
+        </section>
+
+        <!-- 万形概述 -->
+        <section class="section" aria-labelledby="sec-overview">
+          <p class="section-subtitle" id="sec-overview">概览</p>
+          <h2 class="section-title">万形是什么</h2>
+          <p class="section-body">万形是一个专注于文心（Wenxin）设计语言的移动端应用概念展示。它将「文字即界面，留白即设计，克制即力量」的核心哲学带到移动端，在保持文心灵魂层（A9 克制之美、B9 温暖极简、D9 暖土调）不变的前提下，适配移动端的交互模式与平台惯例。</p>
+          <p class="section-body">文心设计语言如同一杯水——本质永远不变，但倒入杯中即成杯形，流入河道即成河形。万形移动正是这杯水在移动端容器中的形态。</p>
+        </section>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <!-- 文心设计语言 -->
+        <section class="section" aria-labelledby="sec-wenxin">
+          <p class="section-subtitle" id="sec-wenxin">设计语言</p>
+          <h2 class="section-title">文心正典</h2>
+          <p class="section-body">文心设计语言由三层结构构成。灵魂层（色彩系统、字体哲学、留白密度、点睛之色、动效节奏）永远不变；形态层（布局结构、导航形式、内容组织）随产品类型而化。点睛之色——砖红色——全页出现不超过两处，如同水墨画中的朱砂印章。</p>
+
+          <ul class="feature-list" aria-label="灵魂层核心要素">
+            <li>
+              <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><circle cx="10" cy="10" r="7"/></svg></span>
+              <span><strong>色彩：</strong>暖白底色 #F2F0EB，深炭文字 #3A3837，砖红点睛</span>
+            </li>
+            <li>
+              <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 6h12M4 10h12M4 14h8"/></svg></span>
+              <span><strong>字体：</strong>衬线优先 — Lora / EB Garamond / Noto Serif SC 组成温暖阅读体验</span>
+            </li>
+            <li>
+              <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="1"/></svg></span>
+              <span><strong>留白：</strong>大区块间距 ≥ 96px，觉得「太空了」往往才是对的</span>
+            </li>
+          </ul>
+        </section>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <!-- F2 文心移动 -->
+        <section class="section" aria-labelledby="sec-f2">
+          <p class="section-subtitle" id="sec-f2">F2 形态</p>
+          <h2 class="section-title">文心移动</h2>
+          <p class="section-body">文心移动（Wenxin Mobile）将文心设计语言适配到移动端。在保持灵魂层不变的前提下，适配 iOS HIG 与 Android Material Design 的平台惯例，核心统一、边缘适配。</p>
+
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <p class="card-meta">平台适配</p>
+            <p class="card-title">iOS HIG + Android Material</p>
+            <p class="card-desc">iOS Tint Color 映射为文心 Accent；Android 不跟随 Material You 动态色，文心色彩灵魂不可妥协。系统控件样式注入文心色板，核心统一、边缘适配。</p>
+          </div>
+
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <p class="card-meta">导航模式</p>
+            <p class="card-title">底部 Tab Bar · 导航栈 · Sheet 模态</p>
+            <p class="card-desc">3–5 个底部 Tab，线条图标，Accent 激活态。Push/Pop 动画使用文心缓动 420ms。Sheet 模态从底部滑入，遮罩层半透明。</p>
+          </div>
+
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <p class="card-meta">触控友好</p>
+            <p class="card-title">触控目标 ≥ 48pt · 安全区域</p>
+            <p class="card-desc">最小触控区域 48pt（跨平台统一值），视觉元素小于此值时使用 padding 扩展 hit area。安全区域使用 <span style="font-family:var(--font-mono);font-size:var(--text-xs);">env(safe-area-inset-*)</span> 避开刘海屏和底部手势条。</p>
+          </div>
+
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <p class="card-meta">触觉反馈</p>
+            <p class="card-title">温和流动映射</p>
+            <p class="card-desc">按钮按下使用 Light Impact 触觉，重要操作确认使用 Medium Impact，开关切换使用 Selection。连续快速操作避免过度触觉反馈。</p>
+          </div>
+
+          <div class="card">
+            <p class="card-meta">动效</p>
+            <p class="card-title">E9-1 春雨</p>
+            <p class="card-desc">Push/Pop 过渡 420ms ease-out。Tab 切换内容淡入 + 微上移 4px。构建动画 stagger 60ms。品牌标识符 ■ 呼吸 4s 周期。尊重 prefers-reduced-motion。</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ TAB 2: 形态 ============ -->
+      <div class="tab-content" id="tab-forms" role="tabpanel" aria-labelledby="tab-btn-forms">
+
+        <section class="section" aria-labelledby="sec-forms-intro">
+          <p class="section-subtitle" id="sec-forms-intro">九种演化</p>
+          <h2 class="section-title">文心形态</h2>
+          <p class="section-body">文心设计语言支持九种正式输出形态。每一种都在保持灵魂层（A9/B9/D9）不变的前提下，适配特定媒介和场景。</p>
+        </section>
+
+        <div class="card">
+          <p class="card-meta">F1 · Canonical</p>
+          <p class="card-title">文心正典 · HTML Web</p>
+          <p class="card-desc">响应式网站，暗色模式就绪，内容宽度 clamp() 流体布局。适用于博客、作品集、Landing Page。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F2 · Mobile</p>
+          <p class="card-title">文心移动 · Mobile App</p>
+          <p class="card-desc">iOS / Android 原生或混合应用。触控目标 ≥ 48pt，安全区域适配，平台核心统一边缘适配。你当前正在浏览的即是此形态。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F3 · Brand</p>
+          <p class="card-title">文心品牌 · Brand Identity</p>
+          <p class="card-desc">朱砂印章 Logo 系统——砖红底座 + 纯白负空间冲压。品牌标识符 ■ 8×8px，呼吸动效 4s 周期。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F4 · Print</p>
+          <p class="card-title">文心书卷 · Print & Editorial</p>
+          <p class="card-desc">书籍、论文、杂志排版。pt 单位，CMYK 映射，Van de Graaf 经典版面。E8 印刷静止——无动效、无暗色模式。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F5 · Presentation</p>
+          <p class="card-title">文心演示 · Presentation</p>
+          <p class="card-desc">16:9 幻灯片，展示优先字号（14–88px）。6 种幻灯片类型，构建动画 fade-up stagger。演讲者备注独立区域。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F6 · Documentation</p>
+          <p class="card-title">文心文档 · Documentation</p>
+          <p class="card-desc">双栏布局（侧边栏 240px + 内容区），暖色调语法高亮（棕/金/红/灰），增强代码块含标题栏与复制按钮。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F7 · Poster</p>
+          <p class="card-title">文心海报 · Poster & Cover</p>
+          <p class="card-desc">单页最强视觉表达。6 种画布比例，4 种构图模式。展示字号 12–192px，accent 可放宽至标题 + 署名各 1 处。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F8 · Diagram</p>
+          <p class="card-title">文心图解 · Diagram & Knowledge Map</p>
+          <p class="card-desc">架构图、流程图、知识地图。SVG/HTML 独立交付，Mermaid 转文心 SVG 重绘，禁用彩虹色块和粗黑箭头。</p>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">F9 · Report</p>
+          <p class="card-title">文心报告 · Report & LaTeX</p>
+          <p class="card-desc">Markdown → LaTeX → PDF 报告排版。核心章节：Executive Summary / Findings / Recommendations。论证即界面。</p>
+        </div>
+
+        <p class="section-body" style="color:var(--color-text-muted);font-size:var(--text-sm);margin-top:var(--space-6);">文心正式形态固定为 F1–F9，不再扩张。Newsletter、Dashboard、电商、游戏等不进入正式形态。</p>
+      </div>
+
+      <!-- ============ TAB 3: 关于 ============ -->
+      <div class="tab-content" id="tab-about" role="tabpanel" aria-labelledby="tab-btn-about">
+
+        <section class="section" aria-labelledby="sec-about">
+          <p class="section-subtitle" id="sec-about">项目</p>
+          <h2 class="section-title">关于万形</h2>
+          <p class="section-body">万形（Wanxing）是一个专注于文心设计语言的 OpenCode 设计工程项目。进入 wanxing 目录后，opencode 自动加载文心设计规范，用户描述需求即可产出 UI。</p>
+          <p class="section-body">架构包含三层：Meta Agent（需求理解、约束澄清、分发）、Wenxin Agent（设计语言执行、HTML/CSS 输出）、Audit Agent（Render Contract + 截图视觉层 + 动效运行时审计）。</p>
+        </section>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <section class="section" aria-labelledby="sec-colors">
+          <p class="section-subtitle" id="sec-colors">Token 速览</p>
+          <h2 class="section-title">色彩</h2>
+          <table class="token-table" aria-label="色彩 Token">
+            <thead><tr><th>语义</th><th>亮色</th><th>暗色</th></tr></thead>
+            <tbody>
+              <tr><td>暖白背景</td><td><span class="swatch" style="background:#F2F0EB;"></span><span class="val-mono">#F2F0EB</span></td><td><span class="swatch" style="background:#1A1816;"></span><span class="val-mono">#1A1816</span></td></tr>
+              <tr><td>内页背景</td><td><span class="swatch" style="background:#FAFAF8;"></span><span class="val-mono">#FAFAF8</span></td><td><span class="swatch" style="background:#201E1B;"></span><span class="val-mono">#201E1B</span></td></tr>
+              <tr><td>主文字</td><td><span class="swatch" style="background:#3A3837;"></span><span class="val-mono">#3A3837</span></td><td><span class="swatch" style="background:#E8E3DC;"></span><span class="val-mono">#E8E3DC</span></td></tr>
+              <tr><td>辅助文字</td><td><span class="swatch" style="background:#888580;"></span><span class="val-mono">#888580</span></td><td><span class="swatch" style="background:#8A857D;"></span><span class="val-mono">#8A857D</span></td></tr>
+              <tr><td>点睛色</td><td><span class="swatch" style="background:var(--color-bg-subtle);border:1px solid var(--color-border-strong);"></span><span class="val-mono">#8B3525</span></td><td><span class="swatch" style="background:var(--color-bg-subtle);border:1px solid var(--color-border-strong);"></span><span class="val-mono">#C4533E</span></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="section" aria-labelledby="sec-type">
+          <h2 class="section-title">字体</h2>
+          <table class="token-table" aria-label="字体 Token">
+            <thead><tr><th>用途</th><th>字体栈</th></tr></thead>
+            <tbody>
+              <tr><td>展示/标题</td><td>Lora, Georgia, Noto Serif SC, serif</td></tr>
+              <tr><td>正文</td><td>EB Garamond, Crimson Text, Noto Serif SC, serif</td></tr>
+              <tr><td>UI 标签</td><td>system-ui, Noto Sans SC, PingFang SC, sans-serif</td></tr>
+              <tr><td>代码</td><td>JetBrains Mono, Fira Code, SF Mono, monospace</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="section" aria-labelledby="sec-space">
+          <h2 class="section-title">间距</h2>
+          <table class="token-table" aria-label="间距 Token">
+            <thead><tr><th>Token</th><th>值</th><th>典型用途</th></tr></thead>
+            <tbody>
+              <tr><td>--space-4</td><td class="val-mono">16px</td><td>卡片内边距</td></tr>
+              <tr><td>--space-5</td><td class="val-mono">20px</td><td>段落间距</td></tr>
+              <tr><td>--space-8</td><td class="val-mono">32px</td><td>标题与正文</td></tr>
+              <tr><td>--space-12</td><td class="val-mono">48px</td><td>小区块间距</td></tr>
+              <tr><td>--space-24</td><td class="val-mono">96px</td><td>大区块间距</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <p class="section-body" style="color:var(--color-text-muted);font-size:var(--text-sm);text-align:center;margin-top:var(--space-8);">Wenxin Design Language · Version 3.0.0 · 2026</p>
+      </div>
+
+    </main>
+
+    <!-- Tab Bar -->
+    <nav class="tab-bar" role="tablist" aria-label="底部导航">
+      <button class="tab-item active" id="tab-btn-explore" role="tab" aria-label="探索" aria-selected="true" aria-controls="tab-explore" onclick="switchTab(0)">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4"/></svg>
+        <span class="tab-label">探索</span>
+      </button>
+      <button class="tab-item" id="tab-btn-forms" role="tab" aria-label="形态" aria-selected="false" aria-controls="tab-forms" onclick="switchTab(1)">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="2.5" width="5" height="5" rx="1"/><rect x="12.5" y="2.5" width="5" height="5" rx="1"/><rect x="2.5" y="12.5" width="5" height="5" rx="1"/><rect x="12.5" y="12.5" width="5" height="5" rx="1"/></svg>
+        <span class="tab-label">形态</span>
+      </button>
+      <button class="tab-item" id="tab-btn-about" role="tab" aria-label="关于" aria-selected="false" aria-controls="tab-about" onclick="switchTab(2)">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5M10 6.5v.01"/></svg>
+        <span class="tab-label">关于</span>
+      </button>
+    </nav>
+
+    <!-- Home Indicator -->
+    <div class="home-indicator" aria-hidden="true">
+      <div class="home-indicator-bar"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==========================================================
+ * Tab Switching Script
+ * ========================================================== -->
+<script>
+(function(){
+  var tabs = [
+    { btn: document.getElementById('tab-btn-explore'), panel: document.getElementById('tab-explore'), title: '探索' },
+    { btn: document.getElementById('tab-btn-forms'),   panel: document.getElementById('tab-forms'),   title: '形态' },
+    { btn: document.getElementById('tab-btn-about'),   panel: document.getElementById('tab-about'),   title: '关于' }
+  ];
+
+  var navTitle = document.getElementById('nav-title');
+  var activeIndex = 0;
+
+  function activate(idx){
+    // Release current
+    tabs[activeIndex].btn.classList.remove('active');
+    tabs[activeIndex].btn.setAttribute('aria-selected','false');
+    tabs[activeIndex].panel.classList.remove('active');
+
+    // Activate new
+    activeIndex = idx;
+    tabs[idx].btn.classList.add('active');
+    tabs[idx].btn.setAttribute('aria-selected','true');
+    tabs[idx].panel.classList.add('active');
+
+    // Update nav title
+    navTitle.textContent = tabs[idx].title;
+
+    // Scroll to top
+    document.getElementById('content-area').scrollTop = 0;
+  }
+
+  // Initial state: Tab 0 is active via HTML class
+  // Bind the switchTab to global
+  window.switchTab = function(idx){
+    if(idx === activeIndex) return;
+    activate(idx);
+  };
+
+  // Mark animations complete after first render
+  function markComplete(){
+    var html = document.documentElement;
+    var safetyTimer = setTimeout(function(){ html.dataset.animationsComplete = 'true'; }, 3000);
+    var animations = document.getAnimations();
+    if(!animations || animations.length === 0){
+      clearTimeout(safetyTimer);
+      html.dataset.animationsComplete = 'true';
+      return;
+    }
+    Promise.allSettled(Array.from(animations).map(function(a){return a.finished;}))
+      .then(function(){
+        clearTimeout(safetyTimer);
+        html.dataset.animationsComplete = 'true';
+      });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', markComplete);
+  }else{
+    markComplete();
+  }
+})();
+</script>
+
+</body>
+</html>

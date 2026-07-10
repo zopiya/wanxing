@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Spacing · No shadow, no card" subtitle="Side-by-side: shadow-rounded-left-border vs Wenxin" viewport="700x230" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>No-shadow / no-card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+</head>
+<body class="card">
+  <div class="row" style="gap:24px; align-items:stretch;">
+    <!-- Wrong -->
+    <div style="flex:1;">
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-left:4px solid var(--accent); box-shadow:0 4px 14px rgba(0,0,0,0.08); border-radius:8px; padding:18px; position:relative;">
+        <div style="font-family:var(--serif-body); font-weight:700; color:var(--fg-1); font-size:15px;">A card pretending to be content.</div>
+        <div style="font-family:var(--serif-body); color:var(--fg-3); font-size:13px; line-height:1.5; margin-top:6px;">Shadow, rounded corners, colored left-border. Three habits this system refuses.</div>
+      </div>
+      <div style="font-family:var(--sans-ui); font-size:11px; letter-spacing:0.15em; color:var(--accent); margin-top:8px; text-transform:uppercase;">✕ Forbidden</div>
+    </div>
+
+    <!-- Right -->
+    <div style="flex:1;">
+      <div style="padding:18px 0; border-top:1px solid var(--line-1);">
+        <div style="font-family:var(--serif-body); font-weight:700; color:var(--fg-1); font-size:15px;">A card pretending to be content.</div>
+        <div style="font-family:var(--serif-body); color:var(--fg-3); font-size:13px; line-height:1.5; margin-top:6px;">Hairline above. Whitespace below. That is the entire vocabulary.</div>
+      </div>
+      <div style="font-family:var(--sans-ui); font-size:11px; letter-spacing:0.15em; color:var(--fg-3); margin-top:8px; text-transform:uppercase;">✓ Wenxin</div>
+    </div>
+  </div>
+</body>
+</html>
