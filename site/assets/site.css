@@ -62,9 +62,23 @@
     .doc-sidebar::-webkit-scrollbar-thumb, .doc-aside::-webkit-scrollbar-thumb { background: var(--color-border-strong); }
   }
   .doc-article { min-inline-size: 0; max-inline-size: 46rem; }
+  /* A hub is the front of one section: no measure limit, no second table of
+     contents beside the section index it already is. */
+  .doc-shell--hub { grid-template-columns: 15rem minmax(0, 1fr); }
+  .doc-shell--hub .doc-article { max-inline-size: 62rem; }
+  .doc-shell--hub .doc-aside { display: none; }
   .doc-shell--landing { display: block; max-inline-size: 72rem; padding-block-start: 0; }
   .doc-shell--landing .doc-sidebar, .doc-shell--landing .doc-aside { display: none; }
   .doc-shell--landing .doc-article { max-inline-size: none; }
+
+  .doc-sidebar__title {
+    margin-block: 0 var(--space-5);
+    padding-block-end: var(--space-3);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    color: var(--color-text-heading);
+  }
 
   .doc-toc__title {
     margin-block: 0 var(--space-2);
@@ -125,17 +139,18 @@
   .doc-landing__hero > p { max-inline-size: 35rem; margin-block: var(--space-6) 0; font-size: var(--text-lg); color: var(--color-text-secondary); }
   .doc-landing__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); margin-block-start: var(--space-8); }
   .doc-landing__stage { margin-inline: calc(var(--padding-page-x) * -1); border-block: var(--stroke-hairline) solid var(--color-border-subtle); }
-  .doc-landing__stage-title { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--padding-page-x); border-block-end: var(--stroke-hairline) solid var(--color-border-subtle); font-family: var(--font-ui); font-size: var(--text-xs); color: var(--color-text-functional); letter-spacing: var(--tracking-wider); text-transform: uppercase; }
   .doc-landing__stage-body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(16rem, .7fr); gap: var(--space-12); align-items: center; padding: var(--space-12) var(--padding-page-x); }
   .doc-landing__stage-body h2 { margin-block: var(--space-3); font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.15; }
   .doc-landing__stage-body > div > p:last-child { max-inline-size: 31rem; color: var(--color-text-secondary); }
-  .doc-landing__sample { display: grid; gap: var(--space-5); padding: var(--space-8); border: var(--stroke-hairline) solid var(--color-border-strong); background: var(--color-bg-subtle); font-family: var(--font-ui); }
+  /* An entry, not a card: one edge and whitespace. A filled, four-sided block
+     on an editorial-track page is the very partition forbidden.md rules out. */
+  .doc-landing__sample { display: grid; justify-items: start; gap: var(--space-5); padding-inline-start: var(--space-6); border-inline-start: var(--stroke-mark) solid var(--color-border-strong); font-family: var(--font-ui); }
   .doc-landing__sample strong { font-size: var(--text-xl); color: var(--color-text-heading); }
   .doc-landing__sample > span:not(.wx-tag) { font-size: var(--text-sm); color: var(--color-text-secondary); }
-  .doc-product-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-10); margin-block-start: var(--space-16); }
+  .doc-product-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--space-10); margin-block-start: var(--space-16); }
   .doc-product-path { display: grid; gap: var(--space-3); padding-block: var(--space-6); border-block: var(--stroke-hairline) solid var(--color-border-subtle); color: inherit; text-decoration: none; }
   .doc-product-path span { font-family: var(--font-ui); font-size: var(--text-sm); color: var(--color-text-functional); }
-  .doc-product-path strong { max-inline-size: 24rem; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400; line-height: 1.4; color: var(--color-text-heading); }
+  .doc-product-path strong { max-inline-size: 26rem; min-block-size: 3.5rem; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400; line-height: 1.4; color: var(--color-text-heading); }
   .doc-product-path i { margin-block-start: var(--space-3); font-family: var(--font-ui); font-size: var(--text-sm); font-style: normal; color: var(--color-accent); }
   .doc-product-path:hover strong, .doc-product-path:focus-visible strong { color: var(--color-accent); }
 

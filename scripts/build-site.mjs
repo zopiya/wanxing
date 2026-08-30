@@ -16,8 +16,14 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const siteDir = join(root, "site");
+/* One file is the whole information architecture: the top bar's sections, the
+   sidebar scoped to the section you are standing in, and the route table the
+   checks read. Two nav files drifted — the top bar offered four sections while
+   every page rendered the same twenty-five-item sidebar, so entering "内容"
+   showed you the sidebar of everything else. */
 const nav = JSON.parse(readFileSync(join(siteDir, "_nav.json"), "utf8"));
-const topNav = JSON.parse(readFileSync(join(siteDir, "_top-nav.json"), "utf8"));
+const sectionItems = (section) => section.groups.flatMap((g) => g.items);
+const sectionOf = (slug) => nav.find((s) => sectionItems(s).some((i) => i.slug === slug));
 const componentManifest = JSON.parse(readFileSync(join(root, "kit", "components", "manifest.json"), "utf8"));
 
 const escapeHtml = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -64,22 +70,32 @@ function expandDemos(html, slug) {
   return out + html.slice(cursor);
 }
 
+/**
+ * The sidebar shows one section, never the whole site. A reader who entered
+ * "组件" is inside components; offering them every design page as well is not
+ * generosity, it is a failure to answer "where am I".
+ */
 function renderNav(currentSlug) {
-  return nav.map((section) => {
-    const items = section.items.map((item) => {
+  const section = sectionOf(currentSlug);
+  if (!section) return "";
+  const groups = section.groups.map((group) => {
+    const items = group.items.map((item) => {
       const current = item.slug === currentSlug ? ' aria-current="page"' : "";
-      return `      <li><a class="wx-menu__link" href="./${item.slug}.html"${current}>${item.title}</a></li>`;
+      return `        <li><a class="wx-menu__link" href="./${item.slug}.html"${current}>${item.title}</a></li>`;
     }).join("\n");
-    return `    <li class="wx-menu__group">${section.title}</li>\n${items}`;
+    return `      <li class="wx-menu__group">${group.title}</li>\n${items}`;
   }).join("\n");
+  return `    <p class="doc-sidebar__title">${section.title}</p>\n` +
+         `    <ul class="wx-menu">\n${groups}\n    </ul>`;
 }
 
-/** The top bar is the information architecture, not a duplicate of the
- * detailed sidebar. Each link enters one of the five major reading modes. */
+/** The top bar is the section list. Each link enters one reading mode and
+ * swaps the sidebar with it. */
 function renderTopNav(currentSlug) {
-  return topNav.map((item) => {
-    const active = item.slugs.includes(currentSlug) ? ' aria-current="page"' : "";
-    return `<a href="./${item.slug}.html"${active}>${item.title}</a>`;
+  const active = sectionOf(currentSlug)?.slug;
+  return nav.map((section) => {
+    const current = section.slug === active ? ' aria-current="page"' : "";
+    return `<a href="./${section.slug}.html"${current}>${section.title}</a>`;
   }).join("\n    ");
 }
 
@@ -134,9 +150,17 @@ const shell = readFileSync(join(siteDir, "_shell.html"), "utf8");
 const pages = readdirSync(join(siteDir, "_pages")).filter((f) => f.endsWith(".html"));
 // The product landing page is deliberately outside the reference sidebar, but
 // it is still a generated public route.
-const known = new Set(["index", ...nav.flatMap((s) => s.items.map((i) => i.slug))]);
-const landingPages = new Set(["index", "design"]);
+const known = new Set(["index", ...nav.flatMap((s) => sectionItems(s).map((i) => i.slug))]);
+/* Only the product landing page drops the document shell. A section hub keeps
+   its sidebar — it is a place inside the site, not a cover. */
+const landingPages = new Set(["index"]);
+const hubPages = new Set(nav.filter((s) => s.hub).map((s) => s.slug));
 
+for (const section of nav) {
+  if (!sectionItems(section).some((i) => i.slug === section.slug)) {
+    throw new Error(`_nav.json: section "${section.title}" enters ${section.slug}, which is not in its own sidebar`);
+  }
+}
 for (const slug of known) {
   if (!pages.includes(`${slug}.html`)) throw new Error(`_nav.json lists ${slug} but site/_pages/${slug}.html is missing`);
 }
@@ -156,10 +180,10 @@ for (const slug of known) {
     .replace("{{nav}}", renderNav(slug))
     .replace("{{topnav}}", renderTopNav(slug))
     .replace("{{toc}}", renderToc(body))
-    .replace("{{shellClass}}", landingPages.has(slug) ? "doc-shell--landing" : "")
+    .replace("{{shellClass}}", landingPages.has(slug) ? "doc-shell--landing" : hubPages.has(slug) ? "doc-shell--hub" : "")
     .replace("{{body}}", body)
     .replace(/\{\{slug\}\}/g, slug);
   writeFileSync(join(siteDir, `${slug}.html`), html);
   count += 1;
 }
-console.log(`✓ site: ${count} page(s) built from ${nav.length} nav section(s)`);
+console.log(`✓ site: ${count} page(s) built across ${nav.length} section(s)`);

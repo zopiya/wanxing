@@ -15,7 +15,7 @@ const siteDir = join(root, "site");
 if (!existsSync(siteDir)) { console.log("· no site/ directory, skipping"); process.exit(0); }
 
 const nav = JSON.parse(readFileSync(join(siteDir, "_nav.json"), "utf8"));
-const slugs = nav.flatMap((s) => s.items.map((i) => i.slug));
+const slugs = nav.flatMap((s) => s.groups.flatMap((g) => g.items.map((i) => i.slug)));
 // The product landing page intentionally does not appear in the reference
 // sidebar. It remains a required, public route rather than an orphan.
 const routes = new Set(["index", ...slugs]);

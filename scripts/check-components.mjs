@@ -17,7 +17,7 @@ const manifestPath = process.argv[2]
   : join(root, "kit", "components", "manifest.json");
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
 const nav = JSON.parse(readFileSync(join(root, "site", "_nav.json"), "utf8"));
-const knownSlugs = new Set(nav.flatMap(({ items }) => items.map(({ slug }) => slug)));
+const knownSlugs = new Set(nav.flatMap(({ groups }) => groups.flatMap(({ items }) => items.map(({ slug }) => slug))));
 const cssFiles = [
   ...readdirSync(join(root, "kit", "base")).filter((file) => file.endsWith(".css")).map((file) => join(root, "kit", "base", file)),
   ...readdirSync(join(root, "kit", "components")).filter((file) => file.endsWith(".css")).map((file) => join(root, "kit", "components", file)),

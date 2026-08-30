@@ -1,37 +1,70 @@
 [
-  { "title": "设计 · Design", "items": [
-    { "slug": "design",      "title": "设计概览" },
-    { "slug": "values",      "title": "设计价值观" },
-    { "slug": "tracks",      "title": "设计仲裁" }
-  ]},
-  { "title": "全局样式 · Global", "items": [
-    { "slug": "color",       "title": "色彩" },
-    { "slug": "typography",  "title": "字体排版" },
-    { "slug": "layout",      "title": "布局与间距" },
-    { "slug": "motion",      "title": "动效" },
-    { "slug": "icons",       "title": "图标与标识" },
-    { "slug": "logo",        "title": "Logo 设计规范" }
-  ]},
-  { "title": "设计模式 · Patterns", "items": [
-    { "slug": "media",            "title": "媒介适配" },
-    { "slug": "patterns",         "title": "模式总览" },
-    { "slug": "pattern-form",     "title": "表单页" },
-    { "slug": "pattern-list",     "title": "列表页" },
-    { "slug": "pattern-detail",   "title": "详情页" },
-    { "slug": "pattern-result",   "title": "结果与异常页" },
-    { "slug": "viz",              "title": "数据可视化" }
-  ]},
-  { "title": "组件 · Components", "items": [
-    { "slug": "components",       "title": "组件总览" },
-    { "slug": "c-general",        "title": "通用" },
-    { "slug": "c-layout",         "title": "布局" },
-    { "slug": "c-navigation",     "title": "导航" },
-    { "slug": "c-entry",          "title": "数据录入" },
-    { "slug": "c-display",        "title": "数据展示" },
-    { "slug": "c-feedback",       "title": "反馈与浮层" }
-  ]},
-  { "title": "开发支持 · Development", "items": [
-    { "slug": "accessibility", "title": "无障碍与 RTL" },
-    { "slug": "markdown",      "title": "Markdown 渲染" }
-  ]}
+  {
+    "slug": "design", "title": "设计", "hub": true,
+    "groups": [
+      { "title": "设计理念 · Principles", "items": [
+        { "slug": "design",        "title": "设计概览" },
+        { "slug": "values",        "title": "设计价值观" },
+        { "slug": "tracks",        "title": "设计仲裁" },
+        { "slug": "accessibility", "title": "无障碍与 RTL" }
+      ]},
+      { "title": "全局样式 · Global", "items": [
+        { "slug": "color",      "title": "色彩" },
+        { "slug": "typography", "title": "字体排版" },
+        { "slug": "layout",     "title": "布局与间距" },
+        { "slug": "motion",     "title": "动效" },
+        { "slug": "icons",      "title": "图标" }
+      ]},
+      { "title": "数据表达 · Data", "items": [
+        { "slug": "viz", "title": "数据可视化" }
+      ]}
+    ]
+  },
+  {
+    "slug": "markdown", "title": "内容",
+    "groups": [
+      { "title": "内容渲染 · Rendering", "items": [
+        { "slug": "markdown", "title": "Markdown 渲染" }
+      ]}
+    ]
+  },
+  {
+    "slug": "components", "title": "组件", "hub": true,
+    "groups": [
+      { "title": "总览 · Overview", "items": [
+        { "slug": "components", "title": "组件总览" }
+      ]},
+      { "title": "分类 · Categories", "items": [
+        { "slug": "c-general",    "title": "通用" },
+        { "slug": "c-layout",     "title": "布局" },
+        { "slug": "c-navigation", "title": "导航" },
+        { "slug": "c-entry",      "title": "数据录入" },
+        { "slug": "c-display",    "title": "数据展示" },
+        { "slug": "c-feedback",   "title": "反馈与浮层" }
+      ]}
+    ]
+  },
+  {
+    "slug": "patterns", "title": "页面",
+    "groups": [
+      { "title": "模式 · Patterns", "items": [
+        { "slug": "patterns", "title": "模式总览" },
+        { "slug": "media",    "title": "媒介适配" }
+      ]},
+      { "title": "页面原型 · Archetypes", "items": [
+        { "slug": "pattern-detail", "title": "详情页" },
+        { "slug": "pattern-list",   "title": "列表页" },
+        { "slug": "pattern-form",   "title": "表单页" },
+        { "slug": "pattern-result", "title": "结果与异常页" }
+      ]}
+    ]
+  },
+  {
+    "slug": "logo", "title": "品牌",
+    "groups": [
+      { "title": "品牌资产 · Brand", "items": [
+        { "slug": "logo", "title": "Logo 设计规范" }
+      ]}
+    ]
+  }
 ]
