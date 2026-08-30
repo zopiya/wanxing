@@ -17,7 +17,7 @@ ten thousand forms.
 ## Repository Structure
 
 ```
-site/      讲给谁 — the documentation site (22 pages); the front door
+site/      讲给谁 — the documentation site (34 pages, 5 sections); the front door
 spec/      说什么 — the specification (bilingual prose)
 kit/       给什么 — reusable artifacts: tokens, base CSS, components, patterns, markdown, charts
 scripts/   怎么校验 — build and check
@@ -27,6 +27,14 @@ scripts/   怎么校验 — build and check
 `site/*.html` directly. Author `site/_pages/<slug>.html`, list the slug in `site/_nav.json`,
 run `npm run build:site`. The generator derives each demo's source listing FROM the demo
 itself, so a documented example can never drift from what it renders.
+
+`_nav.json` is **the whole information architecture in one file**: the five top-bar
+sections (设计 → 内容 → 组件 → 页面 → 品牌), the sidebar grouped under each, and the route
+table the checks read. The sidebar renders only the section you are standing in. It used to
+be two files — a four-entry top nav plus a flat twenty-five-item sidebar repeated on every
+page — and they disagreed; one file cannot. A section's `slug` is its entry page and must
+appear in its own groups, or the build fails. `"hub": true` gives that entry page a wider
+column and no in-page TOC.
 
 ### `spec/`
 
@@ -138,18 +146,27 @@ its green output gets cited as evidence. Negative-control anything you are about
   were never defined anywhere, and nothing noticed because nothing looked. For HTML it scans only
   `<style>` blocks and style attributes, so `var(--x)` written inside a `<code>` element is treated
   as prose, not a reference.
-- `check:colors` — measures every light/dark text, semantic, accent, and focus pair, plus pairwise
-  ΔE. Field audit found production greys at 1.54–3.23:1 — and the same failing values had been
-  shipped in `core.css`; this prevents them returning as text tokens.
+- `check:colors` — measures **every foreground against every surface it may land on**, not just
+  the page ground, plus the syntax palette against the code ground and pairwise ΔE. Measuring
+  against `bg-warm` alone was green for the life of the repo while the code block failed AA three
+  ways in both themes (D-28). It also fails if a `[data-theme]` switch does not reach
+  `color-scheme` — without that the UA paints bare form controls from the OS preference while the
+  page paints from the reader's, giving a dark `<input>` under dark ink at 1.02:1.
+  `--color-text-functional` is licensed for `bg-warm` and `bg-base` only.
 - `check:forbidden` — makes `forbidden.md` executable: shadows, gradients, `outline:none`, bouncy
   easing, over-thick borders, spinners. Comment-aware, and masks `<code>`/`<pre>` in HTML, because
   documentation quotes the very patterns it forbids and a checker with false positives gets ignored.
 - `check:site` — the docs site fails quietly: a dead link or a skipped heading level looks fine to
   whoever is editing that page. Checks nav/page correspondence both ways, one `<h1>`, no
   heading-level jumps, and that every internal link and anchor resolves.
-- `check:components` — verifies the public component manifest against actual base/component CSS and
-  a reachable category page. The accompanying negative fixture names a non-existent class and must
-  fail; a generated component directory is not trustworthy if its source inventory can drift.
+- `check:components` — three things. Every manifest contract resolves to real CSS; every contract
+  is **shown on its category page** (a contract nobody can see documented is one nobody adopts);
+  and — the mirror of `check:tokens` — every `wx-` class used anywhere in `site/_pages/` resolves
+  to a kit stylesheet. That last one found seven names for things that existed under a better name
+  plus two variants the docs promised and nobody implemented. A bare block with no rule of its own
+  is legal (`.wx-stat`, `.wx-landing` are naming anchors); a modifier or element is not. Its CSS
+  source list must cover every directory that can define a `wx-` class — leaving out `patterns/`
+  made it report all five archetypes as undefined.
 - `check:a11y` — checks every generated page for a main landmark, control labels and accessible
   names. Its negative fixture contains an unlabeled control and must fail.
 
@@ -165,8 +182,10 @@ values, the arbitration rule, media/forms, patterns, components and verification
 `site/media.html`, and the per-medium CSS bundles are gone (**D-27**) because nine files carried
 145 lines of real difference across 30,358.
 
-83 block-level `wx-` classes across 39 stylesheets and 7 behaviour scripts, plus all five archetype
-patterns. The optional React wrapper stays deferred until the HTML/ARIA contracts have production
+95 block-level `wx-` classes across 55 stylesheets and 7 behaviour scripts, plus all five archetype
+patterns, each with its own site page. All **71 public contracts are shown on the site**, and
+`check:components` fails if that stops being true. (Counts reproduce with
+`ls kit/*/*.css | grep -v tokens` and a `\.(wx-[A-Za-z0-9_-]+)` scan of those files.) The optional React wrapper stays deferred until the HTML/ARIA contracts have production
 use; do not create placeholders to complete a count.
 
 **Two kinds of exclusion, and they are not interchangeable.** Card, spinner, skeleton, carousel and

@@ -22,12 +22,15 @@ python3 -m http.server 8899
 | --- | --- |
 | `spec/` | 双语规范、设计哲学与裁决记录 |
 | `kit/` | tokens、基础 CSS、组件、模式与图表主题 |
-| `site/` | 生成的文档站；源页在 `site/_pages/` |
+| `site/` | 生成的文档站（34 页，五个分区）；源页在 `site/_pages/` |
 | `scripts/` | 构建与可执行检查 |
 | `tests/` | 检查器的正反向夹具与自测 |
 
 `kit/tokens/core.css` 是所有数值 token 的唯一真源。不要直接编辑 `site/*.html` 或
 `kit/tokens/generated/*`；前者由 `site/_pages/` 和 `_nav.json` 生成，后者由 token 构建生成。
+
+`site/_nav.json` 一份文件就是全部信息架构：顶部五个分区、每个分区自己的侧边栏、
+以及检查脚本读的路由表。侧边栏只渲染你所在的那一个分区。
 
 ## 命令
 
