@@ -130,6 +130,13 @@
     </div>
   </div>
 
+<h2 id="figure">图与图注 Figure / Image</h2>
+<p>有信息的图像必须有替代文字；<code>wx-figure</code> 负责“图与说明是一件事”，
+<code>wx-image--ratio</code> 在加载前保留比例，避免正文跳动。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <figure class="wx-figure"><img class="wx-image wx-image--ratio" style="--wx-image-ratio:3 / 1" src="../kit/assets/brand/logo-wanxing.svg" alt="文心万形的横向文字标识"><figcaption class="wx-figure__caption"><span class="wx-figure__number">图 1</span>用于文档页页首的品牌标识。</figcaption></figure>
+</div></div>
+
 <h2 id="code">代码 Code</h2>
 <div class="doc-figure">
     <div class="wx-code">
@@ -138,3 +145,14 @@
 @import "./components/index.css";</code></pre>
     </div>
   </div>
+
+<h2 id="api">何时使用、何时不用与 API</h2>
+<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约</th></tr></thead><tbody>
+<tr><td><code>wx-table / wx-table-scroll</code></td><td>二维可比较数据；叙述性键值用 desc。</td><td>原生 <code>table</code>、<code>caption</code>、<code>th</code>；宽表容器须可聚焦。</td></tr>
+<tr><td><code>wx-list / wx-entry / wx-timeline</code></td><td>同质项目、内容条目、时间序列；不要把任何一项包成卡片。</td><td><code>ul/ol</code> 或 <code>article</code>；当前/链接使用原生语义。</td></tr>
+<tr><td><code>wx-tree / wx-collapse</code></td><td>可展开层级与可选细节；关键内容不可只藏在折叠里。</td><td>原生 <code>details/summary</code>，状态由 <code>open</code> 提供。</td></tr>
+<tr><td><code>wx-desc / wx-stat</code></td><td>稳定属性、少量重点数值；大量数据用 table。</td><td><code>dl/dt/dd</code>；数字使用 tabular-nums。</td></tr>
+<tr><td><code>wx-figure / wx-image / wx-gallery</code></td><td>有含义的图、需说明的图、读者驱动的横向图集；装饰图和自动轮播都不用。</td><td><code>figure/figcaption</code>、有意义的 <code>alt</code>；gallery 是具名 region 且可键盘滚动。</td></tr>
+<tr><td><code>wx-calendar</code></td><td>按周列展示日期；日期录入优先原生控件。</td><td>原生 <code>table</code>、<code>caption</code>；日期/选择态用 <code>aria-current/selected</code>。</td></tr>
+<tr><td><code>wx-code / wx-quote</code></td><td>需要保留格式的代码、可归属的引用；普通段落不用。</td><td><code>pre/code</code> 或 <code>blockquote/cite</code>；复制需 <code>copy.js</code>。</td></tr>
+</tbody></table></div>

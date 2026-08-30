@@ -28,6 +28,7 @@
   ]},
   { "title": "延伸 · Extended", "items": [
     { "slug": "viz",         "title": "数据可视化" },
-    { "slug": "media",       "title": "形态适配" }
+    { "slug": "media",       "title": "形态适配" },
+    { "slug": "accessibility", "title": "无障碍与 RTL" }
   ]}
 ]

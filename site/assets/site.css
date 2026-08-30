@@ -61,6 +61,11 @@
     margin-block: var(--space-8);
     padding: var(--space-6) 0;
     border-block: var(--stroke-hairline) solid var(--color-border-subtle);
+    /* Tables and API contracts may need more inline space than a 390px page.
+       Keep their horizontal scroll local to the figure; never widen the page. */
+    max-inline-size: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
   }
   .doc-figure > :first-child { margin-block-start: 0; }
   .doc-figure > :last-child { margin-block-end: 0; }

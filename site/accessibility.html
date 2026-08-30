@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>模式总览 · 文心 万形</title>
+<title>无障碍与 RTL · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
 <link rel="stylesheet" href="./assets/site.css?v=2">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
@@ -37,7 +37,7 @@
       <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
       <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
     <li class="wx-menu__group">设计模式 · Patterns</li>
-      <li><a class="wx-menu__link" href="./patterns.html" aria-current="page">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
       <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
       <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
       <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
@@ -52,60 +52,51 @@
     <li class="wx-menu__group">延伸 · Extended</li>
       <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
       <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
-      <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
+      <li><a class="wx-menu__link" href="./accessibility.html" aria-current="page">无障碍与 RTL</a></li>
     </ul>
   </nav>
 
   <main class="doc-main" id="main">
     <article class="doc-article">
-<p class="wx-eyebrow">设计模式 · Patterns</p>
-<h1>模式总览</h1>
-<p class="wx-lede">组件回答"这个东西长什么样"，模式回答"这一页怎么组织"。
-五种页面原型覆盖了这套语言适用范围内的绝大多数页面。</p>
+<p class="wx-eyebrow">延伸 · Extended</p>
+<h1>无障碍与 RTL</h1>
+<p class="wx-lede">可达性是双轨仲裁的第一层，不是视觉偏好；RTL 是已验证的布局方向，不是未经声明的“应该可以”。</p>
 
-<h2 id="five">五种页面原型</h2>
+<h2 id="promise">承诺与自动检查</h2>
 <div class="doc-figure">
-    <table class="wx-table">
-      <thead><tr><th>原型</th><th>页面</th><th>读者的任务</th><th>轨道</th></tr></thead>
-      <tbody>
-        <tr><td><strong>A</strong></td><td><a href="./pattern-detail.html">阅读 / 详情</a></td><td>从头读到尾</td><td>阅读轨</td></tr>
-        <tr><td><strong>B</strong></td><td><a href="./pattern-list.html">索引 / 列表</a></td><td>扫描并挑选</td><td>阅读轨</td></tr>
-        <tr><td><strong>C</strong></td><td>展示 / 作品集</td><td>快速判断此人此物</td><td>阅读轨</td></tr>
-        <tr><td><strong>D</strong></td><td>着陆 / 首页</td><td>十秒内决定去哪</td><td>阅读轨</td></tr>
-        <tr><td><strong>E</strong></td><td><a href="./pattern-form.html">工具 / 表单</a></td><td>完成一件明确的事</td><td><strong>应用轨</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-<div class="wx-note wx-note--info">
-  <span class="wx-note__title">原型 E 会翻转轨道</span>
-  <p>一个工具型页面，即使住在一个纯阅读轨的站点里，也按<strong>应用轨</strong>判定——
-  可以有分组表面、填充主按钮、完整语义色。读者在这一页的任务不是阅读，是完成操作。</p>
+  <table class="wx-table doc-api">
+    <thead><tr><th>承诺</th><th>自动证据</th><th>仍需人工检查</th></tr></thead>
+    <tbody>
+      <tr><td>正文、语义色与焦点达到对比度底线</td><td><code>npm run check:colors</code> 测 30 组对比度与 12 组 ΔE</td><td>真实内容叠加、图片文字与第三方嵌入。</td></tr>
+      <tr><td>文档页有主地标，控件有标签，交互有名字</td><td><code>npm run check:a11y</code> 扫描生成的站点；自测故意放入无标签输入并确认失败</td><td>键盘焦点顺序、读屏器朗读和动态提示时机。</td></tr>
+      <tr><td>焦点不可被移除，动效尊重减少动效</td><td><code>check:forbidden</code> 拦截 <code>outline:none</code>；render-audit 自测覆盖 contract 结构门槛</td><td>键盘完整走查、原生 dialog 焦点归还、触控目标。</td></tr>
+      <tr><td>Windows 高对比模式不被暖土 token 覆盖</td><td><code>kit/base/a11y.css</code> 用 <code>forced-colors: active</code> 映射系统色</td><td>Windows + Edge / Firefox 实机高对比主题。</td></tr>
+    </tbody>
+  </table>
 </div>
+<p>自动检查故意不声称能替代可访问性树或人工设备测试。它们只证明明确的静态约束没有回归。</p>
 
-<h2 id="method">怎么选</h2>
-<p>不要问"这是什么页面"，问<strong>"读者到这一页要做什么"</strong>。
-同一份内容在不同任务下属于不同原型：一篇文章是 A，文章列表是 B，
-而"在文章里搜索并批量导出"是 E。</p>
-
-<h2 id="skeleton">可复制的骨架</h2>
-<p><code>kit/patterns/</code> 下有五份 HTML 骨架，直接复制即可。它们不自带媒介样式——
-使用者按实际场景加载对应的 CSS 并声明轨道。</p>
-<pre class="doc-code__body"><code>kit/patterns/a-reading.html    文章 / 文档
-kit/patterns/b-list.html       索引 / 搜索结果
-kit/patterns/c-showcase.html   简历 / 作品集
-kit/patterns/d-landing.html    首页 / 着陆页
-kit/patterns/e-tool.html       输入 / 查询工具</code></pre>
-<p>五份骨架都<strong>只用留白和单边线分组</strong>，不提供任何四边包围容器。</p>
-
-<h2 id="explore">模式探索</h2>
-<p>下面几页把原型展开成真正可用的页面，包含状态、校验、异常与响应式处理：</p>
+<h2 id="manual">发布前人工清单</h2>
 <ul class="wx-list wx-list--ruled">
-  <li><a href="./pattern-form.html"><strong>表单页</strong></a> —— 布局、校验时机、错误汇总、提交状态</li>
-  <li><a href="./pattern-list.html"><strong>列表页</strong></a> —— 筛选、排序、分页、空态</li>
-  <li><a href="./pattern-detail.html"><strong>详情页</strong></a> —— 长文结构、目录、旁注</li>
-  <li><a href="./pattern-result.html"><strong>结果与异常页</strong></a> —— 成功、失败、404、无权限</li>
+  <li>从地址栏外的第一个 Tab 开始走完交互；跳过链接、焦点环与关闭后的焦点归还必须可见。</li>
+  <li>用至少一种读屏器确认标题、地标、错误摘要、toast 与 dialog 的名称和状态。</li>
+  <li>在 Windows forced-colors 下确认链接、边框、主按钮和浮层仍可分辨；不得强制保留品牌色。</li>
+  <li>在 390px 宽度确认没有横向页面滚动，表格在自己的可滚动区域内而非撑破页面。</li>
 </ul>
+
+<h2 id="rtl">RTL 验证结论</h2>
+<p>已在本地 HTTP 站点用 <code>dir="rtl"</code> 实测导航、侧栏、表单、图注、分页与抽屉：
+逻辑属性会把起止边、内外边距及抽屉锚点翻到正确一侧；390px 与宽屏均无页面级横向溢出。
+关键实现是 <code>border-inline-*</code>、<code>margin-inline</code>、<code>inset-inline</code> 与
+<code>text-align:start/end</code>，而不是为 RTL 维护一套镜像选择器。</p>
+<div class="wx-note wx-note--warn">
+  <span class="wx-note__title">边界</span>
+  <p>这证明 kit 的布局方向可用，不等于本站已完整阿拉伯语/希伯来语本地化。双语文案、字体覆盖、日期数字与内容翻译仍由采用者负责。</p>
+</div>
+<pre class="doc-code__body"><code>&lt;html lang="ar" dir="rtl"&gt;
+  &lt;link rel="stylesheet" href="kit/index.css"&gt;
+  &lt;!-- 使用同一套 wx-* markup；不要添加 left/right 覆盖 --&gt;
+&lt;/html&gt;</code></pre>
 
     </article>
   </main>
@@ -113,10 +104,9 @@ kit/patterns/e-tool.html       输入 / 查询工具</code></pre>
   <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
-      <li><a class="wx-anchor__link" href="#five">五种页面原型</a></li>
-      <li><a class="wx-anchor__link" href="#method">怎么选</a></li>
-      <li><a class="wx-anchor__link" href="#skeleton">可复制的骨架</a></li>
-      <li><a class="wx-anchor__link" href="#explore">模式探索</a></li>
+      <li><a class="wx-anchor__link" href="#promise">承诺与自动检查</a></li>
+      <li><a class="wx-anchor__link" href="#manual">发布前人工清单</a></li>
+      <li><a class="wx-anchor__link" href="#rtl">RTL 验证结论</a></li>
   </ul>
 </nav></div>
 </div>

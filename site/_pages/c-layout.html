@@ -73,19 +73,17 @@ CTA 优先用文字变体，"了解更多 →"比一个方框更符合这套语�
     </div>
   </div>
 
-<h2 id="api">布局 API</h2>
+<h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure">
     <table class="wx-table doc-api">
-      <thead><tr><th>类</th><th>作用</th></tr></thead>
+      <thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约</th></tr></thead>
       <tbody>
-        <tr><td><code>wx-page</code></td><td>页面底色与左右留白</td></tr>
-        <tr><td><code>wx-container--article/content/showcase</code></td><td>三档内容宽度</td></tr>
-        <tr><td><code>wx-measure</code></td><td>最佳行长，按 <code>:lang(zh)</code> 切换</td></tr>
-        <tr><td><code>wx-stack--tight/loose</code></td><td>垂直节奏</td></tr>
-        <tr><td><code>wx-cluster--tight/loose</code></td><td>横向换行组</td></tr>
-        <tr><td><code>wx-spread</code></td><td>两端分布</td></tr>
-        <tr><td><code>wx-cols--2/--3</code></td><td>分栏，无竖线</td></tr>
-        <tr><td><code>wx-rule--short/strong</code></td><td>分隔线</td></tr>
+        <tr><td><code>wx-page / wx-container / wx-measure</code></td><td>页面底色、三档内容宽度、可读行长；不要在组件内再套页面容器。</td><td>语义由内层 <code>main/article/section</code> 提供；宽度变体为 <code>--article/content/showcase</code>。</td></tr>
+        <tr><td><code>wx-stack / wx-cluster / wx-spread / wx-cols</code></td><td>垂直节奏、可换行横组、两端信息、简单分栏；复杂布局写页面 grid。</td><td>只负责布局，不改变 DOM 语义；紧/松变体是节奏，不是状态。</td></tr>
+        <tr><td><code>wx-rule</code></td><td>章节或条目边界；能靠邻近表达时不加线。</td><td>使用 <code>hr</code>；<code>--short/strong</code> 只用于明确层级。</td></tr>
+        <tr><td><code>wx-btn</code></td><td>触发动作；导航目的地用 <code>a</code>。</td><td>原生 button，唯一主操作可 <code>--primary</code>；危险动作 <code>--danger</code> 仍要确认文案。</td></tr>
+        <tr><td><code>wx-tag / wx-badge / wx-status</code></td><td>短属性、计数、具名状态；长说明改用 note。</td><td>状态必须有文字，不靠色彩；可点击时用 button/link 而非 span。</td></tr>
+        <tr><td><code>wx-avatar / wx-kbd / wx-seal</code></td><td>人员标识、键盘提示、品牌印记；装饰头像/品牌不喧宾夺主。</td><td>信息头像提供 alt/文本；纯装饰 seal 加 <code>aria-hidden</code>。</td></tr>
       </tbody>
     </table>
   </div>

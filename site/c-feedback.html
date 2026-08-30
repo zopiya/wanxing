@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>反馈与浮层 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css">
+<link rel="stylesheet" href="./assets/site.css?v=2">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -52,6 +52,7 @@
     <li class="wx-menu__group">延伸 · Extended</li>
       <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
       <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+      <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
     </ul>
   </nav>
 
@@ -98,6 +99,14 @@
 &lt;/div&gt;</code></pre></details>
 </div>
 <pre class="doc-code__body"><code>wxToast("草稿已保存", { level: "success", label: "已保存", ms: 5000 });</code></pre>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <div class="wx-toast__region" aria-live="polite" aria-atomic="true" style="position:static;align-items:flex-start">
+    <div class="wx-toast wx-toast--success"><span class="wx-toast__label">已保存</span><span>草稿已保存到本机。</span></div>
+  </div>
+</div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-toast__region" aria-live="polite" aria-atomic="true" style="position:static;align-items:flex-start"&gt;
+  &lt;div class="wx-toast wx-toast--success"&gt;&lt;span class="wx-toast__label"&gt;已保存&lt;/span&gt;&lt;span&gt;草稿已保存到本机。&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></details></div>
 
 <h2 id="progress">进度与量度</h2>
 <p><strong>没有不确定态。</strong>不确定进度条是一个永不停止的循环动画，也就是换了形状的 spinner。
@@ -117,6 +126,16 @@
 &lt;/div&gt;
 &lt;p style="margin-block-start:var(--space-6)"&gt;磁盘用量
   &lt;meter class="wx-meter" value="0.82" high="0.8" aria-label="磁盘用量 82%"&gt;&lt;/meter&gt;&lt;/p&gt;</code></pre></details>
+
+<h2 id="api">何时使用、何时不用与 API</h2>
+<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约（ARIA / 脚本）</th></tr></thead><tbody>
+<tr><td><code>wx-note / wx-alert</code></td><td>持续说明、上下文状态；瞬时操作结果用 toast。</td><td>文字标签与颜色同时出现；不可逆风险用 danger。</td></tr>
+<tr><td><code>wx-toast</code></td><td>短暂、非阻塞结果；需要确认或读长文的消息改 dialog / note。</td><td>稳定 <code>aria-live="polite"</code> region；由 <code>overlay.js</code> 的 <code>wxToast()</code> 入队。</td></tr>
+<tr><td><code>wx-progress / wx-meter</code></td><td>可量化进度、已知量度；未知等待写文字，不做 spinner。</td><td>原生 <code>progress/meter</code> 加可访问名；无 value 不伪造进度。</td></tr>
+<tr><td><code>wx-empty / wx-result</code></td><td>无内容、完成/失败页面；不要用装饰插画填空。</td><td>标题先说明状态，动作是可命名 button/link。</td></tr>
+<tr><td><code>wx-modal / wx-drawer</code></td><td>必须中断的确认、临时上下文；普通详情不要浮层。</td><td>原生 <code>dialog</code>、<code>aria-labelledby</code>；<code>overlay.js</code> 负责开关和焦点归还。</td></tr>
+<tr><td><code>wx-tooltip / wx-popover</code></td><td>补充提示、可操作的小面板；任何关键信息不可只放 tooltip。</td><td>tooltip 用 <code>role="tooltip"</code> + <code>aria-describedby</code>；popover 用原生 <code>details</code>。</td></tr>
+</tbody></table></div>
 </div>
 
 <h2 id="empty">空态与结果</h2>
@@ -234,6 +253,7 @@
       <li><a class="wx-anchor__link" href="#alert">行内提示 Alert</a></li>
       <li><a class="wx-anchor__link" href="#toast">通知 Toast</a></li>
       <li><a class="wx-anchor__link" href="#progress">进度与量度</a></li>
+      <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
       <li><a class="wx-anchor__link" href="#empty">空态与结果</a></li>
       <li><a class="wx-anchor__link" href="#overlay">浮层 Overlay</a></li>
       <li><a class="wx-anchor__link" href="#tooltip">提示与气泡</a></li>

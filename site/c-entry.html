@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数据录入 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css">
+<link rel="stylesheet" href="./assets/site.css?v=2">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -52,6 +52,7 @@
     <li class="wx-menu__group">延伸 · Extended</li>
       <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
       <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+      <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
     </ul>
   </nav>
 
@@ -95,6 +96,16 @@
   &lt;span class="wx-field__error" id="err-1"&gt;邮箱格式不正确——缺少域名部分。&lt;/span&gt;
 &lt;/label&gt;</code></pre></details>
 </div>
+
+<h2 id="api">何时使用、何时不用与 API</h2>
+<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约（ARIA / 脚本）</th></tr></thead><tbody>
+<tr><td><code>wx-form / wx-field</code></td><td>有提交目标的字段组；单一搜索框不必包完整 form 布局。</td><td><code>form</code>、<code>fieldset/legend</code>；每个控件有嵌套或 <code>for</code> label，错误用 <code>aria-invalid</code> + <code>aria-describedby</code>。</td></tr>
+<tr><td><code>wx-input / wx-select / wx-number</code></td><td>文字、有限选项和数值；复杂选择优先原生能力，不造 div 下拉。</td><td>原生 <code>input/select</code>；select 外层 <code>wx-select-wrap</code> 只画箭头。</td></tr>
+<tr><td><code>wx-check / wx-radio / wx-switch</code></td><td>独立多选、互斥选择、即时开关；提交型布尔值仍可用 checkbox。</td><td>原生 checkbox/radio；switch 是 button <code>role="switch" aria-checked</code>，状态不得用 class。</td></tr>
+<tr><td><code>wx-slider-field / wx-slider / wx-rate</code></td><td>连续范围、可读数评分；精确输入同时给 number，不让位置成为唯一信息。</td><td>原生 <code>range</code> 有可访问名和文字值；rate 的 radio 必有 label。</td></tr>
+<tr><td><code>wx-upload / wx-upload-list</code></td><td>需要文件选择；普通附件链接不是上传区。</td><td>原生 <code>input type=file</code> 保留可点击 label；文件状态文字化。</td></tr>
+<tr><td><code>wx-search</code></td><td>站内/列表检索；短页面不放装饰性搜索。</td><td><code>input type=search</code> 有 label（可 sr-only）；查询与结果状态由采用者脚本管理。</td></tr>
+</tbody></table></div>
 <p>错误态<strong>同时</strong>改变颜色、加粗边框、并给出文字说明。三重编码是第一层底线。</p>
 
 <h2 id="select">选择 Select</h2>
@@ -260,6 +271,7 @@
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
       <li><a class="wx-anchor__link" href="#text">文本输入</a></li>
+      <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
       <li><a class="wx-anchor__link" href="#select">选择 Select</a></li>
       <li><a class="wx-anchor__link" href="#choice">勾选与单选</a></li>
       <li><a class="wx-anchor__link" href="#switch">开关 Switch</a></li>
