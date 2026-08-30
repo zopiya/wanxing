@@ -108,7 +108,7 @@
     padding: var(--space-4);
     border: var(--stroke-hairline) solid var(--color-border-subtle);
     border-radius: var(--radius-md);
-    background: var(--color-bg-subtle);
+    background: var(--code-bg);
     overflow-x: auto;
     line-height: var(--leading-normal);
   }

@@ -1,17 +1,24 @@
-/* Syntax highlighting — warm, low-contrast, and deliberately narrow.
+/* Syntax highlighting — warm, narrow, and recessed only as far as AA allows.
    ---------------------------------------------------------------------------
    Most themes use six saturated hues to separate token types. This one uses
    four closely-related warm tones plus the body ink, because a code block in an
    essay is still prose: the reader is reading it, not scanning it for a bug.
+
+   "Recessed" has a floor. Comments and punctuation were once #9A948D and
+   #888580 — 2.87:1 and 3.52:1 against the code ground, failing AA in both
+   themes. A comment is the part of a code block most often read as prose, so
+   it is the last thing that may fade out. Both now sit just above 4.5:1, and
+   the code ground moved from bg-subtle to bg-base to buy that headroom back
+   for the block's own metadata row.
 
    Class names follow Prism/highlight.js conventions so that either can be
    dropped in without a mapping layer.
    --------------------------------------------------------------------------- */
 @layer wx.markdown {
   :root {
-    --code-bg:          var(--color-bg-subtle);
-    --code-comment:     #9A948D;
-    --code-punctuation: #888580;
+    --code-bg:          var(--color-bg-base);
+    --code-comment:     #77726D;
+    --code-punctuation: #665F58;
     --code-operator:    #3A3837;
     --code-keyword:     #6B5B3E;
     --code-string:      #6B5B3E;
@@ -23,8 +30,8 @@
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --code-comment:     #6E6862;
-      --code-punctuation: #8A857D;
+      --code-comment:     #8C857D;
+      --code-punctuation: #A9A197;
       --code-operator:    #E8E3DC;
       --code-keyword:     #C0A878;
       --code-string:      #A8B98A;
@@ -35,8 +42,8 @@
     }
   }
   [data-theme="dark"] {
-    --code-comment:     #6E6862;
-    --code-punctuation: #8A857D;
+    --code-comment:     #8C857D;
+    --code-punctuation: #A9A197;
     --code-operator:    #E8E3DC;
     --code-keyword:     #C0A878;
     --code-string:      #A8B98A;

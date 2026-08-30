@@ -13,7 +13,7 @@
   .wx-code {
     border: var(--stroke-hairline) solid var(--color-border-subtle);
     border-radius: var(--radius-md);
-    background: var(--color-bg-subtle);
+    background: var(--code-bg);
     overflow: hidden;
   }
   .wx-code__header {
