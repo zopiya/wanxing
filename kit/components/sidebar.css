@@ -22,7 +22,8 @@
   .wx-sidebar__list { list-style: none; margin: 0; padding: 0; }
   .wx-sidebar__link {
     display: block;
-    padding: var(--space-2) 0 var(--space-2) var(--space-3);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-3) 0;
     border-inline-start: var(--stroke-mark) solid transparent;
     color: var(--color-text-secondary);
     text-decoration: none;
@@ -36,6 +37,7 @@
 
   @media (max-width: 1024px) {
     .wx-sidebar {
+      --wx-sidebar-shift: -100%;
       position: fixed;
       inset-block: 0;
       inset-inline-start: 0;
@@ -43,10 +45,11 @@
       inline-size: min(320px, 85vw);
       padding-inline: var(--space-5);
       background: var(--color-bg-base);
-      transform: translateX(-100%);
+      transform: translateX(var(--wx-sidebar-shift));
       transition: transform var(--duration-slow) var(--ease-out);
       overflow-y: auto;
     }
+    .wx-sidebar:dir(rtl) { --wx-sidebar-shift: 100%; }
     .wx-sidebar[data-open] { transform: none; }
   }
 }

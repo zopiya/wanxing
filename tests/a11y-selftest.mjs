@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Negative control for check:a11y: a real unlabeled control must fail. */
+/** Negative controls for check:a11y: each contract below must fail. */
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -9,8 +9,18 @@ const check = join(root, "scripts/check-a11y.mjs");
 const bad = join(root, "tests/a11y/missing-label.html");
 const child = spawnSync(process.execPath, [check, bad], { encoding: "utf8" });
 const output = `${child.stdout}${child.stderr}`;
-if (child.status === 0 || !output.includes("no associated <label> or ARIA name")) {
-  console.error(`✗ a11y self-test: missing-label fixture unexpectedly passed\n${output}`);
+const expected = [
+  "no associated <label> or ARIA name",
+  "references missing id",
+  "missing alt",
+  "duplicate id",
+  "missing an explicit type",
+  "missing aria-checked",
+  "remains keyboard-activatable",
+];
+const missed = expected.filter((message) => !output.includes(message));
+if (child.status === 0 || missed.length) {
+  console.error(`✗ a11y self-test: violation fixture missed ${missed.join(", ") || "every defect"}\n${output}`);
   process.exit(1);
 }
-console.log("✓ a11y self-test: unlabeled form control is rejected");
+console.log(`✓ a11y self-test: ${expected.length} deliberate violations are rejected`);

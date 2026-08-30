@@ -27,8 +27,8 @@
   /* Skip link — hidden until focused, then it must be plainly visible. */
   .wx-skip {
     position: absolute;
-    left: var(--space-4);
-    top: calc(-1 * var(--space-16));
+    inset-inline-start: var(--space-4);
+    inset-block-start: calc(-1 * var(--space-16));
     z-index: 100;
     padding: var(--space-3) var(--space-5);
     background: var(--color-bg-pure);
@@ -37,9 +37,9 @@
     border-radius: var(--radius-md);
     font-family: var(--font-ui);
     font-size: var(--text-sm);
-    transition: top var(--duration-fast) var(--ease-out);
+    transition: inset-block-start var(--duration-fast) var(--ease-out);
   }
-  .wx-skip:focus { top: var(--space-4); }
+  .wx-skip:focus { inset-block-start: var(--space-4); }
 
   /* Touch targets. WCAG 2.2 §2.5.8 floor for pointer input; forms that need a
      larger minimum raise it via --touch-target-min. */

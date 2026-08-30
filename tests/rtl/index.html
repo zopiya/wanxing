@@ -1,7 +1,88 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../../kit/index.css"></head>
-<body class="wx-page"><main class="wx-container wx-container--content">
-  <nav class="wx-nav" aria-label="اختبار الاتجاه"><a class="wx-nav__brand" href="#">ونشين</a><ul class="wx-nav__list"><li><a class="wx-nav__link" aria-current="page" href="#">الرئيسية</a></li><li><a class="wx-nav__link" href="#">المكوّنات</a></li></ul></nav>
-  <div style="display:flex;gap:var(--space-6)"><aside class="wx-sidebar"><p class="wx-sidebar__heading">دليل</p><ul class="wx-sidebar__list"><li><a class="wx-sidebar__link" aria-current="page" href="#">المدخل</a></li></ul></aside><article style="min-inline-size:0"><h1>اختبار RTL</h1><label class="wx-field"><span class="wx-field__label">العنوان</span><input class="wx-input" value="نص تجريبي"></label><figure class="wx-figure"><div style="block-size:8rem;background:var(--color-bg-subtle)"></div><figcaption class="wx-figure__caption"><span class="wx-figure__number">شكل ١</span>تعليق توضيحي</figcaption></figure><nav class="wx-pager"><a href="#"><span class="wx-pager__label">السابق</span>صفحة سابقة</a><a href="#"><span class="wx-pager__label">التالي</span>صفحة تالية</a></nav></article></div>
-</main></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>اختبار RTL · 文心万形</title>
+  <link rel="stylesheet" href="../../kit/index.css">
+</head>
+<body class="wx-page">
+  <a class="wx-skip" href="#main">انتقل إلى المحتوى</a>
+  <main id="main" class="wx-container wx-container--content">
+    <nav class="wx-nav" aria-label="اختبار الاتجاه">
+      <a class="wx-nav__brand" href="#">ونشين</a>
+      <ul class="wx-nav__list">
+        <li><a class="wx-nav__link" aria-current="page" href="#">الرئيسية</a></li>
+        <li><a class="wx-nav__link" href="#">المكوّنات</a></li>
+      </ul>
+      <button class="wx-btn wx-btn--text" type="button" data-wx-toggle="#rtl-sidebar"
+              aria-expanded="false" aria-controls="rtl-sidebar">الدليل</button>
+    </nav>
+
+    <div class="wx-cols wx-cols--sidebar">
+      <nav class="wx-sidebar" id="rtl-sidebar" aria-label="دليل RTL">
+        <p class="wx-sidebar__heading">دليل</p>
+        <ul class="wx-sidebar__list">
+          <li><a class="wx-sidebar__link" aria-current="page" href="#controls">المدخل</a></li>
+        </ul>
+      </nav>
+
+      <article style="min-inline-size:0">
+        <h1>اختبار RTL</h1>
+        <section id="controls">
+          <h2>التحكم والإدخال</h2>
+          <label class="wx-field"><span class="wx-field__label">العنوان</span>
+            <input class="wx-input" name="title" value="نص تجريبي">
+          </label>
+          <div class="wx-cluster" style="margin-block-start:var(--space-6)">
+            <button id="rtl-switch" class="wx-switch" type="button" role="switch"
+                    aria-checked="false" aria-label="القراءة دون اتصال"></button>
+            <span>القراءة دون اتصال</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>علامات التبويب</h2>
+          <div class="wx-tabs" role="tablist" aria-label="أقسام المثال">
+            <button id="rtl-tab-1" type="button" role="tab" aria-controls="rtl-panel-1" aria-selected="true">نظرة عامة</button>
+            <button id="rtl-tab-2" type="button" role="tab" aria-controls="rtl-panel-2" aria-selected="false">الاستخدام</button>
+            <button id="rtl-tab-3" type="button" role="tab" aria-controls="rtl-panel-3" aria-selected="false" aria-disabled="true">غير متاح</button>
+          </div>
+          <div id="rtl-panel-1" role="tabpanel" aria-labelledby="rtl-tab-1"><p>السهم الأيسر يتقدم بصريًا في RTL.</p></div>
+          <div id="rtl-panel-2" role="tabpanel" aria-labelledby="rtl-tab-2" hidden><p>لوحة الاستخدام.</p></div>
+          <div id="rtl-panel-3" role="tabpanel" aria-labelledby="rtl-tab-3" hidden><p>لا يجب الوصول إلى هذه اللوحة.</p></div>
+        </section>
+
+        <section>
+          <h2>الدرج</h2>
+          <button class="wx-btn" type="button" data-wx-open="#rtl-drawer">افتح الدرج</button>
+          <dialog class="wx-drawer" id="rtl-drawer" aria-labelledby="rtl-drawer-title">
+            <div class="wx-drawer__header">
+              <h2 id="rtl-drawer-title">درج من الطرف المنطقي</h2>
+              <button class="wx-btn wx-btn--text" type="button" data-wx-close>إغلاق</button>
+            </div>
+            <p>في RTL يجب أن يثبت الدرج على اليسار ويدخل من اليسار.</p>
+          </dialog>
+        </section>
+
+        <figure class="wx-figure">
+          <div style="block-size:8rem;background:var(--color-bg-subtle)"></div>
+          <figcaption class="wx-figure__caption"><span class="wx-figure__number">شكل ١</span>تعليق توضيحي</figcaption>
+        </figure>
+        <nav class="wx-pager" aria-label="تنقل الصفحات">
+          <a href="#"><span class="wx-pager__label">السابق</span>صفحة سابقة</a>
+          <a href="#"><span class="wx-pager__label">التالي</span>صفحة تالية</a>
+        </nav>
+      </article>
+    </div>
+  </main>
+  <script src="../../kit/components/js/disclosure.js"></script>
+  <script src="../../kit/components/js/tabs.js"></script>
+  <script src="../../kit/components/js/overlay.js"></script>
+  <script>
+    document.getElementById("rtl-switch").addEventListener("click", function () {
+      this.setAttribute("aria-checked", String(this.getAttribute("aria-checked") !== "true"));
+    });
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
  * Check the static accessibility obligations that can be verified without a
  * browser accessibility tree. This intentionally complements check:site:
  * check:site owns heading order and links; this script owns landmarks, labels,
- * and accessible names.
+ * accessible names, ID references, and native control contracts.
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -23,14 +23,53 @@ if (failures.length) {
   for (const failure of failures) console.error(`    ${failure.file}: ${failure.message}`);
   process.exit(1);
 }
-console.log(`✓ ${files.length} HTML file(s): main landmarks, control labels, and accessible names are present`);
+console.log(`✓ ${files.length} HTML file(s): landmarks, names, IDs, ARIA references, and native control contracts are sound`);
 
 function inspect(file, source) {
   // Generated code listings quote examples. They are prose, not active DOM.
-  const html = source.replace(/<(?:pre|code)\b[^>]*>[\s\S]*?<\/(?:pre|code)>/gi, "");
+  const html = source.replace(/<(?:pre|code)\b[^>]*>[\s\S]*?<\/(?:pre|code)>/gi,
+    (match) => match.replace(/[^\n]/g, " "));
   const short = file.startsWith(root) ? file.slice(root.length + 1) : file;
+  const report = (message, at = 0) => failures.push({
+    file: short,
+    message: `line ${html.slice(0, at).split("\n").length}: ${message}`,
+  });
   if (!/<main\b[^>]*>|\brole=["']main["']/i.test(html)) {
-    failures.push({ file: short, message: "missing <main> or role=\"main\"" });
+    report("missing <main> or role=\"main\"");
+  }
+
+  const tags = [...html.matchAll(/<([a-z][\w-]*)\b([^>]*)>/gi)].map((match) => ({
+    tag: match[1].toLowerCase(), attrs: attrsOf(match[2]), at: match.index,
+  }));
+  const ids = new Map();
+  for (const item of tags) {
+    if (!item.attrs.id) continue;
+    if (ids.has(item.attrs.id)) report(`duplicate id="${item.attrs.id}"`, item.at);
+    else ids.set(item.attrs.id, item);
+  }
+
+  for (const item of tags) {
+    if (item.tag === "img" && !Object.hasOwn(item.attrs, "alt")) {
+      report("<img> is missing alt (use alt=\"\" when decorative)", item.at);
+    }
+    if (item.tag === "button" && !item.attrs.type) {
+      report("<button> is missing an explicit type", item.at);
+    }
+    if (item.tag === "a" && item.attrs["aria-disabled"] === "true" && Object.hasOwn(item.attrs, "href")) {
+      report("disabled <a> still has href and remains keyboard-activatable; use a non-link element", item.at);
+    }
+    if (item.attrs.role === "switch" && !Object.hasOwn(item.attrs, "aria-checked")) {
+      report('role="switch" is missing aria-checked', item.at);
+    }
+    if (item.attrs.role === "tab") {
+      if (!Object.hasOwn(item.attrs, "aria-selected")) report('role="tab" is missing aria-selected', item.at);
+      if (!item.attrs["aria-controls"]) report('role="tab" is missing aria-controls', item.at);
+    }
+    for (const attr of ["aria-controls", "aria-describedby", "aria-labelledby", "aria-owns"]) {
+      for (const id of (item.attrs[attr] ?? "").split(/\s+/).filter(Boolean)) {
+        if (!ids.has(id)) report(`${attr} references missing id="${id}"`, item.at);
+      }
+    }
   }
 
   const labels = [...html.matchAll(/<label\b([^>]*)>([\s\S]*?)<\/label>/gi)].map((match) => ({
@@ -47,7 +86,7 @@ function inspect(file, source) {
     const explicit = id && labels.some((label) => label.attrs.for === id);
     const named = hasName(control.attrs);
     if (!nested && !explicit && !named) {
-      failures.push({ file: short, message: `<${control.tag}> has no associated <label> or ARIA name` });
+      report(`<${control.tag}> has no associated <label> or ARIA name`, control.at);
     }
   }
 
@@ -60,7 +99,7 @@ function inspect(file, source) {
     const attrs = attrsOf(match[2]);
     const content = stripTags(match[3] ?? "").trim();
     if (!content && !hasName(attrs)) {
-      failures.push({ file: short, message: `<${match[1].toLowerCase()}> has no accessible name` });
+      report(`<${match[1].toLowerCase()}> has no accessible name`, match.index);
     }
   }
 }

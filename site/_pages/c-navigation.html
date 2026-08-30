@@ -11,7 +11,7 @@
       <li><a class="wx-menu__link" href="#">字体排版</a></li>
       <li class="wx-menu__group">形态层</li>
       <li><a class="wx-menu__link" href="#">设计模式</a></li>
-      <li><a class="wx-menu__link" href="#" aria-disabled="true">敬请期待</a></li>
+      <li><span class="wx-menu__link" aria-disabled="true">敬请期待</span></li>
     </ul>
   </div>
 
@@ -65,7 +65,7 @@
   <div class="doc-demo__stage">
     <nav class="wx-pagination" aria-label="分页">
       <ul class="wx-pagination__list">
-        <li><a class="wx-pagination__link" href="#" aria-disabled="true">←</a></li>
+        <li><span class="wx-pagination__link" aria-disabled="true" aria-label="上一页">←</span></li>
         <li><a class="wx-pagination__link" href="#">1</a></li>
         <li><a class="wx-pagination__link" href="#" aria-current="page">2</a></li>
         <li><a class="wx-pagination__link" href="#">3</a></li>
@@ -93,18 +93,14 @@
   <div class="wx-cols wx-cols--2" style="margin-block-start:var(--space-6)"><aside class="wx-sidebar"><p class="wx-sidebar__heading">文档</p><ul class="wx-sidebar__list"><li><a class="wx-sidebar__link" aria-current="page" href="#">导航</a></li><li><a class="wx-sidebar__link" href="#api">API</a></li></ul></aside><nav class="wx-anchor" aria-label="示例文章目录"><ul class="wx-anchor__list"><li><a class="wx-anchor__link" aria-current="location" href="#anchor">当前章节</a></li><li><a class="wx-anchor__link" href="#skip">跳过链接</a></li></ul></nav></div>
 </div></div>
 
-<h2 id="skip">跳过链接 Skip</h2>
-<p>每一页的第一个可聚焦元素都应该是它。按 <kbd class="wx-kbd">Tab</kbd> 试试——
-本站左上角会出现"跳到主要内容"。</p>
-
 <h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约（ARIA / 脚本）</th></tr></thead><tbody>
 <tr><td><code>wx-nav</code></td><td>站点一级导航；局部操作改用 toolbar。</td><td><code>nav aria-label</code>；当前链接用 <code>aria-current</code>。</td></tr>
-<tr><td><code>wx-menu</code></td><td>静态层级菜单；可选择命令集改用原生 select。</td><td><code>ul</code> + <code>wx-menu__link</code>；禁用项用 <code>aria-disabled</code>。</td></tr>
+<tr><td><code>wx-menu</code></td><td>静态层级菜单；可选择命令集改用原生 select。</td><td><code>ul</code> + 可导航的 <code>a</code>；不可导航项用无 <code>href</code> 的 <code>span aria-disabled="true"</code>。</td></tr>
 <tr><td><code>wx-dropdown</code></td><td>少量二级动作；复杂可交互表单改用 popover。</td><td>原生 <code>details/summary</code>，无脚本。</td></tr>
 <tr><td><code>wx-sidebar</code></td><td>知识库目录；短页不制造侧栏。</td><td><code>aside/nav</code>；窄屏抽屉由 <code>disclosure.js</code> 同步 <code>data-open</code>/<code>aria-expanded</code>。</td></tr>
 <tr><td><code>wx-toc / wx-anchor / wx-affix</code></td><td>长文页内定位；标题少于两项不显示。</td><td><code>nav aria-label</code>；<code>toc.js</code> 更新 <code>aria-current</code>。</td></tr>
-<tr><td><code>wx-crumbs / wx-pager / wx-pagination</code></td><td>层级返回、前后内容、离散分页；无限流不伪装分页。</td><td>外层 <code>nav aria-label</code>；当前页用 <code>aria-current="page"</code>。</td></tr>
+<tr><td><code>wx-crumbs / wx-pager / wx-pagination</code></td><td>层级返回、前后内容、离散分页；无限流不伪装分页。</td><td>外层 <code>nav aria-label</code>；当前页用 <code>aria-current="page"</code>；不可用方向不是带 <code>href</code> 的假禁用链接。</td></tr>
 <tr><td><code>wx-tabs</code></td><td>同一上下文的少量面板；跨页面导航用链接。</td><td><code>tablist/tab/tabpanel</code>、<code>aria-selected</code>、<code>aria-controls</code>；需 <code>tabs.js</code>。</td></tr>
 <tr><td><code>wx-steps</code></td><td>线性流程进度；可任意跳转的导航用 tabs。</td><td>当前项 <code>aria-current="step"</code>，完成项 <code>data-complete</code>。</td></tr>
 <tr><td><code>wx-skip</code></td><td>每个页面第一可聚焦元素；绝不因“页面短”删除。</td><td><code>href="#main"</code> 指向唯一 <code>main</code>，无脚本。</td></tr>

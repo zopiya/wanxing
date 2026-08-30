@@ -6,19 +6,38 @@
 
   var root = document.documentElement;
   var toggle = document.querySelector(".doc-topbar .wx-switch");
+  var systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
   var saved = null;
   try { saved = localStorage.getItem("wx-theme"); } catch (e) { /* private mode */ }
-  if (saved) root.setAttribute("data-theme", saved);
+  if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+  else saved = null;
+
+  function isDark() {
+    return root.getAttribute("data-theme") === "dark" ||
+      (!root.hasAttribute("data-theme") && systemTheme.matches);
+  }
 
   function syncToggle() {
     if (!toggle) return;
-    var dark = root.getAttribute("data-theme") === "dark" ||
-      (!root.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+    var dark = isDark();
     toggle.setAttribute("aria-checked", String(dark));
     toggle.setAttribute("aria-label", dark ? "切换亮色模式" : "切换暗色模式");
   }
+
+  /* Browser chrome is part of the theme too. Read the real token after CSS
+     resolves instead of copying its hex value into HTML, where it would drift. */
+  function syncThemeChrome() {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "theme-color");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", getComputedStyle(root).getPropertyValue("--color-bg-warm").trim());
+  }
   syncToggle();
+  syncThemeChrome();
 
   if (toggle) {
     toggle.addEventListener("click", function () {
@@ -26,8 +45,17 @@
       root.setAttribute("data-theme", dark ? "dark" : "light");
       try { localStorage.setItem("wx-theme", dark ? "dark" : "light"); } catch (e) { /* ignore */ }
       syncToggle();
+      syncThemeChrome();
     });
   }
+
+  function syncSystemTheme() {
+    if (root.hasAttribute("data-theme")) return;
+    syncToggle();
+    syncThemeChrome();
+  }
+  if (typeof systemTheme.addEventListener === "function") systemTheme.addEventListener("change", syncSystemTheme);
+  else if (typeof systemTheme.addListener === "function") systemTheme.addListener(syncSystemTheme);
 
   /* Anchor highlighting. aria-current is the single source of truth for the
      style, so the accessibility tree cannot drift from what is highlighted. */

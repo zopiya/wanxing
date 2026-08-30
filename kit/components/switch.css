@@ -2,6 +2,7 @@
    .is-on class. The filled track is a control affordance, not a card surface. */
 @layer wx.components {
   .wx-switch {
+    --wx-switch-shift: var(--space-4);
     inline-size: 44px;
     block-size: 24px;
     padding: 2px;
@@ -24,6 +25,7 @@
   .wx-switch[aria-checked="true"] { border-color: var(--color-accent); }
   .wx-switch[aria-checked="true"]::before {
     background: var(--color-accent);
-    transform: translateX(16px);
+    transform: translateX(var(--wx-switch-shift));
   }
+  .wx-switch:dir(rtl) { --wx-switch-shift: calc(-1 * var(--space-4)); }
 }

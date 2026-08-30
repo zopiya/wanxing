@@ -79,8 +79,8 @@
 </ul>
 
 <h2 id="rtl">RTL 验证结论</h2>
-<p>已在本地 HTTP 站点用 <code>dir="rtl"</code> 实测导航、侧栏、表单、图注、分页与抽屉：
-逻辑属性会把起止边、内外边距及抽屉锚点翻到正确一侧；390px 与宽屏均无页面级横向溢出。
+<p>已在本地 HTTP 站点用 <code>dir="rtl"</code> 实测导航、侧栏、表单、图注、分页、开关、标签页与抽屉：
+逻辑属性会把起止边、内外边距及抽屉锚点翻到正确一侧；方向键、滑块位移和抽屉进入方向也随书写方向翻转。390px 与宽屏均无页面级横向溢出。
 关键实现是 <code>border-inline-*</code>、<code>margin-inline</code>、<code>inset-inline</code> 与
 <code>text-align:start/end</code>，而不是为 RTL 维护一套镜像选择器。</p>
 <div class="wx-note wx-note--warn">

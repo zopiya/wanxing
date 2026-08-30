@@ -13,6 +13,12 @@
     return Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
   }
 
+  function enabledTabsOf(list) {
+    return tabsOf(list).filter(function (tab) {
+      return !tab.disabled && tab.getAttribute("aria-disabled") !== "true";
+    });
+  }
+
   function select(list, tab) {
     tabsOf(list).forEach(function (t) {
       var on = t === tab;
@@ -25,22 +31,27 @@
 
   document.querySelectorAll('[role="tablist"]').forEach(function (list) {
     var tabs = tabsOf(list);
-    if (!tabs.length) return;
-    var current = tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0];
+    var enabled = enabledTabsOf(list);
+    if (!enabled.length) return;
+    var current = enabled.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || enabled[0];
     select(list, current);
 
     list.addEventListener("click", function (e) {
       var tab = e.target.closest('[role="tab"]');
-      if (tab) select(list, tab);
+      if (tab && !tab.disabled && tab.getAttribute("aria-disabled") !== "true") select(list, tab);
     });
 
     list.addEventListener("keydown", function (e) {
-      var items = tabsOf(list);
+      var items = enabledTabsOf(list);
       var i = items.indexOf(document.activeElement);
       if (i < 0) return;
       var next = null;
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") next = items[(i + 1) % items.length];
-      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = items[(i - 1 + items.length) % items.length];
+      var vertical = list.getAttribute("aria-orientation") === "vertical";
+      var rtl = getComputedStyle(list).direction === "rtl";
+      if (vertical && e.key === "ArrowDown") next = items[(i + 1) % items.length];
+      else if (vertical && e.key === "ArrowUp") next = items[(i - 1 + items.length) % items.length];
+      else if (!vertical && e.key === "ArrowRight") next = items[(i + (rtl ? -1 : 1) + items.length) % items.length];
+      else if (!vertical && e.key === "ArrowLeft") next = items[(i + (rtl ? 1 : -1) + items.length) % items.length];
       else if (e.key === "Home") next = items[0];
       else if (e.key === "End") next = items[items.length - 1];
       if (!next) return;

@@ -562,8 +562,8 @@
   /* Skip link — hidden until focused, then it must be plainly visible. */
   .wx-skip {
     position: absolute;
-    left: var(--space-4);
-    top: calc(-1 * var(--space-16));
+    inset-inline-start: var(--space-4);
+    inset-block-start: calc(-1 * var(--space-16));
     z-index: 100;
     padding: var(--space-3) var(--space-5);
     background: var(--color-bg-pure);
@@ -572,9 +572,9 @@
     border-radius: var(--radius-md);
     font-family: var(--font-ui);
     font-size: var(--text-sm);
-    transition: top var(--duration-fast) var(--ease-out);
+    transition: inset-block-start var(--duration-fast) var(--ease-out);
   }
-  .wx-skip:focus { top: var(--space-4); }
+  .wx-skip:focus { inset-block-start: var(--space-4); }
 
   /* Touch targets. WCAG 2.2 §2.5.8 floor for pointer input; forms that need a
      larger minimum raise it via --touch-target-min. */
@@ -1415,6 +1415,9 @@
   }
   .wx-nav__list { display: flex; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
   .wx-nav__link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--touch-target-min, 24px);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
     color: var(--color-text-secondary);
@@ -1431,7 +1434,13 @@
   }
   .wx-crumbs ol { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
   .wx-crumbs li::before { content: "/"; margin-inline: var(--space-2) var(--space-1); color: var(--color-text-functional); }
-  .wx-crumbs a { color: inherit; text-decoration: none; }
+  .wx-crumbs a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--touch-target-min, 24px);
+    color: inherit;
+    text-decoration: none;
+  }
   .wx-crumbs a:hover { color: var(--color-accent); }
   .wx-crumbs [aria-current] { color: var(--color-text-primary); }
 
@@ -1474,7 +1483,8 @@
   .wx-sidebar__list { list-style: none; margin: 0; padding: 0; }
   .wx-sidebar__link {
     display: block;
-    padding: var(--space-2) 0 var(--space-2) var(--space-3);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-3) 0;
     border-inline-start: var(--stroke-mark) solid transparent;
     color: var(--color-text-secondary);
     text-decoration: none;
@@ -1488,6 +1498,7 @@
 
   @media (max-width: 1024px) {
     .wx-sidebar {
+      --wx-sidebar-shift: -100%;
       position: fixed;
       inset-block: 0;
       inset-inline-start: 0;
@@ -1495,10 +1506,11 @@
       inline-size: min(320px, 85vw);
       padding-inline: var(--space-5);
       background: var(--color-bg-base);
-      transform: translateX(-100%);
+      transform: translateX(var(--wx-sidebar-shift));
       transition: transform var(--duration-slow) var(--ease-out);
       overflow-y: auto;
     }
+    .wx-sidebar:dir(rtl) { --wx-sidebar-shift: 100%; }
     .wx-sidebar[data-open] { transform: none; }
   }
 }
@@ -1726,6 +1738,7 @@
    .is-on class. The filled track is a control affordance, not a card surface. */
 @layer wx.components {
   .wx-switch {
+    --wx-switch-shift: var(--space-4);
     inline-size: 44px;
     block-size: 24px;
     padding: 2px;
@@ -1748,8 +1761,9 @@
   .wx-switch[aria-checked="true"] { border-color: var(--color-accent); }
   .wx-switch[aria-checked="true"]::before {
     background: var(--color-accent);
-    transform: translateX(16px);
+    transform: translateX(var(--wx-switch-shift));
   }
+  .wx-switch:dir(rtl) { --wx-switch-shift: calc(-1 * var(--space-4)); }
 }
 /* source: kit/components/marginal.css */
 /* v2 · Marginal note for the right rail used by documentation and reports. */
@@ -1810,17 +1824,20 @@
 
   /* ---- Drawer -------------------------------------------------------- */
   .wx-drawer {
+    --wx-drawer-shift: var(--space-4);
     inline-size: min(22rem, calc(100vw - var(--space-12)));
     max-inline-size: none;
     block-size: 100%;
     max-block-size: none;
-    margin: 0 0 0 auto;              /* anchored to the inline end */
+    margin-block: 0;
+    margin-inline: auto 0;           /* anchored to the inline end */
     padding: var(--space-6);
     border: 0;
     border-inline-start: var(--stroke-hairline) solid var(--color-border-strong);
     background: var(--color-bg-base);
     color: var(--color-text-primary);
   }
+  .wx-drawer:dir(rtl) { --wx-drawer-shift: calc(-1 * var(--space-4)); }
   .wx-drawer::backdrop { background: var(--color-scrim); }
   .wx-drawer__header {
     display: flex;
@@ -1888,7 +1905,7 @@
     to   { opacity: 1; transform: none; }
   }
   @keyframes wx-drawer-in {
-    from { opacity: 0; transform: translateX(16px); }
+    from { opacity: 0; transform: translateX(var(--wx-drawer-shift)); }
     to   { opacity: 1; transform: none; }
   }
 }

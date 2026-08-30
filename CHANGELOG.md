@@ -27,6 +27,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 时间线标记缺少 `wx-timeline__dot`，日期落在 20px 轨道列里。
 - 主题切换按钮比品牌名和主导航高 3.2px。
 - 站点使用的 7 个 `wx-` 类在 kit 中不存在，其中 `wx-tag--accent` 与 `wx-seal--lg` 是文档承诺但从未实现的变体。
+- 导航页重复的 `id="skip"` 会让两个目录入口落到同一标题；无障碍门禁现在会阻断重复 ID、断裂 ARIA 引用和假禁用链接。
+- RTL 夹具此前只证实“不横向溢出”，却漏掉侧栏、开关、drawer 与 tabs 的物理方向；这些交互现在按书写方向翻转。
+- 主题脚本现在拒绝损坏的本地存储值，并从真实背景 token 同步浏览器 chrome 色与系统主题变化。
+- `wx-nav` 链接把 24px Web 指针目标写进组件，不再只依赖设备是否上报 coarse pointer。
 
 ### Changed
 

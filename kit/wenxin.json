@@ -540,7 +540,7 @@
           "classes": [
             "wx-menu"
           ],
-          "base": "ul",
+          "base": "ul + a；禁用项用 span",
           "state": "aria-current / aria-disabled",
           "behaviour": "无"
         },
@@ -594,7 +594,7 @@
           "classes": [
             "wx-pagination"
           ],
-          "base": "nav + ul",
+          "base": "nav + ul + a；禁用项用 span",
           "state": "aria-current=page / aria-disabled",
           "behaviour": "无"
         },
