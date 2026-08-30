@@ -1,0 +1,15 @@
+[
+  {
+    "family": "测试构件",
+    "slug": "c-layout",
+    "items": [
+      {
+        "name": "Missing style",
+        "classes": ["wx-not-a-component"],
+        "base": "section",
+        "state": "无",
+        "behaviour": "无"
+      }
+    ]
+  }
+]

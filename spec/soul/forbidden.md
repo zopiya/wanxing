@@ -113,7 +113,7 @@
 
 ## 可执行性 · Enforcement
 
-`npm run check:forbidden` 对 `kit/` 与 `examples/` 做静态检查：
+`npm run check:forbidden` 对 `kit/`、`site/` 与（如存在的）历史示例做静态检查：
 `box-shadow`（非 `none`）、`linear-gradient` / `radial-gradient`、
 超出 `--stroke-mark` 的边框宽度、弹跳类缓动、填充按钮计数。
 

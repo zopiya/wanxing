@@ -102,7 +102,7 @@ The logo is brand identity — it **is allowed and required** to deviate from no
 </svg>
 ```
 
-参考实现 Reference implementation: [`wanxing/examples/f3-brand/assets/`](../../kit/assets/brand/) — 已复制的 logo SVG 文件（logo-wenxin.svg, brand-mark.svg, logo-mono.svg, logo-wanxing.svg）。
+参考实现 Reference implementation: [`kit/assets/brand/`](../../kit/assets/brand/) — 已复制的 logo SVG 文件（logo-wenxin.svg, brand-mark.svg, logo-mono.svg, logo-wanxing.svg）。
 
 ---
 

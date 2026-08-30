@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>组件能力地图 · 文心 万形</title>
+<title>组件与组合 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=3">
+<link rel="stylesheet" href="./assets/site.css?v=4">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -17,11 +17,11 @@
     <span>文心 · 万形</span>
   </a>
   <nav class="doc-primary" aria-label="主要分区">
-<a href="./index.html">开始</a>
-    <a href="./color.html">全局样式</a>
-    <a href="./patterns.html">设计模式</a>
-    <a href="./components.html" aria-current="page">组件</a>
-    <a href="./viz.html">延伸</a>
+<a href="./index.html">总览</a>
+    <a href="./values.html">文心</a>
+    <a href="./media.html">万形</a>
+    <a href="./components.html" aria-current="page">构件</a>
+    <a href="./accessibility.html">验证</a>
   </nav>
   <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
           data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
@@ -33,56 +33,287 @@
 <div class="doc-shell">
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <ul class="wx-menu">
-    <li class="wx-menu__group">开始 · Start</li>
+    <li class="wx-menu__group">总览 · Overview</li>
       <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
-      <li><a class="wx-menu__link" href="./explore.html">设计探索</a></li>
+    <li class="wx-menu__group">文心 · Soul</li>
       <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
       <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
-    <li class="wx-menu__group">全局样式 · Global</li>
       <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
       <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
       <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
       <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
       <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
-    <li class="wx-menu__group">设计模式 · Patterns</li>
+    <li class="wx-menu__group">万形 · Forms</li>
+      <li><a class="wx-menu__link" href="./media.html">媒介适配</a></li>
       <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
       <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
       <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
       <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
       <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
-    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+    <li class="wx-menu__group">构件 · Kit</li>
       <li><a class="wx-menu__link" href="./components.html" aria-current="page">组件总览</a></li>
       <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
       <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
       <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
       <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
       <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
-    <li class="wx-menu__group">延伸 · Extended</li>
-      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
-      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    <li class="wx-menu__group">验证 · Assurance</li>
       <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
     </ul>
   </nav>
 
   <main class="doc-main" id="main">
     <article class="doc-article">
-<p class="wx-eyebrow">组件 · Components</p>
-<h1>组件能力地图</h1>
-<p class="wx-lede">组件不是一堆 CSS 类，而是让页面在“阅读、输入、定位、反馈”之间保持同一语言的公开契约。</p>
+<p class="wx-eyebrow">构件 · Kit</p>
+<h1>组件与组合</h1>
+<p class="wx-lede">组件是 kit 的第三层：token 给出不变数值，基础层给出跨页面底线，pattern 组织页面；组件只负责可复用的内容、交互与反馈单元。</p>
 
-<h2 id="choose">先按场景选，再进细节</h2>
-<div class="doc-component-map"><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">建立结构</p><h3 class="wx-entry__title"><a href="./c-layout.html">布局与通用</a></h3><p class="wx-entry__desc">页面宽度、节奏、规则、动作、属性和品牌标记。先让信息有秩序，再加任何交互。</p><p class="doc-component-map__items">page · container · stack · cluster · rule · btn · tag · avatar</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">帮助人找到位置</p><h3 class="wx-entry__title"><a href="./c-navigation.html">导航</a></h3><p class="wx-entry__desc">站点、目录、页内锚点、分页、步骤和标签页；状态统一由 ARIA 或原生属性表达。</p><p class="doc-component-map__items">nav · sidebar · anchor · tabs · pagination · steps</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">接受输入</p><h3 class="wx-entry__title"><a href="./c-entry.html">数据录入</a></h3><p class="wx-entry__desc">字段、选择、范围、上传与搜索。输入类无论在哪条轨道都按可用性惯例处理。</p><p class="doc-component-map__items">form · field · input · select · switch · upload · search</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">展示内容与关系</p><h3 class="wx-entry__title"><a href="./c-display.html">数据展示</a></h3><p class="wx-entry__desc">条目、表格、树、图、图集、时间线和代码；用内容结构替代四边封闭的卡片。</p><p class="doc-component-map__items">entry · table · tree · timeline · figure · gallery · code</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">明确反馈</p><h3 class="wx-entry__title"><a href="./c-feedback.html">反馈与浮层</a></h3><p class="wx-entry__desc">提示、进度、结果和 dialog。浮层是有限例外：有边界，但无阴影和渐变。</p><p class="doc-component-map__items">note · toast · progress · modal · drawer · popover</p></article></div>
+<h2 id="layers">先分清构件层级</h2>
+<div class="doc-component-layers">
+  <section><p class="doc-component-layers__kind">Tokens</p><h3>数值与语义</h3><p>颜色、字族、间距、时长、描边等唯一真源。它们不表达业务 UI，也不在 prose 里复制数值。</p><a href="./color.html">查看 token 路径 →</a></section>
+  <section><p class="doc-component-layers__kind">Patterns</p><h3>页面组织</h3><p>A–E 回答一页内容怎么读、怎么找、怎么完成任务。它们是骨架，不能被 button 或 card 替代。</p><a href="./patterns.html">查看页面原型 →</a></section>
+  <section><p class="doc-component-layers__kind">Components</p><h3>可复用单元</h3><p>表单、导航、内容展示和反馈。每一个有最小 HTML、ARIA 或原生属性契约，必要时才有行为脚本。</p><a href="#families">查看组件族 →</a></section>
+  <section><p class="doc-component-layers__kind">Behaviours</p><h3>渐进增强</h3><p>tabs、overlay、toc、disclosure 等只补平台缺口；移除脚本后不能让内容或基础操作消失。</p><a href="#behaviours">查看行为边界 →</a></section>
+</div>
 
-<h2 id="contract">每一类页面都应回答四件事</h2>
-<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>你需要的答案</th><th>文档中在哪里</th><th>为什么这比样式截图重要</th></tr></thead><tbody><tr><td>何时使用 / 何时不用</td><td>五个类别页各自的 API 区</td><td>避免把“有一个组件”误解为“任何场景都该用”。</td></tr><tr><td>最小 HTML / ARIA 契约</td><td>运行中的 demo 与自动生成的 Source</td><td>展示代码永远从真实 demo 派生，不会手工漂移。</td></tr><tr><td>是否需要行为脚本</td><td>组件页面和行为脚本表</td><td>没有 JS 时仍可阅读；需要 JS 的地方被明确标出。</td></tr><tr><td>是否经过底线验证</td><td><a href="./accessibility.html">无障碍与 RTL</a></td><td>颜色、静态标签/命名、站点结构和审计器夹具可复现；设备级事项不伪装成自动覆盖。</td></tr></tbody></table></div>
+<h2 id="families">组件族按职责，而非视觉外形划分</h2>
+<div class="doc-component-family">
+  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">结构与语义</p><h3 class="wx-entry__title"><a href="./c-layout.html">布局与通用</a></h3><p>page、container、stack、cluster、rule、btn、tag、avatar。它们建立页面节奏和动作语义，不创建四边封闭的“面”。</p></article>
+  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">定位与连续性</p><h3 class="wx-entry__title"><a href="./c-navigation.html">导航</a></h3><p>nav、sidebar、anchor、tabs、pagination、steps。当前位置、选中和展开统一由 ARIA/原生属性承载。</p></article>
+  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">输入与任务</p><h3 class="wx-entry__title"><a href="./c-entry.html">数据录入</a></h3><p>form、field、input、select、switch、upload、search。它们不服从“极简优先”，而服从第三层：表单就是表单。</p></article>
+  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">内容与关系</p><h3 class="wx-entry__title"><a href="./c-display.html">数据展示</a></h3><p>entry、table、tree、timeline、figure、gallery、code。分组以标题、邻近、单边线和结构语义完成。</p></article>
+  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">状态与反馈</p><h3 class="wx-entry__title"><a href="./c-feedback.html">反馈与浮层</a></h3><p>note、toast、progress、modal、drawer、popover。浮层是可用性例外：允许边界，不允许阴影和渐变。</p></article>
+</div>
 
-<h2 id="composition">一个真实页面不是组件展柜</h2>
-<div class="doc-demo"><div class="doc-demo__stage"><article class="wx-entry"><p class="wx-entry__meta">项目草稿 · 3 分钟前</p><h3 class="wx-entry__title">整理设计探索入口</h3><p class="wx-entry__desc">把导航、内容层级与组件选择路径连在一起，减少“从组件名猜用途”的成本。</p><div class="wx-cluster"><button class="wx-btn" type="button">继续编辑</button><span class="wx-status">草稿</span></div></article><hr class="wx-rule"><div class="wx-note wx-note--tip"><span class="wx-note__title">组合原则</span><p>一页里先有内容结构，再放操作；反馈靠语义和文字，不靠额外装饰表面。</p></div></div>
-<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;article class="wx-entry"&gt;&lt;p class="wx-entry__meta"&gt;项目草稿 · 3 分钟前&lt;/p&gt;&lt;h3 class="wx-entry__title"&gt;整理设计探索入口&lt;/h3&gt;&lt;p class="wx-entry__desc"&gt;把导航、内容层级与组件选择路径连在一起，减少“从组件名猜用途”的成本。&lt;/p&gt;&lt;div class="wx-cluster"&gt;&lt;button class="wx-btn" type="button"&gt;继续编辑&lt;/button&gt;&lt;span class="wx-status"&gt;草稿&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;hr class="wx-rule"&gt;&lt;div class="wx-note wx-note--tip"&gt;&lt;span class="wx-note__title"&gt;组合原则&lt;/span&gt;&lt;p&gt;一页里先有内容结构，再放操作；反馈靠语义和文字，不靠额外装饰表面。&lt;/p&gt;&lt;/div&gt;</code></pre></details></div>
+<h2 id="catalog">公开构件目录</h2>
+<p>目录来自 <code>kit/components/manifest.json</code>，构件不能只留下一个名字：每一项都必须说明实际 class、语义基座、可访问状态和行为责任。构件 CSS 或类别页失配时，构建直接失败。</p>
+<section class="doc-component-catalog" aria-labelledby="catalog-c-layout">
+  <div class="wx-spread"><h3 id="catalog-c-layout">布局与通用</h3><a href="./c-layout.html">类别详解 →</a></div>
+  <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
+      <tr>
+        <th scope="row">Page / Container / Measure<br><code>.wx-page .wx-container .wx-measure</code></th>
+        <td>页面、main、article</td>
+        <td>无</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Stack / Cluster / Spread / Cols<br><code>.wx-stack .wx-cluster .wx-spread .wx-cols</code></th>
+        <td>任意语义容器</td>
+        <td>无</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Rule<br><code>.wx-rule</code></th>
+        <td>hr</td>
+        <td>无</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Button<br><code>.wx-btn</code></th>
+        <td>button；导航目的用 a</td>
+        <td>disabled</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Tag / Badge / Status<br><code>.wx-tag .wx-badge .wx-status</code></th>
+        <td>span；可操作时改用 button/a</td>
+        <td>文字优先，不只靠颜色</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Avatar / Seal / Kbd<br><code>.wx-avatar .wx-seal .wx-kbd</code></th>
+        <td>img/span/kbd</td>
+        <td>装饰 seal 用 aria-hidden</td>
+        <td>无</td>
+      </tr>
+  </tbody></table></div>
+</section>
+<section class="doc-component-catalog" aria-labelledby="catalog-c-navigation">
+  <div class="wx-spread"><h3 id="catalog-c-navigation">导航</h3><a href="./c-navigation.html">类别详解 →</a></div>
+  <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
+      <tr>
+        <th scope="row">Nav / Crumbs / Pager<br><code>.wx-nav .wx-crumbs .wx-pager</code></th>
+        <td>nav + list/link</td>
+        <td>aria-current</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Menu / Dropdown<br><code>.wx-menu .wx-dropdown</code></th>
+        <td>ul；dropdown 用 details/summary</td>
+        <td>aria-disabled / open</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Sidebar<br><code>.wx-sidebar</code></th>
+        <td>aside 或 nav</td>
+        <td>data-open + aria-expanded</td>
+        <td>disclosure.js</td>
+      </tr>
+      <tr>
+        <th scope="row">TOC / Anchor / Affix<br><code>.wx-toc .wx-anchor .wx-affix</code></th>
+        <td>nav + list</td>
+        <td>aria-current</td>
+        <td>toc.js</td>
+      </tr>
+      <tr>
+        <th scope="row">Pagination<br><code>.wx-pagination</code></th>
+        <td>nav + ul</td>
+        <td>aria-current=page / aria-disabled</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Tabs<br><code>.wx-tabs</code></th>
+        <td>tablist / tab / tabpanel</td>
+        <td>aria-selected / aria-controls</td>
+        <td>tabs.js</td>
+      </tr>
+      <tr>
+        <th scope="row">Steps / Skip<br><code>.wx-steps .wx-skip</code></th>
+        <td>ol；跳过链接用 a</td>
+        <td>aria-current=step</td>
+        <td>无</td>
+      </tr>
+  </tbody></table></div>
+</section>
+<section class="doc-component-catalog" aria-labelledby="catalog-c-entry">
+  <div class="wx-spread"><h3 id="catalog-c-entry">数据录入</h3><a href="./c-entry.html">类别详解 →</a></div>
+  <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
+      <tr>
+        <th scope="row">Form / Field<br><code>.wx-form .wx-field</code></th>
+        <td>form / fieldset / label</td>
+        <td>aria-invalid / aria-describedby</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Input / Select / Number<br><code>.wx-input .wx-select .wx-number</code></th>
+        <td>input / select</td>
+        <td>原生 required, disabled, invalid</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Check / Radio<br><code>.wx-check .wx-radio</code></th>
+        <td>label + 原生 input</td>
+        <td>checked</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Switch<br><code>.wx-switch</code></th>
+        <td>button role=switch</td>
+        <td>aria-checked</td>
+        <td>采用者更新状态</td>
+      </tr>
+      <tr>
+        <th scope="row">Slider / Rate<br><code>.wx-slider .wx-rate</code></th>
+        <td>range / radio group</td>
+        <td>可访问名与可读数值</td>
+        <td>采用者更新值</td>
+      </tr>
+      <tr>
+        <th scope="row">Upload / Search<br><code>.wx-upload .wx-search</code></th>
+        <td>label + file input / search input</td>
+        <td>关联 label</td>
+        <td>采用者处理文件/查询</td>
+      </tr>
+  </tbody></table></div>
+</section>
+<section class="doc-component-catalog" aria-labelledby="catalog-c-display">
+  <div class="wx-spread"><h3 id="catalog-c-display">数据展示</h3><a href="./c-display.html">类别详解 →</a></div>
+  <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
+      <tr>
+        <th scope="row">Entry / List / Desc<br><code>.wx-entry .wx-list .wx-desc</code></th>
+        <td>article / ul|ol / dl</td>
+        <td>原生语义</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Table / Stat<br><code>.wx-table .wx-stat</code></th>
+        <td>table + caption / 语义文本</td>
+        <td>数字用 tabular-nums</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Timeline / Tree / Collapse<br><code>.wx-timeline .wx-tree .wx-collapse</code></th>
+        <td>ol / ul+details / details</td>
+        <td>open / aria-current</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Figure / Image / Gallery<br><code>.wx-figure .wx-image .wx-gallery</code></th>
+        <td>figure+figcaption / img / labelled region</td>
+        <td>有意义图像必须有 alt</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Calendar<br><code>.wx-calendar</code></th>
+        <td>table + caption</td>
+        <td>aria-current / aria-selected</td>
+        <td>采用者管理日期</td>
+      </tr>
+      <tr>
+        <th scope="row">Quote / Code<br><code>.wx-quote .wx-code</code></th>
+        <td>blockquote / pre+code</td>
+        <td>引用可归属</td>
+        <td>copy.js（可选）</td>
+      </tr>
+  </tbody></table></div>
+</section>
+<section class="doc-component-catalog" aria-labelledby="catalog-c-feedback">
+  <div class="wx-spread"><h3 id="catalog-c-feedback">反馈与浮层</h3><a href="./c-feedback.html">类别详解 →</a></div>
+  <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
+      <tr>
+        <th scope="row">Note / Alert<br><code>.wx-note .wx-alert</code></th>
+        <td>section/div + 文字标签</td>
+        <td>语义色与文字同时出现</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Toast<br><code>.wx-toast</code></th>
+        <td>稳定 aria-live region</td>
+        <td>polite / atomic</td>
+        <td>overlay.js 的 wxToast()</td>
+      </tr>
+      <tr>
+        <th scope="row">Progress / Meter<br><code>.wx-progress .wx-meter</code></th>
+        <td>progress / meter</td>
+        <td>可访问名；未知进度不用 spinner</td>
+        <td>采用者更新值</td>
+      </tr>
+      <tr>
+        <th scope="row">Empty / Result<br><code>.wx-empty .wx-result</code></th>
+        <td>section</td>
+        <td>状态标题与下一步文字化</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Modal / Drawer<br><code>.wx-modal .wx-drawer</code></th>
+        <td>dialog</td>
+        <td>aria-labelledby</td>
+        <td>overlay.js</td>
+      </tr>
+      <tr>
+        <th scope="row">Tooltip / Popover<br><code>.wx-tooltip .wx-popover</code></th>
+        <td>role=tooltip / details</td>
+        <td>aria-describedby / open</td>
+        <td>无</td>
+      </tr>
+  </tbody></table></div>
+</section>
 
-<h2 id="boundary">当前边界</h2>
-<p>这里有可复用的内容、文档与轻应用组件，不假装覆盖企业后台的全部复杂交互。Card、spinner、骨架屏、自动轮播和水印属于哲学性排除；富文本、复杂级联选择、图标生态与 Figma kit 是尚未建设的真实缺口。</p>
-<p>完整对应关系、成熟度与未完成项见 <a href="../MATURITY.md">MATURITY.md</a>。</p>
+<h2 id="contract">一个组件的成熟度，不只看样式</h2>
+<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>公开契约</th><th>这里如何实现</th><th>验证责任</th></tr></thead><tbody>
+<tr><td>结构</td><td>demo 使用真实 HTML；Source 从 demo 自动生成。</td><td><code>npm run build:site</code> 与 <code>check:site</code>。</td></tr>
+<tr><td>状态</td><td><code>aria-current</code>、<code>aria-selected</code>、<code>aria-expanded</code>、<code>open</code>、<code>disabled</code>；不用 <code>.is-active</code>。</td><td>静态 a11y 检查与类别页 API 表。</td></tr>
+<tr><td>行为</td><td>脚本只服务原生平台未覆盖的体验，例如 tab roving tabindex、dialog 焦点归还。</td><td>无 JS 时仍可读/可完成基础任务；复杂键盘流程人工验收。</td></tr>
+<tr><td>视觉边界</td><td>不重造卡片、spinner、skeleton、carousel 或 watermark。</td><td><code>check:forbidden</code> 与 DECISIONS D-23。</td></tr>
+</tbody></table></div>
+
+<h2 id="composition">组合示例：内容先于操作</h2>
+<div class="doc-demo"><div class="doc-demo__stage"><article class="wx-entry"><p class="wx-entry__meta">项目草稿 · 3 分钟前</p><h3 class="wx-entry__title">整理章节结构</h3><p class="wx-entry__desc">先说明正在处理的内容，再给动作；没有多余的容器，也没有让动作比内容更响。</p><div class="wx-cluster"><button class="wx-btn" type="button">继续编辑</button><span class="wx-status">草稿</span></div></article><hr class="wx-rule"><div class="wx-note wx-note--tip"><span class="wx-note__title">反馈层</span><p>结果、错误和下一步是信息，不是装饰；用文字、语义色和结构共同表达。</p></div></div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;article class="wx-entry"&gt;&lt;p class="wx-entry__meta"&gt;项目草稿 · 3 分钟前&lt;/p&gt;&lt;h3 class="wx-entry__title"&gt;整理章节结构&lt;/h3&gt;&lt;p class="wx-entry__desc"&gt;先说明正在处理的内容，再给动作；没有多余的容器，也没有让动作比内容更响。&lt;/p&gt;&lt;div class="wx-cluster"&gt;&lt;button class="wx-btn" type="button"&gt;继续编辑&lt;/button&gt;&lt;span class="wx-status"&gt;草稿&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;&lt;hr class="wx-rule"&gt;&lt;div class="wx-note wx-note--tip"&gt;&lt;span class="wx-note__title"&gt;反馈层&lt;/span&gt;&lt;p&gt;结果、错误和下一步是信息，不是装饰；用文字、语义色和结构共同表达。&lt;/p&gt;&lt;/div&gt;</code></pre></details></div>
+
+<h2 id="behaviours">行为脚本与边界</h2>
+<p>目前的渐进增强脚本是 <code>animations-complete</code>、<code>overlay</code>、<code>tabs</code>、<code>disclosure</code>、<code>toc</code>、<code>reveal</code> 与 <code>copy</code>。它们不构成运行时框架，更不承载业务状态。复杂级联选择、富文本编辑、通用图标生态和 Figma kit 是尚未建设的真实缺口，不应由“多造几个组件”掩盖。</p>
 
     </article>
   </main>
@@ -90,10 +321,12 @@
   <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
-      <li><a class="wx-anchor__link" href="#choose">先按场景选，再进细节</a></li>
-      <li><a class="wx-anchor__link" href="#contract">每一类页面都应回答四件事</a></li>
-      <li><a class="wx-anchor__link" href="#composition">一个真实页面不是组件展柜</a></li>
-      <li><a class="wx-anchor__link" href="#boundary">当前边界</a></li>
+      <li><a class="wx-anchor__link" href="#layers">先分清构件层级</a></li>
+      <li><a class="wx-anchor__link" href="#families">组件族按职责，而非视觉外形划分</a></li>
+      <li><a class="wx-anchor__link" href="#catalog">公开构件目录</a></li>
+      <li><a class="wx-anchor__link" href="#contract">一个组件的成熟度，不只看样式</a></li>
+      <li><a class="wx-anchor__link" href="#composition">组合示例：内容先于操作</a></li>
+      <li><a class="wx-anchor__link" href="#behaviours">行为脚本与边界</a></li>
   </ul>
 </nav></div>
 </div>

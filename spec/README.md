@@ -29,16 +29,17 @@ form it takes in each of nine containers.
 ## 结构 · Structure
 
 ```
-site/     讲给谁 —— 文档站（价值观 / 全局样式 / 设计模式 / 组件）
-spec/     说什么 —— 规范正文
-kit/      给什么 —— 可直接复用的产物
-examples/ 长什么样 —— 九种媒介示例，同时是 kit 的验收测试
-scripts/  怎么校验 —— 构建与审计
+site/     讲给谁 —— 生成的文档站（文心 / 万形 / 构件 / 验证）
+spec/     说什么 —— 规范正文与判定日志
+kit/      给什么 —— tokens、基础层、组件、页面原型与图表产物
+scripts/  怎么校验 —— 构建、静态检查与审计器
+tests/    如何证明检查有效 —— 正/负控制夹具
 ```
 
-`site/` 是现在的门面。九种形态不再是文档的组织方式，已并入
-[`site/media.html`](../site/media.html) 一页；`examples/` 保留下来是因为
-`audit:examples` 用它们做验收——删掉它们等于删掉那份覆盖。
+`site/` 是现在的门面，源文件位于 `site/_pages/`，由 `npm run build:site` 生成。
+九种形态不再按九份文档或示例页展开，而是收敛到 [`site/media.html`](../site/media.html)
+与 form-level token；旧 `examples/` 已在 D-26 删除。render-audit 作为使用者工具保留，
+仓库用 `tests/render-audit/` 的正/负夹具验证它自身。
 
 ### 形态层 · Form
 
@@ -46,7 +47,7 @@ scripts/  怎么校验 —— 构建与审计
 |---|---|
 | [media.md](./media.md) | 九种媒介**强制**的决定；读者版见 [`site/media.html`](../site/media.html) |
 | [page-archetypes.md](./page-archetypes.md) | 五种页面原型 A–E |
-| [render-contract.md](./render-contract.md) | 机器可读的页面合同（审计器已移出 CI，见 D-26） |
+| [render-contract.md](./render-contract.md) | 机器可读的页面合同；审计器独立使用、其自身由正/负夹具验证 |
 
 ### 灵魂层 · Soul（不变）
 
@@ -68,14 +69,13 @@ scripts/  怎么校验 —— 构建与审计
 
 ### 形态层 · Form（随容器而变）
 
-[**DECISIONS-MATRIX.md**](./media.md) 是入口 —— 一张表看完九个形态各自被迫做的不同决定。
+[**media.md**](./media.md) 是入口 —— 一张表看完九个形态各自被迫做的不同决定。
 
 F1 Web · F2 Mobile · F3 Brand · F4 Print · F5 Presentation ·
 F6 Documentation · F7 Poster · F8 Diagram · F9 Report
 
-外加三份跨形态规范：[page-archetypes.md](./page-archetypes.md)（5 种内容原型）、
-[render-contract.md](./render-contract.md)（可机器校验的渲染契约）、
-[cross-form-matrix.md](./media.md)。
+外加两份跨形态规范：[page-archetypes.md](./page-archetypes.md)（5 种内容原型）、
+[render-contract.md](./render-contract.md)（可机器校验的渲染契约）。
 
 **清单在 F9 处封闭。** 仪表盘、电商、游戏、CRM、邮件通讯是设计上的排除，不是遗漏。
 

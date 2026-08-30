@@ -21,17 +21,17 @@
 
 | 维度 | 现状 | 完工后 | 判断依据与复现命令 |
 | --- | --- | ---: | --- |
-| 单组件文档深度 | 五个类别页加入场景标记、选择边界和 API/ARIA/脚本表；六个此前无标记的组件已展示。 | 62% | `npm run build:site && npm run check:site`；仍非“一组件一页”，且部分小型修饰符共享类别契约。 |
+| 单组件文档深度 | 五个类别页加入场景标记、选择边界和 API/ARIA/脚本表；组件清单覆盖 5 个职责族、31 条公开契约。 | 66% | `npm run check:components && npm run build:site`；仍非“一组件一页”，且部分小型修饰符共享类别契约。 |
 | 组件覆盖 | 仍坚持内容、文档与轻应用边界；不为对齐数量新增组件。 | 58% | `rg -o 'wx-[a-z][a-z0-9-]*' kit/components --glob '*.css' | sort -u`；与 Ant 的 CRM/仪表盘范围不可比。 |
-| 设计语言文档 | 23 页，增加设计探索、无障碍/RTL 和定制/交换路径。 | 70% | `npm run build:site && npm run check:site`。 |
+| 设计语言文档 | 22 页，以文心→万形→构件→验证的框架模型组织，并含无障碍/RTL 和定制/交换路径。 | 70% | `npm run build:site && npm run check:site`。 |
 | 主题定制 | 默认真源、覆盖边界、accent/字体/密度路径和 `dense.css` 预设明确。 | 62% | `npm run check:colors`；无 JS seed/map 算法是有意保持零依赖。 |
 | token 交换 | 额外导出 `tokens.dtcg.json`，默认值与暗色 extension 同源生成。 | 70% | `npm run build:tokens`；消费端对自定义暗色 extension 的映射仍需各工具配置。 |
-| 工程成熟度 | README、Keep a Changelog、SemVer breakage 规则与审计器自测已建立。 | 68% | `npm run check`；未公开发布，尚无真实迁移指南。 |
+| 工程成熟度 | README、Keep a Changelog、SemVer breakage 规则，以及审计器、a11y、组件清单的正/负控制已建立。 | 70% | `npm run check`；未公开发布，尚无真实迁移指南。 |
 | 无障碍 | `check:a11y`、负控制、forced-colors 样式、专门承诺页与人工清单。 | 62% | `npm run check:a11y && npm run check:a11y:selftest`；读屏器、键盘全流程、Windows 实机仍是发布前人工门槛。 |
 | 国际化 / RTL | 本地 HTTP 下 RTL 宽屏与 390px 实测无页面横向溢出，逻辑边界正确。 | 55% | `python3 -m http.server 8899` 后打开 `/tests/rtl/index.html`；未承诺完整阿拉伯语/希伯来语本地化。 |
 | 生态 | 仍只有基础品牌资产，未假装有 Figma/图标生态。 | 12% | 有意不扩张；这不是本轮应靠造资产填补的指标。 |
 
-综合判断：核心交付（文档、tokens、验证、定制、a11y/RTL 证据）约 **64%** 的目标成熟度；
+综合判断：核心交付（文档、tokens、验证、定制、a11y/RTL 证据）约 **66%** 的目标成熟度；
 落在 60–80% 区间。生态、完整本地化、真实消费者迁移与设备级无障碍验收仍是明确缺口。
 
 ## Ant Design 组件对照
@@ -48,6 +48,6 @@
 
 ## 自查清单
 
-- 已完成：仓库门面与版本纪律；render-audit 正/负夹具并纳入总检查；DTCG 导出；密度预设；静态 a11y 检查及负控制；forced-colors 规则；RTL 浏览器实测；组件文档契约表与六个缺失标记；成熟度与对照表。
+- 已完成：仓库门面与版本纪律；render-audit 正/负夹具并纳入总检查；DTCG 导出；密度预设；静态 a11y 检查及负控制；组件清单与负控制；forced-colors 规则；RTL 浏览器实测；组件文档契约表与六个缺失标记；成熟度与对照表。
 - 未完成：Windows forced-colors 实机、读屏器和完整键盘流程未能在当前 macOS 环境替代；未建立 Figma/图标生态；没有公开发布或迁移指南。
 - 判断不做：不新增组件来凑 Ant 数量；不拆成每组件一页；不引入 JS 主题算法；不开放许可或发布包。理由分别是系统范围、阅读成本、零依赖约束和未获得发布授权。

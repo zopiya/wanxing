@@ -27,7 +27,7 @@ What the reader feels is not "consistent styling" but an inexplicable comfort.
 | 层 Layer | 内容 | 可变性 | 归属 |
 |---|---|---|---|
 | **灵魂 Soul** | 色彩、字体哲学、留白密度、点睛之色、动效节奏 | 永远不变 | `spec/soul/` |
-| **形态 Form** | 布局结构、导航形式、内容组织 | 随容器而变 | `spec/forms/` |
+| **形态 Form** | 布局结构、导航形式、内容组织 | 随容器而变 | `spec/media.md` 与 `spec/page-archetypes.md` |
 
 这就是 `soul/` 与 `forms/` 分工的理论依据 —— 也是"万形"这个名字的由来：
 **一个魂，一万种形。**
@@ -67,7 +67,7 @@ Wenxin is not a *style*; it is a specific point in a design space. Seven dimensi
 | **C · 排版节奏** | **C9 温暖衬线** | 衬线的笔画有起伏、有呼吸 | 正文 EB Garamond + Noto Serif SC；中文行高 1.85，英文 2.0 |
 | **D · 色彩基调** | **D9 暖土调** | 色彩来自泥土、陶器、茶叶、宣纸 | 暖白底 + 砖红 `#8B3525` accent + 深炭文字；禁高饱和蓝绿紫橙 |
 | **E · 动效理念** | **E9 温和流动** | 动效像自然界的运动 | `--duration-base: 260ms`；列表 stagger 60ms；尊重 reduced-motion |
-| **F · 输出形态** | **F1–F9** | **主要可变维度** | 九种形态，见 `spec/forms/` |
+| **F · 输出形态** | **F1–F9** | **主要可变维度** | 九种形态，见 `spec/media.md` |
 | **G · 文化语境** | **G2 东亚** | CJK 排版规范 | 行高 ≥1.6；中文展示字距 `0.1em`；最小字号 12px；避免斜体强调 |
 
 ### 为什么这个模型重要

@@ -104,15 +104,15 @@ Used by: [`f6-documentation.md`](./media.md) 的搜索/查询交互界面。源�
 
 ---
 
-重构前材料只有 [`examples/f1-web/index.html`](../site/index.html) 的 A/B/D 旁证；
+重构前材料只有历史 F1 首页的 A/B/D 旁证；完整历史材料冻结在 [PROVENANCE.md](./PROVENANCE.md) 所指的 commit `93fba710`。
 2026-08-30 田野审计补上了原型 C（`zopiya.com`）与原型 E（`note.zopiya.com`）的生产证据。
 
 The pre-rebuild material covered A/B/D only. The 2026-08-30 field audit adds production evidence
 for archetype C (`zopiya.com`) and archetype E (`note.zopiya.com`).
 
-五种可复制骨架现位于 [`kit/patterns/`](../kit/patterns/)，完整亮/暗预览见
-[`examples/gallery/patterns.html`](../site/index.html)。骨架只定义布局；实际输出仍需选择 F1–F9 形态并填写渲染合同。
+五种可复制骨架现位于 [`kit/patterns/`](../kit/patterns/)，当前预览见
+[`site/patterns.html`](../site/patterns.html)。骨架只定义布局；实际输出仍需选择 F1–F9 形态并填写渲染合同。
 
-Copyable skeletons now live in [`kit/patterns/`](../kit/patterns/), with a light/dark gallery at
-[`examples/gallery/patterns.html`](../site/index.html). A skeleton supplies layout,
+Copyable skeletons now live in [`kit/patterns/`](../kit/patterns/), with current previews in
+[`site/patterns.html`](../site/patterns.html). A skeleton supplies layout,
 not a form profile or render contract.

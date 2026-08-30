@@ -17,7 +17,7 @@ ten thousand forms.
 ## Repository Structure
 
 ```
-site/      讲给谁 — the documentation site (21 pages); the front door
+site/      讲给谁 — the documentation site (22 pages); the front door
 spec/      说什么 — the specification (bilingual prose)
 kit/       给什么 — reusable artifacts: tokens, base CSS, components, patterns, markdown, charts
 scripts/   怎么校验 — build and check
@@ -38,9 +38,8 @@ itself, so a documented example can never drift from what it renders.
   (34 auditable criteria), `color.md`, `typography.md`, `spacing.md`, `rhythm.md`, `motion.md`
   (intensity levels E8/E9-0/E9-1/E9-2), `components.md`, `data-viz.md`, `brand.md`, `icons.md`,
   `accessibility.md`, `forbidden.md`.
-- **`spec/forms/`** — F1–F9 plus `DECISIONS-MATRIX.md` (**the entry point** — one table showing what
-  each of the nine forms is forced to decide differently), `page-archetypes.md`,
-  `render-contract.md`, `cross-form-matrix.md`.
+- **`spec/media.md`** — F1–F9 的媒介强制决定（一张入口矩阵）；
+  **`spec/page-archetypes.md`** 是 A–E 页面原型，`render-contract.md` 是消费者页面合同。
 - **`spec/DECISIONS.md`** — the conflict-judgment log. Every philosophy-vs-convention call, with
   reasoning and which arbitration layer decided it.
 - **`spec/PROVENANCE.md`** — where the current content was harvested from, and the SHA where the
@@ -62,7 +61,7 @@ kit/
   patterns/        five copyable A–E page-archetype skeletons
   markdown/        .wx-md prose, syntax highlighting, Hugo render hooks
   charts/          ink-encoded chart styles + SVG conventions
-  dist/            unminified, import-free wenxin.css + wenxin-f1…f9.css
+  dist/            unminified, import-free wenxin.css
   assets/brand/    logo SVGs
 ```
 
@@ -124,14 +123,14 @@ concerns come after the system is complete.
 npm run build            # tokens + chart themes + CSS bundles + the docs site
 npm run build:css        # flatten kit into unminified single-file bundles
 npm run build:site       # assemble site/_pages + _nav.json into site/*.html
-npm run check            # tokens + colours + forbidden + site + audit selftest + examples
+npm run check            # tokens + colours + forbidden + site + render-audit selftest + a11y + a11y selftest
 npm run audit <file>     # render-audit one page
 python3 -m http.server 8899   # examples need http; file:// blocks @import and fonts
 ```
 
-**`npm run check` is currently green: four checks, 0 failures.**
+**`npm run check` is currently green: nine gates, 0 failures.**
 
-Four checks, each of which caught a real defect. Two of them caught defects in the checking itself,
+Nine gates, several of which caught a real defect. Three caught defects in the checking itself,
 which is the failure mode to watch here: **a check that cannot fail is worse than no check**, because
 its green output gets cited as evidence. Negative-control anything you are about to call passing.
 
@@ -148,15 +147,20 @@ its green output gets cited as evidence. Negative-control anything you are about
 - `check:site` — the docs site fails quietly: a dead link or a skipped heading level looks fine to
   whoever is editing that page. Checks nav/page correspondence both ways, one `<h1>`, no
   heading-level jumps, and that every internal link and anchor resolves.
+- `check:components` — verifies the public component manifest against actual base/component CSS and
+  a reachable category page. The accompanying negative fixture names a non-existent class and must
+  fail; a generated component directory is not trustworthy if its source inventory can drift.
+- `check:a11y` — checks every generated page for a main landmark, control labels and accessible
+  names. Its negative fixture contains an unlabeled control and must fail.
 
-`npm run audit <file>` still exists as a **standalone tool** for checking a consumer's page against
-a render contract, but **CI no longer runs it** (D-26). Nothing verifies the auditor itself any
-more; if it goes back into `check`, it needs its negative-control fixture back with it.
+`npm run audit <file>` is a **standalone tool** for checking a consumer's page against a render
+contract. The consumer audit is not run against repository pages, but `check:render-audit` runs its
+own passing and deliberately failing fixtures; an auditor without a negative control is not evidence.
 
 ## Status
 
-The documentation site is the only user-facing surface: 21 pages covering values, the arbitration
-rule, global styles, five design patterns, and the full component reference. `examples/` and
+The documentation site is the only user-facing surface: 22 pages covering the framework model,
+values, the arbitration rule, media/forms, patterns, components and verification. `examples/` and
 `spec/forms/` were deleted (**D-26**); the nine media specs compress into `spec/media.md` plus
 `site/media.html`, and the per-medium CSS bundles are gone (**D-27**) because nine files carried
 145 lines of real difference across 30,358.

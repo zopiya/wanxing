@@ -1,29 +1,37 @@
-<p class="wx-eyebrow">设计系统 · Design System</p>
-<div class="doc-hero">
-  <h1>文心 · 万形</h1>
-  <p class="wx-lede">给内容型产品一套能落地的设计判断：文字是界面，留白是结构，克制不是牺牲可用性。</p>
-  <p>它同时交付规范、CSS token、组件和文档站。你不需要从一段设计哲学重新推导按钮、表单或内容页；但每一个现成答案都保留了它为什么存在、何时不该使用的理由。</p>
-  <div class="doc-hero__actions"><a class="wx-btn wx-btn--primary" href="./explore.html">开始设计探索</a><a class="wx-btn" href="./components.html">查看组件能力</a></div>
+<p class="wx-eyebrow">框架总览 · Framework Overview</p>
+<h1>文心 · 万形</h1>
+<p class="wx-lede">不是一套“长得像什么”的 UI 库，而是一套把设计判断、媒介适配、可复用构件与交付验证连成闭环的内容型前端框架。</p>
+
+<h2 id="model">一个魂，万种形</h2>
+<p>文心决定什么不能变；万形决定同一个判断如何在不同媒介、页面任务和交互密度中落地。构件与验证不是附录，它们是让这套设计能够被团队复用、检查和演化的机制。</p>
+<div class="doc-system-model">
+  <section><p class="doc-system-model__index">01</p><h3><a href="./values.html">文心 · Soul</a></h3><p>七维度模型中的不变之魂：A9 克制、B9 温暖极简、D9 暖土调；再由排版、节奏、动效和文化语境具体化。</p><p class="doc-system-model__source">权威源：<code>spec/soul/</code> 与 <code>core.css</code></p></section>
+  <section><p class="doc-system-model__index">02</p><h3><a href="./media.html">万形 · Forms</a></h3><p>F1–F9 媒介约束与 A–E 页面原型。媒介决定物理条件，页面任务决定阅读轨或应用轨。</p><p class="doc-system-model__source">权威源：<code>spec/media.md</code> 与 <code>kit/patterns/</code></p></section>
+  <section><p class="doc-system-model__index">03</p><h3><a href="./components.html">构件 · Kit</a></h3><p>三层 token、基础层、组件、模式和行为脚本。每层只解决它该解决的问题，不把业务产品抽象塞进通用库。</p><p class="doc-system-model__source">权威源：<code>kit/</code></p></section>
+  <section><p class="doc-system-model__index">04</p><h3><a href="./accessibility.html">验证 · Assurance</a></h3><p>颜色、禁令、token、站点结构、render contract、a11y 与人工设备检查共同定义“可交付”。</p><p class="doc-system-model__source">权威源：<code>scripts/</code> 与 <code>tests/</code></p></section>
 </div>
 
-<h2 id="routes">从产品问题进入，不从目录进入</h2>
-<p>这五条路径是站点的一级信息架构。顶部负责切换“正在解决什么问题”，左侧才负责进入具体条目。</p>
-<div class="doc-route-grid">
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">01 · 方向</p><h3 class="wx-entry__title"><a href="./explore.html">开始</a></h3><p class="wx-entry__desc">理解系统适用什么、拒绝什么；先看设计探索，再读价值观与双轨仲裁。</p><a class="doc-route__link" href="./explore.html">进入设计探索 →</a></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">02 · 基础</p><h3 class="wx-entry__title"><a href="./color.html">全局样式</a></h3><p class="wx-entry__desc">色彩、字体、间距、动效与图标：先确立可交换的 token，再开始排版。</p><a class="doc-route__link" href="./color.html">查看全局 token →</a></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">03 · 页面</p><h3 class="wx-entry__title"><a href="./patterns.html">设计模式</a></h3><p class="wx-entry__desc">把长文、列表、表单、详情和结果页组织成可复用的内容结构。</p><a class="doc-route__link" href="./patterns.html">选择页面模式 →</a></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">04 · 交互</p><h3 class="wx-entry__title"><a href="./components.html">组件</a></h3><p class="wx-entry__desc">从场景选组件；每类都给用与不用、ARIA 契约、行为脚本与真实标记。</p><a class="doc-route__link" href="./components.html">浏览能力地图 →</a></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">05 · 交付</p><h3 class="wx-entry__title"><a href="./accessibility.html">延伸</a></h3><p class="wx-entry__desc">处理图表、媒介适配、无障碍、RTL、主题和 token 交换的交付证据。</p><a class="doc-route__link" href="./accessibility.html">查看交付边界 →</a></article>
-</div>
+<h2 id="workflow">一件新产出如何进入系统</h2>
+<ol class="doc-framework-flow">
+  <li><strong>先定形</strong><span>选择 F1–F9 媒介和 A–E 页面任务；这一步决定布局、动效强度和轨道，不是选一个视觉皮肤。</span></li>
+  <li><strong>再守魂</strong><span>从核心 token、排版节奏、色彩和禁令出发；任何偏离先对照 A9 / B9 / D9 与双轨仲裁。</span></li>
+  <li><strong>后组构件</strong><span>用 pattern 组织页面，再以组件完成输入、导航、内容展示与反馈；HTML/ARIA 契约是接口的一部分。</span></li>
+  <li><strong>最后验收</strong><span>运行构建与检查；自动检查证明静态底线，设备级可访问性和真实内容仍保留人工门槛。</span></li>
+</ol>
 
-<h2 id="proof">这不是视觉偏好清单</h2>
-<div class="doc-proof"><div><p class="doc-proof__value">0</p><p class="doc-proof__label">运行时依赖</p><p>样式可直接引入；行为脚本均为渐进增强。</p></div><div><p class="doc-proof__value">23</p><p class="doc-proof__label">文档页面</p><p>每页由源文件生成，演示代码直接从运行标记派生。</p></div><div><p class="doc-proof__value">7</p><p class="doc-proof__label">质量门禁</p><p>token、颜色、禁令、站点、审计器、a11y 与反向夹具共同运行。</p></div></div>
+<h2 id="entry">按问题进入</h2>
+<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>你要解决的问题</th><th>先看什么</th><th>再用什么</th></tr></thead><tbody>
+<tr><td>定义一份内容产品的视觉与语言边界</td><td><a href="./values.html">文心</a>、<a href="./tracks.html">双轨仲裁</a></td><td><a href="./color.html">token</a>、字体、间距与动效规则。</td></tr>
+<tr><td>把同一设计落到网页、移动、印刷或报告</td><td><a href="./media.html">万形 / F1–F9</a></td><td>对应 form token 与媒介强制的决定。</td></tr>
+<tr><td>组织一张内容页、列表、着陆页或工具页</td><td><a href="./patterns.html">页面原型 A–E</a></td><td><a href="./components.html">构件</a>，而不是从零散组件名猜用途。</td></tr>
+<tr><td>把产物交给另一位设计师或工程师</td><td><a href="./accessibility.html">验证</a></td><td>DTCG token、render contract 与可复现命令。</td></tr>
+</tbody></table></div>
 
-<h2 id="install">三行开始使用</h2>
+<h2 id="install">最小接入</h2>
 <pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="kit/index.css"&gt;
 &lt;main class="wx-container wx-container--article"&gt;
   &lt;h1&gt;内容先于界面&lt;/h1&gt;
 &lt;/main&gt;</code></pre>
-<p>需要单文件交付时使用 <code>kit/dist/wenxin.css</code>。需要更紧凑的信息密度时，在根节点添加 <code>data-density="dense"</code>；不引入 JS 主题算法。</p>
+<p>需要单文件时使用 <code>kit/dist/wenxin.css</code>；需要媒介适配时额外引入相应的 <code>kit/tokens/forms/fN-*.css</code>。不是所有项目都应使用这套系统：dashboard、电商、CRM、游戏与邮件通讯在设计范围外。</p>
 
-<div class="wx-note wx-note--info"><span class="wx-note__title">成熟度的定义</span><p>成熟不是把组件数做得像 Ant Design。这里的目标是让每一个公开答案都有文档、可访问性契约、验证路径和可承认的边界。现状与未完成项见 <a href="../MATURITY.md">MATURITY.md</a>。</p></div>
+<div class="wx-note wx-note--info"><span class="wx-note__title">框架成熟度</span><p>成熟不等于组件数量或门户页面数量；它意味着每一层都有明确权威源、公开契约、可组合边界和验证责任。当前证据与缺口在 <a href="../MATURITY.md">MATURITY.md</a>。</p></div>

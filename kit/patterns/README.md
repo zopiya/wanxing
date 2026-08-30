@@ -1,10 +1,10 @@
 # 页面原型骨架 · Page Archetype Skeletons
 
-> A–E 对应 [`spec/forms/page-archetypes.md`](../../spec/page-archetypes.md)。
-> A–E map directly to [`spec/forms/page-archetypes.md`](../../spec/page-archetypes.md).
+> A–E 对应 [`spec/page-archetypes.md`](../../spec/page-archetypes.md)。
+> A–E map directly to [`spec/page-archetypes.md`](../../spec/page-archetypes.md).
 
 这些文件是可复制的 HTML 片段，不自带形态 profile。使用者仍需按实际媒介加载对应的
-`wenxin-fN.css` 并填写渲染合同；原型 E 必须把页面 `track` 声明为 `application`。
+`kit/tokens/forms/fN-*.css` 并填写渲染合同；原型 E 必须把页面 `track` 声明为 `application`。
 
 These are copyable HTML fragments, not form profiles. Load the relevant `wenxin-fN.css`, complete
 the render contract, and declare archetype E pages as `application` track.
