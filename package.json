@@ -1,0 +1,21 @@
+{
+  "name": "wenxin-wanxing",
+  "version": "0.1.0",
+  "description": "文心 · 万形 — a bilingual, content-centric design system. One soul, ten thousand forms.",
+  "type": "module",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "npm run build:tokens && npm run build:themes",
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "audit": "node scripts/render-audit.mjs",
+    "check:tokens": "node scripts/check-tokens.mjs",
+    "check:forbidden": "node scripts/check-forbidden.mjs",
+    "check": "npm run check:tokens && npm run check:forbidden && npm run audit:examples",
+    "build:themes": "node scripts/build-themes.mjs",
+    "audit:examples": "node scripts/audit-all.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

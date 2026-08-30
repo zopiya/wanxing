@@ -1,0 +1,17 @@
+/* All v1 components. Import after kit/base. */
+@import "./entry.css";
+@import "./content.css";
+@import "./quote.css";
+@import "./table.css";
+@import "./list.css";
+@import "./tag.css";
+@import "./stat.css";
+@import "./figure.css";
+@import "./seal.css";
+@import "./button.css";
+@import "./field.css";
+@import "./note.css";
+@import "./nav.css";
+@import "./sidebar.css";
+@import "./toc.css";
+@import "./code.css";

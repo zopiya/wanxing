@@ -1,0 +1,30 @@
+/* Table of contents with scroll spy. The active entry is marked with
+   aria-current by the script; the styling follows from that, so the visual
+   state and the accessibility tree cannot drift apart. */
+@layer wx.components {
+  .wx-toc {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-toc__heading {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-3);
+  }
+  .wx-toc__list { list-style: none; margin: 0; padding: 0; }
+  .wx-toc__list .wx-toc__list { padding-inline-start: var(--space-4); }
+  .wx-toc__link {
+    display: block;
+    padding-block: var(--space-1);
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+  .wx-toc__link:hover { color: var(--color-text-primary); }
+  .wx-toc__link[aria-current] { color: var(--color-accent); }
+
+  @media (min-width: 1280px) {
+    .wx-toc--sticky { position: sticky; top: var(--space-8); }
+  }
+}

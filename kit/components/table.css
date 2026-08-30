@@ -1,0 +1,48 @@
+/* Horizontal rules only. No outer frame, no vertical lines, no zebra striping —
+   the eye tracks a row perfectly well without them, and each added line is one
+   more thing between the reader and the data. */
+@layer wx.components {
+  .wx-table {
+    width: 100%;
+    font-size: var(--text-sm);
+    text-align: start;
+  }
+  .wx-table caption {
+    caption-side: top;
+    text-align: start;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    padding-block-end: var(--space-3);
+  }
+  .wx-table th {
+    font-weight: 600;
+    color: var(--color-text-heading);
+    text-align: start;
+    border-bottom: var(--stroke-hairline) solid var(--color-border-strong);
+  }
+  .wx-table td {
+    border-bottom: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-table th,
+  .wx-table td {
+    padding: var(--space-3);
+    padding-inline-start: 0;
+    vertical-align: baseline;
+  }
+  .wx-table td:last-child,
+  .wx-table th:last-child { padding-inline-end: 0; }
+
+  /* Numeric columns align on the decimal and use lining figures. */
+  .wx-table__num {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Wide tables scroll inside their own container rather than pushing the page
+     sideways. The wrapper is focusable so keyboard users can scroll it. */
+  .wx-table-scroll {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+}

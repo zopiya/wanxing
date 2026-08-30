@@ -1,0 +1,17 @@
+@layer wx.components {
+  .wx-figure { margin-block: var(--space-8); }
+  .wx-figure img,
+  .wx-figure svg { width: 100%; }
+  .wx-figure__caption {
+    margin-block-start: var(--space-3);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+  /* Numbered figures — F9 requires every figure to be numbered and referenced. */
+  .wx-figure__number {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
+    margin-inline-end: var(--space-2);
+  }
+}

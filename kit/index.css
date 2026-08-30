@@ -1,0 +1,19 @@
+/* 文心 · 万形 — the whole kit.
+   Import this for everything, or cherry-pick the parts you need.
+   Form-level tokens are opt-in: add kit/tokens/forms/fN-*.css alongside. */
+@import "./layers.css";
+
+@import "./tokens/core.css"  layer(wx.tokens);
+@import "./tokens/dark.css"  layer(wx.tokens);
+
+@import "./base/fonts.css";
+@import "./base/reset.css";
+@import "./base/typography.css";
+@import "./base/a11y.css";
+@import "./base/motion.css";
+@import "./base/layout.css";
+@import "./base/print.css";
+
+@import "./components/index.css";
+@import "./markdown/index.css";
+@import "./charts/index.css";

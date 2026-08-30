@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN" data-wanxing-profile="F6" data-wanxing-contract-version="1"
+      data-motion="E9-0" data-animations-complete="false">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token 体系 · F6 Documentation</title>
+<link rel="stylesheet" href="../../kit/index.css">
+<link rel="stylesheet" href="../../kit/tokens/forms/f6-documentation.css">
+<script type="application/json" id="wanxing-render-contract">
+{ "profile": "F6", "track": "editorial", "title": "Token 体系", "language": "zh-CN",
+  "canvas": { "kind": "responsive" },
+  "theme": { "accentBudget": 2, "darkModeRequired": true },
+  "structure": { "requiredRegions": ["header", "nav", "main"],
+                 "sidebarRequired": true, "searchRequired": true },
+  "motion": { "intent": "state-feedback", "intensity": "E9-0", "maxDurationMs": 260,
+              "maxTranslatePx": 0, "completionSignal": "data-animations-complete" },
+  "audit": { "profileSpecificChecks": ["sidebar", "toc", "search", "dark-mode"],
+             "allowedDeviations": [] } }
+</script>
+<style>
+  /* 本页独有：双栏骨架 */
+  .doc { display: flex; gap: var(--space-12); align-items: flex-start; }
+  .doc__body { flex: 1 1 auto; min-width: 0; max-width: var(--width-article); }
+  .doc__aside { flex: 0 0 var(--toc-width); position: sticky; top: var(--space-8); }
+  .doc__bar { display: flex; align-items: center; gap: var(--space-4);
+              min-height: var(--header-height);
+              border-bottom: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .doc__menu { display: none; }
+  @media (max-width: 1279px) { .doc__aside { display: none; } }
+  @media (max-width: 1024px) { .doc__menu { display: inline-flex; } }
+</style>
+</head>
+<body>
+<a class="wx-skip" href="#main">跳至主内容</a>
+<div class="wx-page">
+
+  <header class="doc__bar">
+    <button class="wx-btn wx-btn--text doc__menu" data-wx-toggle="#sidebar" aria-expanded="false" aria-controls="sidebar">菜单</button>
+    <a class="wx-nav__brand" href="#"><span class="wx-seal"></span> 文心文档</a>
+    <span style="flex:1"></span>
+    <label class="wx-sr-only" for="q">搜索文档</label>
+    <input class="wx-input" id="q" type="search" placeholder="搜索…" style="max-width: 220px">
+  </header>
+
+  <div class="doc" style="padding-block: var(--space-8)">
+    <nav class="wx-sidebar" id="sidebar" aria-label="文档导航">
+      <div class="wx-sidebar__group">
+        <p class="wx-sidebar__heading">灵魂层</p>
+        <ul class="wx-sidebar__list">
+          <li><a class="wx-sidebar__link" href="#">设计哲学</a></li>
+          <li><a class="wx-sidebar__link" href="#" aria-current="page">Token 体系</a></li>
+          <li><a class="wx-sidebar__link" href="#">动效</a></li>
+        </ul>
+      </div>
+      <div class="wx-sidebar__group">
+        <p class="wx-sidebar__heading">形态层</p>
+        <ul class="wx-sidebar__list">
+          <li><a class="wx-sidebar__link" href="#">F1 Web</a></li>
+          <li><a class="wx-sidebar__link" href="#">F6 Documentation</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main id="main" class="doc__body">
+      <nav class="wx-crumbs" aria-label="面包屑">
+        <ol><li><a href="#">文档</a></li><li><a href="#">灵魂层</a></li><li><span aria-current="page">Token 体系</span></li></ol>
+      </nav>
+
+      <article class="wx-md">
+        <h1 id="t">Token 体系</h1>
+        <p>所有数值的唯一真源是 <code>kit/tokens/core.css</code>。文档里的数值是为方便阅读的摘录，冲突时以该文件为准。</p>
+
+        <h2 id="t1">三层归位</h2>
+        <p>Token 按作用域分三层，这个分层就是架构本身。</p>
+        <div class="wx-code">
+          <div class="wx-code__header"><span>css</span><button class="wx-code__copy">复制</button></div>
+          <pre class="wx-code__body"><code>/* core   —— 跨形态通用 */
+--color-accent: #8B3525;
+/* forms  —— 形态级 */
+--sidebar-width: 240px;
+/* 组件内 —— 与组件同处 */
+--code-keyword: #6B5B3E;</code></pre>
+        </div>
+
+        <aside class="wx-note wx-note--warn">
+          <b class="wx-note__title">注意</b>
+          <p>不要从 Markdown 里手抄数值进代码。<code>npm run check:tokens</code> 会校验每个 <code>var(--x)</code> 都能解析到定义。</p>
+        </aside>
+
+        <h2 id="t2">语义色</h2>
+        <p>语义色是信息通道，不计入 accent 预算，但必须与文字标签同时出现。</p>
+        <table>
+          <thead><tr><th>Token</th><th>亮色</th><th>对暖白</th></tr></thead>
+          <tbody>
+            <tr><td><code>--color-danger</code></td><td>#5C1F2F</td><td>10.90:1</td></tr>
+            <tr><td><code>--color-warning</code></td><td>#7D5E12</td><td>5.30:1</td></tr>
+            <tr><td><code>--color-success</code></td><td>#4F6B3A</td><td>5.27:1</td></tr>
+          </tbody>
+        </table>
+
+        <aside class="wx-note wx-note--tip">
+          <b class="wx-note__title">提示</b>
+          <p>四色两两最小色差 ΔE = 28，黑白复印后依然可分。</p>
+        </aside>
+      </article>
+
+      <nav class="wx-pager">
+        <a href="#"><span class="wx-pager__label">上一页</span>设计哲学</a>
+        <a href="#" style="text-align:end"><span class="wx-pager__label">下一页</span>动效</a>
+      </nav>
+    </main>
+
+    <aside class="doc__aside">
+      <nav class="wx-toc" aria-label="本页目录">
+        <p class="wx-toc__heading">本页</p>
+        <ul class="wx-toc__list">
+          <li><a class="wx-toc__link" href="#t">Token 体系</a></li>
+          <li><a class="wx-toc__link" href="#t1">三层归位</a></li>
+          <li><a class="wx-toc__link" href="#t2">语义色</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+<script src="../../kit/components/js/animations-complete.js"></script>
+<script src="../../kit/components/js/toc.js" defer></script>
+<script src="../../kit/components/js/disclosure.js" defer></script>
+<script src="../../kit/components/js/copy.js" defer></script>
+</body>
+</html>

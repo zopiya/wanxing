@@ -1,0 +1,8 @@
+{{- /* {{< pullquote author="…" >}} … {{< /pullquote >}}
+       A pull quote is the author's own words lifted for rhythm — distinct from
+       a blockquote, which is someone else's words inside the argument. */ -}}
+<aside class="wx-pullquote" aria-label="{{ i18n "pullQuoteAria" | default "Pull quote" }}">
+  {{- with .Get "label" }}<span class="wx-pullquote__label">{{ . }}</span>{{ end }}
+  {{ .Inner | markdownify }}
+  {{- with .Get "author" }}<footer class="wx-attr__meta">{{ . }}</footer>{{ end }}
+</aside>

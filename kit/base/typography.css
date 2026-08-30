@@ -1,0 +1,102 @@
+/* The typographic ground: what a page looks like with zero classes.
+   If a bare <h1> or <p> would be wrong without a rule, the rule belongs here. */
+@layer wx.base {
+  html {
+    font-size: 100%;
+    color-scheme: light dark;
+  }
+
+  body {
+    background: var(--color-bg-warm);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings are display-serif and set tighter than body — the scale does the
+     work, not weight. Criterion P-4: contrast must serve hierarchy. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-text-heading);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  h1 { font-size: var(--text-4xl); letter-spacing: var(--tracking-tight); }
+  h2 { font-size: var(--text-2xl); }
+  h3 { font-size: var(--text-xl); }
+  h4 { font-size: var(--text-lg); }
+  h5 { font-size: var(--text-md); }
+  h6 {
+    font-size: var(--text-sm);
+    font-family: var(--font-ui);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-secondary);
+  }
+
+  /* CJK wants looser tracking at display sizes; :lang() keeps it off Latin. */
+  :lang(zh) h1, :lang(zh) h2 { letter-spacing: var(--tracking-chinese); }
+
+  p { text-wrap: pretty; }
+
+  /* Links carry no underline in body text — they sit at body color and reveal
+     themselves on hover. In pure navigation they may rely on color alone. */
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  a:hover { color: var(--color-link-hover); }
+
+  /* Prose links are the exception: inside running text an underline appears on
+     hover, so the link is not signalled by color alone (forbidden.md). */
+  p > a, li > a, dd > a {
+    text-decoration: underline;
+    text-decoration-thickness: var(--stroke-hairline);
+    text-underline-offset: 0.18em;
+    text-decoration-color: var(--color-border-strong);
+  }
+  p > a:hover, li > a:hover, dd > a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  strong, b { font-weight: 600; color: var(--color-text-heading); }
+
+  /* Italic is discouraged for CJK emphasis (G2) — fall back to weight. */
+  :lang(zh) em { font-style: normal; font-weight: 600; }
+
+  small { font-size: var(--text-sm); color: var(--color-text-secondary); }
+
+  code, kbd, samp, pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-code);
+  }
+
+  hr {
+    border: 0;
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+    margin-block: var(--space-12);
+  }
+
+  blockquote { color: var(--color-text-secondary); }
+
+  ul, ol { padding-inline-start: var(--space-6); }
+  li { margin-block: var(--space-2); }
+
+  figcaption {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-top: var(--space-3);
+  }
+
+  ::selection {
+    background: var(--color-accent-subtle);
+    color: var(--color-text-heading);
+  }
+}

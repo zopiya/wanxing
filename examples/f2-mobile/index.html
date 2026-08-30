@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN" data-wanxing-profile="F2" data-wanxing-contract-version="1"
+      data-motion="E9-1" data-animations-complete="false">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阅读 · F2 Mobile</title>
+<link rel="stylesheet" href="../../kit/index.css">
+<link rel="stylesheet" href="../../kit/tokens/forms/f2-mobile.css">
+<script type="application/json" id="wanxing-render-contract">
+{ "profile": "F2", "track": "application", "title": "阅读", "language": "zh-CN",
+  "canvas": { "kind": "mobile", "width": 393, "height": 852 },
+  "theme": { "accentBudget": 2, "darkModeRequired": true },
+  "structure": { "requiredRegions": ["nav-bar", "content", "tab-bar"] },
+  "motion": { "intent": "entrance", "intensity": "E9-1", "maxDurationMs": 420,
+              "maxTranslatePx": 4, "completionSignal": "data-animations-complete" },
+  "audit": { "profileSpecificChecks": ["touch-targets", "safe-area", "dark-mode"],
+             "allowedDeviations": ["f2-grouped-surface"] } }
+</script>
+<style>
+  /* 本页独有：把手机放进画布里展示 */
+  .stage { min-height: 100vh; display: grid; place-items: center;
+           background: var(--phone-bg); padding: var(--space-8); }
+  .phone { width: 393px; height: 852px; overflow: hidden; display: flex; flex-direction: column;
+           background: var(--phone-screen-bg); border-radius: var(--space-10); }
+  .phone__bar { display: flex; align-items: center; justify-content: space-between;
+                min-height: var(--nav-bar-height); padding-inline: var(--space-5);
+                font-family: var(--font-ui); font-size: var(--text-sm); }
+  .phone__body { flex: 1; overflow-y: auto; padding: var(--space-5); }
+  .phone__tabs { display: flex; min-height: var(--tab-bar-height);
+                 border-top: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .tab { flex: 1; display: flex; flex-direction: column; align-items: center;
+         justify-content: center; gap: var(--space-1); min-height: var(--touch-target-min);
+         font-family: var(--font-ui); font-size: var(--text-sm); color: var(--color-text-secondary);
+         text-decoration: none; }
+  .tab[aria-current] { color: var(--color-accent); }
+  .tab svg { width: var(--icon-md); height: var(--icon-md); fill: none; stroke: currentColor; stroke-width: 1.5; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone">
+    <div class="phone__bar" role="banner">
+      <span style="color:var(--color-text-muted)">9:41</span>
+      <span style="color:var(--color-text-heading)">文心</span>
+      <span class="wx-seal"></span>
+    </div>
+
+    <main class="phone__body" id="main">
+      <h1 style="font-size: var(--text-2xl)">阅读</h1>
+      <p class="wx-entry__meta" style="margin-block: var(--space-2) var(--space-6)">今天 · 3 篇未读</p>
+
+      <ul class="wx-list wx-list--grouped">
+        <li><div><div style="color:var(--color-text-heading)">论克制</div>
+          <div class="wx-entry__meta">六分钟</div></div></li>
+        <li><div><div style="color:var(--color-text-heading)">论留白</div>
+          <div class="wx-entry__meta">四分钟</div></div></li>
+        <li><div><div style="color:var(--color-text-heading)">论节奏</div>
+          <div class="wx-entry__meta">八分钟</div></div></li>
+      </ul>
+
+      <p class="wx-eyebrow" style="margin-block: var(--space-8) var(--space-4)">应用轨允许的部分</p>
+      <p style="font-size: var(--text-base); color: var(--color-text-secondary)">
+        分组表面走边框而非阴影，主按钮可填充 —— 这是形态分轨的第二层，见 tracks.md。</p>
+      <p style="margin-block-start: var(--space-5)">
+        <button class="wx-btn wx-btn--primary" style="width:100%">开始阅读</button></p>
+      <p style="margin-block-start: var(--space-3)">
+        <button class="wx-btn" style="width:100%">稍后</button></p>
+    </main>
+
+    <nav class="phone__tabs" aria-label="主导航">
+      <a class="tab" href="#" aria-current="page">
+        <svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg>阅读</a>
+      <a class="tab" href="#">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>收藏</a>
+      <a class="tab" href="#">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.5-4 12.5-4 14 0"/></svg>我的</a>
+    </nav>
+  </div>
+</div>
+<script src="../../kit/components/js/animations-complete.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+@layer wx.components {
+  .wx-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 2px var(--space-3);
+    border: var(--stroke-hairline) solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    background: none;
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  a.wx-tag:hover,
+  button.wx-tag:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+}

@@ -1,0 +1,7 @@
+/* F6 · Documentation — form-level tokens. Load after core.css.
+   F6 carries the heaviest component load of the nine forms. */
+:root {
+  --sidebar-width: 240px;
+  --header-height: 56px;
+  --toc-width:     200px;
+}

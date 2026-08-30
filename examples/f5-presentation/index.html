@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN" data-wanxing-profile="F5" data-wanxing-contract-version="1"
+      data-motion="E9-1" data-animations-complete="false">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一个魂，一万种形 · F5 Presentation</title>
+<link rel="stylesheet" href="../../kit/index.css">
+<link rel="stylesheet" href="../../kit/tokens/forms/f5-presentation.css">
+<script type="application/json" id="wanxing-render-contract">
+{ "profile": "F5", "track": "editorial", "title": "一个魂，一万种形", "language": "zh-CN",
+  "canvas": { "kind": "fixed", "aspectRatio": "16:9", "width": 1920, "height": 1080 },
+  "theme": { "accentBudget": 2, "darkModeRequired": false },
+  "structure": { "requiredRegions": ["main"] },
+  "interaction": { "keyboardNavigation": true },
+  "motion": { "intent": "entrance", "intensity": "E9-1", "maxDurationMs": 420,
+              "maxTranslatePx": 8, "completionSignal": "data-animations-complete" },
+  "audit": { "profileSpecificChecks": ["aspect-ratio", "slide-types"],
+             "allowedDeviations": [] } }
+</script>
+<style>
+  body { background: var(--stage-bg); }
+  .deck { display: grid; gap: var(--space-8); padding: var(--space-8); }
+  .slide { aspect-ratio: 16 / 9; width: min(880px, 92vw); margin-inline: auto;
+           background: var(--color-bg-warm); padding: 8% var(--slide-safe-x);
+           display: flex; flex-direction: column; position: relative; }
+  .slide--dark   { background: var(--stage-bg); color: var(--color-bg-warm); }
+  .slide--dark h2, .slide--dark h1 { color: var(--color-bg-warm); }
+  .slide--accent { background: var(--color-accent); color: var(--color-bg-warm); }
+  .slide--accent h2 { color: var(--color-bg-warm); }
+  .slide__folio { position: absolute; inset-inline-end: 3%; inset-block-end: 3%;
+                  font-family: var(--font-ui); font-size: var(--text-sm);
+                  color: var(--color-text-muted); }
+  .slide h1 { font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl)); letter-spacing: var(--tracking-chinese); }
+  .slide h2 { font-size: clamp(var(--text-xl), 3.4vw, var(--text-3xl)); }
+  .slide ul { margin-block-start: var(--space-8); font-size: clamp(var(--text-base), 1.9vw, var(--text-lg));
+              line-height: var(--leading-normal); list-style: none; padding: 0; }
+  .slide li { margin-block-start: var(--space-4); }
+  .slide li::before { content: "—"; margin-inline-end: var(--space-3); color: var(--color-text-muted); }
+</style>
+</head>
+<body>
+<main id="main" class="deck">
+
+  <section class="slide" style="justify-content:center">
+    <p class="wx-eyebrow">文心 · 万形</p>
+    <h1 style="margin-block-start:var(--space-4)">一个魂，一万种形 <span class="wx-seal" style="--brand-mark-size:18px"></span></h1>
+    <p style="color:var(--color-text-secondary);font-size:var(--text-lg);margin-block-start:var(--space-4)">
+      内容为中心的双语设计语言</p>
+    <p class="wx-eyebrow" style="margin-block-start:var(--space-12)">2026 年 8 月 · 标题页</p>
+    <span class="slide__folio">1</span>
+  </section>
+
+  <section class="slide slide--dark" style="justify-content:center">
+    <p class="wx-eyebrow" style="color:var(--color-text-secondary)">第一节</p>
+    <h2 style="margin-block-start:var(--space-4)">水的原则</h2>
+    <span class="slide__folio">2</span>
+  </section>
+
+  <section class="slide">
+    <h2>魂不变，形随器变</h2>
+    <ul>
+      <li>灵魂层：色彩、排版、留白、动效 —— 永远不变</li>
+      <li>形态层：九种输出媒介 —— 随容器而变</li>
+      <li>读者感受到的不是「风格统一」，而是「说不出的舒服」</li>
+    </ul>
+    <span class="slide__folio">3</span>
+  </section>
+
+  <section class="slide slide--accent" style="justify-content:center;align-items:center;text-align:center">
+    <h2 style="letter-spacing:var(--tracking-chinese)">克制即力量</h2>
+    <span class="slide__folio" style="color:var(--color-bg-warm)">4</span>
+  </section>
+
+</main>
+<script src="../../kit/components/js/animations-complete.js"></script>
+<script>
+/* A deck must be operable from the keyboard — arrows and Home/End move between
+   slides. Declared in the contract as interaction.keyboardNavigation. */
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var i = 0;
+  function go(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides[i].scrollIntoView({ behavior: "smooth", block: "center" });
+    slides[i].setAttribute("tabindex", "-1");
+    slides[i].focus({ preventScroll: true });
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight" || e.key === "PageDown") { e.preventDefault(); go(i + 1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(i - 1); }
+    else if (e.key === "Home") { e.preventDefault(); go(0); }
+    else if (e.key === "End") { e.preventDefault(); go(slides.length - 1); }
+  });
+})();
+</script>
+</body>
+</html>

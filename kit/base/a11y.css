@@ -1,0 +1,49 @@
+/* The accessibility floor — layer one of the two-track rule. Unconditional in
+   every form and both tracks. Nothing here is a stylistic preference. */
+@layer wx.base {
+  /* Keyboard-only focus. Never removed, never zeroed. */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Visible only to screen readers. */
+  .wx-sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Skip link — hidden until focused, then it must be plainly visible. */
+  .wx-skip {
+    position: absolute;
+    left: var(--space-4);
+    top: calc(-1 * var(--space-16));
+    z-index: 100;
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-bg-pure);
+    color: var(--color-text-heading);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    transition: top var(--duration-fast) var(--ease-out);
+  }
+  .wx-skip:focus { top: var(--space-4); }
+
+  /* Touch targets. WCAG 2.2 §2.5.8 floor for pointer input; forms that need a
+     larger minimum raise it via --touch-target-min. */
+  @media (pointer: coarse) {
+    a, button, [role="button"], input, select, summary {
+      min-height: var(--touch-target-min, 24px);
+      min-width: var(--touch-target-min, 24px);
+    }
+  }
+
+  [hidden] { display: none !important; }
+}

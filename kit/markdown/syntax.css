@@ -1,0 +1,82 @@
+/* Syntax highlighting — warm, low-contrast, and deliberately narrow.
+   ---------------------------------------------------------------------------
+   Most themes use six saturated hues to separate token types. This one uses
+   four closely-related warm tones plus the body ink, because a code block in an
+   essay is still prose: the reader is reading it, not scanning it for a bug.
+
+   Class names follow Prism/highlight.js conventions so that either can be
+   dropped in without a mapping layer.
+   --------------------------------------------------------------------------- */
+@layer wx.markdown {
+  :root {
+    --code-bg:          var(--color-bg-subtle);
+    --code-comment:     #9A948D;
+    --code-punctuation: #888580;
+    --code-operator:    #3A3837;
+    --code-keyword:     #6B5B3E;
+    --code-string:      #6B5B3E;
+    --code-type:        #6B5B3E;
+    --code-function:    #5C4A2F;
+    --code-property:    #5C4A2F;
+    --code-number:      #7A5C3A;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --code-comment:     #6E6862;
+      --code-punctuation: #8A857D;
+      --code-operator:    #E8E3DC;
+      --code-keyword:     #C0A878;
+      --code-string:      #A8B98A;
+      --code-type:        #C0A878;
+      --code-function:    #D6BE92;
+      --code-property:    #D6BE92;
+      --code-number:      #C9A57A;
+    }
+  }
+  [data-theme="dark"] {
+    --code-comment:     #6E6862;
+    --code-punctuation: #8A857D;
+    --code-operator:    #E8E3DC;
+    --code-keyword:     #C0A878;
+    --code-string:      #A8B98A;
+    --code-type:        #C0A878;
+    --code-function:    #D6BE92;
+    --code-property:    #D6BE92;
+    --code-number:      #C9A57A;
+  }
+
+  .token.comment, .token.prolog, .token.cdata,
+  .hljs-comment, .hljs-quote            { color: var(--code-comment); font-style: italic; }
+
+  .token.punctuation,
+  .hljs-punctuation                     { color: var(--code-punctuation); }
+
+  .token.operator, .token.entity, .token.url,
+  .hljs-operator                        { color: var(--code-operator); }
+
+  .token.keyword, .token.atrule, .token.rule, .token.important,
+  .hljs-keyword, .hljs-selector-tag     { color: var(--code-keyword); font-weight: 500; }
+
+  .token.string, .token.char, .token.attr-value, .token.regex,
+  .hljs-string, .hljs-attr              { color: var(--code-string); }
+
+  .token.class-name, .token.builtin, .token.symbol,
+  .hljs-type, .hljs-title.class_        { color: var(--code-type); }
+
+  .token.function, .token.selector,
+  .hljs-title, .hljs-title.function_    { color: var(--code-function); }
+
+  .token.property, .token.tag, .token.attr-name, .token.constant,
+  .hljs-attribute, .hljs-name           { color: var(--code-property); }
+
+  .token.number, .token.boolean, .token.unit,
+  .hljs-number, .hljs-literal           { color: var(--code-number); }
+
+  .token.deleted { color: var(--color-danger); }
+  .token.inserted { color: var(--color-success); }
+
+  /* No bold-italic-underline pile-up. Weight is the only extra channel used. */
+  .token.italic { font-style: italic; }
+  .token.bold   { font-weight: 600; }
+}

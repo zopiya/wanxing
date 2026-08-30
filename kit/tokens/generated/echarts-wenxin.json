@@ -1,0 +1,164 @@
+{
+  "light": {
+    "color": [
+      "#2C2B29",
+      "#3A3837",
+      "#888580",
+      "#B0ABA4",
+      "#C8C3BA"
+    ],
+    "backgroundColor": "transparent",
+    "textStyle": {
+      "fontFamily": "system-ui, -apple-system, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans SC\", sans-serif",
+      "color": "#3A3837"
+    },
+    "title": {
+      "textStyle": {
+        "fontFamily": "\"Lora\", \"Noto Serif SC\", \"Source Han Serif SC\", \"Songti SC\", \"SimSun\", serif",
+        "color": "#2C2B29",
+        "fontWeight": 600
+      },
+      "subtextStyle": {
+        "color": "#888580"
+      }
+    },
+    "legend": {
+      "show": false
+    },
+    "grid": {
+      "containLabel": true,
+      "left": 8,
+      "right": 24,
+      "top": 24,
+      "bottom": 8,
+      "borderWidth": 0
+    },
+    "categoryAxis": {
+      "axisLine": {
+        "lineStyle": {
+          "color": "#E5E1DA",
+          "width": 1
+        }
+      },
+      "axisTick": {
+        "show": false
+      },
+      "axisLabel": {
+        "color": "#B0ABA4"
+      },
+      "splitLine": {
+        "show": false
+      }
+    },
+    "valueAxis": {
+      "axisLine": {
+        "show": false
+      },
+      "axisTick": {
+        "show": false
+      },
+      "axisLabel": {
+        "color": "#B0ABA4"
+      },
+      "splitLine": {
+        "show": false
+      }
+    },
+    "line": {
+      "itemStyle": {
+        "borderWidth": 0
+      },
+      "lineStyle": {
+        "width": 1.5
+      },
+      "symbolSize": 4,
+      "smooth": false
+    },
+    "bar": {
+      "itemStyle": {
+        "barBorderRadius": 0
+      }
+    }
+  },
+  "dark": {
+    "color": [
+      "#F0EBE3",
+      "#E8E3DC",
+      "#8A857D",
+      "#5A5550",
+      "#403C37"
+    ],
+    "backgroundColor": "transparent",
+    "textStyle": {
+      "fontFamily": "system-ui, -apple-system, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans SC\", sans-serif",
+      "color": "#E8E3DC"
+    },
+    "title": {
+      "textStyle": {
+        "fontFamily": "\"Lora\", \"Noto Serif SC\", \"Source Han Serif SC\", \"Songti SC\", \"SimSun\", serif",
+        "color": "#F0EBE3",
+        "fontWeight": 600
+      },
+      "subtextStyle": {
+        "color": "#8A857D"
+      }
+    },
+    "legend": {
+      "show": false
+    },
+    "grid": {
+      "containLabel": true,
+      "left": 8,
+      "right": 24,
+      "top": 24,
+      "bottom": 8,
+      "borderWidth": 0
+    },
+    "categoryAxis": {
+      "axisLine": {
+        "lineStyle": {
+          "color": "#2E2B27",
+          "width": 1
+        }
+      },
+      "axisTick": {
+        "show": false
+      },
+      "axisLabel": {
+        "color": "#5A5550"
+      },
+      "splitLine": {
+        "show": false
+      }
+    },
+    "valueAxis": {
+      "axisLine": {
+        "show": false
+      },
+      "axisTick": {
+        "show": false
+      },
+      "axisLabel": {
+        "color": "#5A5550"
+      },
+      "splitLine": {
+        "show": false
+      }
+    },
+    "line": {
+      "itemStyle": {
+        "borderWidth": 0
+      },
+      "lineStyle": {
+        "width": 1.5
+      },
+      "symbolSize": 4,
+      "smooth": false
+    },
+    "bar": {
+      "itemStyle": {
+        "barBorderRadius": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+/* F1 · Web — form-level tokens. Load after core.css. */
+:root {
+  --section-padding-y: clamp(80px, 10vh, 120px);
+  --header-height:     64px;
+}

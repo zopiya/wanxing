@@ -1,0 +1,11 @@
+{{- /* An image with a title becomes a figure with a caption; a bare image stays
+       a bare image. Do not manufacture captions that the author did not write. */ -}}
+{{- $src := .Destination | safeURL -}}
+{{- if .Title -}}
+<figure>
+  <img src="{{ $src }}" alt="{{ .Text }}" loading="lazy" decoding="async">
+  <figcaption>{{ .Title }}</figcaption>
+</figure>
+{{- else -}}
+<img src="{{ $src }}" alt="{{ .Text }}" loading="lazy" decoding="async">
+{{- end -}}

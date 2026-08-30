@@ -1,0 +1,146 @@
+/* Markdown prose — .wx-md
+   ---------------------------------------------------------------------------
+   This file styles HTML you did NOT author: whatever a Markdown renderer
+   emitted. That is the entire reason it exists as a separate layer.
+
+   kit/components/code.css styles <pre class="wx-code"> that you wrote.
+   This file styles `.wx-md pre > code` that a renderer produced. Same look,
+   different selector strategy — you control the class attribute in one case and
+   not the other. Conflating them is how a design system rots.
+
+   Because wx.markdown sits above wx.components in the cascade order declared in
+   layers.css, these loose descendant selectors never outrank a real component,
+   and a form layer can still override everything here.
+   --------------------------------------------------------------------------- */
+@layer wx.markdown {
+  .wx-md {
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-primary);
+  }
+
+  /* Vertical rhythm. Set once here rather than on every element, so that any
+     tag the renderer happens to emit still lands on the scale. */
+  .wx-md > * + * { margin-block-start: var(--space-6); }
+
+  .wx-md > h2 { margin-block-start: var(--space-16); }
+  .wx-md > h3 { margin-block-start: var(--space-12); }
+  .wx-md > h4,
+  .wx-md > h5,
+  .wx-md > h6 { margin-block-start: var(--space-8); }
+
+  .wx-md h1, .wx-md h2, .wx-md h3,
+  .wx-md h4, .wx-md h5, .wx-md h6 { scroll-margin-block-start: var(--space-16); }
+
+  /* Heading anchors: present in the DOM for deep linking, invisible until the
+     heading is hovered or the link itself is focused. Never hidden from
+     assistive tech — it carries an aria-label. */
+  .wx-md .heading-anchor {
+    margin-inline-start: var(--space-3);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-default);
+  }
+  .wx-md :is(h2, h3, h4):hover .heading-anchor,
+  .wx-md .heading-anchor:focus-visible { opacity: 1; }
+
+  .wx-md ul, .wx-md ol { padding-inline-start: var(--space-6); }
+  .wx-md li + li { margin-block-start: var(--space-2); }
+  .wx-md li > ul, .wx-md li > ol { margin-block-start: var(--space-2); }
+
+  /* Blockquote — someone else's words inside your argument. */
+  .wx-md blockquote {
+    padding-inline-start: var(--space-6);
+    border-inline-start: var(--stroke-hairline) solid var(--color-border-strong);
+    color: var(--color-text-secondary);
+  }
+
+  .wx-md hr {
+    border: 0;
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+    margin-block: var(--space-16);
+  }
+
+  /* Tables: same treatment as wx-table — horizontal rules only. */
+  .wx-md table {
+    width: 100%;
+    font-size: var(--text-sm);
+    border-collapse: collapse;
+  }
+  .wx-md thead th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text-heading);
+    border-bottom: var(--stroke-hairline) solid var(--color-border-strong);
+  }
+  .wx-md td { border-bottom: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .wx-md th, .wx-md td {
+    padding: var(--space-3);
+    padding-inline-start: 0;
+    vertical-align: baseline;
+  }
+  /* A wide table gets its own scroll container rather than widening the page. */
+  .wx-md .table-scroll { overflow-x: auto; }
+
+  /* Figures. A renderer that emits <figure> gets a caption; a bare <img> does
+     not, and should not be forced into one. */
+  .wx-md figure { margin-block: var(--space-8); }
+  .wx-md figure img { width: 100%; }
+  .wx-md figcaption {
+    margin-block-start: var(--space-3);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+  .wx-md img { max-width: 100%; height: auto; }
+
+  /* Inline code and code blocks. */
+  .wx-md :not(pre) > code {
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-subtle);
+    font-family: var(--font-mono);
+    font-size: var(--text-code);
+  }
+  .wx-md pre {
+    padding: var(--space-4);
+    border: var(--stroke-hairline) solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-subtle);
+    overflow-x: auto;
+    line-height: var(--leading-normal);
+  }
+  .wx-md pre > code {
+    font-family: var(--font-mono);
+    font-size: var(--text-code);
+    background: none;
+    padding: 0;
+  }
+
+  /* Footnotes, as emitted by most Markdown processors. */
+  .wx-md .footnotes {
+    margin-block-start: var(--space-16);
+    padding-block-start: var(--space-6);
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+  .wx-md sup a { color: var(--color-accent); text-decoration: none; }
+
+  /* Task lists. */
+  .wx-md .task-list-item { list-style: none; margin-inline-start: calc(-1 * var(--space-6)); }
+  .wx-md .task-list-item input { margin-inline-end: var(--space-2); accent-color: var(--color-accent); }
+
+  /* Definition lists. */
+  .wx-md dt { font-weight: 600; color: var(--color-text-heading); }
+  .wx-md dd { margin-inline-start: var(--space-6); color: var(--color-text-secondary); }
+
+  /* CJK: no italic emphasis — weight instead (criterion G2). */
+  .wx-md :lang(zh) em { font-style: normal; font-weight: 600; }
+
+  /* Reading measure. Latin 60–75 characters, CJK 30–40 (criterion P-5). */
+  .wx-md--measured { max-width: 68ch; }
+  .wx-md--measured:lang(zh) { max-width: 36em; }
+}

@@ -1,0 +1,63 @@
+/* Editorial content components. This category has no equivalent in a product
+   component library, and it is the one this system needs most. */
+@layer wx.components {
+  /* Eyebrow — the small uppercase line above a title. */
+  .wx-eyebrow {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-secondary);
+  }
+
+  /* Lede — the opening paragraph, set larger than body. */
+  .wx-lede {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    color: var(--color-text-secondary);
+  }
+
+  /* Attribution block — the canonical short rule, name, then metadata. */
+  .wx-attr { margin-block-start: var(--space-16); }
+  .wx-attr::before {
+    content: "";
+    display: block;
+    width: 40px;
+    border-top: var(--stroke-hairline) solid var(--color-border-strong);
+    margin-block-end: var(--space-4);
+  }
+  .wx-attr__name {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
+  }
+  .wx-attr__meta {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Footnote reference and list. */
+  .wx-fn {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    vertical-align: super;
+    line-height: 1;
+    color: var(--color-accent);
+    text-decoration: none;
+    padding-inline: 0.15em;
+  }
+  .wx-fn-list {
+    margin-block-start: var(--space-16);
+    padding-block-start: var(--space-6);
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .wx-cite {
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+}

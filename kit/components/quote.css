@@ -1,0 +1,38 @@
+/* Two different things that both look like quotations, kept apart on purpose:
+   a blockquote is someone else's words inside your argument; a pull quote is
+   your own words, lifted out for rhythm. Conflating them is why so many pages
+   have quotation marks that mean nothing. */
+@layer wx.components {
+  .wx-quote {
+    padding-inline-start: var(--space-6);
+    border-inline-start: var(--stroke-hairline) solid var(--color-border-strong);
+    color: var(--color-text-secondary);
+  }
+  .wx-quote__attribution {
+    display: block;
+    margin-block-start: var(--space-3);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Pull quote — a visual anchor, not a citation. No quotation marks, no rule;
+     it earns attention through scale and surrounding whitespace alone. */
+  .wx-pullquote {
+    margin-block: var(--space-12);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+    text-wrap: balance;
+  }
+  .wx-pullquote__label {
+    display: block;
+    margin-block-end: var(--space-3);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted);
+  }
+}

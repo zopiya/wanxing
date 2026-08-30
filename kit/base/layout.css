@@ -1,0 +1,49 @@
+/* Layout primitives. These must work in every form, including the ones with no
+   viewport at all (print, poster, slides) — so nothing here depends on hover,
+   scroll, or a browser chrome. */
+@layer wx.base {
+  .wx-page {
+    background: var(--color-bg-warm);
+    padding-inline: var(--padding-page-x);
+  }
+
+  .wx-container       { margin-inline: auto; max-width: var(--width-content); }
+  .wx-container--article  { max-width: var(--width-article); }
+  .wx-container--content  { max-width: var(--width-content); }
+  .wx-container--showcase { max-width: var(--width-showcase); }
+
+  /* Vertical rhythm as a primitive, so components never hand-roll margins. */
+  .wx-stack > * + * { margin-block-start: var(--space-6); }
+  .wx-stack--tight > * + * { margin-block-start: var(--space-3); }
+  .wx-stack--loose > * + * { margin-block-start: var(--space-12); }
+
+  /* The hairline rule. This is the system's primary structural device — it is
+     what replaces the card. */
+  .wx-rule {
+    border: 0;
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+    margin: 0;
+  }
+  .wx-rule--strong { border-top-color: var(--color-border-strong); }
+  .wx-rule--short  { width: 40px; }
+
+  .wx-spread {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+
+  /* Intrinsic columns — auto-fit + minmax rather than fixed counts (M-7). */
+  .wx-cols {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  }
+  .wx-cols--2 { grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); }
+  .wx-cols--3 { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+
+  /* Optical line length. Latin wants 60–75 characters, CJK 30–40 (P-5). */
+  .wx-measure { max-width: 68ch; }
+  :lang(zh) .wx-measure { max-width: 36em; }
+}

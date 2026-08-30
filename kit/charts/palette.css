@@ -1,0 +1,43 @@
+/* Chart palette.
+   ---------------------------------------------------------------------------
+   Series are separated by INK, not by hue, and reinforced by stroke pattern.
+   This is the decision that makes charts possible inside this system at all:
+   the ban on saturated colour is not an obstacle to overcome, because hue was
+   never the categorical channel here.
+
+   Exactly one series may take the accent — the one the caption is about. A
+   chart therefore spends one of the page's two accent occurrences, which the
+   auditor already knows how to count.
+   --------------------------------------------------------------------------- */
+@layer wx.charts {
+  :root {
+    /* The categorical channel: five steps down the ink ramp. */
+    --chart-ink-1: var(--color-text-heading);
+    --chart-ink-2: var(--color-text-primary);
+    --chart-ink-3: var(--color-text-secondary);
+    --chart-ink-4: var(--color-text-muted);
+    --chart-ink-5: var(--color-border-strong);
+
+    /* The argument. One series, one bar, or one point. */
+    --chart-accent:      var(--color-accent);
+    --chart-accent-wash: var(--color-accent-subtle);
+
+    /* The second categorical channel, so that series remain separable in
+       greyscale print and for readers who cannot distinguish the ink steps. */
+    --chart-dash-1: none;
+    --chart-dash-2: 6 3;
+    --chart-dash-3: 2 3;
+    --chart-dash-4: 10 3 2 3;
+
+    /* Geometry */
+    --chart-stroke:      var(--stroke-mark);
+    --chart-stroke-thin: var(--stroke-hairline);
+    --chart-dot:         4px;
+    --chart-baseline:    var(--color-border-subtle);
+
+    /* Area and stacked fills are tints of ink, never a hue. */
+    --chart-wash-1: color-mix(in oklab, var(--color-text-primary) 14%, transparent);
+    --chart-wash-2: color-mix(in oklab, var(--color-text-primary)  8%, transparent);
+    --chart-wash-3: color-mix(in oklab, var(--color-text-primary)  4%, transparent);
+  }
+}

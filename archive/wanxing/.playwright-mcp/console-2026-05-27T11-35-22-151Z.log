@@ -1,4 +1,0 @@
-[     119ms] [LOG] [SSE] Connection: connected @ http://localhost:5173/src/modules/chat/index.ts:59
-[     137ms] [LOG] [WS] Connected @ http://localhost:5173/src/ws-client.ts:29
-[     142ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0
-[   15712ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/api/annotations?slug=fixture-no-animation:0

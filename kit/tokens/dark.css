@@ -1,0 +1,82 @@
+/* ============================================================
+   Dark mode · 夜晚的羊皮纸 Night Vellum
+   ------------------------------------------------------------
+   core.css declares `color-scheme: light dark` but for a long time
+   defined no dark values at all — the system promised dark mode and
+   never delivered it. These values were rescued from the old example
+   token file and re-derived where they failed to meet AA.
+
+   Not a simple inversion: the ground is warm dark (#1A1816), not black,
+   and the text is warm ivory (#E8E3DC), not white. Hue and saturation are
+   preserved across modes; only lightness is lifted, so a color stays
+   recognisably itself in either mode (criterion M-9).
+
+   Both switches are supported, and each wins in its own direction:
+   the media query respects the OS, the attribute overrides it.
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg-warm:   #1A1816;
+    --color-bg-base:   #201E1B;
+    --color-bg-pure:   #242220;
+    --color-bg-subtle: #2A2724;
+
+    --color-text-heading:   #F0EBE3;
+    --color-text-primary:   #E8E3DC;
+    --color-text-secondary: #8A857D;
+    --color-text-muted:     #5A5550;
+    --color-text-tertiary:  #403C37;
+
+    /* #C4533E was the rescued value; it measures 3.92:1 on this ground and
+       fails AA for body-size text. Lifted to 4.54:1 at the same hue. */
+    --color-accent:        #CF5F4A;
+    --color-accent-hover:  #DE7059;
+    --color-accent-subtle: #2E1A16;
+
+    --color-danger:         #C46477;
+    --color-danger-subtle:  #2B171C;
+    --color-warning:        #A57C18;
+    --color-warning-subtle: #2B2517;
+    --color-success:        #678B4B;
+    --color-success-subtle: #202B17;
+
+    --color-border-subtle: #2E2B27;
+    --color-border-strong: #403C37;
+
+    --color-link:       #E8E3DC;
+    --color-link-hover: #CF5F4A;
+    --color-focus:      rgba(207, 95, 74, 0.45);
+  }
+}
+
+[data-theme="dark"] {
+  --color-bg-warm:   #1A1816;
+  --color-bg-base:   #201E1B;
+  --color-bg-pure:   #242220;
+  --color-bg-subtle: #2A2724;
+
+  --color-text-heading:   #F0EBE3;
+  --color-text-primary:   #E8E3DC;
+  --color-text-secondary: #8A857D;
+  --color-text-muted:     #5A5550;
+  --color-text-tertiary:  #403C37;
+
+  --color-accent:        #CF5F4A;
+  --color-accent-hover:  #DE7059;
+  --color-accent-subtle: #2E1A16;
+
+  --color-danger:         #C46477;
+  --color-danger-subtle:  #2B171C;
+  --color-warning:        #A57C18;
+  --color-warning-subtle: #2B2517;
+  --color-success:        #678B4B;
+  --color-success-subtle: #202B17;
+
+  --color-border-subtle: #2E2B27;
+  --color-border-strong: #403C37;
+
+  --color-link:       #E8E3DC;
+  --color-link-hover: #CF5F4A;
+  --color-focus:      rgba(207, 95, 74, 0.45);
+}

@@ -1,0 +1,63 @@
+/* Motion. The intensity level is a runtime switch, not a claim in a document:
+   declare data-motion on <html> and the level is structurally enforced.
+
+   E8  print stillness  — no animation, no transition, no hover/focus motion
+   E9-0 still water     — necessary state feedback only, no entrance animation
+   E9-1 spring rain     — light entrances, hover, theme switch  (default)
+   E9-2 faint ripple    — one ceremonial focal animation
+
+   See spec/soul/motion.md. */
+@layer wx.base {
+  @keyframes wx-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes wx-fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+  /* The only decorative loop the system permits, and only for the brand mark. */
+  @keyframes wx-breathe {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.6; }
+  }
+
+  .wx-reveal {
+    animation: wx-fade-up var(--duration-slow) var(--ease-out) both;
+  }
+  .wx-reveal[data-stagger="1"] { animation-delay: var(--stagger-1); }
+  .wx-reveal[data-stagger="2"] { animation-delay: var(--stagger-2); }
+  .wx-reveal[data-stagger="3"] { animation-delay: var(--stagger-3); }
+  .wx-reveal[data-stagger="4"] { animation-delay: var(--stagger-4); }
+  .wx-reveal[data-stagger="5"] { animation-delay: var(--stagger-5); }
+  .wx-reveal[data-stagger="6"] { animation-delay: var(--stagger-6); }
+  .wx-reveal[data-stagger="7"] { animation-delay: var(--stagger-7); }
+  .wx-reveal[data-stagger="8"] { animation-delay: var(--stagger-8); }
+
+  /* Scroll reveal. The hidden state is applied by reveal.js, never in markup —
+     if the script fails to load, the content is simply visible, rather than
+     permanently invisible. */
+  [data-reveal-pending] { opacity: 0; }
+
+  /* Still water: state feedback survives, entrances do not. */
+  [data-motion="E9-0"] .wx-reveal { animation: none; }
+
+  /* Print stillness. F4 cannot have motion even by accident. */
+  [data-motion="E8"] *,
+  [data-motion="E8"] *::before,
+  [data-motion="E8"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Reduced motion removes decoration, never information: state feedback and
+     focus indication survive at near-zero duration (criterion A-3). */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

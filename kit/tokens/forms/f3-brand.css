@@ -1,0 +1,7 @@
+/* F3 · Brand — form-level tokens. Load after core.css. */
+:root {
+  --brand-mark-size:            8px;   /* 6px on mobile */
+  --brand-mark-color:           var(--color-accent);
+  --brand-logo-text-horizontal: 22px;
+  --brand-logo-text-vertical:   18px;
+}

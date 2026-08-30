@@ -1,0 +1,32 @@
+/* Applies whenever anything is printed, not only in F4. A web page sent to a
+   printer should still behave. F4 additionally sets data-motion="E8". */
+@layer wx.base {
+  @media print {
+    :root {
+      --color-bg-warm: #FFFFFF;
+      --color-bg-base: #FFFFFF;
+      --color-bg-pure: #FFFFFF;
+      --color-text-primary: #000000;
+      --color-text-heading: #000000;
+    }
+
+    body { background: #FFFFFF; }
+
+    /* Never break a heading off from what it introduces. */
+    h1, h2, h3, h4, h5, h6 { break-after: avoid-page; }
+    p, blockquote, figure, table { break-inside: avoid; }
+
+    /* Orphans and widows are a typographic minimum, not a nicety. */
+    p { orphans: 3; widows: 3; }
+
+    /* Reveal link targets that the reader cannot click. */
+    a[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      word-break: break-all;
+    }
+
+    .wx-nav, .wx-sidebar, .wx-toc, .wx-pager, .wx-skip { display: none; }
+  }
+}

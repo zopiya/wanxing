@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN" data-motion="E9-0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markdown 渲染 · Markdown Rendering</title>
+<link rel="stylesheet" href="../../kit/index.css">
+</head>
+<body>
+<div class="wx-page">
+<main class="wx-container wx-container--article">
+<article class="wx-md wx-md--measured" style="padding-block: var(--space-16)">
+
+<h1>Markdown 渲染验收</h1>
+<p>下面全部是渲染器可能吐出的普通 HTML —— <strong>没有一个 class 写在内容上</strong>。样式由 <code>.wx-md</code> 这一个类承担。</p>
+
+<h2 id="s1">二级标题<a class="heading-anchor" href="#s1" aria-label="Link to this section: 二级标题">#</a></h2>
+<p>正文段落。行长受 <code>--measured</code> 约束。混排 The quick brown fox jumps over the lazy dog 时中英文基线应当协调。</p>
+
+<h3 id="s2">三级标题<a class="heading-anchor" href="#s2" aria-label="Link">#</a></h3>
+<ul>
+  <li>无序列表项</li>
+  <li>第二项
+    <ul><li>嵌套项</li></ul>
+  </li>
+</ul>
+<ol><li>有序一</li><li>有序二</li></ol>
+
+<blockquote><p>引用块是别人的话，放在你的论证里。</p></blockquote>
+
+<aside class="wx-pullquote"><span class="wx-pullquote__label">Pull quote</span>
+  而 pull quote 是你自己的话，被抬出来制造节奏。
+</aside>
+
+<div class="admonition tip"><span class="admonition-title">提示</span><p>渲染器吐出的 admonition，用 <code>admonitions.css</code> 匹配。</p></div>
+<div class="admonition warning"><span class="admonition-title">注意</span><p>赭黄，语义色与文字标签同时出现。</p></div>
+<div class="admonition danger"><span class="admonition-title">危险</span><p>牛血红。</p></div>
+
+<p>行内代码 <code>--stroke-mark</code>，以及代码块：</p>
+<pre><code class="language-css"><span class="token comment">/* 语法高亮：暖调、低对比 */</span>
+<span class="token selector">.wx-entry</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> <span class="token keyword">none</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格">
+<table>
+<thead><tr><th>形态</th><th>轨道</th><th>动效</th></tr></thead>
+<tbody>
+<tr><td>F1 Web</td><td>阅读轨</td><td>E9-1</td></tr>
+<tr><td>F4 Print</td><td>阅读轨</td><td>E8</td></tr>
+<tr><td>F2 Mobile</td><td>应用轨</td><td>E9-1</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure>
+  <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="background:var(--color-bg-subtle)">
+    <rect x="20" y="20" width="360" height="80" fill="none" stroke="var(--color-border-strong)" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+    <text x="200" y="66" text-anchor="middle" font-family="serif" font-size="16" fill="var(--color-text-secondary)">figure + figcaption</text>
+  </svg>
+  <figcaption>图 1 · 有 title 的图才生成 figure，没有的保持裸 img。</figcaption>
+</figure>
+
+<ul class="contains-task-list">
+  <li class="task-list-item"><input type="checkbox" checked disabled> 已完成</li>
+  <li class="task-list-item"><input type="checkbox" disabled> 未完成</li>
+</ul>
+
+<dl><dt>灵魂层</dt><dd>永远不变。</dd><dt>形态层</dt><dd>随容器而变。</dd></dl>
+
+<p>脚注引用<sup><a href="#fn1">1</a></sup>。</p>
+<hr>
+<div class="footnotes"><ol><li id="fn1">脚注内容，与正文以细线和留白分隔。</li></ol></div>
+
+</article>
+</main>
+</div>
+</body>
+</html>

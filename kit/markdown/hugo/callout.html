@@ -1,0 +1,8 @@
+{{- /* {{< callout type="warn" title="注意" >}} … {{< /callout >}}
+       The title is a word, not an icon: the level must survive without color. */ -}}
+{{- $type := .Get "type" | default "note" -}}
+{{- $title := .Get "title" -}}
+<aside class="wx-note wx-note--{{ $type }}" role="note">
+  {{- with $title }}<b class="wx-note__title">{{ . }}</b>{{ end }}
+  {{ .Inner | markdownify }}
+</aside>

@@ -1,0 +1,9 @@
+/* F5 · Presentation — form-level tokens. Load after core.css.
+   Fixed 16:9 canvas; layout in relative units, never fixed px. */
+:root {
+  --stage-bg:        #1A1816;
+  --slide-safe-x:    5%;
+  --slide-safe-y:    8%;
+  --slide-gutter:    24px;
+  --slide-folio-pad: 3%;
+}

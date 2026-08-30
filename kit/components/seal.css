@@ -1,0 +1,22 @@
+/* The brand mark. The single most cross-form component in the system —
+   it appeared in six of the nine reference examples.
+
+   Its breathing loop is the one decorative animation the system permits, and
+   only at E9-2. Everywhere else it is static. */
+@layer wx.components {
+  .wx-seal {
+    display: inline-block;
+    inline-size: var(--brand-mark-size, 8px);
+    block-size: var(--brand-mark-size, 8px);
+    background: var(--brand-mark-color, var(--color-accent));
+    vertical-align: baseline;
+  }
+
+  [data-motion="E9-2"] .wx-seal--breathing {
+    animation: wx-breathe var(--duration-breath) var(--ease-in-out) infinite;
+  }
+
+  @media (max-width: 640px) {
+    .wx-seal { inline-size: 6px; block-size: 6px; }
+  }
+}

@@ -1,0 +1,138 @@
+/* Chart styling for hand-authored SVG.
+   ---------------------------------------------------------------------------
+   A Wenxin chart is a figure in an essay, not a widget on a dashboard. It is
+   read once, carefully, and argues one point. The reference is a newspaper
+   graphics desk, not a BI tool.
+   --------------------------------------------------------------------------- */
+@layer wx.charts {
+  /* The frame. A bare chart is not deliverable: without a title and a stated
+     unit it is not restrained, it is unfinished. */
+  .wx-chart { margin-block: var(--space-12); }
+
+  .wx-chart__title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+    text-wrap: balance;
+  }
+  .wx-chart__subtitle {
+    margin-block-start: var(--space-1);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-secondary);
+  }
+  .wx-chart__svg { display: block; width: 100%; margin-block-start: var(--space-6); }
+  .wx-chart__note {
+    margin-block-start: var(--space-3);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  /* ---- marks --------------------------------------------------------------
+     Every stroke uses non-scaling-stroke. This is what keeps the 1.5px
+     signature stroke at 1.5px when the same SVG is placed on a poster: without
+     it, viewBox scaling multiplies the line weight and the mark stops being
+     the mark. */
+  .wx-chart__svg [class*="wx-chart__"] { vector-effect: non-scaling-stroke; }
+
+  .wx-chart__line {
+    fill: none;
+    stroke: var(--chart-ink-2);
+    stroke-width: var(--chart-stroke);
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .wx-chart__line--2 { stroke: var(--chart-ink-3); stroke-dasharray: var(--chart-dash-2); }
+  .wx-chart__line--3 { stroke: var(--chart-ink-4); stroke-dasharray: var(--chart-dash-3); }
+  .wx-chart__line--4 { stroke: var(--chart-ink-5); stroke-dasharray: var(--chart-dash-4); }
+
+  .wx-chart__area  { fill: var(--chart-wash-2); stroke: none; }
+
+  .wx-chart__bar   { fill: var(--chart-ink-3); }
+  .wx-chart__bar--muted { fill: var(--chart-ink-5); }
+
+  .wx-chart__dot {
+    fill: var(--chart-ink-2);
+    r: var(--chart-dot);
+  }
+
+  /* The argument. One per chart. */
+  .wx-chart__line--accent { stroke: var(--chart-accent); }
+  .wx-chart__bar--accent,
+  .wx-chart__dot--accent  { fill: var(--chart-accent); }
+  .wx-chart__area--accent { fill: var(--chart-accent-wash); }
+
+  /* ---- chrome, subtracted -------------------------------------------------
+     One baseline. No gridlines, no axis box, no tick marks — the label is the
+     tick. What remains is data ink. */
+  .wx-chart__baseline {
+    stroke: var(--chart-baseline);
+    stroke-width: var(--chart-stroke-thin);
+    vector-effect: non-scaling-stroke;
+  }
+
+  .wx-chart__label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    fill: var(--color-text-muted);
+  }
+  /* Direct labelling at the series terminus, in the series' own colour.
+     A legend forces the eye to shuttle between a key and the data; this is
+     "text is the interface" applied to a chart. */
+  .wx-chart__series-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    fill: var(--chart-ink-3);
+    dominant-baseline: middle;
+  }
+  .wx-chart__series-label--accent { fill: var(--chart-accent); font-weight: 500; }
+
+  .wx-chart__value {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    fill: var(--color-text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Sparkline — inline, no frame, no axis at all. */
+  .wx-sparkline {
+    display: inline-block;
+    inline-size: 5em;
+    block-size: 1.1em;
+    vertical-align: baseline;
+  }
+  .wx-sparkline path {
+    fill: none;
+    stroke: var(--chart-ink-3);
+    stroke-width: var(--chart-stroke);
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* Bar-in-table — a column of magnitudes inside a data table. */
+  .wx-bar-cell {
+    display: block;
+    block-size: 0.5em;
+    background: var(--chart-ink-4);
+  }
+  .wx-bar-cell--accent { background: var(--chart-accent); }
+
+  /* Small multiples — the sanctioned answer to "I have five series". */
+  .wx-chart-grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+  }
+  .wx-chart-grid .wx-chart { margin-block: 0; }
+  .wx-chart-grid .wx-chart__title { font-size: var(--text-base); }
+
+  /* Print: charts must survive greyscale. The ink ramp and dash patterns
+     already carry the encoding, so nothing needs to change — which is the
+     point of not encoding in hue. */
+  @media print {
+    .wx-chart { break-inside: avoid; }
+  }
+}

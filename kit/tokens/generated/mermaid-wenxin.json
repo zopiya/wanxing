@@ -1,0 +1,60 @@
+{
+  "light": {
+    "theme": "base",
+    "themeVariables": {
+      "background": "#F2F0EB",
+      "primaryColor": "#FFFFFF",
+      "primaryTextColor": "#3A3837",
+      "primaryBorderColor": "#C8C3BA",
+      "secondaryColor": "#F0EDE7",
+      "tertiaryColor": "#F0EDE7",
+      "lineColor": "#C8C3BA",
+      "textColor": "#3A3837",
+      "mainBkg": "#FFFFFF",
+      "nodeBorder": "#C8C3BA",
+      "clusterBkg": "transparent",
+      "clusterBorder": "#E5E1DA",
+      "titleColor": "#2C2B29",
+      "edgeLabelBackground": "#F2F0EB",
+      "fontFamily": "\"EB Garamond\", \"Noto Serif SC\", \"Source Han Serif SC\", \"Songti SC\", \"SimSun\", serif",
+      "fontSize": "14px",
+      "activeTaskBkgColor": "#8B3525",
+      "activeTaskBorderColor": "#8B3525"
+    },
+    "flowchart": {
+      "curve": "linear",
+      "padding": 16,
+      "nodeSpacing": 40,
+      "rankSpacing": 56
+    }
+  },
+  "dark": {
+    "theme": "base",
+    "themeVariables": {
+      "background": "#1A1816",
+      "primaryColor": "#242220",
+      "primaryTextColor": "#E8E3DC",
+      "primaryBorderColor": "#403C37",
+      "secondaryColor": "#2A2724",
+      "tertiaryColor": "#2A2724",
+      "lineColor": "#403C37",
+      "textColor": "#E8E3DC",
+      "mainBkg": "#242220",
+      "nodeBorder": "#403C37",
+      "clusterBkg": "transparent",
+      "clusterBorder": "#2E2B27",
+      "titleColor": "#F0EBE3",
+      "edgeLabelBackground": "#1A1816",
+      "fontFamily": "\"EB Garamond\", \"Noto Serif SC\", \"Source Han Serif SC\", \"Songti SC\", \"SimSun\", serif",
+      "fontSize": "14px",
+      "activeTaskBkgColor": "#CF5F4A",
+      "activeTaskBorderColor": "#CF5F4A"
+    },
+    "flowchart": {
+      "curve": "linear",
+      "padding": 16,
+      "nodeSpacing": 40,
+      "rankSpacing": 56
+    }
+  }
+}

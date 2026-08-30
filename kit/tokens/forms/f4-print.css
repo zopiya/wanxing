@@ -1,0 +1,24 @@
+/* F4 · Print — form-level tokens. Load after core.css.
+   Print uses pt, not rem: 1pt = 1/72 inch. Ten steps, Major Third. */
+:root {
+  --print-text-xs:   7pt;
+  --print-text-sm:   8.5pt;
+  --print-text-base: 10pt;
+  --print-text-md:   11pt;
+  --print-text-lg:   13pt;
+  --print-text-xl:   16pt;
+  --print-text-2xl:  20pt;
+  --print-text-3xl:  26pt;
+  --print-text-4xl:  36pt;
+  --print-text-5xl:  48pt;
+
+  --print-leading-tight:   1.2;
+  --print-leading-snug:    1.35;
+  --print-leading-normal:  1.5;
+  --print-leading-relaxed: 1.8;
+  --print-leading-loose:   1.9;
+
+  --print-bleed:      3mm;
+  --print-safe-inset: 5mm;
+  --print-bind-inset: 20mm;
+}

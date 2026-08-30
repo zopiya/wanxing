@@ -1,0 +1,10 @@
+{{- /* Heading with a permalink anchor.
+       The anchor is real DOM (not a ::after) so it can be focused and copied,
+       and it carries an aria-label so its "#" is never read out bare. */ -}}
+<h{{ .Level }} id="{{ .Anchor }}"{{ with .Attributes }}{{ range $k, $v := . }} {{ $k }}="{{ $v }}"{{ end }}{{ end }}>
+  {{- .Text | safeHTML -}}
+  {{- if and (ge .Level 2) (le .Level 4) }}
+  <a class="heading-anchor" href="#{{ .Anchor }}"
+     aria-label="{{ i18n "headingAnchorLabel" | default "Link to this section" }}: {{ .Text | plainify }}">#</a>
+  {{- end }}
+</h{{ .Level }}>

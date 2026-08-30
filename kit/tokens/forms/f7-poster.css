@@ -1,0 +1,7 @@
+/* F7 · Poster — form-level tokens. Load after core.css.
+   Motion intensity depends on delivery medium: print => E8, digital => E9-1. */
+:root {
+  --canvas-max-w:    min(760px, 92vw);
+  --canvas-height-w: calc(94dvh * 2 / 3);
+  --poster-bleed:    3mm;   /* print only */
+}

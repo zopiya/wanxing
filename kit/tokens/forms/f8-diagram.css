@@ -1,0 +1,7 @@
+/* F8 · Diagram — form-level tokens. Load after core.css. */
+:root {
+  --diagram-node-bg:     var(--color-bg-pure);
+  --diagram-edge:        var(--stroke-hairline);
+  --diagram-node-stroke: var(--stroke-mark);
+  --diagram-node-gap:    var(--space-8);
+}

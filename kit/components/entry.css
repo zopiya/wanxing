@@ -1,0 +1,39 @@
+/* Entry 条目 — the sanctioned replacement for the card.
+   No border box, no shadow, no fill. Grouping comes from spacing, and where
+   spacing alone is not enough, from a single top rule.
+
+   Whitespace *is* the grouping signal: the gestalt principle of proximity does
+   the work a box would do, without adding a visual object to the page. A box
+   outsources grouping to a border; spacing solves it directly. */
+@layer wx.components {
+  .wx-entry { display: block; }
+
+  .wx-entry + .wx-entry { margin-block-start: var(--space-12); }
+
+  .wx-entry--ruled + .wx-entry--ruled {
+    margin-block-start: var(--space-8);
+    padding-block-start: var(--space-8);
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+
+  .wx-entry__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+    margin-block-end: var(--space-2);
+  }
+  .wx-entry__title > a { color: inherit; }
+  .wx-entry__title > a:hover { color: var(--color-accent); }
+
+  .wx-entry__desc {
+    color: var(--color-text-secondary);
+    margin-block-end: var(--space-3);
+  }
+
+  .wx-entry__meta {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+}

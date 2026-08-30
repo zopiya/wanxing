@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN" data-motion="E9-0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图表画廊 · Chart Gallery</title>
+<link rel="stylesheet" href="../../kit/index.css">
+</head>
+<body>
+<div class="wx-page">
+<main class="wx-container wx-container--showcase" style="padding-block: var(--space-16)">
+
+<p class="wx-eyebrow">文心 · 万形</p>
+<h1>图表画廊</h1>
+<p class="wx-lede">图表是文章里的一张插图，不是仪表盘上的一个控件。序列用墨色与线型编码，accent 只标记论点。</p>
+
+<hr class="wx-rule" style="margin-block: var(--space-12)">
+
+<figure class="wx-chart">
+  <h2 class="wx-chart__title">四序列折线：用墨色编码，不用色相</h2>
+  <p class="wx-chart__subtitle">指数 · 2015–2026 · 基期 = 100</p>
+  <svg class="wx-chart__svg" viewBox="0 0 640 200" role="img" aria-labelledby="c1t c1d">
+    <title id="c1t">四个序列的十二年走势</title>
+    <desc id="c1d">序列甲持续上升并在末期领先，其余三个序列平缓或下行。甲是本图论证的对象。</desc>
+    <line class="wx-chart__baseline" x1="24" y1="176" x2="616" y2="176"/>
+    <path class="wx-chart__line wx-chart__line--4" d="M24.0 123.8 L77.8 126.1 L131.6 121.4 L185.5 128.5 L239.3 130.9 L293.1 133.3 L346.9 135.6 L400.7 135.6 L454.5 138.0 L508.4 140.4 L562.2 142.8 L616.0 145.1"/>
+    <path class="wx-chart__line wx-chart__line--3" d="M24.0 157.0 L77.8 152.3 L131.6 154.6 L185.5 147.5 L239.3 142.8 L293.1 145.1 L346.9 138.0 L400.7 140.4 L454.5 133.3 L508.4 128.5 L562.2 130.9 L616.0 123.8"/>
+    <path class="wx-chart__line wx-chart__line--2" d="M24.0 104.8 L77.8 109.5 L131.6 102.4 L185.5 111.9 L239.3 116.6 L293.1 114.3 L346.9 123.8 L400.7 128.5 L454.5 126.1 L508.4 133.3 L562.2 138.0 L616.0 140.4"/>
+    <path class="wx-chart__line wx-chart__line--accent" d="M24.0 147.5 L77.8 130.9 L131.6 135.6 L185.5 114.3 L239.3 102.4 L293.1 107.1 L346.9 85.8 L400.7 71.5 L454.5 78.6 L508.4 52.5 L562.2 38.3 L616.0 24.0"/>
+    <text class="wx-chart__series-label wx-chart__series-label--accent" x="624" y="24.0">甲</text>
+    <text class="wx-chart__series-label" x="624" y="140.4">乙</text>
+    <text class="wx-chart__series-label" x="624" y="123.8">丙</text>
+    <text class="wx-chart__series-label" x="624" y="145.1">丁</text>
+  </svg>
+  <p class="wx-chart__note">四个序列靠墨色阶梯加线型区分，黑白复印后依然可分。全图仅一处 accent。</p>
+</figure>
+
+<figure class="wx-chart">
+  <h2 class="wx-chart__title">排行柱：accent 标记论点，不标记类别</h2>
+  <p class="wx-chart__subtitle">按形态统计 · 组件数</p>
+  <svg class="wx-chart__svg" viewBox="0 0 640 200" role="img" aria-labelledby="c2t c2d">
+    <title id="c2t">六个形态的组件数排行</title>
+    <desc id="c2d">F1 组件数最多，为 64；此后依次递减至 19。</desc>
+    <line class="wx-chart__baseline" x1="24" y1="176" x2="616" y2="176"/>
+      <rect class="wx-chart__bar wx-chart__bar--accent" x="24" y="48" width="60" height="128"/>
+      <text class="wx-chart__label" x="54" y="192" text-anchor="middle">F1</text>
+      <text class="wx-chart__value" x="54" y="40" text-anchor="middle">64</text>
+      <rect class="wx-chart__bar" x="119" y="72" width="60" height="104"/>
+      <text class="wx-chart__label" x="149" y="192" text-anchor="middle">F2</text>
+      <text class="wx-chart__value" x="149" y="64" text-anchor="middle">52</text>
+      <rect class="wx-chart__bar" x="214" y="94" width="60" height="82"/>
+      <text class="wx-chart__label" x="244" y="192" text-anchor="middle">F3</text>
+      <text class="wx-chart__value" x="244" y="86" text-anchor="middle">41</text>
+      <rect class="wx-chart__bar" x="309" y="110" width="60" height="66"/>
+      <text class="wx-chart__label" x="339" y="192" text-anchor="middle">F4</text>
+      <text class="wx-chart__value" x="339" y="102" text-anchor="middle">33</text>
+      <rect class="wx-chart__bar" x="404" y="122" width="60" height="54"/>
+      <text class="wx-chart__label" x="434" y="192" text-anchor="middle">F5</text>
+      <text class="wx-chart__value" x="434" y="114" text-anchor="middle">27</text>
+      <rect class="wx-chart__bar" x="499" y="138" width="60" height="38"/>
+      <text class="wx-chart__label" x="529" y="192" text-anchor="middle">F6</text>
+      <text class="wx-chart__value" x="529" y="130" text-anchor="middle">19</text>
+  </svg>
+  <p class="wx-chart__note">没有网格线、没有坐标框、没有刻度线 —— 标签即刻度。</p>
+</figure>
+
+<figure class="wx-chart">
+  <h2 class="wx-chart__title">小倍数：五个以上序列的正解</h2>
+  <p class="wx-chart__subtitle">与其挤在一张图里，不如各给一张</p>
+  <div class="wx-chart-grid">
+    <figure class="wx-chart">
+      <h3 class="wx-chart__title">甲</h3>
+      <svg class="wx-chart__svg" viewBox="0 0 640 200" role="img"><title>甲的走势</title>
+        <line class="wx-chart__baseline" x1="24" y1="176" x2="616" y2="176"/>
+        <path class="wx-chart__line wx-chart__line--accent" d="M24.0 147.5 L77.8 130.9 L131.6 135.6 L185.5 114.3 L239.3 102.4 L293.1 107.1 L346.9 85.8 L400.7 71.5 L454.5 78.6 L508.4 52.5 L562.2 38.3 L616.0 24.0"/>
+      </svg></figure>
+    <figure class="wx-chart">
+      <h3 class="wx-chart__title">乙</h3>
+      <svg class="wx-chart__svg" viewBox="0 0 640 200" role="img"><title>乙的走势</title>
+        <line class="wx-chart__baseline" x1="24" y1="176" x2="616" y2="176"/>
+        <path class="wx-chart__line" d="M24.0 104.8 L77.8 109.5 L131.6 102.4 L185.5 111.9 L239.3 116.6 L293.1 114.3 L346.9 123.8 L400.7 128.5 L454.5 126.1 L508.4 133.3 L562.2 138.0 L616.0 140.4"/>
+      </svg></figure>
+    <figure class="wx-chart">
+      <h3 class="wx-chart__title">丙</h3>
+      <svg class="wx-chart__svg" viewBox="0 0 640 200" role="img"><title>丙的走势</title>
+        <line class="wx-chart__baseline" x1="24" y1="176" x2="616" y2="176"/>
+        <path class="wx-chart__line" d="M24.0 157.0 L77.8 152.3 L131.6 154.6 L185.5 147.5 L239.3 142.8 L293.1 145.1 L346.9 138.0 L400.7 140.4 L454.5 133.3 L508.4 128.5 L562.2 130.9 L616.0 123.8"/>
+      </svg></figure>
+    <figure class="wx-chart">
+      <h3 class="wx-chart__title">丁</h3>
+      <svg class="wx-chart__svg" viewBox="0 0 640 200" role="img"><title>丁的走势</title>
+        <line class="wx-chart__baseline" x1="24" y1="176" x2="616" y2="176"/>
+        <path class="wx-chart__line" d="M24.0 123.8 L77.8 126.1 L131.6 121.4 L185.5 128.5 L239.3 130.9 L293.1 133.3 L346.9 135.6 L400.7 135.6 L454.5 138.0 L508.4 140.4 L562.2 142.8 L616.0 145.1"/>
+      </svg></figure>
+  </div>
+  <p class="wx-chart__note">这不是能力缺失，是规范层的明确边界：密集多系列属于仪表盘，不在适用范围内。</p>
+</figure>
+
+<figure class="wx-chart">
+  <h2 class="wx-chart__title">表内条与迷你图</h2>
+  <p class="wx-chart__subtitle">量级直接嵌进数据表</p>
+  <table class="wx-table" style="margin-block-start: var(--space-6)">
+    <thead><tr><th>形态</th><th style="width:40%">占比</th><th class="wx-table__num">数值</th><th>趋势</th></tr></thead>
+    <tbody>
+      <tr><td>F1 Web</td><td><span class="wx-bar-cell wx-bar-cell--accent" style="width:92%"></span></td><td class="wx-table__num">64</td>
+        <td><svg class="wx-sparkline" viewBox="0 0 90 20"><path d="M0 16.1 L10 13.6 L20 14.9 L30 11.0 L40 12.3 L50 8.4 L60 9.7 L70 4.6 L80 5.9 L90 2.0"/></svg></td></tr>
+      <tr><td>F6 Docs</td><td><span class="wx-bar-cell" style="width:74%"></span></td><td class="wx-table__num">52</td>
+        <td><svg class="wx-sparkline" viewBox="0 0 90 20"><path d="M0 16.1 L10 13.6 L20 14.9 L30 11.0 L40 12.3 L50 8.4 L60 9.7 L70 4.6 L80 5.9 L90 2.0"/></svg></td></tr>
+      <tr><td>F4 Print</td><td><span class="wx-bar-cell" style="width:58%"></span></td><td class="wx-table__num">41</td>
+        <td><svg class="wx-sparkline" viewBox="0 0 90 20"><path d="M0 16.1 L10 13.6 L20 14.9 L30 11.0 L40 12.3 L50 8.4 L60 9.7 L70 4.6 L80 5.9 L90 2.0"/></svg></td></tr>
+    </tbody>
+  </table>
+</figure>
+
+</main>
+</div>
+</body>
+</html>

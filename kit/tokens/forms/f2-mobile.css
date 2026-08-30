@@ -1,0 +1,13 @@
+/* F2 · Mobile — form-level tokens. Load after core.css.
+   F2 is the one form that sits wholly in the application track. */
+:root {
+  --phone-bg:        #3A3837;
+  --phone-screen-bg: var(--color-bg-base);
+
+  /* Touch target floor — the larger of iOS 44pt and Android 48dp.
+     This is an accessibility-floor value, not a stylistic one. */
+  --touch-target-min: 48px;
+
+  --nav-bar-height: 44px;
+  --tab-bar-height: 49px;
+}

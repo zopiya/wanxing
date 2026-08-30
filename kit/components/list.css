@@ -1,0 +1,43 @@
+@layer wx.components {
+  .wx-list { list-style: none; padding: 0; margin: 0; }
+
+  .wx-list--ruled > li + li {
+    margin-block-start: var(--space-4);
+    padding-block-start: var(--space-4);
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+
+  /* Description list — used heavily in specs and brand pages. */
+  .wx-desc { display: grid; gap: var(--space-3) var(--space-6); }
+  @media (min-width: 640px) {
+    .wx-desc { grid-template-columns: minmax(8rem, 14rem) 1fr; }
+  }
+  .wx-desc dt {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+  .wx-desc dd { margin: 0; }
+
+  /* Grouped surface — APPLICATION TRACK ONLY.
+     An iOS grouped list is a genuine platform idiom, not a lapse. It is a
+     bounded, declared exception: it uses a border, never a shadow, and any
+     output using it must declare "f2-grouped-surface" in allowedDeviations.
+     See spec/tracks.md and spec/DECISIONS.md D-4. */
+  .wx-list--grouped {
+    background: var(--color-bg-pure);
+    border: var(--stroke-hairline) solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .wx-list--grouped > li {
+    margin: 0;
+    padding: var(--space-4);
+    min-height: var(--touch-target-min, 48px);
+    display: flex;
+    align-items: center;
+  }
+  .wx-list--grouped > li + li {
+    border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+}

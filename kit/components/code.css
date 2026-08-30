@@ -1,0 +1,48 @@
+/* Code you authored — <pre class="wx-code">. Code a Markdown renderer emitted
+   is styled by kit/markdown/, with descendant selectors, because you do not
+   control its class attribute. Same look, different selector strategy;
+   conflating the two is how a design system rots. */
+@layer wx.components {
+  code:not(pre code) {
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-subtle);
+    font-size: var(--text-code);
+  }
+
+  .wx-code {
+    border: var(--stroke-hairline) solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-subtle);
+    overflow: hidden;
+  }
+  .wx-code__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    border-bottom: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+  }
+  .wx-code__copy {
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: var(--space-1) var(--space-2);
+  }
+  .wx-code__copy:hover { color: var(--color-accent); }
+  .wx-code__body {
+    margin: 0;
+    padding: var(--space-4);
+    overflow-x: auto;
+    line-height: var(--leading-normal);
+  }
+  .wx-code__body code { background: none; padding: 0; }
+}

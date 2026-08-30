@@ -1,0 +1,52 @@
+/* F6's defining component. On narrow screens it becomes a drawer; the open
+   state lives on the element as a data attribute, never as a class, so the
+   JS toggling it also has to set aria-expanded on the trigger. */
+@layer wx.components {
+  .wx-sidebar {
+    inline-size: var(--sidebar-width, 240px);
+    flex: 0 0 auto;
+    padding-block: var(--space-6);
+    padding-inline-end: var(--space-4);
+    border-inline-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-sidebar__group + .wx-sidebar__group { margin-block-start: var(--space-6); }
+  .wx-sidebar__heading {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-block-end: var(--space-2);
+  }
+  .wx-sidebar__list { list-style: none; margin: 0; padding: 0; }
+  .wx-sidebar__link {
+    display: block;
+    padding: var(--space-2) 0 var(--space-2) var(--space-3);
+    border-inline-start: 2px solid transparent;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .wx-sidebar__link:hover { color: var(--color-text-primary); }
+  .wx-sidebar__link[aria-current] {
+    color: var(--color-accent);
+    border-inline-start-color: var(--color-accent);
+  }
+
+  @media (max-width: 1024px) {
+    .wx-sidebar {
+      position: fixed;
+      inset-block: 0;
+      inset-inline-start: 0;
+      z-index: 20;
+      inline-size: min(320px, 85vw);
+      padding-inline: var(--space-5);
+      background: var(--color-bg-base);
+      transform: translateX(-100%);
+      transition: transform var(--duration-slow) var(--ease-out);
+      overflow-y: auto;
+    }
+    .wx-sidebar[data-open] { transform: none; }
+  }
+}

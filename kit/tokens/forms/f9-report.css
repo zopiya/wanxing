@@ -1,0 +1,5 @@
+/* F9 · Report — form-level tokens. Load after core.css.
+   Reuses F4's print scale; add f4-print.css alongside this file. */
+:root {
+  --width-report: clamp(640px, 58vw, 780px);
+}
