@@ -1,0 +1,114 @@
+/* Form layout — the structure around the fields.
+
+   Three layouts, all built on the same wx-field: stacked (default),
+   horizontal (label beside control), and inline (filters, search bars).
+   Data entry follows convention in both tracks; what stays ours is the
+   absence of boxes — sections are separated by a rule and whitespace. */
+@layer wx.components {
+  .wx-form { --wx-label-width: 8rem; }
+
+  /* A titled group of related fields. <fieldset> for the semantics,
+     stripped of the browser's default box — the legend and rule do the
+     grouping, exactly as wx-entry does for content. */
+  .wx-form__section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .wx-form__section + .wx-form__section { margin-block-start: var(--space-12); }
+  .wx-form__legend {
+    display: block;
+    inline-size: 100%;
+    padding: 0 0 var(--space-3);
+    margin-block-end: var(--space-6);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-text-heading);
+  }
+  .wx-form__legend-hint {
+    display: block;
+    margin-block-start: var(--space-1);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-text-functional);
+  }
+
+  /* Horizontal — label in a fixed column. Collapses to stacked on narrow
+     canvases, because a 8rem label column and a 20rem viewport cannot both
+     be honoured. */
+  .wx-form--horizontal .wx-field {
+    display: grid;
+    grid-template-columns: var(--wx-label-width) minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+  .wx-form--horizontal .wx-field__label {
+    margin-block-end: 0;
+    text-align: end;
+  }
+  .wx-form--horizontal .wx-field__hint,
+  .wx-form--horizontal .wx-field__error { grid-column: 2; }
+  @media (max-width: 40rem) {
+    .wx-form--horizontal .wx-field { grid-template-columns: minmax(0, 1fr); }
+    .wx-form--horizontal .wx-field__label { text-align: start; margin-block-end: var(--space-2); }
+    .wx-form--horizontal .wx-field__hint,
+    .wx-form--horizontal .wx-field__error { grid-column: 1; }
+  }
+
+  /* Inline — filters and search rows. */
+  .wx-form--inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--space-4);
+  }
+  .wx-form--inline .wx-field { margin-block-start: 0; flex: 1 1 12rem; }
+
+  /* Two fields on one row (first name / last name). */
+  .wx-form__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-4) var(--space-6);
+  }
+  .wx-form__row .wx-field + .wx-field { margin-block-start: 0; }
+
+  /* Actions — separated by a rule, primary action last in reading order.
+     At most one filled button per view (forbidden.md §three). */
+  .wx-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-block-start: var(--space-10);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-form__actions--end { justify-content: flex-end; }
+  .wx-form__actions-note {
+    flex: 1;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+
+  /* A summary of everything that failed, placed above the form and focused
+     on submit. Long forms need this: an inline error 40 rows down is an
+     error nobody finds. */
+  .wx-form__errors {
+    padding: var(--space-4) var(--space-5);
+    margin-block-end: var(--space-8);
+    border-inline-start: var(--stroke-mark) solid var(--color-danger);
+    background: var(--color-danger-subtle);
+  }
+  .wx-form__errors-title {
+    display: block;
+    margin-block-end: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-danger);
+  }
+  .wx-form__errors ol { margin: 0; padding-inline-start: var(--space-5); font-size: var(--text-sm); }
+}

@@ -1,0 +1,71 @@
+/* Upload — file input and drop zone.
+
+   The drop zone is a four-sided dashed rectangle, which the card ban would
+   normally forbid. It is allowed here for the same reason overlays are
+   (DECISIONS D-21, D-23): the boundary is not decoration, it IS the
+   information — it shows the reader where the droppable region ends. A drop
+   target whose edge you cannot see is a usability failure. Arbitration
+   layers one and three both apply.
+
+   The concession is bounded: dashed hairline, no fill, no shadow, no radius
+   beyond --radius-md. It stays a drop target and does not become a card. */
+@layer wx.components {
+  .wx-upload {
+    display: block;
+    padding: var(--space-10) var(--space-6);
+    border: var(--stroke-hairline) dashed var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: transparent;
+    text-align: center;
+    font-family: var(--font-ui);
+    cursor: pointer;
+  }
+  .wx-upload:hover,
+  .wx-upload:focus-within { border-color: var(--color-text-secondary); }
+  .wx-upload[data-dragover] {
+    border-color: var(--color-accent);
+    border-style: solid;
+  }
+  .wx-upload__prompt {
+    display: block;
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+  }
+  .wx-upload__hint {
+    display: block;
+    margin-block-start: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+  /* The native input stays reachable — visually hidden, not display:none,
+     so it keeps its place in the tab order. */
+  .wx-upload input[type="file"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* The list of chosen files — a ruled list, not a grid of tiles. */
+  .wx-upload-list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-upload-list__item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-upload-list__name { flex: 1; color: var(--color-text-primary); }
+  .wx-upload-list__size {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-functional);
+  }
+}

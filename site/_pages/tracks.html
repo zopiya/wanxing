@@ -1,0 +1,65 @@
+<p class="wx-eyebrow">仲裁 · Arbitration</p>
+<h1>双轨仲裁</h1>
+<p class="wx-lede">哲学与主流惯例冲突时，听谁的？三层规则自上而下检查，
+让"60% 哲学 + 40% 惯例"变成可执行的判定，而不是每次临时争论。</p>
+
+<h2 id="layer1">第一层 · 全局底线</h2>
+<p><strong>无障碍与基本可用性不参与哲学取舍。</strong>惯例无条件优先，在每一个形态、每一条轨道上都成立。</p>
+
+<div class="doc-figure">
+    <ul class="wx-list wx-list--ruled">
+      <li>WCAG 2.2 AA 对比度——正文 ≥ 4.5:1</li>
+      <li>可见焦点态 ≥ 2px，对比 ≥ 3:1；<strong>禁止 <code>outline: none</code></strong></li>
+      <li>键盘可达，焦点顺序合理</li>
+      <li>触控目标 Web ≥ 24px / iOS ≥ 44pt / Android ≥ 48dp</li>
+      <li><strong>颜色不作为唯一信息载体</strong></li>
+      <li>尊重 <code>prefers-reduced-motion</code></li>
+    </ul>
+  </div>
+
+<h2 id="layer2">第二层 · 按场景分轨</h2>
+
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>轨道</th><th>适用</th><th>视觉约束</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>阅读轨</strong><br><span class="wx-attr">editorial</span></td>
+          <td>文章、文档、品牌、报告、幻灯、海报</td>
+          <td>哲学全量生效：无卡片容器、无填充按钮、≤2 accent、灰阶图表、极简动效</td>
+        </tr>
+        <tr>
+          <td><strong>应用轨</strong><br><span class="wx-attr">application</span></td>
+          <td>移动端；<strong>任何工具型页面</strong></td>
+          <td>放宽视觉约束：允许分组表面、允许填充主按钮、完整语义色、明确的交互反馈</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<p>轨道在<strong>页面级</strong>声明。关键机制是：<strong>一个工具型页面会翻转它所在媒介的轨道</strong>——
+即使住在一个阅读轨的站点里，一个查询工具页也按应用轨判定。</p>
+
+<h2 id="layer3">第三层 · 组件类别覆盖</h2>
+
+<p><strong>数据录入与反馈类组件永远按惯例处理</strong>，无论所在轨道。表单就是表单，
+可用性在这里不可妥协。</p>
+
+<p>所以在一个纯阅读轨的文档页里，其中的搜索框、表单、错误提示仍然使用语义色、
+清晰的可供性与标准交互反馈。一个不像错误的错误提示不是克制，是失败。</p>
+
+<h2 id="consequences">这条规则带来的三个具体改变</h2>
+
+<div class="doc-figure">
+    <ol class="wx-list">
+      <li><strong>补齐语义色</strong>（第一层要求）—— danger / warning / success 及其淡色变体，
+      不计入 accent 预算，因为它们回答的是不同的问题：accent 说"看这里"，语义色说"这是什么状态"。</li>
+      <li><strong>主按钮升格</strong>（第三层要求）—— 填充主按钮从"括号里的例外"变成一等变体，
+      约束从"禁止"改为"<strong>限量</strong>"：每视图至多一个。</li>
+      <li><strong>分组表面合法化</strong>（第二层要求）—— iOS 分组列表是真实平台惯例，
+      在应用轨可用，走边框实现，<strong>仍然禁止阴影</strong>。</li>
+    </ol>
+  </div>
+
+<h2 id="summary">一句话</h2>
+<p class="wx-pullquote">第一层保证它能用，第二层保证它像文心，第三层保证表单还是表单。</p>

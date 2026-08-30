@@ -118,6 +118,6 @@ The logo is brand identity — it **is allowed and required** to deviate from no
 
 ## 与形态层的边界 · Boundary with the Form Layer
 
-品牌标识符 ■ 与 Logo 的**定义**（形态、色彩、圆角、线宽、动效）属于这里（灵魂层）。Logo/■ 在某个具体产出（网页头部、印刷品信头、名片、海报角落）里**放在哪里、多大**，属于形态层，见 [形态层 forms](../forms/DECISIONS-MATRIX.md) 的 `f3-brand.md`（品牌应用形态）以及各 F1–F9 文件里对品牌元素位置的说明。
+品牌标识符 ■ 与 Logo 的**定义**（形态、色彩、圆角、线宽、动效）属于这里（灵魂层）。Logo/■ 在某个具体产出（网页头部、印刷品信头、名片、海报角落）里**放在哪里、多大**，属于形态层，见 [形态层 forms](../media.md) 的 `f3-brand.md`（品牌应用形态）以及各 F1–F9 文件里对品牌元素位置的说明。
 
 The **definition** of the ■ mark and the logo (shape, color, radius, stroke, motion) lives here. **Where and how large** it sits in a specific output (a webpage header, letterhead, business card, poster corner) is a form-layer decision — see wanxing's `f3-brand.md` and the placement notes in each F1–F9 file.

@@ -1,0 +1,140 @@
+<p class="wx-eyebrow">组件 · Components</p>
+<h1>数据展示</h1>
+<p class="wx-lede">表格只有横线，条目没有方框，树是嵌套的原生折叠。</p>
+
+<h2 id="table">表格 Table</h2>
+<p><strong>只有水平分隔线，无外框、无竖线。</strong>数字右对齐并用等宽数字，
+这样一列数字的位数能对齐——这是可读性，不是风格。</p>
+<div class="doc-figure">
+    <div class="wx-table-scroll">
+      <table class="wx-table">
+        <caption>各站点条目数</caption>
+        <thead><tr><th>站点</th><th>类型</th><th style="text-align:end">条目</th></tr></thead>
+        <tbody>
+          <tr><td>文辑</td><td>长文</td><td style="text-align:end;font-variant-numeric:tabular-nums">143</td></tr>
+          <tr><td>片语</td><td>短记</td><td style="text-align:end;font-variant-numeric:tabular-nums">2,081</td></tr>
+          <tr><td>知原</td><td>知识库</td><td style="text-align:end;font-variant-numeric:tabular-nums">67</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<h2 id="entry">条目 Entry</h2>
+<p><strong>卡片的替代品。</strong>无边框、无阴影、无填充，靠留白或单边线分隔。</p>
+<div class="doc-figure">
+    <article class="wx-entry">
+      <p class="wx-entry__meta">2026-08-30 · 设计</p>
+      <h3 class="wx-entry__title"><a href="#">留白不是空缺</a></h3>
+      <p>足够的留白让内容呼吸、让层次清晰。</p>
+    </article>
+    <article class="wx-entry wx-entry--ruled">
+      <p class="wx-entry__meta">2026-08-24 · 排版</p>
+      <h3 class="wx-entry__title"><a href="#">克制即力量</a></h3>
+      <p>--ruled 变体加一条上边线，用于需要更明确边界时。</p>
+    </article>
+  </div>
+
+<h2 id="timeline">时间线 Timeline</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <ol class="wx-timeline">
+      <li class="wx-timeline__item"><p class="wx-timeline__meta">08-30</p><p>补齐组件清单。</p></li>
+      <li class="wx-timeline__item"><p class="wx-timeline__meta">08-29</p><p>田野审计四个生产站点。</p></li>
+      <li class="wx-timeline__item"><p class="wx-timeline__meta">08-24</p><p>重构为 spec / kit / examples。</p></li>
+    </ol>
+  </div>
+</div>
+
+<h2 id="tree">树 Tree</h2>
+<p>嵌套 <code>&lt;ul&gt;</code> + <code>&lt;details&gt;</code>，<strong>零 JS、零自定义 role</strong>。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <ul class="wx-tree">
+      <li><details open><summary>kit</summary>
+        <ul>
+          <li><details><summary>tokens</summary>
+            <ul><li><a class="wx-tree__leaf" href="#">core.css</a></li>
+                <li><a class="wx-tree__leaf" href="#">dark.css</a></li></ul>
+          </details></li>
+          <li><a class="wx-tree__leaf" href="#" aria-current="page">components/</a></li>
+        </ul>
+      </details></li>
+      <li><a class="wx-tree__leaf" href="#">spec/</a></li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="collapse">折叠 Collapse</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <details class="wx-collapse"><summary>为什么没有卡片？</summary>
+      <p>禁的是四边包围的几何形状，不是"卡片"这个名词。分组用邻近、单边线和标题。</p>
+    </details>
+    <details class="wx-collapse"><summary>为什么没有加载动画？</summary>
+      <p>旋转是被禁的循环动画。用文字——"正在导出…"比转圈提供更多信息。</p>
+    </details>
+  </div>
+</div>
+
+<h2 id="desc">描述列表与统计</h2>
+<div class="doc-figure">
+    <dl class="wx-desc">
+      <dt>版本</dt><dd>0.1.0</dd>
+      <dt>组件</dt><dd>83 个块级类</dd>
+      <dt>依赖</dt><dd>无</dd>
+    </dl>
+    <hr class="wx-rule">
+    <div class="wx-cluster wx-cluster--loose">
+      <div class="wx-stat"><span class="wx-stat__value">83</span><span class="wx-stat__label">组件类</span></div>
+      <div class="wx-stat"><span class="wx-stat__value">39</span><span class="wx-stat__label">样式表</span></div>
+      <div class="wx-stat"><span class="wx-stat__value">0</span><span class="wx-stat__label">运行时依赖</span></div>
+    </div>
+  </div>
+
+<h2 id="calendar">日历 Calendar</h2>
+<p>用 <code>&lt;table&gt;</code>，因为它<strong>就是</strong>表格——读屏器能从表结构里播报星期几。
+一堆 <code>&lt;div&gt;</code> 做不到这件事。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <table class="wx-calendar">
+      <caption>2026 年 8 月</caption>
+      <thead><tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr></thead>
+      <tbody>
+        <tr><td colspan="5"></td>
+          <td><button class="wx-calendar__day" type="button">1</button></td>
+          <td><button class="wx-calendar__day" type="button">2</button></td></tr>
+        <tr>
+          <td><button class="wx-calendar__day" type="button">3</button></td>
+          <td><button class="wx-calendar__day" type="button">4</button></td>
+          <td><button class="wx-calendar__day" type="button" aria-selected="true">5</button></td>
+          <td><button class="wx-calendar__day" type="button">6</button></td>
+          <td><button class="wx-calendar__day" type="button">7</button></td>
+          <td><button class="wx-calendar__day" type="button">8</button></td>
+          <td><button class="wx-calendar__day" type="button" aria-current="date">9</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2 id="gallery">图集 Gallery</h2>
+<p>轮播的诚实替代：<strong>读者驱动的横向滚动</strong>，原生 scroll-snap，
+不自动播放，不用箭头盖在内容上。</p>
+<div class="doc-figure">
+    <div class="wx-gallery" tabindex="0" role="region" aria-label="示例图集">
+      <figure class="wx-gallery__item"><div style="aspect-ratio:16/9;background:var(--color-bg-subtle)"></div>
+        <figcaption class="wx-gallery__caption">图一 · 手动滚动</figcaption></figure>
+      <figure class="wx-gallery__item"><div style="aspect-ratio:16/9;background:var(--color-bg-subtle)"></div>
+        <figcaption class="wx-gallery__caption">图二 · 有 snap 点</figcaption></figure>
+      <figure class="wx-gallery__item"><div style="aspect-ratio:16/9;background:var(--color-bg-subtle)"></div>
+        <figcaption class="wx-gallery__caption">图三 · 键盘可达</figcaption></figure>
+    </div>
+  </div>
+
+<h2 id="code">代码 Code</h2>
+<div class="doc-figure">
+    <div class="wx-code">
+      <div class="wx-code__title">kit/index.css</div>
+      <pre class="wx-code__body"><code>@import "./tokens/core.css";
+@import "./components/index.css";</code></pre>
+    </div>
+  </div>

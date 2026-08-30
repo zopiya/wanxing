@@ -1,0 +1,54 @@
+/* Result — the whole-page outcome state: success, failure, 404, 403.
+
+   Ant Design puts an illustration here. This system does not: the mark, a
+   heading, one sentence, and at most two actions. Same reasoning as
+   wx-empty — an illustration is decorative imagery, which is forbidden, and
+   it delays the sentence that actually tells the reader what happened. */
+@layer wx.components {
+  .wx-result {
+    max-inline-size: var(--width-article);
+    margin-inline: auto;
+    padding-block: var(--space-24);
+    text-align: center;
+  }
+  .wx-result__mark {
+    display: block;
+    margin-block-end: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    line-height: 1;
+    color: var(--color-text-functional);
+  }
+  .wx-result__title {
+    margin-block: 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text-heading);
+  }
+  .wx-result__body {
+    margin-block: 0;
+    color: var(--color-text-secondary);
+  }
+  .wx-result__actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-block-start: var(--space-8);
+  }
+  /* Level is carried by the mark's ink and the words, never by colour
+     alone — the title states the outcome. */
+  .wx-result--success .wx-result__mark { color: var(--color-success); }
+  .wx-result--warn    .wx-result__mark { color: var(--color-warning); }
+  .wx-result--danger  .wx-result__mark { color: var(--color-danger); }
+
+  /* Supporting detail — a stack trace, a reference number. */
+  .wx-result__detail {
+    margin-block-start: var(--space-8);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+    text-align: start;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+}

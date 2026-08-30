@@ -4,7 +4,7 @@
 > 实现 Implementation：`kit/components/` · 分轨规则 Track rules：[../tracks.md](../tracks.md)
 
 这里定义**跨形态通用的组件规则与清单**。任何形态里出现链接、按钮、表单、代码块，
-都遵循这里的规定。形态特有的组件（文档站侧栏、幻灯片页码、海报构图）见[形态文件](../forms/DECISIONS-MATRIX.md)。
+都遵循这里的规定。形态特有的组件（文档站侧栏、幻灯片页码、海报构图）见[形态文件](../media.md)。
 
 ---
 
@@ -171,12 +171,24 @@ batch, together with six additions the inventory had not previously named.
 `wx-tabs` 只认 `role="tab"` + `aria-selected`，`wx-switch` 只认 `role="switch"` +
 `aria-checked`，`wx-collapse` 只认原生 `open`。这三者都不得另造 `.active` / `.open` 状态类。
 
-### 明确不做
+### 明确不做 —— 两种排除，不可混为一谈
 
-滑块 · 上传 · 日期选择器 · 树 · 气泡卡片 —— 这些属于[适用范围](./philosophy.md#适用范围--scope)之外的工具类场景。
+见 [DECISIONS.md](../DECISIONS.md) **D-23**。
 
-**骨架屏 skeleton 也不做**：静态的发丝线占位本质上就是一根线，
-而闪烁的 shimmer 是被禁止的循环动画。需要占位时用 `wx-rule` 加留白。
+**哲学性排除**（不随范围扩大而放开，它们就是这套系统的身份）：
+
+| 组件 | 冲突于 |
+|---|---|
+| 卡片 card | A9 —— 四边包围的方框不携带信息。用 `wx-entry` |
+| 加载动画 spin | 动效禁令 —— 旋转是被禁的循环动画。用文字说明 |
+| 骨架屏 skeleton | 静态占位就是一根线；shimmer 是被禁的循环 |
+| 自动轮播 carousel | 移动读者正在读的内容。用 `wx-gallery`（手动滚动） |
+| 水印 watermark | 纯装饰性叠加 |
+
+**工程性排除**（范围判断，不是价值判断）：颜色选择器 · 级联选择 · 提及输入 ——
+需要大量 JS 且有可用的原生替代品。**有需要时可以做，不需要任何哲学让步。**
+
+滑块、上传、日期、树、气泡卡片曾属于这一类，范围扩展到完整组件库后已全部实现。
 
 ---
 

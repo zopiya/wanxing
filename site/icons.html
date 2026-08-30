@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图标与标识 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html" aria-current="page">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">全局样式 · Global</p>
+<h1>图标与标识</h1>
+<p class="wx-lede">线条型图标，1.5px 描边，三档尺寸。品牌是一枚朱砂印。</p>
+
+<h2 id="seal">品牌标记</h2>
+<p>■ 一枚方形朱砂印。它是全页视觉焦点，<strong>消耗两处 accent 预算中的一处</strong>。</p>
+<div class="doc-figure">
+    <p><span class="wx-seal" aria-hidden="true"></span> 默认尺寸</p>
+    <p><span class="wx-seal wx-seal--lg" aria-hidden="true"></span> 大号，用于页头</p>
+  </div>
+<p>在 <code>E9-2</code> 强度下，品牌标记允许一处 4 秒呼吸循环——这是全系统<strong>唯一</strong>
+被允许的循环动画，也是 <code>--ease-in-out</code> 唯一的用途。文章页不继承这个循环：
+一篇长文里持续呼吸的标记是干扰，不是品牌。</p>
+
+<h2 id="icons">图标规范</h2>
+<div class="doc-figure">
+    <table class="wx-table doc-api">
+      <thead><tr><th>Token</th><th>值</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><code>--icon-sm</code></td><td>16px</td><td>行内、密集列表</td></tr>
+        <tr><td><code>--icon-md</code></td><td>20px</td><td>默认</td></tr>
+        <tr><td><code>--icon-lg</code></td><td>24px</td><td>导航、工具栏</td></tr>
+        <tr><td><code>--stroke-mark</code></td><td>1.5px</td><td><strong>签名描边</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<h2 id="rules">四条规则</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>只用线条型图标</strong>，禁止填充型——这条针对图标集的风格，
+  数据标记（图表柱、评分方块）不在此列</li>
+  <li><strong>禁止两个图标库同页混用</strong>——描边风格不一致会立刻被看出来</li>
+  <li><strong>图标不能独立承载信息</strong>——必须有可访问名称或相邻文字</li>
+  <li><strong>SVG 缩放时用 <code>vector-effect: non-scaling-stroke</code></strong>——
+  这是 1.5px 在海报尺度下仍然是 1.5px 的关键</li>
+</ul>
+
+<h2 id="hit">命中区域</h2>
+<p>图标的<strong>视觉尺寸</strong>和<strong>命中盒</strong>是两件事。
+一个 16px 的图标按钮仍然需要 ≥24px 的可点击区域（移动端 44/48）。
+扩命中盒，不必放大文字——这是田野审计在三个生产站上都发现的问题。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-btn wx-btn--text" type="button" style="min-block-size:24px;min-inline-size:24px">↗</button>
+      <span class="wx-attr">视觉 16px，命中盒 24px</span>
+    </div>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;
+  &lt;button class="wx-btn wx-btn--text" type="button" style="min-block-size:24px;min-inline-size:24px"&gt;↗&lt;/button&gt;
+  &lt;span class="wx-attr"&gt;视觉 16px，命中盒 24px&lt;/span&gt;
+&lt;/div&gt;</code></pre></details>
+</div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#seal">品牌标记</a></li>
+      <li><a class="wx-anchor__link" href="#icons">图标规范</a></li>
+      <li><a class="wx-anchor__link" href="#rules">四条规则</a></li>
+      <li><a class="wx-anchor__link" href="#hit">命中区域</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

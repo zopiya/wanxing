@@ -1,0 +1,132 @@
+/* Range-based controls — slider, number, and rate.
+
+   These were previously excluded on SCOPE grounds ("tool scenarios are out
+   of applicability"), not on philosophy grounds. With the scope widened to a
+   full component library they come in unchanged in principle: ink, hairlines,
+   no gradient fill on the track. */
+@layer wx.components {
+
+  /* ---- Slider -------------------------------------------------------- */
+  /* The track is a single rule; the filled portion is NOT a gradient (those
+     are forbidden) — it is a second element sized by the consumer, or simply
+     omitted. A bare track plus a visible thumb reads fine and stays honest. */
+  .wx-slider {
+    inline-size: 100%;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .wx-slider::-webkit-slider-runnable-track {
+    block-size: var(--stroke-mark);
+    background: var(--color-border-strong);
+  }
+  .wx-slider::-moz-range-track {
+    block-size: var(--stroke-mark);
+    background: var(--color-border-strong);
+  }
+  .wx-slider::-moz-range-progress {
+    block-size: var(--stroke-mark);
+    background: var(--color-text-primary);
+  }
+  .wx-slider::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: var(--space-4);
+    block-size: var(--space-4);
+    margin-block-start: calc((var(--space-4) - var(--stroke-mark)) / -2);
+    border: var(--stroke-mark) solid var(--color-text-primary);
+    border-radius: var(--radius-full);
+    background: var(--color-bg-pure);
+  }
+  .wx-slider::-moz-range-thumb {
+    inline-size: var(--space-4);
+    block-size: var(--space-4);
+    border: var(--stroke-mark) solid var(--color-text-primary);
+    border-radius: var(--radius-full);
+    background: var(--color-bg-pure);
+  }
+  /* The value must be readable as a number, not inferred from thumb
+     position — position alone is not an accessible readout. */
+  .wx-slider-field__row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-block-end: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+  .wx-slider-field__value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-primary);
+  }
+  .wx-slider-field__scale {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-functional);
+  }
+
+  /* ---- Number input -------------------------------------------------- */
+  /* Native spinners are kept: they are keyboard-reachable and localised.
+     Numerals are tabular so a column of them aligns. */
+  .wx-number {
+    inline-size: 100%;
+    max-inline-size: 12rem;
+    padding: var(--space-3) var(--space-4);
+    min-block-size: var(--touch-target-min, 24px);
+    border: var(--stroke-hairline) solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-pure);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-primary);
+  }
+  .wx-number:hover { border-color: var(--color-border-strong); }
+  .wx-number[aria-invalid="true"] {
+    border-color: var(--color-danger);
+    border-width: var(--stroke-mark);
+  }
+
+  /* ---- Rate ---------------------------------------------------------- */
+  /* Marks, not icons. The ban on filled icons governs icon sets; a rating
+     mark is a data mark, the same way a chart bar is. Using the ■ seal
+     idiom keeps it in the system's own vocabulary, and filled-vs-hairline
+     survives greyscale — the state is never carried by colour alone.
+
+     Implemented as radio inputs in reverse DOM order so the CSS sibling
+     selector can fill everything up to the checked one. */
+  .wx-rate {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: var(--space-2);
+  }
+  .wx-rate input {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .wx-rate label {
+    inline-size: var(--space-4);
+    block-size: var(--space-4);
+    border: var(--stroke-mark) solid var(--color-border-strong);
+    cursor: pointer;
+  }
+  .wx-rate input:checked ~ label,
+  .wx-rate label:hover,
+  .wx-rate label:hover ~ label {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+  }
+  .wx-rate input:focus-visible + label {
+    outline: var(--stroke-mark) solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}

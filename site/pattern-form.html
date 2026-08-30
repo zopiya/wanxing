@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>表单页 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html" aria-current="page">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>表单页</h1>
+<p class="wx-lede">表单是这套系统里惯例占比最高的地方。
+第三层仲裁规则说得很直白：<strong>表单就是表单</strong>，可用性在这里不可妥协。</p>
+
+<h2 id="layout">三种布局</h2>
+<p>默认是<strong>纵向堆叠</strong>——标签在控件上方。这是移动端唯一合理的选择，
+也是桌面端的安全默认，因为标签长度不受列宽限制。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form">
+      <fieldset class="wx-form__section">
+        <legend class="wx-form__legend">基本信息
+          <span class="wx-form__legend-hint">用于生成署名与联系方式</span>
+        </legend>
+        <div class="wx-form__row">
+          <label class="wx-field">
+            <span class="wx-field__label">姓名 <span class="wx-field__required">必填</span></span>
+            <input class="wx-input" name="name" required>
+          </label>
+          <label class="wx-field">
+            <span class="wx-field__label">称谓</span>
+            <span class="wx-select-wrap">
+              <select class="wx-select" name="title">
+                <option>编辑</option><option>设计</option><option>工程</option>
+              </select>
+            </span>
+          </label>
+        </div>
+        <label class="wx-field">
+          <span class="wx-field__label">邮箱 <span class="wx-field__required">必填</span></span>
+          <input class="wx-input" name="email" type="email" required aria-describedby="email-hint">
+          <span class="wx-field__hint" id="email-hint">仅用于通知，不会公开。</span>
+        </label>
+      </fieldset>
+      <div class="wx-form__actions">
+        <span class="wx-form__actions-note">草稿会自动保存。</span>
+        <button class="wx-btn" type="button">取消</button>
+        <button class="wx-btn wx-btn--primary" type="submit">提交</button>
+      </div>
+    </form>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;form class="wx-form"&gt;
+  &lt;fieldset class="wx-form__section"&gt;
+    &lt;legend class="wx-form__legend"&gt;基本信息
+      &lt;span class="wx-form__legend-hint"&gt;用于生成署名与联系方式&lt;/span&gt;
+    &lt;/legend&gt;
+    &lt;div class="wx-form__row"&gt;
+      &lt;label class="wx-field"&gt;
+        &lt;span class="wx-field__label"&gt;姓名 &lt;span class="wx-field__required"&gt;必填&lt;/span&gt;&lt;/span&gt;
+        &lt;input class="wx-input" name="name" required&gt;
+      &lt;/label&gt;
+      &lt;label class="wx-field"&gt;
+        &lt;span class="wx-field__label"&gt;称谓&lt;/span&gt;
+        &lt;span class="wx-select-wrap"&gt;
+          &lt;select class="wx-select" name="title"&gt;
+            &lt;option&gt;编辑&lt;/option&gt;&lt;option&gt;设计&lt;/option&gt;&lt;option&gt;工程&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;label class="wx-field"&gt;
+      &lt;span class="wx-field__label"&gt;邮箱 &lt;span class="wx-field__required"&gt;必填&lt;/span&gt;&lt;/span&gt;
+      &lt;input class="wx-input" name="email" type="email" required aria-describedby="email-hint"&gt;
+      &lt;span class="wx-field__hint" id="email-hint"&gt;仅用于通知，不会公开。&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;/fieldset&gt;
+  &lt;div class="wx-form__actions"&gt;
+    &lt;span class="wx-form__actions-note"&gt;草稿会自动保存。&lt;/span&gt;
+    &lt;button class="wx-btn" type="button"&gt;取消&lt;/button&gt;
+    &lt;button class="wx-btn wx-btn--primary" type="submit"&gt;提交&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre></details>
+</div>
+
+<p><strong>横向布局</strong>用于字段少、标签短、需要紧凑的场景。加 <code>wx-form--horizontal</code>，
+窄画布下自动退回堆叠——8rem 的标签列和 20rem 的视口无法同时成立。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form wx-form--horizontal">
+      <label class="wx-field">
+        <span class="wx-field__label">标题</span>
+        <input class="wx-input" name="t">
+      </label>
+      <label class="wx-field">
+        <span class="wx-field__label">标签</span>
+        <input class="wx-input" name="tags">
+      </label>
+    </form>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;form class="wx-form wx-form--horizontal"&gt;
+  &lt;label class="wx-field"&gt;
+    &lt;span class="wx-field__label"&gt;标题&lt;/span&gt;
+    &lt;input class="wx-input" name="t"&gt;
+  &lt;/label&gt;
+  &lt;label class="wx-field"&gt;
+    &lt;span class="wx-field__label"&gt;标签&lt;/span&gt;
+    &lt;input class="wx-input" name="tags"&gt;
+  &lt;/label&gt;
+&lt;/form&gt;</code></pre></details>
+</div>
+
+<p><strong>行内布局</strong> <code>wx-form--inline</code> 用于筛选栏与搜索行。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form wx-form--inline">
+      <label class="wx-field">
+        <span class="wx-field__label">关键词</span>
+        <input class="wx-input" type="search" name="q">
+      </label>
+      <label class="wx-field">
+        <span class="wx-field__label">年份</span>
+        <input class="wx-number" type="number" name="year" value="2026">
+      </label>
+      <button class="wx-btn" type="submit">筛选</button>
+    </form>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;form class="wx-form wx-form--inline"&gt;
+  &lt;label class="wx-field"&gt;
+    &lt;span class="wx-field__label"&gt;关键词&lt;/span&gt;
+    &lt;input class="wx-input" type="search" name="q"&gt;
+  &lt;/label&gt;
+  &lt;label class="wx-field"&gt;
+    &lt;span class="wx-field__label"&gt;年份&lt;/span&gt;
+    &lt;input class="wx-number" type="number" name="year" value="2026"&gt;
+  &lt;/label&gt;
+  &lt;button class="wx-btn" type="submit"&gt;筛选&lt;/button&gt;
+&lt;/form&gt;</code></pre></details>
+</div>
+
+<h2 id="validation">校验：什么时候提示</h2>
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>时机</th><th>做法</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td>输入中</td><td><strong>不提示</strong></td><td>还没写完就报错是骚扰</td></tr>
+        <tr><td>失焦时</td><td>提示该字段</td><td>读者已表达"这个填完了"</td></tr>
+        <tr><td>提交时</td><td>汇总 + 聚焦第一个错误</td><td>长表单里 40 行外的内联错误没人找得到</td></tr>
+        <tr><td>修正后</td><td><strong>立即撤销提示</strong></td><td>正确了还在报错会摧毁信任</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<h2 id="error">错误的三重编码</h2>
+<p>错误状态<strong>同时</strong>由颜色、文字和边框粗细承载。只有颜色的错误对色盲用户等于不存在，
+这是第一层底线，不是建议。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form">
+      <div class="wx-form__errors" role="alert" tabindex="-1">
+        <span class="wx-form__errors-title">有 2 处需要修正</span>
+        <ol>
+          <li><a href="#f-email">邮箱格式不正确</a></li>
+          <li><a href="#f-pass">密码至少 8 位</a></li>
+        </ol>
+      </div>
+      <label class="wx-field">
+        <span class="wx-field__label">邮箱</span>
+        <input class="wx-input" id="f-email" value="zopiya@" aria-invalid="true" aria-describedby="e-email">
+        <span class="wx-field__error" id="e-email">邮箱格式不正确——缺少域名部分。</span>
+      </label>
+      <label class="wx-field">
+        <span class="wx-field__label">密码</span>
+        <input class="wx-input" id="f-pass" type="password" value="123" aria-invalid="true" aria-describedby="e-pass">
+        <span class="wx-field__error" id="e-pass">密码至少 8 位，当前 3 位。</span>
+      </label>
+    </form>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;form class="wx-form"&gt;
+  &lt;div class="wx-form__errors" role="alert" tabindex="-1"&gt;
+    &lt;span class="wx-form__errors-title"&gt;有 2 处需要修正&lt;/span&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;a href="#f-email"&gt;邮箱格式不正确&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#f-pass"&gt;密码至少 8 位&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/div&gt;
+  &lt;label class="wx-field"&gt;
+    &lt;span class="wx-field__label"&gt;邮箱&lt;/span&gt;
+    &lt;input class="wx-input" id="f-email" value="zopiya@" aria-invalid="true" aria-describedby="e-email"&gt;
+    &lt;span class="wx-field__error" id="e-email"&gt;邮箱格式不正确——缺少域名部分。&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;label class="wx-field"&gt;
+    &lt;span class="wx-field__label"&gt;密码&lt;/span&gt;
+    &lt;input class="wx-input" id="f-pass" type="password" value="123" aria-invalid="true" aria-describedby="e-pass"&gt;
+    &lt;span class="wx-field__error" id="e-pass"&gt;密码至少 8 位，当前 3 位。&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/form&gt;</code></pre></details>
+</div>
+
+<p>错误文案要说<strong>怎么修</strong>，不只说错了。"密码至少 8 位，当前 3 位"
+比"密码无效"有用得多。</p>
+
+<h2 id="required">必填标记</h2>
+<p>用<strong>词</strong>标记必填，不用裸星号，也不用颜色。星号是约定俗成但不自解释，
+读屏器读作"星"。如果表单里绝大多数字段必填，反过来标记"选填"更省。</p>
+
+<h2 id="submit">提交状态</h2>
+<p>没有 spinner。提交中的反馈是<strong>按钮文案变化 + 禁用</strong>，
+完成后用 toast 确认。文字比转圈提供更多信息。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-btn wx-btn--primary" type="button">提交</button>
+      <button class="wx-btn wx-btn--primary" type="button" disabled>正在提交…</button>
+      <button class="wx-btn" type="button"
+              onclick="wxToast('设置已保存', { level:'success', label:'已保存' })">提交成功 →</button>
+    </div>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;
+  &lt;button class="wx-btn wx-btn--primary" type="button"&gt;提交&lt;/button&gt;
+  &lt;button class="wx-btn wx-btn--primary" type="button" disabled&gt;正在提交…&lt;/button&gt;
+  &lt;button class="wx-btn" type="button"
+          onclick="wxToast('设置已保存', { level:'success', label:'已保存' })"&gt;提交成功 →&lt;/button&gt;
+&lt;/div&gt;</code></pre></details>
+</div>
+
+<h2 id="checklist">表单检查清单</h2>
+<ul class="wx-list wx-list--ruled">
+  <li>每个控件都有 <code>&lt;label&gt;</code>——placeholder <strong>不是</strong>标签</li>
+  <li>错误用 <code>aria-invalid</code> + <code>aria-describedby</code> 关联</li>
+  <li>错误汇总用 <code>role="alert"</code> 且可聚焦</li>
+  <li>触控目标 ≥ 24px（移动端 44/48）</li>
+  <li>每视图<strong>至多一个</strong>填充主按钮</li>
+  <li>提交按钮在最后，取消在它之前</li>
+  <li>禁用态不能只靠颜色区分</li>
+</ul>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#layout">三种布局</a></li>
+      <li><a class="wx-anchor__link" href="#validation">校验：什么时候提示</a></li>
+      <li><a class="wx-anchor__link" href="#error">错误的三重编码</a></li>
+      <li><a class="wx-anchor__link" href="#required">必填标记</a></li>
+      <li><a class="wx-anchor__link" href="#submit">提交状态</a></li>
+      <li><a class="wx-anchor__link" href="#checklist">表单检查清单</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

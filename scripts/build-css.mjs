@@ -50,17 +50,8 @@ const base = flatten(join(kit, "index.css"));
 mkdirSync(out, { recursive: true });
 writeFileSync(join(out, "wenxin.css"), `${banner("complete kit")}${base}\n`);
 
-for (let n = 1; n <= 9; n += 1) {
-  const formFiles = n === 9
-    ? [join(kit, "tokens/forms/f4-print.css"), join(kit, "tokens/forms/f9-report.css")]
-    : [join(kit, `tokens/forms/f${n}-${[
-        "web", "mobile", "brand", "print", "presentation", "documentation", "poster", "diagram", "report",
-      ][n - 1]}.css`)];
-  const form = formFiles.map((file) => flatten(file)).join("\n\n");
-  writeFileSync(
-    join(out, `wenxin-f${n}.css`),
-    `${banner(`F${n}`)}${base}\n\n@layer wx.form {\n${form}\n}\n`,
-  );
-}
-
-console.log("✓ 10 unminified CSS bundles → kit/dist/ (wenxin.css + F1-F9)");
+/* Per-medium bundles were removed: nine files carried 145 lines of real
+   difference across 30,000 lines, because each was the complete kit plus a
+   handful of tokens. A consumer loads wenxin.css and adds the one
+   kit/tokens/forms/ file they need. */
+console.log("✓ wenxin.css → kit/dist/ (unminified, import-free)");

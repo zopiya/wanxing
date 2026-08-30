@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>反馈与浮层 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html" aria-current="page">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">组件 · Components</p>
+<h1>反馈与浮层</h1>
+<p class="wx-lede">反馈类按惯例处理。浮层是全系统<strong>唯一</strong>允许有"面"的地方，
+这个例外是论证出来的，不是图方便。</p>
+
+<h2 id="note">提示块 Note</h2>
+<p>每一级都<strong>同时</strong>有颜色和文字标签。标签不是装饰——
+它是让级别在无色觉条件下依然可感知的东西。</p>
+<div class="doc-figure">
+    <div class="wx-note wx-note--info"><span class="wx-note__title">说明</span><p>中性补充信息。</p></div>
+    <div class="wx-note wx-note--tip"><span class="wx-note__title">建议</span><p>推荐的做法。</p></div>
+    <div class="wx-note wx-note--warn"><span class="wx-note__title">注意</span><p>需要留心的边界情况。</p></div>
+    <div class="wx-note wx-note--danger"><span class="wx-note__title">危险</span><p>会造成不可逆后果。</p></div>
+  </div>
+
+<h2 id="alert">行内提示 Alert</h2>
+<div class="doc-figure">
+    <div class="wx-alert wx-alert--warn"><span>存储空间剩余不足 10%。</span></div>
+    <div class="wx-alert wx-alert--danger" style="margin-block-start:var(--space-3)"><span>连接已断开，正在重试。</span></div>
+    <div class="wx-alert wx-alert--success" style="margin-block-start:var(--space-3)"><span>全部检查通过。</span></div>
+  </div>
+
+<h2 id="toast">通知 Toast</h2>
+<p><code>aria-live="polite"</code>——不是 assertive。一条 toast 永远没有紧急到需要打断读者。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')">普通</button>
+      <button class="wx-btn" type="button" onclick="wxToast('草稿已保存', {level:'success', label:'已保存'})">成功</button>
+      <button class="wx-btn" type="button" onclick="wxToast('磁盘空间不足', {level:'warn', label:'警告'})">警告</button>
+      <button class="wx-btn" type="button" onclick="wxToast('提交失败，请重试', {level:'danger', label:'失败'})">失败</button>
+    </div>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;
+  &lt;button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')"&gt;普通&lt;/button&gt;
+  &lt;button class="wx-btn" type="button" onclick="wxToast('草稿已保存', {level:'success', label:'已保存'})"&gt;成功&lt;/button&gt;
+  &lt;button class="wx-btn" type="button" onclick="wxToast('磁盘空间不足', {level:'warn', label:'警告'})"&gt;警告&lt;/button&gt;
+  &lt;button class="wx-btn" type="button" onclick="wxToast('提交失败，请重试', {level:'danger', label:'失败'})"&gt;失败&lt;/button&gt;
+&lt;/div&gt;</code></pre></details>
+</div>
+<pre class="doc-code__body"><code>wxToast("草稿已保存", { level: "success", label: "已保存", ms: 5000 });</code></pre>
+
+<h2 id="progress">进度与量度</h2>
+<p><strong>没有不确定态。</strong>不确定进度条是一个永不停止的循环动画，也就是换了形状的 spinner。
+无 <code>value</code> 时渲染成一根静止的线，由旁边的文字说明正在发生什么。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-progress-field">
+      <div class="wx-progress-field__row"><span>导出中</span><span class="wx-progress-field__value">64%</span></div>
+      <progress class="wx-progress" value="64" max="100" aria-label="导出进度"></progress>
+    </div>
+    <p style="margin-block-start:var(--space-6)">磁盘用量
+      <meter class="wx-meter" value="0.82" high="0.8" aria-label="磁盘用量 82%"></meter></p>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-progress-field"&gt;
+  &lt;div class="wx-progress-field__row"&gt;&lt;span&gt;导出中&lt;/span&gt;&lt;span class="wx-progress-field__value"&gt;64%&lt;/span&gt;&lt;/div&gt;
+  &lt;progress class="wx-progress" value="64" max="100" aria-label="导出进度"&gt;&lt;/progress&gt;
+&lt;/div&gt;
+&lt;p style="margin-block-start:var(--space-6)"&gt;磁盘用量
+  &lt;meter class="wx-meter" value="0.82" high="0.8" aria-label="磁盘用量 82%"&gt;&lt;/meter&gt;&lt;/p&gt;</code></pre></details>
+</div>
+
+<h2 id="empty">空态与结果</h2>
+<div class="doc-figure">
+    <div class="wx-empty">
+      <p class="wx-empty__title">还没有内容</p>
+      <p>纯文字说明加一个线框动作，<strong>不用插图</strong>。</p>
+    </div>
+  </div>
+
+<h2 id="overlay">浮层 Overlay</h2>
+<p>三者都建在原生 <code>&lt;dialog&gt;</code> 上：焦点陷阱、Esc、<code>inert</code> 背景
+全部来自平台。脚本只补平台没给的两件事——<strong>关闭后把焦点还给触发按钮</strong>，和 toast 队列。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-btn" type="button" data-wx-open="#d-modal">对话框</button>
+      <button class="wx-btn" type="button" data-wx-open="#d-drawer">抽屉</button>
+    </div>
+    <dialog class="wx-modal" id="d-modal" aria-labelledby="dm-t">
+      <h3 class="wx-modal__title" id="dm-t">确认操作</h3>
+      <div class="wx-modal__body"><p>按 Esc 或点击遮罩都可以关闭，焦点会回到刚才那个按钮。</p></div>
+      <div class="wx-modal__actions">
+        <button class="wx-btn" type="button" data-wx-close>取消</button>
+        <button class="wx-btn wx-btn--primary" type="button" data-wx-close>确认</button>
+      </div>
+    </dialog>
+    <dialog class="wx-drawer" id="d-drawer" aria-labelledby="dd-t">
+      <div class="wx-drawer__header">
+        <h3 id="dd-t">筛选</h3>
+        <button class="wx-btn wx-btn--text" type="button" data-wx-close>关闭</button>
+      </div>
+      <p>抽屉从行末边缘进入，只在一条边上有分隔线。</p>
+    </dialog>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;
+  &lt;button class="wx-btn" type="button" data-wx-open="#d-modal"&gt;对话框&lt;/button&gt;
+  &lt;button class="wx-btn" type="button" data-wx-open="#d-drawer"&gt;抽屉&lt;/button&gt;
+&lt;/div&gt;
+&lt;dialog class="wx-modal" id="d-modal" aria-labelledby="dm-t"&gt;
+  &lt;h3 class="wx-modal__title" id="dm-t"&gt;确认操作&lt;/h3&gt;
+  &lt;div class="wx-modal__body"&gt;&lt;p&gt;按 Esc 或点击遮罩都可以关闭，焦点会回到刚才那个按钮。&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="wx-modal__actions"&gt;
+    &lt;button class="wx-btn" type="button" data-wx-close&gt;取消&lt;/button&gt;
+    &lt;button class="wx-btn wx-btn--primary" type="button" data-wx-close&gt;确认&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+&lt;dialog class="wx-drawer" id="d-drawer" aria-labelledby="dd-t"&gt;
+  &lt;div class="wx-drawer__header"&gt;
+    &lt;h3 id="dd-t"&gt;筛选&lt;/h3&gt;
+    &lt;button class="wx-btn wx-btn--text" type="button" data-wx-close&gt;关闭&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;p&gt;抽屉从行末边缘进入，只在一条边上有分隔线。&lt;/p&gt;
+&lt;/dialog&gt;</code></pre></details>
+</div>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">为什么浮层可以有"面"</span>
+  <p>一个不像独立层的浮层不是克制，是可用性缺陷——读者无法判断什么可以关闭、什么是页面本身。
+  仲裁第一层（基本可用性）和第三层（反馈按惯例）指向同一个方向。但"需要分离"<strong>只授权分离本身</strong>：
+  发丝线边缘 + 暖色遮罩就够了，阴影和渐变是另一回事。</p>
+</div>
+
+<h2 id="tooltip">提示与气泡</h2>
+<p><code>wx-tooltip</code> 有一条硬规则：<strong>永远不得作为信息的唯一载体</strong>。
+它在触屏上不可达、打印时不存在、极易被错过。读者必须知道的东西写进正文。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <p>导出格式为
+      <span class="wx-tooltip">
+        <button class="wx-btn wx-btn--text" type="button" aria-describedby="tp">CSV</button>
+        <span class="wx-tooltip__bubble" role="tooltip" id="tp">逗号分隔值，可用表格软件打开</span>
+      </span>——"导出格式"这句话本身已经完整。</p>
+    <p style="margin-block-start:var(--space-6)">需要承载可交互内容时用气泡，它建在
+      <code>&lt;details&gt;</code> 上因而键盘可达：</p>
+    <details class="wx-popover">
+      <summary class="wx-btn">删除</summary>
+      <div class="wx-popover__panel">
+        <span class="wx-popover__title">确认删除？</span>
+        <p>此操作不可撤销。</p>
+        <div class="wx-popover__actions">
+          <button class="wx-btn wx-btn--text" type="button">取消</button>
+          <button class="wx-btn wx-btn--danger" type="button">删除</button>
+        </div>
+      </div>
+    </details>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;p&gt;导出格式为
+  &lt;span class="wx-tooltip"&gt;
+    &lt;button class="wx-btn wx-btn--text" type="button" aria-describedby="tp"&gt;CSV&lt;/button&gt;
+    &lt;span class="wx-tooltip__bubble" role="tooltip" id="tp"&gt;逗号分隔值，可用表格软件打开&lt;/span&gt;
+  &lt;/span&gt;——"导出格式"这句话本身已经完整。&lt;/p&gt;
+&lt;p style="margin-block-start:var(--space-6)"&gt;需要承载可交互内容时用气泡，它建在
+  &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; 上因而键盘可达：&lt;/p&gt;
+&lt;details class="wx-popover"&gt;
+  &lt;summary class="wx-btn"&gt;删除&lt;/summary&gt;
+  &lt;div class="wx-popover__panel"&gt;
+    &lt;span class="wx-popover__title"&gt;确认删除？&lt;/span&gt;
+    &lt;p&gt;此操作不可撤销。&lt;/p&gt;
+    &lt;div class="wx-popover__actions"&gt;
+      &lt;button class="wx-btn wx-btn--text" type="button"&gt;取消&lt;/button&gt;
+      &lt;button class="wx-btn wx-btn--danger" type="button"&gt;删除&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre></details>
+</div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#note">提示块 Note</a></li>
+      <li><a class="wx-anchor__link" href="#alert">行内提示 Alert</a></li>
+      <li><a class="wx-anchor__link" href="#toast">通知 Toast</a></li>
+      <li><a class="wx-anchor__link" href="#progress">进度与量度</a></li>
+      <li><a class="wx-anchor__link" href="#empty">空态与结果</a></li>
+      <li><a class="wx-anchor__link" href="#overlay">浮层 Overlay</a></li>
+      <li><a class="wx-anchor__link" href="#tooltip">提示与气泡</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

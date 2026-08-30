@@ -1,0 +1,59 @@
+/* Tree — nested disclosure, built from <ul> and <details>.
+
+   No JavaScript and no custom roles: a nested list of <details> is already
+   keyboard-navigable and announced correctly. The connecting rail is drawn
+   with a border on the list, so depth is legible without indent guides
+   becoming visual noise. */
+@layer wx.components {
+  .wx-tree,
+  .wx-tree ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-tree ul {
+    margin-inline-start: var(--space-3);
+    padding-inline-start: var(--space-3);
+    border-inline-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-tree li { padding-block: 1px; }
+
+  .wx-tree summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    list-style: none;
+  }
+  .wx-tree summary::-webkit-details-marker { display: none; }
+  .wx-tree summary::before {
+    content: "";
+    flex: none;
+    inline-size: 0.4em;
+    block-size: 0.4em;
+    border-inline-end: var(--stroke-hairline) solid currentColor;
+    border-block-end: var(--stroke-hairline) solid currentColor;
+    rotate: -45deg;
+    transition: rotate var(--duration-fast) var(--ease-out);
+  }
+  .wx-tree details[open] > summary::before { rotate: 45deg; }
+  .wx-tree summary:hover { color: var(--color-text-primary); }
+
+  .wx-tree__leaf {
+    display: block;
+    padding: var(--space-1) var(--space-2);
+    /* aligned with the summary text, past where its marker sits */
+    padding-inline-start: calc(var(--space-2) + 0.4em + var(--space-2));
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .wx-tree__leaf:hover { color: var(--color-text-primary); }
+  .wx-tree__leaf[aria-current] {
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+}

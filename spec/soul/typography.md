@@ -88,6 +88,6 @@ body {
 | 日期/元数据 Metadata | `--font-ui` | 400 | `--text-sm` | `--color-text-secondary` |
 | 代码 Code | `--font-mono` | 400 | `--text-sm` | |
 
-各具体形态（演示文稿更大的字号阶梯、印刷用 pt 单位、海报超大字号）在 [形态层 forms](../forms/DECISIONS-MATRIX.md) 对应形态文件中定义，均以此处的比例逻辑（Major Third, 1.250）为基准派生。
+各具体形态（演示文稿更大的字号阶梯、印刷用 pt 单位、海报超大字号）在 [形态层 forms](../media.md) 对应形态文件中定义，均以此处的比例逻辑（Major Third, 1.250）为基准派生。
 
-Form-specific type scales (presentation's larger scale, print's pt units, poster's oversized scale) are defined in the corresponding [形态层 forms](../forms/DECISIONS-MATRIX.md) form files, all derived from this scale's ratio logic (Major Third, 1.250).
+Form-specific type scales (presentation's larger scale, print's pt units, poster's oversized scale) are defined in the corresponding [形态层 forms](../media.md) form files, all derived from this scale's ratio logic (Major Third, 1.250).

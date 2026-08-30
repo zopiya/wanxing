@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文心 · 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html" aria-current="page">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">设计语言 · Design Language</p>
+<h1>文心 · 万形</h1>
+<p class="wx-lede">文字即界面，留白即设计，克制即力量。<br>
+Text is the interface. Whitespace is the design. Restraint is the power.</p>
+
+<p>这是一套以内容为中心的双语设计语言，同时提供<strong>规范</strong>与<strong>可直接复用的产物</strong>。
+它不是一份说明文档：色彩、排版、间距、动效、组件、图表都以 CSS token 和组件的形式交付，
+引一个文件就能用，不需要每次从哲学重新推导。</p>
+
+<p>名字里有两层意思。<strong>文心</strong>是不变的魂——价值观与 token；<strong>万形</strong>是它在不同容器里呈现的形。
+水没有自己的形状，但在任何容器里都还是水。</p>
+
+<h2 id="start">从哪里开始</h2>
+
+<div class="doc-figure">
+    <ul class="wx-list wx-list--ruled">
+      <li><strong><a href="./values.html">设计价值观</a></strong> —— 这套语言相信什么，以及为什么</li>
+      <li><strong><a href="./tracks.html">双轨仲裁</a></strong> —— 哲学与主流惯例冲突时听谁的</li>
+      <li><strong><a href="./color.html">全局样式</a></strong> —— 色彩、排版、间距、动效、图标</li>
+      <li><strong><a href="./patterns.html">设计模式</a></strong> —— 表单页、列表页、详情页怎么组织</li>
+      <li><strong><a href="./components.html">组件</a></strong> —— 83 个类，含用法与源码</li>
+    </ul>
+  </div>
+
+<h2 id="install">直接开始用</h2>
+
+<p>零运行时依赖，无构建步骤。引入一个文件即可：</p>
+
+<pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="kit/index.css"&gt;</code></pre>
+
+<p>或者用打包好的单文件版本 <code>kit/dist/wenxin.css</code>——已展平所有 <code>@import</code>，不压缩。
+需要行为增强（浮层、标签页、滚动揭示）时再按需引入 <code>kit/components/js/</code> 里的脚本，
+每一个都是渐进增强：<strong>没有 JS 时页面依然可读可用</strong>。</p>
+
+<h2 id="three">三条一以贯之的原则</h2>
+
+<h3>减法优先</h3>
+<p>一个页面上每多一个视觉元素，读者就要多付一次注意力。装饰性的阴影、渐变、圆角卡片，
+都在向读者收税，却不提供任何信息回报。<strong>能用留白解决的，不要用线；能用线解决的，不要用面。</strong></p>
+
+<h3>状态绑定到无障碍树</h3>
+<p>所有组件状态一律走 ARIA 或原生属性——<code>aria-current</code>、<code>aria-selected</code>、
+<code>open</code>、<code>disabled</code>——<strong>从不使用 <code>.is-active</code> 这类状态类</strong>。
+这条规则是从"禁止仅用颜色区分状态"推导出来的：把 CSS 状态绑在无障碍树上，
+就在结构上不可能出现读屏器感知不到的状态。</p>
+
+<h3>规则必须可执行</h3>
+<p>只写在文档里的规则不会被遵守。这套系统的每一条硬性约束都有对应的检查器：
+token 是否解析、对比度是否达标、是否出现了被禁的图形。<code>npm run check</code> 六项全绿才算数。</p>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">这条教训是付过学费的</span>
+  <p>审计矩阵曾经读错了一个字段，于是在每个页面都硬失败的情况下打印"0 failing"；
+  文字灰阶曾经有五个 token 不达 AA，最低到 1.54:1，而当时没有任何检查测量过 token 的数值。
+  <strong>一个不可能失败的检查比没有检查更糟</strong>，因为它的绿色会被当成证据引用。</p>
+</div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#start">从哪里开始</a></li>
+      <li><a class="wx-anchor__link" href="#install">直接开始用</a></li>
+      <li><a class="wx-anchor__link" href="#three">三条一以贯之的原则</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

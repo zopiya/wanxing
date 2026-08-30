@@ -1,0 +1,33 @@
+[
+  { "title": "开始 · Start", "items": [
+    { "slug": "index",       "title": "文心 · 万形" },
+    { "slug": "values",      "title": "设计价值观" },
+    { "slug": "tracks",      "title": "双轨仲裁" }
+  ]},
+  { "title": "全局样式 · Global", "items": [
+    { "slug": "color",       "title": "色彩" },
+    { "slug": "typography",  "title": "字体排版" },
+    { "slug": "layout",      "title": "布局与间距" },
+    { "slug": "motion",      "title": "动效" },
+    { "slug": "icons",       "title": "图标与标识" }
+  ]},
+  { "title": "设计模式 · Patterns", "items": [
+    { "slug": "patterns",         "title": "模式总览" },
+    { "slug": "pattern-form",     "title": "表单页" },
+    { "slug": "pattern-list",     "title": "列表页" },
+    { "slug": "pattern-detail",   "title": "详情页" },
+    { "slug": "pattern-result",   "title": "结果与异常页" }
+  ]},
+  { "title": "组件 · Components", "items": [
+    { "slug": "components",       "title": "组件总览" },
+    { "slug": "c-layout",         "title": "布局与通用" },
+    { "slug": "c-navigation",     "title": "导航" },
+    { "slug": "c-entry",          "title": "数据录入" },
+    { "slug": "c-display",        "title": "数据展示" },
+    { "slug": "c-feedback",       "title": "反馈与浮层" }
+  ]},
+  { "title": "延伸 · Extended", "items": [
+    { "slug": "viz",         "title": "数据可视化" },
+    { "slug": "media",       "title": "形态适配" }
+  ]}
+]

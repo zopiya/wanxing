@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>导航 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html" aria-current="page">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">组件 · Components</p>
+<h1>导航</h1>
+<p class="wx-lede">当前位置一律用 <code>aria-current</code> 表达，样式从属性上取——
+视觉状态与无障碍树是同一个事实。</p>
+
+<h2 id="menu">菜单 Menu</h2>
+<div class="doc-figure">
+    <ul class="wx-menu" style="max-inline-size:16rem">
+      <li class="wx-menu__group">灵魂层</li>
+      <li><a class="wx-menu__link" href="#" aria-current="page">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="#">色彩</a></li>
+      <li><a class="wx-menu__link" href="#">字体排版</a></li>
+      <li class="wx-menu__group">形态层</li>
+      <li><a class="wx-menu__link" href="#">设计模式</a></li>
+      <li><a class="wx-menu__link" href="#" aria-disabled="true">敬请期待</a></li>
+    </ul>
+  </div>
+
+<h2 id="dropdown">下拉 Dropdown</h2>
+<p>原生 <code>&lt;details&gt;</code>，<strong>零 JS</strong>。键盘可开合，Esc 关闭都是免费的。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <details class="wx-dropdown">
+      <summary>操作</summary>
+      <ul class="wx-dropdown__menu">
+        <li><button class="wx-dropdown__item" type="button">编辑</button></li>
+        <li><button class="wx-dropdown__item" type="button">复制链接</button></li>
+        <li><hr class="wx-dropdown__sep"></li>
+        <li><button class="wx-dropdown__item wx-dropdown__item--danger" type="button">删除</button></li>
+      </ul>
+    </details>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;details class="wx-dropdown"&gt;
+  &lt;summary&gt;操作&lt;/summary&gt;
+  &lt;ul class="wx-dropdown__menu"&gt;
+    &lt;li&gt;&lt;button class="wx-dropdown__item" type="button"&gt;编辑&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button class="wx-dropdown__item" type="button"&gt;复制链接&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;hr class="wx-dropdown__sep"&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button class="wx-dropdown__item wx-dropdown__item--danger" type="button"&gt;删除&lt;/button&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/details&gt;</code></pre></details>
+</div>
+
+<h2 id="tabs">标签页 Tabs</h2>
+<p>需要 <code>tabs.js</code> 提供 roving tabindex——只有选中的标签在 tab 序列里，
+这是标签页与一排链接对键盘用户的根本区别。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-tabs" role="tablist" aria-label="示例">
+      <button role="tab" type="button" id="t1" aria-controls="p1" aria-selected="true">概览</button>
+      <button role="tab" type="button" id="t2" aria-controls="p2" aria-selected="false">用法</button>
+      <button role="tab" type="button" id="t3" aria-controls="p3" aria-selected="false">无障碍</button>
+    </div>
+    <div role="tabpanel" id="p1" aria-labelledby="t1"><p>方向键切换，Home / End 跳到首尾。</p></div>
+    <div role="tabpanel" id="p2" aria-labelledby="t2" hidden><p>面板用 <code>hidden</code> 属性隐藏，不是 class。</p></div>
+    <div role="tabpanel" id="p3" aria-labelledby="t3" hidden><p>状态全部在 <code>aria-selected</code> 上。</p></div>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-tabs" role="tablist" aria-label="示例"&gt;
+  &lt;button role="tab" type="button" id="t1" aria-controls="p1" aria-selected="true"&gt;概览&lt;/button&gt;
+  &lt;button role="tab" type="button" id="t2" aria-controls="p2" aria-selected="false"&gt;用法&lt;/button&gt;
+  &lt;button role="tab" type="button" id="t3" aria-controls="p3" aria-selected="false"&gt;无障碍&lt;/button&gt;
+&lt;/div&gt;
+&lt;div role="tabpanel" id="p1" aria-labelledby="t1"&gt;&lt;p&gt;方向键切换，Home / End 跳到首尾。&lt;/p&gt;&lt;/div&gt;
+&lt;div role="tabpanel" id="p2" aria-labelledby="t2" hidden&gt;&lt;p&gt;面板用 &lt;code&gt;hidden&lt;/code&gt; 属性隐藏，不是 class。&lt;/p&gt;&lt;/div&gt;
+&lt;div role="tabpanel" id="p3" aria-labelledby="t3" hidden&gt;&lt;p&gt;状态全部在 &lt;code&gt;aria-selected&lt;/code&gt; 上。&lt;/p&gt;&lt;/div&gt;</code></pre></details>
+</div>
+
+<h2 id="crumbs">面包屑与翻页</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-crumbs" aria-label="面包屑">
+      <ol><li><a href="#">首页</a></li><li><a href="#">组件</a></li><li>导航</li></ol>
+    </nav>
+    <nav class="wx-pager" style="margin-block-start:var(--space-6)">
+      <a href="#"><span class="wx-pager__label">上一页</span>布局与通用</a>
+      <a href="#" style="text-align:end"><span class="wx-pager__label">下一页</span>数据录入</a>
+    </nav>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;nav class="wx-crumbs" aria-label="面包屑"&gt;
+  &lt;ol&gt;&lt;li&gt;&lt;a href="#"&gt;首页&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;组件&lt;/a&gt;&lt;/li&gt;&lt;li&gt;导航&lt;/li&gt;&lt;/ol&gt;
+&lt;/nav&gt;
+&lt;nav class="wx-pager" style="margin-block-start:var(--space-6)"&gt;
+  &lt;a href="#"&gt;&lt;span class="wx-pager__label"&gt;上一页&lt;/span&gt;布局与通用&lt;/a&gt;
+  &lt;a href="#" style="text-align:end"&gt;&lt;span class="wx-pager__label"&gt;下一页&lt;/span&gt;数据录入&lt;/a&gt;
+&lt;/nav&gt;</code></pre></details>
+</div>
+
+<h2 id="pagination">分页 Pagination</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-pagination" aria-label="分页">
+      <ul class="wx-pagination__list">
+        <li><a class="wx-pagination__link" href="#" aria-disabled="true">←</a></li>
+        <li><a class="wx-pagination__link" href="#">1</a></li>
+        <li><a class="wx-pagination__link" href="#" aria-current="page">2</a></li>
+        <li><a class="wx-pagination__link" href="#">3</a></li>
+        <li><span class="wx-pagination__ellipsis">…</span></li>
+        <li><a class="wx-pagination__link" href="#">9</a></li>
+        <li><a class="wx-pagination__link" href="#">→</a></li>
+      </ul>
+    </nav>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;nav class="wx-pagination" aria-label="分页"&gt;
+  &lt;ul class="wx-pagination__list"&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#" aria-disabled="true"&gt;←&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#" aria-current="page"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="wx-pagination__ellipsis"&gt;…&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;9&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;→&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre></details>
+</div>
+
+<h2 id="steps">步骤 Steps</h2>
+<div class="doc-figure">
+    <ol class="wx-steps">
+      <li class="wx-steps__item" data-complete><span class="wx-steps__title">填写信息</span>已完成</li>
+      <li class="wx-steps__item" aria-current="step"><span class="wx-steps__title">确认内容</span>当前步骤</li>
+      <li class="wx-steps__item"><span class="wx-steps__title">提交</span>尚未开始</li>
+    </ol>
+  </div>
+
+<h2 id="anchor">页内锚点 Anchor</h2>
+<p>本页右侧就是一个（宽屏可见）。配合 <code>wx-affix</code> 吸顶，用
+<code>IntersectionObserver</code> 更新 <code>aria-current</code>。</p>
+
+<h2 id="skip">跳过链接 Skip</h2>
+<p>每一页的第一个可聚焦元素都应该是它。按 <kbd class="wx-kbd">Tab</kbd> 试试——
+本站左上角会出现"跳到主要内容"。</p>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#menu">菜单 Menu</a></li>
+      <li><a class="wx-anchor__link" href="#dropdown">下拉 Dropdown</a></li>
+      <li><a class="wx-anchor__link" href="#tabs">标签页 Tabs</a></li>
+      <li><a class="wx-anchor__link" href="#crumbs">面包屑与翻页</a></li>
+      <li><a class="wx-anchor__link" href="#pagination">分页 Pagination</a></li>
+      <li><a class="wx-anchor__link" href="#steps">步骤 Steps</a></li>
+      <li><a class="wx-anchor__link" href="#anchor">页内锚点 Anchor</a></li>
+      <li><a class="wx-anchor__link" href="#skip">跳过链接 Skip</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

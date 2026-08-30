@@ -1,0 +1,70 @@
+<p class="wx-eyebrow">延伸 · Extended</p>
+<h1>数据可视化</h1>
+<p class="wx-lede">图表是文章里的插图，不是仪表盘上的控件。
+四条规则全部从既有约束推导，而非新发明。</p>
+
+<h2 id="rules">四条规则</h2>
+
+<h3>R1 · 用墨色编码，不用色相</h3>
+<p>序列靠<strong>墨色阶梯</strong>（heading → primary → secondary → functional → border-strong）
+加<strong>线型</strong>（实线 / 虚线 / 点线）区分。这直接来自"禁止高饱和装饰色"和
+"颜色不作为唯一信息载体"——线型让图表在灰度打印和色盲条件下都成立。</p>
+
+<h3>R2 · accent 标记论点，不标记类别</h3>
+<p>全图<strong>只有一个</strong>序列 / 柱 / 点可以是 accent —— caption 正在讲的那一个。
+图表消耗页面两处 accent 预算中的一处。</p>
+
+<h3>R3 · 直接标注，不用图例</h3>
+<p>在序列右端直接写名字，而不是让读者在图例和曲线之间来回对照。
+这是"文字即界面"在数据上的应用。</p>
+
+<h3>R4 · 装饰做减法</h3>
+<p><strong>无网格线</strong>（只留一根基线）、<strong>无坐标框</strong>、
+<strong>无刻度线</strong>（标签即刻度）、<strong>无背景填充</strong>。</p>
+
+<h2 id="allowed">可用的图表</h2>
+<div class="doc-figure">
+    <p class="wx-attr">折线（≤4 序列）· 面积（单序列）· 柱 · 排行条 · 点 / 棒棒糖 · 斜率 ·
+    迷你图 · 小倍数 · 分布带 · 占比堆叠（≤3 段）· 表内条 · 时间线</p>
+  </div>
+
+<h2 id="forbidden">新增禁令</h2>
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>禁止</th><th>原因</th></tr></thead>
+      <tbody>
+        <tr><td>饼图 / 环形图</td><td>角度比较是人眼最差的编码方式</td></tr>
+        <tr><td>雷达图 · 仪表盘 · 3D</td><td>面积失真，且属于装饰性图形</td></tr>
+        <tr><td>词云 · 树图 · 气泡</td><td>面积编码不精确</td></tr>
+        <tr><td>双 Y 轴</td><td>两个刻度可以任意缩放出任意相关性</td></tr>
+        <tr><td>渐变填充 · 阴影 · 圆角柱帽</td><td>已被既有禁令覆盖</td></tr>
+      </tbody>
+    </table>
+  </div>
+<p>多数已被现有禁令隐含——这一节主要是把既有禁令<strong>应用到新媒介</strong>。</p>
+
+<h2 id="honest">一个诚实的代价</h2>
+<div class="wx-note wx-note--warn">
+  <span class="wx-note__title">灰阶方案在 ≥5 序列时会失效</span>
+  <p>墨色阶梯只有四到五档可辨，超过就区分不开。这套系统的选择是
+  <strong>声明"文心不做多序列密集图表"</strong>，把它归入本就在适用范围外的 dashboard，
+  而不是引入分类色板破坏 D9。<strong>把限制说出来，比假装没有限制诚实。</strong></p>
+</div>
+
+<h2 id="svg">SVG 约定</h2>
+<p>手写 SVG 时有一条关键约定：</p>
+<pre class="doc-code__body"><code>vector-effect: non-scaling-stroke;</code></pre>
+<p>这是 1.5px 描边在海报尺度下<strong>仍然是 1.5px</strong> 的关键——
+没有它，放大十倍的图里线条会粗到破坏整个系统的气质。</p>
+
+<h2 id="themes">三种消费方式</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>手写 SVG</strong> —— <code>kit/charts/</code> 的样式 + SVG 约定</li>
+  <li><strong>Mermaid 主题</strong> —— 由 token 生成，取代手写转换表</li>
+  <li><strong>ECharts / Vega 主题 JSON</strong> —— 生成物，不引入运行时依赖</li>
+</ul>
+<pre class="doc-code__body"><code>kit/tokens/generated/mermaid-wenxin.json
+kit/tokens/generated/echarts-wenxin.json
+kit/tokens/generated/vega-wenxin.json</code></pre>
+<p>它们都由 <code>npm run build:themes</code> 从 <code>core.css</code> 生成——
+改一个 token，三个主题同时更新，不会漂移。</p>

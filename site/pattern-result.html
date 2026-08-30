@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>结果与异常页 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html" aria-current="page">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>结果与异常页</h1>
+<p class="wx-lede">出错的时候，读者最需要的是<strong>知道发生了什么、以及现在能做什么</strong>。
+插图两样都不提供。</p>
+
+<h2 id="success">成功</h2>
+<div class="doc-figure">
+    <div class="wx-result wx-result--success">
+      <span class="wx-result__mark" aria-hidden="true">✓</span>
+      <h3 class="wx-result__title">提交成功</h3>
+      <p class="wx-result__body">我们会在两个工作日内回复到 zopiya@example.com。</p>
+      <div class="wx-result__actions">
+        <a class="wx-btn" href="#">返回列表</a>
+        <a class="wx-btn wx-btn--text" href="#">查看提交内容 →</a>
+      </div>
+    </div>
+  </div>
+
+<h2 id="fail">失败</h2>
+<p>失败页必须包含<strong>可操作的下一步</strong>和<strong>可追踪的标识</strong>。
+"出错了，请重试"是没有信息的。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage doc-demo__stage--tight">
+    <div class="wx-result wx-result--danger">
+      <span class="wx-result__mark" aria-hidden="true">!</span>
+      <h3 class="wx-result__title">提交失败</h3>
+      <p class="wx-result__body">附件超过 20 MB 上限。压缩后重试，或改为提供链接。</p>
+      <div class="wx-result__actions">
+        <button class="wx-btn wx-btn--primary" type="button">返回修改</button>
+      </div>
+      <p class="wx-result__detail">错误编号 E-4013 · 2026-08-30T14:22:07+08:00</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="404">404 与无权限</h2>
+<div class="doc-figure">
+    <div class="wx-result">
+      <span class="wx-result__mark" aria-hidden="true">404</span>
+      <h3 class="wx-result__title">这个页面不存在</h3>
+      <p class="wx-result__body">链接可能已经失效，或者地址拼错了。</p>
+      <div class="wx-result__actions">
+        <a class="wx-btn" href="./index.html">回到首页</a>
+      </div>
+    </div>
+  </div>
+
+<h2 id="inline">页内反馈</h2>
+<p>不是所有结果都需要整页。三种粒度，按干扰程度递增：</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <p><strong>Toast</strong>——非阻塞、自动消失、<code>aria-live="polite"</code>：</p>
+    <div class="wx-cluster">
+      <button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')">普通</button>
+      <button class="wx-btn" type="button" onclick="wxToast('已保存', {level:'success', label:'成功'})">成功</button>
+      <button class="wx-btn" type="button" onclick="wxToast('网络连接中断', {level:'danger', label:'失败'})">失败</button>
+    </div>
+    <p style="margin-block-start:var(--space-6)"><strong>Alert</strong>——常驻页内，说明当前状态：</p>
+    <div class="wx-alert wx-alert--warn"><span>存储空间剩余不足 10%，请及时清理。</span></div>
+    <p style="margin-block-start:var(--space-6)"><strong>Modal</strong>——阻塞，仅用于不可逆操作确认：</p>
+    <button class="wx-btn wx-btn--danger" type="button" data-wx-open="#confirm-del">删除项目</button>
+    <dialog class="wx-modal" id="confirm-del" aria-labelledby="cd-t">
+      <h3 class="wx-modal__title" id="cd-t">删除这个项目？</h3>
+      <div class="wx-modal__body"><p>项目及其 143 条内容将被永久删除，无法恢复。</p></div>
+      <div class="wx-modal__actions">
+        <button class="wx-btn" type="button" data-wx-close>取消</button>
+        <button class="wx-btn wx-btn--danger" type="button" data-wx-close>确认删除</button>
+      </div>
+    </dialog>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;p&gt;&lt;strong&gt;Toast&lt;/strong&gt;——非阻塞、自动消失、&lt;code&gt;aria-live="polite"&lt;/code&gt;：&lt;/p&gt;
+&lt;div class="wx-cluster"&gt;
+  &lt;button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')"&gt;普通&lt;/button&gt;
+  &lt;button class="wx-btn" type="button" onclick="wxToast('已保存', {level:'success', label:'成功'})"&gt;成功&lt;/button&gt;
+  &lt;button class="wx-btn" type="button" onclick="wxToast('网络连接中断', {level:'danger', label:'失败'})"&gt;失败&lt;/button&gt;
+&lt;/div&gt;
+&lt;p style="margin-block-start:var(--space-6)"&gt;&lt;strong&gt;Alert&lt;/strong&gt;——常驻页内，说明当前状态：&lt;/p&gt;
+&lt;div class="wx-alert wx-alert--warn"&gt;&lt;span&gt;存储空间剩余不足 10%，请及时清理。&lt;/span&gt;&lt;/div&gt;
+&lt;p style="margin-block-start:var(--space-6)"&gt;&lt;strong&gt;Modal&lt;/strong&gt;——阻塞，仅用于不可逆操作确认：&lt;/p&gt;
+&lt;button class="wx-btn wx-btn--danger" type="button" data-wx-open="#confirm-del"&gt;删除项目&lt;/button&gt;
+&lt;dialog class="wx-modal" id="confirm-del" aria-labelledby="cd-t"&gt;
+  &lt;h3 class="wx-modal__title" id="cd-t"&gt;删除这个项目？&lt;/h3&gt;
+  &lt;div class="wx-modal__body"&gt;&lt;p&gt;项目及其 143 条内容将被永久删除，无法恢复。&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="wx-modal__actions"&gt;
+    &lt;button class="wx-btn" type="button" data-wx-close&gt;取消&lt;/button&gt;
+    &lt;button class="wx-btn wx-btn--danger" type="button" data-wx-close&gt;确认删除&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre></details>
+</div>
+
+<div class="wx-note wx-note--warn">
+  <span class="wx-note__title">选择粒度的判据</span>
+  <p>问一句：<strong>读者不看到这条消息会有什么后果？</strong>没后果 → toast；
+  影响后续操作 → alert；不可逆 → modal。默认用 toast，modal 是最后手段。</p>
+</div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#success">成功</a></li>
+      <li><a class="wx-anchor__link" href="#fail">失败</a></li>
+      <li><a class="wx-anchor__link" href="#404">404 与无权限</a></li>
+      <li><a class="wx-anchor__link" href="#inline">页内反馈</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

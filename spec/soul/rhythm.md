@@ -118,6 +118,6 @@ Applies to: article bylines, quote attributions, footnote sources, data provenan
 
 ---
 
-这条节奏原则是通用的——具体应用到不同形态时的差异（演示文稿的字数限制更严、印刷品有首字下沉、图解有编辑型引语要求）见 [形态层 forms](../forms/DECISIONS-MATRIX.md) 各形态文件。
+这条节奏原则是通用的——具体应用到不同形态时的差异（演示文稿的字数限制更严、印刷品有首字下沉、图解有编辑型引语要求）见 [形态层 forms](../media.md) 各形态文件。
 
 This rhythm principle is universal — its form-specific variations (presentations enforce stricter word limits, print has drop caps, diagrams require an editorial pull-quote) are documented in each wanxing form file.

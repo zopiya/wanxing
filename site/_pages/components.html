@@ -1,0 +1,95 @@
+<p class="wx-eyebrow">组件 · Components</p>
+<h1>组件总览</h1>
+<p class="wx-lede">83 个块级类，分布在 39 份样式表和 7 个行为脚本里。
+纯 CSS 优先，状态一律走 ARIA 或原生属性。</p>
+
+<h2 id="index">按类别</h2>
+<div class="doc-figure">
+    <div class="wx-cols wx-cols--2">
+      <div>
+        <h3><a href="./c-layout.html">布局与通用</a></h3>
+        <p class="wx-attr">page · container · stack · cluster · rule · spread · cols · measure ·
+        btn · tag · badge · status · kbd · avatar · seal</p>
+      </div>
+      <div>
+        <h3><a href="./c-navigation.html">导航</a></h3>
+        <p class="wx-attr">nav · menu · dropdown · sidebar · toc · anchor · affix ·
+        crumbs · pager · pagination · tabs · steps · skip</p>
+      </div>
+      <div>
+        <h3><a href="./c-entry.html">数据录入</a></h3>
+        <p class="wx-attr">form · field · input · select · check · radio · switch ·
+        number · slider · rate · upload · search</p>
+      </div>
+      <div>
+        <h3><a href="./c-display.html">数据展示</a></h3>
+        <p class="wx-attr">table · list · entry · timeline · tree · desc · stat ·
+        figure · gallery · image · calendar · quote · code · collapse</p>
+      </div>
+      <div>
+        <h3><a href="./c-feedback.html">反馈与浮层</a></h3>
+        <p class="wx-attr">note · alert · toast · empty · result · progress · meter ·
+        modal · drawer · tooltip · popover</p>
+      </div>
+      <div>
+        <h3><a href="./viz.html">数据可视化</a></h3>
+        <p class="wx-attr">墨色编码的图表样式与 SVG 约定</p>
+      </div>
+    </div>
+  </div>
+
+<h2 id="naming">命名与状态约定</h2>
+<p><code>wx-</code> 前缀，BEM-lite，<strong>只允许一层 <code>__</code></strong>。
+完整 BEM 会产出 <code>wx-article__header__title--large</code>，正是这套系统在别处禁止的"产品味"。</p>
+
+<div class="doc-figure">
+    <pre class="doc-code__body"><code>.wx-note          块 Block
+.wx-note__title   元素 Element —— 只有一层
+.wx-note--warn    修饰 Modifier
+
+.wx-toc__link[aria-current]   状态 —— ARIA，不是 class
+.wx-btn[disabled]             状态 —— 原生属性
+.wx-collapse[open]            状态 —— 原生属性</code></pre>
+  </div>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">为什么状态不用 class</span>
+  <p>这条规则是从"禁止仅用颜色区分状态"推导出来的。把 CSS 状态绑定到无障碍树上，
+  <strong>在结构上不可能出现读屏器感知不到的状态</strong>——因为样式本身就依赖那个属性。
+  用 <code>.is-active</code> 时，视觉状态和无障碍状态是两个可以各自漂移的事实。</p>
+</div>
+
+<h2 id="excluded">明确不做的</h2>
+<p>有两类排除，理由不同，处理方式也不同。</p>
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>组件</th><th>为什么不做</th></tr></thead>
+      <tbody>
+        <tr><td><strong>卡片 Card</strong></td><td>哲学——四边包围的方框不携带信息。用 <code>wx-entry</code></td></tr>
+        <tr><td><strong>加载动画 Spin</strong></td><td>哲学——旋转是被禁的循环动画。用文字说明</td></tr>
+        <tr><td><strong>骨架屏 Skeleton</strong></td><td>哲学——静态占位就是一根线，shimmer 是禁止的循环</td></tr>
+        <tr><td><strong>轮播 Carousel</strong></td><td>哲学——自动轮播移动读者正在读的内容。用 <code>wx-gallery</code>（手动滚动）</td></tr>
+        <tr><td><strong>水印 Watermark</strong></td><td>哲学——纯装饰性叠加</td></tr>
+        <tr><td>颜色选择器 · 级联选择 · 提及</td><td>工程成本——需要大量 JS，且原生替代品可用</td></tr>
+      </tbody>
+    </table>
+  </div>
+<p>哲学性排除<strong>不会</strong>随范围扩大而放开——它们是这套系统的身份。
+工程性排除只是暂时的，有需要时可以做。</p>
+
+<h2 id="js">行为脚本</h2>
+<p>全部是渐进增强：<strong>没有 JS 时页面依然可读可用</strong>。零依赖，无构建步骤。</p>
+<div class="doc-figure">
+    <table class="wx-table doc-api">
+      <thead><tr><th>脚本</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code>animations-complete.js</code></td><td>动画完成信号（凡有动效的产出都要）</td></tr>
+        <tr><td><code>overlay.js</code></td><td><code>&lt;dialog&gt;</code> 开关、焦点归还、<code>wxToast()</code></td></tr>
+        <tr><td><code>tabs.js</code></td><td>标签页 roving tabindex</td></tr>
+        <tr><td><code>disclosure.js</code></td><td>侧栏抽屉展开收起</td></tr>
+        <tr><td><code>toc.js</code></td><td>目录滚动高亮</td></tr>
+        <tr><td><code>reveal.js</code></td><td>滚动揭示</td></tr>
+        <tr><td><code>copy.js</code></td><td>代码块复制</td></tr>
+      </tbody>
+    </table>
+  </div>

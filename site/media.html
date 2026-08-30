@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>形态适配 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html" aria-current="page">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">延伸 · Extended</p>
+<h1>形态适配</h1>
+<p class="wx-lede">同一个灵魂在不同容器里的取值差异。
+这不是九套设计，是<strong>一套设计的九次落地</strong>。</p>
+
+<h2 id="why">为什么需要这一层</h2>
+<p>网页可以有动效，印刷品不能；屏幕用 rem，印刷用 pt；文档站需要侧栏和搜索，
+海报需要固定画布和安全区。这些差异是<strong>媒介强制的</strong>，不是风格选择。</p>
+<p>把它们集中记录，好处是：当你在做一份报告时，不必重新推导"报告该用什么动效强度"——
+查表即可。</p>
+
+<h2 id="matrix">决策对照表</h2>
+<div class="doc-figure">
+    <div class="wx-table-scroll">
+      <table class="wx-table">
+        <thead><tr><th>形态</th><th>轨道</th><th>动效</th><th>被强制的关键决定</th></tr></thead>
+        <tbody>
+          <tr><td>网页文章</td><td>阅读轨</td><td><code>E9-1</code></td><td>响应式画布，暗色模式必需</td></tr>
+          <tr><td>移动端</td><td><strong>应用轨</strong></td><td><code>E9-1</code></td><td>触控 ≥44pt，安全区，分组列表合法</td></tr>
+          <tr><td>品牌</td><td>阅读轨</td><td><code>E9-2</code></td><td>多尺寸标识，唯一允许品牌呼吸</td></tr>
+          <tr><td>印刷</td><td>阅读轨</td><td><strong><code>E8</code></strong></td><td>pt 字号，CMYK 映射，无暗色模式</td></tr>
+          <tr><td>幻灯</td><td>阅读轨</td><td><code>E9-1</code></td><td>16:9 固定，≤80 字/页，键盘导航</td></tr>
+          <tr><td>文档站</td><td>阅读轨</td><td><code>E9-0</code></td><td>侧栏 + 目录 + 搜索，可到三轨布局</td></tr>
+          <tr><td>海报</td><td>阅读轨</td><td><code>E9-1</code></td><td>固定画布，accent 预算分配到标题与印</td></tr>
+          <tr><td>图表</td><td>阅读轨</td><td><code>E9-0</code></td><td>节点与边分离，无自动布局</td></tr>
+          <tr><td>报告</td><td>阅读轨</td><td><code>E9-0</code></td><td>图必须编号，摘要 / 发现 / 建议三段</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<h2 id="invariant">跨形态不变的</h2>
+<p>无论哪个容器，这些都不变——它们就是<a href="./values.html">不变之魂</a>：</p>
+<ul class="wx-list wx-list--ruled">
+  <li>暖土色域与单一 accent（D9）</li>
+  <li>≤2 处 accent</li>
+  <li>无卡片、无阴影、无渐变（A9）</li>
+  <li>WCAG AA 底线</li>
+  <li>token 词汇表</li>
+</ul>
+
+<h2 id="print">印刷是最有意思的约束</h2>
+<p>印刷形态强制 <code>E8</code>——<strong>结构上不可能有动效</strong>，
+不是"建议不要用"。这在 CSS 里是一条硬规则而非约定，
+也正好匹配审计器已有的断言。</p>
+<p>印刷还强制一套独立的 pt 字号 token（<code>--print-text-*</code>），因为
+1pt = 1/72 英寸是物理长度，与屏幕的 rem 没有换算关系。这是三层 token 架构里
+<strong>形态级</strong>那一层存在的理由。</p>
+
+<h2 id="contract">渲染合同</h2>
+<p>每个产出页面可以携带一份机器可读的合同，声明它的形态、轨道、动效强度和额外检查：</p>
+<pre class="doc-code__body"><code>&lt;html data-wanxing-profile="F6" data-wanxing-contract-version="1" data-motion="E9-0"&gt;
+
+&lt;script type="application/json" id="wanxing-render-contract"&gt;
+{
+  "profile": "F6",
+  "track": "editorial",
+  "theme": { "accentBudget": 2 },
+  "motion": { "intensity": "E9-0", "maxDurationMs": 420 },
+  "structure": { "expectedH1": 1, "requiredRegions": ["main"] }
+}
+&lt;/script&gt;</code></pre>
+<p><code>npm run audit &lt;file&gt;</code> 按合同校验 accent 预算、动效上限、
+禁用图形与结构地标。它是给<strong>使用这套系统的人</strong>检查自己页面的工具。</p>
+
+<div class="wx-note wx-note--warn">
+  <span class="wx-note__title">这个工具现在没有被 CI 跑</span>
+  <p>原先有九份夹具页面喂养它，随九形态一起删除了。保留审计器是因为它是交付物之一，
+  但这也意味着<strong>没有东西在验证审计器本身还正确</strong>——要重新纳入 <code>npm run check</code>，
+  必须同时恢复一份负控制夹具，否则又会回到"绿色输出被当成证据"的老问题。</p>
+</div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#why">为什么需要这一层</a></li>
+      <li><a class="wx-anchor__link" href="#matrix">决策对照表</a></li>
+      <li><a class="wx-anchor__link" href="#invariant">跨形态不变的</a></li>
+      <li><a class="wx-anchor__link" href="#print">印刷是最有意思的约束</a></li>
+      <li><a class="wx-anchor__link" href="#contract">渲染合同</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

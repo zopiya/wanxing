@@ -2,7 +2,7 @@
 
 > 属于 [spec](../README.md) 灵魂层 — Soul layer
 > 实现 Implementation：`kit/charts/`
-> 相关 See also：[color.md](./color.md)、[forbidden.md](./forbidden.md)、[../forms/f8-diagram.md](../forms/f8-diagram.md)
+> 相关 See also：[color.md](./color.md)、[forbidden.md](./forbidden.md)、[../forms/f8-diagram.md](../media.md)
 
 ## 核心立场 · The Thesis
 
@@ -119,7 +119,7 @@ the better chart anyway.
 ```
 
 **裸图表不可交付。** 一张没有标题、没有量纲说明的图，
-不是克制，是没做完。这与 [f8-diagram](../forms/f8-diagram.md) 的"杂志编辑化"要求一脉相承。
+不是克制，是没做完。这与 [f8-diagram](../media.md) 的"杂志编辑化"要求一脉相承。
 
 ---
 

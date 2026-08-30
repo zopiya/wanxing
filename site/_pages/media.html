@@ -1,0 +1,71 @@
+<p class="wx-eyebrow">延伸 · Extended</p>
+<h1>形态适配</h1>
+<p class="wx-lede">同一个灵魂在不同容器里的取值差异。
+这不是九套设计，是<strong>一套设计的九次落地</strong>。</p>
+
+<h2 id="why">为什么需要这一层</h2>
+<p>网页可以有动效，印刷品不能；屏幕用 rem，印刷用 pt；文档站需要侧栏和搜索，
+海报需要固定画布和安全区。这些差异是<strong>媒介强制的</strong>，不是风格选择。</p>
+<p>把它们集中记录，好处是：当你在做一份报告时，不必重新推导"报告该用什么动效强度"——
+查表即可。</p>
+
+<h2 id="matrix">决策对照表</h2>
+<div class="doc-figure">
+    <div class="wx-table-scroll">
+      <table class="wx-table">
+        <thead><tr><th>形态</th><th>轨道</th><th>动效</th><th>被强制的关键决定</th></tr></thead>
+        <tbody>
+          <tr><td>网页文章</td><td>阅读轨</td><td><code>E9-1</code></td><td>响应式画布，暗色模式必需</td></tr>
+          <tr><td>移动端</td><td><strong>应用轨</strong></td><td><code>E9-1</code></td><td>触控 ≥44pt，安全区，分组列表合法</td></tr>
+          <tr><td>品牌</td><td>阅读轨</td><td><code>E9-2</code></td><td>多尺寸标识，唯一允许品牌呼吸</td></tr>
+          <tr><td>印刷</td><td>阅读轨</td><td><strong><code>E8</code></strong></td><td>pt 字号，CMYK 映射，无暗色模式</td></tr>
+          <tr><td>幻灯</td><td>阅读轨</td><td><code>E9-1</code></td><td>16:9 固定，≤80 字/页，键盘导航</td></tr>
+          <tr><td>文档站</td><td>阅读轨</td><td><code>E9-0</code></td><td>侧栏 + 目录 + 搜索，可到三轨布局</td></tr>
+          <tr><td>海报</td><td>阅读轨</td><td><code>E9-1</code></td><td>固定画布，accent 预算分配到标题与印</td></tr>
+          <tr><td>图表</td><td>阅读轨</td><td><code>E9-0</code></td><td>节点与边分离，无自动布局</td></tr>
+          <tr><td>报告</td><td>阅读轨</td><td><code>E9-0</code></td><td>图必须编号，摘要 / 发现 / 建议三段</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<h2 id="invariant">跨形态不变的</h2>
+<p>无论哪个容器，这些都不变——它们就是<a href="./values.html">不变之魂</a>：</p>
+<ul class="wx-list wx-list--ruled">
+  <li>暖土色域与单一 accent（D9）</li>
+  <li>≤2 处 accent</li>
+  <li>无卡片、无阴影、无渐变（A9）</li>
+  <li>WCAG AA 底线</li>
+  <li>token 词汇表</li>
+</ul>
+
+<h2 id="print">印刷是最有意思的约束</h2>
+<p>印刷形态强制 <code>E8</code>——<strong>结构上不可能有动效</strong>，
+不是"建议不要用"。这在 CSS 里是一条硬规则而非约定，
+也正好匹配审计器已有的断言。</p>
+<p>印刷还强制一套独立的 pt 字号 token（<code>--print-text-*</code>），因为
+1pt = 1/72 英寸是物理长度，与屏幕的 rem 没有换算关系。这是三层 token 架构里
+<strong>形态级</strong>那一层存在的理由。</p>
+
+<h2 id="contract">渲染合同</h2>
+<p>每个产出页面可以携带一份机器可读的合同，声明它的形态、轨道、动效强度和额外检查：</p>
+<pre class="doc-code__body"><code>&lt;html data-wanxing-profile="F6" data-wanxing-contract-version="1" data-motion="E9-0"&gt;
+
+&lt;script type="application/json" id="wanxing-render-contract"&gt;
+{
+  "profile": "F6",
+  "track": "editorial",
+  "theme": { "accentBudget": 2 },
+  "motion": { "intensity": "E9-0", "maxDurationMs": 420 },
+  "structure": { "expectedH1": 1, "requiredRegions": ["main"] }
+}
+&lt;/script&gt;</code></pre>
+<p><code>npm run audit &lt;file&gt;</code> 按合同校验 accent 预算、动效上限、
+禁用图形与结构地标。它是给<strong>使用这套系统的人</strong>检查自己页面的工具。</p>
+
+<div class="wx-note wx-note--warn">
+  <span class="wx-note__title">这个工具现在没有被 CI 跑</span>
+  <p>原先有九份夹具页面喂养它，随九形态一起删除了。保留审计器是因为它是交付物之一，
+  但这也意味着<strong>没有东西在验证审计器本身还正确</strong>——要重新纳入 <code>npm run check</code>，
+  必须同时恢复一份负控制夹具，否则又会回到"绿色输出被当成证据"的老问题。</p>
+</div>

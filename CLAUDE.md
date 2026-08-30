@@ -17,11 +17,16 @@ ten thousand forms.
 ## Repository Structure
 
 ```
+site/      讲给谁 — the documentation site (21 pages); the front door
 spec/      说什么 — the specification (bilingual prose)
 kit/       给什么 — reusable artifacts: tokens, base CSS, components, patterns, markdown, charts
-examples/  长什么样 — nine form examples (built on kit/)
-scripts/   怎么校验 — build and audit
+scripts/   怎么校验 — build and check
 ```
+
+`site/` is the front door and the thing to keep current — it is generated, so never edit
+`site/*.html` directly. Author `site/_pages/<slug>.html`, list the slug in `site/_nav.json`,
+run `npm run build:site`. The generator derives each demo's source listing FROM the demo
+itself, so a documented example can never drift from what it renders.
 
 ### `spec/`
 
@@ -40,7 +45,6 @@ scripts/   怎么校验 — build and audit
   reasoning and which arbitration layer decided it.
 - **`spec/PROVENANCE.md`** — where the current content was harvested from, and the SHA where the
   deleted historical material still lives.
-- **`spec/_harvest/`** — transient Phase-0 artifacts. Consumed and deleted by later phases.
 
 ### `kit/`
 
@@ -117,16 +121,17 @@ Zero runtime dependencies; everything is plain Node. Artifacts ship unminified �
 concerns come after the system is complete.
 
 ```sh
-npm run build            # tokens + chart themes + unminified CSS bundles
+npm run build            # tokens + chart themes + CSS bundles + the docs site
 npm run build:css        # flatten kit into unminified single-file bundles
-npm run check            # token resolution + forbidden patterns + audit all examples
+npm run build:site       # assemble site/_pages + _nav.json into site/*.html
+npm run check            # tokens + colours + forbidden + site + audit selftest + examples
 npm run audit <file>     # render-audit one page
 python3 -m http.server 8899   # examples need http; file:// blocks @import and fonts
 ```
 
-**`npm run check` is currently green: 0 failures, 0 warnings across all nine form examples.**
+**`npm run check` is currently green: four checks, 0 failures.**
 
-Six checks, each of which caught a real defect. Two of them caught defects in the checking itself,
+Four checks, each of which caught a real defect. Two of them caught defects in the checking itself,
 which is the failure mode to watch here: **a check that cannot fail is worse than no check**, because
 its green output gets cited as evidence. Negative-control anything you are about to call passing.
 
@@ -134,26 +139,37 @@ its green output gets cited as evidence. Negative-control anything you are about
   were never defined anywhere, and nothing noticed because nothing looked. For HTML it scans only
   `<style>` blocks and style attributes, so `var(--x)` written inside a `<code>` element is treated
   as prose, not a reference.
-- `check:forbidden` — makes `forbidden.md` executable: shadows, gradients, `outline:none`, bouncy
-  easing, over-thick borders, spinners. It is comment-aware, because a checker with false positives
-  gets ignored, which is worse than not having one.
-- `audit:examples` — the render contract per page, dispatched by `track`. Every declared
-  `profileSpecificCheck` dispatches to a real assertion and an unknown name is a hard failure;
-  pages carrying no contract are listed as `skip` rather than silently dropped.
 - `check:colors` — measures every light/dark text, semantic, accent, and focus pair, plus pairwise
   ΔE. Field audit found production greys at 1.54–3.23:1 — and the same failing values had been
   shipped in `core.css`; this prevents them returning as text tokens.
-- `audit:selftest` — submits an intentionally invalid F6 page, proving a declared sidebar check and
-  the generic focus check both reject it. This exists because `audit-all` once read the wrong report
-  field and falsely printed a green matrix.
+- `check:forbidden` — makes `forbidden.md` executable: shadows, gradients, `outline:none`, bouncy
+  easing, over-thick borders, spinners. Comment-aware, and masks `<code>`/`<pre>` in HTML, because
+  documentation quotes the very patterns it forbids and a checker with false positives gets ignored.
+- `check:site` — the docs site fails quietly: a dead link or a skipped heading level looks fine to
+  whoever is editing that page. Checks nav/page correspondence both ways, one `<h1>`, no
+  heading-level jumps, and that every internal link and anchor resolves.
+
+`npm run audit <file>` still exists as a **standalone tool** for checking a consumer's page against
+a render contract, but **CI no longer runs it** (D-26). Nothing verifies the auditor itself any
+more; if it goes back into `check`, it needs its negative-control fixture back with it.
 
 ## Status
 
-All nine forms are built and passing. The v1 and v2 component inventories are both complete —
-64 block-level `wx-` classes spanning layout, navigation, data entry, data display, feedback,
-overlay, controls, and content, across 29 stylesheets and 7 behaviour scripts — plus all five
-archetype patterns. The optional React wrapper stays deferred
-until the HTML/ARIA contracts have production use; do not create placeholders to complete a count.
+The documentation site is the only user-facing surface: 21 pages covering values, the arbitration
+rule, global styles, five design patterns, and the full component reference. `examples/` and
+`spec/forms/` were deleted (**D-26**); the nine media specs compress into `spec/media.md` plus
+`site/media.html`, and the per-medium CSS bundles are gone (**D-27**) because nine files carried
+145 lines of real difference across 30,358.
+
+83 block-level `wx-` classes across 39 stylesheets and 7 behaviour scripts, plus all five archetype
+patterns. The optional React wrapper stays deferred until the HTML/ARIA contracts have production
+use; do not create placeholders to complete a count.
+
+**Two kinds of exclusion, and they are not interchangeable.** Card, spinner, skeleton, carousel and
+watermark are excluded on *philosophy* grounds — they do not come back when scope widens, because
+they are the system's identity. Slider, upload, date, tree and popover were once excluded on *scope*
+grounds and were implemented when the scope widened to a full component library. Before rejecting a
+component request, check which kind it is.
 
 Overlays (`wx-modal`/`wx-drawer`/`wx-toast`) are the one place a bounded surface is legal, and the
 exception is argued in DECISIONS **D-21** rather than assumed. Text has exactly four tiers because

@@ -1,0 +1,54 @@
+/* Pagination — numbered page navigation.
+
+   A <nav> of links, current marked with aria-current="page". The current
+   page is not a filled chip: it is heavier ink plus an underline rule, so
+   it survives greyscale and does not spend the accent budget. */
+@layer wx.components {
+  .wx-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-pagination__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .wx-pagination__link {
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--space-8);
+    min-block-size: var(--space-8);
+    padding-inline: var(--space-2);
+    border-block-end: var(--stroke-mark) solid transparent;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .wx-pagination__link:hover { color: var(--color-text-primary); }
+  .wx-pagination__link[aria-current="page"] {
+    border-block-end-color: var(--color-text-primary);
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+  .wx-pagination__link[aria-disabled="true"] {
+    color: var(--color-text-functional);
+    pointer-events: none;
+  }
+  .wx-pagination__ellipsis {
+    min-inline-size: var(--space-6);
+    text-align: center;
+    color: var(--color-text-functional);
+  }
+  .wx-pagination__total {
+    margin-inline-start: var(--space-4);
+    color: var(--color-text-functional);
+    font-variant-numeric: tabular-nums;
+  }
+}

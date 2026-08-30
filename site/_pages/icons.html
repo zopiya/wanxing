@@ -1,0 +1,49 @@
+<p class="wx-eyebrow">全局样式 · Global</p>
+<h1>图标与标识</h1>
+<p class="wx-lede">线条型图标，1.5px 描边，三档尺寸。品牌是一枚朱砂印。</p>
+
+<h2 id="seal">品牌标记</h2>
+<p>■ 一枚方形朱砂印。它是全页视觉焦点，<strong>消耗两处 accent 预算中的一处</strong>。</p>
+<div class="doc-figure">
+    <p><span class="wx-seal" aria-hidden="true"></span> 默认尺寸</p>
+    <p><span class="wx-seal wx-seal--lg" aria-hidden="true"></span> 大号，用于页头</p>
+  </div>
+<p>在 <code>E9-2</code> 强度下，品牌标记允许一处 4 秒呼吸循环——这是全系统<strong>唯一</strong>
+被允许的循环动画，也是 <code>--ease-in-out</code> 唯一的用途。文章页不继承这个循环：
+一篇长文里持续呼吸的标记是干扰，不是品牌。</p>
+
+<h2 id="icons">图标规范</h2>
+<div class="doc-figure">
+    <table class="wx-table doc-api">
+      <thead><tr><th>Token</th><th>值</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><code>--icon-sm</code></td><td>16px</td><td>行内、密集列表</td></tr>
+        <tr><td><code>--icon-md</code></td><td>20px</td><td>默认</td></tr>
+        <tr><td><code>--icon-lg</code></td><td>24px</td><td>导航、工具栏</td></tr>
+        <tr><td><code>--stroke-mark</code></td><td>1.5px</td><td><strong>签名描边</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<h2 id="rules">四条规则</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>只用线条型图标</strong>，禁止填充型——这条针对图标集的风格，
+  数据标记（图表柱、评分方块）不在此列</li>
+  <li><strong>禁止两个图标库同页混用</strong>——描边风格不一致会立刻被看出来</li>
+  <li><strong>图标不能独立承载信息</strong>——必须有可访问名称或相邻文字</li>
+  <li><strong>SVG 缩放时用 <code>vector-effect: non-scaling-stroke</code></strong>——
+  这是 1.5px 在海报尺度下仍然是 1.5px 的关键</li>
+</ul>
+
+<h2 id="hit">命中区域</h2>
+<p>图标的<strong>视觉尺寸</strong>和<strong>命中盒</strong>是两件事。
+一个 16px 的图标按钮仍然需要 ≥24px 的可点击区域（移动端 44/48）。
+扩命中盒，不必放大文字——这是田野审计在三个生产站上都发现的问题。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-btn wx-btn--text" type="button" style="min-block-size:24px;min-inline-size:24px">↗</button>
+      <span class="wx-attr">视觉 16px，命中盒 24px</span>
+    </div>
+  </div>
+</div>

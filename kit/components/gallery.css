@@ -1,0 +1,48 @@
+/* Gallery — the honest replacement for a carousel.
+
+   A carousel that advances on its own is a looping animation that moves
+   content the reader is trying to read: forbidden twice over. What is
+   legitimate is a horizontally scrollable strip the reader drives — native
+   scroll, snap points, keyboard-reachable, and it degrades to a plain
+   overflowing row everywhere.
+
+   No arrows overlaying the content: the scrollbar and swipe are the
+   affordance, and the strip is announced as a labelled region. */
+@layer wx.components {
+  .wx-gallery {
+    display: flex;
+    gap: var(--space-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--padding-page-x);
+    padding-block-end: var(--space-4);
+    overscroll-behavior-x: contain;
+  }
+  .wx-gallery__item {
+    flex: 0 0 min(28rem, 80%);
+    scroll-snap-align: start;
+  }
+  .wx-gallery__item img { inline-size: 100%; block-size: auto; }
+  .wx-gallery__caption {
+    margin-block-start: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  /* Image — content imagery with an intrinsic ratio reserved, so the page
+     does not reflow when it loads. Decorative imagery is forbidden; every
+     image here is expected to carry meaning and an alt. */
+  .wx-image {
+    /* Component-scoped token: the consumer overrides the ratio per image. */
+    --wx-image-ratio: 16 / 9;
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    background: var(--color-bg-subtle);
+  }
+  .wx-image--ratio {
+    aspect-ratio: var(--wx-image-ratio);
+    object-fit: cover;
+  }
+}

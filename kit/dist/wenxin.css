@@ -9,9 +9,10 @@
 
    The important consequence: markdown/ can use loose descendant selectors
    (it styles HTML it did not author) without ever outranking a component,
-   and a form layer can always win over everything above it. */
+   and a form layer can always win over everything above it. wx.site is last: it
+   is the documentation shell, and must never be what a consumer inherits. */
 @layer wx.reset, wx.tokens, wx.base, wx.components, wx.patterns,
-       wx.markdown, wx.charts, wx.form;
+       wx.markdown, wx.charts, wx.form, wx.site;
 
 @layer wx.tokens {
 /* source: kit/tokens/core.css */
@@ -362,6 +363,21 @@
     color: var(--color-text-secondary);
   }
 
+  /* Vertical rhythm. The reset zeroes every margin, so without this a bare
+     <h2> sits flush against the paragraph above it — which is precisely the
+     kind of thing base/ exists to prevent. Space above a heading is much
+     larger than below it: the gap belongs to the section it opens, and that
+     proximity is what groups a heading with its own text (P-2). */
+  h1 { margin-block: 0 var(--space-5); }
+  h2 { margin-block: var(--space-12) var(--space-4); }
+  h3 { margin-block: var(--space-10) var(--space-3); }
+  h4, h5, h6 { margin-block: var(--space-8) var(--space-2); }
+  h1:first-child, h2:first-child, h3:first-child,
+  h4:first-child, h5:first-child, h6:first-child { margin-block-start: 0; }
+
+  p, ul, ol, dl, blockquote, pre, figure, table { margin-block: 0 var(--space-5); }
+  :is(p, ul, ol, dl, blockquote, pre, figure, table):last-child { margin-block-end: 0; }
+
   /* CJK wants looser tracking at display sizes; :lang() keeps it off Latin. */
   :lang(zh) h1, :lang(zh) h2 { letter-spacing: var(--tracking-chinese); }
 
@@ -586,6 +602,18 @@
   /* Optical line length. Latin wants 60–75 characters, CJK 30–40 (P-5). */
   .wx-measure { max-width: 68ch; }
   :lang(zh) .wx-measure { max-width: 36em; }
+
+  /* Cluster — a wrapping row of related items with a shared gap. The
+     horizontal counterpart of wx-stack; replaces ad-hoc margin on tags,
+     buttons, and meta rows. */
+  .wx-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .wx-cluster--tight { gap: var(--space-2); }
+  .wx-cluster--loose { gap: var(--space-6); }
 }
 /* source: kit/base/print.css */
 /* Applies whenever anything is printed, not only in F4. A web page sent to a
@@ -2005,6 +2033,784 @@
   }
   .wx-toolbar__group { display: flex; align-items: center; gap: var(--space-2); }
   .wx-toolbar__spacer { flex: 1; }
+}
+/* source: kit/components/menu.css */
+/* Menu, dropdown, and anchor — the navigation family.
+
+   All three express current/open state through ARIA, never a class. The
+   dropdown is a native <details>, so it opens without JavaScript and closes
+   with Esc for free. */
+@layer wx.components {
+
+  /* ---- Menu — a vertical list of destinations ------------------------ */
+  .wx-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-menu__group {
+    margin-block-start: var(--space-6);
+    padding-block-end: var(--space-2);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-functional);
+  }
+  .wx-menu__group:first-child { margin-block-start: 0; }
+  .wx-menu__link {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-inline-start: var(--stroke-mark) solid transparent;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .wx-menu__link:hover { color: var(--color-text-primary); }
+  .wx-menu__link[aria-current] {
+    border-inline-start-color: var(--color-accent);
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+  .wx-menu__link[aria-disabled="true"] {
+    color: var(--color-text-functional);
+    pointer-events: none;
+  }
+  /* Nested level — indented by the rail, not by a new container. */
+  .wx-menu .wx-menu { margin-inline-start: var(--space-4); }
+
+  /* ---- Dropdown — native <details>, zero JS -------------------------- */
+  .wx-dropdown { position: relative; display: inline-block; }
+  .wx-dropdown > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    list-style: none;
+  }
+  .wx-dropdown > summary::-webkit-details-marker { display: none; }
+  .wx-dropdown > summary::after {
+    content: "";
+    inline-size: 0.4em;
+    block-size: 0.4em;
+    border-inline-end: var(--stroke-hairline) solid currentColor;
+    border-block-end: var(--stroke-hairline) solid currentColor;
+    rotate: 45deg;
+    translate: 0 -0.15em;
+  }
+  .wx-dropdown[open] > summary { border-color: var(--color-text-primary); }
+  .wx-dropdown__menu {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-1));
+    inset-inline-start: 0;
+    z-index: 30;
+    min-inline-size: 12rem;
+    padding: var(--space-2) 0;
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-pure);
+    list-style: none;
+    margin: 0;
+  }
+  .wx-dropdown__item {
+    display: block;
+    inline-size: 100%;
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    background: transparent;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-align: start;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .wx-dropdown__item:hover { background: var(--color-bg-subtle); }
+  .wx-dropdown__item--danger { color: var(--color-danger); }
+  .wx-dropdown__sep {
+    margin: var(--space-2) 0;
+    border: 0;
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+
+  /* ---- Anchor — in-page navigation ----------------------------------- */
+  .wx-anchor { font-family: var(--font-ui); font-size: var(--text-sm); }
+  .wx-anchor__list { list-style: none; margin: 0; padding: 0; border-inline-start: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .wx-anchor__link {
+    display: block;
+    padding: var(--space-1) var(--space-3);
+    margin-inline-start: calc(var(--stroke-hairline) * -1);
+    border-inline-start: var(--stroke-mark) solid transparent;
+    color: var(--color-text-functional);
+    text-decoration: none;
+  }
+  .wx-anchor__link:hover { color: var(--color-text-primary); }
+  .wx-anchor__link[aria-current] {
+    border-inline-start-color: var(--color-accent);
+    color: var(--color-text-heading);
+  }
+  .wx-anchor__list .wx-anchor__list { border: 0; }
+  .wx-anchor__list .wx-anchor__link { padding-inline-start: var(--space-6); }
+
+  /* ---- Affix — sticky without a container ---------------------------- */
+  .wx-affix { position: sticky; inset-block-start: var(--space-6); }
+}
+/* source: kit/components/pagination.css */
+/* Pagination — numbered page navigation.
+
+   A <nav> of links, current marked with aria-current="page". The current
+   page is not a filled chip: it is heavier ink plus an underline rule, so
+   it survives greyscale and does not spend the accent budget. */
+@layer wx.components {
+  .wx-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-pagination__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .wx-pagination__link {
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--space-8);
+    min-block-size: var(--space-8);
+    padding-inline: var(--space-2);
+    border-block-end: var(--stroke-mark) solid transparent;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .wx-pagination__link:hover { color: var(--color-text-primary); }
+  .wx-pagination__link[aria-current="page"] {
+    border-block-end-color: var(--color-text-primary);
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+  .wx-pagination__link[aria-disabled="true"] {
+    color: var(--color-text-functional);
+    pointer-events: none;
+  }
+  .wx-pagination__ellipsis {
+    min-inline-size: var(--space-6);
+    text-align: center;
+    color: var(--color-text-functional);
+  }
+  .wx-pagination__total {
+    margin-inline-start: var(--space-4);
+    color: var(--color-text-functional);
+    font-variant-numeric: tabular-nums;
+  }
+}
+/* source: kit/components/form.css */
+/* Form layout — the structure around the fields.
+
+   Three layouts, all built on the same wx-field: stacked (default),
+   horizontal (label beside control), and inline (filters, search bars).
+   Data entry follows convention in both tracks; what stays ours is the
+   absence of boxes — sections are separated by a rule and whitespace. */
+@layer wx.components {
+  .wx-form { --wx-label-width: 8rem; }
+
+  /* A titled group of related fields. <fieldset> for the semantics,
+     stripped of the browser's default box — the legend and rule do the
+     grouping, exactly as wx-entry does for content. */
+  .wx-form__section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .wx-form__section + .wx-form__section { margin-block-start: var(--space-12); }
+  .wx-form__legend {
+    display: block;
+    inline-size: 100%;
+    padding: 0 0 var(--space-3);
+    margin-block-end: var(--space-6);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-text-heading);
+  }
+  .wx-form__legend-hint {
+    display: block;
+    margin-block-start: var(--space-1);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-text-functional);
+  }
+
+  /* Horizontal — label in a fixed column. Collapses to stacked on narrow
+     canvases, because a 8rem label column and a 20rem viewport cannot both
+     be honoured. */
+  .wx-form--horizontal .wx-field {
+    display: grid;
+    grid-template-columns: var(--wx-label-width) minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+  .wx-form--horizontal .wx-field__label {
+    margin-block-end: 0;
+    text-align: end;
+  }
+  .wx-form--horizontal .wx-field__hint,
+  .wx-form--horizontal .wx-field__error { grid-column: 2; }
+  @media (max-width: 40rem) {
+    .wx-form--horizontal .wx-field { grid-template-columns: minmax(0, 1fr); }
+    .wx-form--horizontal .wx-field__label { text-align: start; margin-block-end: var(--space-2); }
+    .wx-form--horizontal .wx-field__hint,
+    .wx-form--horizontal .wx-field__error { grid-column: 1; }
+  }
+
+  /* Inline — filters and search rows. */
+  .wx-form--inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--space-4);
+  }
+  .wx-form--inline .wx-field { margin-block-start: 0; flex: 1 1 12rem; }
+
+  /* Two fields on one row (first name / last name). */
+  .wx-form__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-4) var(--space-6);
+  }
+  .wx-form__row .wx-field + .wx-field { margin-block-start: 0; }
+
+  /* Actions — separated by a rule, primary action last in reading order.
+     At most one filled button per view (forbidden.md §three). */
+  .wx-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-block-start: var(--space-10);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-form__actions--end { justify-content: flex-end; }
+  .wx-form__actions-note {
+    flex: 1;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+
+  /* A summary of everything that failed, placed above the form and focused
+     on submit. Long forms need this: an inline error 40 rows down is an
+     error nobody finds. */
+  .wx-form__errors {
+    padding: var(--space-4) var(--space-5);
+    margin-block-end: var(--space-8);
+    border-inline-start: var(--stroke-mark) solid var(--color-danger);
+    background: var(--color-danger-subtle);
+  }
+  .wx-form__errors-title {
+    display: block;
+    margin-block-end: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-danger);
+  }
+  .wx-form__errors ol { margin: 0; padding-inline-start: var(--space-5); font-size: var(--text-sm); }
+}
+/* source: kit/components/range.css */
+/* Range-based controls — slider, number, and rate.
+
+   These were previously excluded on SCOPE grounds ("tool scenarios are out
+   of applicability"), not on philosophy grounds. With the scope widened to a
+   full component library they come in unchanged in principle: ink, hairlines,
+   no gradient fill on the track. */
+@layer wx.components {
+
+  /* ---- Slider -------------------------------------------------------- */
+  /* The track is a single rule; the filled portion is NOT a gradient (those
+     are forbidden) — it is a second element sized by the consumer, or simply
+     omitted. A bare track plus a visible thumb reads fine and stays honest. */
+  .wx-slider {
+    inline-size: 100%;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .wx-slider::-webkit-slider-runnable-track {
+    block-size: var(--stroke-mark);
+    background: var(--color-border-strong);
+  }
+  .wx-slider::-moz-range-track {
+    block-size: var(--stroke-mark);
+    background: var(--color-border-strong);
+  }
+  .wx-slider::-moz-range-progress {
+    block-size: var(--stroke-mark);
+    background: var(--color-text-primary);
+  }
+  .wx-slider::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: var(--space-4);
+    block-size: var(--space-4);
+    margin-block-start: calc((var(--space-4) - var(--stroke-mark)) / -2);
+    border: var(--stroke-mark) solid var(--color-text-primary);
+    border-radius: var(--radius-full);
+    background: var(--color-bg-pure);
+  }
+  .wx-slider::-moz-range-thumb {
+    inline-size: var(--space-4);
+    block-size: var(--space-4);
+    border: var(--stroke-mark) solid var(--color-text-primary);
+    border-radius: var(--radius-full);
+    background: var(--color-bg-pure);
+  }
+  /* The value must be readable as a number, not inferred from thumb
+     position — position alone is not an accessible readout. */
+  .wx-slider-field__row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-block-end: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+  .wx-slider-field__value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-primary);
+  }
+  .wx-slider-field__scale {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-functional);
+  }
+
+  /* ---- Number input -------------------------------------------------- */
+  /* Native spinners are kept: they are keyboard-reachable and localised.
+     Numerals are tabular so a column of them aligns. */
+  .wx-number {
+    inline-size: 100%;
+    max-inline-size: 12rem;
+    padding: var(--space-3) var(--space-4);
+    min-block-size: var(--touch-target-min, 24px);
+    border: var(--stroke-hairline) solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-pure);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-primary);
+  }
+  .wx-number:hover { border-color: var(--color-border-strong); }
+  .wx-number[aria-invalid="true"] {
+    border-color: var(--color-danger);
+    border-width: var(--stroke-mark);
+  }
+
+  /* ---- Rate ---------------------------------------------------------- */
+  /* Marks, not icons. The ban on filled icons governs icon sets; a rating
+     mark is a data mark, the same way a chart bar is. Using the ■ seal
+     idiom keeps it in the system's own vocabulary, and filled-vs-hairline
+     survives greyscale — the state is never carried by colour alone.
+
+     Implemented as radio inputs in reverse DOM order so the CSS sibling
+     selector can fill everything up to the checked one. */
+  .wx-rate {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: var(--space-2);
+  }
+  .wx-rate input {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .wx-rate label {
+    inline-size: var(--space-4);
+    block-size: var(--space-4);
+    border: var(--stroke-mark) solid var(--color-border-strong);
+    cursor: pointer;
+  }
+  .wx-rate input:checked ~ label,
+  .wx-rate label:hover,
+  .wx-rate label:hover ~ label {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+  }
+  .wx-rate input:focus-visible + label {
+    outline: var(--stroke-mark) solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+/* source: kit/components/upload.css */
+/* Upload — file input and drop zone.
+
+   The drop zone is a four-sided dashed rectangle, which the card ban would
+   normally forbid. It is allowed here for the same reason overlays are
+   (DECISIONS D-21, D-23): the boundary is not decoration, it IS the
+   information — it shows the reader where the droppable region ends. A drop
+   target whose edge you cannot see is a usability failure. Arbitration
+   layers one and three both apply.
+
+   The concession is bounded: dashed hairline, no fill, no shadow, no radius
+   beyond --radius-md. It stays a drop target and does not become a card. */
+@layer wx.components {
+  .wx-upload {
+    display: block;
+    padding: var(--space-10) var(--space-6);
+    border: var(--stroke-hairline) dashed var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: transparent;
+    text-align: center;
+    font-family: var(--font-ui);
+    cursor: pointer;
+  }
+  .wx-upload:hover,
+  .wx-upload:focus-within { border-color: var(--color-text-secondary); }
+  .wx-upload[data-dragover] {
+    border-color: var(--color-accent);
+    border-style: solid;
+  }
+  .wx-upload__prompt {
+    display: block;
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+  }
+  .wx-upload__hint {
+    display: block;
+    margin-block-start: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+  /* The native input stays reachable — visually hidden, not display:none,
+     so it keeps its place in the tab order. */
+  .wx-upload input[type="file"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* The list of chosen files — a ruled list, not a grid of tiles. */
+  .wx-upload-list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-upload-list__item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-upload-list__name { flex: 1; color: var(--color-text-primary); }
+  .wx-upload-list__size {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-functional);
+  }
+}
+/* source: kit/components/tree.css */
+/* Tree — nested disclosure, built from <ul> and <details>.
+
+   No JavaScript and no custom roles: a nested list of <details> is already
+   keyboard-navigable and announced correctly. The connecting rail is drawn
+   with a border on the list, so depth is legible without indent guides
+   becoming visual noise. */
+@layer wx.components {
+  .wx-tree,
+  .wx-tree ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-tree ul {
+    margin-inline-start: var(--space-3);
+    padding-inline-start: var(--space-3);
+    border-inline-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-tree li { padding-block: 1px; }
+
+  .wx-tree summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    list-style: none;
+  }
+  .wx-tree summary::-webkit-details-marker { display: none; }
+  .wx-tree summary::before {
+    content: "";
+    flex: none;
+    inline-size: 0.4em;
+    block-size: 0.4em;
+    border-inline-end: var(--stroke-hairline) solid currentColor;
+    border-block-end: var(--stroke-hairline) solid currentColor;
+    rotate: -45deg;
+    transition: rotate var(--duration-fast) var(--ease-out);
+  }
+  .wx-tree details[open] > summary::before { rotate: 45deg; }
+  .wx-tree summary:hover { color: var(--color-text-primary); }
+
+  .wx-tree__leaf {
+    display: block;
+    padding: var(--space-1) var(--space-2);
+    /* aligned with the summary text, past where its marker sits */
+    padding-inline-start: calc(var(--space-2) + 0.4em + var(--space-2));
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .wx-tree__leaf:hover { color: var(--color-text-primary); }
+  .wx-tree__leaf[aria-current] {
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+}
+/* source: kit/components/result.css */
+/* Result — the whole-page outcome state: success, failure, 404, 403.
+
+   Ant Design puts an illustration here. This system does not: the mark, a
+   heading, one sentence, and at most two actions. Same reasoning as
+   wx-empty — an illustration is decorative imagery, which is forbidden, and
+   it delays the sentence that actually tells the reader what happened. */
+@layer wx.components {
+  .wx-result {
+    max-inline-size: var(--width-article);
+    margin-inline: auto;
+    padding-block: var(--space-24);
+    text-align: center;
+  }
+  .wx-result__mark {
+    display: block;
+    margin-block-end: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    line-height: 1;
+    color: var(--color-text-functional);
+  }
+  .wx-result__title {
+    margin-block: 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text-heading);
+  }
+  .wx-result__body {
+    margin-block: 0;
+    color: var(--color-text-secondary);
+  }
+  .wx-result__actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-block-start: var(--space-8);
+  }
+  /* Level is carried by the mark's ink and the words, never by colour
+     alone — the title states the outcome. */
+  .wx-result--success .wx-result__mark { color: var(--color-success); }
+  .wx-result--warn    .wx-result__mark { color: var(--color-warning); }
+  .wx-result--danger  .wx-result__mark { color: var(--color-danger); }
+
+  /* Supporting detail — a stack trace, a reference number. */
+  .wx-result__detail {
+    margin-block-start: var(--space-8);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+    text-align: start;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+}
+/* source: kit/components/popover.css */
+/* Popover and popconfirm — anchored transient surfaces.
+
+   Unlike wx-tooltip, a popover MAY carry information and interactive
+   controls, so it must be reachable: built on <details> so it opens by
+   keyboard and closes with Esc without script. The same bounded-surface
+   exception as overlays applies (D-21) — hairline edge only. */
+@layer wx.components {
+  .wx-popover { position: relative; display: inline-block; }
+  .wx-popover > summary {
+    display: inline-flex;
+    cursor: pointer;
+    list-style: none;
+  }
+  .wx-popover > summary::-webkit-details-marker { display: none; }
+
+  .wx-popover__panel {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-2));
+    inset-inline-start: 0;
+    z-index: 40;
+    inline-size: max-content;
+    max-inline-size: 20rem;
+    padding: var(--space-4) var(--space-5);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-pure);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-align: start;
+  }
+  .wx-popover__panel--end { inset-inline: auto 0; }
+  .wx-popover__title {
+    display: block;
+    margin-block-end: var(--space-2);
+    font-weight: 600;
+    color: var(--color-text-heading);
+  }
+  .wx-popover__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    margin-block-start: var(--space-4);
+  }
+  .wx-popover__panel > :last-child { margin-block-end: 0; }
+}
+/* source: kit/components/calendar.css */
+/* Calendar — a month grid.
+
+   A table, because that is what it is: days are cells with row and column
+   headers. Screen readers announce the weekday and week from the table
+   structure, which a grid of <div>s cannot do.
+
+   Selection is aria-selected and today is aria-current="date" — the ring
+   and the weight, not colour alone. */
+@layer wx.components {
+  .wx-calendar {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+  .wx-calendar caption {
+    padding-block-end: var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-text-heading);
+    text-align: start;
+  }
+  .wx-calendar th {
+    padding-block: var(--space-2);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-strong);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-functional);
+  }
+  .wx-calendar td {
+    padding: 0;
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    text-align: center;
+  }
+  .wx-calendar__day {
+    display: grid;
+    place-items: center;
+    inline-size: 100%;
+    min-block-size: var(--space-10);
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+  .wx-calendar__day:hover { color: var(--color-text-primary); background: var(--color-bg-subtle); }
+  .wx-calendar__day[aria-current="date"] {
+    color: var(--color-text-heading);
+    font-weight: 600;
+    box-decoration-break: clone;
+    outline: var(--stroke-hairline) solid var(--color-border-strong);
+    outline-offset: -4px;
+  }
+  .wx-calendar__day[aria-selected="true"] {
+    outline: var(--stroke-mark) solid var(--color-accent);
+    outline-offset: -4px;
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+  .wx-calendar__day[disabled] { color: var(--color-text-functional); cursor: default; }
+  .wx-calendar__day[disabled]:hover { background: transparent; }
+}
+/* source: kit/components/gallery.css */
+/* Gallery — the honest replacement for a carousel.
+
+   A carousel that advances on its own is a looping animation that moves
+   content the reader is trying to read: forbidden twice over. What is
+   legitimate is a horizontally scrollable strip the reader drives — native
+   scroll, snap points, keyboard-reachable, and it degrades to a plain
+   overflowing row everywhere.
+
+   No arrows overlaying the content: the scrollbar and swipe are the
+   affordance, and the strip is announced as a labelled region. */
+@layer wx.components {
+  .wx-gallery {
+    display: flex;
+    gap: var(--space-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--padding-page-x);
+    padding-block-end: var(--space-4);
+    overscroll-behavior-x: contain;
+  }
+  .wx-gallery__item {
+    flex: 0 0 min(28rem, 80%);
+    scroll-snap-align: start;
+  }
+  .wx-gallery__item img { inline-size: 100%; block-size: auto; }
+  .wx-gallery__caption {
+    margin-block-start: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  /* Image — content imagery with an intrinsic ratio reserved, so the page
+     does not reflow when it loads. Decorative imagery is forbidden; every
+     image here is expected to carry meaning and an alt. */
+  .wx-image {
+    /* Component-scoped token: the consumer overrides the ratio per image. */
+    --wx-image-ratio: 16 / 9;
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    background: var(--color-bg-subtle);
+  }
+  .wx-image--ratio {
+    aspect-ratio: var(--wx-image-ratio);
+    object-fit: cover;
+  }
 }
 /* source: kit/patterns/index.css */
 /* Five page archetypes A-E. These are layout skeletons, not components: they

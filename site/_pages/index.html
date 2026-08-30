@@ -1,0 +1,56 @@
+<p class="wx-eyebrow">设计语言 · Design Language</p>
+<h1>文心 · 万形</h1>
+<p class="wx-lede">文字即界面，留白即设计，克制即力量。<br>
+Text is the interface. Whitespace is the design. Restraint is the power.</p>
+
+<p>这是一套以内容为中心的双语设计语言，同时提供<strong>规范</strong>与<strong>可直接复用的产物</strong>。
+它不是一份说明文档：色彩、排版、间距、动效、组件、图表都以 CSS token 和组件的形式交付，
+引一个文件就能用，不需要每次从哲学重新推导。</p>
+
+<p>名字里有两层意思。<strong>文心</strong>是不变的魂——价值观与 token；<strong>万形</strong>是它在不同容器里呈现的形。
+水没有自己的形状，但在任何容器里都还是水。</p>
+
+<h2 id="start">从哪里开始</h2>
+
+<div class="doc-figure">
+    <ul class="wx-list wx-list--ruled">
+      <li><strong><a href="./values.html">设计价值观</a></strong> —— 这套语言相信什么，以及为什么</li>
+      <li><strong><a href="./tracks.html">双轨仲裁</a></strong> —— 哲学与主流惯例冲突时听谁的</li>
+      <li><strong><a href="./color.html">全局样式</a></strong> —— 色彩、排版、间距、动效、图标</li>
+      <li><strong><a href="./patterns.html">设计模式</a></strong> —— 表单页、列表页、详情页怎么组织</li>
+      <li><strong><a href="./components.html">组件</a></strong> —— 83 个类，含用法与源码</li>
+    </ul>
+  </div>
+
+<h2 id="install">直接开始用</h2>
+
+<p>零运行时依赖，无构建步骤。引入一个文件即可：</p>
+
+<pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="kit/index.css"&gt;</code></pre>
+
+<p>或者用打包好的单文件版本 <code>kit/dist/wenxin.css</code>——已展平所有 <code>@import</code>，不压缩。
+需要行为增强（浮层、标签页、滚动揭示）时再按需引入 <code>kit/components/js/</code> 里的脚本，
+每一个都是渐进增强：<strong>没有 JS 时页面依然可读可用</strong>。</p>
+
+<h2 id="three">三条一以贯之的原则</h2>
+
+<h3>减法优先</h3>
+<p>一个页面上每多一个视觉元素，读者就要多付一次注意力。装饰性的阴影、渐变、圆角卡片，
+都在向读者收税，却不提供任何信息回报。<strong>能用留白解决的，不要用线；能用线解决的，不要用面。</strong></p>
+
+<h3>状态绑定到无障碍树</h3>
+<p>所有组件状态一律走 ARIA 或原生属性——<code>aria-current</code>、<code>aria-selected</code>、
+<code>open</code>、<code>disabled</code>——<strong>从不使用 <code>.is-active</code> 这类状态类</strong>。
+这条规则是从"禁止仅用颜色区分状态"推导出来的：把 CSS 状态绑在无障碍树上，
+就在结构上不可能出现读屏器感知不到的状态。</p>
+
+<h3>规则必须可执行</h3>
+<p>只写在文档里的规则不会被遵守。这套系统的每一条硬性约束都有对应的检查器：
+token 是否解析、对比度是否达标、是否出现了被禁的图形。<code>npm run check</code> 六项全绿才算数。</p>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">这条教训是付过学费的</span>
+  <p>审计矩阵曾经读错了一个字段，于是在每个页面都硬失败的情况下打印"0 failing"；
+  文字灰阶曾经有五个 token 不达 AA，最低到 1.54:1，而当时没有任何检查测量过 token 的数值。
+  <strong>一个不可能失败的检查比没有检查更糟</strong>，因为它的绿色会被当成证据引用。</p>
+</div>

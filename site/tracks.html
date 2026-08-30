@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>双轨仲裁 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html" aria-current="page">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">仲裁 · Arbitration</p>
+<h1>双轨仲裁</h1>
+<p class="wx-lede">哲学与主流惯例冲突时，听谁的？三层规则自上而下检查，
+让"60% 哲学 + 40% 惯例"变成可执行的判定，而不是每次临时争论。</p>
+
+<h2 id="layer1">第一层 · 全局底线</h2>
+<p><strong>无障碍与基本可用性不参与哲学取舍。</strong>惯例无条件优先，在每一个形态、每一条轨道上都成立。</p>
+
+<div class="doc-figure">
+    <ul class="wx-list wx-list--ruled">
+      <li>WCAG 2.2 AA 对比度——正文 ≥ 4.5:1</li>
+      <li>可见焦点态 ≥ 2px，对比 ≥ 3:1；<strong>禁止 <code>outline: none</code></strong></li>
+      <li>键盘可达，焦点顺序合理</li>
+      <li>触控目标 Web ≥ 24px / iOS ≥ 44pt / Android ≥ 48dp</li>
+      <li><strong>颜色不作为唯一信息载体</strong></li>
+      <li>尊重 <code>prefers-reduced-motion</code></li>
+    </ul>
+  </div>
+
+<h2 id="layer2">第二层 · 按场景分轨</h2>
+
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>轨道</th><th>适用</th><th>视觉约束</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>阅读轨</strong><br><span class="wx-attr">editorial</span></td>
+          <td>文章、文档、品牌、报告、幻灯、海报</td>
+          <td>哲学全量生效：无卡片容器、无填充按钮、≤2 accent、灰阶图表、极简动效</td>
+        </tr>
+        <tr>
+          <td><strong>应用轨</strong><br><span class="wx-attr">application</span></td>
+          <td>移动端；<strong>任何工具型页面</strong></td>
+          <td>放宽视觉约束：允许分组表面、允许填充主按钮、完整语义色、明确的交互反馈</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<p>轨道在<strong>页面级</strong>声明。关键机制是：<strong>一个工具型页面会翻转它所在媒介的轨道</strong>——
+即使住在一个阅读轨的站点里，一个查询工具页也按应用轨判定。</p>
+
+<h2 id="layer3">第三层 · 组件类别覆盖</h2>
+
+<p><strong>数据录入与反馈类组件永远按惯例处理</strong>，无论所在轨道。表单就是表单，
+可用性在这里不可妥协。</p>
+
+<p>所以在一个纯阅读轨的文档页里，其中的搜索框、表单、错误提示仍然使用语义色、
+清晰的可供性与标准交互反馈。一个不像错误的错误提示不是克制，是失败。</p>
+
+<h2 id="consequences">这条规则带来的三个具体改变</h2>
+
+<div class="doc-figure">
+    <ol class="wx-list">
+      <li><strong>补齐语义色</strong>（第一层要求）—— danger / warning / success 及其淡色变体，
+      不计入 accent 预算，因为它们回答的是不同的问题：accent 说"看这里"，语义色说"这是什么状态"。</li>
+      <li><strong>主按钮升格</strong>（第三层要求）—— 填充主按钮从"括号里的例外"变成一等变体，
+      约束从"禁止"改为"<strong>限量</strong>"：每视图至多一个。</li>
+      <li><strong>分组表面合法化</strong>（第二层要求）—— iOS 分组列表是真实平台惯例，
+      在应用轨可用，走边框实现，<strong>仍然禁止阴影</strong>。</li>
+    </ol>
+  </div>
+
+<h2 id="summary">一句话</h2>
+<p class="wx-pullquote">第一层保证它能用，第二层保证它像文心，第三层保证表单还是表单。</p>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#layer1">第一层 · 全局底线</a></li>
+      <li><a class="wx-anchor__link" href="#layer2">第二层 · 按场景分轨</a></li>
+      <li><a class="wx-anchor__link" href="#layer3">第三层 · 组件类别覆盖</a></li>
+      <li><a class="wx-anchor__link" href="#consequences">这条规则带来的三个具体改变</a></li>
+      <li><a class="wx-anchor__link" href="#summary">一句话</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

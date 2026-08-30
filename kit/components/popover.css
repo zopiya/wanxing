@@ -1,0 +1,45 @@
+/* Popover and popconfirm — anchored transient surfaces.
+
+   Unlike wx-tooltip, a popover MAY carry information and interactive
+   controls, so it must be reachable: built on <details> so it opens by
+   keyboard and closes with Esc without script. The same bounded-surface
+   exception as overlays applies (D-21) — hairline edge only. */
+@layer wx.components {
+  .wx-popover { position: relative; display: inline-block; }
+  .wx-popover > summary {
+    display: inline-flex;
+    cursor: pointer;
+    list-style: none;
+  }
+  .wx-popover > summary::-webkit-details-marker { display: none; }
+
+  .wx-popover__panel {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-2));
+    inset-inline-start: 0;
+    z-index: 40;
+    inline-size: max-content;
+    max-inline-size: 20rem;
+    padding: var(--space-4) var(--space-5);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-pure);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-align: start;
+  }
+  .wx-popover__panel--end { inset-inline: auto 0; }
+  .wx-popover__title {
+    display: block;
+    margin-block-end: var(--space-2);
+    font-weight: 600;
+    color: var(--color-text-heading);
+  }
+  .wx-popover__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    margin-block-start: var(--space-4);
+  }
+  .wx-popover__panel > :last-child { margin-block-end: 0; }
+}

@@ -1,0 +1,73 @@
+<p class="wx-eyebrow">全局样式 · Global</p>
+<h1>布局与间距</h1>
+<p class="wx-lede">4px 网格，三档内容宽度，用留白和单边线分组——不用方框。</p>
+
+<h2 id="grid">间距网格</h2>
+<p>全部间距落在 <strong>4px 网格</strong>上。<code>--space-1</code> 到 <code>--space-32</code>
+共 12 档，跳跃式而非线性，因为视觉上有意义的间距差需要成比例增长。</p>
+<div class="doc-figure">
+    <table class="wx-table doc-api">
+      <thead><tr><th>Token</th><th>值</th><th>典型用途</th></tr></thead>
+      <tbody>
+        <tr><td><code>--space-2</code></td><td>8px</td><td>标签内边距、图标间隙</td></tr>
+        <tr><td><code>--space-4</code></td><td>16px</td><td>表单控件内边距</td></tr>
+        <tr><td><code>--space-6</code></td><td>24px</td><td>字段之间</td></tr>
+        <tr><td><code>--space-8</code></td><td>32px</td><td><strong>条目之间——卡片的替代</strong></td></tr>
+        <tr><td><code>--space-12</code></td><td>48px</td><td>区块之间</td></tr>
+        <tr><td><code>--space-24</code></td><td>96px</td><td>章节之间</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<h2 id="width">内容宽度</h2>
+<div class="doc-figure">
+    <p><code>--width-article</code> · clamp(520px, 55vw, 640px) —— 长文</p>
+    <p><code>--width-content</code> · clamp(620px, 65vw, 760px) —— 一般内容</p>
+    <p><code>--width-showcase</code> · clamp(700px, 72vw, 920px) —— 展示型</p>
+    <p><code>--padding-page-x</code> · clamp(20px, 5vw, 72px) —— 页面左右留白</p>
+  </div>
+
+<h2 id="primitives">布局原语</h2>
+<div class="doc-figure">
+    <div class="wx-spread">
+      <span>wx-spread —— 两端分布</span>
+      <span class="wx-attr">right</span>
+    </div>
+    <hr class="wx-rule">
+    <div class="wx-cluster">
+      <span class="wx-tag">wx-cluster</span>
+      <span class="wx-tag">换行的横向组</span>
+      <span class="wx-tag">共享 gap</span>
+    </div>
+    <hr class="wx-rule">
+    <div class="wx-cols wx-cols--2">
+      <p>wx-cols--2 分栏，grid 实现，<strong>无竖向分隔线</strong>。</p>
+      <p>竖线在这套系统里几乎总是多余的——列之间的间距已经完成了分组。</p>
+    </div>
+  </div>
+
+<h2 id="rule">分隔线是主要结构手段</h2>
+<p><code>wx-rule</code> 是发丝线，也是这套系统<strong>最主要的结构手段</strong>。
+它替代了卡片承担的分组职责，而不引入任何视觉噪声。</p>
+<div class="doc-figure">
+    <hr class="wx-rule">
+    <p>默认发丝线</p>
+    <hr class="wx-rule wx-rule--short">
+    <p>短线——用于段落内的轻分隔</p>
+    <hr class="wx-rule wx-rule--strong">
+    <p>强线——用于章节边界</p>
+  </div>
+
+<h2 id="nocard">没有卡片，那怎么分组</h2>
+<p>这是这套系统被问得最多的问题。答案是三条，按优先级：</p>
+<div class="doc-figure">
+    <ol class="wx-list">
+      <li><strong>邻近</strong>——格式塔原则。相关的东西靠近，无关的东西远离。
+      <code>--space-8</code> 和 <code>--space-12</code> 的差别足以表达"同组"与"不同组"。</li>
+      <li><strong>单边线</strong>——需要更明确的边界时，加<strong>一条</strong>线，不是四条。</li>
+      <li><strong>标题</strong>——一个小标题比一个方框更能说明这组内容是什么。</li>
+    </ol>
+  </div>
+<p>禁的是<strong>几何形状</strong>——四边包围的方框（边框 / 阴影 / 填充底色三者任一 + 圆角），
+不是"卡片"这个名词。所以不要把它改名叫 <code>.panel</code>、<code>.box</code>、
+<code>.tile</code> 再放回来。</p>

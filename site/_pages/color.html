@@ -1,0 +1,81 @@
+<p class="wx-eyebrow">全局样式 · Global</p>
+<h1>色彩</h1>
+<p class="wx-lede">暖土色域，单一强调色，四档文字灰阶。所有取值都过 WCAG AA，
+并由 <code>npm run check:colors</code> 实测拦截回归。</p>
+
+<h2 id="ground">背景与文字</h2>
+
+<div class="doc-figure">
+    <table class="wx-table doc-api">
+      <thead><tr><th>Token</th><th>亮色</th><th>暗色</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><code>--color-bg-warm</code></td><td>#F2F0EB</td><td>#1A1816</td><td>暖白·系统底色</td></tr>
+        <tr><td><code>--color-bg-base</code></td><td>#FAFAF8</td><td>#201E1B</td><td>内页背景</td></tr>
+        <tr><td><code>--color-bg-pure</code></td><td>#FFFFFF</td><td>#242220</td><td>正文区</td></tr>
+        <tr><td><code>--color-bg-subtle</code></td><td>#F0EDE7</td><td>#2A2724</td><td>代码块 / 引用 / 标签底</td></tr>
+        <tr><td><code>--color-text-heading</code></td><td>#2C2B29</td><td>#F0EBE3</td><td>标题</td></tr>
+        <tr><td><code>--color-text-primary</code></td><td>#3A3837</td><td>#E8E3DC</td><td>正文·暖炭色·<strong>非纯黑</strong></td></tr>
+        <tr><td><code>--color-text-secondary</code></td><td>#55524E</td><td>#B5AFA6</td><td>辅助正文</td></tr>
+        <tr><td><code>--color-text-functional</code></td><td>#706D68</td><td>#8A857D</td><td>日期 / 元数据 / 占位符</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">为什么文字只有四档</span>
+  <p>AA 底线把可用明度压在 L* 23.7–46.2 之间，这段距离容不下更多可辨层级。
+  原先有六个文字 token，其中相邻两档只差 ΔL* 1.2——四个名字渲染成两个层级。
+  现在四档，相邻 ΔL* ≥ 11，每一档都真的看得出来。<strong>能表达的层级数是被对比度底线决定的，
+  不是被命名决定的。</strong></p>
+</div>
+
+<h2 id="accent">强调色</h2>
+
+<p>砖红 <code>#8B3525</code>，全页 <strong>≤ 2 处</strong>。这是整套系统被引用最多的约束。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <p><span class="wx-seal" aria-hidden="true"></span> 品牌标记 · <code>--color-accent</code></p>
+    <p><a href="#accent">悬停链接时变为 accent</a> · <code>--color-link-hover</code></p>
+    <p><button class="wx-btn wx-btn--primary" type="button">每视图至多一个填充主按钮</button></p>
+  </div>
+</div>
+
+<h2 id="semantic">语义色</h2>
+
+<p>语义色是第一层底线要求的<strong>信息通道</strong>，不是装饰。它们不计入 accent 预算，
+也不属于"高饱和装饰色"禁令的范围——但<strong>必须与文字说明同时出现</strong>。</p>
+
+<div class="doc-figure">
+    <div class="wx-note wx-note--danger">
+      <span class="wx-note__title">危险 danger · #5C1F2F</span>
+      <p>牛血红，对暖白 10.90:1。</p>
+    </div>
+    <div class="wx-note wx-note--warn">
+      <span class="wx-note__title">警告 warning · #7D5E12</span>
+      <p>赭黄，5.30:1。</p>
+    </div>
+    <div class="wx-note wx-note--tip">
+      <span class="wx-note__title">成功 success · #4F6B3A</span>
+      <p>苔绿，5.27:1。</p>
+    </div>
+  </div>
+
+<p>这三个值不是凭感觉选的，是在暖土色域内解一个约束问题：全部 ≥4.5:1，彼此两两可区分
+（最小 ΔE = 28），且不与正文色混淆。danger 之所以是深牛血红而非常见的亮红——
+亮红属于被禁的高饱和色，而在暖土色域内，能与砖红 accent 拉开距离的方向只有"更深、更冷"。</p>
+
+<h2 id="dark">暗色模式</h2>
+<p>不是纯黑反相，而是<strong>同一张羊皮纸被调暗</strong>。同时支持系统偏好与手动切换：</p>
+<pre class="doc-code__body"><code>@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { … } }
+[data-theme="dark"] { … }</code></pre>
+<p>右上角的开关可以实时验证——本站每一页都跟随它。</p>
+
+<h2 id="forbidden">色彩禁令</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>渐变色背景</strong>——任何形式，双轨都禁</li>
+  <li><strong>高饱和蓝 / 绿 / 紫 / 橙</strong>作为装饰或强调（语义色不在此列）</li>
+  <li><strong>仅用颜色区分状态</strong>——色盲用户无法感知</li>
+  <li><strong>把 accent 复用为 error 色</strong>——一个语义 token 只有一个用途</li>
+  <li><strong>边框色当文字色用</strong>——<code>--color-border-*</code> 不得排日期、版权、面包屑</li>
+</ul>

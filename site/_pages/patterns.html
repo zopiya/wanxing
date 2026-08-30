@@ -1,0 +1,48 @@
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>模式总览</h1>
+<p class="wx-lede">组件回答"这个东西长什么样"，模式回答"这一页怎么组织"。
+五种页面原型覆盖了这套语言适用范围内的绝大多数页面。</p>
+
+<h2 id="five">五种页面原型</h2>
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>原型</th><th>页面</th><th>读者的任务</th><th>轨道</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A</strong></td><td><a href="./pattern-detail.html">阅读 / 详情</a></td><td>从头读到尾</td><td>阅读轨</td></tr>
+        <tr><td><strong>B</strong></td><td><a href="./pattern-list.html">索引 / 列表</a></td><td>扫描并挑选</td><td>阅读轨</td></tr>
+        <tr><td><strong>C</strong></td><td>展示 / 作品集</td><td>快速判断此人此物</td><td>阅读轨</td></tr>
+        <tr><td><strong>D</strong></td><td>着陆 / 首页</td><td>十秒内决定去哪</td><td>阅读轨</td></tr>
+        <tr><td><strong>E</strong></td><td><a href="./pattern-form.html">工具 / 表单</a></td><td>完成一件明确的事</td><td><strong>应用轨</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">原型 E 会翻转轨道</span>
+  <p>一个工具型页面，即使住在一个纯阅读轨的站点里，也按<strong>应用轨</strong>判定——
+  可以有分组表面、填充主按钮、完整语义色。读者在这一页的任务不是阅读，是完成操作。</p>
+</div>
+
+<h2 id="method">怎么选</h2>
+<p>不要问"这是什么页面"，问<strong>"读者到这一页要做什么"</strong>。
+同一份内容在不同任务下属于不同原型：一篇文章是 A，文章列表是 B，
+而"在文章里搜索并批量导出"是 E。</p>
+
+<h2 id="skeleton">可复制的骨架</h2>
+<p><code>kit/patterns/</code> 下有五份 HTML 骨架，直接复制即可。它们不自带媒介样式——
+使用者按实际场景加载对应的 CSS 并声明轨道。</p>
+<pre class="doc-code__body"><code>kit/patterns/a-reading.html    文章 / 文档
+kit/patterns/b-list.html       索引 / 搜索结果
+kit/patterns/c-showcase.html   简历 / 作品集
+kit/patterns/d-landing.html    首页 / 着陆页
+kit/patterns/e-tool.html       输入 / 查询工具</code></pre>
+<p>五份骨架都<strong>只用留白和单边线分组</strong>，不提供任何四边包围容器。</p>
+
+<h2 id="explore">模式探索</h2>
+<p>下面几页把原型展开成真正可用的页面，包含状态、校验、异常与响应式处理：</p>
+<ul class="wx-list wx-list--ruled">
+  <li><a href="./pattern-form.html"><strong>表单页</strong></a> —— 布局、校验时机、错误汇总、提交状态</li>
+  <li><a href="./pattern-list.html"><strong>列表页</strong></a> —— 筛选、排序、分页、空态</li>
+  <li><a href="./pattern-detail.html"><strong>详情页</strong></a> —— 长文结构、目录、旁注</li>
+  <li><a href="./pattern-result.html"><strong>结果与异常页</strong></a> —— 成功、失败、404、无权限</li>
+</ul>

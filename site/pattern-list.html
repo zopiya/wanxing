@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>列表页 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html" aria-current="page">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>列表页</h1>
+<p class="wx-lede">读者到列表页是来<strong>扫描并挑选</strong>的，不是来阅读的。
+每个条目要在半秒内回答"这是不是我要找的"。</p>
+
+<h2 id="entry">条目：卡片的替代品</h2>
+<p><code>wx-entry</code> 靠留白和单边线分组。信息顺序是<strong>元数据 → 标题 → 摘要</strong>：
+日期和分类在前，因为扫描时它们是过滤条件。</p>
+
+<div class="doc-figure">
+    <ol class="wx-list wx-list--bare">
+      <li><article class="wx-entry">
+        <p class="wx-entry__meta">2026-08-30 · 设计</p>
+        <h3 class="wx-entry__title"><a href="#">留白不是空缺</a></h3>
+        <p>留白是设计的一部分。足够的留白让内容呼吸、让层次清晰、让眼睛休息。</p>
+      </article></li>
+      <li><article class="wx-entry wx-entry--ruled">
+        <p class="wx-entry__meta">2026-08-24 · 排版</p>
+        <h3 class="wx-entry__title"><a href="#">克制即力量</a></h3>
+        <p>频率越低，力量越大。全页只允许一处强调色。</p>
+      </article></li>
+    </ol>
+  </div>
+
+<h2 id="timeline">连续流：时间线</h2>
+<p>当条目按时间连续排列、且读者会从头往下浏览时，<code>wx-timeline</code> 比独立条目更合适——
+一根线把它们连成一条流，而不是切成互不相干的块。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <ol class="wx-timeline">
+      <li class="wx-timeline__item">
+        <p class="wx-timeline__meta">08-30</p>
+        <p>补齐组件清单，新增浮层与控件两类。</p>
+      </li>
+      <li class="wx-timeline__item">
+        <p class="wx-timeline__meta">08-29</p>
+        <p>田野审计四个生产站点，吸收 functional ink。</p>
+      </li>
+    </ol>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;ol class="wx-timeline"&gt;
+  &lt;li class="wx-timeline__item"&gt;
+    &lt;p class="wx-timeline__meta"&gt;08-30&lt;/p&gt;
+    &lt;p&gt;补齐组件清单，新增浮层与控件两类。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li class="wx-timeline__item"&gt;
+    &lt;p class="wx-timeline__meta"&gt;08-29&lt;/p&gt;
+    &lt;p&gt;田野审计四个生产站点，吸收 functional ink。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre></details>
+</div>
+
+<h2 id="filter">筛选与排序</h2>
+<p>筛选栏是<strong>数据录入</strong>，按第三层规则走惯例。用 <code>wx-toolbar</code>
+把它与内容用一条线分开。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-toolbar">
+      <div class="wx-segmented" role="radiogroup" aria-label="视图">
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="true">全部</button>
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">设计</button>
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">工程</button>
+      </div>
+      <span class="wx-toolbar__spacer"></span>
+      <details class="wx-dropdown">
+        <summary>排序：最新</summary>
+        <ul class="wx-dropdown__menu">
+          <li><button class="wx-dropdown__item" type="button">最新</button></li>
+          <li><button class="wx-dropdown__item" type="button">最早</button></li>
+          <li><button class="wx-dropdown__item" type="button">标题</button></li>
+        </ul>
+      </details>
+    </div>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-toolbar"&gt;
+  &lt;div class="wx-segmented" role="radiogroup" aria-label="视图"&gt;
+    &lt;button class="wx-segmented__option" type="button" role="radio" aria-checked="true"&gt;全部&lt;/button&gt;
+    &lt;button class="wx-segmented__option" type="button" role="radio" aria-checked="false"&gt;设计&lt;/button&gt;
+    &lt;button class="wx-segmented__option" type="button" role="radio" aria-checked="false"&gt;工程&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;span class="wx-toolbar__spacer"&gt;&lt;/span&gt;
+  &lt;details class="wx-dropdown"&gt;
+    &lt;summary&gt;排序：最新&lt;/summary&gt;
+    &lt;ul class="wx-dropdown__menu"&gt;
+      &lt;li&gt;&lt;button class="wx-dropdown__item" type="button"&gt;最新&lt;/button&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;button class="wx-dropdown__item" type="button"&gt;最早&lt;/button&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;button class="wx-dropdown__item" type="button"&gt;标题&lt;/button&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre></details>
+</div>
+
+<h2 id="pagination">分页</h2>
+<p>当前页不是填充色块，是<strong>更重的墨色 + 下划线</strong>——灰度可读，且不消耗 accent 预算。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-pagination" aria-label="分页">
+      <ul class="wx-pagination__list">
+        <li><a class="wx-pagination__link" href="#" aria-disabled="true">←</a></li>
+        <li><a class="wx-pagination__link" href="#" aria-current="page">1</a></li>
+        <li><a class="wx-pagination__link" href="#">2</a></li>
+        <li><a class="wx-pagination__link" href="#">3</a></li>
+        <li><span class="wx-pagination__ellipsis">…</span></li>
+        <li><a class="wx-pagination__link" href="#">12</a></li>
+        <li><a class="wx-pagination__link" href="#">→</a></li>
+      </ul>
+      <span class="wx-pagination__total">共 143 条</span>
+    </nav>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;nav class="wx-pagination" aria-label="分页"&gt;
+  &lt;ul class="wx-pagination__list"&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#" aria-disabled="true"&gt;←&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#" aria-current="page"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="wx-pagination__ellipsis"&gt;…&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;12&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-pagination__link" href="#"&gt;→&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;span class="wx-pagination__total"&gt;共 143 条&lt;/span&gt;
+&lt;/nav&gt;</code></pre></details>
+</div>
+
+<h2 id="empty">空态</h2>
+<p>没有插图。一句说明加一个动作——插图是装饰性图像（被禁），而且推迟了真正有用的那句话。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-empty">
+      <p class="wx-empty__title">没有匹配的条目</p>
+      <p>试着放宽筛选条件，或换一个关键词。</p>
+      <p style="margin-block-start:var(--space-6)"><button class="wx-btn" type="button">清除筛选</button></p>
+    </div>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-empty"&gt;
+  &lt;p class="wx-empty__title"&gt;没有匹配的条目&lt;/p&gt;
+  &lt;p&gt;试着放宽筛选条件，或换一个关键词。&lt;/p&gt;
+  &lt;p style="margin-block-start:var(--space-6)"&gt;&lt;button class="wx-btn" type="button"&gt;清除筛选&lt;/button&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre></details>
+</div>
+
+<h2 id="table">表格型列表</h2>
+<p>只有水平分隔线，<strong>无外框、无竖线</strong>。数字右对齐并使用等宽数字。</p>
+
+<div class="doc-figure">
+    <div class="wx-table-scroll">
+      <table class="wx-table">
+        <thead><tr><th>名称</th><th>状态</th><th style="text-align:end">条目</th></tr></thead>
+        <tbody>
+          <tr><td>文辑</td><td><span class="wx-status wx-status--live">运行中</span></td><td style="text-align:end;font-variant-numeric:tabular-nums">143</td></tr>
+          <tr><td>片语</td><td><span class="wx-status wx-status--live">运行中</span></td><td style="text-align:end;font-variant-numeric:tabular-nums">2,081</td></tr>
+          <tr><td>知原</td><td><span class="wx-status wx-status--idle">空闲</span></td><td style="text-align:end;font-variant-numeric:tabular-nums">67</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#entry">条目：卡片的替代品</a></li>
+      <li><a class="wx-anchor__link" href="#timeline">连续流：时间线</a></li>
+      <li><a class="wx-anchor__link" href="#filter">筛选与排序</a></li>
+      <li><a class="wx-anchor__link" href="#pagination">分页</a></li>
+      <li><a class="wx-anchor__link" href="#empty">空态</a></li>
+      <li><a class="wx-anchor__link" href="#table">表格型列表</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

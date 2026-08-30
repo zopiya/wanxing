@@ -1,0 +1,129 @@
+<p class="wx-eyebrow">组件 · Components</p>
+<h1>数据录入</h1>
+<p class="wx-lede">这一类<strong>永远按惯例处理</strong>，无论所在轨道——
+第三层仲裁规则。表单就是表单。</p>
+
+<h2 id="text">文本输入</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <label class="wx-field">
+      <span class="wx-field__label">标题 <span class="wx-field__required">必填</span></span>
+      <input class="wx-input" name="title" placeholder="给它起个名字" required>
+      <span class="wx-field__hint">显示在列表和分享卡片上。</span>
+    </label>
+    <label class="wx-field">
+      <span class="wx-field__label">摘要</span>
+      <textarea class="wx-input" name="summary" rows="3"></textarea>
+    </label>
+    <label class="wx-field">
+      <span class="wx-field__label">邮箱</span>
+      <input class="wx-input" value="zopiya@" aria-invalid="true" aria-describedby="err-1">
+      <span class="wx-field__error" id="err-1">邮箱格式不正确——缺少域名部分。</span>
+    </label>
+  </div>
+</div>
+<p>错误态<strong>同时</strong>改变颜色、加粗边框、并给出文字说明。三重编码是第一层底线。</p>
+
+<h2 id="select">选择 Select</h2>
+<p><strong>只用原生 <code>&lt;select&gt;</code></strong>。自定义下拉是键盘与读屏器的负债，
+这套系统没有理由去背。箭头用旋转边框画，不用渐变。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <label class="wx-field">
+      <span class="wx-field__label">分类</span>
+      <span class="wx-select-wrap">
+        <select class="wx-select" name="cat">
+          <option>设计</option><option>工程</option><option>随笔</option>
+        </select>
+      </span>
+    </label>
+  </div>
+</div>
+
+<h2 id="choice">勾选与单选</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <label class="wx-check"><input type="checkbox" checked> 公开发布</label>
+    <label class="wx-check"><input type="checkbox"> 允许评论</label>
+    <hr class="wx-rule">
+    <label class="wx-radio"><input type="radio" name="lic" checked> 保留所有权利</label>
+    <label class="wx-radio"><input type="radio" name="lic"> 署名 4.0</label>
+  </div>
+</div>
+
+<h2 id="switch">开关 Switch</h2>
+<p>状态由<strong>位置 + 边框</strong>表达，不只靠颜色。<code>role="switch"</code> +
+<code>aria-checked</code>，绝不用 <code>.is-on</code>。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="离线可读"></button>
+      <span>离线可读</span>
+    </div>
+  </div>
+</div>
+
+<h2 id="number">数字与滑块</h2>
+<p>滑块的值必须能<strong>读成数字</strong>——滑块位置本身不是可访问的读数。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <label class="wx-field">
+      <span class="wx-field__label">每页条目</span>
+      <input class="wx-number" type="number" value="20" min="10" max="100" step="10">
+    </label>
+    <div class="wx-slider-field" style="margin-block-start:var(--space-6)">
+      <div class="wx-slider-field__row"><span>行长上限</span><span class="wx-slider-field__value">36 em</span></div>
+      <input class="wx-slider" type="range" min="28" max="48" value="36" aria-label="行长上限">
+      <div class="wx-slider-field__scale"><span>28</span><span>48</span></div>
+    </div>
+  </div>
+</div>
+
+<h2 id="rate">评分 Rate</h2>
+<p>用 ■ 方块而不是星形图标——填充与描边的差别在灰度下依然可读。
+"禁止填充型图标"针对的是图标集风格，评分标记是<strong>数据标记</strong>，和图表里的柱子同类。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <fieldset style="border:0;padding:0;margin:0">
+      <legend class="wx-field__label">评分</legend>
+      <span class="wx-rate">
+        <input type="radio" name="r" id="r5"><label for="r5" title="5 分"></label>
+        <input type="radio" name="r" id="r4" checked><label for="r4" title="4 分"></label>
+        <input type="radio" name="r" id="r3"><label for="r3" title="3 分"></label>
+        <input type="radio" name="r" id="r2"><label for="r2" title="2 分"></label>
+        <input type="radio" name="r" id="r1"><label for="r1" title="1 分"></label>
+      </span>
+    </fieldset>
+  </div>
+</div>
+
+<h2 id="upload">上传 Upload</h2>
+<p>拖放区是一个四边虚线框——这是<strong>卡片禁令的一个有理由的例外</strong>：
+边界不是装饰，它<strong>就是信息</strong>，标示可拖放区域到哪里为止。
+让步是有限度的：虚线发丝、无填充、无阴影。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <label class="wx-upload">
+      <input type="file" multiple>
+      <span class="wx-upload__prompt">拖放文件到这里，或点击选择</span>
+      <span class="wx-upload__hint">支持 PDF / PNG / SVG，单个不超过 20 MB</span>
+    </label>
+    <ul class="wx-upload-list">
+      <li class="wx-upload-list__item">
+        <span class="wx-upload-list__name">design-spec.pdf</span>
+        <span class="wx-upload-list__size">2.4 MB</span>
+        <button class="wx-btn wx-btn--text" type="button">移除</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="search">搜索 Search</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <label class="wx-search">
+      <span class="wx-sr-only">搜索</span>
+      <input type="search" placeholder="搜索组件…">
+    </label>
+  </div>
+</div>

@@ -104,7 +104,6 @@ auditTypographyAndSpacing();
 auditMotion();
 auditAccessibility();
 auditProfileFit();
-auditDeclaredProfileChecks();
 
 report.result = report.hardGates.length > 0
   ? "fail"
@@ -481,221 +480,17 @@ function auditAccessibility() {
 }
 
 function auditProfileFit() {
-  const theme = contract?.theme || {};
-  const canvas = contract?.canvas || {};
-  const interaction = contract?.interaction || {};
-
-  report.metrics.profileFit = {
-    profile,
-    canvas,
-    theme,
-    interaction
-  };
-
-  if (profile === "F4") {
-    if (theme.darkModeRequired) {
-      fail("profile.f4_dark_mode", "F4 Print must not require dark mode.");
-    }
-    if (!canvas.printOnly) {
-      warn("profile.f4_print_only_missing", "F4 Print should declare canvas.printOnly: true.");
-    }
-    if (report.metrics.motion.animations || report.metrics.motion.transitions) {
-      fail("profile.f4_motion", "F4 Print must not include animation or transition declarations.");
-    }
+  /* Media-forced constraints only. The per-profile check dispatcher and its
+     nine fixture pages were removed: with no page declaring them, they were
+     machinery that looked alive. What remains is what any page can be held
+     to regardless of medium. See spec/media.md for the rules themselves. */
+  const motion = contract?.motion;
+  if (motion?.intensity === "E8") {
+    const animated = /@keyframes|animation\s*:|transition\s*:/i.test(cssAndInline);
+    if (animated) fail("motion.e8_violation", "E8 declares print stillness; no animation or transition may be defined.");
   }
-
-  if (profile === "F5" && canvas.aspectRatio !== "16:9") {
-    fail("profile.f5_aspect_ratio", "F5 Presentation must declare canvas.aspectRatio: \"16:9\".");
-  }
-
-  if (profile === "F7") {
-    if (!canvas.ratio) {
-      fail("profile.f7_ratio_missing", "F7 Poster must declare canvas.ratio.");
-    }
-    if (typeof canvas.safeAreaPercent !== "number") {
-      fail("profile.f7_safe_area_missing", "F7 Poster must declare numeric canvas.safeAreaPercent.");
-    }
-  }
-
-  if (profile === "F5" && interaction.keyboardNavigation !== true) {
-    warn("profile.f5_keyboard_navigation", "F5 Presentation should declare interaction.keyboardNavigation: true.");
-  }
-
-  if (profile === "F8") {
-    const diagram = contract?.diagram || {};
-    if (canvas.kind !== "diagram") {
-      fail("profile.f8_canvas_kind", "F8 Diagram must declare canvas.kind: \"diagram\".");
-    }
-    if (!diagram.type) {
-      fail("profile.f8_type_missing", "F8 Diagram must declare diagram.type.");
-    }
-    if (typeof diagram.nodes?.count !== "number") {
-      fail("profile.f8_nodes_missing", "F8 Diagram must declare numeric diagram.nodes.count.");
-    }
-    if (typeof diagram.edges?.count !== "number") {
-      fail("profile.f8_edges_missing", "F8 Diagram must declare numeric diagram.edges.count.");
-    }
-  }
-
-  if (profile === "F9") {
-    const source = contract?.source || {};
-    const target = contract?.target || {};
-    const reportContract = contract?.report || {};
-    const sections = Array.isArray(reportContract.sections) ? reportContract.sections : [];
-    const requiredSections = ["executive_summary", "findings", "recommendations"];
-    if (source.format !== "markdown") {
-      fail("profile.f9_source_format", "F9 Report must declare source.format: \"markdown\".");
-    }
-    if (target.format !== "latex-pdf") {
-      fail("profile.f9_target_format", "F9 Report must declare target.format: \"latex-pdf\".");
-    }
-    for (const section of requiredSections) {
-      if (!sections.includes(section)) {
-        fail("profile.f9_required_section", `F9 Report must include report.sections entry: ${section}.`);
-      }
-    }
-  }
-}
-
-/**
- * A declared check is a promise. Every supported name dispatches to a real
- * assertion; an unknown name is a hard failure rather than silently ignored.
- * This is intentionally static: runtime-only claims must live in a separate
- * browser audit instead of being pretended here.
- */
-function auditDeclaredProfileChecks() {
-  const checks = contract?.audit?.profileSpecificChecks;
-  if (!Array.isArray(checks)) return;
-
-  const links = [...html.matchAll(/<link\b[^>]*\brel=["']stylesheet["'][^>]*\bhref=["']([^"']+)["'][^>]*>/gi)]
-    .map((match) => match[1]);
-  const hasKitDark = links.some((href) => /(?:kit\/index|kit\/dist\/wenxin(?:-f\d)?|tokens\/dark)\.css/i.test(href));
-  const hasDarkRule = /prefers-color-scheme\s*:\s*dark|\[data-theme=["']dark["']\]/i.test(cssAndInline);
-  const hasViewport = /<meta\b(?=[^>]*\bname=["']viewport["'])[^>]*>/i.test(html);
-  const structure = contract?.structure || {};
-  const canvas = contract?.canvas || {};
-  const diagram = contract?.diagram || {};
-  const slides = contract?.slides || {};
-
-  report.metrics.declaredChecks = checks;
-
-  const handlers = {
-    responsive() {
-      if (canvas.kind !== "responsive" || !hasViewport) {
-        fail("check.responsive", "responsive requires canvas.kind=responsive and a viewport meta tag.");
-      }
-    },
-    "dark-mode"() {
-      if (contract?.theme?.darkModeRequired !== true || (!hasKitDark && !hasDarkRule)) {
-        fail("check.dark_mode", "dark-mode requires theme.darkModeRequired=true and an inspectable dark stylesheet path or rule.");
-      }
-    },
-    "focus-visible"() {
-      if (!report.metrics.accessibility.focusVisible && !links.some((href) => /kit\/(?:index|dist\/wenxin)/i.test(href))) {
-        fail("check.focus_visible", "focus-visible was declared but no focus-visible source is present.");
-      }
-    },
-    "touch-targets"() {
-      const hasFloor = /--touch-target-min|tokens\/forms\/f2-mobile\.css/i.test(`${cssAndInline}\n${links.join("\n")}`);
-      if (!hasFloor || Number(canvas.width) < 320) {
-        fail("check.touch_targets", "touch-targets requires the F2 touch target token and a valid mobile canvas.");
-      }
-    },
-    "safe-area"() {
-      if (!/safe-area-inset-/i.test(cssAndInline)) {
-        fail("check.safe_area", "safe-area was declared but no env(safe-area-inset-*) usage exists.");
-      }
-    },
-    "logo-variants"() {
-      const variants = (html.match(/(?:logo-[a-z0-9-]+\.svg|class=["'][^"']*wx-seal)/gi) || []).length;
-      if (variants < 3) fail("check.logo_variants", `logo-variants requires at least 3 rendered variants; found ${variants}.`);
-    },
-    "cmyk-mapping"() {
-      if (!/\bCMYK\b/i.test(stripTags(html)) || !/\bPANTONE\b/i.test(stripTags(html))) {
-        fail("check.cmyk_mapping", "cmyk-mapping requires visible CMYK and PANTONE mapping labels.");
-      }
-    },
-    "print-only"() {
-      if (canvas.printOnly !== true || contract?.theme?.darkModeRequired !== false) {
-        fail("check.print_only", "print-only requires canvas.printOnly=true and darkModeRequired=false.");
-      }
-    },
-    "no-motion"() {
-      if (contract?.motion?.intensity !== "E8" || contract?.motion?.maxDurationMs !== 0) {
-        fail("check.no_motion", "no-motion requires E8 and maxDurationMs=0.");
-      }
-    },
-    "pt-scale"() {
-      if (!links.some((href) => /f4-print\.css/i.test(href)) && !/--print-text-[a-z0-9-]+\s*:\s*[\d.]+pt/i.test(cssAndInline)) {
-        fail("check.pt_scale", "pt-scale requires the F4 print token stylesheet or inline pt tokens.");
-      }
-    },
-    "aspect-ratio"() {
-      if (canvas.aspectRatio !== "16:9" || !/aspect-ratio\s*:\s*16\s*\/\s*9/i.test(cssAndInline)) {
-        fail("check.aspect_ratio", "aspect-ratio requires a 16:9 contract and CSS canvas.");
-      }
-    },
-    "slide-types"() {
-      const required = ["title", "section", "text", "text-image", "full-image", "data", "closing"];
-      const rendered = [...html.matchAll(/\bdata-slide-type=["']([^"']+)["']/gi)].map((match) => match[1]);
-      for (const type of required) if (!rendered.includes(type)) fail("check.slide_type_missing", `Missing F5 slide type: ${type}.`);
-      if (Array.isArray(slides.types) && slides.types.length !== rendered.length) {
-        fail("check.slide_type_count", "slides.types must match rendered data-slide-type entries.");
-      }
-    },
-    sidebar() {
-      if (structure.sidebarRequired !== true || !/class=["'][^"']*wx-sidebar/i.test(html)) {
-        fail("check.sidebar", "sidebar requires structure.sidebarRequired=true and a wx-sidebar element.");
-      }
-    },
-    toc() {
-      if (!/class=["'][^"']*wx-toc/i.test(html) || !/<nav\b[^>]*aria-label=["'][^"']*(?:目录|contents)/i.test(html)) {
-        fail("check.toc", "toc requires a wx-toc navigation landmark with an accessible label.");
-      }
-    },
-    search() {
-      if (structure.searchRequired !== true || !/<input\b[^>]*\btype=["']search["']/i.test(html)) {
-        fail("check.search", "search requires structure.searchRequired=true and a native search input.");
-      }
-    },
-    "canvas-ratio"() {
-      if (!canvas.ratio || !/aspect-ratio\s*:/i.test(cssAndInline)) fail("check.canvas_ratio", "canvas-ratio requires contract and CSS ratios.");
-    },
-    "accent-split"() {
-      if (Number(contract?.theme?.accentBudget) !== 2 || !/class=["'][^"']*(?:poster__title|wx-seal)/i.test(html)) {
-        fail("check.accent_split", "accent-split requires budget 2 and explicit title/seal allocation.");
-      }
-    },
-    "node-edge-separation"() {
-      const classLists = [...html.matchAll(/class=["']([^"']+)["']/gi)].map((match) => match[1].split(/\s+/));
-      const nodes = classLists.filter((classes) => classes.includes("node")).length;
-      const edges = classLists.filter((classes) => classes.includes("edge")).length;
-      if (nodes < Number(diagram.nodes?.count) || edges < Number(diagram.edges?.count)) {
-        fail("check.node_edge_separation", `Rendered node/edge classes (${nodes}/${edges}) do not satisfy the contract (${diagram.nodes?.count}/${diagram.edges?.count}).`);
-      }
-    },
-    "editorial-frame"() {
-      if (!/<figure\b/i.test(html) || !/<figcaption\b/i.test(html) || countTag("h1") !== 1 || !/<blockquote\b/i.test(html)) {
-        fail("check.editorial_frame", "editorial-frame requires h1, editorial quote, figure, and figcaption.");
-      }
-    },
-    "report-sections"() {
-      const text = stripTags(html).toLowerCase();
-      for (const label of ["executive summary", "findings", "recommendations"]) {
-        if (!text.includes(label)) fail("check.report_section", `Missing rendered report section: ${label}.`);
-      }
-    },
-    "figure-numbering"() {
-      const captions = [...html.matchAll(/<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/gi)].map((match) => stripTags(match[1]));
-      if (!captions.length || captions.some((caption) => !/(?:图|figure)\s*\d+/i.test(caption))) {
-        fail("check.figure_numbering", "Every report figure must have an explicitly numbered caption.");
-      }
-    },
-  };
-
-  for (const check of checks) {
-    if (!(check in handlers)) fail("check.unknown", `Unknown profileSpecificCheck: ${check}.`);
-    else handlers[check]();
+  if (motion && Number(motion.maxDurationMs) > 600) {
+    fail("motion.over_cap", `maxDurationMs ${motion.maxDurationMs} exceeds the 600ms system cap.`);
   }
 }
 

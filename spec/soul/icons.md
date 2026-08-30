@@ -80,6 +80,6 @@ Both libraries below are stroke-style. Pick one per product — never mix two li
 
 ---
 
-在源仓库的 F1 示例中，实际未使用任何图标库，仅用 Unicode `↓` `→`——这是能省则省时最文心的选择。见 [`wanxing/examples/f1-web/index.html`](../../examples/f1-web/index.html)。
+在源仓库的 F1 示例中，实际未使用任何图标库，仅用 Unicode `↓` `→`——这是能省则省时最文心的选择。见 [`wanxing/examples/f1-web/index.html`](../../site/index.html)。
 
-The source repo's F1 example uses no icon library at all — only Unicode `↓` and `→`. That is the most Wenxin-correct choice when you can get away with it. See [`wanxing/examples/f1-web/index.html`](../../examples/f1-web/index.html).
+The source repo's F1 example uses no icon library at all — only Unicode `↓` and `→`. That is the most Wenxin-correct choice when you can get away with it. See [`wanxing/examples/f1-web/index.html`](../../site/index.html).

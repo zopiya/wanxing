@@ -24,7 +24,7 @@
 
 ## 内容宽度 · Content Widths
 
-这些是抽象的宽度阶梯 token；具体哪种内容类型的页面用哪个宽度，属于形态层，见 [形态层 forms](../forms/DECISIONS-MATRIX.md) 的 `page-archetypes.md`。
+这些是抽象的宽度阶梯 token；具体哪种内容类型的页面用哪个宽度，属于形态层，见 [形态层 forms](../media.md) 的 `page-archetypes.md`。
 
 These are abstract width-scale tokens; which content type uses which width is a form-layer decision — see wanxing's `page-archetypes.md`.
 
@@ -82,6 +82,6 @@ When you think "isn't this gap too big," it's usually exactly right. Large secti
 /* Desktop: > 1024px       */
 ```
 
-移动端字号/间距的具体缩放规则（哪个 token 在哪个断点变成多少）是形态层的响应式策略，属于各 [形态层 forms](../forms/DECISIONS-MATRIX.md) 形态文件；这里只定义断点本身和阶梯。
+移动端字号/间距的具体缩放规则（哪个 token 在哪个断点变成多少）是形态层的响应式策略，属于各 [形态层 forms](../media.md) 形态文件；这里只定义断点本身和阶梯。
 
 The concrete responsive scaling rules (which token becomes what at which breakpoint) are a form-layer responsive strategy that belongs to each wanxing form file; here we only define the breakpoints and the scale itself.

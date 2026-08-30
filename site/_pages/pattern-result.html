@@ -1,0 +1,77 @@
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>结果与异常页</h1>
+<p class="wx-lede">出错的时候，读者最需要的是<strong>知道发生了什么、以及现在能做什么</strong>。
+插图两样都不提供。</p>
+
+<h2 id="success">成功</h2>
+<div class="doc-figure">
+    <div class="wx-result wx-result--success">
+      <span class="wx-result__mark" aria-hidden="true">✓</span>
+      <h3 class="wx-result__title">提交成功</h3>
+      <p class="wx-result__body">我们会在两个工作日内回复到 zopiya@example.com。</p>
+      <div class="wx-result__actions">
+        <a class="wx-btn" href="#">返回列表</a>
+        <a class="wx-btn wx-btn--text" href="#">查看提交内容 →</a>
+      </div>
+    </div>
+  </div>
+
+<h2 id="fail">失败</h2>
+<p>失败页必须包含<strong>可操作的下一步</strong>和<strong>可追踪的标识</strong>。
+"出错了，请重试"是没有信息的。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage doc-demo__stage--tight">
+    <div class="wx-result wx-result--danger">
+      <span class="wx-result__mark" aria-hidden="true">!</span>
+      <h3 class="wx-result__title">提交失败</h3>
+      <p class="wx-result__body">附件超过 20 MB 上限。压缩后重试，或改为提供链接。</p>
+      <div class="wx-result__actions">
+        <button class="wx-btn wx-btn--primary" type="button">返回修改</button>
+      </div>
+      <p class="wx-result__detail">错误编号 E-4013 · 2026-08-30T14:22:07+08:00</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="404">404 与无权限</h2>
+<div class="doc-figure">
+    <div class="wx-result">
+      <span class="wx-result__mark" aria-hidden="true">404</span>
+      <h3 class="wx-result__title">这个页面不存在</h3>
+      <p class="wx-result__body">链接可能已经失效，或者地址拼错了。</p>
+      <div class="wx-result__actions">
+        <a class="wx-btn" href="./index.html">回到首页</a>
+      </div>
+    </div>
+  </div>
+
+<h2 id="inline">页内反馈</h2>
+<p>不是所有结果都需要整页。三种粒度，按干扰程度递增：</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <p><strong>Toast</strong>——非阻塞、自动消失、<code>aria-live="polite"</code>：</p>
+    <div class="wx-cluster">
+      <button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')">普通</button>
+      <button class="wx-btn" type="button" onclick="wxToast('已保存', {level:'success', label:'成功'})">成功</button>
+      <button class="wx-btn" type="button" onclick="wxToast('网络连接中断', {level:'danger', label:'失败'})">失败</button>
+    </div>
+    <p style="margin-block-start:var(--space-6)"><strong>Alert</strong>——常驻页内，说明当前状态：</p>
+    <div class="wx-alert wx-alert--warn"><span>存储空间剩余不足 10%，请及时清理。</span></div>
+    <p style="margin-block-start:var(--space-6)"><strong>Modal</strong>——阻塞，仅用于不可逆操作确认：</p>
+    <button class="wx-btn wx-btn--danger" type="button" data-wx-open="#confirm-del">删除项目</button>
+    <dialog class="wx-modal" id="confirm-del" aria-labelledby="cd-t">
+      <h3 class="wx-modal__title" id="cd-t">删除这个项目？</h3>
+      <div class="wx-modal__body"><p>项目及其 143 条内容将被永久删除，无法恢复。</p></div>
+      <div class="wx-modal__actions">
+        <button class="wx-btn" type="button" data-wx-close>取消</button>
+        <button class="wx-btn wx-btn--danger" type="button" data-wx-close>确认删除</button>
+      </div>
+    </dialog>
+  </div>
+</div>
+
+<div class="wx-note wx-note--warn">
+  <span class="wx-note__title">选择粒度的判据</span>
+  <p>问一句：<strong>读者不看到这条消息会有什么后果？</strong>没后果 → toast；
+  影响后续操作 → alert；不可逆 → modal。默认用 toast，modal 是最后手段。</p>
+</div>

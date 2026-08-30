@@ -46,4 +46,16 @@
   /* Optical line length. Latin wants 60–75 characters, CJK 30–40 (P-5). */
   .wx-measure { max-width: 68ch; }
   :lang(zh) .wx-measure { max-width: 36em; }
+
+  /* Cluster — a wrapping row of related items with a shared gap. The
+     horizontal counterpart of wx-stack; replaces ad-hoc margin on tags,
+     buttons, and meta rows. */
+  .wx-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .wx-cluster--tight { gap: var(--space-2); }
+  .wx-cluster--loose { gap: var(--space-6); }
 }

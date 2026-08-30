@@ -14,12 +14,12 @@ form it takes in each of nine containers.
 
 | 你想做什么 | 读这个 |
 |---|---|
+| **第一次接触这套系统** | **[`site/`](../site/index.html) —— 文档站，讲得最完整** |
 | 理解这套语言是什么 | [soul/philosophy.md](./soul/philosophy.md) |
 | 知道哲学和惯例冲突时听谁的 | **[tracks.md](./tracks.md)** |
-| 做一个具体的东西（网页/海报/报告…） | [forms/DECISIONS-MATRIX.md](./forms/DECISIONS-MATRIX.md) → 对应形态文件 |
+| 做一个具体的东西（网页/海报/报告…） | [media.md](./media.md) —— 媒介强制的决定 |
 | 直接开始写代码 | [`kit/`](../kit/) —— 引 `kit/index.css` 即可，不必从哲学重新推导 |
-| 看组件长什么样 | [`examples/gallery/`](../examples/gallery/) |
-| 看某个形态怎么落地 | [`examples/`](../examples/) —— 九形态各一份 |
+| 看组件长什么样 | [`site/components.html`](../site/components.html) |
 | 看四个生产站如何反哺/偏离规范 | [FIELD-AUDIT.md](./FIELD-AUDIT.md) —— 逐站 A/B/C 证据 |
 | 知道什么绝对不能做 | [soul/forbidden.md](./soul/forbidden.md) |
 | 检查产出是否合规 | `npm run check` |
@@ -29,11 +29,24 @@ form it takes in each of nine containers.
 ## 结构 · Structure
 
 ```
+site/     讲给谁 —— 文档站（价值观 / 全局样式 / 设计模式 / 组件）
 spec/     说什么 —— 规范正文
 kit/      给什么 —— 可直接复用的产物
-examples/ 长什么样 —— 九形态示例
+examples/ 长什么样 —— 九种媒介示例，同时是 kit 的验收测试
 scripts/  怎么校验 —— 构建与审计
 ```
+
+`site/` 是现在的门面。九种形态不再是文档的组织方式，已并入
+[`site/media.html`](../site/media.html) 一页；`examples/` 保留下来是因为
+`audit:examples` 用它们做验收——删掉它们等于删掉那份覆盖。
+
+### 形态层 · Form
+
+| 文件 | 内容 |
+|---|---|
+| [media.md](./media.md) | 九种媒介**强制**的决定；读者版见 [`site/media.html`](../site/media.html) |
+| [page-archetypes.md](./page-archetypes.md) | 五种页面原型 A–E |
+| [render-contract.md](./render-contract.md) | 机器可读的页面合同（审计器已移出 CI，见 D-26） |
 
 ### 灵魂层 · Soul（不变）
 
@@ -55,14 +68,14 @@ scripts/  怎么校验 —— 构建与审计
 
 ### 形态层 · Form（随容器而变）
 
-[**DECISIONS-MATRIX.md**](./forms/DECISIONS-MATRIX.md) 是入口 —— 一张表看完九个形态各自被迫做的不同决定。
+[**DECISIONS-MATRIX.md**](./media.md) 是入口 —— 一张表看完九个形态各自被迫做的不同决定。
 
 F1 Web · F2 Mobile · F3 Brand · F4 Print · F5 Presentation ·
 F6 Documentation · F7 Poster · F8 Diagram · F9 Report
 
-外加三份跨形态规范：[page-archetypes.md](./forms/page-archetypes.md)（5 种内容原型）、
-[render-contract.md](./forms/render-contract.md)（可机器校验的渲染契约）、
-[cross-form-matrix.md](./forms/cross-form-matrix.md)。
+外加三份跨形态规范：[page-archetypes.md](./page-archetypes.md)（5 种内容原型）、
+[render-contract.md](./render-contract.md)（可机器校验的渲染契约）、
+[cross-form-matrix.md](./media.md)。
 
 **清单在 F9 处封闭。** 仪表盘、电商、游戏、CRM、邮件通讯是设计上的排除，不是遗漏。
 

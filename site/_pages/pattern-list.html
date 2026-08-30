@@ -1,0 +1,116 @@
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>列表页</h1>
+<p class="wx-lede">读者到列表页是来<strong>扫描并挑选</strong>的，不是来阅读的。
+每个条目要在半秒内回答"这是不是我要找的"。</p>
+
+<h2 id="entry">条目：卡片的替代品</h2>
+<p><code>wx-entry</code> 靠留白和单边线分组。信息顺序是<strong>元数据 → 标题 → 摘要</strong>：
+日期和分类在前，因为扫描时它们是过滤条件。</p>
+
+<div class="doc-figure">
+    <ol class="wx-list wx-list--bare">
+      <li><article class="wx-entry">
+        <p class="wx-entry__meta">2026-08-30 · 设计</p>
+        <h3 class="wx-entry__title"><a href="#">留白不是空缺</a></h3>
+        <p>留白是设计的一部分。足够的留白让内容呼吸、让层次清晰、让眼睛休息。</p>
+      </article></li>
+      <li><article class="wx-entry wx-entry--ruled">
+        <p class="wx-entry__meta">2026-08-24 · 排版</p>
+        <h3 class="wx-entry__title"><a href="#">克制即力量</a></h3>
+        <p>频率越低，力量越大。全页只允许一处强调色。</p>
+      </article></li>
+    </ol>
+  </div>
+
+<h2 id="timeline">连续流：时间线</h2>
+<p>当条目按时间连续排列、且读者会从头往下浏览时，<code>wx-timeline</code> 比独立条目更合适——
+一根线把它们连成一条流，而不是切成互不相干的块。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <ol class="wx-timeline">
+      <li class="wx-timeline__item">
+        <p class="wx-timeline__meta">08-30</p>
+        <p>补齐组件清单，新增浮层与控件两类。</p>
+      </li>
+      <li class="wx-timeline__item">
+        <p class="wx-timeline__meta">08-29</p>
+        <p>田野审计四个生产站点，吸收 functional ink。</p>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<h2 id="filter">筛选与排序</h2>
+<p>筛选栏是<strong>数据录入</strong>，按第三层规则走惯例。用 <code>wx-toolbar</code>
+把它与内容用一条线分开。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-toolbar">
+      <div class="wx-segmented" role="radiogroup" aria-label="视图">
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="true">全部</button>
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">设计</button>
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">工程</button>
+      </div>
+      <span class="wx-toolbar__spacer"></span>
+      <details class="wx-dropdown">
+        <summary>排序：最新</summary>
+        <ul class="wx-dropdown__menu">
+          <li><button class="wx-dropdown__item" type="button">最新</button></li>
+          <li><button class="wx-dropdown__item" type="button">最早</button></li>
+          <li><button class="wx-dropdown__item" type="button">标题</button></li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</div>
+
+<h2 id="pagination">分页</h2>
+<p>当前页不是填充色块，是<strong>更重的墨色 + 下划线</strong>——灰度可读，且不消耗 accent 预算。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-pagination" aria-label="分页">
+      <ul class="wx-pagination__list">
+        <li><a class="wx-pagination__link" href="#" aria-disabled="true">←</a></li>
+        <li><a class="wx-pagination__link" href="#" aria-current="page">1</a></li>
+        <li><a class="wx-pagination__link" href="#">2</a></li>
+        <li><a class="wx-pagination__link" href="#">3</a></li>
+        <li><span class="wx-pagination__ellipsis">…</span></li>
+        <li><a class="wx-pagination__link" href="#">12</a></li>
+        <li><a class="wx-pagination__link" href="#">→</a></li>
+      </ul>
+      <span class="wx-pagination__total">共 143 条</span>
+    </nav>
+  </div>
+</div>
+
+<h2 id="empty">空态</h2>
+<p>没有插图。一句说明加一个动作——插图是装饰性图像（被禁），而且推迟了真正有用的那句话。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-empty">
+      <p class="wx-empty__title">没有匹配的条目</p>
+      <p>试着放宽筛选条件，或换一个关键词。</p>
+      <p style="margin-block-start:var(--space-6)"><button class="wx-btn" type="button">清除筛选</button></p>
+    </div>
+  </div>
+</div>
+
+<h2 id="table">表格型列表</h2>
+<p>只有水平分隔线，<strong>无外框、无竖线</strong>。数字右对齐并使用等宽数字。</p>
+
+<div class="doc-figure">
+    <div class="wx-table-scroll">
+      <table class="wx-table">
+        <thead><tr><th>名称</th><th>状态</th><th style="text-align:end">条目</th></tr></thead>
+        <tbody>
+          <tr><td>文辑</td><td><span class="wx-status wx-status--live">运行中</span></td><td style="text-align:end;font-variant-numeric:tabular-nums">143</td></tr>
+          <tr><td>片语</td><td><span class="wx-status wx-status--live">运行中</span></td><td style="text-align:end;font-variant-numeric:tabular-nums">2,081</td></tr>
+          <tr><td>知原</td><td><span class="wx-status wx-status--idle">空闲</span></td><td style="text-align:end;font-variant-numeric:tabular-nums">67</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

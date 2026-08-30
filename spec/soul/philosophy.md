@@ -118,7 +118,7 @@ Wenxin — it is a different language wearing its name.
 Not a capability gap — a deliberate exclusion. These domains have a fundamental tension with
 "whitespace is the design," and forcing the fit serves neither.
 
-九种输出形态的清单在 F9 处封闭，见 [../forms/DECISIONS-MATRIX.md](../forms/DECISIONS-MATRIX.md)。
+九种输出形态的清单在 F9 处封闭，见 [../forms/DECISIONS-MATRIX.md](../media.md)。
 
 ---
 

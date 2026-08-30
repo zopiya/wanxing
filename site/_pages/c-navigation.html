@@ -1,0 +1,96 @@
+<p class="wx-eyebrow">组件 · Components</p>
+<h1>导航</h1>
+<p class="wx-lede">当前位置一律用 <code>aria-current</code> 表达，样式从属性上取——
+视觉状态与无障碍树是同一个事实。</p>
+
+<h2 id="menu">菜单 Menu</h2>
+<div class="doc-figure">
+    <ul class="wx-menu" style="max-inline-size:16rem">
+      <li class="wx-menu__group">灵魂层</li>
+      <li><a class="wx-menu__link" href="#" aria-current="page">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="#">色彩</a></li>
+      <li><a class="wx-menu__link" href="#">字体排版</a></li>
+      <li class="wx-menu__group">形态层</li>
+      <li><a class="wx-menu__link" href="#">设计模式</a></li>
+      <li><a class="wx-menu__link" href="#" aria-disabled="true">敬请期待</a></li>
+    </ul>
+  </div>
+
+<h2 id="dropdown">下拉 Dropdown</h2>
+<p>原生 <code>&lt;details&gt;</code>，<strong>零 JS</strong>。键盘可开合，Esc 关闭都是免费的。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <details class="wx-dropdown">
+      <summary>操作</summary>
+      <ul class="wx-dropdown__menu">
+        <li><button class="wx-dropdown__item" type="button">编辑</button></li>
+        <li><button class="wx-dropdown__item" type="button">复制链接</button></li>
+        <li><hr class="wx-dropdown__sep"></li>
+        <li><button class="wx-dropdown__item wx-dropdown__item--danger" type="button">删除</button></li>
+      </ul>
+    </details>
+  </div>
+</div>
+
+<h2 id="tabs">标签页 Tabs</h2>
+<p>需要 <code>tabs.js</code> 提供 roving tabindex——只有选中的标签在 tab 序列里，
+这是标签页与一排链接对键盘用户的根本区别。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-tabs" role="tablist" aria-label="示例">
+      <button role="tab" type="button" id="t1" aria-controls="p1" aria-selected="true">概览</button>
+      <button role="tab" type="button" id="t2" aria-controls="p2" aria-selected="false">用法</button>
+      <button role="tab" type="button" id="t3" aria-controls="p3" aria-selected="false">无障碍</button>
+    </div>
+    <div role="tabpanel" id="p1" aria-labelledby="t1"><p>方向键切换，Home / End 跳到首尾。</p></div>
+    <div role="tabpanel" id="p2" aria-labelledby="t2" hidden><p>面板用 <code>hidden</code> 属性隐藏，不是 class。</p></div>
+    <div role="tabpanel" id="p3" aria-labelledby="t3" hidden><p>状态全部在 <code>aria-selected</code> 上。</p></div>
+  </div>
+</div>
+
+<h2 id="crumbs">面包屑与翻页</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-crumbs" aria-label="面包屑">
+      <ol><li><a href="#">首页</a></li><li><a href="#">组件</a></li><li>导航</li></ol>
+    </nav>
+    <nav class="wx-pager" style="margin-block-start:var(--space-6)">
+      <a href="#"><span class="wx-pager__label">上一页</span>布局与通用</a>
+      <a href="#" style="text-align:end"><span class="wx-pager__label">下一页</span>数据录入</a>
+    </nav>
+  </div>
+</div>
+
+<h2 id="pagination">分页 Pagination</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-pagination" aria-label="分页">
+      <ul class="wx-pagination__list">
+        <li><a class="wx-pagination__link" href="#" aria-disabled="true">←</a></li>
+        <li><a class="wx-pagination__link" href="#">1</a></li>
+        <li><a class="wx-pagination__link" href="#" aria-current="page">2</a></li>
+        <li><a class="wx-pagination__link" href="#">3</a></li>
+        <li><span class="wx-pagination__ellipsis">…</span></li>
+        <li><a class="wx-pagination__link" href="#">9</a></li>
+        <li><a class="wx-pagination__link" href="#">→</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<h2 id="steps">步骤 Steps</h2>
+<div class="doc-figure">
+    <ol class="wx-steps">
+      <li class="wx-steps__item" data-complete><span class="wx-steps__title">填写信息</span>已完成</li>
+      <li class="wx-steps__item" aria-current="step"><span class="wx-steps__title">确认内容</span>当前步骤</li>
+      <li class="wx-steps__item"><span class="wx-steps__title">提交</span>尚未开始</li>
+    </ol>
+  </div>
+
+<h2 id="anchor">页内锚点 Anchor</h2>
+<p>本页右侧就是一个（宽屏可见）。配合 <code>wx-affix</code> 吸顶，用
+<code>IntersectionObserver</code> 更新 <code>aria-current</code>。</p>
+
+<h2 id="skip">跳过链接 Skip</h2>
+<p>每一页的第一个可聚焦元素都应该是它。按 <kbd class="wx-kbd">Tab</kbd> 试试——
+本站左上角会出现"跳到主要内容"。</p>

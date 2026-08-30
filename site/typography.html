@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>字体排版 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html" aria-current="page">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">全局样式 · Global</p>
+<h1>字体排版</h1>
+<p class="wx-lede">正文衬线，界面无衬线，代码等宽。中文优先的行长与留白。</p>
+
+<h2 id="families">三个字族</h2>
+<div class="doc-figure">
+    <p style="font-family:var(--font-display); font-size:var(--text-2xl)">显示体 Display —— Lora + 思源宋体</p>
+    <p style="font-family:var(--font-body)">正文体 Body —— EB Garamond + 思源宋体。长文阅读的默认，衬线在长段落里提供字形辨识度。</p>
+    <p style="font-family:var(--font-ui)">界面体 UI —— system-ui + 苹方 / 微软雅黑。标签、按钮、表单、元数据。</p>
+    <p style="font-family:var(--font-mono)">等宽体 Mono —— JetBrains Mono。代码与数字。</p>
+  </div>
+<p>拉丁字体自托管并带 <code>unicode-range</code> 子集；中文回退到系统字体，
+不通过 CDN 加载——一个中文字体家族动辄数 MB，长期访问与离线复现的成本都太高。</p>
+
+<h2 id="scale">字号阶梯</h2>
+<div class="doc-figure">
+    <p style="font-size:var(--text-5xl); line-height:1.1">4.5rem · text-5xl</p>
+    <p style="font-size:var(--text-3xl)">2.25rem · text-3xl</p>
+    <p style="font-size:var(--text-xl)">1.5rem · text-xl</p>
+    <p style="font-size:var(--text-base)">1rem · text-base —— 正文</p>
+    <p style="font-size:var(--text-sm)">0.833rem · text-sm —— 界面</p>
+    <p style="font-size:var(--text-xs)">0.694rem · text-xs —— 元数据下限</p>
+  </div>
+
+<h2 id="measure">行长与行高</h2>
+<p>拉丁文 60–75 字符，中文 <strong>30–40 字</strong>。<code>.wx-measure</code> 直接封装了这条规则，
+并按 <code>:lang(zh)</code> 切换到 <code>36em</code>。</p>
+<div class="doc-figure">
+    <p class="wx-measure">这段文字被限制在最佳阅读行长内。行长过长时眼睛在换行处容易丢失位置，
+    过短则频繁换行打断节奏。中文因为字符密度高，合适的行长比拉丁文短得多。</p>
+  </div>
+<p>行高 token：<code>--leading-tight 1.25</code> · <code>snug 1.45</code> ·
+<code>normal 1.6</code> · <code>relaxed 1.85</code>（长文正文）· <code>loose 2.0</code>。</p>
+
+<h2 id="content">内容排版组件</h2>
+<div class="doc-figure">
+    <p class="wx-eyebrow">眉题 Eyebrow</p>
+    <h3>标题</h3>
+    <p class="wx-lede">导语 lede —— 比正文大一档，承担摘要功能。</p>
+    <p class="wx-dropcap">首字下沉用于长文开篇。这是一段示例正文，用来展示下沉字与后续文字的关系；
+    窄画布下会自动取消下沉，因为三行高的首字会吃掉本就有限的行长。</p>
+    <blockquote class="wx-quote">
+      <p>分组不靠方框，靠邻近。</p>
+      <cite class="wx-cite">组件通用原则</cite>
+    </blockquote>
+    <p class="wx-pullquote">引言 pullquote 用于强调，语义与 quote 不同</p>
+  </div>
+
+<h2 id="cjk">中文排版细节</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>字间距</strong> <code>--tracking-chinese: 0.1em</code>——中文标题需要比拉丁文更松的字距</li>
+  <li><strong>标点</strong>——使用全角标点，不在行首出现闭合标点</li>
+  <li><strong>中西文混排</strong>——数字与拉丁词两侧留出空隙，由 <code>text-spacing</code> 或手工空格处理</li>
+  <li><strong>禁止</strong>大段正文居中对齐——伤害可读性</li>
+</ul>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#families">三个字族</a></li>
+      <li><a class="wx-anchor__link" href="#scale">字号阶梯</a></li>
+      <li><a class="wx-anchor__link" href="#measure">行长与行高</a></li>
+      <li><a class="wx-anchor__link" href="#content">内容排版组件</a></li>
+      <li><a class="wx-anchor__link" href="#cjk">中文排版细节</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>详情页</h1>
+<p class="wx-lede">读者到这一页是来<strong>从头读到尾</strong>的。
+所有设计决定都服务于一件事：不要打断阅读。</p>
+
+<h2 id="structure">结构</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <article>
+      <nav class="wx-crumbs" aria-label="面包屑">
+        <ol><li><a href="#">首页</a></li><li><a href="#">文章</a></li><li>论克制</li></ol>
+      </nav>
+      <h3>论克制</h3>
+      <p class="wx-lede">设计的力量来自克制而非张扬。</p>
+      <p class="wx-attr">2026-08-30 · 六分钟</p>
+      <hr class="wx-rule">
+      <p>正文从这里开始。行长被限制在 30–40 个中文字符之间，
+      因为中文字符密度高，合适的行长比拉丁文短得多。</p>
+      <blockquote class="wx-quote">
+        <p>一个页面上每多一个视觉元素，读者就要多付一次注意力。</p>
+      </blockquote>
+      <p>引用块用单边线，不用方框。</p>
+    </article>
+  </div>
+</div>
+
+<h2 id="measure">行长是第一决定</h2>
+<p>详情页最重要的一个数字是内容列宽。<code>--width-article</code> 给出 520–640px，
+配合 <code>.wx-measure</code> 的 <code>36em</code> 中文上限。长叙事内容可以放宽到 <code>40em</code>，
+但这是上限不是默认。</p>
+
+<h2 id="nav">目录与旁注</h2>
+<p>长文需要目录。<code>wx-toc</code> 用 <code>aria-current</code> 标记当前节——
+本页右侧就是一个（窄屏下隐藏）。</p>
+<p>旁注 <code>wx-marginal</code> 用于不该打断正文、但值得就近说明的内容。
+窄屏下它退回正文流，不消失。</p>
+
+<div class="doc-figure">
+    <p>正文中提到一个需要补充的概念<span class="wx-marginal">旁注在宽屏下浮到侧边，窄屏下退回正文流。</span>，
+    读者可以选择看或不看。</p>
+  </div>
+
+<h2 id="footnote">脚注与引用</h2>
+<div class="doc-figure">
+    <p>正文中的引用标记<a class="wx-fn" href="#fn-1" id="fnref-1">1</a>指向文末。</p>
+    <ol class="wx-fn-list">
+      <li id="fn-1">脚注内容。<a href="#fnref-1">↩</a></li>
+    </ol>
+  </div>
+
+<h2 id="pager">上一篇 / 下一篇</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-pager">
+      <a href="#"><span class="wx-pager__label">上一篇</span>留白不是空缺</a>
+      <a href="#" style="text-align:end"><span class="wx-pager__label">下一篇</span>点睛之色</a>
+    </nav>
+  </div>
+</div>
+
+<h2 id="checklist">详情页检查清单</h2>
+<ul class="wx-list wx-list--ruled">
+  <li>行长在 30–40 中文字符内</li>
+  <li>正文行高 <code>--leading-relaxed</code>（1.85）</li>
+  <li>标题层级不跳级（h1 → h2 → h3）</li>
+  <li>accent 出现 ≤ 2 处</li>
+  <li>图片有 <code>alt</code>，图有编号 caption</li>
+  <li>正文<strong>不</strong>居中对齐</li>
+</ul>

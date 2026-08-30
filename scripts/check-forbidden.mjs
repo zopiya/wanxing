@@ -11,7 +11,7 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const SCAN = ["kit", "examples"].map((d) => join(root, d)).filter(existsSync);
+const SCAN = ["kit", "examples", "site"].map((d) => join(root, d)).filter(existsSync);
 const EXT = /\.(css|html|jsx|tsx)$/;
 
 const RULES = [
@@ -65,6 +65,18 @@ function stripComments(src) {
   return out;
 }
 
+/**
+ * Documentation quotes the very patterns it forbids. Text inside <code> or
+ * <pre> is prose ABOUT code, not code — mask it, preserving line numbers so
+ * reported positions stay true. A checker with false positives gets ignored,
+ * which is worse than not having one.
+ */
+function maskProse(text, file) {
+  if (!/\.html$/.test(file)) return text;
+  return text.replace(/<(code|pre)\b[^>]*>([\s\S]*?)<\/\1>/gi,
+    (m) => m.replace(/[^\n]/g, " "));
+}
+
 function walk(dir, acc = []) {
   for (const e of readdirSync(dir)) {
     const p = join(dir, e);
@@ -79,7 +91,7 @@ const hits = [];
 for (const f of files) {
   const rel = relative(root, f);
   const raw = readFileSync(f, "utf8").split("\n");
-  stripComments(readFileSync(f, "utf8")).split("\n").forEach((line, i) => {
+  stripComments(maskProse(readFileSync(f, "utf8"), f)).split("\n").forEach((line, i) => {
     for (const r of RULES) {
       if (r.re.test(line) && !(r.allow && r.allow.test(line)))
         hits.push({ rel, n: i + 1, id: r.id, why: r.why, line: (raw[i] ?? line).trim().slice(0, 72) });

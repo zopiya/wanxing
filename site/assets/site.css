@@ -1,0 +1,108 @@
+/* Site chrome. Everything inside the article is kit; only the shell lives
+   here — a documentation site that needed a second design system to
+   document the first one would have proved the wrong thing. */
+@layer wx.site {
+  .doc-topbar {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--padding-page-x);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    background: var(--color-bg-warm);
+  }
+  .doc-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    color: var(--color-text-heading);
+    text-decoration: none;
+  }
+  .doc-topbar__end { margin-inline-start: auto; }
+  .doc-navtoggle { display: none; }
+
+  .doc-shell {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr) 13rem;
+    gap: var(--space-10);
+    max-inline-size: 90rem;
+    margin-inline: auto;
+    padding: var(--space-10) var(--padding-page-x) var(--space-24);
+  }
+  .doc-sidebar { align-self: start; position: sticky; inset-block-start: 5rem; }
+  .doc-aside   { align-self: start; }
+  .doc-article { min-inline-size: 0; max-inline-size: 46rem; }
+
+  .doc-toc__title {
+    margin-block: 0 var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-functional);
+  }
+
+  /* Demo — a live example above its own generated source. Separated from
+     the prose by rules and whitespace, not by a card. */
+  .doc-demo { margin-block: var(--space-8); }
+  .doc-demo__stage {
+    padding: var(--space-8) var(--space-6);
+    border-block: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .doc-demo__stage--tight { padding-block: var(--space-5); }
+
+  /* doc-figure — framed content with no source listing. A token table is
+     content, not a component demo; offering to show its markup is noise. */
+  .doc-figure {
+    margin-block: var(--space-8);
+    padding: var(--space-6) 0;
+    border-block: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .doc-figure > :first-child { margin-block-start: 0; }
+  .doc-figure > :last-child { margin-block-end: 0; }
+  .doc-code > summary {
+    padding-block: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+    cursor: pointer;
+  }
+  .doc-code__body {
+    max-block-size: 32rem;
+    overflow: auto;
+    padding: var(--space-4);
+    background: var(--color-bg-subtle);
+    font-size: var(--text-sm);
+  }
+
+  /* The API table that follows most demos. */
+  .doc-api { font-size: var(--text-sm); }
+  .doc-api code { white-space: nowrap; }
+
+  .doc-footer {
+    padding: var(--space-10) var(--padding-page-x);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+    text-align: center;
+  }
+  .doc-footer p { margin: 0; }
+
+  @media (max-width: 64rem) {
+    .doc-shell { grid-template-columns: minmax(0, 1fr); }
+    .doc-aside { display: none; }
+    .doc-navtoggle { display: inline-flex; }
+    .doc-sidebar {
+      display: none;
+      position: static;
+      padding-block-end: var(--space-6);
+      border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    }
+    .doc-sidebar[data-open] { display: block; }
+  }
+}

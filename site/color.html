@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>色彩 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html" aria-current="page">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">全局样式 · Global</p>
+<h1>色彩</h1>
+<p class="wx-lede">暖土色域，单一强调色，四档文字灰阶。所有取值都过 WCAG AA，
+并由 <code>npm run check:colors</code> 实测拦截回归。</p>
+
+<h2 id="ground">背景与文字</h2>
+
+<div class="doc-figure">
+    <table class="wx-table doc-api">
+      <thead><tr><th>Token</th><th>亮色</th><th>暗色</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><code>--color-bg-warm</code></td><td>#F2F0EB</td><td>#1A1816</td><td>暖白·系统底色</td></tr>
+        <tr><td><code>--color-bg-base</code></td><td>#FAFAF8</td><td>#201E1B</td><td>内页背景</td></tr>
+        <tr><td><code>--color-bg-pure</code></td><td>#FFFFFF</td><td>#242220</td><td>正文区</td></tr>
+        <tr><td><code>--color-bg-subtle</code></td><td>#F0EDE7</td><td>#2A2724</td><td>代码块 / 引用 / 标签底</td></tr>
+        <tr><td><code>--color-text-heading</code></td><td>#2C2B29</td><td>#F0EBE3</td><td>标题</td></tr>
+        <tr><td><code>--color-text-primary</code></td><td>#3A3837</td><td>#E8E3DC</td><td>正文·暖炭色·<strong>非纯黑</strong></td></tr>
+        <tr><td><code>--color-text-secondary</code></td><td>#55524E</td><td>#B5AFA6</td><td>辅助正文</td></tr>
+        <tr><td><code>--color-text-functional</code></td><td>#706D68</td><td>#8A857D</td><td>日期 / 元数据 / 占位符</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">为什么文字只有四档</span>
+  <p>AA 底线把可用明度压在 L* 23.7–46.2 之间，这段距离容不下更多可辨层级。
+  原先有六个文字 token，其中相邻两档只差 ΔL* 1.2——四个名字渲染成两个层级。
+  现在四档，相邻 ΔL* ≥ 11，每一档都真的看得出来。<strong>能表达的层级数是被对比度底线决定的，
+  不是被命名决定的。</strong></p>
+</div>
+
+<h2 id="accent">强调色</h2>
+
+<p>砖红 <code>#8B3525</code>，全页 <strong>≤ 2 处</strong>。这是整套系统被引用最多的约束。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <p><span class="wx-seal" aria-hidden="true"></span> 品牌标记 · <code>--color-accent</code></p>
+    <p><a href="#accent">悬停链接时变为 accent</a> · <code>--color-link-hover</code></p>
+    <p><button class="wx-btn wx-btn--primary" type="button">每视图至多一个填充主按钮</button></p>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;p&gt;&lt;span class="wx-seal" aria-hidden="true"&gt;&lt;/span&gt; 品牌标记 · &lt;code&gt;--color-accent&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="#accent"&gt;悬停链接时变为 accent&lt;/a&gt; · &lt;code&gt;--color-link-hover&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;button class="wx-btn wx-btn--primary" type="button"&gt;每视图至多一个填充主按钮&lt;/button&gt;&lt;/p&gt;</code></pre></details>
+</div>
+
+<h2 id="semantic">语义色</h2>
+
+<p>语义色是第一层底线要求的<strong>信息通道</strong>，不是装饰。它们不计入 accent 预算，
+也不属于"高饱和装饰色"禁令的范围——但<strong>必须与文字说明同时出现</strong>。</p>
+
+<div class="doc-figure">
+    <div class="wx-note wx-note--danger">
+      <span class="wx-note__title">危险 danger · #5C1F2F</span>
+      <p>牛血红，对暖白 10.90:1。</p>
+    </div>
+    <div class="wx-note wx-note--warn">
+      <span class="wx-note__title">警告 warning · #7D5E12</span>
+      <p>赭黄，5.30:1。</p>
+    </div>
+    <div class="wx-note wx-note--tip">
+      <span class="wx-note__title">成功 success · #4F6B3A</span>
+      <p>苔绿，5.27:1。</p>
+    </div>
+  </div>
+
+<p>这三个值不是凭感觉选的，是在暖土色域内解一个约束问题：全部 ≥4.5:1，彼此两两可区分
+（最小 ΔE = 28），且不与正文色混淆。danger 之所以是深牛血红而非常见的亮红——
+亮红属于被禁的高饱和色，而在暖土色域内，能与砖红 accent 拉开距离的方向只有"更深、更冷"。</p>
+
+<h2 id="dark">暗色模式</h2>
+<p>不是纯黑反相，而是<strong>同一张羊皮纸被调暗</strong>。同时支持系统偏好与手动切换：</p>
+<pre class="doc-code__body"><code>@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { … } }
+[data-theme="dark"] { … }</code></pre>
+<p>右上角的开关可以实时验证——本站每一页都跟随它。</p>
+
+<h2 id="forbidden">色彩禁令</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>渐变色背景</strong>——任何形式，双轨都禁</li>
+  <li><strong>高饱和蓝 / 绿 / 紫 / 橙</strong>作为装饰或强调（语义色不在此列）</li>
+  <li><strong>仅用颜色区分状态</strong>——色盲用户无法感知</li>
+  <li><strong>把 accent 复用为 error 色</strong>——一个语义 token 只有一个用途</li>
+  <li><strong>边框色当文字色用</strong>——<code>--color-border-*</code> 不得排日期、版权、面包屑</li>
+</ul>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#ground">背景与文字</a></li>
+      <li><a class="wx-anchor__link" href="#accent">强调色</a></li>
+      <li><a class="wx-anchor__link" href="#semantic">语义色</a></li>
+      <li><a class="wx-anchor__link" href="#dark">暗色模式</a></li>
+      <li><a class="wx-anchor__link" href="#forbidden">色彩禁令</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>表单页</h1>
+<p class="wx-lede">表单是这套系统里惯例占比最高的地方。
+第三层仲裁规则说得很直白：<strong>表单就是表单</strong>，可用性在这里不可妥协。</p>
+
+<h2 id="layout">三种布局</h2>
+<p>默认是<strong>纵向堆叠</strong>——标签在控件上方。这是移动端唯一合理的选择，
+也是桌面端的安全默认，因为标签长度不受列宽限制。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form">
+      <fieldset class="wx-form__section">
+        <legend class="wx-form__legend">基本信息
+          <span class="wx-form__legend-hint">用于生成署名与联系方式</span>
+        </legend>
+        <div class="wx-form__row">
+          <label class="wx-field">
+            <span class="wx-field__label">姓名 <span class="wx-field__required">必填</span></span>
+            <input class="wx-input" name="name" required>
+          </label>
+          <label class="wx-field">
+            <span class="wx-field__label">称谓</span>
+            <span class="wx-select-wrap">
+              <select class="wx-select" name="title">
+                <option>编辑</option><option>设计</option><option>工程</option>
+              </select>
+            </span>
+          </label>
+        </div>
+        <label class="wx-field">
+          <span class="wx-field__label">邮箱 <span class="wx-field__required">必填</span></span>
+          <input class="wx-input" name="email" type="email" required aria-describedby="email-hint">
+          <span class="wx-field__hint" id="email-hint">仅用于通知，不会公开。</span>
+        </label>
+      </fieldset>
+      <div class="wx-form__actions">
+        <span class="wx-form__actions-note">草稿会自动保存。</span>
+        <button class="wx-btn" type="button">取消</button>
+        <button class="wx-btn wx-btn--primary" type="submit">提交</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p><strong>横向布局</strong>用于字段少、标签短、需要紧凑的场景。加 <code>wx-form--horizontal</code>，
+窄画布下自动退回堆叠——8rem 的标签列和 20rem 的视口无法同时成立。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form wx-form--horizontal">
+      <label class="wx-field">
+        <span class="wx-field__label">标题</span>
+        <input class="wx-input" name="t">
+      </label>
+      <label class="wx-field">
+        <span class="wx-field__label">标签</span>
+        <input class="wx-input" name="tags">
+      </label>
+    </form>
+  </div>
+</div>
+
+<p><strong>行内布局</strong> <code>wx-form--inline</code> 用于筛选栏与搜索行。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form wx-form--inline">
+      <label class="wx-field">
+        <span class="wx-field__label">关键词</span>
+        <input class="wx-input" type="search" name="q">
+      </label>
+      <label class="wx-field">
+        <span class="wx-field__label">年份</span>
+        <input class="wx-number" type="number" name="year" value="2026">
+      </label>
+      <button class="wx-btn" type="submit">筛选</button>
+    </form>
+  </div>
+</div>
+
+<h2 id="validation">校验：什么时候提示</h2>
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>时机</th><th>做法</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td>输入中</td><td><strong>不提示</strong></td><td>还没写完就报错是骚扰</td></tr>
+        <tr><td>失焦时</td><td>提示该字段</td><td>读者已表达"这个填完了"</td></tr>
+        <tr><td>提交时</td><td>汇总 + 聚焦第一个错误</td><td>长表单里 40 行外的内联错误没人找得到</td></tr>
+        <tr><td>修正后</td><td><strong>立即撤销提示</strong></td><td>正确了还在报错会摧毁信任</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<h2 id="error">错误的三重编码</h2>
+<p>错误状态<strong>同时</strong>由颜色、文字和边框粗细承载。只有颜色的错误对色盲用户等于不存在，
+这是第一层底线，不是建议。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <form class="wx-form">
+      <div class="wx-form__errors" role="alert" tabindex="-1">
+        <span class="wx-form__errors-title">有 2 处需要修正</span>
+        <ol>
+          <li><a href="#f-email">邮箱格式不正确</a></li>
+          <li><a href="#f-pass">密码至少 8 位</a></li>
+        </ol>
+      </div>
+      <label class="wx-field">
+        <span class="wx-field__label">邮箱</span>
+        <input class="wx-input" id="f-email" value="zopiya@" aria-invalid="true" aria-describedby="e-email">
+        <span class="wx-field__error" id="e-email">邮箱格式不正确——缺少域名部分。</span>
+      </label>
+      <label class="wx-field">
+        <span class="wx-field__label">密码</span>
+        <input class="wx-input" id="f-pass" type="password" value="123" aria-invalid="true" aria-describedby="e-pass">
+        <span class="wx-field__error" id="e-pass">密码至少 8 位，当前 3 位。</span>
+      </label>
+    </form>
+  </div>
+</div>
+
+<p>错误文案要说<strong>怎么修</strong>，不只说错了。"密码至少 8 位，当前 3 位"
+比"密码无效"有用得多。</p>
+
+<h2 id="required">必填标记</h2>
+<p>用<strong>词</strong>标记必填，不用裸星号，也不用颜色。星号是约定俗成但不自解释，
+读屏器读作"星"。如果表单里绝大多数字段必填，反过来标记"选填"更省。</p>
+
+<h2 id="submit">提交状态</h2>
+<p>没有 spinner。提交中的反馈是<strong>按钮文案变化 + 禁用</strong>，
+完成后用 toast 确认。文字比转圈提供更多信息。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-btn wx-btn--primary" type="button">提交</button>
+      <button class="wx-btn wx-btn--primary" type="button" disabled>正在提交…</button>
+      <button class="wx-btn" type="button"
+              onclick="wxToast('设置已保存', { level:'success', label:'已保存' })">提交成功 →</button>
+    </div>
+  </div>
+</div>
+
+<h2 id="checklist">表单检查清单</h2>
+<ul class="wx-list wx-list--ruled">
+  <li>每个控件都有 <code>&lt;label&gt;</code>——placeholder <strong>不是</strong>标签</li>
+  <li>错误用 <code>aria-invalid</code> + <code>aria-describedby</code> 关联</li>
+  <li>错误汇总用 <code>role="alert"</code> 且可聚焦</li>
+  <li>触控目标 ≥ 24px（移动端 44/48）</li>
+  <li>每视图<strong>至多一个</strong>填充主按钮</li>
+  <li>提交按钮在最后，取消在它之前</li>
+  <li>禁用态不能只靠颜色区分</li>
+</ul>

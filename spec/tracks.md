@@ -49,7 +49,7 @@ Walk the layers top-down; the first one that matches decides.
 | 轨道 | 形态 | 视觉约束 |
 |---|---|---|
 | **阅读轨 Editorial** | F1 Web · F3 Brand · F4 Print · F5 Presentation · F6 Documentation · F7 Poster · F8 Diagram · F9 Report | 哲学全量生效：无卡片容器、无填充按钮、accent ≤2 处、灰阶图表、极简动效 |
-| **应用轨 Application** | F2 Mobile；**任何形态中采用[原型 E 工具型](./forms/page-archetypes.md)的页面** | 放宽视觉约束：允许分组表面、允许填充主按钮、完整语义色、明确的交互与触控反馈 |
+| **应用轨 Application** | F2 Mobile；**任何形态中采用[原型 E 工具型](./page-archetypes.md)的页面** | 放宽视觉约束：允许分组表面、允许填充主按钮、完整语义色、明确的交互与触控反馈 |
 
 **轨道在页面级声明**，写进渲染契约：
 

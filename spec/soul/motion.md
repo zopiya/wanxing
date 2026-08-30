@@ -149,7 +149,7 @@ Reduced motion removes decoration, never information.
 
 ## 各形态的动效差异
 
-见 [../forms/DECISIONS-MATRIX.md](../forms/DECISIONS-MATRIX.md) §五。
+见 [../forms/DECISIONS-MATRIX.md](../media.md) §五。
 关键差异：**F4 = E8**（印刷静止），**F9 = E9-0**（静水）——
 这两者不同是设计，不是数据错误。
 

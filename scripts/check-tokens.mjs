@@ -13,7 +13,7 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const SCAN = ["kit", "examples"].map((d) => join(root, d)).filter(existsSync);
+const SCAN = ["kit", "examples", "site"].map((d) => join(root, d)).filter(existsSync);
 const EXT = /\.(css|html|jsx|tsx|svg)$/;
 
 /**

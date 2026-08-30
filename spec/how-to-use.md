@@ -3,7 +3,7 @@
 > 跨层 Cross-cutting — 写给执行设计任务的 AI written for an AI agent doing design work
 > 取材来源见 [PROVENANCE.md](./PROVENANCE.md)。原多智能体流水线专属的部分（Meta Agent 交接、`dist/`/`app/` 目录约定）已剥离，只保留通用操作闭环。
 
-[灵魂层 `soul/`](./soul/philosophy.md) 与[形态层 `forms/`](./forms/DECISIONS-MATRIX.md) 回答的是「规则是什么」。
+[灵魂层 `soul/`](./soul/philosophy.md) 与[形态层 `forms/`](./media.md) 回答的是「规则是什么」。
 这份文件回答另一个问题：**收到一个设计请求时，按什么流程走，才能保证产出真的落地了这些规则**。
 
 遇到哲学与主流惯例冲突时，不要临场判断 —— 走 [tracks.md](./tracks.md) 的三层规则，判定结果记入 [DECISIONS.md](./DECISIONS.md)。
@@ -28,7 +28,7 @@ Stage 1 Understand → Stage 2 Confirm → Stage 3 Execute → Stage 4 Self-audi
 Clarify the following through conversation — ask only 1–2 questions at a time, and judge from context what's already clear versus what needs asking:
 
 **必须确认 Must confirm：**
-- **页面/产出类型是什么？** 判断对应哪个形态（F1–F9，见 [`wanxing/README.md`](./README.md)）以及哪个页面原型（见 [`page-archetypes.md`](./forms/page-archetypes.md)）
+- **页面/产出类型是什么？** 判断对应哪个形态（F1–F9，见 [`wanxing/README.md`](./README.md)）以及哪个页面原型（见 [`page-archetypes.md`](./page-archetypes.md)）
   What type of output is this? Determine the form (F1–F9) and, if applicable, the page archetype.
 - **核心内容与用户目标是什么？** 用户来这个产出要完成什么
   What's the core content and the end-user's goal here?
@@ -70,7 +70,7 @@ After understanding the request, **state the design decisions out loud** before 
 
 **The form layer follows industry convention** — pick the standard structure for the form and archetype from the matching `wanxing/fN-*.md` file. **Don't distort a familiar structure in the name of "stylistic consistency"** — the form layer's job is to be as usable as any normal product; the soul layer is what gives it Wenxin's temperament.
 
-如果产出是 HTML，声明一份 [`render-contract.md`](./forms/render-contract.md) 里定义的合同 JSON——这一步不是可选的装饰，而是让第四阶段的自审有据可查。
+如果产出是 HTML，声明一份 [`render-contract.md`](./render-contract.md) 里定义的合同 JSON——这一步不是可选的装饰，而是让第四阶段的自审有据可查。
 
 If the output is HTML, declare a render-contract JSON as defined in `render-contract.md` — this isn't optional decoration, it's what makes Stage 4's self-audit checkable.
 

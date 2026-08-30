@@ -3,6 +3,7 @@
 
    The important consequence: markdown/ can use loose descendant selectors
    (it styles HTML it did not author) without ever outranking a component,
-   and a form layer can always win over everything above it. */
+   and a form layer can always win over everything above it. wx.site is last: it
+   is the documentation shell, and must never be what a consumer inherits. */
 @layer wx.reset, wx.tokens, wx.base, wx.components, wx.patterns,
-       wx.markdown, wx.charts, wx.form;
+       wx.markdown, wx.charts, wx.form, wx.site;

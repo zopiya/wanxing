@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>布局与通用 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html" aria-current="page">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">组件 · Components</p>
+<h1>布局与通用</h1>
+<p class="wx-lede">页面骨架、间距原语，以及按钮、标签、状态这些到处都用的小件。</p>
+
+<h2 id="btn">按钮 Button</h2>
+<p>默认是线框 ghost。<strong>每视图至多一个填充主按钮</strong>——约束是"限量"不是"禁止"。
+CTA 优先用文字变体，"了解更多 →"比一个方框更符合这套语言。</p>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <div class="wx-cluster">
+      <button class="wx-btn" type="button">默认</button>
+      <button class="wx-btn wx-btn--primary" type="button">主操作</button>
+      <button class="wx-btn wx-btn--danger" type="button">危险</button>
+      <button class="wx-btn wx-btn--text" type="button">文字按钮 →</button>
+      <button class="wx-btn" type="button" disabled>禁用</button>
+    </div>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;
+  &lt;button class="wx-btn" type="button"&gt;默认&lt;/button&gt;
+  &lt;button class="wx-btn wx-btn--primary" type="button"&gt;主操作&lt;/button&gt;
+  &lt;button class="wx-btn wx-btn--danger" type="button"&gt;危险&lt;/button&gt;
+  &lt;button class="wx-btn wx-btn--text" type="button"&gt;文字按钮 →&lt;/button&gt;
+  &lt;button class="wx-btn" type="button" disabled&gt;禁用&lt;/button&gt;
+&lt;/div&gt;</code></pre></details>
+</div>
+
+<h2 id="tag">标签、计数与状态</h2>
+<p>状态点<strong>永远带文字标签</strong>——标签是组件的一部分，不是可选项。
+只有颜色的状态对色盲用户等于不存在。</p>
+<div class="doc-figure">
+    <div class="wx-cluster">
+      <span class="wx-tag">标签</span>
+      <span class="wx-tag wx-tag--accent">强调标签</span>
+      <span class="wx-badge">12</span>
+      <span class="wx-badge wx-badge--accent">3</span>
+    </div>
+    <div class="wx-cluster" style="margin-block-start:var(--space-4)">
+      <span class="wx-status wx-status--live">运行中</span>
+      <span class="wx-status wx-status--warn">降级</span>
+      <span class="wx-status wx-status--down">已停止</span>
+      <span class="wx-status wx-status--idle">空闲</span>
+    </div>
+  </div>
+
+<h2 id="avatar">头像 Avatar</h2>
+<p>默认是<strong>方形发丝线框 + 显示体首字</strong>，不是饱和色圆形气泡——
+后者是填充形状加装饰色相，这套系统两样都没有。圆形变体供照片使用。</p>
+<div class="doc-figure">
+    <div class="wx-cluster">
+      <span class="wx-avatar wx-avatar--sm">仲</span>
+      <span class="wx-avatar">平</span>
+      <span class="wx-avatar wx-avatar--round">文</span>
+      <span class="wx-avatar wx-avatar--lg">心</span>
+    </div>
+    <div class="wx-avatar-group" style="margin-block-start:var(--space-4)">
+      <span class="wx-avatar">甲</span><span class="wx-avatar">乙</span><span class="wx-avatar">丙</span>
+    </div>
+  </div>
+
+<h2 id="kbd">按键 Kbd</h2>
+<div class="doc-figure">
+    <p>按 <kbd class="wx-kbd">Cmd</kbd> + <kbd class="wx-kbd">K</kbd> 打开搜索，
+    <kbd class="wx-kbd">Esc</kbd> 关闭。</p>
+  </div>
+
+<h2 id="seal">品牌标记 Seal</h2>
+<div class="doc-figure">
+    <p><span class="wx-seal" aria-hidden="true"></span> 文心 · 万形</p>
+  </div>
+
+<h2 id="stack">堆叠与簇</h2>
+<div class="doc-figure">
+    <div class="wx-stack wx-stack--tight">
+      <p>wx-stack 管理垂直节奏，取代 ad-hoc margin。</p>
+      <p>--tight 用于紧密相关的内容。</p>
+    </div>
+    <hr class="wx-rule">
+    <div class="wx-cluster wx-cluster--tight">
+      <span class="wx-tag">横向</span><span class="wx-tag">换行</span><span class="wx-tag">共享 gap</span>
+    </div>
+  </div>
+
+<h2 id="api">布局 API</h2>
+<div class="doc-figure">
+    <table class="wx-table doc-api">
+      <thead><tr><th>类</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code>wx-page</code></td><td>页面底色与左右留白</td></tr>
+        <tr><td><code>wx-container--article/content/showcase</code></td><td>三档内容宽度</td></tr>
+        <tr><td><code>wx-measure</code></td><td>最佳行长，按 <code>:lang(zh)</code> 切换</td></tr>
+        <tr><td><code>wx-stack--tight/loose</code></td><td>垂直节奏</td></tr>
+        <tr><td><code>wx-cluster--tight/loose</code></td><td>横向换行组</td></tr>
+        <tr><td><code>wx-spread</code></td><td>两端分布</td></tr>
+        <tr><td><code>wx-cols--2/--3</code></td><td>分栏，无竖线</td></tr>
+        <tr><td><code>wx-rule--short/strong</code></td><td>分隔线</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#btn">按钮 Button</a></li>
+      <li><a class="wx-anchor__link" href="#tag">标签、计数与状态</a></li>
+      <li><a class="wx-anchor__link" href="#avatar">头像 Avatar</a></li>
+      <li><a class="wx-anchor__link" href="#kbd">按键 Kbd</a></li>
+      <li><a class="wx-anchor__link" href="#seal">品牌标记 Seal</a></li>
+      <li><a class="wx-anchor__link" href="#stack">堆叠与簇</a></li>
+      <li><a class="wx-anchor__link" href="#api">布局 API</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

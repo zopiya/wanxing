@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模式总览 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html" aria-current="page">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>模式总览</h1>
+<p class="wx-lede">组件回答"这个东西长什么样"，模式回答"这一页怎么组织"。
+五种页面原型覆盖了这套语言适用范围内的绝大多数页面。</p>
+
+<h2 id="five">五种页面原型</h2>
+<div class="doc-figure">
+    <table class="wx-table">
+      <thead><tr><th>原型</th><th>页面</th><th>读者的任务</th><th>轨道</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A</strong></td><td><a href="./pattern-detail.html">阅读 / 详情</a></td><td>从头读到尾</td><td>阅读轨</td></tr>
+        <tr><td><strong>B</strong></td><td><a href="./pattern-list.html">索引 / 列表</a></td><td>扫描并挑选</td><td>阅读轨</td></tr>
+        <tr><td><strong>C</strong></td><td>展示 / 作品集</td><td>快速判断此人此物</td><td>阅读轨</td></tr>
+        <tr><td><strong>D</strong></td><td>着陆 / 首页</td><td>十秒内决定去哪</td><td>阅读轨</td></tr>
+        <tr><td><strong>E</strong></td><td><a href="./pattern-form.html">工具 / 表单</a></td><td>完成一件明确的事</td><td><strong>应用轨</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="wx-note wx-note--info">
+  <span class="wx-note__title">原型 E 会翻转轨道</span>
+  <p>一个工具型页面，即使住在一个纯阅读轨的站点里，也按<strong>应用轨</strong>判定——
+  可以有分组表面、填充主按钮、完整语义色。读者在这一页的任务不是阅读，是完成操作。</p>
+</div>
+
+<h2 id="method">怎么选</h2>
+<p>不要问"这是什么页面"，问<strong>"读者到这一页要做什么"</strong>。
+同一份内容在不同任务下属于不同原型：一篇文章是 A，文章列表是 B，
+而"在文章里搜索并批量导出"是 E。</p>
+
+<h2 id="skeleton">可复制的骨架</h2>
+<p><code>kit/patterns/</code> 下有五份 HTML 骨架，直接复制即可。它们不自带媒介样式——
+使用者按实际场景加载对应的 CSS 并声明轨道。</p>
+<pre class="doc-code__body"><code>kit/patterns/a-reading.html    文章 / 文档
+kit/patterns/b-list.html       索引 / 搜索结果
+kit/patterns/c-showcase.html   简历 / 作品集
+kit/patterns/d-landing.html    首页 / 着陆页
+kit/patterns/e-tool.html       输入 / 查询工具</code></pre>
+<p>五份骨架都<strong>只用留白和单边线分组</strong>，不提供任何四边包围容器。</p>
+
+<h2 id="explore">模式探索</h2>
+<p>下面几页把原型展开成真正可用的页面，包含状态、校验、异常与响应式处理：</p>
+<ul class="wx-list wx-list--ruled">
+  <li><a href="./pattern-form.html"><strong>表单页</strong></a> —— 布局、校验时机、错误汇总、提交状态</li>
+  <li><a href="./pattern-list.html"><strong>列表页</strong></a> —— 筛选、排序、分页、空态</li>
+  <li><a href="./pattern-detail.html"><strong>详情页</strong></a> —— 长文结构、目录、旁注</li>
+  <li><a href="./pattern-result.html"><strong>结果与异常页</strong></a> —— 成功、失败、404、无权限</li>
+</ul>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#five">五种页面原型</a></li>
+      <li><a class="wx-anchor__link" href="#method">怎么选</a></li>
+      <li><a class="wx-anchor__link" href="#skeleton">可复制的骨架</a></li>
+      <li><a class="wx-anchor__link" href="#explore">模式探索</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

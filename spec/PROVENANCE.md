@@ -22,7 +22,7 @@
 | `scripts/render-audit.mjs` | `archive/wanxing/.opencode/tools/render-audit/render-audit.mjs`（767 行） | 原样提升，另做两处修改 |
 | ~~`spec/_harvest/token-rescue.md`~~ | `wanxing/examples/tokens/colors_and_type.css` + 9 个示例 | 暗色调色板 + 52 个未定义 token 的值。**已被 Phase 2 消费**，落入 `kit/tokens/`，取材件已删除 |
 | ~~`spec/_harvest/component-evidence.md`~~ | 9 个示例的 class 广度统计 | **已消费并删除**：落入 `components.md` 的 `wx-entry` / `wx-seal` 判定、`kit/patterns/` 与 D-4/D-11 |
-| ~~`spec/_harvest/mermaid-translation-rules.md`~~ | Mermaid 图解翻译规则 | **已消费并删除**：拓扑规则落入 `f8-diagram.md`，token 映射由 `build-themes.mjs` 生成 |
+| ~~`spec/_harvest/mermaid-translation-rules.md`~~ | Mermaid 图解翻译规则 | **已消费并删除**：拓扑规则落入 `media.md`，token 映射由 `build-themes.mjs` 生成 |
 | `kit/base/*` | `archive/wenxin/assets/css/`（Hugo 主题，生产级） | 结构参考，非复制 |
 | `kit/markdown/hugo/*` | `archive/wenxin/layouts/_default/_markup/` + `shortcodes/` | 渲染钩子思路 |
 | `spec/soul/components.md` | `archive/wanxing/.opencode/agents/wenxin/components.md`（280 行） | 组件原则与页面原型 |

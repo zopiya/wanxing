@@ -1,0 +1,55 @@
+<p class="wx-eyebrow">全局样式 · Global</p>
+<h1>字体排版</h1>
+<p class="wx-lede">正文衬线，界面无衬线，代码等宽。中文优先的行长与留白。</p>
+
+<h2 id="families">三个字族</h2>
+<div class="doc-figure">
+    <p style="font-family:var(--font-display); font-size:var(--text-2xl)">显示体 Display —— Lora + 思源宋体</p>
+    <p style="font-family:var(--font-body)">正文体 Body —— EB Garamond + 思源宋体。长文阅读的默认，衬线在长段落里提供字形辨识度。</p>
+    <p style="font-family:var(--font-ui)">界面体 UI —— system-ui + 苹方 / 微软雅黑。标签、按钮、表单、元数据。</p>
+    <p style="font-family:var(--font-mono)">等宽体 Mono —— JetBrains Mono。代码与数字。</p>
+  </div>
+<p>拉丁字体自托管并带 <code>unicode-range</code> 子集；中文回退到系统字体，
+不通过 CDN 加载——一个中文字体家族动辄数 MB，长期访问与离线复现的成本都太高。</p>
+
+<h2 id="scale">字号阶梯</h2>
+<div class="doc-figure">
+    <p style="font-size:var(--text-5xl); line-height:1.1">4.5rem · text-5xl</p>
+    <p style="font-size:var(--text-3xl)">2.25rem · text-3xl</p>
+    <p style="font-size:var(--text-xl)">1.5rem · text-xl</p>
+    <p style="font-size:var(--text-base)">1rem · text-base —— 正文</p>
+    <p style="font-size:var(--text-sm)">0.833rem · text-sm —— 界面</p>
+    <p style="font-size:var(--text-xs)">0.694rem · text-xs —— 元数据下限</p>
+  </div>
+
+<h2 id="measure">行长与行高</h2>
+<p>拉丁文 60–75 字符，中文 <strong>30–40 字</strong>。<code>.wx-measure</code> 直接封装了这条规则，
+并按 <code>:lang(zh)</code> 切换到 <code>36em</code>。</p>
+<div class="doc-figure">
+    <p class="wx-measure">这段文字被限制在最佳阅读行长内。行长过长时眼睛在换行处容易丢失位置，
+    过短则频繁换行打断节奏。中文因为字符密度高，合适的行长比拉丁文短得多。</p>
+  </div>
+<p>行高 token：<code>--leading-tight 1.25</code> · <code>snug 1.45</code> ·
+<code>normal 1.6</code> · <code>relaxed 1.85</code>（长文正文）· <code>loose 2.0</code>。</p>
+
+<h2 id="content">内容排版组件</h2>
+<div class="doc-figure">
+    <p class="wx-eyebrow">眉题 Eyebrow</p>
+    <h3>标题</h3>
+    <p class="wx-lede">导语 lede —— 比正文大一档，承担摘要功能。</p>
+    <p class="wx-dropcap">首字下沉用于长文开篇。这是一段示例正文，用来展示下沉字与后续文字的关系；
+    窄画布下会自动取消下沉，因为三行高的首字会吃掉本就有限的行长。</p>
+    <blockquote class="wx-quote">
+      <p>分组不靠方框，靠邻近。</p>
+      <cite class="wx-cite">组件通用原则</cite>
+    </blockquote>
+    <p class="wx-pullquote">引言 pullquote 用于强调，语义与 quote 不同</p>
+  </div>
+
+<h2 id="cjk">中文排版细节</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>字间距</strong> <code>--tracking-chinese: 0.1em</code>——中文标题需要比拉丁文更松的字距</li>
+  <li><strong>标点</strong>——使用全角标点，不在行首出现闭合标点</li>
+  <li><strong>中西文混排</strong>——数字与拉丁词两侧留出空隙，由 <code>text-spacing</code> 或手工空格处理</li>
+  <li><strong>禁止</strong>大段正文居中对齐——伤害可读性</li>
+</ul>

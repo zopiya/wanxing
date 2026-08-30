@@ -41,6 +41,6 @@ Wenxin treats accessibility as a baseline requirement, not an add-on.
 
 ---
 
-这是所有形态共享的最低基线。移动端触控目标（≥ 44×44px）等形态特有的无障碍要求见对应的 [形态层 forms](../forms/DECISIONS-MATRIX.md) 形态文件。
+这是所有形态共享的最低基线。移动端触控目标（≥ 44×44px）等形态特有的无障碍要求见对应的 [形态层 forms](../media.md) 形态文件。
 
 This is the shared floor across all forms. Form-specific accessibility requirements (e.g. ≥ 44×44px mobile touch targets) live in the corresponding wanxing form file.

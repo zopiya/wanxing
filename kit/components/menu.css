@@ -1,0 +1,126 @@
+/* Menu, dropdown, and anchor — the navigation family.
+
+   All three express current/open state through ARIA, never a class. The
+   dropdown is a native <details>, so it opens without JavaScript and closes
+   with Esc for free. */
+@layer wx.components {
+
+  /* ---- Menu — a vertical list of destinations ------------------------ */
+  .wx-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+  .wx-menu__group {
+    margin-block-start: var(--space-6);
+    padding-block-end: var(--space-2);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-functional);
+  }
+  .wx-menu__group:first-child { margin-block-start: 0; }
+  .wx-menu__link {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-inline-start: var(--stroke-mark) solid transparent;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .wx-menu__link:hover { color: var(--color-text-primary); }
+  .wx-menu__link[aria-current] {
+    border-inline-start-color: var(--color-accent);
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+  .wx-menu__link[aria-disabled="true"] {
+    color: var(--color-text-functional);
+    pointer-events: none;
+  }
+  /* Nested level — indented by the rail, not by a new container. */
+  .wx-menu .wx-menu { margin-inline-start: var(--space-4); }
+
+  /* ---- Dropdown — native <details>, zero JS -------------------------- */
+  .wx-dropdown { position: relative; display: inline-block; }
+  .wx-dropdown > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    list-style: none;
+  }
+  .wx-dropdown > summary::-webkit-details-marker { display: none; }
+  .wx-dropdown > summary::after {
+    content: "";
+    inline-size: 0.4em;
+    block-size: 0.4em;
+    border-inline-end: var(--stroke-hairline) solid currentColor;
+    border-block-end: var(--stroke-hairline) solid currentColor;
+    rotate: 45deg;
+    translate: 0 -0.15em;
+  }
+  .wx-dropdown[open] > summary { border-color: var(--color-text-primary); }
+  .wx-dropdown__menu {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-1));
+    inset-inline-start: 0;
+    z-index: 30;
+    min-inline-size: 12rem;
+    padding: var(--space-2) 0;
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-pure);
+    list-style: none;
+    margin: 0;
+  }
+  .wx-dropdown__item {
+    display: block;
+    inline-size: 100%;
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    background: transparent;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-align: start;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .wx-dropdown__item:hover { background: var(--color-bg-subtle); }
+  .wx-dropdown__item--danger { color: var(--color-danger); }
+  .wx-dropdown__sep {
+    margin: var(--space-2) 0;
+    border: 0;
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+
+  /* ---- Anchor — in-page navigation ----------------------------------- */
+  .wx-anchor { font-family: var(--font-ui); font-size: var(--text-sm); }
+  .wx-anchor__list { list-style: none; margin: 0; padding: 0; border-inline-start: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .wx-anchor__link {
+    display: block;
+    padding: var(--space-1) var(--space-3);
+    margin-inline-start: calc(var(--stroke-hairline) * -1);
+    border-inline-start: var(--stroke-mark) solid transparent;
+    color: var(--color-text-functional);
+    text-decoration: none;
+  }
+  .wx-anchor__link:hover { color: var(--color-text-primary); }
+  .wx-anchor__link[aria-current] {
+    border-inline-start-color: var(--color-accent);
+    color: var(--color-text-heading);
+  }
+  .wx-anchor__list .wx-anchor__list { border: 0; }
+  .wx-anchor__list .wx-anchor__link { padding-inline-start: var(--space-6); }
+
+  /* ---- Affix — sticky without a container ---------------------------- */
+  .wx-affix { position: sticky; inset-block-start: var(--space-6); }
+}

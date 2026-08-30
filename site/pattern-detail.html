@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>详情页 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <ul class="wx-menu">
+    <li class="wx-menu__group">开始 · Start</li>
+      <li><a class="wx-menu__link" href="./index.html">文心 · 万形</a></li>
+      <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./tracks.html">双轨仲裁</a></li>
+    <li class="wx-menu__group">全局样式 · Global</li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
+      <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
+      <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+    <li class="wx-menu__group">设计模式 · Patterns</li>
+      <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+      <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-detail.html" aria-current="page">详情页</a></li>
+      <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    <li class="wx-menu__group">组件 · Components</li>
+      <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
+      <li><a class="wx-menu__link" href="./c-layout.html">布局与通用</a></li>
+      <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
+      <li><a class="wx-menu__link" href="./c-entry.html">数据录入</a></li>
+      <li><a class="wx-menu__link" href="./c-display.html">数据展示</a></li>
+      <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
+    <li class="wx-menu__group">延伸 · Extended</li>
+      <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li><a class="wx-menu__link" href="./media.html">形态适配</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<p class="wx-eyebrow">设计模式 · Patterns</p>
+<h1>详情页</h1>
+<p class="wx-lede">读者到这一页是来<strong>从头读到尾</strong>的。
+所有设计决定都服务于一件事：不要打断阅读。</p>
+
+<h2 id="structure">结构</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <article>
+      <nav class="wx-crumbs" aria-label="面包屑">
+        <ol><li><a href="#">首页</a></li><li><a href="#">文章</a></li><li>论克制</li></ol>
+      </nav>
+      <h3>论克制</h3>
+      <p class="wx-lede">设计的力量来自克制而非张扬。</p>
+      <p class="wx-attr">2026-08-30 · 六分钟</p>
+      <hr class="wx-rule">
+      <p>正文从这里开始。行长被限制在 30–40 个中文字符之间，
+      因为中文字符密度高，合适的行长比拉丁文短得多。</p>
+      <blockquote class="wx-quote">
+        <p>一个页面上每多一个视觉元素，读者就要多付一次注意力。</p>
+      </blockquote>
+      <p>引用块用单边线，不用方框。</p>
+    </article>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;article&gt;
+  &lt;nav class="wx-crumbs" aria-label="面包屑"&gt;
+    &lt;ol&gt;&lt;li&gt;&lt;a href="#"&gt;首页&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="#"&gt;文章&lt;/a&gt;&lt;/li&gt;&lt;li&gt;论克制&lt;/li&gt;&lt;/ol&gt;
+  &lt;/nav&gt;
+  &lt;h3&gt;论克制&lt;/h3&gt;
+  &lt;p class="wx-lede"&gt;设计的力量来自克制而非张扬。&lt;/p&gt;
+  &lt;p class="wx-attr"&gt;2026-08-30 · 六分钟&lt;/p&gt;
+  &lt;hr class="wx-rule"&gt;
+  &lt;p&gt;正文从这里开始。行长被限制在 30–40 个中文字符之间，
+  因为中文字符密度高，合适的行长比拉丁文短得多。&lt;/p&gt;
+  &lt;blockquote class="wx-quote"&gt;
+    &lt;p&gt;一个页面上每多一个视觉元素，读者就要多付一次注意力。&lt;/p&gt;
+  &lt;/blockquote&gt;
+  &lt;p&gt;引用块用单边线，不用方框。&lt;/p&gt;
+&lt;/article&gt;</code></pre></details>
+</div>
+
+<h2 id="measure">行长是第一决定</h2>
+<p>详情页最重要的一个数字是内容列宽。<code>--width-article</code> 给出 520–640px，
+配合 <code>.wx-measure</code> 的 <code>36em</code> 中文上限。长叙事内容可以放宽到 <code>40em</code>，
+但这是上限不是默认。</p>
+
+<h2 id="nav">目录与旁注</h2>
+<p>长文需要目录。<code>wx-toc</code> 用 <code>aria-current</code> 标记当前节——
+本页右侧就是一个（窄屏下隐藏）。</p>
+<p>旁注 <code>wx-marginal</code> 用于不该打断正文、但值得就近说明的内容。
+窄屏下它退回正文流，不消失。</p>
+
+<div class="doc-figure">
+    <p>正文中提到一个需要补充的概念<span class="wx-marginal">旁注在宽屏下浮到侧边，窄屏下退回正文流。</span>，
+    读者可以选择看或不看。</p>
+  </div>
+
+<h2 id="footnote">脚注与引用</h2>
+<div class="doc-figure">
+    <p>正文中的引用标记<a class="wx-fn" href="#fn-1" id="fnref-1">1</a>指向文末。</p>
+    <ol class="wx-fn-list">
+      <li id="fn-1">脚注内容。<a href="#fnref-1">↩</a></li>
+    </ol>
+  </div>
+
+<h2 id="pager">上一篇 / 下一篇</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <nav class="wx-pager">
+      <a href="#"><span class="wx-pager__label">上一篇</span>留白不是空缺</a>
+      <a href="#" style="text-align:end"><span class="wx-pager__label">下一篇</span>点睛之色</a>
+    </nav>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;nav class="wx-pager"&gt;
+  &lt;a href="#"&gt;&lt;span class="wx-pager__label"&gt;上一篇&lt;/span&gt;留白不是空缺&lt;/a&gt;
+  &lt;a href="#" style="text-align:end"&gt;&lt;span class="wx-pager__label"&gt;下一篇&lt;/span&gt;点睛之色&lt;/a&gt;
+&lt;/nav&gt;</code></pre></details>
+</div>
+
+<h2 id="checklist">详情页检查清单</h2>
+<ul class="wx-list wx-list--ruled">
+  <li>行长在 30–40 中文字符内</li>
+  <li>正文行高 <code>--leading-relaxed</code>（1.85）</li>
+  <li>标题层级不跳级（h1 → h2 → h3）</li>
+  <li>accent 出现 ≤ 2 处</li>
+  <li>图片有 <code>alt</code>，图有编号 caption</li>
+  <li>正文<strong>不</strong>居中对齐</li>
+</ul>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#structure">结构</a></li>
+      <li><a class="wx-anchor__link" href="#measure">行长是第一决定</a></li>
+      <li><a class="wx-anchor__link" href="#nav">目录与旁注</a></li>
+      <li><a class="wx-anchor__link" href="#footnote">脚注与引用</a></li>
+      <li><a class="wx-anchor__link" href="#pager">上一篇 / 下一篇</a></li>
+      <li><a class="wx-anchor__link" href="#checklist">详情页检查清单</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

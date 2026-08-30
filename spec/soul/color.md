@@ -128,9 +128,9 @@ Not an inverted pure-black theme — the same vellum, dimmed.
 - 边框色不是文字色。`--color-border-*` 不得拿来排日期、版权、breadcrumb 或 placeholder。
   Border colours are not text colours. Never use them for metadata, copyright, breadcrumbs, or placeholders.
 
-见 [forbidden.md](./forbidden.md) 完整禁用清单。具体形态下的色彩应用（如海报的 accent 分配策略、文档站的语法高亮方案）见 [形态层 forms](../forms/DECISIONS-MATRIX.md) 对应形态文件。
+见 [forbidden.md](./forbidden.md) 完整禁用清单。具体形态下的色彩应用（如海报的 accent 分配策略、文档站的语法高亮方案）见 [形态层 forms](../media.md) 对应形态文件。
 
-See [forbidden.md](./forbidden.md) for the complete list. Form-specific color applications (e.g. a poster's accent budget, a docs site's syntax-highlight palette) live in the corresponding [形态层 forms](../forms/DECISIONS-MATRIX.md) form file.
+See [forbidden.md](./forbidden.md) for the complete list. Form-specific color applications (e.g. a poster's accent budget, a docs site's syntax-highlight palette) live in the corresponding [形态层 forms](../media.md) form file.
 
 
 ---
