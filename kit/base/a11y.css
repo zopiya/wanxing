@@ -2,6 +2,11 @@
    every form and both tracks. Nothing here is a stylistic preference. */
 @layer wx.base {
   /* Keyboard-only focus. Never removed, never zeroed. */
+  /* Zero-class checkboxes, radios and ranges paint in the platform blue.
+     wx-check and wx-radio already settle this per component; a Markdown task
+     list or a raw form should not have to opt in. */
+  :root { accent-color: var(--color-accent); }
+
   :focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
@@ -51,7 +56,12 @@
      colors there: system colors preserve the user's contrast contract. */
   @media (forced-colors: active) {
     :root { forced-color-adjust: auto; }
-    :focus-visible { outline-color: Highlight; }
+    /* Zero-class checkboxes, radios and ranges paint in the platform blue.
+     wx-check and wx-radio already settle this per component; a Markdown task
+     list or a raw form should not have to opt in. */
+  :root { accent-color: var(--color-accent); }
+
+  :focus-visible { outline-color: Highlight; }
     a { color: LinkText; text-decoration: underline; }
     .wx-btn, .wx-input, .wx-select, .wx-number, .wx-search input,
     .wx-upload, .wx-dropdown__item, .wx-pagination__link {

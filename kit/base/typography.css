@@ -83,7 +83,47 @@
   strong, b { font-weight: 600; color: var(--color-text-heading); }
 
   /* Italic is discouraged for CJK emphasis (G2) — fall back to weight. */
-  :lang(zh) em { font-style: normal; font-weight: 600; }
+  /* Chinese has no true italic. The browser synthesises an oblique that reads
+     as a rendering fault, so every element whose default is italic gets the
+     same treatment — this rule used to cover em alone, and i / cite / dfn /
+     var / address trigger exactly the same defect. */
+  :lang(zh) :is(em, i, cite, dfn, var) { font-style: normal; font-weight: 600; }
+  address { font-style: normal; }
+
+  /* ---- The rest of the inline family ---------------------------------- */
+
+  /* The browser default is #ff0. Nothing else on the page is that saturated. */
+  mark {
+    padding-inline: 0.15em;
+    background: var(--color-accent-subtle);
+    color: var(--color-text-primary);
+  }
+
+  s, del { text-decoration-line: line-through; text-decoration-thickness: from-font; }
+  ins { text-decoration: underline; text-decoration-color: var(--color-success); }
+  /* <u> is discouraged precisely because it imitates a link; the docs say so
+     rather than the CSS pretending otherwise with a decorative substitute. */
+  u { text-decoration: underline; }
+
+  /* Superscripts must not open the line they sit in. */
+  sub, sup { font-size: 0.75em; line-height: 0; position: relative; vertical-align: baseline; }
+  sup { inset-block-start: -0.5em; }
+  sub { inset-block-start: 0.25em; }
+
+  /* A title is hover-only, so touch readers never see it. The dotted rule at
+     least marks that something is there to look up. */
+  abbr[title] { text-decoration: underline dotted; text-underline-offset: 0.18em; cursor: help; }
+
+  /* The browser picks quotes from lang; Chinese wants corner brackets, and the
+     nested pair differs from the Latin one. */
+  q { quotes: "\201C" "\201D" "\2018" "\2019"; }
+  :lang(zh) q { quotes: "\300C" "\300D" "\300E" "\300F"; }
+
+  /* Ruby carries pinyin and zhuyin — a Chinese-first system cannot leave it
+     at the browser default. */
+  ruby { ruby-position: over; }
+  rt { font-size: 0.5em; color: var(--color-text-secondary); }
+  rp { display: none; }
 
   small { font-size: var(--text-sm); color: var(--color-text-secondary); }
 
@@ -114,4 +154,18 @@
     background: var(--color-accent-subtle);
     color: var(--color-text-heading);
   }
+
+  /* ---- Bare tables ----------------------------------------------------- */
+  /* Zero-class markup still has to be readable: this is the same shape
+     .wx-md table draws, so a renderer's <table> and a hand-written one do not
+     disagree. wx-table adds density and alignment on top. */
+  th, td { padding: var(--space-3); padding-inline-start: 0; text-align: start; vertical-align: baseline; }
+  thead th { font-weight: 600; color: var(--color-text-heading); border-block-end: var(--stroke-hairline) solid var(--color-border-strong); }
+  tbody td, tbody th { border-block-end: var(--stroke-hairline) solid var(--color-border-subtle); }
+  tfoot td, tfoot th { border-block-start: var(--stroke-hairline) solid var(--color-border-strong); font-weight: 600; }
+  caption { margin-block-end: var(--space-3); color: var(--color-text-secondary); text-align: start; }
+
+  /* ---- Disclosure ------------------------------------------------------ */
+  summary { cursor: pointer; }
+  summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 }

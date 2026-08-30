@@ -4,9 +4,17 @@
    A <progress> with no value renders as a plain rule and the surrounding
    text is expected to say what is happening ("正在导出…"). That is a
    deliberate constraint: an indeterminate bar communicates nothing a
-   sentence cannot, and it moves forever, which the motion spec forbids. */
+   sentence cannot, and it moves forever, which the motion spec forbids.
+
+   The bare elements are matched alongside the classes. <progress> and <meter>
+   paint themselves in the platform accent — a blue and a green belonging to no
+   palette here — and correcting that needs the vendor pseudo-elements. Putting
+   the bare selectors in base/ would mean a second copy of that knowledge, so
+   the one file that knows ::-webkit-progress-value owns both. */
 @layer wx.components {
+  progress,
   .wx-progress,
+  meter,
   .wx-meter {
     inline-size: 100%;
     block-size: var(--stroke-mark);
@@ -16,23 +24,34 @@
   }
 
   /* Firefox */
+  progress,
   .wx-progress { color: var(--color-text-primary); }
+  progress::-moz-progress-bar,
   .wx-progress::-moz-progress-bar { background: var(--color-text-primary); }
+  meter::-moz-meter-bar,
   .wx-meter::-moz-meter-bar { background: var(--color-text-primary); }
 
   /* WebKit / Blink */
+  progress::-webkit-progress-bar,
   .wx-progress::-webkit-progress-bar { background: var(--color-border-subtle); }
+  progress::-webkit-progress-value,
   .wx-progress::-webkit-progress-value { background: var(--color-text-primary); }
+  meter::-webkit-meter-bar,
   .wx-meter::-webkit-meter-bar {
     background: var(--color-border-subtle);
     border: 0;
   }
+  meter::-webkit-meter-optimum-value,
   .wx-meter::-webkit-meter-optimum-value { background: var(--color-text-primary); }
+  meter::-webkit-meter-suboptimum-value,
   .wx-meter::-webkit-meter-suboptimum-value { background: var(--color-warning); }
+  meter::-webkit-meter-even-less-good-value,
   .wx-meter::-webkit-meter-even-less-good-value { background: var(--color-danger); }
 
   /* Indeterminate: hold still and say so in words. */
+  progress:not([value]),
   .wx-progress:not([value]) { background: var(--color-border-subtle); }
+  progress:not([value])::-webkit-progress-value,
   .wx-progress:not([value])::-webkit-progress-value { background: transparent; }
 
   /* The label row is the component — the bar alone is not accessible output. */

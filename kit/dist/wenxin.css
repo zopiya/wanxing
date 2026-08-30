@@ -332,6 +332,16 @@
     height: auto;
   }
 
+  /* Embedded frames and players have intrinsic sizes that ignore their column
+     and push the page sideways. They need the same ceiling as an image. */
+  iframe, audio, embed, object { max-width: 100%; }
+  audio { width: 100%; }
+
+  /* <fieldset>'s default is a 2px groove — a forbidden.md violation the
+     browser ships. The group is drawn by wx-form, not by the element. */
+  fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+  legend { padding: 0; }
+
   input, button, textarea, select { font: inherit; color: inherit; }
 
   button { background: none; border: 0; }
@@ -427,7 +437,47 @@
   strong, b { font-weight: 600; color: var(--color-text-heading); }
 
   /* Italic is discouraged for CJK emphasis (G2) — fall back to weight. */
-  :lang(zh) em { font-style: normal; font-weight: 600; }
+  /* Chinese has no true italic. The browser synthesises an oblique that reads
+     as a rendering fault, so every element whose default is italic gets the
+     same treatment — this rule used to cover em alone, and i / cite / dfn /
+     var / address trigger exactly the same defect. */
+  :lang(zh) :is(em, i, cite, dfn, var) { font-style: normal; font-weight: 600; }
+  address { font-style: normal; }
+
+  /* ---- The rest of the inline family ---------------------------------- */
+
+  /* The browser default is #ff0. Nothing else on the page is that saturated. */
+  mark {
+    padding-inline: 0.15em;
+    background: var(--color-accent-subtle);
+    color: var(--color-text-primary);
+  }
+
+  s, del { text-decoration-line: line-through; text-decoration-thickness: from-font; }
+  ins { text-decoration: underline; text-decoration-color: var(--color-success); }
+  /* <u> is discouraged precisely because it imitates a link; the docs say so
+     rather than the CSS pretending otherwise with a decorative substitute. */
+  u { text-decoration: underline; }
+
+  /* Superscripts must not open the line they sit in. */
+  sub, sup { font-size: 0.75em; line-height: 0; position: relative; vertical-align: baseline; }
+  sup { inset-block-start: -0.5em; }
+  sub { inset-block-start: 0.25em; }
+
+  /* A title is hover-only, so touch readers never see it. The dotted rule at
+     least marks that something is there to look up. */
+  abbr[title] { text-decoration: underline dotted; text-underline-offset: 0.18em; cursor: help; }
+
+  /* The browser picks quotes from lang; Chinese wants corner brackets, and the
+     nested pair differs from the Latin one. */
+  q { quotes: "\201C" "\201D" "\2018" "\2019"; }
+  :lang(zh) q { quotes: "\300C" "\300D" "\300E" "\300F"; }
+
+  /* Ruby carries pinyin and zhuyin — a Chinese-first system cannot leave it
+     at the browser default. */
+  ruby { ruby-position: over; }
+  rt { font-size: 0.5em; color: var(--color-text-secondary); }
+  rp { display: none; }
 
   small { font-size: var(--text-sm); color: var(--color-text-secondary); }
 
@@ -458,12 +508,31 @@
     background: var(--color-accent-subtle);
     color: var(--color-text-heading);
   }
+
+  /* ---- Bare tables ----------------------------------------------------- */
+  /* Zero-class markup still has to be readable: this is the same shape
+     .wx-md table draws, so a renderer's <table> and a hand-written one do not
+     disagree. wx-table adds density and alignment on top. */
+  th, td { padding: var(--space-3); padding-inline-start: 0; text-align: start; vertical-align: baseline; }
+  thead th { font-weight: 600; color: var(--color-text-heading); border-block-end: var(--stroke-hairline) solid var(--color-border-strong); }
+  tbody td, tbody th { border-block-end: var(--stroke-hairline) solid var(--color-border-subtle); }
+  tfoot td, tfoot th { border-block-start: var(--stroke-hairline) solid var(--color-border-strong); font-weight: 600; }
+  caption { margin-block-end: var(--space-3); color: var(--color-text-secondary); text-align: start; }
+
+  /* ---- Disclosure ------------------------------------------------------ */
+  summary { cursor: pointer; }
+  summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 }
 /* source: kit/base/a11y.css */
 /* The accessibility floor — layer one of the two-track rule. Unconditional in
    every form and both tracks. Nothing here is a stylistic preference. */
 @layer wx.base {
   /* Keyboard-only focus. Never removed, never zeroed. */
+  /* Zero-class checkboxes, radios and ranges paint in the platform blue.
+     wx-check and wx-radio already settle this per component; a Markdown task
+     list or a raw form should not have to opt in. */
+  :root { accent-color: var(--color-accent); }
+
   :focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
@@ -513,7 +582,12 @@
      colors there: system colors preserve the user's contrast contract. */
   @media (forced-colors: active) {
     :root { forced-color-adjust: auto; }
-    :focus-visible { outline-color: Highlight; }
+    /* Zero-class checkboxes, radios and ranges paint in the platform blue.
+     wx-check and wx-radio already settle this per component; a Markdown task
+     list or a raw form should not have to opt in. */
+  :root { accent-color: var(--color-accent); }
+
+  :focus-visible { outline-color: Highlight; }
     a { color: LinkText; text-decoration: underline; }
     .wx-btn, .wx-input, .wx-select, .wx-number, .wx-search input,
     .wx-upload, .wx-dropdown__item, .wx-pagination__link {
@@ -1804,9 +1878,17 @@
    A <progress> with no value renders as a plain rule and the surrounding
    text is expected to say what is happening ("正在导出…"). That is a
    deliberate constraint: an indeterminate bar communicates nothing a
-   sentence cannot, and it moves forever, which the motion spec forbids. */
+   sentence cannot, and it moves forever, which the motion spec forbids.
+
+   The bare elements are matched alongside the classes. <progress> and <meter>
+   paint themselves in the platform accent — a blue and a green belonging to no
+   palette here — and correcting that needs the vendor pseudo-elements. Putting
+   the bare selectors in base/ would mean a second copy of that knowledge, so
+   the one file that knows ::-webkit-progress-value owns both. */
 @layer wx.components {
+  progress,
   .wx-progress,
+  meter,
   .wx-meter {
     inline-size: 100%;
     block-size: var(--stroke-mark);
@@ -1816,23 +1898,34 @@
   }
 
   /* Firefox */
+  progress,
   .wx-progress { color: var(--color-text-primary); }
+  progress::-moz-progress-bar,
   .wx-progress::-moz-progress-bar { background: var(--color-text-primary); }
+  meter::-moz-meter-bar,
   .wx-meter::-moz-meter-bar { background: var(--color-text-primary); }
 
   /* WebKit / Blink */
+  progress::-webkit-progress-bar,
   .wx-progress::-webkit-progress-bar { background: var(--color-border-subtle); }
+  progress::-webkit-progress-value,
   .wx-progress::-webkit-progress-value { background: var(--color-text-primary); }
+  meter::-webkit-meter-bar,
   .wx-meter::-webkit-meter-bar {
     background: var(--color-border-subtle);
     border: 0;
   }
+  meter::-webkit-meter-optimum-value,
   .wx-meter::-webkit-meter-optimum-value { background: var(--color-text-primary); }
+  meter::-webkit-meter-suboptimum-value,
   .wx-meter::-webkit-meter-suboptimum-value { background: var(--color-warning); }
+  meter::-webkit-meter-even-less-good-value,
   .wx-meter::-webkit-meter-even-less-good-value { background: var(--color-danger); }
 
   /* Indeterminate: hold still and say so in words. */
+  progress:not([value]),
   .wx-progress:not([value]) { background: var(--color-border-subtle); }
+  progress:not([value])::-webkit-progress-value,
   .wx-progress:not([value])::-webkit-progress-value { background: transparent; }
 
   /* The label row is the component — the bar alone is not accessible output. */
