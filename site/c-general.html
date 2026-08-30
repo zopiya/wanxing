@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>通用 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=5">
+<link rel="stylesheet" href="./assets/site.css?v=6">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -19,6 +19,8 @@
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./components.html" aria-current="page">组件</a>
+    <a href="./markdown.html">Markdown</a>
+    <a href="./logo.html">Logo</a>
   </nav>
   <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
           data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
@@ -40,6 +42,7 @@
       <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
       <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
       <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+      <li><a class="wx-menu__link" href="./logo.html">Logo 设计规范</a></li>
     <li class="wx-menu__group">设计模式 · Patterns</li>
       <li><a class="wx-menu__link" href="./media.html">媒介适配</a></li>
       <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
@@ -58,6 +61,7 @@
       <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
     <li class="wx-menu__group">开发支持 · Development</li>
       <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
+      <li><a class="wx-menu__link" href="./markdown.html">Markdown 渲染</a></li>
     </ul>
   </nav>
 
@@ -78,11 +82,33 @@
 <h2 id="identity">头像、按键与标记</h2>
 <div class="doc-figure"><div class="wx-cluster"><span class="wx-avatar wx-avatar--sm">仲</span><span class="wx-avatar">平</span><span class="wx-avatar wx-avatar--round">文</span><span class="wx-avatar wx-avatar--lg">心</span></div><p>按 <kbd class="wx-kbd">Cmd</kbd> + <kbd class="wx-kbd">K</kbd> 打开搜索；<span class="wx-seal" aria-hidden="true"></span> 是装饰性品牌标记。</p></div>
 
+<h2 id="command">分段与工具栏</h2>
+<p>分段只在少量互斥视图之间切换；工具栏只承载作用于当前内容的紧凑命令。两者都不用作页面主导航。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <div class="wx-segmented" role="radiogroup" aria-label="内容视图">
+    <button class="wx-segmented__option" type="button" role="radio" aria-checked="true">列表</button>
+    <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">网格</button>
+  </div>
+  <div class="wx-toolbar" role="toolbar" aria-label="文章操作" style="margin-block-start:var(--space-6)">
+    <div class="wx-toolbar__group"><button class="wx-btn" type="button">编辑</button><button class="wx-btn" type="button">归档</button></div>
+    <span class="wx-toolbar__spacer"></span><button class="wx-btn wx-btn--text" type="button">更多</button>
+  </div>
+</div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-segmented" role="radiogroup" aria-label="内容视图"&gt;
+  &lt;button class="wx-segmented__option" type="button" role="radio" aria-checked="true"&gt;列表&lt;/button&gt;
+  &lt;button class="wx-segmented__option" type="button" role="radio" aria-checked="false"&gt;网格&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="wx-toolbar" role="toolbar" aria-label="文章操作" style="margin-block-start:var(--space-6)"&gt;
+  &lt;div class="wx-toolbar__group"&gt;&lt;button class="wx-btn" type="button"&gt;编辑&lt;/button&gt;&lt;button class="wx-btn" type="button"&gt;归档&lt;/button&gt;&lt;/div&gt;
+  &lt;span class="wx-toolbar__spacer"&gt;&lt;/span&gt;&lt;button class="wx-btn wx-btn--text" type="button"&gt;更多&lt;/button&gt;
+&lt;/div&gt;</code></pre></details></div>
+
 <h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约</th></tr></thead><tbody>
 <tr><td><code>wx-btn</code></td><td>触发动作；导航目的地用 <code>a</code>。</td><td>原生 button；唯一主操作可用 <code>--primary</code>；危险动作仍需确认文案。</td></tr>
 <tr><td><code>wx-tag / wx-badge / wx-status</code></td><td>短属性、计数、具名状态；长说明改用 note。</td><td>状态必须有文字；可点击时用 button/link，不用 span。</td></tr>
 <tr><td><code>wx-avatar / wx-kbd / wx-seal</code></td><td>人员标识、键盘提示、品牌印记；装饰内容不喧宾夺主。</td><td>信息头像提供 alt/文本；纯装饰 seal 加 <code>aria-hidden</code>。</td></tr>
+<tr><td><code>wx-segmented / wx-toolbar</code></td><td>少量互斥视图、上下文命令；不要替代页面导航或堆满所有动作。</td><td>segmented 用 <code>radiogroup</code> 或 <code>tablist</code>；toolbar 要有可访问名，采用者负责键盘模型。</td></tr>
 </tbody></table></div>
 
     </article>
@@ -94,6 +120,7 @@
       <li><a class="wx-anchor__link" href="#button">按钮</a></li>
       <li><a class="wx-anchor__link" href="#status">标签、计数与状态</a></li>
       <li><a class="wx-anchor__link" href="#identity">头像、按键与标记</a></li>
+      <li><a class="wx-anchor__link" href="#command">分段与工具栏</a></li>
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
   </ul>
 </nav></div>

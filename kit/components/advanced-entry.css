@@ -1,0 +1,34 @@
+/* Native-first advanced entry. These components deliberately use the browser's
+   own picker and datalist behaviour: a component library must not replace
+   mature platform interactions with a decorative imitation. */
+@layer wx.components {
+  .wx-input.wx-autocomplete,
+  .wx-input.wx-date-picker,
+  .wx-input.wx-time-picker {
+    cursor: text;
+  }
+  .wx-input.wx-date-picker,
+  .wx-input.wx-time-picker { font-variant-numeric: tabular-nums; }
+
+  /* Popconfirm is a decision, not a modal: native details keeps the trigger
+     keyboard-operable and gives Escape-to-close without a runtime dependency. */
+  .wx-popconfirm { position: relative; display: inline-block; }
+  .wx-popconfirm > summary { display: inline-flex; cursor: pointer; list-style: none; }
+  .wx-popconfirm > summary::-webkit-details-marker { display: none; }
+  .wx-popconfirm__panel {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-2));
+    inset-inline-start: 0;
+    z-index: 40;
+    inline-size: max-content;
+    max-inline-size: 20rem;
+    padding: var(--space-4) var(--space-5);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-pure);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-align: start;
+  }
+  .wx-popconfirm__panel > :last-child { margin-block-end: 0; }
+}

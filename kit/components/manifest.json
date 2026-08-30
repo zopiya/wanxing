@@ -1,45 +1,85 @@
 [
   { "family": "通用", "slug": "c-general", "items": [
     { "name": "Button", "classes": ["wx-btn"], "base": "button；导航目的用 a", "state": "disabled", "behaviour": "无" },
-    { "name": "Tag / Badge / Status", "classes": ["wx-tag", "wx-badge", "wx-status"], "base": "span；可操作时改用 button/a", "state": "文字优先，不只靠颜色", "behaviour": "无" },
-    { "name": "Avatar / Seal / Kbd", "classes": ["wx-avatar", "wx-seal", "wx-kbd"], "base": "img/span/kbd", "state": "装饰 seal 用 aria-hidden", "behaviour": "无" }
+    { "name": "Tag", "classes": ["wx-tag"], "base": "span；可操作时改用 button/a", "state": "文字优先，不只靠颜色", "behaviour": "无" },
+    { "name": "Badge", "classes": ["wx-badge"], "base": "span", "state": "短计数或提醒", "behaviour": "无" },
+    { "name": "Status", "classes": ["wx-status"], "base": "span", "state": "必须同时有状态文字", "behaviour": "无" },
+    { "name": "Avatar", "classes": ["wx-avatar"], "base": "img 或文字 span", "state": "信息头像必须有替代文本", "behaviour": "无" },
+    { "name": "Seal", "classes": ["wx-seal"], "base": "span", "state": "装饰时 aria-hidden", "behaviour": "仅品牌呼吸动效" },
+    { "name": "Keyboard", "classes": ["wx-kbd"], "base": "kbd", "state": "文字化键名", "behaviour": "无" },
+    { "name": "Segmented", "classes": ["wx-segmented"], "base": "radiogroup 或 tablist", "state": "aria-checked / aria-selected", "behaviour": "采用者更新选中项" },
+    { "name": "Toolbar", "classes": ["wx-toolbar"], "base": "div role=toolbar", "state": "可用按钮状态", "behaviour": "采用者实现箭头键模型" }
   ]},
   { "family": "布局", "slug": "c-layout", "items": [
-    { "name": "Page / Container / Measure", "classes": ["wx-page", "wx-container", "wx-measure"], "base": "页面、main、article", "state": "无", "behaviour": "无" },
-    { "name": "Stack / Cluster / Spread / Cols", "classes": ["wx-stack", "wx-cluster", "wx-spread", "wx-cols"], "base": "任意语义容器", "state": "无", "behaviour": "无" },
-    { "name": "Rule", "classes": ["wx-rule"], "base": "hr", "state": "无", "behaviour": "无" }
+    { "name": "Page", "classes": ["wx-page"], "base": "body 或页面根", "state": "无", "behaviour": "无" },
+    { "name": "Container", "classes": ["wx-container"], "base": "main / article / section", "state": "无", "behaviour": "无" },
+    { "name": "Measure", "classes": ["wx-measure"], "base": "正文容器", "state": "无", "behaviour": "无" },
+    { "name": "Stack", "classes": ["wx-stack"], "base": "任意语义容器", "state": "节奏变体", "behaviour": "无" },
+    { "name": "Cluster", "classes": ["wx-cluster"], "base": "任意语义容器", "state": "节奏变体", "behaviour": "无" },
+    { "name": "Spread", "classes": ["wx-spread"], "base": "任意语义容器", "state": "无", "behaviour": "无" },
+    { "name": "Columns", "classes": ["wx-cols"], "base": "任意语义容器", "state": "列数变体", "behaviour": "无" },
+    { "name": "Rule", "classes": ["wx-rule"], "base": "hr", "state": "strong / short 变体", "behaviour": "无" }
   ]},
   { "family": "导航", "slug": "c-navigation", "items": [
-    { "name": "Nav / Crumbs / Pager", "classes": ["wx-nav", "wx-crumbs", "wx-pager"], "base": "nav + list/link", "state": "aria-current", "behaviour": "无" },
-    { "name": "Menu / Dropdown", "classes": ["wx-menu", "wx-dropdown"], "base": "ul；dropdown 用 details/summary", "state": "aria-disabled / open", "behaviour": "无" },
-    { "name": "Sidebar", "classes": ["wx-sidebar"], "base": "aside 或 nav", "state": "data-open + aria-expanded", "behaviour": "disclosure.js" },
-    { "name": "TOC / Anchor / Affix", "classes": ["wx-toc", "wx-anchor", "wx-affix"], "base": "nav + list", "state": "aria-current", "behaviour": "toc.js" },
+    { "name": "Navigation", "classes": ["wx-nav"], "base": "nav", "state": "aria-current", "behaviour": "无" },
+    { "name": "Breadcrumb", "classes": ["wx-crumbs"], "base": "nav + ol", "state": "当前位置不可链接", "behaviour": "无" },
+    { "name": "Pager", "classes": ["wx-pager"], "base": "nav", "state": "上一页 / 下一页文字化", "behaviour": "无" },
+    { "name": "Menu", "classes": ["wx-menu"], "base": "ul", "state": "aria-current / aria-disabled", "behaviour": "无" },
+    { "name": "Dropdown", "classes": ["wx-dropdown"], "base": "details / summary", "state": "open", "behaviour": "原生开合" },
+    { "name": "Sidebar", "classes": ["wx-sidebar"], "base": "aside 或 nav", "state": "data-open / aria-expanded", "behaviour": "disclosure.js" },
+    { "name": "Table of Contents", "classes": ["wx-toc"], "base": "nav + list", "state": "aria-current", "behaviour": "toc.js" },
+    { "name": "Anchor", "classes": ["wx-anchor"], "base": "nav + list", "state": "aria-current", "behaviour": "toc.js" },
+    { "name": "Affix", "classes": ["wx-affix"], "base": "语义导航容器", "state": "无", "behaviour": "CSS sticky" },
     { "name": "Pagination", "classes": ["wx-pagination"], "base": "nav + ul", "state": "aria-current=page / aria-disabled", "behaviour": "无" },
     { "name": "Tabs", "classes": ["wx-tabs"], "base": "tablist / tab / tabpanel", "state": "aria-selected / aria-controls", "behaviour": "tabs.js" },
-    { "name": "Steps / Skip", "classes": ["wx-steps", "wx-skip"], "base": "ol；跳过链接用 a", "state": "aria-current=step", "behaviour": "无" }
+    { "name": "Steps", "classes": ["wx-steps"], "base": "ol", "state": "aria-current=step", "behaviour": "无" },
+    { "name": "Skip Link", "classes": ["wx-skip"], "base": "a", "state": "焦点可见", "behaviour": "无" }
   ]},
   { "family": "数据录入", "slug": "c-entry", "items": [
-    { "name": "Form / Field", "classes": ["wx-form", "wx-field"], "base": "form / fieldset / label", "state": "aria-invalid / aria-describedby", "behaviour": "无" },
-    { "name": "Input / Select / Number", "classes": ["wx-input", "wx-select", "wx-number"], "base": "input / select", "state": "原生 required, disabled, invalid", "behaviour": "无" },
-    { "name": "Check / Radio", "classes": ["wx-check", "wx-radio"], "base": "label + 原生 input", "state": "checked", "behaviour": "无" },
+    { "name": "Form", "classes": ["wx-form"], "base": "form", "state": "提交 / 错误汇总", "behaviour": "采用者处理提交" },
+    { "name": "Field", "classes": ["wx-field"], "base": "label + control", "state": "aria-invalid / aria-describedby", "behaviour": "无" },
+    { "name": "Input", "classes": ["wx-input"], "base": "input / textarea", "state": "required / disabled / invalid", "behaviour": "无" },
+    { "name": "Select", "classes": ["wx-select"], "base": "select", "state": "required / disabled / invalid", "behaviour": "无" },
+    { "name": "Number Input", "classes": ["wx-number"], "base": "input type=number", "state": "min / max / step", "behaviour": "无" },
+    { "name": "Checkbox", "classes": ["wx-check"], "base": "label + input type=checkbox", "state": "checked / disabled", "behaviour": "无" },
+    { "name": "Radio", "classes": ["wx-radio"], "base": "label + input type=radio", "state": "checked / disabled", "behaviour": "无" },
     { "name": "Switch", "classes": ["wx-switch"], "base": "button role=switch", "state": "aria-checked", "behaviour": "采用者更新状态" },
-    { "name": "Slider / Rate", "classes": ["wx-slider", "wx-rate"], "base": "range / radio group", "state": "可访问名与可读数值", "behaviour": "采用者更新值" },
-    { "name": "Upload / Search", "classes": ["wx-upload", "wx-search"], "base": "label + file input / search input", "state": "关联 label", "behaviour": "采用者处理文件/查询" }
+    { "name": "Slider", "classes": ["wx-slider"], "base": "input type=range", "state": "可访问名与数值", "behaviour": "无" },
+    { "name": "Rate", "classes": ["wx-rate"], "base": "radio group", "state": "可访问名与选中项", "behaviour": "采用者更新状态" },
+    { "name": "Upload", "classes": ["wx-upload"], "base": "label + input type=file", "state": "关联 label", "behaviour": "采用者处理文件" },
+    { "name": "Search", "classes": ["wx-search"], "base": "input type=search", "state": "关联 label", "behaviour": "采用者处理查询" },
+    { "name": "Autocomplete", "classes": ["wx-autocomplete"], "base": "input + datalist", "state": "label / list", "behaviour": "原生建议列表" },
+    { "name": "Date Picker", "classes": ["wx-date-picker"], "base": "input type=date", "state": "min / max / required", "behaviour": "原生日期选择器" },
+    { "name": "Time Picker", "classes": ["wx-time-picker"], "base": "input type=time", "state": "min / max / required", "behaviour": "原生时间选择器" }
   ]},
   { "family": "数据展示", "slug": "c-display", "items": [
-    { "name": "Entry / List / Desc", "classes": ["wx-entry", "wx-list", "wx-desc"], "base": "article / ul|ol / dl", "state": "原生语义", "behaviour": "无" },
-    { "name": "Table / Stat", "classes": ["wx-table", "wx-stat"], "base": "table + caption / 语义文本", "state": "数字用 tabular-nums", "behaviour": "无" },
-    { "name": "Timeline / Tree / Collapse", "classes": ["wx-timeline", "wx-tree", "wx-collapse"], "base": "ol / ul+details / details", "state": "open / aria-current", "behaviour": "无" },
-    { "name": "Figure / Image / Gallery", "classes": ["wx-figure", "wx-image", "wx-gallery"], "base": "figure+figcaption / img / labelled region", "state": "有意义图像必须有 alt", "behaviour": "无" },
+    { "name": "Entry", "classes": ["wx-entry"], "base": "article", "state": "原生语义", "behaviour": "无" },
+    { "name": "List", "classes": ["wx-list"], "base": "ul / ol", "state": "原生语义", "behaviour": "无" },
+    { "name": "Descriptions", "classes": ["wx-desc"], "base": "dl", "state": "原生语义", "behaviour": "无" },
+    { "name": "Table", "classes": ["wx-table"], "base": "table + caption", "state": "列标题 / scope", "behaviour": "无" },
+    { "name": "Statistic", "classes": ["wx-stat"], "base": "语义文本", "state": "tabular-nums", "behaviour": "无" },
+    { "name": "Timeline", "classes": ["wx-timeline"], "base": "ol", "state": "原生语义", "behaviour": "无" },
+    { "name": "Tree", "classes": ["wx-tree"], "base": "ul + details", "state": "open / aria-current", "behaviour": "原生开合" },
+    { "name": "Collapse", "classes": ["wx-collapse"], "base": "details", "state": "open", "behaviour": "原生开合" },
+    { "name": "Figure", "classes": ["wx-figure"], "base": "figure + figcaption", "state": "图像必须有替代文本", "behaviour": "无" },
+    { "name": "Image", "classes": ["wx-image"], "base": "img", "state": "有意义图像必须有 alt", "behaviour": "无" },
+    { "name": "Gallery", "classes": ["wx-gallery"], "base": "labelled region", "state": "图片 alt", "behaviour": "无" },
     { "name": "Calendar", "classes": ["wx-calendar"], "base": "table + caption", "state": "aria-current / aria-selected", "behaviour": "采用者管理日期" },
-    { "name": "Quote / Code", "classes": ["wx-quote", "wx-code"], "base": "blockquote / pre+code", "state": "引用可归属", "behaviour": "copy.js（可选）" }
+    { "name": "Quote", "classes": ["wx-quote"], "base": "blockquote", "state": "引用可归属", "behaviour": "无" },
+    { "name": "Code", "classes": ["wx-code"], "base": "pre + code", "state": "代码语言可标注", "behaviour": "copy.js（可选）" }
   ]},
   { "family": "反馈与浮层", "slug": "c-feedback", "items": [
-    { "name": "Note / Alert", "classes": ["wx-note", "wx-alert"], "base": "section/div + 文字标签", "state": "语义色与文字同时出现", "behaviour": "无" },
+    { "name": "Note", "classes": ["wx-note"], "base": "section / div", "state": "语义色与文字同时出现", "behaviour": "无" },
+    { "name": "Alert", "classes": ["wx-alert"], "base": "section / div", "state": "状态标题与恢复路径", "behaviour": "无" },
     { "name": "Toast", "classes": ["wx-toast"], "base": "稳定 aria-live region", "state": "polite / atomic", "behaviour": "overlay.js 的 wxToast()" },
-    { "name": "Progress / Meter", "classes": ["wx-progress", "wx-meter"], "base": "progress / meter", "state": "可访问名；未知进度不用 spinner", "behaviour": "采用者更新值" },
-    { "name": "Empty / Result", "classes": ["wx-empty", "wx-result"], "base": "section", "state": "状态标题与下一步文字化", "behaviour": "无" },
-    { "name": "Modal / Drawer", "classes": ["wx-modal", "wx-drawer"], "base": "dialog", "state": "aria-labelledby", "behaviour": "overlay.js" },
-    { "name": "Tooltip / Popover", "classes": ["wx-tooltip", "wx-popover"], "base": "role=tooltip / details", "state": "aria-describedby / open", "behaviour": "无" }
+    { "name": "Progress", "classes": ["wx-progress"], "base": "progress", "state": "可访问名与值", "behaviour": "采用者更新值" },
+    { "name": "Meter", "classes": ["wx-meter"], "base": "meter", "state": "可访问名与值", "behaviour": "采用者更新值" },
+    { "name": "Empty", "classes": ["wx-empty"], "base": "section", "state": "状态标题与下一步", "behaviour": "无" },
+    { "name": "Result", "classes": ["wx-result"], "base": "section", "state": "状态标题与下一步", "behaviour": "无" },
+    { "name": "Modal", "classes": ["wx-modal"], "base": "dialog", "state": "aria-labelledby", "behaviour": "overlay.js" },
+    { "name": "Drawer", "classes": ["wx-drawer"], "base": "dialog", "state": "aria-labelledby", "behaviour": "overlay.js" },
+    { "name": "Tooltip", "classes": ["wx-tooltip"], "base": "role=tooltip", "state": "aria-describedby", "behaviour": "无" },
+    { "name": "Popover", "classes": ["wx-popover"], "base": "details", "state": "open", "behaviour": "原生开合" },
+    { "name": "Popconfirm", "classes": ["wx-popconfirm"], "base": "details", "state": "open", "behaviour": "原生开合；采用者执行确认动作" }
   ]}
 ]

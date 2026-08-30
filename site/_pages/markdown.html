@@ -1,0 +1,29 @@
+<h1>Markdown 渲染</h1>
+<p class="wx-lede">作者只写 Markdown；渲染层负责把标准 HTML 放进文心的排版、代码、表格与提示节奏中。</p>
+
+<h2 id="preview">渲染预览</h2>
+<article class="wx-md wx-md--measured" lang="zh-CN">
+  <h2>一段可以直接阅读的内容 <a class="heading-anchor" href="#preview" aria-label="链接到渲染预览">#</a></h2>
+  <p>普通段落不需要 class。行内 <code>code</code>、<a href="#contract">链接</a> 和<strong>强调</strong>都保持正文节奏。</p>
+  <ul><li>列表保留语义和缩进。</li><li>任务状态用原生 checkbox 表达：<ul><li class="task-list-item"><input type="checkbox" checked disabled aria-label="内容完成"> 内容完成</li></ul></li></ul>
+  <blockquote><p>Markdown 是内容格式；设计系统不应该要求作者知道组件 class。</p></blockquote>
+  <pre><code class="language-html">&lt;article class="wx-md wx-md--measured"&gt;
+  &lt;!-- renderer output --&gt;
+&lt;/article&gt;</code></pre>
+  <div class="table-scroll"><table><thead><tr><th>输入</th><th>输出</th></tr></thead><tbody><tr><td><code>## 标题</code></td><td>带节奏与锚点的 h2</td></tr><tr><td><code>&gt; 引用</code></td><td>语义 blockquote</td></tr></tbody></table></div>
+  <aside class="admonition tip"><span class="admonition-title">建议</span><p>保留渲染器原有 HTML；只在文章外层添加 <code>wx-md</code>。</p></aside>
+</article>
+
+<h2 id="contract">接入契约</h2>
+<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>层</th><th>负责什么</th><th>不负责什么</th></tr></thead><tbody>
+<tr><td>作者</td><td>写标准 Markdown 和有意义的 alt 文本。</td><td>不写视觉 class，不复制组件结构。</td></tr>
+<tr><td>渲染器</td><td>生成标准 HTML、标题 id、图片与表格语义。</td><td>不伪造图注、链接目的或内容状态。</td></tr>
+<tr><td>文心样式</td><td>提供 <code>.wx-md</code>、代码、表格、脚注、任务列表和提示块的呈现。</td><td>不改变正文语义，也不覆盖真正组件的 class。</td></tr>
+</tbody></table></div>
+
+<h2 id="use">最短用法</h2>
+<pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="kit/index.css"&gt;
+&lt;article class="wx-md wx-md--measured"&gt;
+  &lt;!-- Markdown renderer output --&gt;
+&lt;/article&gt;</code></pre>
+<p>Hugo、remark/rehype、markdown-it、VitePress 和 Docusaurus 都可以接入；区别只在渲染器如何产出锚点和提示块，样式层不绑定某一种工具。</p>

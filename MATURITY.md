@@ -21,9 +21,9 @@
 
 | 维度 | 现状 | 完工后 | 判断依据与复现命令 |
 | --- | --- | ---: | --- |
-| 单组件文档深度 | 六个类别页加入场景标记、选择边界和 API/ARIA/脚本表；组件清单覆盖 6 个职责族、31 条公开契约。 | 66% | `npm run check:components && npm run build:site`；仍非“一组件一页”，且部分小型修饰符共享类别契约。 |
+| 单组件文档深度 | 六个类别页加入场景标记、选择边界和 API/ARIA/脚本表；组件清单覆盖 6 个职责族、71 条可单独采用的公开契约。 | 70% | `npm run check:components && npm run build:site`；类别页仍是入口，复杂企业控件不在范围内。 |
 | 组件覆盖 | 仍坚持内容、文档与轻应用边界；不为对齐数量新增组件。 | 58% | `rg -o 'wx-[a-z][a-z0-9-]*' kit/components --glob '*.css' | sort -u`；与 Ant 的 CRM/仪表盘范围不可比。 |
-| 设计语言文档 | 24 页，以落地页、独立设计入口和独立组件入口组织，并含无障碍/RTL 和定制/交换路径。 | 70% | `npm run build:site && npm run check:site`。 |
+| 设计语言文档 | 26 页，以落地页、独立设计入口、独立组件入口、Markdown 与 Logo 规范组织，并含无障碍/RTL 和定制/交换路径。 | 74% | `npm run build:site && npm run check:site`。 |
 | 主题定制 | 默认真源、覆盖边界、accent/字体/密度路径和 `dense.css` 预设明确。 | 62% | `npm run check:colors`；无 JS seed/map 算法是有意保持零依赖。 |
 | token 交换 | 额外导出 `tokens.dtcg.json`，默认值与暗色 extension 同源生成。 | 70% | `npm run build:tokens`；消费端对自定义暗色 extension 的映射仍需各工具配置。 |
 | 工程成熟度 | README、Keep a Changelog、SemVer breakage 规则，以及审计器、a11y、组件清单的正/负控制已建立。 | 70% | `npm run check`；未公开发布，尚无真实迁移指南。 |
@@ -48,6 +48,6 @@
 
 ## 自查清单
 
-- 已完成：仓库门面与版本纪律；render-audit 正/负夹具并纳入总检查；DTCG 导出；密度预设；静态 a11y 检查及负控制；组件清单与负控制；forced-colors 规则；RTL 浏览器实测；组件文档契约表与六个缺失标记；成熟度与对照表。
+- 已完成：仓库门面与版本纪律；render-audit 正/负夹具并纳入总检查；DTCG 导出；密度预设；静态 a11y 检查及负控制；组件清单与负控制；forced-colors 规则；RTL 浏览器实测；组件文档契约表、Markdown 渲染页、Logo 规范页与成熟度对照表。
 - 未完成：Windows forced-colors 实机、读屏器和完整键盘流程未能在当前 macOS 环境替代；未建立 Figma/图标生态；没有公开发布或迁移指南。
-- 判断不做：不新增组件来凑 Ant 数量；不拆成每组件一页；不引入 JS 主题算法；不开放许可或发布包。理由分别是系统范围、阅读成本、零依赖约束和未获得发布授权。
+- 判断不做：不新增复杂企业控件来凑 Ant 数量；暂不拆成每个组件一页；不引入 JS 主题算法；不开放许可或发布包。理由分别是系统范围、当前阅读成本、零依赖约束和未获得发布授权。

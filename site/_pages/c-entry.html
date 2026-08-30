@@ -31,6 +31,7 @@
 <tr><td><code>wx-slider-field / wx-slider / wx-rate</code></td><td>连续范围、可读数评分；精确输入同时给 number，不让位置成为唯一信息。</td><td>原生 <code>range</code> 有可访问名和文字值；rate 的 radio 必有 label。</td></tr>
 <tr><td><code>wx-upload / wx-upload-list</code></td><td>需要文件选择；普通附件链接不是上传区。</td><td>原生 <code>input type=file</code> 保留可点击 label；文件状态文字化。</td></tr>
 <tr><td><code>wx-search</code></td><td>站内/列表检索；短页面不放装饰性搜索。</td><td><code>input type=search</code> 有 label（可 sr-only）；查询与结果状态由采用者脚本管理。</td></tr>
+<tr><td><code>wx-autocomplete / wx-date-picker / wx-time-picker</code></td><td>有限建议、日期、时间；跨时区、复杂排期仍需专门产品方案。</td><td>分别基于 <code>datalist</code>、<code>input type=date</code>、<code>input type=time</code>；保留 label 和原生校验。</td></tr>
 </tbody></table></div>
 <p>错误态<strong>同时</strong>改变颜色、加粗边框、并给出文字说明。三重编码是第一层底线。</p>
 
@@ -49,6 +50,16 @@
     </label>
   </div>
 </div>
+
+<h2 id="native">原生增强输入</h2>
+<p>浏览器已经提供可靠的建议、日期和时间控件时，优先把它们接进统一的字段外观，而不是重造一套键盘交互。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <label class="wx-field"><span class="wx-field__label">负责人</span><input class="wx-input wx-autocomplete" list="owners" placeholder="输入或选择"><datalist id="owners"><option value="林舟"></option><option value="陈岚"></option><option value="周砚"></option></datalist></label>
+  <div class="wx-cols" style="margin-block-start:var(--space-6)">
+    <label class="wx-field"><span class="wx-field__label">发布日期</span><input class="wx-input wx-date-picker" type="date" value="2026-08-30"></label>
+    <label class="wx-field"><span class="wx-field__label">发布时间</span><input class="wx-input wx-time-picker" type="time" value="09:30"></label>
+  </div>
+</div></div>
 
 <h2 id="choice">勾选与单选</h2>
 <div class="doc-demo">

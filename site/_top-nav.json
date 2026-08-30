@@ -1,4 +1,6 @@
 [
   { "slug": "design", "title": "设计", "slugs": ["design", "values", "tracks", "color", "typography", "layout", "motion", "icons", "media", "patterns", "pattern-form", "pattern-list", "pattern-detail", "pattern-result", "viz"] },
-  { "slug": "components", "title": "组件", "slugs": ["components", "c-general", "c-layout", "c-navigation", "c-entry", "c-display", "c-feedback"] }
+  { "slug": "components", "title": "组件", "slugs": ["components", "c-general", "c-layout", "c-navigation", "c-entry", "c-display", "c-feedback"] },
+  { "slug": "markdown", "title": "Markdown", "slugs": ["markdown"] },
+  { "slug": "logo", "title": "Logo", "slugs": ["logo"] }
 ]

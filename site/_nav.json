@@ -9,7 +9,8 @@
     { "slug": "typography",  "title": "字体排版" },
     { "slug": "layout",      "title": "布局与间距" },
     { "slug": "motion",      "title": "动效" },
-    { "slug": "icons",       "title": "图标与标识" }
+    { "slug": "icons",       "title": "图标与标识" },
+    { "slug": "logo",        "title": "Logo 设计规范" }
   ]},
   { "title": "设计模式 · Patterns", "items": [
     { "slug": "media",            "title": "媒介适配" },
@@ -30,6 +31,7 @@
     { "slug": "c-feedback",       "title": "反馈与浮层" }
   ]},
   { "title": "开发支持 · Development", "items": [
-    { "slug": "accessibility", "title": "无障碍与 RTL" }
+    { "slug": "accessibility", "title": "无障碍与 RTL" },
+    { "slug": "markdown",      "title": "Markdown 渲染" }
   ]}
 ]

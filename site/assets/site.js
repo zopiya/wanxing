@@ -32,20 +32,46 @@
   /* Anchor highlighting. aria-current is the single source of truth for the
      style, so the accessibility tree cannot drift from what is highlighted. */
   var links = [].slice.call(document.querySelectorAll(".doc-toc .wx-anchor__link"));
-  if (links.length && "IntersectionObserver" in window) {
-    var byId = {};
-    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
-    var seen = {};
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { seen[entry.target.id] = entry.isIntersecting; });
-      var active = null;
-      Object.keys(byId).forEach(function (id) { if (seen[id] && !active) active = id; });
-      links.forEach(function (a) { a.removeAttribute("aria-current"); });
-      if (active && byId[active]) byId[active].setAttribute("aria-current", "true");
-    }, { rootMargin: "-10% 0px -70% 0px" });
-    Object.keys(byId).forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) observer.observe(el);
+  if (links.length) {
+    var headings = links.map(function (link) {
+      return { link: link, target: document.getElementById(link.getAttribute("href").slice(1)) };
+    }).filter(function (item) { return item.target; });
+    var frame = null;
+    function syncAnchor() {
+      frame = null;
+      var threshold = 112;
+      var active = headings[0];
+      headings.forEach(function (item) {
+        if (item.target.getBoundingClientRect().top <= threshold) active = item;
+      });
+      links.forEach(function (link) { link.removeAttribute("aria-current"); });
+      if (active) active.link.setAttribute("aria-current", "location");
+    }
+    function requestAnchorSync() {
+      if (frame === null) frame = requestAnimationFrame(syncAnchor);
+    }
+    window.addEventListener("scroll", requestAnchorSync, { passive: true });
+    window.addEventListener("resize", requestAnchorSync);
+    requestAnchorSync();
+  }
+
+  /* A long navigation list is an independent reading context. Preserve that
+     context across a same-site document jump rather than resetting it to top. */
+  var sidebar = document.querySelector(".doc-sidebar");
+  var sidebarKey = "wx-doc-sidebar-scroll";
+  if (sidebar) {
+    var savedSidebar = null;
+    try { savedSidebar = sessionStorage.getItem(sidebarKey); } catch (e) { /* ignore */ }
+    requestAnimationFrame(function () {
+      if (savedSidebar !== null) {
+        sidebar.scrollTop = Number(savedSidebar) || 0;
+      } else {
+        var current = sidebar.querySelector('[aria-current="page"]');
+        if (current) current.scrollIntoView({ block: "nearest" });
+      }
+    });
+    window.addEventListener("pagehide", function () {
+      try { sessionStorage.setItem(sidebarKey, String(sidebar.scrollTop)); } catch (e) { /* ignore */ }
     });
   }
 })();

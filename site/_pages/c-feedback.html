@@ -51,6 +51,7 @@
     <p style="margin-block-start:var(--space-6)">磁盘用量
       <meter class="wx-meter" value="0.82" high="0.8" aria-label="磁盘用量 82%"></meter></p>
   </div>
+</div>
 
 <h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约（ARIA / 脚本）</th></tr></thead><tbody>
@@ -60,6 +61,7 @@
 <tr><td><code>wx-empty / wx-result</code></td><td>无内容、完成/失败页面；不要用装饰插画填空。</td><td>标题先说明状态，动作是可命名 button/link。</td></tr>
 <tr><td><code>wx-modal / wx-drawer</code></td><td>必须中断的确认、临时上下文；普通详情不要浮层。</td><td>原生 <code>dialog</code>、<code>aria-labelledby</code>；<code>overlay.js</code> 负责开关和焦点归还。</td></tr>
 <tr><td><code>wx-tooltip / wx-popover</code></td><td>补充提示、可操作的小面板；任何关键信息不可只放 tooltip。</td><td>tooltip 用 <code>role="tooltip"</code> + <code>aria-describedby</code>；popover 用原生 <code>details</code>。</td></tr>
+<tr><td><code>wx-popconfirm</code></td><td>就近、短说明的危险确认；复杂或多步决策改用 dialog。</td><td>原生 <code>details</code> 负责开合；采用者只在明确确认后执行动作。</td></tr>
 </tbody></table></div>
 </div>
 
@@ -97,6 +99,18 @@
     </dialog>
   </div>
 </div>
+
+<h2 id="popconfirm">确认气泡 Popconfirm</h2>
+<p>删除、撤销等就近但可逆的确认可用确认气泡；如果后果复杂、需要解释或有多个字段，改用对话框。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <details class="wx-popconfirm">
+    <summary class="wx-btn wx-btn--danger">删除草稿</summary>
+    <div class="wx-popconfirm__panel">
+      <strong>确认删除这份草稿？</strong><p>删除后无法恢复。</p>
+      <div class="wx-popover__actions"><button class="wx-btn wx-btn--text" type="button">取消</button><button class="wx-btn wx-btn--danger" type="button">删除</button></div>
+    </div>
+  </details>
+</div></div>
 
 <div class="wx-note wx-note--info">
   <span class="wx-note__title">为什么浮层可以有"面"</span>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>组件 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=5">
+<link rel="stylesheet" href="./assets/site.css?v=6">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -19,6 +19,8 @@
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./components.html" aria-current="page">组件</a>
+    <a href="./markdown.html">Markdown</a>
+    <a href="./logo.html">Logo</a>
   </nav>
   <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
           data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
@@ -40,6 +42,7 @@
       <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
       <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
       <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+      <li><a class="wx-menu__link" href="./logo.html">Logo 设计规范</a></li>
     <li class="wx-menu__group">设计模式 · Patterns</li>
       <li><a class="wx-menu__link" href="./media.html">媒介适配</a></li>
       <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
@@ -58,6 +61,7 @@
       <li><a class="wx-menu__link" href="./c-feedback.html">反馈与浮层</a></li>
     <li class="wx-menu__group">开发支持 · Development</li>
       <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
+      <li><a class="wx-menu__link" href="./markdown.html">Markdown 渲染</a></li>
     </ul>
   </nav>
 
@@ -78,7 +82,7 @@
 
 <h2 id="contract">组件如何成为可靠接口</h2>
 <p>每个组件都有语义基座、状态契约与行为归属。demo 的 Source 从实际标记生成；无脚本时，内容和基础任务仍必须成立。</p>
-<details class="doc-component-directory"><summary>查看全部 31 条组件契约</summary><section class="doc-component-catalog" aria-labelledby="catalog-c-general">
+<details class="doc-component-directory"><summary>查看全部 71 条组件契约</summary><section class="doc-component-catalog" aria-labelledby="catalog-c-general">
   <div class="wx-spread"><h3 id="catalog-c-general">通用</h3><a href="./c-general.html">类别详解 →</a></div>
   <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
       <tr>
@@ -88,16 +92,52 @@
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Tag / Badge / Status<br><code>.wx-tag .wx-badge .wx-status</code></th>
+        <th scope="row">Tag<br><code>.wx-tag</code></th>
         <td>span；可操作时改用 button/a</td>
         <td>文字优先，不只靠颜色</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Avatar / Seal / Kbd<br><code>.wx-avatar .wx-seal .wx-kbd</code></th>
-        <td>img/span/kbd</td>
-        <td>装饰 seal 用 aria-hidden</td>
+        <th scope="row">Badge<br><code>.wx-badge</code></th>
+        <td>span</td>
+        <td>短计数或提醒</td>
         <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Status<br><code>.wx-status</code></th>
+        <td>span</td>
+        <td>必须同时有状态文字</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Avatar<br><code>.wx-avatar</code></th>
+        <td>img 或文字 span</td>
+        <td>信息头像必须有替代文本</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Seal<br><code>.wx-seal</code></th>
+        <td>span</td>
+        <td>装饰时 aria-hidden</td>
+        <td>仅品牌呼吸动效</td>
+      </tr>
+      <tr>
+        <th scope="row">Keyboard<br><code>.wx-kbd</code></th>
+        <td>kbd</td>
+        <td>文字化键名</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Segmented<br><code>.wx-segmented</code></th>
+        <td>radiogroup 或 tablist</td>
+        <td>aria-checked / aria-selected</td>
+        <td>采用者更新选中项</td>
+      </tr>
+      <tr>
+        <th scope="row">Toolbar<br><code>.wx-toolbar</code></th>
+        <td>div role=toolbar</td>
+        <td>可用按钮状态</td>
+        <td>采用者实现箭头键模型</td>
       </tr>
   </tbody></table></div>
 </section>
@@ -105,21 +145,51 @@
   <div class="wx-spread"><h3 id="catalog-c-layout">布局</h3><a href="./c-layout.html">类别详解 →</a></div>
   <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
       <tr>
-        <th scope="row">Page / Container / Measure<br><code>.wx-page .wx-container .wx-measure</code></th>
-        <td>页面、main、article</td>
+        <th scope="row">Page<br><code>.wx-page</code></th>
+        <td>body 或页面根</td>
         <td>无</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Stack / Cluster / Spread / Cols<br><code>.wx-stack .wx-cluster .wx-spread .wx-cols</code></th>
+        <th scope="row">Container<br><code>.wx-container</code></th>
+        <td>main / article / section</td>
+        <td>无</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Measure<br><code>.wx-measure</code></th>
+        <td>正文容器</td>
+        <td>无</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Stack<br><code>.wx-stack</code></th>
+        <td>任意语义容器</td>
+        <td>节奏变体</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Cluster<br><code>.wx-cluster</code></th>
+        <td>任意语义容器</td>
+        <td>节奏变体</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Spread<br><code>.wx-spread</code></th>
         <td>任意语义容器</td>
         <td>无</td>
         <td>无</td>
       </tr>
       <tr>
+        <th scope="row">Columns<br><code>.wx-cols</code></th>
+        <td>任意语义容器</td>
+        <td>列数变体</td>
+        <td>无</td>
+      </tr>
+      <tr>
         <th scope="row">Rule<br><code>.wx-rule</code></th>
         <td>hr</td>
-        <td>无</td>
+        <td>strong / short 变体</td>
         <td>无</td>
       </tr>
   </tbody></table></div>
@@ -128,28 +198,58 @@
   <div class="wx-spread"><h3 id="catalog-c-navigation">导航</h3><a href="./c-navigation.html">类别详解 →</a></div>
   <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
       <tr>
-        <th scope="row">Nav / Crumbs / Pager<br><code>.wx-nav .wx-crumbs .wx-pager</code></th>
-        <td>nav + list/link</td>
+        <th scope="row">Navigation<br><code>.wx-nav</code></th>
+        <td>nav</td>
         <td>aria-current</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Menu / Dropdown<br><code>.wx-menu .wx-dropdown</code></th>
-        <td>ul；dropdown 用 details/summary</td>
-        <td>aria-disabled / open</td>
+        <th scope="row">Breadcrumb<br><code>.wx-crumbs</code></th>
+        <td>nav + ol</td>
+        <td>当前位置不可链接</td>
         <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Pager<br><code>.wx-pager</code></th>
+        <td>nav</td>
+        <td>上一页 / 下一页文字化</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Menu<br><code>.wx-menu</code></th>
+        <td>ul</td>
+        <td>aria-current / aria-disabled</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Dropdown<br><code>.wx-dropdown</code></th>
+        <td>details / summary</td>
+        <td>open</td>
+        <td>原生开合</td>
       </tr>
       <tr>
         <th scope="row">Sidebar<br><code>.wx-sidebar</code></th>
         <td>aside 或 nav</td>
-        <td>data-open + aria-expanded</td>
+        <td>data-open / aria-expanded</td>
         <td>disclosure.js</td>
       </tr>
       <tr>
-        <th scope="row">TOC / Anchor / Affix<br><code>.wx-toc .wx-anchor .wx-affix</code></th>
+        <th scope="row">Table of Contents<br><code>.wx-toc</code></th>
         <td>nav + list</td>
         <td>aria-current</td>
         <td>toc.js</td>
+      </tr>
+      <tr>
+        <th scope="row">Anchor<br><code>.wx-anchor</code></th>
+        <td>nav + list</td>
+        <td>aria-current</td>
+        <td>toc.js</td>
+      </tr>
+      <tr>
+        <th scope="row">Affix<br><code>.wx-affix</code></th>
+        <td>语义导航容器</td>
+        <td>无</td>
+        <td>CSS sticky</td>
       </tr>
       <tr>
         <th scope="row">Pagination<br><code>.wx-pagination</code></th>
@@ -164,9 +264,15 @@
         <td>tabs.js</td>
       </tr>
       <tr>
-        <th scope="row">Steps / Skip<br><code>.wx-steps .wx-skip</code></th>
-        <td>ol；跳过链接用 a</td>
+        <th scope="row">Steps<br><code>.wx-steps</code></th>
+        <td>ol</td>
         <td>aria-current=step</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Skip Link<br><code>.wx-skip</code></th>
+        <td>a</td>
+        <td>焦点可见</td>
         <td>无</td>
       </tr>
   </tbody></table></div>
@@ -175,21 +281,45 @@
   <div class="wx-spread"><h3 id="catalog-c-entry">数据录入</h3><a href="./c-entry.html">类别详解 →</a></div>
   <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
       <tr>
-        <th scope="row">Form / Field<br><code>.wx-form .wx-field</code></th>
-        <td>form / fieldset / label</td>
+        <th scope="row">Form<br><code>.wx-form</code></th>
+        <td>form</td>
+        <td>提交 / 错误汇总</td>
+        <td>采用者处理提交</td>
+      </tr>
+      <tr>
+        <th scope="row">Field<br><code>.wx-field</code></th>
+        <td>label + control</td>
         <td>aria-invalid / aria-describedby</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Input / Select / Number<br><code>.wx-input .wx-select .wx-number</code></th>
-        <td>input / select</td>
-        <td>原生 required, disabled, invalid</td>
+        <th scope="row">Input<br><code>.wx-input</code></th>
+        <td>input / textarea</td>
+        <td>required / disabled / invalid</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Check / Radio<br><code>.wx-check .wx-radio</code></th>
-        <td>label + 原生 input</td>
-        <td>checked</td>
+        <th scope="row">Select<br><code>.wx-select</code></th>
+        <td>select</td>
+        <td>required / disabled / invalid</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Number Input<br><code>.wx-number</code></th>
+        <td>input type=number</td>
+        <td>min / max / step</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Checkbox<br><code>.wx-check</code></th>
+        <td>label + input type=checkbox</td>
+        <td>checked / disabled</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Radio<br><code>.wx-radio</code></th>
+        <td>label + input type=radio</td>
+        <td>checked / disabled</td>
         <td>无</td>
       </tr>
       <tr>
@@ -199,16 +329,46 @@
         <td>采用者更新状态</td>
       </tr>
       <tr>
-        <th scope="row">Slider / Rate<br><code>.wx-slider .wx-rate</code></th>
-        <td>range / radio group</td>
-        <td>可访问名与可读数值</td>
-        <td>采用者更新值</td>
+        <th scope="row">Slider<br><code>.wx-slider</code></th>
+        <td>input type=range</td>
+        <td>可访问名与数值</td>
+        <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Upload / Search<br><code>.wx-upload .wx-search</code></th>
-        <td>label + file input / search input</td>
+        <th scope="row">Rate<br><code>.wx-rate</code></th>
+        <td>radio group</td>
+        <td>可访问名与选中项</td>
+        <td>采用者更新状态</td>
+      </tr>
+      <tr>
+        <th scope="row">Upload<br><code>.wx-upload</code></th>
+        <td>label + input type=file</td>
         <td>关联 label</td>
-        <td>采用者处理文件/查询</td>
+        <td>采用者处理文件</td>
+      </tr>
+      <tr>
+        <th scope="row">Search<br><code>.wx-search</code></th>
+        <td>input type=search</td>
+        <td>关联 label</td>
+        <td>采用者处理查询</td>
+      </tr>
+      <tr>
+        <th scope="row">Autocomplete<br><code>.wx-autocomplete</code></th>
+        <td>input + datalist</td>
+        <td>label / list</td>
+        <td>原生建议列表</td>
+      </tr>
+      <tr>
+        <th scope="row">Date Picker<br><code>.wx-date-picker</code></th>
+        <td>input type=date</td>
+        <td>min / max / required</td>
+        <td>原生日期选择器</td>
+      </tr>
+      <tr>
+        <th scope="row">Time Picker<br><code>.wx-time-picker</code></th>
+        <td>input type=time</td>
+        <td>min / max / required</td>
+        <td>原生时间选择器</td>
       </tr>
   </tbody></table></div>
 </section>
@@ -216,27 +376,69 @@
   <div class="wx-spread"><h3 id="catalog-c-display">数据展示</h3><a href="./c-display.html">类别详解 →</a></div>
   <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
       <tr>
-        <th scope="row">Entry / List / Desc<br><code>.wx-entry .wx-list .wx-desc</code></th>
-        <td>article / ul|ol / dl</td>
+        <th scope="row">Entry<br><code>.wx-entry</code></th>
+        <td>article</td>
         <td>原生语义</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Table / Stat<br><code>.wx-table .wx-stat</code></th>
-        <td>table + caption / 语义文本</td>
-        <td>数字用 tabular-nums</td>
+        <th scope="row">List<br><code>.wx-list</code></th>
+        <td>ul / ol</td>
+        <td>原生语义</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Timeline / Tree / Collapse<br><code>.wx-timeline .wx-tree .wx-collapse</code></th>
-        <td>ol / ul+details / details</td>
+        <th scope="row">Descriptions<br><code>.wx-desc</code></th>
+        <td>dl</td>
+        <td>原生语义</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Table<br><code>.wx-table</code></th>
+        <td>table + caption</td>
+        <td>列标题 / scope</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Statistic<br><code>.wx-stat</code></th>
+        <td>语义文本</td>
+        <td>tabular-nums</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Timeline<br><code>.wx-timeline</code></th>
+        <td>ol</td>
+        <td>原生语义</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Tree<br><code>.wx-tree</code></th>
+        <td>ul + details</td>
         <td>open / aria-current</td>
+        <td>原生开合</td>
+      </tr>
+      <tr>
+        <th scope="row">Collapse<br><code>.wx-collapse</code></th>
+        <td>details</td>
+        <td>open</td>
+        <td>原生开合</td>
+      </tr>
+      <tr>
+        <th scope="row">Figure<br><code>.wx-figure</code></th>
+        <td>figure + figcaption</td>
+        <td>图像必须有替代文本</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Figure / Image / Gallery<br><code>.wx-figure .wx-image .wx-gallery</code></th>
-        <td>figure+figcaption / img / labelled region</td>
+        <th scope="row">Image<br><code>.wx-image</code></th>
+        <td>img</td>
         <td>有意义图像必须有 alt</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Gallery<br><code>.wx-gallery</code></th>
+        <td>labelled region</td>
+        <td>图片 alt</td>
         <td>无</td>
       </tr>
       <tr>
@@ -246,9 +448,15 @@
         <td>采用者管理日期</td>
       </tr>
       <tr>
-        <th scope="row">Quote / Code<br><code>.wx-quote .wx-code</code></th>
-        <td>blockquote / pre+code</td>
+        <th scope="row">Quote<br><code>.wx-quote</code></th>
+        <td>blockquote</td>
         <td>引用可归属</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Code<br><code>.wx-code</code></th>
+        <td>pre + code</td>
+        <td>代码语言可标注</td>
         <td>copy.js（可选）</td>
       </tr>
   </tbody></table></div>
@@ -257,9 +465,15 @@
   <div class="wx-spread"><h3 id="catalog-c-feedback">反馈与浮层</h3><a href="./c-feedback.html">类别详解 →</a></div>
   <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>构件 / class</th><th>语义基座</th><th>状态契约</th><th>行为归属</th></tr></thead><tbody>
       <tr>
-        <th scope="row">Note / Alert<br><code>.wx-note .wx-alert</code></th>
-        <td>section/div + 文字标签</td>
+        <th scope="row">Note<br><code>.wx-note</code></th>
+        <td>section / div</td>
         <td>语义色与文字同时出现</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Alert<br><code>.wx-alert</code></th>
+        <td>section / div</td>
+        <td>状态标题与恢复路径</td>
         <td>无</td>
       </tr>
       <tr>
@@ -269,33 +483,63 @@
         <td>overlay.js 的 wxToast()</td>
       </tr>
       <tr>
-        <th scope="row">Progress / Meter<br><code>.wx-progress .wx-meter</code></th>
-        <td>progress / meter</td>
-        <td>可访问名；未知进度不用 spinner</td>
+        <th scope="row">Progress<br><code>.wx-progress</code></th>
+        <td>progress</td>
+        <td>可访问名与值</td>
         <td>采用者更新值</td>
       </tr>
       <tr>
-        <th scope="row">Empty / Result<br><code>.wx-empty .wx-result</code></th>
+        <th scope="row">Meter<br><code>.wx-meter</code></th>
+        <td>meter</td>
+        <td>可访问名与值</td>
+        <td>采用者更新值</td>
+      </tr>
+      <tr>
+        <th scope="row">Empty<br><code>.wx-empty</code></th>
         <td>section</td>
-        <td>状态标题与下一步文字化</td>
+        <td>状态标题与下一步</td>
         <td>无</td>
       </tr>
       <tr>
-        <th scope="row">Modal / Drawer<br><code>.wx-modal .wx-drawer</code></th>
+        <th scope="row">Result<br><code>.wx-result</code></th>
+        <td>section</td>
+        <td>状态标题与下一步</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Modal<br><code>.wx-modal</code></th>
         <td>dialog</td>
         <td>aria-labelledby</td>
         <td>overlay.js</td>
       </tr>
       <tr>
-        <th scope="row">Tooltip / Popover<br><code>.wx-tooltip .wx-popover</code></th>
-        <td>role=tooltip / details</td>
-        <td>aria-describedby / open</td>
+        <th scope="row">Drawer<br><code>.wx-drawer</code></th>
+        <td>dialog</td>
+        <td>aria-labelledby</td>
+        <td>overlay.js</td>
+      </tr>
+      <tr>
+        <th scope="row">Tooltip<br><code>.wx-tooltip</code></th>
+        <td>role=tooltip</td>
+        <td>aria-describedby</td>
         <td>无</td>
+      </tr>
+      <tr>
+        <th scope="row">Popover<br><code>.wx-popover</code></th>
+        <td>details</td>
+        <td>open</td>
+        <td>原生开合</td>
+      </tr>
+      <tr>
+        <th scope="row">Popconfirm<br><code>.wx-popconfirm</code></th>
+        <td>details</td>
+        <td>open</td>
+        <td>原生开合；采用者执行确认动作</td>
       </tr>
   </tbody></table></div>
 </section></details>
 
-<div class="wx-note wx-note--info"><span class="wx-note__title">范围</span><p>这里不追求覆盖企业后台的所有复杂控件。富文本、复杂级联和通用图标生态仍是明确缺口；Card、Spinner、Skeleton、Carousel 与 Watermark 属于设计语言的有意排除。</p></div>
+<div class="wx-note wx-note--info"><span class="wx-note__title">范围</span><p>71 条是按可单独采用的公开契约逐项计数，不把同一 class 的修饰符重复充数。富文本、复杂级联和通用图标生态仍是明确缺口；Card、Spinner、Skeleton、Carousel 与 Watermark 属于设计语言的有意排除。</p></div>
 
     </article>
   </main>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>反馈与浮层 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=5">
+<link rel="stylesheet" href="./assets/site.css?v=6">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -19,6 +19,8 @@
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./components.html" aria-current="page">组件</a>
+    <a href="./markdown.html">Markdown</a>
+    <a href="./logo.html">Logo</a>
   </nav>
   <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
           data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
@@ -40,6 +42,7 @@
       <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
       <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
       <li><a class="wx-menu__link" href="./icons.html">图标与标识</a></li>
+      <li><a class="wx-menu__link" href="./logo.html">Logo 设计规范</a></li>
     <li class="wx-menu__group">设计模式 · Patterns</li>
       <li><a class="wx-menu__link" href="./media.html">媒介适配</a></li>
       <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
@@ -58,6 +61,7 @@
       <li><a class="wx-menu__link" href="./c-feedback.html" aria-current="page">反馈与浮层</a></li>
     <li class="wx-menu__group">开发支持 · Development</li>
       <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
+      <li><a class="wx-menu__link" href="./markdown.html">Markdown 渲染</a></li>
     </ul>
   </nav>
 
@@ -131,6 +135,7 @@
 &lt;/div&gt;
 &lt;p style="margin-block-start:var(--space-6)"&gt;磁盘用量
   &lt;meter class="wx-meter" value="0.82" high="0.8" aria-label="磁盘用量 82%"&gt;&lt;/meter&gt;&lt;/p&gt;</code></pre></details>
+</div>
 
 <h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约（ARIA / 脚本）</th></tr></thead><tbody>
@@ -140,6 +145,7 @@
 <tr><td><code>wx-empty / wx-result</code></td><td>无内容、完成/失败页面；不要用装饰插画填空。</td><td>标题先说明状态，动作是可命名 button/link。</td></tr>
 <tr><td><code>wx-modal / wx-drawer</code></td><td>必须中断的确认、临时上下文；普通详情不要浮层。</td><td>原生 <code>dialog</code>、<code>aria-labelledby</code>；<code>overlay.js</code> 负责开关和焦点归还。</td></tr>
 <tr><td><code>wx-tooltip / wx-popover</code></td><td>补充提示、可操作的小面板；任何关键信息不可只放 tooltip。</td><td>tooltip 用 <code>role="tooltip"</code> + <code>aria-describedby</code>；popover 用原生 <code>details</code>。</td></tr>
+<tr><td><code>wx-popconfirm</code></td><td>就近、短说明的危险确认；复杂或多步决策改用 dialog。</td><td>原生 <code>details</code> 负责开合；采用者只在明确确认后执行动作。</td></tr>
 </tbody></table></div>
 </div>
 
@@ -196,6 +202,25 @@
   &lt;p&gt;抽屉从行末边缘进入，只在一条边上有分隔线。&lt;/p&gt;
 &lt;/dialog&gt;</code></pre></details>
 </div>
+
+<h2 id="popconfirm">确认气泡 Popconfirm</h2>
+<p>删除、撤销等就近但可逆的确认可用确认气泡；如果后果复杂、需要解释或有多个字段，改用对话框。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <details class="wx-popconfirm">
+    <summary class="wx-btn wx-btn--danger">删除草稿</summary>
+    <div class="wx-popconfirm__panel">
+      <strong>确认删除这份草稿？</strong><p>删除后无法恢复。</p>
+      <div class="wx-popover__actions"><button class="wx-btn wx-btn--text" type="button">取消</button><button class="wx-btn wx-btn--danger" type="button">删除</button></div>
+    </div>
+  </details>
+</div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;details class="wx-popconfirm"&gt;
+  &lt;summary class="wx-btn wx-btn--danger"&gt;删除草稿&lt;/summary&gt;
+  &lt;div class="wx-popconfirm__panel"&gt;
+    &lt;strong&gt;确认删除这份草稿？&lt;/strong&gt;&lt;p&gt;删除后无法恢复。&lt;/p&gt;
+    &lt;div class="wx-popover__actions"&gt;&lt;button class="wx-btn wx-btn--text" type="button"&gt;取消&lt;/button&gt;&lt;button class="wx-btn wx-btn--danger" type="button"&gt;删除&lt;/button&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre></details></div>
 
 <div class="wx-note wx-note--info">
   <span class="wx-note__title">为什么浮层可以有"面"</span>
@@ -261,6 +286,7 @@
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
       <li><a class="wx-anchor__link" href="#empty">空态与结果</a></li>
       <li><a class="wx-anchor__link" href="#overlay">浮层 Overlay</a></li>
+      <li><a class="wx-anchor__link" href="#popconfirm">确认气泡 Popconfirm</a></li>
       <li><a class="wx-anchor__link" href="#tooltip">提示与气泡</a></li>
   </ul>
 </nav></div>

@@ -88,8 +88,7 @@
   </div>
 
 <h2 id="anchor">页内锚点 Anchor</h2>
-<p>本页右侧就是一个（宽屏可见）。配合 <code>wx-affix</code> 吸顶，用
-<code>IntersectionObserver</code> 更新 <code>aria-current</code>。</p>
+<p>本页右侧就是一个（宽屏可见）。配合 <code>wx-affix</code> 吸顶，站点按标题顺序和当前滚动位置更新唯一的 <code>aria-current</code>，避免相邻标题同时高亮。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <nav class="wx-nav" aria-label="作品集主导航"><a class="wx-nav__brand" href="#">文心</a><ul class="wx-nav__list"><li><a class="wx-nav__link" aria-current="page" href="#">文章</a></li><li><a class="wx-nav__link" href="#">关于</a></li></ul></nav>
   <div class="wx-cols wx-cols--2" style="margin-block-start:var(--space-6)"><aside class="wx-sidebar"><p class="wx-sidebar__heading">文档</p><ul class="wx-sidebar__list"><li><a class="wx-sidebar__link" aria-current="page" href="#">导航</a></li><li><a class="wx-sidebar__link" href="#api">API</a></li></ul></aside><nav class="wx-anchor" aria-label="示例文章目录"><ul class="wx-anchor__list"><li><a class="wx-anchor__link" aria-current="location" href="#anchor">当前章节</a></li><li><a class="wx-anchor__link" href="#skip">跳过链接</a></li></ul></nav></div>
