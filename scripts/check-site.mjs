@@ -16,6 +16,9 @@ if (!existsSync(siteDir)) { console.log("· no site/ directory, skipping"); proc
 
 const nav = JSON.parse(readFileSync(join(siteDir, "_nav.json"), "utf8"));
 const slugs = nav.flatMap((s) => s.items.map((i) => i.slug));
+// The product landing page intentionally does not appear in the reference
+// sidebar. It remains a required, public route rather than an orphan.
+const routes = new Set(["index", ...slugs]);
 /* Underscore-prefixed files are sources (shell, fragments), not pages. */
 const built = readdirSync(siteDir).filter((f) => f.endsWith(".html") && !f.startsWith("_"));
 const pages = new Set(built);
@@ -26,7 +29,7 @@ for (const slug of slugs) {
   if (!pages.has(`${slug}.html`)) problems.push(`nav lists ${slug} but ${slug}.html was not built`);
 }
 for (const file of built) {
-  if (!slugs.includes(file.replace(/\.html$/, ""))) problems.push(`${file} is built but unreachable from the nav`);
+  if (!routes.has(file.replace(/\.html$/, ""))) problems.push(`${file} is built but unreachable from the nav`);
 }
 
 for (const file of built) {

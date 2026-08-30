@@ -1,11 +1,13 @@
 [
-  { "family": "布局与通用", "slug": "c-layout", "items": [
-    { "name": "Page / Container / Measure", "classes": ["wx-page", "wx-container", "wx-measure"], "base": "页面、main、article", "state": "无", "behaviour": "无" },
-    { "name": "Stack / Cluster / Spread / Cols", "classes": ["wx-stack", "wx-cluster", "wx-spread", "wx-cols"], "base": "任意语义容器", "state": "无", "behaviour": "无" },
-    { "name": "Rule", "classes": ["wx-rule"], "base": "hr", "state": "无", "behaviour": "无" },
+  { "family": "通用", "slug": "c-general", "items": [
     { "name": "Button", "classes": ["wx-btn"], "base": "button；导航目的用 a", "state": "disabled", "behaviour": "无" },
     { "name": "Tag / Badge / Status", "classes": ["wx-tag", "wx-badge", "wx-status"], "base": "span；可操作时改用 button/a", "state": "文字优先，不只靠颜色", "behaviour": "无" },
     { "name": "Avatar / Seal / Kbd", "classes": ["wx-avatar", "wx-seal", "wx-kbd"], "base": "img/span/kbd", "state": "装饰 seal 用 aria-hidden", "behaviour": "无" }
+  ]},
+  { "family": "布局", "slug": "c-layout", "items": [
+    { "name": "Page / Container / Measure", "classes": ["wx-page", "wx-container", "wx-measure"], "base": "页面、main、article", "state": "无", "behaviour": "无" },
+    { "name": "Stack / Cluster / Spread / Cols", "classes": ["wx-stack", "wx-cluster", "wx-spread", "wx-cols"], "base": "任意语义容器", "state": "无", "behaviour": "无" },
+    { "name": "Rule", "classes": ["wx-rule"], "base": "hr", "state": "无", "behaviour": "无" }
   ]},
   { "family": "导航", "slug": "c-navigation", "items": [
     { "name": "Nav / Crumbs / Pager", "classes": ["wx-nav", "wx-crumbs", "wx-pager"], "base": "nav + list/link", "state": "aria-current", "behaviour": "无" },

@@ -132,7 +132,10 @@ function renderToc(body) {
 
 const shell = readFileSync(join(siteDir, "_shell.html"), "utf8");
 const pages = readdirSync(join(siteDir, "_pages")).filter((f) => f.endsWith(".html"));
-const known = new Set(nav.flatMap((s) => s.items.map((i) => i.slug)));
+// The product landing page is deliberately outside the reference sidebar, but
+// it is still a generated public route.
+const known = new Set(["index", ...nav.flatMap((s) => s.items.map((i) => i.slug))]);
+const landingPages = new Set(["index", "design"]);
 
 for (const slug of known) {
   if (!pages.includes(`${slug}.html`)) throw new Error(`_nav.json lists ${slug} but site/_pages/${slug}.html is missing`);
@@ -153,6 +156,7 @@ for (const slug of known) {
     .replace("{{nav}}", renderNav(slug))
     .replace("{{topnav}}", renderTopNav(slug))
     .replace("{{toc}}", renderToc(body))
+    .replace("{{shellClass}}", landingPages.has(slug) ? "doc-shell--landing" : "")
     .replace("{{body}}", body)
     .replace(/\{\{slug\}\}/g, slug);
   writeFileSync(join(siteDir, `${slug}.html`), html);

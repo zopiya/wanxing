@@ -1,7 +1,4 @@
 [
-  { "slug": "index", "title": "总览", "slugs": ["index"] },
-  { "slug": "values", "title": "文心", "slugs": ["values", "tracks", "color", "typography", "layout", "motion", "icons"] },
-  { "slug": "media", "title": "万形", "slugs": ["media", "patterns", "pattern-form", "pattern-list", "pattern-detail", "pattern-result", "viz"] },
-  { "slug": "components", "title": "构件", "slugs": ["components", "c-layout", "c-navigation", "c-entry", "c-display", "c-feedback"] },
-  { "slug": "accessibility", "title": "验证", "slugs": ["accessibility"] }
+  { "slug": "design", "title": "设计", "slugs": ["design", "values", "tracks", "color", "typography", "layout", "motion", "icons", "media", "patterns", "pattern-form", "pattern-list", "pattern-detail", "pattern-result", "viz"] },
+  { "slug": "components", "title": "组件", "slugs": ["components", "c-general", "c-layout", "c-navigation", "c-entry", "c-display", "c-feedback"] }
 ]

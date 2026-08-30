@@ -1,38 +1,18 @@
-<p class="wx-eyebrow">构件 · Kit</p>
-<h1>组件与组合</h1>
-<p class="wx-lede">组件是 kit 的第三层：token 给出不变数值，基础层给出跨页面底线，pattern 组织页面；组件只负责可复用的内容、交互与反馈单元。</p>
+<h1>组件</h1>
+<p class="wx-lede">一套面向内容、文档与轻应用的基础组件。按使用目的组织，而不是按视觉外形堆放。</p>
 
-<h2 id="layers">先分清构件层级</h2>
-<div class="doc-component-layers">
-  <section><p class="doc-component-layers__kind">Tokens</p><h3>数值与语义</h3><p>颜色、字族、间距、时长、描边等唯一真源。它们不表达业务 UI，也不在 prose 里复制数值。</p><a href="./color.html">查看 token 路径 →</a></section>
-  <section><p class="doc-component-layers__kind">Patterns</p><h3>页面组织</h3><p>A–E 回答一页内容怎么读、怎么找、怎么完成任务。它们是骨架，不能被 button 或 card 替代。</p><a href="./patterns.html">查看页面原型 →</a></section>
-  <section><p class="doc-component-layers__kind">Components</p><h3>可复用单元</h3><p>表单、导航、内容展示和反馈。每一个有最小 HTML、ARIA 或原生属性契约，必要时才有行为脚本。</p><a href="#families">查看组件族 →</a></section>
-  <section><p class="doc-component-layers__kind">Behaviours</p><h3>渐进增强</h3><p>tabs、overlay、toc、disclosure 等只补平台缺口；移除脚本后不能让内容或基础操作消失。</p><a href="#behaviours">查看行为边界 →</a></section>
+<div class="doc-component-groups">
+  <section id="general"><h2>通用</h2><p>动作、标识与状态的基础表达。</p><a href="./c-general.html">Button、Tag、Badge、Status、Avatar →</a></section>
+  <section id="layout"><h2>布局</h2><p>页面宽度、间距、分栏与内容节奏。</p><a href="./c-layout.html">Container、Stack、Cluster、Grid、Rule →</a></section>
+  <section id="navigation"><h2>导航</h2><p>帮助人确认位置、层级和前进路径。</p><a href="./c-navigation.html">Menu、Tabs、Pagination、Steps、Anchor →</a></section>
+  <section id="entry"><h2>数据录入</h2><p>输入、选择、校验与任务提交。</p><a href="./c-entry.html">Form、Input、Select、Switch、Upload →</a></section>
+  <section id="display"><h2>数据展示</h2><p>内容、关系、数据和时间的清晰呈现。</p><a href="./c-display.html">Table、List、Tree、Timeline、Calendar →</a></section>
+  <section id="feedback"><h2>反馈</h2><p>让状态、结果和必要的打断可被理解。</p><a href="./c-feedback.html">Alert、Toast、Progress、Modal、Popover →</a></section>
+  <section id="other"><h2>其他</h2><p>主题、密度、RTL、无障碍和交付检查属于系统能力，不伪装成一个 UI 控件。</p><a href="./accessibility.html">查看开发支持与无障碍 →</a></section>
 </div>
 
-<h2 id="families">组件族按职责，而非视觉外形划分</h2>
-<div class="doc-component-family">
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">结构与语义</p><h3 class="wx-entry__title"><a href="./c-layout.html">布局与通用</a></h3><p>page、container、stack、cluster、rule、btn、tag、avatar。它们建立页面节奏和动作语义，不创建四边封闭的“面”。</p></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">定位与连续性</p><h3 class="wx-entry__title"><a href="./c-navigation.html">导航</a></h3><p>nav、sidebar、anchor、tabs、pagination、steps。当前位置、选中和展开统一由 ARIA/原生属性承载。</p></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">输入与任务</p><h3 class="wx-entry__title"><a href="./c-entry.html">数据录入</a></h3><p>form、field、input、select、switch、upload、search。它们不服从“极简优先”，而服从第三层：表单就是表单。</p></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">内容与关系</p><h3 class="wx-entry__title"><a href="./c-display.html">数据展示</a></h3><p>entry、table、tree、timeline、figure、gallery、code。分组以标题、邻近、单边线和结构语义完成。</p></article>
-  <article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">状态与反馈</p><h3 class="wx-entry__title"><a href="./c-feedback.html">反馈与浮层</a></h3><p>note、toast、progress、modal、drawer、popover。浮层是可用性例外：允许边界，不允许阴影和渐变。</p></article>
-</div>
+<h2 id="contract">组件如何成为可靠接口</h2>
+<p>每个组件都有语义基座、状态契约与行为归属。demo 的 Source 从实际标记生成；无脚本时，内容和基础任务仍必须成立。</p>
+<details class="doc-component-directory"><summary>查看全部 31 条组件契约</summary>{{componentCatalog}}</details>
 
-<h2 id="catalog">公开构件目录</h2>
-<p>目录来自 <code>kit/components/manifest.json</code>，构件不能只留下一个名字：每一项都必须说明实际 class、语义基座、可访问状态和行为责任。构件 CSS 或类别页失配时，构建直接失败。</p>
-{{componentCatalog}}
-
-<h2 id="contract">一个组件的成熟度，不只看样式</h2>
-<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>公开契约</th><th>这里如何实现</th><th>验证责任</th></tr></thead><tbody>
-<tr><td>结构</td><td>demo 使用真实 HTML；Source 从 demo 自动生成。</td><td><code>npm run build:site</code> 与 <code>check:site</code>。</td></tr>
-<tr><td>状态</td><td><code>aria-current</code>、<code>aria-selected</code>、<code>aria-expanded</code>、<code>open</code>、<code>disabled</code>；不用 <code>.is-active</code>。</td><td>静态 a11y 检查与类别页 API 表。</td></tr>
-<tr><td>行为</td><td>脚本只服务原生平台未覆盖的体验，例如 tab roving tabindex、dialog 焦点归还。</td><td>无 JS 时仍可读/可完成基础任务；复杂键盘流程人工验收。</td></tr>
-<tr><td>视觉边界</td><td>不重造卡片、spinner、skeleton、carousel 或 watermark。</td><td><code>check:forbidden</code> 与 DECISIONS D-23。</td></tr>
-</tbody></table></div>
-
-<h2 id="composition">组合示例：内容先于操作</h2>
-<div class="doc-demo"><div class="doc-demo__stage"><article class="wx-entry"><p class="wx-entry__meta">项目草稿 · 3 分钟前</p><h3 class="wx-entry__title">整理章节结构</h3><p class="wx-entry__desc">先说明正在处理的内容，再给动作；没有多余的容器，也没有让动作比内容更响。</p><div class="wx-cluster"><button class="wx-btn" type="button">继续编辑</button><span class="wx-status">草稿</span></div></article><hr class="wx-rule"><div class="wx-note wx-note--tip"><span class="wx-note__title">反馈层</span><p>结果、错误和下一步是信息，不是装饰；用文字、语义色和结构共同表达。</p></div></div></div>
-
-<h2 id="behaviours">行为脚本与边界</h2>
-<p>目前的渐进增强脚本是 <code>animations-complete</code>、<code>overlay</code>、<code>tabs</code>、<code>disclosure</code>、<code>toc</code>、<code>reveal</code> 与 <code>copy</code>。它们不构成运行时框架，更不承载业务状态。复杂级联选择、富文本编辑、通用图标生态和 Figma kit 是尚未建设的真实缺口，不应由“多造几个组件”掩盖。</p>
+<div class="wx-note wx-note--info"><span class="wx-note__title">范围</span><p>这里不追求覆盖企业后台的所有复杂控件。富文本、复杂级联和通用图标生态仍是明确缺口；Card、Spinner、Skeleton、Carousel 与 Watermark 属于设计语言的有意排除。</p></div>

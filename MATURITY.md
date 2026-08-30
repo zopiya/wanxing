@@ -21,9 +21,9 @@
 
 | 维度 | 现状 | 完工后 | 判断依据与复现命令 |
 | --- | --- | ---: | --- |
-| 单组件文档深度 | 五个类别页加入场景标记、选择边界和 API/ARIA/脚本表；组件清单覆盖 5 个职责族、31 条公开契约。 | 66% | `npm run check:components && npm run build:site`；仍非“一组件一页”，且部分小型修饰符共享类别契约。 |
+| 单组件文档深度 | 六个类别页加入场景标记、选择边界和 API/ARIA/脚本表；组件清单覆盖 6 个职责族、31 条公开契约。 | 66% | `npm run check:components && npm run build:site`；仍非“一组件一页”，且部分小型修饰符共享类别契约。 |
 | 组件覆盖 | 仍坚持内容、文档与轻应用边界；不为对齐数量新增组件。 | 58% | `rg -o 'wx-[a-z][a-z0-9-]*' kit/components --glob '*.css' | sort -u`；与 Ant 的 CRM/仪表盘范围不可比。 |
-| 设计语言文档 | 22 页，以文心→万形→构件→验证的框架模型组织，并含无障碍/RTL 和定制/交换路径。 | 70% | `npm run build:site && npm run check:site`。 |
+| 设计语言文档 | 24 页，以落地页、独立设计入口和独立组件入口组织，并含无障碍/RTL 和定制/交换路径。 | 70% | `npm run build:site && npm run check:site`。 |
 | 主题定制 | 默认真源、覆盖边界、accent/字体/密度路径和 `dense.css` 预设明确。 | 62% | `npm run check:colors`；无 JS seed/map 算法是有意保持零依赖。 |
 | token 交换 | 额外导出 `tokens.dtcg.json`，默认值与暗色 extension 同源生成。 | 70% | `npm run build:tokens`；消费端对自定义暗色 extension 的映射仍需各工具配置。 |
 | 工程成熟度 | README、Keep a Changelog、SemVer breakage 规则，以及审计器、a11y、组件清单的正/负控制已建立。 | 70% | `npm run check`；未公开发布，尚无真实迁移指南。 |
