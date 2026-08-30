@@ -1,0 +1,81 @@
+<h1>代码与语法高亮</h1>
+<p class="wx-lede">文章里的一段代码仍然是散文——读者在读它，不是在扫描它找 bug。所以这套色板只有四种相近的暖色加正文墨，而不是六种饱和色相。</p>
+
+<h2 id="two-owners">两个所有者，一条判据</h2>
+<p>同样是代码块，两个文件各管一半，分界线是<strong>这段 HTML 的 class 属性归谁控制</strong>。</p>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>文件</th><th>管什么</th><th>选择器策略</th></tr></thead>
+  <tbody>
+    <tr><td><code>kit/components/code.css</code></td><td>你自己写的 <code>&lt;pre class="wx-code"&gt;</code>，带标题行与复制按钮。</td><td>class 选择器，你控制标记。</td></tr>
+    <tr><td><code>kit/markdown/syntax.css</code></td><td>渲染器吐出的 <code>.wx-md pre &gt; code</code>，class 由高亮器决定。</td><td>后代选择器，靠 <code>@layer</code> 排序保证不越权。</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="renderers">支持哪些高亮器</h2>
+<p>类名同时遵循 highlight.js 与 Prism 的约定，<strong>不需要中间映射层</strong>：把任一个的输出直接放进 <code>.wx-md</code> 即可。</p>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>高亮器输出</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>&lt;pre&gt;&lt;code class="language-js"&gt;
+&lt;span class="hljs-comment"&gt;// …&lt;/span&gt;
+&lt;span class="hljs-keyword"&gt;const&lt;/span&gt;
+&lt;span class="hljs-string"&gt;"…"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <pre><code class="language-js"><span class="hljs-comment">// 注释是代码块里最常被当散文读的部分</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">measure</span> = (<span class="hljs-attr">text</span>) <span class="hljs-operator">=&gt;</span> {
+  <span class="hljs-keyword">return</span> text.<span class="hljs-title function_">length</span> <span class="hljs-operator">&gt;</span> <span class="hljs-number">36</span>
+    <span class="hljs-operator">?</span> <span class="hljs-string">"过长"</span>
+    <span class="hljs-operator">:</span> <span class="hljs-string">"合适"</span>;
+}</code></pre>
+  </div>
+</div>
+
+<h2 id="palette">Token 色板与实测对比度</h2>
+<p>下表的值从 <code>kit/markdown/syntax.css</code> 直接取，对比度是对代码块底色实测的。
+<code>check:colors</code> 会逐条量它们——语法色板和正文一样是文字，不享受任何豁免。</p>
+<div class="doc-elements"><table class="wx-table doc-api">
+  <thead><tr><th>Token</th><th>用于</th><th>浅色 · 对比度</th><th>暗色 · 对比度</th></tr></thead>
+  <tbody>
+    <tr><td><code>--code-comment</code></td><td>注释与块引用</td><td><code>#77726D</code> · 4.55:1</td><td><code>#8C857D</code> · 4.57:1</td></tr>
+    <tr><td><code>--code-punctuation</code></td><td>标点与分隔符</td><td><code>#665F58</code> · 6.01:1</td><td><code>#A9A197</code> · 6.52:1</td></tr>
+    <tr><td><code>--code-operator</code></td><td>运算符（正文墨）</td><td><code>#3A3837</code> · 11.16:1</td><td><code>#E8E3DC</code> · 13.03:1</td></tr>
+    <tr><td><code>--code-keyword</code></td><td>关键字、选择器</td><td><code>#6B5B3E</code> · 6.30:1</td><td><code>#C0A878</code> · 7.22:1</td></tr>
+    <tr><td><code>--code-string</code></td><td>字符串、属性值</td><td><code>#6B5B3E</code> · 6.30:1</td><td><code>#A8B98A</code> · 7.90:1</td></tr>
+    <tr><td><code>--code-type</code></td><td>类型、类名</td><td><code>#6B5B3E</code> · 6.30:1</td><td><code>#C0A878</code> · 7.22:1</td></tr>
+    <tr><td><code>--code-function</code></td><td>函数名</td><td><code>#5C4A2F</code> · 8.12:1</td><td><code>#D6BE92</code> · 9.22:1</td></tr>
+    <tr><td><code>--code-property</code></td><td>属性名、标签名</td><td><code>#5C4A2F</code> · 8.12:1</td><td><code>#D6BE92</code> · 9.22:1</td></tr>
+    <tr><td><code>--code-number</code></td><td>数字、字面量</td><td><code>#7A5C3A</code> · 5.88:1</td><td><code>#C9A57A</code> · 7.24:1</td></tr>
+  </tbody>
+</table></div>
+<div class="wx-note wx-note--info"><span class="wx-note__title">"退让"有底线</span>
+  <p>注释和标点曾经是 <code>#9A948D</code> 与 <code>#888580</code>，对代码底 2.87:1 和 3.52:1，两个主题都不合格，
+  而当时的 <code>check:colors</code> 只测 <code>bg-warm</code> 一个底色，从没量到它们。
+  注释是代码块里最常被当散文读的部分，<strong>是最不该先淡出去的东西</strong>。
+  详见 <code>spec/DECISIONS.md</code> 的 <strong>D-28</strong>。</p></div>
+
+<h2 id="ground">代码块的底色</h2>
+<p>代码面用 <code>--code-bg</code>（浅色 <code>--color-bg-base</code>，比页面底色更亮），而不是更暗的
+<code>--color-bg-subtle</code>。两个原因：</p>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>余量</strong>——更亮的底给标题行的元数据文字和最退让的注释色留出通过 AA 的空间。</li>
+  <li><strong>方向</strong>——阅读轨禁止用色块背景分区。代码块是这条规则里少数几个合理的"面"，
+  它像一张嵌进正文的纸，而不是一块压在正文上的色板。</li>
+</ul>
+
+<h2 id="inline">行内代码</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>行内 `--stroke-mark` 与
+`border-inline-start` 保持
+正文节奏，不换字号档位。</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <p>行内 <code>--stroke-mark</code> 与 <code>border-inline-start</code> 保持正文节奏，不换字号档位。</p>
+  </div>
+</div>
+<p>行内代码保留 <code>--color-bg-subtle</code> 的浅底——它需要读作嵌在句子里的一小块，
+和整块代码面是两件事。它的文字是正文墨，9.98:1。</p>
+
+<h2 id="nospinner">没有"正在高亮"这种状态</h2>
+<p>这套系统禁止 spinner 与骨架屏。如果高亮是在客户端做的，
+<strong>未高亮的代码块必须已经是可读的</strong>——它本来就是正文墨的等宽文字，
+高亮只是往上加区分，不是从不可读变可读。这条约束顺带解决了高亮脚本加载失败的情况。</p>

@@ -1,29 +1,206 @@
-<h1>Markdown 渲染</h1>
-<p class="wx-lede">作者只写 Markdown；渲染层负责把标准 HTML 放进文心的排版、代码、表格与提示节奏中。</p>
+<h1>Markdown 全量</h1>
+<p class="wx-lede">CommonMark 与 GFM 的全部常用标记，左边是作者写的源码，右边是渲染后的样子。每一条都是真渲染，不是截图。</p>
 
-<h2 id="preview">渲染预览</h2>
-<article class="wx-md wx-md--measured" lang="zh-CN">
-  <h2>一段可以直接阅读的内容 <a class="heading-anchor" href="#preview" aria-label="链接到渲染预览">#</a></h2>
-  <p>普通段落不需要 class。行内 <code>code</code>、<a href="#contract">链接</a> 和<strong>强调</strong>都保持正文节奏。</p>
-  <ul><li>列表保留语义和缩进。</li><li>任务状态用原生 checkbox 表达：<ul><li class="task-list-item"><input type="checkbox" checked disabled aria-label="内容完成"> 内容完成</li></ul></li></ul>
-  <blockquote><p>Markdown 是内容格式；设计系统不应该要求作者知道组件 class。</p></blockquote>
-  <pre><code class="language-html">&lt;article class="wx-md wx-md--measured"&gt;
-  &lt;!-- renderer output --&gt;
-&lt;/article&gt;</code></pre>
-  <div class="table-scroll"><table><thead><tr><th>输入</th><th>输出</th></tr></thead><tbody><tr><td><code>## 标题</code></td><td>带节奏与锚点的 h2</td></tr><tr><td><code>&gt; 引用</code></td><td>语义 blockquote</td></tr></tbody></table></div>
-  <aside class="admonition tip"><span class="admonition-title">建议</span><p>保留渲染器原有 HTML；只在文章外层添加 <code>wx-md</code>。</p></aside>
-</article>
+<h2 id="headings">标题与段落</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>## 二级标题
+### 三级标题
+#### 四级标题
 
-<h2 id="contract">接入契约</h2>
-<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>层</th><th>负责什么</th><th>不负责什么</th></tr></thead><tbody>
-<tr><td>作者</td><td>写标准 Markdown 和有意义的 alt 文本。</td><td>不写视觉 class，不复制组件结构。</td></tr>
-<tr><td>渲染器</td><td>生成标准 HTML、标题 id、图片与表格语义。</td><td>不伪造图注、链接目的或内容状态。</td></tr>
-<tr><td>文心样式</td><td>提供 <code>.wx-md</code>、代码、表格、脚注、任务列表和提示块的呈现。</td><td>不改变正文语义，也不覆盖真正组件的 class。</td></tr>
-</tbody></table></div>
+普通段落不需要任何 class。
 
-<h2 id="use">最短用法</h2>
-<pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="kit/index.css"&gt;
-&lt;article class="wx-md wx-md--measured"&gt;
-  &lt;!-- Markdown renderer output --&gt;
-&lt;/article&gt;</code></pre>
-<p>Hugo、remark/rehype、markdown-it、VitePress 和 Docusaurus 都可以接入；区别只在渲染器如何产出锚点和提示块，样式层不绑定某一种工具。</p>
+段落之间空一行。行末两个空格  
+产生硬换行。</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <h2>二级标题</h2>
+    <h3>三级标题</h3>
+    <h4>四级标题</h4>
+    <p>普通段落不需要任何 class。</p>
+    <p>段落之间空一行。行末两个空格<br>产生硬换行。</p>
+  </div>
+</div>
+<p>标题从 <code>##</code> 起用。<strong>一页只有一个 <code>&lt;h1&gt;</code></strong>，它由页面标题或 front matter 提供，不由正文写出——
+这条由 <code>check:site</code> 强制，同时禁止跳级。</p>
+
+<h2 id="inline">行内标记</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>*强调* 与 **加粗**，
+~~删除线~~，`行内代码`，
+==高亮==（扩展语法）。
+
+链接 [文心](#inline)、
+自动链接 &lt;https://example.com&gt;、
+脚注引用[^1]。
+
+转义 \*不是强调\*。
+
+[^1]: 脚注正文。</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <p><em>强调</em> 与 <strong>加粗</strong>，<del>删除线</del>，<code>行内代码</code>，<mark>高亮</mark>（扩展语法）。</p>
+    <p>链接 <a href="#inline">文心</a>、自动链接 <a href="https://example.com">https://example.com</a>、脚注引用<sup><a href="#fn-md-1">1</a></sup>。</p>
+    <p>转义 *不是强调*。</p>
+    <div class="footnotes"><ol><li id="fn-md-1">脚注正文。</li></ol></div>
+  </div>
+</div>
+<div class="wx-note wx-note--info"><span class="wx-note__title">中文没有真正的斜体</span><p>浏览器为中文合成的伪斜体读起来像渲染故障，所以 <code>:lang(zh)</code> 下的 <code>em</code> 渲染为<strong>加重</strong>而不是倾斜。<code>i</code>、<code>cite</code>、<code>dfn</code>、<code>var</code> 同理。</p></div>
+
+<h2 id="lists">列表</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>- 无序列表
+- 第二项
+  - 嵌套一层
+    - 再嵌套
+
+1. 有序列表
+2. 第二项
+
+5. 从 5 开始
+6. 继续
+
+- [x] 已完成
+- [ ] 未完成</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <ul><li>无序列表</li><li>第二项<ul><li>嵌套一层<ul><li>再嵌套</li></ul></li></ul></li></ul>
+    <ol><li>有序列表</li><li>第二项</li></ol>
+    <ol start="5"><li>从 5 开始</li><li>继续</li></ol>
+    <ul><li class="task-list-item"><input type="checkbox" checked disabled aria-label="已完成"> 已完成</li><li class="task-list-item"><input type="checkbox" disabled aria-label="未完成"> 未完成</li></ul>
+  </div>
+</div>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown · 松散列表</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>- 项与项之间有空行时，
+
+- 每一项会被包进段落，
+
+- 行距随之变松。</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <ul><li><p>项与项之间有空行时，</p></li><li><p>每一项会被包进段落，</p></li><li><p>行距随之变松。</p></li></ul>
+  </div>
+</div>
+
+<h2 id="quote">引用、分隔线与定义列表</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>&gt; 引用一段话。
+&gt;
+&gt; &gt; 嵌套引用。
+
+---
+
+术语
+: 定义列表是扩展语法。
+
+另一个术语
+: 它的解释。</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <blockquote><p>引用一段话。</p><blockquote><p>嵌套引用。</p></blockquote></blockquote>
+    <hr>
+    <dl><dt>术语</dt><dd>定义列表是扩展语法。</dd><dt>另一个术语</dt><dd>它的解释。</dd></dl>
+  </div>
+</div>
+
+<h2 id="table">表格</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>| 左对齐 | 居中 | 右对齐 |
+| :----- | :--: | -----: |
+| 文心   | 万形 |   1.5px |
+| 留白   | 克制 |    36em |</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <div class="table-scroll"><table>
+      <thead><tr><th style="text-align:start">左对齐</th><th style="text-align:center">居中</th><th style="text-align:end">右对齐</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:start">文心</td><td style="text-align:center">万形</td><td style="text-align:end">1.5px</td></tr>
+        <tr><td style="text-align:start">留白</td><td style="text-align:center">克制</td><td style="text-align:end">36em</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+<p>宽表格由渲染器包进 <code>.table-scroll</code>，在自己的容器里横向滚动，<strong>而不是把整页撑宽</strong>。</p>
+
+<h2 id="media">图片与图注</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>![万形印章](logo-wanxing.svg)
+
+带图注时渲染器输出 figure：
+
+&lt;figure&gt;
+  &lt;img src="…" alt="…"&gt;
+  &lt;figcaption&gt;图注&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <p><img src="../kit/assets/brand/logo-wanxing.svg" alt="万形朱砂印章" style="max-inline-size:5rem"></p>
+    <figure><img src="../kit/assets/brand/logo-wenxin.svg" alt="文心朱砂印章" style="max-inline-size:5rem"><figcaption>图注：文心，知识与生长。</figcaption></figure>
+  </div>
+</div>
+<p><strong>渲染器不该凭空造图注。</strong>一个没有 <code>figcaption</code> 的 <code>img</code> 就是没有图注，把 alt 文本搬去当图注是伪造语义——alt 是给读不到图的人的，图注是给所有人的。</p>
+
+<h2 id="admonition">提示块</h2>
+<p>Markdown 本身没有提示块，各家扩展语法不同。样式层同时认三种主流写法，作者用哪一种由渲染器决定。</p>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown · GFM alerts</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>&gt; [!NOTE]
+&gt; 一般说明。
+
+&gt; [!TIP]
+&gt; 建议。
+
+&gt; [!WARNING]
+&gt; 警告。
+
+&gt; [!CAUTION]
+&gt; 危险操作。</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <div class="admonition note"><span class="admonition-title">说明</span><p>一般说明。</p></div>
+    <div class="admonition tip"><span class="admonition-title">建议</span><p>建议。</p></div>
+    <div class="admonition warning"><span class="admonition-title">警告</span><p>警告。</p></div>
+    <div class="admonition danger"><span class="admonition-title">危险</span><p>危险操作。</p></div>
+  </div>
+</div>
+<p>认得的 class：<code>.admonition.tip</code>、<code>.alert-tip</code>、<code>.markdown-alert-tip</code>——
+分别对应 Python-Markdown / Docusaurus / GitHub 三家，不需要中间映射层。</p>
+
+<h2 id="code">代码块</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>```css
+.wx-rule {
+  /* 单边线，不是四边框 */
+  border-block-start: 1px solid;
+}
+```</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <pre><code class="language-css"><span class="hljs-selector-class">.wx-rule</span> {
+  <span class="hljs-comment">/* 单边线，不是四边框 */</span>
+  <span class="hljs-attribute">border-block-start</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1px</span> solid<span class="hljs-punctuation">;</span>
+}</code></pre>
+  </div>
+</div>
+<p>语法高亮的完整 token 表、支持的高亮器与实测对比度见<a href="./code.html">代码与语法高亮</a>。</p>
+
+<h2 id="coverage">覆盖情况</h2>
+<p>诚实记录边界比声称"全支持"有用。下表按标准分组，写清哪些是 CommonMark、哪些依赖扩展、哪些不做。</p>
+<div class="doc-elements"><table class="wx-table doc-api">
+  <thead><tr><th>标记</th><th>标准</th><th>状态</th></tr></thead>
+  <tbody>
+    <tr><td>标题（ATX / Setext）、段落、软硬换行</td><td>CommonMark</td><td>✓</td></tr>
+    <tr><td>强调、加粗、行内代码、转义</td><td>CommonMark</td><td>✓</td></tr>
+    <tr><td>链接（行内 / 引用式 / 自动）、图片</td><td>CommonMark</td><td>✓</td></tr>
+    <tr><td>列表（有序 / 无序 / 嵌套 / 起始序号 / 松散紧凑）</td><td>CommonMark</td><td>✓</td></tr>
+    <tr><td>引用（含嵌套）、分隔线</td><td>CommonMark</td><td>✓</td></tr>
+    <tr><td>代码块（围栏 / 缩进 / 语言标注）</td><td>CommonMark</td><td>✓</td></tr>
+    <tr><td>内联 HTML</td><td>CommonMark</td><td>✓ 按裸元素样式呈现</td></tr>
+    <tr><td>表格（含对齐）、删除线、任务列表</td><td>GFM</td><td>✓</td></tr>
+    <tr><td>脚注</td><td>GFM / 扩展</td><td>✓</td></tr>
+    <tr><td>提示块 alerts</td><td>GFM / 扩展</td><td>✓ 三家 class 同时认</td></tr>
+    <tr><td>定义列表、高亮 <code>==…==</code>、上下标</td><td>扩展</td><td>✓ 渲染器需支持</td></tr>
+    <tr><td>注音 ruby</td><td>内联 HTML</td><td>✓</td></tr>
+    <tr><td>数学公式 <code>$…$</code></td><td>扩展</td><td>✗ 需自行接入 KaTeX/MathJax，样式层不含</td></tr>
+    <tr><td>目录 <code>[TOC]</code></td><td>扩展</td><td>✗ 由站点生成器负责，见 <code>wx-anchor</code></td></tr>
+    <tr><td>Front matter</td><td>扩展</td><td>✗ 元数据不是内容，不渲染</td></tr>
+  </tbody>
+</table></div>

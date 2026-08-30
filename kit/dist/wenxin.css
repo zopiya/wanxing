@@ -17,6 +17,11 @@
 @layer wx.tokens {
 /* source: kit/tokens/core.css */
 :root {
+  /* Only a hint until the reader chooses. The explicit overrides live beside
+     the dark palette in dark.css: once [data-theme] is set, the UA must paint
+     form controls, scrollbars and the caret to match the page, not the OS.
+     Without them a light page on a dark OS renders bare <input> with a dark
+     field and inherits dark ink onto it — 1.02:1, and a 2px UA border. */
   color-scheme: light dark;
 
   --color-bg-warm:    #F2F0EB;
@@ -230,6 +235,13 @@
   --color-link-hover: #CF5F4A;
   --color-focus:      #CF5F4A;
 }
+
+/* The UA paints what :root declares, not what the page painted. When the
+   reader has chosen a theme, that choice has to reach the form controls,
+   scrollbars and caret too — otherwise a light page on a dark OS hands you a
+   dark <input> under dark ink. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
 }
 @layer wx.tokens {
 /* source: kit/tokens/dense.css */
@@ -355,10 +367,7 @@
 /* The typographic ground: what a page looks like with zero classes.
    If a bare <h1> or <p> would be wrong without a rule, the rule belongs here. */
 @layer wx.base {
-  html {
-    font-size: 100%;
-    color-scheme: light dark;
-  }
+  html { font-size: 100%; }
 
   body {
     background: var(--color-bg-warm);

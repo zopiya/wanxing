@@ -21,10 +21,15 @@
     ]
   },
   {
-    "slug": "markdown", "title": "内容",
+    "slug": "content", "title": "内容", "hub": true,
     "groups": [
-      { "title": "内容渲染 · Rendering", "items": [
-        { "slug": "markdown", "title": "Markdown 渲染" }
+      { "title": "内容 · Content", "items": [
+        { "slug": "content", "title": "内容概览" }
+      ]},
+      { "title": "渲染参考 · Reference", "items": [
+        { "slug": "markdown",      "title": "Markdown 全量" },
+        { "slug": "html-elements", "title": "HTML 元素" },
+        { "slug": "code",          "title": "代码与语法高亮" }
       ]}
     ]
   },

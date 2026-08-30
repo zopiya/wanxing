@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>内容 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <nav class="doc-primary" aria-label="主要导航">
+<a href="./design.html">设计</a>
+    <a href="./content.html" aria-current="page">内容</a>
+    <a href="./components.html">组件</a>
+    <a href="./patterns.html">页面</a>
+    <a href="./logo.html">品牌</a>
+  </nav>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell doc-shell--hub">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <p class="doc-sidebar__title">内容</p>
+    <ul class="wx-menu">
+      <li class="wx-menu__group">内容 · Content</li>
+        <li><a class="wx-menu__link" href="./content.html" aria-current="page">内容概览</a></li>
+      <li class="wx-menu__group">渲染参考 · Reference</li>
+        <li><a class="wx-menu__link" href="./markdown.html">Markdown 全量</a></li>
+        <li><a class="wx-menu__link" href="./html-elements.html">HTML 元素</a></li>
+        <li><a class="wx-menu__link" href="./code.html">代码与语法高亮</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<div class="doc-design-hub">
+  <h1>内容</h1>
+  <p class="wx-lede">作者只写 Markdown 和标准 HTML。渲染层负责把它们放进文心的排版、代码、表格与提示节奏中——不要求作者知道任何一个组件 class。</p>
+
+  <section class="doc-section-index" aria-labelledby="content-render"><div><h2 id="content-render">渲染参考</h2><p>每一条标记的输入与输出并排放，看得见渲染器吐出什么、它随后长什么样。</p></div><div><a href="./markdown.html">Markdown 全量</a><a href="./html-elements.html">HTML 元素</a><a href="./code.html">代码与语法高亮</a></div></section>
+
+  <h2 id="contract">三方契约</h2>
+  <p>内容呈现出问题时，先判断是谁的责任。这张表就是分界线。</p>
+  <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>层</th><th>负责什么</th><th>不负责什么</th></tr></thead><tbody>
+  <tr><td>作者</td><td>写标准 Markdown，写有意义的 alt 文本和标题层级。</td><td>不写视觉 class，不复制组件结构，不用 HTML 模拟排版。</td></tr>
+  <tr><td>渲染器</td><td>生成标准 HTML、标题 id、图片与表格语义。</td><td>不伪造图注、链接目的或内容状态。</td></tr>
+  <tr><td>文心样式</td><td>提供 <code>.wx-md</code> 与全部裸元素的呈现。</td><td>不改变正文语义，也不覆盖真正组件的 class。</td></tr>
+  </tbody></table></div>
+
+  <h2 id="two-layers">两层，两种选择器策略</h2>
+  <p>同样是代码块，<code>kit/components/code.css</code> 管你自己写的 <code>&lt;pre class="wx-code"&gt;</code>，
+  <code>kit/markdown/syntax.css</code> 管渲染器吐出的 <code>.wx-md pre &gt; code</code>。
+  <strong>样子一样，选择器策略不同</strong>——前者你控制 class，后者你不控制。
+  把两者混为一谈是设计系统开始腐烂的地方，所以它们分属两个目录、两个 <code>@layer</code>。</p>
+  <div class="wx-note wx-note--info"><span class="wx-note__title">判据</span><p>问一句：<strong>这段 HTML 的 class 属性归我控制吗？</strong>不归——它属于内容层。</p></div>
+
+  <h2 id="use">最短用法</h2>
+  <pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="kit/index.css"&gt;
+
+&lt;article class="wx-md wx-md--measured" lang="zh-CN"&gt;
+  &lt;!-- Markdown 渲染器的输出原样放进来 --&gt;
+&lt;/article&gt;</code></pre>
+  <p><code>wx-md</code> 提供正文节奏，<code>wx-md--measured</code> 限制行长（中文 36em，西文 66ch）。
+  两者都不要求作者改动一个字。</p>
+  <p>Hugo、remark/rehype、markdown-it、VitePress 和 Docusaurus 都可以接入；
+  区别只在渲染器如何产出锚点和提示块，样式层不绑定某一种工具。
+  <code>kit/markdown/hugo/</code> 下有一份 Hugo 渲染钩子作为参考实现。</p>
+
+  <h2 id="bare">没有 wx-md 的时候</h2>
+  <p>裸 HTML——完全没有 class 的页面——也必须是可读的。这是 <code>kit/base/</code> 的职责判据：
+  <strong>没有它，裸 <code>&lt;h1&gt;</code> 会不对吗？</strong>
+  61 个需要样式的元素现在全部覆盖，包括浏览器默认值与这套语言直接冲突的那些：
+  <code>&lt;mark&gt;</code> 的亮黄、<code>&lt;fieldset&gt;</code> 的 2px 凹槽边框、
+  <code>&lt;progress&gt;</code> 的平台蓝。</p>
+</div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#content-render">渲染参考</a></li>
+      <li><a class="wx-anchor__link" href="#contract">三方契约</a></li>
+      <li><a class="wx-anchor__link" href="#two-layers">两层，两种选择器策略</a></li>
+      <li><a class="wx-anchor__link" href="#use">最短用法</a></li>
+      <li><a class="wx-anchor__link" href="#bare">没有 wx-md 的时候</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

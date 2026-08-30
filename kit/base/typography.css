@@ -1,10 +1,7 @@
 /* The typographic ground: what a page looks like with zero classes.
    If a bare <h1> or <p> would be wrong without a rule, the rule belongs here. */
 @layer wx.base {
-  html {
-    font-size: 100%;
-    color-scheme: light dark;
-  }
+  html { font-size: 100%; }
 
   body {
     background: var(--color-bg-warm);

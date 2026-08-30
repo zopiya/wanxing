@@ -82,3 +82,10 @@
   --color-link-hover: #CF5F4A;
   --color-focus:      #CF5F4A;
 }
+
+/* The UA paints what :root declares, not what the page painted. When the
+   reader has chosen a theme, that choice has to reach the form controls,
+   scrollbars and caret too — otherwise a light page on a dark OS hands you a
+   dark <input> under dark ink. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }

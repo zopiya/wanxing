@@ -7,6 +7,8 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const tokens = JSON.parse(readFileSync(join(root, "kit/tokens/generated/tokens.json"), "utf8"));
 const syntaxCss = readFileSync(join(root, "kit/markdown/syntax.css"), "utf8");
+const themeCss = ["kit/tokens/core.css", "kit/tokens/dark.css", "kit/base/typography.css", "kit/base/a11y.css"]
+  .map((file) => readFileSync(join(root, file), "utf8")).join("\n");
 const colors = tokens.color;
 const value = (name, mode) => {
   const token = colors[name];
@@ -112,9 +114,22 @@ for (const mode of ["light", "dark"]) {
   }
 }
 
+/* A theme switch that does not reach color-scheme is invisible until you put a
+   zero-class form control on the page. The UA paints <input>, <select>, the
+   scrollbar and the caret from :root's color-scheme, not from what the page
+   painted, so a light page on a dark OS gets a dark field under dark ink —
+   1.02:1, plus a 2px UA border. Both directions must be declared. */
+const themeProblems = [];
+if (/\[data-theme=["']dark["']\]/.test(themeCss)) {
+  for (const mode of ["light", "dark"]) {
+    const declared = new RegExp(`\\[data-theme=["']${mode}["']\\][^{]*\\{[^}]*color-scheme\\s*:\\s*${mode}\\b`).test(themeCss);
+    if (!declared) themeProblems.push(`[data-theme="${mode}"] does not set color-scheme: ${mode}`);
+  }
+}
+
 const failed = checks.filter((check) => contrast(check.foreground, check.ground) < check.minimum);
 const failedDifferences = differences.filter((check) => check.delta < 28);
-if (failed.length || failedDifferences.length) {
+if (failed.length || failedDifferences.length || themeProblems.length) {
   console.error("✗ color contrast checks failed:\n");
   for (const check of failed) {
     console.error(`    ${check.mode} ${check.name}: ${contrast(check.foreground, check.ground).toFixed(2)}:1 < ${check.minimum}:1`);
@@ -122,9 +137,11 @@ if (failed.length || failedDifferences.length) {
   for (const check of failedDifferences) {
     console.error(`    ${check.mode} ${check.pair}: ΔE ${check.delta.toFixed(2)} < 28`);
   }
+  for (const problem of themeProblems) console.error(`    ${problem}`);
   process.exit(1);
 }
 
 console.log(`✓ ${checks.length} contrast pairs meet their floor — text tiers on every licensed surface, the syntax palette on the code ground, semantics, accent and focus`);
 console.log(`✓ ${differences.length} semantic-color pairs keep ΔE ≥ 28`);
+console.log("✓ the theme switch reaches color-scheme in both directions");
 console.log(`  light functional ${contrast(value("text-functional", "light"), value("bg-warm", "light")).toFixed(2)}:1 · dark functional ${contrast(value("text-functional", "dark"), value("bg-warm", "dark")).toFixed(2)}:1`);

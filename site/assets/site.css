@@ -127,6 +127,40 @@
     font-size: var(--text-sm);
   }
 
+  /* Markdown and bare HTML are documented as source-beside-render: the point
+     is what the renderer emits and what it then looks like, so showing the
+     input and the output apart from each other would hide the whole subject. */
+  .doc-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0;
+    margin-block: var(--space-6);
+    border-block: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .doc-pair > * { min-inline-size: 0; padding: var(--space-5); }
+  .doc-pair > * + * { border-inline-start: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .doc-pair__src { margin: 0; overflow-x: auto; background: var(--code-bg); font-size: var(--text-sm); }
+  .doc-pair__src code { white-space: pre; }
+  .doc-pair__out > :first-child { margin-block-start: 0; }
+  .doc-pair__out > :last-child { margin-block-end: 0; }
+  .doc-pair__label {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: var(--space-6);
+    padding-block: var(--space-2);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-functional);
+  }
+  .doc-pair__label > span { flex: 1; }
+
+  /* The element reference tables run wide; they scroll rather than the page. */
+  .doc-elements { overflow-x: auto; }
+  .doc-elements table { inline-size: 100%; min-inline-size: 34rem; }
+
   /* The API table that follows most demos. */
   .doc-api { font-size: var(--text-sm); }
   .doc-api code { white-space: nowrap; }
@@ -201,7 +235,8 @@
     .doc-sidebar[data-open] { display: block; }
     .doc-shell--landing { padding-inline: var(--padding-page-x); }
     .doc-landing__hero { min-block-size: 27rem; }
-    .doc-landing__stage-body, .doc-product-paths, .doc-section-index, .doc-component-groups { grid-template-columns: minmax(0, 1fr); }
+    .doc-landing__stage-body, .doc-product-paths, .doc-section-index, .doc-component-groups, .doc-pair { grid-template-columns: minmax(0, 1fr); }
+    .doc-pair > * + * { border-inline-start: 0; border-block-start: var(--stroke-hairline) solid var(--color-border-subtle); }
     .doc-product-paths { gap: var(--space-6); }
     .doc-component-groups section:nth-last-child(2) { border-block-end: 0; }
   }

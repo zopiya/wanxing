@@ -1,4 +1,9 @@
 :root {
+  /* Only a hint until the reader chooses. The explicit overrides live beside
+     the dark palette in dark.css: once [data-theme] is set, the UA must paint
+     form controls, scrollbars and the caret to match the page, not the OS.
+     Without them a light page on a dark OS renders bare <input> with a dark
+     field and inherits dark ink onto it — 1.02:1, and a 2px UA border. */
   color-scheme: light dark;
 
   --color-bg-warm:    #F2F0EB;
