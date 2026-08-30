@@ -34,7 +34,10 @@
   .doc-primary a { color: var(--color-text-functional); text-decoration: none; }
   .doc-primary a:hover, .doc-primary a[aria-current] { color: var(--color-text-heading); }
   .doc-primary a[aria-current] { border-block-end: var(--stroke-mark) solid var(--color-accent); padding-block-end: var(--space-1); }
-  .doc-topbar__end { margin-inline-start: 0; }
+  /* A block container puts its inline-block child on a text baseline, which
+     left the theme switch 3.2px above the centre line the brand and nav share.
+     The bar is a flex row; its end should be one too. */
+  .doc-topbar__end { display: flex; align-items: center; margin-inline-start: 0; }
   .doc-navtoggle { display: none; }
 
   .doc-shell {
