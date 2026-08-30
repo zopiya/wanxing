@@ -13,3 +13,14 @@
 <tr><td><code>wx-stack / wx-cluster / wx-spread / wx-cols</code></td><td>垂直节奏、可换行横组、两端信息、简单分栏；复杂布局写页面 grid。</td><td>只负责布局，不改变 DOM 语义；紧/松变体是节奏，不是状态。</td></tr>
 <tr><td><code>wx-rule</code></td><td>章节或条目边界；能靠邻近表达时不加线。</td><td>使用 <code>hr</code>；<code>--short/strong</code> 只用于明确层级。</td></tr>
 </tbody></table></div>
+
+<h2 id="page">页面根 Page</h2>
+<p><code>wx-page</code> 放在 <code>body</code> 或页面根上，负责页面级的左右留白与最小高度。
+它是<strong>唯一允许出现在 <code>body</code> 上的 wx- 类</strong>——本站每一页都用它。</p>
+<div class="doc-figure"><pre class="doc-code__body"><code>&lt;body class="wx-page"&gt;
+  &lt;a class="wx-skip" href="#main"&gt;跳到主要内容&lt;/a&gt;
+  &lt;header&gt;…&lt;/header&gt;
+  &lt;main id="main"&gt;…&lt;/main&gt;
+&lt;/body&gt;</code></pre></div>
+<p>它<strong>不</strong>限制内容宽度——那是 <code>wx-container</code> 与 <code>--width-*</code> 的事。
+把两件事分开，是为了让一个全宽的页头和一段限宽的正文能共存于同一页。</p>

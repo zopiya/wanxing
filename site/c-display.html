@@ -87,15 +87,15 @@
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <ol class="wx-timeline">
-      <li class="wx-timeline__item"><p class="wx-timeline__meta">08-30</p><p>补齐组件清单。</p></li>
-      <li class="wx-timeline__item"><p class="wx-timeline__meta">08-29</p><p>田野审计四个生产站点。</p></li>
-      <li class="wx-timeline__item"><p class="wx-timeline__meta">08-24</p><p>重构为 spec / kit / examples。</p></li>
+      <li class="wx-timeline__item"><p class="wx-timeline__content">08-30</p><p>补齐组件清单。</p></li>
+      <li class="wx-timeline__item"><p class="wx-timeline__content">08-29</p><p>田野审计四个生产站点。</p></li>
+      <li class="wx-timeline__item"><p class="wx-timeline__content">08-24</p><p>重构为 spec / kit / examples。</p></li>
     </ol>
   </div>
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;ol class="wx-timeline"&gt;
-  &lt;li class="wx-timeline__item"&gt;&lt;p class="wx-timeline__meta"&gt;08-30&lt;/p&gt;&lt;p&gt;补齐组件清单。&lt;/p&gt;&lt;/li&gt;
-  &lt;li class="wx-timeline__item"&gt;&lt;p class="wx-timeline__meta"&gt;08-29&lt;/p&gt;&lt;p&gt;田野审计四个生产站点。&lt;/p&gt;&lt;/li&gt;
-  &lt;li class="wx-timeline__item"&gt;&lt;p class="wx-timeline__meta"&gt;08-24&lt;/p&gt;&lt;p&gt;重构为 spec / kit / examples。&lt;/p&gt;&lt;/li&gt;
+  &lt;li class="wx-timeline__item"&gt;&lt;p class="wx-timeline__content"&gt;08-30&lt;/p&gt;&lt;p&gt;补齐组件清单。&lt;/p&gt;&lt;/li&gt;
+  &lt;li class="wx-timeline__item"&gt;&lt;p class="wx-timeline__content"&gt;08-29&lt;/p&gt;&lt;p&gt;田野审计四个生产站点。&lt;/p&gt;&lt;/li&gt;
+  &lt;li class="wx-timeline__item"&gt;&lt;p class="wx-timeline__content"&gt;08-24&lt;/p&gt;&lt;p&gt;重构为 spec / kit / examples。&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;</code></pre></details>
 </div>
 
@@ -230,7 +230,7 @@
 <h2 id="code">代码 Code</h2>
 <div class="doc-figure">
     <div class="wx-code">
-      <div class="wx-code__title">kit/index.css</div>
+      <div class="wx-code__header">kit/index.css</div>
       <pre class="wx-code__body"><code>@import "./tokens/core.css";
 @import "./components/index.css";</code></pre>
     </div>
@@ -246,6 +246,46 @@
 <tr><td><code>wx-calendar</code></td><td>按周列展示日期；日期录入优先原生控件。</td><td>原生 <code>table</code>、<code>caption</code>；日期/选择态用 <code>aria-current/selected</code>。</td></tr>
 <tr><td><code>wx-code / wx-quote</code></td><td>需要保留格式的代码、可归属的引用；普通段落不用。</td><td><code>pre/code</code> 或 <code>blockquote/cite</code>；复制需 <code>copy.js</code>。</td></tr>
 </tbody></table></div>
+
+<h2 id="list">列表 List</h2>
+<p>列表是内容，不是控件。<code>wx-list</code> 只调节节奏，语义完全交给原生 <code>ul</code> / <code>ol</code>。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <ul class="wx-list">
+    <li>默认列表保留标记与缩进。</li>
+    <li>行距按正文节奏，不额外加密。</li>
+  </ul>
+  <ul class="wx-list wx-list--ruled" style="margin-block-start:var(--space-6)">
+    <li><strong>带分隔线</strong>——每项之间一条发丝线，用于条目型内容</li>
+    <li><strong>不是卡片</strong>——分隔靠线和留白，不靠把每项装进方框</li>
+    <li><strong>不是表格</strong>——每项只有一个维度时用列表，多维度才用表</li>
+  </ul>
+</div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;ul class="wx-list"&gt;
+  &lt;li&gt;默认列表保留标记与缩进。&lt;/li&gt;
+  &lt;li&gt;行距按正文节奏，不额外加密。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="wx-list wx-list--ruled" style="margin-block-start:var(--space-6)"&gt;
+  &lt;li&gt;&lt;strong&gt;带分隔线&lt;/strong&gt;——每项之间一条发丝线，用于条目型内容&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;不是卡片&lt;/strong&gt;——分隔靠线和留白，不靠把每项装进方框&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;不是表格&lt;/strong&gt;——每项只有一个维度时用列表，多维度才用表&lt;/li&gt;
+&lt;/ul&gt;</code></pre></details></div>
+<p><code>wx-list--grouped</code> 是应用轨的分组表面（iOS 分组列表惯例），走边框实现，仍然禁止阴影——
+它是 <strong>D-21</strong> 之外唯一被有条件放宽的"面"。</p>
+
+<h2 id="quote">引用 Quote</h2>
+<p>引用用单边线，不用方框，也不用巨大的装饰引号。归属信息放在 <code>cite</code> 里。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <blockquote class="wx-quote">
+    <p>水的分子式不因容器而改变，但在杯中是杯的形，在河道里是河道的形。</p>
+    <footer>——<cite>文心 · 万形，水的原则</cite></footer>
+  </blockquote>
+</div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;blockquote class="wx-quote"&gt;
+  &lt;p&gt;水的分子式不因容器而改变，但在杯中是杯的形，在河道里是河道的形。&lt;/p&gt;
+  &lt;footer&gt;——&lt;cite&gt;文心 · 万形，水的原则&lt;/cite&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;</code></pre></details></div>
+<p>与 <code>wx-pullquote</code> 的分别：<strong>quote 引的是别人的话，pullquote 抽的是本文自己的话。</strong>
+前者是引证，后者是版式强调；把 pullquote 当引用用，会让读者以为文章在引述外部来源。</p>
 
     </article>
   </main>
@@ -264,6 +304,8 @@
       <li><a class="wx-anchor__link" href="#figure">图与图注 Figure / Image</a></li>
       <li><a class="wx-anchor__link" href="#code">代码 Code</a></li>
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
+      <li><a class="wx-anchor__link" href="#list">列表 List</a></li>
+      <li><a class="wx-anchor__link" href="#quote">引用 Quote</a></li>
   </ul>
 </nav></div>
 </div>

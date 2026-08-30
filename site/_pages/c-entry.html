@@ -147,3 +147,37 @@
     </label>
   </div>
 </div>
+
+<h2 id="form">表单 Form</h2>
+<p><code>wx-form</code> 是字段的容器与提交上下文。它不接管提交——<strong>提交由采用者处理</strong>，
+组件负责的是布局、分组、错误汇总与状态区的位置。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <form class="wx-form" novalidate>
+    <div class="wx-form__errors" role="alert" tabindex="-1">
+      <p><strong>有 1 项需要修改：</strong></p>
+      <ul><li><a href="#form-demo-email">邮箱格式不正确</a></li></ul>
+    </div>
+    <fieldset class="wx-form__section">
+      <legend>联系方式</legend>
+      <label class="wx-field" for="form-demo-email"><span class="wx-field__label">邮箱 <span class="wx-field__required">必填</span></span>
+        <input class="wx-input" id="form-demo-email" type="email" value="zopiya@" aria-invalid="true" aria-describedby="form-demo-email-err">
+        <span class="wx-field__error" id="form-demo-email-err">邮箱格式不正确——缺少域名部分。</span>
+      </label>
+    </fieldset>
+    <div class="wx-form__actions">
+      <button class="wx-btn wx-btn--primary" type="submit">提交</button>
+      <button class="wx-btn wx-btn--text" type="button">取消</button>
+    </div>
+  </form>
+</div></div>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>构件</th><th>职责</th><th>契约</th></tr></thead>
+  <tbody>
+    <tr><td><code>wx-form__errors</code></td><td>提交失败后的汇总，每条链到出错字段。</td><td><code>role="alert"</code> + <code>tabindex="-1"</code>，提交后把焦点移过来。</td></tr>
+    <tr><td><code>wx-form__section</code></td><td>相关字段分组。</td><td>原生 <code>fieldset</code> + <code>legend</code>，不是 div 加标题。</td></tr>
+    <tr><td><code>wx-form__actions</code></td><td>动作区，主操作在前。</td><td>至多一个 <code>wx-btn--primary</code>。</td></tr>
+  </tbody>
+</table></div>
+<p>表单属于<strong>第三层仲裁规则</strong>：数据录入与反馈类组件<strong>永远按惯例处理</strong>，
+无论所在轨道。一个纯阅读轨的文档站里，它的搜索框和表单同样使用完整语义色、清晰可供性与标准交互反馈。
+<a href="./pattern-form.html">表单页</a>讲的是校验时机与整页编排。</p>

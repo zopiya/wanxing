@@ -197,6 +197,49 @@
 <tr><td><code>wx-skip</code></td><td>每个页面第一可聚焦元素；绝不因“页面短”删除。</td><td><code>href="#main"</code> 指向唯一 <code>main</code>，无脚本。</td></tr>
 </tbody></table></div>
 
+<h2 id="toc">目录 Table of Contents</h2>
+<p><code>wx-toc</code> 是长文的页内目录，当前位置用 <code>aria-current</code> 标记——
+<strong>不是 <code>.is-active</code> 类</strong>。本站每一页右侧就是一个实例（窄屏下隐藏）。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <nav class="wx-toc" aria-label="示例目录">
+    <p class="wx-toc__heading">本页</p>
+    <ul class="wx-toc__list">
+      <li><a class="wx-toc__link" href="#toc" aria-current="location">目录</a></li>
+      <li><a class="wx-toc__link" href="#affix">吸附</a></li>
+      <li><a class="wx-toc__link" href="#skip">跳过链接</a></li>
+    </ul>
+  </nav>
+</div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;nav class="wx-toc" aria-label="示例目录"&gt;
+  &lt;p class="wx-toc__heading"&gt;本页&lt;/p&gt;
+  &lt;ul class="wx-toc__list"&gt;
+    &lt;li&gt;&lt;a class="wx-toc__link" href="#toc" aria-current="location"&gt;目录&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-toc__link" href="#affix"&gt;吸附&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="wx-toc__link" href="#skip"&gt;跳过链接&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre></details></div>
+<p>状态绑定到无障碍树的理由在这里最直白：<code>aria-current</code> 既驱动那条朱砂竖线，
+也让读屏器知道读者在哪一节。<strong>一个类做不到第二件事，于是"看得见但读不到"的状态在结构上不可能出现。</strong>
+高亮由 <code>toc.js</code> 的 IntersectionObserver 更新。</p>
+
+<h2 id="affix">吸附 Affix</h2>
+<p><code>wx-affix</code> 让一个导航容器在滚动时停靠。它是纯 CSS <code>position: sticky</code>，没有脚本、
+没有滚动监听、没有布局抖动。</p>
+<div class="doc-figure"><pre class="doc-code__body"><code>&lt;nav class="wx-toc wx-affix" aria-label="本页目录"&gt;…&lt;/nav&gt;</code></pre></div>
+<p>它只负责停靠位置，不负责内容——所以它总是和别的东西一起用（本站是 <code>wx-anchor wx-affix</code>）。
+<strong>吸附的东西必须能滚动</strong>：目录比视口高时要有自己的 <code>overflow-y</code>，
+否则底部条目永远够不到。</p>
+
+<h2 id="skip">跳过链接 Skip Link</h2>
+<p><code>wx-skip</code> 平时不可见，获得焦点时出现在页面左上角。键盘用户按下第一个 Tab 就能跳过整个页头。</p>
+<div class="doc-figure"><pre class="doc-code__body"><code>&lt;body class="wx-page"&gt;
+  &lt;a class="wx-skip" href="#main"&gt;跳到主要内容&lt;/a&gt;
+  …
+  &lt;main id="main"&gt;…&lt;/main&gt;</code></pre></div>
+<div class="wx-note wx-note--info"><span class="wx-note__title">现在就能试</span>
+  <p>点一下页面空白处，按 <kbd class="wx-kbd">Tab</kbd>——本站的跳过链接会出现在左上角。
+  它是<strong>第一层全局底线</strong>的一部分：键盘可达不参与哲学取舍，两条轨道都必须有。</p></div>
+
     </article>
   </main>
 
@@ -212,6 +255,9 @@
       <li><a class="wx-anchor__link" href="#anchor">页内锚点 Anchor</a></li>
       <li><a class="wx-anchor__link" href="#skip">跳过链接 Skip</a></li>
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
+      <li><a class="wx-anchor__link" href="#toc">目录 Table of Contents</a></li>
+      <li><a class="wx-anchor__link" href="#affix">吸附 Affix</a></li>
+      <li><a class="wx-anchor__link" href="#skip">跳过链接 Skip Link</a></li>
   </ul>
 </nav></div>
 </div>

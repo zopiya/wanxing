@@ -60,4 +60,12 @@
   .wx-status--warn    { color: var(--color-warning); }
   .wx-status--down    { color: var(--color-danger); }
   .wx-status--idle    { color: var(--color-text-functional); }
+
+  /* One tag on a page may carry the accent — the single item the reader is
+     meant to notice. It spends one of the two accent occurrences the page
+     is allowed, so a page full of accent tags is a page with no accent. */
+  .wx-tag--accent {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
 }

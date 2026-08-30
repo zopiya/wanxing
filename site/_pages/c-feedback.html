@@ -143,3 +143,30 @@
     </details>
   </div>
 </div>
+
+<h2 id="result">结果 Result</h2>
+<p><code>wx-result</code> 用于一次操作结束后的整页反馈：成功、失败、404、无权限。
+它<strong>必须给出下一步</strong>——一个只说"出错了"的页面把读者留在了死路上。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <section class="wx-result">
+    <p class="wx-result__mark">404</p>
+    <h3 class="wx-result__title">这个页面不存在</h3>
+    <p class="wx-result__body">链接可能已经变更，或者从一开始就写错了。</p>
+    <p class="wx-result__detail">ref: WX-404-8B3525</p>
+    <div class="wx-result__actions">
+      <a class="wx-btn wx-btn--primary" href="#result">回到首页</a>
+      <a class="wx-btn wx-btn--text" href="#result">查看全部组件 →</a>
+    </div>
+  </section>
+</div></div>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>何时使用</th><th>何时不用</th></tr></thead>
+  <tbody>
+    <tr><td>一次操作结束，整页只剩这一件事要说。</td><td>页面其余内容仍然有效时——那用 <code>wx-alert</code>。</td></tr>
+    <tr><td>404、403、500 等路由级状态。</td><td>某个字段出错时——那用 <code>wx-field__error</code> 与错误汇总。</td></tr>
+    <tr><td>需要读者做一个明确选择才能继续。</td><td>只是通知、不需要动作时——那用 <code>wx-toast</code>。</td></tr>
+  </tbody>
+</table></div>
+<p><strong>没有插画。</strong>状态由文字承担：一个数字、一句说明、一到两个动作。
+这不是省事——空状态插画是这套语言里最典型的"用装饰替代信息"。
+整页反馈的完整编排见<a href="./pattern-result.html">结果与异常页</a>。</p>

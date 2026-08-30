@@ -19,4 +19,8 @@
   @media (max-width: 640px) {
     .wx-seal { inline-size: 6px; block-size: 6px; }
   }
+
+  /* Header size. The mark scales with the brand name beside it, not with the
+     body text, so the larger square is a variant rather than an em unit. */
+  .wx-seal--lg { inline-size: 12px; block-size: 12px; }
 }
