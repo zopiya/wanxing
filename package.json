@@ -1,17 +1,44 @@
 {
   "name": "wenxin-wanxing",
   "version": "0.1.0",
-  "description": "文心 · 万形 — a bilingual, content-centric design system. One soul, ten thousand forms.",
+  "description": "文心 · 万形 — 内容型产品的设计语言与前端组件库。零运行时依赖。",
+  "keywords": [
+    "design-system",
+    "css",
+    "design-tokens",
+    "wcag",
+    "chinese-typography",
+    "llms-txt"
+  ],
+  "license": "MIT",
   "type": "module",
-  "private": true,
-  "license": "UNLICENSED",
+  "bin": {
+    "wenxin": "./bin/wenxin.mjs"
+  },
+  "exports": {
+    ".": "./kit/index.css",
+    "./css": "./kit/dist/wenxin.css",
+    "./contracts": "./kit/wenxin.json",
+    "./tokens": "./kit/tokens/generated/tokens.json",
+    "./tokens/dtcg": "./kit/tokens/generated/tokens.dtcg.json",
+    "./patterns/*": "./kit/patterns/*"
+  },
+  "files": [
+    "bin/",
+    "kit/",
+    "scripts/render-audit.mjs",
+    "spec/",
+    "AGENTS.md",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "build": "npm run build:tokens && npm run build:themes && npm run build:contracts && npm run build:css && npm run build:site && npm run build:llms",
     "build:tokens": "node scripts/build-tokens.mjs",
     "audit": "node scripts/render-audit.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
     "check:forbidden": "node scripts/check-forbidden.mjs",
-    "check": "npm run check:tokens && npm run check:colors && npm run check:forbidden && npm run check:components && npm run check:contracts && npm run check:site && npm run check:llms && npm run check:render-audit && npm run check:a11y && npm run check:a11y:selftest && npm run check:components:selftest",
+    "check": "npm run check:tokens && npm run check:colors && npm run check:forbidden && npm run check:components && npm run check:contracts && npm run check:site && npm run check:llms && npm run check:render-audit && npm run check:a11y && npm run check:a11y:selftest && npm run check:components:selftest && npm run check:cli",
     "build:themes": "node scripts/build-themes.mjs",
     "build:css": "node scripts/build-css.mjs",
     "check:colors": "node scripts/check-colors.mjs",
@@ -25,7 +52,8 @@
     "build:contracts": "node scripts/build-contracts.mjs",
     "check:contracts": "node scripts/check-contracts.mjs",
     "build:llms": "node scripts/build-llms.mjs",
-    "check:llms": "node scripts/check-llms.mjs"
+    "check:llms": "node scripts/check-llms.mjs",
+    "check:cli": "node scripts/check-cli.mjs"
   },
   "engines": {
     "node": ">=18"

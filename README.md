@@ -16,6 +16,41 @@ python3 -m http.server 8899
 # 打开 http://localhost:8899/site/index.html
 ```
 
+## 安装
+
+```sh
+npm install wenxin-wanxing
+```
+
+```js
+import "wenxin-wanxing";                    // kit/index.css
+import "wenxin-wanxing/css";                // 单文件包，无 @import
+import contracts from "wenxin-wanxing/contracts";      // kit/wenxin.json
+import tokens from "wenxin-wanxing/tokens/dtcg";       // W3C DTCG 交换格式
+```
+
+## 命令行
+
+```sh
+npx wenxin audit <file>        # 审计一个 HTML 页面；hardGates 非空即不合规
+npx wenxin contracts toast     # 查一条组件契约
+npx wenxin tokens --format dtcg
+npx wenxin skeleton e          # 输出页面原型 E 的骨架
+```
+
+**不要声称合规，跑一遍 `audit`。**
+
+## 给 AI agent
+
+| 你要做的事 | 读这个 |
+| --- | --- |
+| 在别的项目里用这套系统 | [`site/llms.txt`](./site/llms.txt) 索引，[`kit/wenxin.json`](./kit/wenxin.json) 全部契约 |
+| 通读全部规范 | [`site/llms-full.txt`](./site/llms-full.txt)，20 份规范合并 |
+| 在这个仓库里干活 | [`AGENTS.md`](./AGENTS.md) 与 [`CLAUDE.md`](./CLAUDE.md) |
+| 装成技能 | [`.claude/skills/wenxin-design/`](./.claude/skills/wenxin-design/) |
+
+`kit/wenxin.json` 完全由来源派生，`npm run check:contracts` 守着它不漂。
+
 ## 目录
 
 | 目录 | 内容 |
@@ -36,8 +71,8 @@ python3 -m http.server 8899
 
 | 命令 | 作用 |
 | --- | --- |
-| `npm run build` | 生成 tokens、图表主题、CSS 包和文档站 |
-| `npm run check` | 运行 token、颜色、禁令、站点、渲染审计与无障碍检查 |
+| `npm run build` | 生成 tokens、图表主题、契约包、CSS 包、文档站与 llms.txt |
+| `npm run check` | 十二门检查：token、颜色、禁令、组件契约、契约包、站点结构、llms 索引、渲染审计、无障碍、CLI |
 | `npm run audit <file>` | 用 render contract 审计一个消费者 HTML 页面 |
 | `npm run build:tokens` | 从 `core.css` / `dark.css` 生成 json、scss、ts、DTCG token 交换文件 |
 | `npm run build:site` | 从 `site/_pages/` 生成站点 |
@@ -53,6 +88,9 @@ python3 -m http.server 8899
 
 变更会记录在 [CHANGELOG.md](./CHANGELOG.md)。尚未对外发布的工作仍须按此规则记录，避免把不可兼容变更伪装成小修。
 
-## 许可与发布状态
+## 许可
 
-本仓库目前是**私有且未授权使用**的项目（`package.json` 中的 `private: true` 与 `license: UNLICENSED` 为准），不是开源包。不得把仓库内容重新分发、发布到包注册表或假定存在开源许可证。若未来决定开源，必须在同一变更中加入明确的 `LICENSE`、调整 package 元数据并说明迁移影响。
+[MIT](./LICENSE)。设计系统要被接入，许可证越简单越好。
+
+朱砂印章 Logo 与 ■ 署名标记是**品牌标识**，不随代码许可授出：可以使用这套设计语言，
+不要把它们当作你自己的标识。边界写在 [品牌应用](./site/brand-usage.html)。
