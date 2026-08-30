@@ -1,0 +1,59 @@
+<h1>品牌应用</h1>
+<p class="wx-lede">Logo 和 ■ 的<strong>定义</strong>属于灵魂层，<strong>放在哪里、多大</strong>属于形态层。这一页是后者。</p>
+
+<h2 id="web">网页页头</h2>
+<p>本站页头就是标准实现：<span class="wx-seal" aria-hidden="true"></span> 加品牌名，
+一行，与主导航同高，<strong>不用 Logo 图片</strong>。</p>
+<div class="doc-demo"><div class="doc-demo__stage">
+  <div class="wx-spread" style="padding-block:var(--space-3);border-block-end:var(--stroke-hairline) solid var(--color-border-subtle)">
+    <a href="#web" style="display:inline-flex;align-items:center;gap:var(--space-3);font-family:var(--font-display);text-decoration:none"><span class="wx-seal" aria-hidden="true"></span><span>文心 · 万形</span></a>
+    <nav class="wx-cluster" aria-label="示例导航"><a href="#web">设计</a><a href="#web">内容</a><a href="#web">组件</a></nav>
+  </div>
+</div></div>
+<p>页头用 ■ 而不是 Logo，理由是<strong>尺度</strong>：一枚 24px 的印章会丢掉负空间里的几何，
+变成一个红色色块。Logo 有它的最小呈现尺寸，低于它就该降级为文字署名加 ■。</p>
+
+<h2 id="signature">文章署名与页脚</h2>
+<div class="doc-figure">
+  <p class="wx-attr"><span class="wx-attr__name">文心 · 万形 <span class="wx-seal" aria-hidden="true"></span></span><span class="wx-attr__meta">2026-08-30</span></p>
+</div>
+<p>署名区是 ■ <strong>必须</strong>出现的地方。<code>wx-attr</code> 就是为这个场景设计的组件：
+40px 的短横线 + 名字 + 元数据，靠留白与页面其余部分分开，不靠方框。</p>
+
+<h2 id="display">品牌展示区</h2>
+<p>需要 Logo 本身的场合——产品入口、关于页、演示封面、印刷品——用 SVG 原件，不用缩放的 PNG。</p>
+<div class="doc-figure"><div class="wx-cols">
+  <figure class="wx-figure"><img class="wx-image" src="../kit/assets/brand/logo-wanxing.svg" alt="万形朱砂印章，中心交汇图形"><figcaption>万形：起源与交汇。</figcaption></figure>
+  <figure class="wx-figure"><img class="wx-image" src="../kit/assets/brand/logo-wenxin.svg" alt="文心朱砂印章，向上分叉图形"><figcaption>文心：知识与生长。</figcaption></figure>
+  <figure class="wx-figure"><img class="wx-image" src="../kit/assets/brand/logo-mono.svg" alt="文心单色 Logo"><figcaption>单色版：页面已用掉强调色时。</figcaption></figure>
+</div></div>
+
+<h2 id="scale">尺度决定用哪一个</h2>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>尺度</th><th>用什么</th><th>为什么</th></tr></thead>
+  <tbody>
+    <tr><td>≥ 64px</td><td>朱砂印章 SVG</td><td>负空间里的几何关系读得出来。</td></tr>
+    <tr><td>24–48px</td><td>单色版或文字署名 + ■</td><td>2.5px 线宽在这个尺度开始糊。</td></tr>
+    <tr><td>&lt; 24px</td><td>只用文字署名 + ■</td><td>印章缩到这里就只是一个红方块，不如直接用方块。</td></tr>
+    <tr><td>印刷 / 海报</td><td>SVG 原件，<code>vector-effect: non-scaling-stroke</code></td><td>放大到海报尺度时线宽不跟着放大。</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="forbidden">禁止清单</h2>
+<div class="wx-note wx-note--warn"><span class="wx-note__title">不要这样用</span>
+  <p>透明底座、1.5px 的 UI 线宽、<code>rx="0"</code> 直角、给主 Logo 写深色模式变色逻辑、
+  把具象图标塞进印章内部、用模糊或投影补救缩放问题、把 Logo 和 ■ 并排放在同一处。</p></div>
+<p>其中"不写深色模式变色逻辑"最容易被当成疏漏而"修复"。它是有意的：
+<strong>实心红底白线在任何背景下都成立，而一个会随环境变色的印章就不再是印章。</strong></p>
+
+<h2 id="files">资产清单</h2>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>文件</th><th>用途</th></tr></thead>
+  <tbody>
+    <tr><td><code>kit/assets/brand/logo-wanxing.svg</code></td><td>万形印章，交汇几何。</td></tr>
+    <tr><td><code>kit/assets/brand/logo-wenxin.svg</code></td><td>文心印章，分叉几何。</td></tr>
+    <tr><td><code>kit/assets/brand/logo-mono.svg</code></td><td>单色版，用于已有强调色的页面。</td></tr>
+    <tr><td><code>kit/assets/brand/brand-mark.svg</code></td><td>静态 ■，用于无法执行 CSS 的场合（邮件、印刷）。</td></tr>
+    <tr><td><code>.wx-seal</code>（CSS）</td><td>网页上的 ■，随文字缩放、随主题变色。页面上用这个，不用 SVG。</td></tr>
+  </tbody>
+</table></div>

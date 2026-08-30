@@ -67,10 +67,15 @@
     ]
   },
   {
-    "slug": "logo", "title": "品牌",
+    "slug": "brand", "title": "品牌", "hub": true,
     "groups": [
-      { "title": "品牌资产 · Brand", "items": [
-        { "slug": "logo", "title": "Logo 设计规范" }
+      { "title": "品牌 · Brand", "items": [
+        { "slug": "brand", "title": "品牌概览" }
+      ]},
+      { "title": "品牌资产 · Assets", "items": [
+        { "slug": "logo",        "title": "Logo 设计规范" },
+        { "slug": "seal",        "title": "署名标记" },
+        { "slug": "brand-usage", "title": "品牌应用" }
       ]}
     ]
   }

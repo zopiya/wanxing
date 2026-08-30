@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>图标与标识 · 文心 万形</title>
+<title>图标 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
 <link rel="stylesheet" href="./assets/site.css?v=6">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
@@ -21,7 +21,7 @@
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
-    <a href="./logo.html">品牌</a>
+    <a href="./brand.html">品牌</a>
   </nav>
   <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
           data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
@@ -52,20 +52,11 @@
 
   <main class="doc-main" id="main">
     <article class="doc-article">
-<h1>图标与标识</h1>
-<p class="wx-lede">线条型图标，1.5px 描边，三档尺寸。品牌是一枚朱砂印。</p>
+<h1>图标</h1>
+<p class="wx-lede">线条型图标，1.5px 描边，三档尺寸。它们是全局样式里的一条规则，不是品牌资产——
+<a href="./seal.html">署名标记</a>与<a href="./logo.html">朱砂印章</a>归<a href="./brand.html">品牌</a>。</p>
 
-<h2 id="seal">品牌标记</h2>
-<p>■ 一枚方形朱砂印。它是全页视觉焦点，<strong>消耗两处 accent 预算中的一处</strong>。</p>
-<div class="doc-figure">
-    <p><span class="wx-seal" aria-hidden="true"></span> 默认尺寸</p>
-    <p><span class="wx-seal wx-seal--lg" aria-hidden="true"></span> 大号，用于页头</p>
-  </div>
-<p>在 <code>E9-2</code> 强度下，品牌标记允许一处 4 秒呼吸循环——这是全系统<strong>唯一</strong>
-被允许的循环动画，也是 <code>--ease-in-out</code> 唯一的用途。文章页不继承这个循环：
-一篇长文里持续呼吸的标记是干扰，不是品牌。</p>
-
-<h2 id="icons">图标规范</h2>
+<h2 id="tokens">尺寸与描边</h2>
 <div class="doc-figure">
     <table class="wx-table doc-api">
       <thead><tr><th>Token</th><th>值</th><th>用途</th></tr></thead>
@@ -105,16 +96,30 @@
 &lt;/div&gt;</code></pre></details>
 </div>
 
+<h2 id="brand-boundary">与品牌的分界</h2>
+<p>图标和 Logo 的线宽<strong>刻意不同</strong>：图标 <code>--stroke-mark</code> 1.5px，
+Logo 2.5px。这不是不一致——品牌标识<strong>被允许且必须</strong>偏离 UI 图标的常规设定，
+以获得足够的物理重量。把 Logo 改成 1.5px 是明确的禁止项。</p>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th></th><th>UI 图标</th><th>品牌 Logo</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">线宽</th><td>1.5px（<code>--stroke-mark</code>）</td><td>2.5px</td></tr>
+    <tr><th scope="row">填充</th><td>禁止填充型</td><td>必须实心底座</td></tr>
+    <tr><th scope="row">深色模式</th><td>跟随主题</td><td>不变色</td></tr>
+    <tr><th scope="row">归属</th><td>全局样式</td><td><a href="./brand.html">品牌</a></td></tr>
+  </tbody>
+</table></div>
+
     </article>
   </main>
 
   <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
-      <li><a class="wx-anchor__link" href="#seal">品牌标记</a></li>
-      <li><a class="wx-anchor__link" href="#icons">图标规范</a></li>
+      <li><a class="wx-anchor__link" href="#tokens">尺寸与描边</a></li>
       <li><a class="wx-anchor__link" href="#rules">四条规则</a></li>
       <li><a class="wx-anchor__link" href="#hit">命中区域</a></li>
+      <li><a class="wx-anchor__link" href="#brand-boundary">与品牌的分界</a></li>
   </ul>
 </nav></div>
 </div>
