@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>接入 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <nav class="doc-primary" aria-label="主要导航">
+<a href="./design.html">设计</a>
+    <a href="./content.html">内容</a>
+    <a href="./components.html">组件</a>
+    <a href="./patterns.html">页面</a>
+    <a href="./brand.html">品牌</a>
+    <a href="./adopt.html" aria-current="page">接入</a>
+  </nav>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell doc-shell--hub">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <p class="doc-sidebar__title">接入</p>
+    <ul class="wx-menu">
+      <li class="wx-menu__group">接入 · Adopt</li>
+        <li><a class="wx-menu__link" href="./adopt.html" aria-current="page">接入概览</a></li>
+      <li class="wx-menu__group">路径 · Paths</li>
+        <li><a class="wx-menu__link" href="./adopt-human.html">给人用</a></li>
+        <li><a class="wx-menu__link" href="./adopt-agent.html">给 agent 用</a></li>
+        <li><a class="wx-menu__link" href="./adopt-verify.html">校验</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<div class="doc-design-hub">
+  <h1>接入</h1>
+  <p class="wx-lede">这套系统同时面向两类采用者：读文档的人，和读契约的 agent。两条路径分开走，因为它们需要的东西不一样。</p>
+
+  <section class="doc-section-index" aria-labelledby="adopt-paths"><div><h2 id="adopt-paths">两条路径</h2><p>人需要知道为什么；agent 需要知道规则和怎么验证自己做到了。给 agent 一份三千行的双语散文不是接入，是转嫁工作。</p></div><div><a href="./adopt-human.html">给人用</a><a href="./adopt-agent.html">给 agent 用</a><a href="./adopt-verify.html">校验</a></div></section>
+
+  <h2 id="install">装</h2>
+  <pre class="doc-code__body"><code>npm install wenxin-wanxing</code></pre>
+  <pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="node_modules/wenxin-wanxing/kit/index.css"&gt;</code></pre>
+  <p>零运行时依赖，无构建步骤。产物不压缩——工程化问题排在系统本身完成之后。
+  许可证是 <a href="https://opensource.org/license/mit">MIT</a>。</p>
+
+  <h2 id="not-code">哪些东西不随代码授出</h2>
+  <p>MIT 覆盖代码与规范。<strong>朱砂印章 Logo 与 <span class="wx-seal" aria-hidden="true"></span> 署名标记是品牌标识，不在其内</strong>——
+  你可以使用这套设计语言，不要把它们当作自己的标识。边界见<a href="./brand-usage.html">品牌应用</a>。</p>
+
+  <h2 id="scope">适用范围，以及明确不适用的</h2>
+  <p>这套语言为<strong>内容型产品</strong>而写：文档、文章、规范、作品集、轻量工具。
+  仪表盘、电商、CRM <strong>明确在范围外</strong>——不是做不到，是它的取舍在那些场景下会持续和你作对。</p>
+  <div class="wx-note wx-note--info"><span class="wx-note__title">一个诚实的代价</span>
+    <p>五个以上序列的密集图表，灰阶区分度不够。这被记在规范里作为已知边界，
+    而不是靠引入分类色板绕过去——见<a href="./viz.html">数据可视化</a>。</p></div>
+</div>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#adopt-paths">两条路径</a></li>
+      <li><a class="wx-anchor__link" href="#install">装</a></li>
+      <li><a class="wx-anchor__link" href="#not-code">哪些东西不随代码授出</a></li>
+      <li><a class="wx-anchor__link" href="#scope">适用范围，以及明确不适用的</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

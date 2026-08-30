@@ -1,0 +1,58 @@
+<h1>给 agent 用</h1>
+<p class="wx-lede">agent 接入一套设计系统只需要两样东西：<strong>规则</strong>，和<strong>验证自己有没有做到的手段</strong>。给它三千行双语散文不是接入，是把工作转嫁回去。</p>
+
+<h2 id="one-file">先读这一个文件</h2>
+<pre class="doc-code__body"><code>npx wenxin contracts --all      # 或直接读 kit/wenxin.json</code></pre>
+<p>约 29KB，含不变之魂、三层仲裁规则、两种排除、禁令（可检查的与需判断的）、
+全部 token、71 条组件契约、28 条判定索引、以及如何验证。</p>
+<p><strong>它完全由来源派生，没有一行是手写的</strong>——所以它不可能和来源不一致，
+<code>npm run check:contracts</code> 重建后逐字节比对，不一致即失败。</p>
+
+<h2 id="entries">四个入口，按预算选</h2>
+<div class="doc-elements"><table class="wx-table doc-api">
+  <thead><tr><th>文件</th><th>规模</th><th>回答什么</th></tr></thead>
+  <tbody>
+    <tr><td><code>kit/wenxin.json</code></td><td>29KB</td><td>规则与契约的全部结构化数据</td></tr>
+    <tr><td><code>site/llms.txt</code></td><td>~100 行</td><td>索引：有哪些页，每页回答什么问题</td></tr>
+    <tr><td><code>site/llms-full.txt</code></td><td>2806 行</td><td>全部规范正文，预算充足时通读</td></tr>
+    <tr><td><code>.claude/skills/wenxin-design/</code></td><td>130 行</td><td>可直接安装的技能包：判断规则 + 交付前自查</td></tr>
+  </tbody>
+</table></div>
+<p>还有一个 <code>AGENTS.md</code>，但那是给<strong>在这个仓库里干活</strong>的 agent 的，
+不是给使用者的。两类读者需要的东西不一样，所以分开放。</p>
+
+<h2 id="verify">不要声称合规，跑一遍</h2>
+<pre class="doc-code__body"><code>npx wenxin audit page.html</code></pre>
+<p>吃一个 HTML 文件，吐 JSON。<code>hardGates</code> 数组非空即不合规，退出码 1。
+这是<strong>唯一</strong>判定合规的方式——一个 agent 说"我遵循了设计系统"没有任何信息量。</p>
+<div class="wx-note wx-note--info"><span class="wx-note__title">审计器自己也被验证</span>
+  <p><code>npm run check:render-audit</code> 用一份合规夹具和一份故意缺 <code>&lt;main&gt;</code> 的夹具跑它，
+  后者必须失败。<strong>没有反向控制的审计器不是证据。</strong></p></div>
+
+<h2 id="judgement">四条没有检查在守的规则</h2>
+<p>这是 agent 最容易出错的地方：<strong>"检查全绿"不等于"每条规则都被执行了"。</strong>
+<code>kit/contracts/forbidden.json</code> 的 <code>judgement</code> 数组列出四条不可机械检查的规则，
+每条写明为什么不可检查：</p>
+<div class="doc-elements"><table class="wx-table doc-api">
+  <thead><tr><th>规则</th><th>为什么机器判不了</th></tr></thead>
+  <tbody>
+    <tr><td>卡片几何</td><td>静态 CSS 分不出内容容器与控件。按钮、标签、输入框、以及 D-21 许可的浮层都合法地同时具备边框与圆角——naive 规则在本仓库命中 60 次，几乎全是误报。</td></tr>
+    <tr><td>色块背景分区</td><td><code>background</code> 的合法用途太多；是否构成"分区"取决于轨道与意图。</td></tr>
+    <tr><td>强调色预算</td><td>需按渲染后的页面计数并区分装饰与状态色。单页范围内 <code>audit</code> 能执行，全仓库静态扫描不行。</td></tr>
+    <tr><td>装饰插画</td><td>机器分不出装饰图与信息图。</td></tr>
+  </tbody>
+</table></div>
+<p><strong>一条没被标出来的不可执行规则，会被误以为有人在守。</strong>把它们显式列出来，
+就是为了让 agent 知道这四条要靠自己判断——见 <code>D-22</code>。</p>
+
+<h2 id="never">绝对不要单方面改的</h2>
+<pre class="doc-code__body"><code>A9 克制之美    B9 温暖极简    D9 暖土调</code></pre>
+<p>改动这三条，产物就不再属于这套语言。如果判断必须改，
+<strong>写进 <code>spec/DECISIONS.md</code> 作为待议项，不要直接改</strong>。</p>
+
+<h2 id="cli">命令行速查</h2>
+<pre class="doc-code__body"><code>npx wenxin audit &lt;file&gt;          审计；hardGates 非空即不合规
+npx wenxin contracts [query]     查契约，按名称或 class 过滤
+npx wenxin contracts --all       输出完整契约包
+npx wenxin tokens --format dtcg  json | dtcg | css | scss | ts
+npx wenxin skeleton [a-e]        输出页面原型骨架</code></pre>

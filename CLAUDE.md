@@ -17,7 +17,7 @@ ten thousand forms.
 ## Repository Structure
 
 ```
-site/      讲给谁 — the documentation site (34 pages, 5 sections); the front door
+site/      讲给谁 — the documentation site (38 pages, 6 sections) + llms.txt; the front door
 spec/      说什么 — the specification (bilingual prose)
 kit/       给什么 — reusable artifacts: tokens, base CSS, components, patterns, markdown, charts
 scripts/   怎么校验 — build and check
@@ -28,8 +28,8 @@ scripts/   怎么校验 — build and check
 run `npm run build:site`. The generator derives each demo's source listing FROM the demo
 itself, so a documented example can never drift from what it renders.
 
-`_nav.json` is **the whole information architecture in one file**: the five top-bar
-sections (设计 → 内容 → 组件 → 页面 → 品牌), the sidebar grouped under each, and the route
+`_nav.json` is **the whole information architecture in one file**: the six top-bar
+sections (设计 → 内容 → 组件 → 页面 → 品牌 → 接入), the sidebar grouped under each, and the route
 table the checks read. The sidebar renders only the section you are standing in. It used to
 be two files — a four-entry top nav plus a flat twenty-five-item sidebar repeated on every
 page — and they disagreed; one file cannot. A section's `slug` is its entry page and must
@@ -136,7 +136,7 @@ npm run audit <file>     # render-audit one page
 python3 -m http.server 8899   # examples need http; file:// blocks @import and fonts
 ```
 
-**`npm run check` is currently green: nine gates, 0 failures.**
+**`npm run check` is currently green: twelve gates, 0 failures.**
 
 Nine gates, several of which caught a real defect. Three caught defects in the checking itself,
 which is the failure mode to watch here: **a check that cannot fail is worse than no check**, because

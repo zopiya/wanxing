@@ -1,0 +1,48 @@
+<h1>给人用</h1>
+<p class="wx-lede">三步：引一个 CSS 文件，抄一份骨架，按仲裁规则解决冲突。</p>
+
+<h2 id="css">一 · 引 CSS</h2>
+<pre class="doc-code__body"><code>&lt;link rel="stylesheet" href="kit/index.css"&gt;</code></pre>
+<p>需要单文件、无 <code>@import</code> 的版本时用 <code>kit/dist/wenxin.css</code>。
+两者内容一致，后者是前者的展开，由 <code>npm run build:css</code> 生成。</p>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>入口</th><th>内容</th><th>什么时候用</th></tr></thead>
+  <tbody>
+    <tr><td><code>kit/index.css</code></td><td>按 <code>@layer</code> 顺序 import 全部</td><td>默认；有构建工具时</td></tr>
+    <tr><td><code>kit/dist/wenxin.css</code></td><td>展开后的单文件</td><td>直接放进 <code>&lt;link&gt;</code>，无构建</td></tr>
+    <tr><td><code>kit/tokens/generated/tokens.dtcg.json</code></td><td>W3C DTCG token 交换格式</td><td>接入 Figma 等设计工具</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="skeleton">二 · 抄骨架</h2>
+<p>不要从空文件开始。<a href="./patterns.html">五种页面原型</a>各有一份可直接复制的 HTML：</p>
+<pre class="doc-code__body"><code>npx wenxin skeleton a    # 阅读 / 详情
+npx wenxin skeleton b    # 索引 / 列表
+npx wenxin skeleton c    # 展示 / 作品集
+npx wenxin skeleton d    # 着陆 / 首页
+npx wenxin skeleton e    # 工具 / 表单</code></pre>
+<p>选哪一个，不要问"这是什么页面"，问<strong>"读者到这一页要做什么"</strong>。</p>
+
+<h2 id="track">三 · 声明轨道</h2>
+<p>每个页面声明它属于哪条轨道。<strong>阅读轨</strong>全量应用视觉约束；<strong>应用轨</strong>放宽。
+采用原型 E 的页面会把它所在形态的轨道翻转为应用轨。</p>
+<div class="wx-note wx-note--info"><span class="wx-note__title">冲突时按层判，不要临时争论</span>
+  <p>无障碍与基本可用性是第一层，惯例无条件优先，两轨都适用。
+  数据录入与反馈类组件是第三层，永远按惯例处理。中间那层才是轨道说了算。
+  完整规则见<a href="./tracks.html">设计仲裁</a>。</p></div>
+
+<h2 id="customise">改这套系统</h2>
+<p><code>kit/tokens/core.css</code> 是<strong>所有数值的唯一真源</strong>。
+<code>.md</code> 文件里的数值是摘录，冲突时 <code>core.css</code> 赢。
+换强调色、换字族、调密度都从这里开始，改完跑 <code>npm run check:colors</code>——
+它会实测对比度和两两 ΔE，不合格直接失败。</p>
+<p><strong>三条不能改</strong>：<code>A9 克制之美</code>、<code>B9 温暖极简</code>、<code>D9 暖土调</code>。
+改了它们，产物就不再属于这套语言。</p>
+
+<h2 id="ask">遇到系统没有的组件</h2>
+<p>先分清是哪一种排除（<code>D-23</code>）：</p>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>哲学性排除</strong>——卡片、spinner、骨架屏、自动轮播、水印。它们是这套系统的身份，不会因为范围扩大而回来。</li>
+  <li><strong>范围性排除</strong>——滑块、上传、日期、树、气泡。曾因适用范围被排除，范围扩大后<strong>已经实现</strong>。</li>
+</ul>
+<p>如果某个需求真的需要哲学性排除的东西，说明<strong>需求本身值得讨论</strong>，不是禁令值得放宽。</p>

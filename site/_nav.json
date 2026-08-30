@@ -78,5 +78,18 @@
         { "slug": "brand-usage", "title": "品牌应用" }
       ]}
     ]
+  },
+  {
+    "slug": "adopt", "title": "接入", "hub": true,
+    "groups": [
+      { "title": "接入 · Adopt", "items": [
+        { "slug": "adopt", "title": "接入概览" }
+      ]},
+      { "title": "路径 · Paths", "items": [
+        { "slug": "adopt-human",  "title": "给人用" },
+        { "slug": "adopt-agent",  "title": "给 agent 用" },
+        { "slug": "adopt-verify", "title": "校验" }
+      ]}
+    ]
   }
 ]
