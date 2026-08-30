@@ -31,8 +31,14 @@
   .wx-showcase__intro { margin-block-end: var(--space-16); }
   .wx-showcase__timeline { display: grid; gap: var(--space-8); }
 
+  /* One screen, one idea. dvh rather than vh: on mobile the address bar makes
+     vh taller than the actual screen, so a "full height" hero overflows.
+
+     A hero at exactly 100dvh shows nothing of what follows, so it must carry
+     an explicit scroll cue — the earlier 88dvh let a sliver peek instead,
+     which is a weaker signal that also costs the reader a screenful. */
   .wx-landing__hero {
-    min-block-size: min(760px, 88dvh);
+    min-block-size: 100dvh;
     display: grid;
     align-content: center;
     gap: var(--space-6);
@@ -40,6 +46,7 @@
   }
   .wx-landing__hero > * { max-width: var(--width-showcase); }
   .wx-landing__sections > * + * { margin-block-start: var(--space-24); }
+  .wx-landing__cue { margin-block: var(--space-16) 0; font-family: var(--font-ui); color: var(--color-text-functional); }
 
   .wx-tool {
     width: min(100%, var(--width-content));
