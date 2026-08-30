@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- 站点重建为五个分区（设计 / 内容 / 组件 / 页面 / 品牌），侧边栏按分区收敛；`_nav.json` 成为唯一的信息架构来源。
+- 站点重建为六个分区（设计 / 内容 / 组件 / 页面 / 品牌 / 接入），侧边栏按分区收敛；`_nav.json` 成为唯一的信息架构来源。
 - 内容分区：Markdown 全量、HTML 元素、代码与语法高亮三页，源码与渲染并排。
 - 补齐 61 个裸 HTML 元素的样式；A–E 五种页面原型各有一页；品牌分区四页。
 - `kit/wenxin.json` —— 单一机器可读契约包，完全由来源派生。
@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - RTL 夹具此前只证实“不横向溢出”，却漏掉侧栏、开关、drawer 与 tabs 的物理方向；这些交互现在按书写方向翻转。
 - 主题脚本现在拒绝损坏的本地存储值，并从真实背景 token 同步浏览器 chrome 色与系统主题变化。
 - `wx-nav` 链接把 24px Web 指针目标写进组件，不再只依赖设备是否上报 coarse pointer。
+- README 与接入页不再把尚未发布到 npm registry 的 `0.1.0` 写成可公开安装；当前路径明确为本地包安装。
 
 ### Changed
 
@@ -48,6 +49,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Historical pre-0.1 work was consolidated into this first tracked release. Earlier source material and removed examples remain historical context, not a separately supported public release line.
-
-[Unreleased]: https://example.invalid/wenxin-wanxing/compare/v0.1.0...HEAD
-[0.1.0]: https://example.invalid/wenxin-wanxing/releases/tag/v0.1.0

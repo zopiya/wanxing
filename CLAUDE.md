@@ -136,9 +136,10 @@ npm run audit <file>     # render-audit one page
 python3 -m http.server 8899   # examples need http; file:// blocks @import and fonts
 ```
 
-**`npm run check` is currently green: twelve gates, 0 failures.**
+**`npm run check` is currently green: twelve gates, 0 failures.** Nine inspect
+the repository or its artifacts; three are explicit checker self-tests with deliberate defects.
 
-Nine gates, several of which caught a real defect. Three caught defects in the checking itself,
+Twelve gates, several of which caught a real defect. Three caught defects in the checking itself,
 which is the failure mode to watch here: **a check that cannot fail is worse than no check**, because
 its green output gets cited as evidence. Negative-control anything you are about to call passing.
 
@@ -167,8 +168,9 @@ its green output gets cited as evidence. Negative-control anything you are about
   is legal (`.wx-stat`, `.wx-landing` are naming anchors); a modifier or element is not. Its CSS
   source list must cover every directory that can define a `wx-` class — leaving out `patterns/`
   made it report all five archetypes as undefined.
-- `check:a11y` — checks every generated page for a main landmark, control labels and accessible
-  names. Its negative fixture contains an unlabeled control and must fail.
+- `check:a11y` — checks every generated page for landmarks, labels, accessible names, unique IDs,
+  valid ARIA references, and native-control contracts. Its negative fixture contains seven distinct
+  violations and must reject all seven.
 
 `npm run audit <file>` is a **standalone tool** for checking a consumer's page against a render
 contract. The consumer audit is not run against repository pages, but `check:render-audit` runs its
@@ -176,7 +178,7 @@ own passing and deliberately failing fixtures; an auditor without a negative con
 
 ## Status
 
-The documentation site is the only user-facing surface: 22 pages covering the framework model,
+The documentation site is the only user-facing surface: 38 pages covering the framework model,
 values, the arbitration rule, media/forms, patterns, components and verification. `examples/` and
 `spec/forms/` were deleted (**D-26**); the nine media specs compress into `spec/media.md` plus
 `site/media.html`, and the per-medium CSS bundles are gone (**D-27**) because nine files carried

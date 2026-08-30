@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * check-cli — the published surface.
+ * check-cli — the installable package surface.
  *
  * Two ways this breaks silently. A path listed in package.json "files" that
  * does not exist ships a tarball missing something the CLI reads, and the
@@ -68,4 +68,4 @@ if (problems.length) {
   console.error(`✗ cli: ${problems.length} problem(s):\n    ${problems.join("\n    ")}`);
   process.exit(1);
 }
-console.log(`✓ cli: ${cases.length} invocation(s) behave, and every published path in package.json exists`);
+console.log(`✓ cli: ${cases.length} invocation(s) behave, and every package-surface path exists`);

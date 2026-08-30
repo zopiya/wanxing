@@ -18,8 +18,11 @@ python3 -m http.server 8899
 
 ## 安装
 
+当前 `0.1.0` **尚未发布到 npm registry**。仓库已经具备可装箱的包结构，但在正式发布前，
+请从本地检出目录安装；不要把下面这一步误写成已经公开可用的 registry 安装。
+
 ```sh
-npm install wenxin-wanxing
+npm install /absolute/path/to/wanxing
 ```
 
 ```js
@@ -57,14 +60,14 @@ npx wenxin skeleton e          # 输出页面原型 E 的骨架
 | --- | --- |
 | `spec/` | 双语规范、设计哲学与裁决记录 |
 | `kit/` | tokens、基础 CSS、组件、模式与图表主题 |
-| `site/` | 生成的文档站（34 页，五个分区）；源页在 `site/_pages/` |
+| `site/` | 生成的文档站（38 页，六个分区）；源页在 `site/_pages/` |
 | `scripts/` | 构建与可执行检查 |
 | `tests/` | 检查器的正反向夹具与自测 |
 
 `kit/tokens/core.css` 是所有数值 token 的唯一真源。不要直接编辑 `site/*.html` 或
 `kit/tokens/generated/*`；前者由 `site/_pages/` 和 `_nav.json` 生成，后者由 token 构建生成。
 
-`site/_nav.json` 一份文件就是全部信息架构：顶部五个分区、每个分区自己的侧边栏、
+`site/_nav.json` 一份文件就是全部信息架构：顶部六个分区、每个分区自己的侧边栏、
 以及检查脚本读的路由表。侧边栏只渲染你所在的那一个分区。
 
 ## 命令
@@ -72,7 +75,7 @@ npx wenxin skeleton e          # 输出页面原型 E 的骨架
 | 命令 | 作用 |
 | --- | --- |
 | `npm run build` | 生成 tokens、图表主题、契约包、CSS 包、文档站与 llms.txt |
-| `npm run check` | 十二门检查：token、颜色、禁令、组件契约、契约包、站点结构、llms 索引、渲染审计、无障碍、CLI |
+| `npm run check` | 十二门检查：九门仓库/产物检查，加三门带故障夹具的检查器自测 |
 | `npm run audit <file>` | 用 render contract 审计一个消费者 HTML 页面 |
 | `npm run build:tokens` | 从 `core.css` / `dark.css` 生成 json、scss、ts、DTCG token 交换文件 |
 | `npm run build:site` | 从 `site/_pages/` 生成站点 |

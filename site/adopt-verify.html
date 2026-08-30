@@ -47,7 +47,7 @@
   <main class="doc-main" id="main">
     <article class="doc-article">
 <h1>校验</h1>
-<p class="wx-lede">十二门检查，每一门都能失败，每一门都被反向验证过。<strong>一个不可能失败的检查比没有检查更糟</strong>——它的绿色会被当成证据引用。</p>
+<p class="wx-lede">十二门检查：九门查仓库与产物，三门用仓内故障夹具持续反证检查器本身。<strong>一个不可能失败的检查比没有检查更糟</strong>——它的绿色会被当成证据引用。</p>
 
 <h2 id="gates">十二门</h2>
 <div class="doc-elements"><table class="wx-table doc-api">
@@ -60,10 +60,10 @@
     <tr><td><code>check:contracts</code></td><td><code>kit/wenxin.json</code> 与来源逐字节一致</td><td>—（新增）</td></tr>
     <tr><td><code>check:site</code></td><td>标签配平、单一 h1、标题不跳级、链接与锚点解析</td><td>一个游离 <code>&lt;/div&gt;</code> 让半页脱出布局栅格</td></tr>
     <tr><td><code>check:llms</code></td><td>索引与来源一致，且每条链接可解析</td><td>—（新增）</td></tr>
-    <tr><td><code>check:a11y</code></td><td>main 地标、控件标签、可访问名</td><td>—</td></tr>
+    <tr><td><code>check:a11y</code></td><td>地标、标签、可访问名、唯一 ID、ARIA 引用、原生控件契约</td><td>导航页两个 <code>id="skip"</code> 让目录落到错误标题；带 <code>href</code> 的假禁用链接仍可由键盘激活</td></tr>
     <tr><td><code>check:cli</code></td><td>十种调用行为正确；<code>files</code>/<code>exports</code>/<code>bin</code> 路径都存在</td><td>—（新增）</td></tr>
     <tr><td><code>check:render-audit</code></td><td>审计器的正反夹具</td><td>审计矩阵读错字段，每页硬失败却显示 0 failing</td></tr>
-    <tr><td><code>check:a11y:selftest</code></td><td>无标签控件必须被拒</td><td>—</td></tr>
+    <tr><td><code>check:a11y:selftest</code></td><td>七种故障必须同时被拒：无标签、断裂 ARIA、缺 alt、重复 ID、隐式按钮、缺状态、假禁用链接</td><td>—</td></tr>
     <tr><td><code>check:components:selftest</code></td><td>无样式的类名必须被拒</td><td>—</td></tr>
   </tbody>
 </table></div>
@@ -93,7 +93,7 @@
 <p>诚实记录比虚假的完整清单有价值：</p>
 <ul class="wx-list wx-list--ruled">
   <li><strong>四条需判断的禁令</strong>——卡片几何、色块背景分区、强调色预算、装饰插画。原因见<a href="./adopt-agent.html#judgement">给 agent 用</a>。</li>
-  <li><strong>窄屏渲染</strong>——折叠规则由 CSSOM 静态核对，未在真实 390px 视口目视确认。</li>
+  <li><strong>窄屏渲染</strong>——已在真实 390px 视口目视确认首页、录入页与 RTL 夹具无页面级横向溢出；尚未形成自动视觉回归。</li>
   <li><strong><code>forced-colors</code></strong>——Windows 高对比模式下这套依赖发丝线与墨色的语言表现如何，尚未实测。</li>
 </ul>
 
