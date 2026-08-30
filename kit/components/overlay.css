@@ -1,0 +1,128 @@
+/* Overlays — modal, drawer, toast.
+
+   These are the one place the no-container rule genuinely bends, and the
+   bend is principled rather than convenient (see DECISIONS D-21). An overlay
+   that does not read as a separate surface is a usability failure, not a
+   restrained one: the reader cannot tell what is dismissible and what is the
+   page. Arbitration layer one (basic usability) and layer three (feedback
+   follows convention) both point the same way.
+
+   What we do NOT borrow from convention: no shadow, no gradient, no radius
+   beyond --radius-md. Separation is carried by a hairline edge and a warm
+   backdrop, which is the same vocabulary the rest of the system uses.
+
+   All three use native <dialog>/aria-live so focus handling, Esc, and
+   announcement come from the platform rather than from us. */
+@layer wx.components {
+
+  /* ---- Modal --------------------------------------------------------- */
+  .wx-modal {
+    inline-size: min(32rem, calc(100vw - var(--space-8)));
+    padding: var(--space-8);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-pure);
+    color: var(--color-text-primary);
+  }
+  .wx-modal::backdrop {
+    /* Warm, not neutral black — the vellum dimmed, same as dark mode. */
+    background: var(--color-scrim);
+  }
+  .wx-modal__title {
+    margin-block: 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--color-text-heading);
+  }
+  .wx-modal__body > :last-child { margin-block-end: 0; }
+  .wx-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-block-start: var(--space-6);
+  }
+
+  /* ---- Drawer -------------------------------------------------------- */
+  .wx-drawer {
+    inline-size: min(22rem, calc(100vw - var(--space-12)));
+    max-inline-size: none;
+    block-size: 100%;
+    max-block-size: none;
+    margin: 0 0 0 auto;              /* anchored to the inline end */
+    padding: var(--space-6);
+    border: 0;
+    border-inline-start: var(--stroke-hairline) solid var(--color-border-strong);
+    background: var(--color-bg-base);
+    color: var(--color-text-primary);
+  }
+  .wx-drawer::backdrop { background: var(--color-scrim); }
+  .wx-drawer__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-block-end: var(--space-6);
+    padding-block-end: var(--space-3);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+
+  /* ---- Toast --------------------------------------------------------- */
+  /* The region is always present and always announced; toasts are appended
+     into it. An empty region costs nothing and gives aria-live somewhere
+     stable to observe. */
+  .wx-toast__region {
+    position: fixed;
+    inset-block-end: var(--space-6);
+    inset-inline: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    pointer-events: none;
+    z-index: 50;
+  }
+  .wx-toast {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    max-inline-size: 30rem;
+    padding: var(--space-3) var(--space-5);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-pure);
+    color: var(--color-text-primary);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    pointer-events: auto;
+  }
+  /* Semantic level is carried by the leading rule AND the label inside —
+     never by the colour alone. */
+  .wx-toast__label {
+    flex: none;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-functional);
+  }
+  .wx-toast--success { border-inline-start: var(--stroke-mark) solid var(--color-success); }
+  .wx-toast--success .wx-toast__label { color: var(--color-success); }
+  .wx-toast--warn    { border-inline-start: var(--stroke-mark) solid var(--color-warning); }
+  .wx-toast--warn    .wx-toast__label { color: var(--color-warning); }
+  .wx-toast--danger  { border-inline-start: var(--stroke-mark) solid var(--color-danger); }
+  .wx-toast--danger  .wx-toast__label { color: var(--color-danger); }
+
+  /* ---- Entrance ------------------------------------------------------ */
+  @media (prefers-reduced-motion: no-preference) {
+    .wx-modal[open],
+    .wx-toast { animation: wx-overlay-rise var(--duration-base) var(--ease-out) both; }
+    .wx-drawer[open] { animation: wx-drawer-in var(--duration-base) var(--ease-out) both; }
+  }
+  @keyframes wx-overlay-rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes wx-drawer-in {
+    from { opacity: 0; transform: translateX(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+}

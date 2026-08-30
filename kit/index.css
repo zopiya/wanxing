@@ -15,5 +15,6 @@
 @import "./base/print.css";
 
 @import "./components/index.css";
+@import "./patterns/index.css";
 @import "./markdown/index.css";
 @import "./charts/index.css";

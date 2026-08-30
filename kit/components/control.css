@@ -1,0 +1,46 @@
+/* Segmented control and toolbar — application-track grouping.
+
+   Both are data-entry / command surfaces, so arbitration layer three applies:
+   they follow convention. The concession is a grouped outline, not a filled
+   pill; the selected segment is marked by an inverted ink weight and
+   aria-checked, so it survives greyscale and screen readers alike. */
+@layer wx.components {
+  .wx-segmented {
+    display: inline-flex;
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .wx-segmented__option {
+    min-block-size: var(--space-6);
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    background: transparent;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+    cursor: pointer;
+  }
+  .wx-segmented__option + .wx-segmented__option {
+    border-inline-start: var(--stroke-hairline) solid var(--color-border-strong);
+  }
+  .wx-segmented__option[aria-checked="true"],
+  .wx-segmented__option[aria-selected="true"] {
+    background: var(--color-bg-subtle);
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+
+  /* Toolbar — a row of commands separated from the content it acts on by a
+     single rule. role="toolbar" gives arrow-key navigation for free. */
+  .wx-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    padding-block-end: var(--space-3);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-toolbar__group { display: flex; align-items: center; gap: var(--space-2); }
+  .wx-toolbar__spacer { flex: 1; }
+}

@@ -44,7 +44,7 @@ An icon substitutes for a word, it does not decorate one. Its only reason to exi
 | 默认 Default | `--color-text-secondary` | — |
 | Hover | `--color-text-primary` | `--duration-fast` |
 | 激活/选中 Active/selected | `--color-accent` | `--duration-fast` |
-| 禁用 Disabled | `--color-text-muted` | — |
+| 禁用 Disabled | `--color-text-functional` | — |
 
 ## 图标与文字混排 · Icon + Text
 

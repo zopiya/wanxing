@@ -1,0 +1,28 @@
+/* v2 · Tabs. State is inseparable from the accessibility tree. */
+@layer wx.components {
+  .wx-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+
+  .wx-tabs [role="tab"] {
+    min-block-size: 24px;
+    padding-block: var(--space-2);
+    color: var(--color-text-functional);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    border: 0;
+    border-block-end: var(--stroke-mark) solid transparent;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .wx-tabs [role="tab"][aria-selected="true"] {
+    color: var(--color-text-heading);
+    border-block-end-color: var(--color-accent);
+  }
+
+  [role="tabpanel"][hidden] { display: none; }
+}

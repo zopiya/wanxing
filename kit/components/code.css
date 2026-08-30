@@ -27,7 +27,7 @@
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wide);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
   }
   .wx-code__copy {
     border: 0;
@@ -45,4 +45,18 @@
     line-height: var(--leading-normal);
   }
   .wx-code__body code { background: none; padding: 0; }
+
+  /* Keyboard key. Sized in em so it rides whatever text it sits in. */
+  .wx-kbd {
+    display: inline-block;
+    padding: 0.1em 0.45em;
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-subtle);
+    font-family: var(--font-mono);
+    font-size: var(--text-code);
+    line-height: 1.4;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+  }
 }

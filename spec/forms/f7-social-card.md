@@ -1,5 +1,10 @@
 # Wenxin · Xiaohongshu Stark Asymmetric Layout Protocol
 
+> **状态 / Status: 非规范历史草案 · non-normative historical draft.**
+> 这份未被规范入口引用的旧草案仍含多强调色、低对比文字色和渐变，违反现行 D9、AA 与 M-2；
+> **不得直接实现，也不作为 token 或组件依据。** F7 的现行规范以
+> [f7-poster.md](f7-poster.md) 为准。保留正文是为了不把冲突抹平，判定见 D-19。
+
 > Version: 2.0.0 | Date: 2026-06-01
 >
 > Base Core: Wenxin Design Spec (Soul Layer) + Stark Editorial Rhythm (Form Layer)

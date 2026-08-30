@@ -21,10 +21,12 @@
 | `spec/soul/motion.md` | `archive/wanxing/.opencode/rules/motion-spec.md`（201 行） | 强度分级 E8/E9-* 及编排 |
 | `scripts/render-audit.mjs` | `archive/wanxing/.opencode/tools/render-audit/render-audit.mjs`（767 行） | 原样提升，另做两处修改 |
 | ~~`spec/_harvest/token-rescue.md`~~ | `wanxing/examples/tokens/colors_and_type.css` + 9 个示例 | 暗色调色板 + 52 个未定义 token 的值。**已被 Phase 2 消费**，落入 `kit/tokens/`，取材件已删除 |
-| `spec/_harvest/component-evidence.md` | 9 个示例的 class 广度统计 | 经验旁证 |
+| ~~`spec/_harvest/component-evidence.md`~~ | 9 个示例的 class 广度统计 | **已消费并删除**：落入 `components.md` 的 `wx-entry` / `wx-seal` 判定、`kit/patterns/` 与 D-4/D-11 |
+| ~~`spec/_harvest/mermaid-translation-rules.md`~~ | Mermaid 图解翻译规则 | **已消费并删除**：拓扑规则落入 `f8-diagram.md`，token 映射由 `build-themes.mjs` 生成 |
 | `kit/base/*` | `archive/wenxin/assets/css/`（Hugo 主题，生产级） | 结构参考，非复制 |
 | `kit/markdown/hugo/*` | `archive/wenxin/layouts/_default/_markup/` + `shortcodes/` | 渲染钩子思路 |
 | `spec/soul/components.md` | `archive/wanxing/.opencode/agents/wenxin/components.md`（280 行） | 组件原则与页面原型 |
+| `spec/FIELD-AUDIT.md` | `zopiya.com` / `blog.zopiya.com` / `note.zopiya.com` / `garden.zopiya.com`（2026-08-30） | 浏览器计算样式、键盘焦点、暗色规则与生产组件形态 |
 
 ## 未取材、直接弃置的部分
 
@@ -32,6 +34,7 @@
 - `archive/wanxing/workbench/` —— 另一个应用，与设计系统无关。
 - `archive/wanxing/.playwright-mcp/` —— 55 个审计快照日志。
 - `archive/Wanxing · Wenxin Design System/` —— 早期不完整的打包尝试（只含 F1/F3/F5/F6），是 `archive/wanxing/` 的真子集。
+- `spec/forms/f7-social-card.md` —— 重构时残留的未索引历史草案；因违反现行 D9、AA 与 M-2，已按 D-19 明确隔离为 non-normative，未进入 kit。
 - 旧 `wanxing/examples/` 的 9 个 index.html（约 6,100 行内联 CSS）与 28 个预览页 —— 取材后重写。
 
 ## 取材关掉的两个历史未知

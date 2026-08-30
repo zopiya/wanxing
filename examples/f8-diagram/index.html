@@ -9,8 +9,10 @@
 <link rel="stylesheet" href="../../kit/tokens/forms/f8-diagram.css">
 <script type="application/json" id="wanxing-render-contract">
 { "profile": "F8", "track": "editorial", "title": "双轨仲裁", "language": "zh-CN",
+  "project": { "name": "F8 Diagram example", "slug": "f8-diagram-example" },
+  "output": { "entry": "dist/f8-diagram-example/index.html", "tmpDir": "dist/f8-diagram-example/tmp" },
   "canvas": { "kind": "diagram", "ratio": "auto" },
-  "diagram": { "type": "framework", "nodes": { "count": 7 }, "edges": { "count": 6 } },
+  "diagram": { "type": "framework", "nodes": { "count": 5 }, "edges": { "count": 6 } },
   "theme": { "accentBudget": 2, "darkModeRequired": true },
   "structure": { "requiredRegions": ["main"] },
   "motion": { "intent": "state-feedback", "intensity": "E9-0", "maxDurationMs": 260,
@@ -68,12 +70,12 @@
       <text class="nt nt--sm" x="360" y="357" text-anchor="middle">其余冲突 → 记入 DECISIONS.md</text>
     </svg>
 
-    <p class="wx-chart__note">全图仅一处 accent，标记流程的起点。线条不穿过文字，节点与连线物理隔离。</p>
+    <figcaption class="wx-chart__note">全图仅一处 accent，标记流程的起点。线条不穿过文字，节点与连线物理隔离。</figcaption>
   </figure>
 
-  <div class="wx-pullquote" style="margin-block-start: var(--space-16)">
+  <blockquote class="wx-pullquote" style="margin-block-start: var(--space-16)">
     第一层保证它能用，第二层保证它像文心，第三层保证表单还是表单。
-  </div>
+  </blockquote>
 </main>
 </div>
 <script src="../../kit/components/js/animations-complete.js"></script>

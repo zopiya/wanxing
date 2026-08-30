@@ -1,0 +1,54 @@
+/* Progress and meter — quantity as ink, never as a spinning ornament.
+
+   The system forbids spinners, so there is no indeterminate variant here.
+   A <progress> with no value renders as a plain rule and the surrounding
+   text is expected to say what is happening ("正在导出…"). That is a
+   deliberate constraint: an indeterminate bar communicates nothing a
+   sentence cannot, and it moves forever, which the motion spec forbids. */
+@layer wx.components {
+  .wx-progress,
+  .wx-meter {
+    inline-size: 100%;
+    block-size: var(--stroke-mark);
+    appearance: none;
+    border: 0;
+    background: var(--color-border-subtle);
+  }
+
+  /* Firefox */
+  .wx-progress { color: var(--color-text-primary); }
+  .wx-progress::-moz-progress-bar { background: var(--color-text-primary); }
+  .wx-meter::-moz-meter-bar { background: var(--color-text-primary); }
+
+  /* WebKit / Blink */
+  .wx-progress::-webkit-progress-bar { background: var(--color-border-subtle); }
+  .wx-progress::-webkit-progress-value { background: var(--color-text-primary); }
+  .wx-meter::-webkit-meter-bar {
+    background: var(--color-border-subtle);
+    border: 0;
+  }
+  .wx-meter::-webkit-meter-optimum-value { background: var(--color-text-primary); }
+  .wx-meter::-webkit-meter-suboptimum-value { background: var(--color-warning); }
+  .wx-meter::-webkit-meter-even-less-good-value { background: var(--color-danger); }
+
+  /* Indeterminate: hold still and say so in words. */
+  .wx-progress:not([value]) { background: var(--color-border-subtle); }
+  .wx-progress:not([value])::-webkit-progress-value { background: transparent; }
+
+  /* The label row is the component — the bar alone is not accessible output. */
+  .wx-progress-field { display: block; }
+  .wx-progress-field__row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-block-end: var(--space-2);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-functional);
+  }
+  .wx-progress-field__value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-primary);
+  }
+}

@@ -22,7 +22,7 @@
       "activeTaskBorderColor": "#8B3525"
     },
     "flowchart": {
-      "curve": "linear",
+      "curve": "basis",
       "padding": 16,
       "nodeSpacing": 40,
       "rankSpacing": 56
@@ -51,7 +51,7 @@
       "activeTaskBorderColor": "#CF5F4A"
     },
     "flowchart": {
-      "curve": "linear",
+      "curve": "basis",
       "padding": 16,
       "nodeSpacing": 40,
       "rankSpacing": 56

@@ -1,0 +1,39 @@
+/* Avatar — an image frame, not a coloured identity bubble.
+
+   Mainstream avatars default to a saturated circle with white initials.
+   That is a filled shape carrying a decorative hue, which this system does
+   not have. Here the default is a square hairline frame in the seal
+   tradition, initials set in the display face. The circular variant exists
+   for photographs, where the crop is the point. */
+@layer wx.components {
+  .wx-avatar {
+    --wx-avatar-size: var(--space-10);
+    display: inline-grid;
+    place-items: center;
+    inline-size: var(--wx-avatar-size);
+    block-size: var(--wx-avatar-size);
+    overflow: hidden;
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-subtle);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    line-height: 1;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    user-select: none;
+  }
+  .wx-avatar > img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+  .wx-avatar--sm    { --wx-avatar-size: var(--space-6); font-size: var(--text-xs); }
+  .wx-avatar--lg    { --wx-avatar-size: var(--space-16); font-size: var(--text-lg); }
+  .wx-avatar--round { border-radius: var(--radius-full); }
+
+  /* A stack of collaborators. Overlap is bounded so the hairlines stay
+     legible rather than collapsing into a smear. */
+  .wx-avatar-group { display: flex; }
+  .wx-avatar-group .wx-avatar + .wx-avatar { margin-inline-start: calc(var(--space-2) * -1); }
+}

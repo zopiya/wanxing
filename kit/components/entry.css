@@ -34,6 +34,6 @@
   .wx-entry__meta {
     font-family: var(--font-ui);
     font-size: var(--text-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
   }
 }

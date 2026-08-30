@@ -24,29 +24,30 @@
 
     --color-text-heading:   #F0EBE3;
     --color-text-primary:   #E8E3DC;
-    --color-text-secondary: #8A857D;
-    --color-text-muted:     #5A5550;
-    --color-text-tertiary:  #403C37;
+    --color-text-secondary:  #B5AFA6;
+    --color-text-functional: #8A857D;
 
     /* #C4533E was the rescued value; it measures 3.92:1 on this ground and
        fails AA for body-size text. Lifted to 4.54:1 at the same hue. */
     --color-accent:        #CF5F4A;
     --color-accent-hover:  #DE7059;
     --color-accent-subtle: #2E1A16;
+    --color-on-accent:     #1A1816;
 
-    --color-danger:         #C46477;
+    --color-danger:         #C6697E;
     --color-danger-subtle:  #2B171C;
-    --color-warning:        #A57C18;
+    --color-warning:        #B3871A;
     --color-warning-subtle: #2B2517;
-    --color-success:        #678B4B;
+    --color-success:        #739B53;
     --color-success-subtle: #202B17;
 
+    --color-scrim: rgb(10 9 8 / 0.65);
     --color-border-subtle: #2E2B27;
     --color-border-strong: #403C37;
 
     --color-link:       #E8E3DC;
     --color-link-hover: #CF5F4A;
-    --color-focus:      rgba(207, 95, 74, 0.45);
+    --color-focus:      #CF5F4A;
   }
 }
 
@@ -58,25 +59,26 @@
 
   --color-text-heading:   #F0EBE3;
   --color-text-primary:   #E8E3DC;
-  --color-text-secondary: #8A857D;
-  --color-text-muted:     #5A5550;
-  --color-text-tertiary:  #403C37;
+  --color-text-secondary:  #B5AFA6;
+  --color-text-functional: #8A857D;
 
   --color-accent:        #CF5F4A;
   --color-accent-hover:  #DE7059;
   --color-accent-subtle: #2E1A16;
+  --color-on-accent:     #1A1816;
 
-  --color-danger:         #C46477;
+  --color-danger:         #C6697E;
   --color-danger-subtle:  #2B171C;
-  --color-warning:        #A57C18;
+  --color-warning:        #B3871A;
   --color-warning-subtle: #2B2517;
-  --color-success:        #678B4B;
+  --color-success:        #739B53;
   --color-success-subtle: #202B17;
 
+  --color-scrim: rgb(10 9 8 / 0.65);
   --color-border-subtle: #2E2B27;
   --color-border-strong: #403C37;
 
   --color-link:       #E8E3DC;
   --color-link-hover: #CF5F4A;
-  --color-focus:      rgba(207, 95, 74, 0.45);
+  --color-focus:      #CF5F4A;
 }

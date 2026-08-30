@@ -63,7 +63,7 @@ This table answers one question: *when the same soul enters nine containers, whi
 | | accent 预算 | 暗色模式 | 色彩特殊决策 |
 |---|---|---|---|
 | **F1** | ≤2 处/页 | **必须** | — |
-| **F2** | ≤2 处/屏 | **必须**（跟随系统） | Tint `#8B3525` 亮 / `#C4533E` 暗；**不跟随 Material You** |
+| **F2** | ≤2 处/屏 | **必须**（跟随系统） | Tint `#8B3525` 亮 / `#CF5F4A` 暗；**不跟随 Material You** |
 | **F3** | 定义者 | 提供映射 | 完整 HEX/RGB/**CMYK/PANTONE** 映射 |
 | **F4** | ≤2 类用途 | **禁止**（印刷无暗色） | CMYK 9 色映射；专色可选 |
 | **F5** | ≤2 处/页 | 三种模式：light / dark / accent | 分隔页编号旁的 ■ 算 accent 第二次出现 |

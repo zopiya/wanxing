@@ -7,15 +7,20 @@
   --color-bg-subtle:  #F0EDE7;
 
   --color-text-primary:   #3A3837;
-  --color-text-secondary: #888580;
-  --color-text-muted:     #B0ABA4;
-  --color-text-tertiary:  #C8C3BA;
+  /* Four text tiers, each perceptibly distinct (dL* >= 11) and each safe for
+     body-size text on bg-warm. Field evidence introduced #706D68 independently
+     on zopiya.com and the blog; the older pale greys measured 1.54-3.23:1.
+     `muted` and `tertiary` were retired in D-20: once every tier had to clear
+     AA, they collapsed to within dL* 2 of `functional` and named nothing. */
+  --color-text-secondary:  #55524E;
+  --color-text-functional: #706D68;
   --color-text-heading:   #2C2B29;
 
   /* Accent used sparingly — max 2 occurrences per page (excluding active icons) */
   --color-accent:        #8B3525;
   --color-accent-hover:  #A84030;
   --color-accent-subtle: #F5E8E5;
+  --color-on-accent:     #FFFFFF;
 
   /* Semantic colors — required by criterion C-6 and the accessibility floor.
      NOT part of the accent budget; must always be paired with a text label,
@@ -28,12 +33,15 @@
   --color-success:        #4F6B3A;  /* moss      5.27:1 */
   --color-success-subtle: #ECF2E8;
 
+  /* Overlay scrim — the vellum dimmed, never neutral black. */
+  --color-scrim: rgb(26 24 22 / 0.55);
+
   --color-border-subtle: #E5E1DA;
   --color-border-strong: #C8C3BA;
 
   --color-link:       #3A3837;
   --color-link-hover: #8B3525;
-  --color-focus:      rgba(139, 53, 37, 0.4);
+  --color-focus:      #8B3525;
 
   /* Latin fonts self-hosted; CJK falls back to system fonts:
      iOS/macOS → PingFang/Songti, Windows → Microsoft YaHei/SimSun,

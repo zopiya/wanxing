@@ -1,0 +1,20 @@
+/* v2 · Collapse. Native details/summary supplies keyboard and open state. */
+@layer wx.components {
+  .wx-collapse {
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+
+  .wx-collapse > summary {
+    min-block-size: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    cursor: pointer;
+    color: var(--color-text-heading);
+  }
+
+  .wx-collapse > summary::after { content: "+"; color: var(--color-text-functional); }
+  .wx-collapse[open] > summary::after { content: "−"; }
+  .wx-collapse__body { padding-block: 0 var(--space-6); }
+}

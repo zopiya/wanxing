@@ -1,0 +1,49 @@
+/* Tooltip — supplementary only.
+
+   Hard rule: a tooltip may never be the sole carrier of information. It is
+   unreachable on touch, invisible to print, and easy to miss. Anything a
+   reader must know belongs in the text. This component exists for the
+   legitimate remainder: expanding an abbreviation, naming an icon.
+
+   Markup contract — the trigger references the bubble, so assistive tech
+   announces it without depending on hover:
+
+     <span class="wx-tooltip">
+       <button aria-describedby="tt-1">…</button>
+       <span class="wx-tooltip__bubble" role="tooltip" id="tt-1">…</span>
+     </span> */
+@layer wx.components {
+  .wx-tooltip { position: relative; display: inline-flex; }
+  .wx-tooltip__bubble {
+    position: absolute;
+    inset-block-end: calc(100% + var(--space-2));
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    z-index: 40;
+    inline-size: max-content;
+    max-inline-size: 18rem;
+    padding: var(--space-2) var(--space-3);
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-pure);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-primary);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--duration-fast) var(--ease-out),
+                visibility var(--duration-fast) var(--ease-out);
+  }
+  /* Focus-visible, not focus: a mouse click on the trigger should not
+     leave a bubble hanging. */
+  .wx-tooltip:hover .wx-tooltip__bubble,
+  .wx-tooltip:focus-within .wx-tooltip__bubble {
+    opacity: 1;
+    visibility: visible;
+  }
+  .wx-tooltip__bubble--end {
+    inset-block-end: auto;
+    inset-block-start: calc(100% + var(--space-2));
+  }
+}

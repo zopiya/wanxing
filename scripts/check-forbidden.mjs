@@ -24,7 +24,7 @@ const RULES = [
   { id: "bouncy-easing", why: "禁止弹跳类缓动 — motion.md",
     re: /\b(spring|bounce|elastic)\b|cubic-bezier\([^)]*,\s*-?\d*\.?\d+\s*,\s*[^)]*,\s*1\.[1-9]/i },
   { id: "thick-border", why: "边框 >1px（1.5px 描边除外）— forbidden.md §一",
-    re: /border(-(top|right|bottom|left))?(-width)?\s*:\s*(?:[^;]*\s)?([2-9]|\d{2,})(\.\d+)?px/i,
+    re: /border(-(top|right|bottom|left|inline|block)(-(start|end))?)?(-width)?\s*:\s*(?:[^;]*\s)?([2-9]|\d{2,})(\.\d+)?px/i,
     allow: /var\(--stroke-mark\)|1\.5px/ },
   { id: "spinner", why: "禁止旋转 spinner — motion.md",
     re: /animation[^;]*\brotate\b|@keyframes\s+[\w-]*spin/i },

@@ -5,9 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>组件画廊 · Component Gallery</title>
-<link rel="stylesheet" href="../../kit/index.css">
+<link rel="stylesheet" href="../../kit/dist/wenxin-f6.css?v=field-audit-2">
 <script type="application/json" id="wanxing-render-contract">
 { "profile": "F6", "track": "editorial", "title": "组件画廊",
+  "project": { "name": "Component gallery", "slug": "component-gallery" },
+  "output": { "entry": "dist/component-gallery/index.html", "tmpDir": "dist/component-gallery/tmp" },
   "theme": { "accentBudget": 2, "darkModeRequired": true },
   "motion": { "intensity": "E9-1", "maxDurationMs": 420, "maxTranslatePx": 8 },
   "audit": { "allowedDeviations": [] } }
@@ -16,8 +18,10 @@
   .g-section { margin-block: var(--space-24); }
   .g-label { font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 400;
     text-transform: uppercase; letter-spacing: var(--tracking-wider);
-    color: var(--color-text-muted); margin-block-end: var(--space-4); }
+    color: var(--color-text-functional); margin-block-end: var(--space-4); }
   .g-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+  .g-header { display:flex; justify-content:space-between; align-items:flex-start; gap:var(--space-6); }
+  .g-v2-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--space-10); }
 </style>
 </head>
 <body>
@@ -25,10 +29,13 @@
 <div class="wx-page">
 <main id="main" class="wx-container wx-container--content">
 
-  <header style="padding-block: var(--space-16)">
-    <p class="wx-eyebrow">文心 · 万形</p>
-    <h1>组件画廊 <span class="wx-seal wx-seal--breathing"></span></h1>
-    <p class="wx-lede">v1 组件的全部形态。每一个都建立在 kit/tokens 之上，不含任何硬编码数值。</p>
+  <header class="g-header" style="padding-block: var(--space-16)">
+    <div><p class="wx-eyebrow">文心 · 万形</p>
+      <h1>组件画廊 <span class="wx-seal wx-seal--breathing"></span></h1>
+      <p class="wx-lede">v1 基础组件与首批田野驱动 v2 组件。全部建立在 kit/tokens 之上。</p>
+      <p style="margin-block-start:var(--space-5)"><a class="wx-btn wx-btn--text" href="patterns.html">查看五种页面原型 →</a></p>
+    </div>
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
   </header>
 
   <section class="g-section">
@@ -52,6 +59,42 @@
       <p class="wx-entry__desc">频率越低，力量越大。</p>
       <p class="wx-entry__meta">八月二十日 · 四分钟</p>
     </article>
+  </section>
+
+  <section class="g-section">
+    <h2 class="g-label">Field v2 · 田野组件</h2>
+    <div class="g-v2-grid">
+      <div>
+        <h3>Timeline · 时间线</h3>
+        <ol class="wx-timeline" style="margin-block-start:var(--space-5)">
+          <li class="wx-timeline__item" aria-current="true"><span class="wx-timeline__dot" aria-hidden="true"></span><div class="wx-timeline__content"><b>今天</b><p>连续性靠一根实线，不靠卡片。</p></div></li>
+          <li class="wx-timeline__item"><span class="wx-timeline__dot" aria-hidden="true"></span><div class="wx-timeline__content"><b>昨天</b><p>节点状态同时进入无障碍树。</p></div></li>
+        </ol>
+      </div>
+      <div>
+        <h3>Tabs · 标签页</h3>
+        <div class="wx-tabs" role="tablist" aria-label="组件状态" style="margin-block-start:var(--space-5)">
+          <button type="button" role="tab" id="tab-a" aria-controls="panel-a" aria-selected="true">规范</button>
+          <button type="button" role="tab" id="tab-b" aria-controls="panel-b" aria-selected="false">边界</button>
+        </div>
+        <div id="panel-a" role="tabpanel" aria-labelledby="tab-a"><p>状态用 aria-selected 表达。</p></div>
+        <div id="panel-b" role="tabpanel" aria-labelledby="tab-b" hidden><p>形态适配不改不变之魂。</p></div>
+      </div>
+      <div>
+        <h3>Search + Switch · 搜索与开关</h3>
+        <form class="wx-search" role="search" style="margin-block-start:var(--space-5)">
+          <label class="wx-sr-only" for="gallery-search">搜索组件</label>
+          <input class="wx-search__input" id="gallery-search" type="search" value="timeline">
+          <span class="wx-search__status">1 条</span>
+        </form>
+        <p class="g-row" style="margin-block-start:var(--space-5)"><span>跟随系统</span><button class="wx-switch" type="button" role="switch" aria-checked="true" aria-label="跟随系统"></button></p>
+      </div>
+      <div>
+        <h3>Collapse + Marginal · 折叠与边注</h3>
+        <details class="wx-collapse" open style="margin-block-start:var(--space-5)"><summary>为什么不用卡片？</summary><div class="wx-collapse__body"><p>邻近、节奏与分隔线已经足够。</p></div></details>
+        <aside class="wx-marginal">边注属于右轨，不抢正文层级。</aside>
+      </div>
+    </div>
   </section>
 
   <section class="g-section">
@@ -117,7 +160,7 @@
     </div>
     <div class="wx-cols" style="margin-block-start: var(--space-8)">
       <div class="wx-stat"><span class="wx-stat__value">34</span><span class="wx-stat__label">v1 组件</span></div>
-      <div class="wx-stat"><span class="wx-stat__value">91</span><span class="wx-stat__label">Token</span></div>
+      <div class="wx-stat"><span class="wx-stat__value">93</span><span class="wx-stat__label">Token</span></div>
       <div class="wx-stat"><span class="wx-stat__value">9</span><span class="wx-stat__label">形态</span></div>
     </div>
     <dl class="wx-desc" style="margin-block-start: var(--space-8)">
@@ -157,11 +200,111 @@
     </div>
   </section>
 
+  <section class="g-section">
+    <h2 class="g-label">Overlay · 浮层（唯一允许有"面"的地方）</h2>
+    <p class="wx-lede">分层靠发丝线边缘与暖色遮罩，不靠阴影。焦点陷阱、Esc 与 <code>inert</code> 背景全部来自原生 <code>&lt;dialog&gt;</code>。</p>
+    <p>
+      <button class="wx-btn" type="button" data-wx-open="#g-modal">打开对话框</button>
+      <button class="wx-btn" type="button" data-wx-open="#g-drawer">打开抽屉</button>
+      <button class="wx-btn" type="button" onclick="wxToast('草稿已保存', { level: 'success', label: '已保存' })">触发通知</button>
+    </p>
+
+    <dialog class="wx-modal" id="g-modal" aria-labelledby="g-modal-title">
+      <h3 class="wx-modal__title" id="g-modal-title">删除这篇草稿？</h3>
+      <div class="wx-modal__body"><p>删除后无法恢复。</p></div>
+      <div class="wx-modal__actions">
+        <button class="wx-btn" type="button" data-wx-close>取消</button>
+        <button class="wx-btn wx-btn--danger" type="button" data-wx-close>删除</button>
+      </div>
+    </dialog>
+
+    <dialog class="wx-drawer" id="g-drawer" aria-labelledby="g-drawer-title">
+      <div class="wx-drawer__header">
+        <h3 id="g-drawer-title">筛选</h3>
+        <button class="wx-btn wx-btn--text" type="button" data-wx-close>关闭</button>
+      </div>
+      <p>抽屉从行末边缘进入，只在一条边上有分隔线。</p>
+    </dialog>
+  </section>
+
+  <section class="g-section">
+    <h2 class="g-label">Tooltip · 提示（永不作为唯一信息载体）</h2>
+    <p>
+      导出格式为
+      <span class="wx-tooltip">
+        <button class="wx-btn wx-btn--text" type="button" aria-describedby="g-tip">CSV</button>
+        <span class="wx-tooltip__bubble" role="tooltip" id="g-tip">逗号分隔值，可用表格软件打开</span>
+      </span>
+      —— 缩写的展开写在提示里，但"导出格式"这句话本身已经完整。
+    </p>
+  </section>
+
+  <section class="g-section">
+    <h2 class="g-label">Steps · 步骤</h2>
+    <ol class="wx-steps">
+      <li class="wx-steps__item" data-complete><span class="wx-steps__title">采集田野证据</span>四个站点的计算样式与对比度</li>
+      <li class="wx-steps__item" aria-current="step"><span class="wx-steps__title">按 A/B/C 分类</span>吸收、划边界，或只记录</li>
+      <li class="wx-steps__item"><span class="wx-steps__title">写回规范与 kit</span>并让检查器能拦住回归</li>
+    </ol>
+  </section>
+
+  <section class="g-section">
+    <h2 class="g-label">Progress · 进度与量度（没有不确定态）</h2>
+    <div class="wx-progress-field">
+      <div class="wx-progress-field__row"><span>导出中</span><span class="wx-progress-field__value">64%</span></div>
+      <progress class="wx-progress" value="64" max="100" aria-label="导出进度"></progress>
+    </div>
+    <p style="margin-block-start:var(--space-6)">磁盘用量 <meter class="wx-meter" value="0.82" high="0.8" aria-label="磁盘用量 82%"></meter></p>
+  </section>
+
+  <section class="g-section">
+    <h2 class="g-label">Controls · 控件（应用轨）</h2>
+    <div class="wx-toolbar">
+      <div class="wx-segmented" role="radiogroup" aria-label="视图">
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="true">列表</button>
+        <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">时间线</button>
+      </div>
+      <span class="wx-toolbar__spacer"></span>
+      <button class="wx-btn wx-btn--text" type="button">导出</button>
+    </div>
+  </section>
+
+  <section class="g-section">
+    <h2 class="g-label">Indicators · 计数、状态与头像</h2>
+    <p>
+      未读 <span class="wx-badge">12</span>
+      <span class="wx-status wx-status--live">运行中</span>
+      <span class="wx-status wx-status--down">已停止</span>
+      <span class="wx-status wx-status--idle">空闲</span>
+    </p>
+    <p>状态点永远带文字标签 —— 标签是组件的一部分，不是可选项。</p>
+    <div class="wx-avatar-group" style="margin-block-start:var(--space-4)">
+      <span class="wx-avatar">仲</span>
+      <span class="wx-avatar">平</span>
+      <span class="wx-avatar wx-avatar--round">文</span>
+    </div>
+    <p style="margin-block-start:var(--space-4)">按 <kbd class="wx-kbd">Cmd</kbd> + <kbd class="wx-kbd">K</kbd> 搜索。</p>
+  </section>
+
   <nav class="wx-pager">
     <a href="#"><span class="wx-pager__label">上一篇</span>灵魂层</a>
     <a href="#" style="text-align:end"><span class="wx-pager__label">下一篇</span>形态层</a>
   </nav>
 </main>
 </div>
+<script src="../../kit/components/js/overlay.js"></script>
+<script src="../../kit/components/js/tabs.js"></script>
+<script>
+document.querySelectorAll(".wx-switch").forEach(function (control, index) {
+  control.addEventListener("click", function () {
+    var checked = this.getAttribute("aria-checked") !== "true";
+    this.setAttribute("aria-checked", String(checked));
+    if (index === 0) {
+      document.documentElement.setAttribute("data-theme", checked ? "dark" : "light");
+      this.setAttribute("aria-label", checked ? "切换亮色模式" : "切换暗色模式");
+    }
+  });
+});
+</script>
 </body>
 </html>

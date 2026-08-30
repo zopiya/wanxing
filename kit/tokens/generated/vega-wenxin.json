@@ -12,15 +12,15 @@
       "category": [
         "#2C2B29",
         "#3A3837",
-        "#888580",
-        "#B0ABA4",
+        "#55524E",
+        "#706D68",
         "#C8C3BA"
       ],
       "ramp": [
         "#2C2B29",
         "#3A3837",
-        "#888580",
-        "#B0ABA4",
+        "#55524E",
+        "#706D68",
         "#C8C3BA"
       ]
     },
@@ -29,9 +29,9 @@
       "domainWidth": 1,
       "grid": false,
       "tickSize": 0,
-      "labelColor": "#B0ABA4",
+      "labelColor": "#706D68",
       "labelFont": "system-ui, -apple-system, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans SC\", sans-serif",
-      "titleColor": "#888580"
+      "titleColor": "#55524E"
     },
     "legend": {
       "disable": true
@@ -60,15 +60,15 @@
       "category": [
         "#F0EBE3",
         "#E8E3DC",
+        "#B5AFA6",
         "#8A857D",
-        "#5A5550",
         "#403C37"
       ],
       "ramp": [
         "#F0EBE3",
         "#E8E3DC",
+        "#B5AFA6",
         "#8A857D",
-        "#5A5550",
         "#403C37"
       ]
     },
@@ -77,9 +77,9 @@
       "domainWidth": 1,
       "grid": false,
       "tickSize": 0,
-      "labelColor": "#5A5550",
+      "labelColor": "#8A857D",
       "labelFont": "system-ui, -apple-system, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans SC\", sans-serif",
-      "titleColor": "#8A857D"
+      "titleColor": "#B5AFA6"
     },
     "legend": {
       "disable": true

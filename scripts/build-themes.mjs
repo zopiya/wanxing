@@ -28,7 +28,7 @@ const ink = (mode) => [
   mode("color", "text-heading"),
   mode("color", "text-primary"),
   mode("color", "text-secondary"),
-  mode("color", "text-muted"),
+  mode("color", "text-functional"),
   mode("color", "border-strong"),
 ];
 
@@ -59,7 +59,9 @@ function mermaid(mode) {
       activeTaskBkgColor: mode("color", "accent"),
       activeTaskBorderColor: mode("color", "accent"),
     },
-    flowchart: { curve: "linear", padding: 16, nodeSpacing: 40, rankSpacing: 56 },
+    // Palette and spacing are automatic; shelf labels and staggered convergence
+    // still require the editorial translation rules in spec/forms/f8-diagram.md.
+    flowchart: { curve: "basis", padding: 16, nodeSpacing: 40, rankSpacing: 56 },
   };
 }
 
@@ -80,13 +82,13 @@ function echarts(mode) {
     categoryAxis: {
       axisLine: { lineStyle: { color: mode("color", "border-subtle"), width: 1 } },
       axisTick: { show: false },
-      axisLabel: { color: mode("color", "text-muted") },
+      axisLabel: { color: mode("color", "text-functional") },
       splitLine: { show: false },
     },
     valueAxis: {
       axisLine: { show: false },
       axisTick: { show: false },
-      axisLabel: { color: mode("color", "text-muted") },
+      axisLabel: { color: mode("color", "text-functional") },
       splitLine: { show: false },
     },
     line: {
@@ -111,7 +113,7 @@ function vega(mode) {
       domainWidth: 1,
       grid: false,
       tickSize: 0,
-      labelColor: mode("color", "text-muted"),
+      labelColor: mode("color", "text-functional"),
       labelFont: t.font.ui,
       titleColor: mode("color", "text-secondary"),
     },

@@ -38,7 +38,7 @@
      assistive tech — it carries an aria-label. */
   .wx-md .heading-anchor {
     margin-inline-start: var(--space-3);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
     text-decoration: none;
     opacity: 0;
     transition: opacity var(--duration-fast) var(--ease-default);

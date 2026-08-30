@@ -55,8 +55,10 @@ kit/
   tokens/          core.css + dark.css, forms/fN-*.css, generated/
   base/            reset, typography, a11y, motion, layout, print, self-hosted fonts
   components/      ~34 v1 components + js/ behaviours
+  patterns/        five copyable A–E page-archetype skeletons
   markdown/        .wx-md prose, syntax highlighting, Hugo render hooks
   charts/          ink-encoded chart styles + SVG conventions
+  dist/            unminified, import-free wenxin.css + wenxin-f1…f9.css
   assets/brand/    logo SVGs
 ```
 
@@ -115,7 +117,8 @@ Zero runtime dependencies; everything is plain Node. Artifacts ship unminified �
 concerns come after the system is complete.
 
 ```sh
-npm run build            # tokens -> json/scss/ts, then chart themes
+npm run build            # tokens + chart themes + unminified CSS bundles
+npm run build:css        # flatten kit into unminified single-file bundles
 npm run check            # token resolution + forbidden patterns + audit all examples
 npm run audit <file>     # render-audit one page
 python3 -m http.server 8899   # examples need http; file:// blocks @import and fonts
@@ -123,7 +126,9 @@ python3 -m http.server 8899   # examples need http; file:// blocks @import and f
 
 **`npm run check` is currently green: 0 failures, 0 warnings across all nine form examples.**
 
-Three checks worth knowing, because each one caught a real defect during the rebuild:
+Six checks, each of which caught a real defect. Two of them caught defects in the checking itself,
+which is the failure mode to watch here: **a check that cannot fail is worse than no check**, because
+its green output gets cited as evidence. Negative-control anything you are about to call passing.
 
 - `check:tokens` — every `var(--x)` resolves. The pre-rebuild examples referenced 52 tokens that
   were never defined anywhere, and nothing noticed because nothing looked. For HTML it scans only
@@ -132,12 +137,27 @@ Three checks worth knowing, because each one caught a real defect during the reb
 - `check:forbidden` — makes `forbidden.md` executable: shadows, gradients, `outline:none`, bouncy
   easing, over-thick borders, spinners. It is comment-aware, because a checker with false positives
   gets ignored, which is worse than not having one.
-- `audit:examples` — the render contract per page, dispatched by `track`.
+- `audit:examples` — the render contract per page, dispatched by `track`. Every declared
+  `profileSpecificCheck` dispatches to a real assertion and an unknown name is a hard failure;
+  pages carrying no contract are listed as `skip` rather than silently dropped.
+- `check:colors` — measures every light/dark text, semantic, accent, and focus pair, plus pairwise
+  ΔE. Field audit found production greys at 1.54–3.23:1 — and the same failing values had been
+  shipped in `core.css`; this prevents them returning as text tokens.
+- `audit:selftest` — submits an intentionally invalid F6 page, proving a declared sidebar check and
+  the generic focus check both reject it. This exists because `audit-all` once read the wrong report
+  field and falsely printed a green matrix.
 
 ## Status
 
-All nine forms are built and passing. The remaining planned work is v2 components and an optional
-React wrapper, both deferrable.
+All nine forms are built and passing. The v1 and v2 component inventories are both complete —
+64 block-level `wx-` classes spanning layout, navigation, data entry, data display, feedback,
+overlay, controls, and content, across 29 stylesheets and 7 behaviour scripts — plus all five
+archetype patterns. The optional React wrapper stays deferred
+until the HTML/ARIA contracts have production use; do not create placeholders to complete a count.
+
+Overlays (`wx-modal`/`wx-drawer`/`wx-toast`) are the one place a bounded surface is legal, and the
+exception is argued in DECISIONS **D-21** rather than assumed. Text has exactly four tiers because
+the AA floor bounds how many are distinguishable (**D-20**).
 
 `archive/`, `opendesign/`, and the old examples were deleted after harvesting, and remain in git at
 `93fba710`. Open Design packaging is intended as a future project *derived from* this one — do not

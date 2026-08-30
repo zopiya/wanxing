@@ -27,7 +27,7 @@ Home Indicator 上方额外留 `--space-2`。横屏同样适用。
 | 导航栏 | Standard Title，**不用 Large Title**（克制） | Top App Bar，滚动时不隐藏 |
 | 底部导航 | Tab Bar | Bottom Navigation |
 | 图标 | 线条型，1.5px 描边 | 同 |
-| 强调色 | `--color-accent` `#8B3525` / 暗色 `#C4533E` | 同 |
+| 强调色 | `--color-accent` `#8B3525` / 暗色 `#CF5F4A` | 同；旧暗色值不达 AA，见 D-9 |
 
 - **不使用 FAB** —— 视觉权重过高。
 - **不跟随 Material You 动态取色** —— D9 暖土调属于[不变之魂](../soul/philosophy.md)。

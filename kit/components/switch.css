@@ -1,0 +1,29 @@
+/* v2 · Switch [application track]. Use role=switch + aria-checked; never an
+   .is-on class. The filled track is a control affordance, not a card surface. */
+@layer wx.components {
+  .wx-switch {
+    inline-size: 44px;
+    block-size: 24px;
+    padding: 2px;
+    border: var(--stroke-hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-full);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .wx-switch::before {
+    content: "";
+    display: block;
+    inline-size: 18px;
+    block-size: 18px;
+    border-radius: var(--radius-full);
+    background: var(--color-text-functional);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .wx-switch[aria-checked="true"] { border-color: var(--color-accent); }
+  .wx-switch[aria-checked="true"]::before {
+    background: var(--color-accent);
+    transform: translateX(16px);
+  }
+}

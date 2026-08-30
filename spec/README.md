@@ -20,6 +20,7 @@ form it takes in each of nine containers.
 | 直接开始写代码 | [`kit/`](../kit/) —— 引 `kit/index.css` 即可，不必从哲学重新推导 |
 | 看组件长什么样 | [`examples/gallery/`](../examples/gallery/) |
 | 看某个形态怎么落地 | [`examples/`](../examples/) —— 九形态各一份 |
+| 看四个生产站如何反哺/偏离规范 | [FIELD-AUDIT.md](./FIELD-AUDIT.md) —— 逐站 A/B/C 证据 |
 | 知道什么绝对不能做 | [soul/forbidden.md](./soul/forbidden.md) |
 | 检查产出是否合规 | `npm run check` |
 
@@ -71,6 +72,7 @@ F6 Documentation · F7 Poster · F8 Diagram · F9 Report
 |---|---|
 | [**tracks.md**](./tracks.md) | **双轨仲裁** —— 哲学与主流惯例冲突时的三层规则 |
 | [DECISIONS.md](./DECISIONS.md) | 逐条判定日志 |
+| [FIELD-AUDIT.md](./FIELD-AUDIT.md) | 四个真实站点的 token/排版/组件/动效/暗色/无障碍对账 |
 | [PROVENANCE.md](./PROVENANCE.md) | 取材来源，供日后考古 |
 
 ---

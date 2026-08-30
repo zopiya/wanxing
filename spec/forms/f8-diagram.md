@@ -47,8 +47,18 @@ F8 是**拓扑图解**（节点与关系）；[data-viz.md](../soul/data-viz.md)
 
 ## Mermaid
 
-Mermaid 源可用，但**必须套用由 token 生成的文心主题**（`kit/charts/recipes/mermaid-theme.mjs`）。
+Mermaid 源可用，但**必须套用由 token 生成的文心主题**（`kit/tokens/generated/mermaid-wenxin.json`）。
 禁止默认彩虹色块与粗黑箭头。
+
+Mermaid 只是拓扑输入，不是最终排版。翻译为文心图解时执行四条规则：
+
+1. `graph TD` 先寻找中心轴或蜿蜒路径；`graph LR` 先寻找发散—收敛关系。
+2. 带标签的边必须预留水平段，标签悬于线段上方；不用有底色的 label 遮住连线。
+3. 层级变化用平滑曲线；多个分支汇聚时把入点错开 20–60px，不让箭头争抢同一坐标。
+4. 默认填充全部剥离为暖纸/灰线；只有被论证的原点、终点或闭环能使用 accent。
+
+Mermaid is topology input, not final typesetting. Reserve a horizontal shelf for edge labels,
+stagger convergence points, and strip default fills before applying the generated theme.
 
 ## 最小可交付物 · Minimum Deliverable
 

@@ -31,7 +31,7 @@
 | 1 | `--color-text-heading` | 实线 |
 | 2 | `--color-text-primary` | 长虚线 `6 3` |
 | 3 | `--color-text-secondary` | 点线 `2 3` |
-| 4 | `--color-text-muted` | 点划线 `10 3 2 3` |
+| 4 | `--color-text-functional` | 点划线 `10 3 2 3` |
 | 基线/网格 | `--color-border-subtle` | — |
 
 这是让图表在本系统内**得以成立**的关键决策。禁高饱和色不是图表的障碍 ——
@@ -115,7 +115,7 @@ the better chart anyway.
 编辑型标题     --font-display · --text-lg      定调
 副标题        --font-ui · --text-sm · 全大写   说明量纲与范围
 [ SVG ]
-来源/注释      --text-xs · --color-text-muted
+来源/注释      --text-xs · --color-text-functional
 ```
 
 **裸图表不可交付。** 一张没有标题、没有量纲说明的图，

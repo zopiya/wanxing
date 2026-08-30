@@ -16,7 +16,7 @@
     font-size: var(--text-base);
     transition: border-color var(--duration-fast) var(--ease-default);
   }
-  .wx-input::placeholder { color: var(--color-text-muted); }
+  .wx-input::placeholder { color: var(--color-text-functional); }
   .wx-input:hover, .wx-select:hover { border-color: var(--color-border-strong); }
   textarea.wx-input { min-height: 6em; resize: vertical; }
 
@@ -54,7 +54,7 @@
   /* Required is marked with a word, never with a color or a bare asterisk. */
   .wx-field__required {
     margin-inline-start: var(--space-2);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
     font-size: var(--text-xs);
   }
 
@@ -63,7 +63,7 @@
     margin-block-start: var(--space-2);
     font-family: var(--font-ui);
     font-size: var(--text-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
   }
 
   /* Error state carries colour AND text AND a border change — never colour

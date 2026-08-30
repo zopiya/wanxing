@@ -34,7 +34,7 @@
   .wx-attr__meta {
     font-family: var(--font-ui);
     font-size: var(--text-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
   }
 
   /* Footnote reference and list. */
@@ -58,6 +58,22 @@
   .wx-cite {
     font-style: normal;
     font-size: var(--text-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
+  }
+
+  /* Drop cap — the opening gesture of a long read. Applied to the first
+     paragraph only, and suppressed on narrow canvases where a three-line
+     cap would eat the measure. */
+  .wx-dropcap::first-letter {
+    float: inline-start;
+    margin-inline-end: var(--space-2);
+    padding-block-start: 0.08em;
+    font-family: var(--font-display);
+    font-size: 3.2em;
+    line-height: 0.82;
+    color: var(--color-text-heading);
+  }
+  @media (max-width: 30rem) {
+    .wx-dropcap::first-letter { float: none; margin: 0; font-size: inherit; line-height: inherit; }
   }
 }

@@ -28,7 +28,7 @@
   .wx-chart__note {
     margin-block-start: var(--space-3);
     font-size: var(--text-xs);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
   }
 
   /* ---- marks --------------------------------------------------------------
@@ -78,7 +78,7 @@
   .wx-chart__label {
     font-family: var(--font-ui);
     font-size: 11px;
-    fill: var(--color-text-muted);
+    fill: var(--color-text-functional);
   }
   /* Direct labelling at the series terminus, in the series' own colour.
      A legend forces the eye to shuttle between a key and the data; this is

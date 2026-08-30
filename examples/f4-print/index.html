@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="../../kit/tokens/forms/f4-print.css">
 <script type="application/json" id="wanxing-render-contract">
 { "profile": "F4", "track": "editorial", "title": "论克制（内页）", "language": "zh-CN",
+  "project": { "name": "F4 Print example", "slug": "f4-print-example" },
+  "output": { "entry": "dist/f4-print-example/index.html", "tmpDir": "dist/f4-print-example/tmp" },
   "canvas": { "kind": "print", "printOnly": true, "size": "A5" },
   "theme": { "accentBudget": 2, "darkModeRequired": false },
   "structure": { "requiredRegions": ["main"] },
@@ -30,7 +32,7 @@
   .folio { margin-block-start: var(--space-16); padding-block-start: var(--space-3);
            border-top: var(--stroke-hairline) solid var(--color-border-subtle);
            font-family: var(--font-ui); font-size: var(--print-text-xs);
-           color: var(--color-text-muted); display: flex; justify-content: space-between; }
+           color: var(--color-text-functional); display: flex; justify-content: space-between; }
   .dropcap::first-letter { float: left; font-family: var(--font-display);
            font-size: var(--print-text-4xl); line-height: 0.85;
            padding-inline-end: var(--space-2); color: var(--color-text-heading); }

@@ -31,6 +31,13 @@ F6 交付**可浏览、可搜索、可导航的文档站**：API 文档、Wiki�
 **侧栏**：`--sidebar-width` 240px 固定；底色 `--color-bg-base`；右侧 1px `--color-border-subtle`；
 `--font-ui` `--text-sm`；**当前项 accent + 左侧 2px 竖线**；hover 180ms。
 
+大型知识库可采用三轨：**左知识树 + 中正文 + 右 TOC/关系入口**。这是 F6 的合法密度适配，
+不是卡片例外；三轨必须分别使用 `<nav>` / `<main>` / `<aside>` 语义地标，并保留跳至正文链接。
+`garden.zopiya.com` 验证了布局需求，也暴露了缺少这些地标时的无障碍代价。
+
+Large knowledge bases may use three rails: **left knowledge tree + article + right TOC/relations**.
+The layout is valid; omitting the corresponding landmarks is not.
+
 **响应式**：desktop 双栏 / tablet 侧栏折叠为汉堡 / mobile 抽屉式全屏侧栏
 （从左滑入 420ms `--ease-out`，遮罩 `rgba(0,0,0,0.3)`）。
 
@@ -47,7 +54,7 @@ F6 交付**可浏览、可搜索、可导航的文档站**：API 文档、Wiki�
 
 | 级别 | 语义色 |
 |---|---|
-| note | `--color-text-muted` |
+| note | `--color-text-functional` |
 | info | `--color-text-secondary` |
 | tip | `--color-success` |
 | warn | `--color-warning` |
@@ -58,6 +65,9 @@ F6 交付**可浏览、可搜索、可导航的文档站**：API 文档、Wiki�
 ### 代码高亮
 
 暖调语法色板，见 `kit/markdown/syntax.css`。底色 `--color-bg-subtle`。
+
+语法 token 使用独立的暖墨色，**不得直接复用 `--color-accent`**。真实代码块会让一个 token
+在一页重复数百次；把 keyword 映射为 accent 会同时破坏强调预算与 D9 的信息层级。
 
 ## 动效 · Motion — E9-0 静水
 
@@ -77,6 +87,8 @@ F6 整体在阅读轨，但**搜索框、反馈表单、错误提示走[第三�
 - [ ] 上一篇/下一篇导航
 - [ ] 三档响应式（含移动端抽屉）
 - [ ] 暗色模式
+- [ ] 字体自托管并带 `unicode-range`；不得依赖 Google Fonts/CDN
+- [ ] 左/中/右轨分别有导航、主内容与补充内容语义地标
 - [ ] 渲染契约 `profile: F6`，`sidebarRequired: true`，`searchRequired: true`，`intensity: "E9-0"`
 
 ## 不做 · Out of scope

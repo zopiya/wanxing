@@ -79,7 +79,7 @@ Any F1–F9 HTML output must carry all three:
 | `motion.intensity` | 动效强度等级，**定义见 [`soul/motion.md`](../soul/motion.md)**：`E8` 印刷静止（F4、F7 印刷版）/ `E9-0` 静水（F6、F9）/ `E9-1` 春雨（F1、F2、F5、F7 数字版，**默认**）/ `E9-2` 微澜（F3 品牌呼吸，`maxDurationMs: 4000`）。这四个代号是[七维度模型](../soul/philosophy.md)中 E 维度的分级，不是随手编的字符串。 |
 | `motion.maxDurationMs` / `maxTranslatePx` | 必须 ≤ [`soul/motion.md`](../soul/motion.md) 里对应 token 的值——`--duration-slow`(420ms)/`--duration-crawl`(600ms) 封顶，位移 ≤16px（F2 移动端更严，≤4px）|
 | `motion.completionSignal` | 固定为字符串 `"data-animations-complete"`，与下面的完成信号机制对应 |
-| `audit.profileSpecificChecks` | 该形态的专项审计项清单（见下方各形态对照）|
+| `audit.profileSpecificChecks` | 该形态的专项审计项清单；每个名字都必须由 `render-audit.mjs` 分派，未知名字直接失败 |
 | `audit.allowedDeviations` | 明确记录的、经用户确认允许偏离规范的例外——不应留空占位，没有偏离就是空数组 |
 
 ### 形态特定字段 · Profile-Specific Fields
@@ -96,6 +96,29 @@ Any F1–F9 HTML output must carry all three:
 | F9 Report | `source.format: "markdown"`、`target.format: "latex-pdf"`、`report.sections`、`report.citationRequired` |
 
 各形态实际取值可直接参考 [`examples/`](../../examples/) 下对应 `index.html` 里的真实 JSON。
+
+### 专项检查执行表 · Executed Profile Checks
+
+| 形态 | 合同名字 | 静态审计实际验证 |
+|---|---|---|
+| F1 | `responsive` `dark-mode` `focus-visible` | viewport + responsive canvas；暗色来源；焦点来源 |
+| F2 | `touch-targets` `safe-area` `dark-mode` | F2 触控 token；`env(safe-area-inset-*)`；暗色来源 |
+| F3 | `logo-variants` `cmyk-mapping` | ≥3 个标识变体；可见 CMYK/PANTONE 映射 |
+| F4 | `print-only` `no-motion` `pt-scale` | print-only/无暗色；E8/0ms；F4 pt token 来源 |
+| F5 | `aspect-ratio` `slide-types` | 合同与 CSS 16:9；七种 `data-slide-type` 全部渲染 |
+| F6 | `sidebar` `toc` `search` `dark-mode` | 合同字段 + 对应语义结构/原生 search input + 暗色来源 |
+| F7 | `canvas-ratio` `accent-split` | 合同与 CSS 比例；预算 2 + 标题/印章分配 |
+| F8 | `node-edge-separation` `editorial-frame` | 渲染节点/边计数；h1/引语/figure/figcaption |
+| F9 | `report-sections` `figure-numbering` | 三个章节同时出现在合同与正文；每个 figure 显式编号 |
+
+以上是**静态**承诺，不冒充运行时审计。比如 `touch-targets` 能证明 48px token 被接入，
+不能证明浏览器最终命中盒确为 48px；色彩对比由 `check:colors` 校验 token 对，页面计算样式仍需
+浏览器田野审计。`npm run audit:selftest` 会故意提交一个缺侧栏、缺焦点样式的 F6 页面，
+确认两种违规都能被抓住。
+
+These are static promises, not simulated browser results. Computed hit boxes, focus geometry, and
+composited contrast still require browser inspection. The negative control proves declared checks
+cannot silently become labels again.
 
 ## 动画完成信号 · Animation Completion Signal
 

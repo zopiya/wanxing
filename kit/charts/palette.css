@@ -15,7 +15,7 @@
     --chart-ink-1: var(--color-text-heading);
     --chart-ink-2: var(--color-text-primary);
     --chart-ink-3: var(--color-text-secondary);
-    --chart-ink-4: var(--color-text-muted);
+    --chart-ink-4: var(--color-text-functional);
     --chart-ink-5: var(--color-border-strong);
 
     /* The argument. One series, one bar, or one point. */

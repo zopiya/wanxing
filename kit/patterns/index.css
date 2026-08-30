@@ -1,0 +1,61 @@
+/* Five page archetypes A-E. These are layout skeletons, not components: they
+   arrange regions while components keep owning their local appearance. */
+@layer wx.patterns {
+  .wx-reading {
+    --wx-reading-width: var(--width-article);
+    width: min(100%, var(--wx-reading-width));
+    margin-inline: auto;
+  }
+  .wx-reading__header { margin-block-end: var(--space-12); }
+  .wx-reading__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-block-start: var(--space-4);
+    color: var(--color-text-functional);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
+
+  .wx-listing {
+    width: min(100%, var(--width-content));
+    margin-inline: auto;
+  }
+  .wx-listing__header { margin-block-end: var(--space-12); }
+  .wx-listing__items > * + * { margin-block-start: var(--space-10); }
+
+  .wx-showcase {
+    width: min(100%, var(--width-showcase));
+    margin-inline: auto;
+  }
+  .wx-showcase__intro { margin-block-end: var(--space-16); }
+  .wx-showcase__timeline { display: grid; gap: var(--space-8); }
+
+  .wx-landing__hero {
+    min-block-size: min(760px, 88dvh);
+    display: grid;
+    align-content: center;
+    gap: var(--space-6);
+    padding-block: var(--space-24);
+  }
+  .wx-landing__hero > * { max-width: var(--width-showcase); }
+  .wx-landing__sections > * + * { margin-block-start: var(--space-24); }
+
+  .wx-tool {
+    width: min(100%, var(--width-content));
+    margin-inline: auto;
+  }
+  .wx-tool__input { margin-block-end: var(--space-12); }
+  .wx-tool__result {
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+    padding-block-start: var(--space-8);
+  }
+
+  @media (min-width: 760px) {
+    .wx-showcase__timeline > * {
+      display: grid;
+      grid-template-columns: minmax(120px, 0.28fr) minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+  }
+}

@@ -10,7 +10,7 @@
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
     font-size: var(--text-xs);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
     margin-block-end: var(--space-3);
   }
   .wx-toc__list { list-style: none; margin: 0; padding: 0; }
@@ -18,7 +18,7 @@
   .wx-toc__link {
     display: block;
     padding-block: var(--space-1);
-    color: var(--color-text-muted);
+    color: var(--color-text-functional);
     text-decoration: none;
   }
   .wx-toc__link:hover { color: var(--color-text-primary); }

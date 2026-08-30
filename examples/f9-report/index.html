@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="../../kit/tokens/forms/f9-report.css">
 <script type="application/json" id="wanxing-render-contract">
 { "profile": "F9", "track": "editorial", "title": "设计系统重构评估", "language": "zh-CN",
+  "project": { "name": "F9 Report example", "slug": "f9-report-example" },
+  "output": { "entry": "dist/f9-report-example/index.html", "tmpDir": "dist/f9-report-example/tmp" },
   "source": { "format": "markdown" },
   "target": { "format": "latex-pdf", "engine": "xelatex" },
   "report": { "sections": ["executive_summary", "findings", "recommendations"],
@@ -73,7 +75,7 @@
       <text class="wx-chart__value" x="535" y="65" text-anchor="middle">7.00</text>
       <text class="wx-chart__label" x="535" y="168" text-anchor="middle">accent</text>
     </svg>
-    <p class="wx-chart__note">图表遵循 data-viz.md：墨色编码，accent 只标记论点项。</p>
+    <figcaption class="wx-chart__note">图 1 · 图表遵循 data-viz.md：墨色编码，accent 只标记论点项。</figcaption>
   </figure>
 
   <h2>建议 · Recommendations</h2>

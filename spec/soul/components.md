@@ -108,12 +108,40 @@ CTA 优先用 `--text` 变体，而不是按钮。
 | 图 | `wx-figure__caption` | |
 | 引用 | `wx-quote` / `wx-pullquote` | 两者语义不同，见 [rhythm.md](./rhythm.md) |
 | 代码 | `wx-code__title/copy` | |
+| 按键 | `wx-kbd` | `<kbd>`，em 尺寸随所在文字缩放 |
+| 计数 | `wx-badge` | 表格数字对齐；**数字本身即信息**，不靠颜色 |
+| 状态 | `wx-status--live/warn/down/idle` | 圆点 **+ 文字标签**，标签是组件的一部分而非选项 |
+| 头像 | `wx-avatar--sm/lg/round` | 方形发丝线框 + 显示体首字；`--round` 供照片使用 |
+| 进度 | `wx-progress` / `wx-meter` | 原生元素；**无不确定态**，见下 |
+| 步骤 | `wx-steps--row` | `aria-current="step"` + `[data-complete]` |
 | 品牌标识 | `wx-seal` | ■，见 [brand.md](./brand.md) |
 
 ### 反馈 Feedback **[惯例]**
 
-`wx-note--note/tip/warn/danger/info`（admonition，2px 左边线 + 极淡底色）·
-`wx-alert` · `wx-empty`（纯文字 + ghost CTA，**无插图**）
+`wx-note--note/tip/warn/danger/info`（admonition，`--stroke-mark` 左边线 + 极淡底色）·
+`wx-alert` · `wx-empty`（纯文字 + ghost CTA，**无插图**）·
+`wx-toast`（`aria-live="polite"`，语义级别由左边线**与文字标签**共同承担）
+
+### 浮层 Overlay **[惯例]**
+
+`wx-modal`（原生 `<dialog>`）· `wx-drawer` · `wx-tooltip`
+
+浮层是全系统唯一真正需要"面"的地方，这个例外是有理由的而不是图方便 ——
+见 [DECISIONS.md](../DECISIONS.md) **D-21**。三者都走原生 `<dialog>` 或 `aria-describedby`，
+焦点陷阱、Esc、`inert` 背景与朗读都交给平台，而不是自己实现。
+
+**仍然不借用的**：阴影、渐变、超过 `--radius-md` 的圆角。分层靠发丝线边缘 + 暖色遮罩
+`--color-scrim`，与系统其余部分同一套语汇。
+
+`wx-tooltip` 有一条硬规则：**永远不得作为信息的唯一载体**。它在触屏上不可达、
+打印时不存在、极易被错过。读者必须知道的东西写进正文。
+
+### 控件 Controls **[应用轨]**
+
+`wx-segmented` · `wx-toolbar`
+
+分段控件的选中态用**反相墨色 + 字重 + `aria-checked`**，不是填充药丸 ——
+灰度打印和读屏器下都成立。`wx-toolbar` 用 `role="toolbar"`，方向键导航由平台提供。
 
 ### 内容编辑 Content
 
@@ -122,11 +150,26 @@ CTA 优先用 `--text` 变体，而不是按钮。
 
 这一类是 Ant Design 之类的产品组件库没有的，但编辑型系统必须有。
 
-### 第二批 v2
+### 第二批 v2 —— 已全部落地 Complete
 
 `wx-tabs` · `wx-steps` · `wx-timeline` · `wx-collapse`（原生 `<details>`，零 JS）· `wx-tooltip` ·
 `wx-avatar` · `wx-toast` · `wx-modal`（原生 `<dialog>`）· `wx-drawer` · `wx-progress` ·
 `wx-switch` · `wx-search` · `wx-dropcap` · `wx-marginal`
+
+先由田野审计推动落地六个真实站点直接需要的组件（`wx-tabs`、`wx-timeline`、`wx-collapse`、
+`wx-switch`、`wx-search`、`wx-marginal`），其余随本批补齐，并新增
+`wx-kbd`、`wx-badge`、`wx-status`、`wx-meter`、`wx-segmented`、`wx-toolbar`。
+
+v2 is complete. Six components were promoted by field evidence; the remainder shipped with this
+batch, together with six additions the inventory had not previously named.
+
+**进度条没有不确定态。** 系统禁止 spinner，而不确定进度条正是一个永不停止的循环动画。
+`<progress>` 无 `value` 时渲染为一根静止的线，由旁边的文字说明正在发生什么 ——
+一个句子能传达的东西，不需要一个永远转下去的形状。
+
+`wx-timeline` 是 `wx-entry` 的连续流变体：单线 + 圆点 + 留白，不包围内容；起止处不用渐变。
+`wx-tabs` 只认 `role="tab"` + `aria-selected`，`wx-switch` 只认 `role="switch"` +
+`aria-checked`，`wx-collapse` 只认原生 `open`。这三者都不得另造 `.active` / `.open` 状态类。
 
 ### 明确不做
 

@@ -6,13 +6,16 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "npm run build:tokens && npm run build:themes",
+    "build": "npm run build:tokens && npm run build:themes && npm run build:css",
     "build:tokens": "node scripts/build-tokens.mjs",
     "audit": "node scripts/render-audit.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
     "check:forbidden": "node scripts/check-forbidden.mjs",
-    "check": "npm run check:tokens && npm run check:forbidden && npm run audit:examples",
+    "check": "npm run check:tokens && npm run check:colors && npm run check:forbidden && npm run audit:selftest && npm run audit:examples",
     "build:themes": "node scripts/build-themes.mjs",
+    "build:css": "node scripts/build-css.mjs",
+    "check:colors": "node scripts/check-colors.mjs",
+    "audit:selftest": "node scripts/audit-selftest.mjs",
     "audit:examples": "node scripts/audit-all.mjs"
   },
   "engines": {

@@ -6,9 +6,21 @@
 
 **Authoritative source: [`kit/tokens/core.css`](../../kit/tokens/core.css).** The blocks below are excerpts for readability; if they ever diverge, `kit/tokens/core.css` wins. When writing code, import that file directly — don't hand-copy from this markdown.
 
-Token 数值已对照真实代码实现核验；代码里多出的 `--color-text-tertiary` 已按「以代码为准」补入。取材来源见 [PROVENANCE.md](../PROVENANCE.md)。
+Token 数值已对照真实代码实现与四个生产站点核验。田野审计发现旧辅助文字灰只有
+1.54–3.23:1；`zopiya.com` 与博客各自引入的 `#706D68` 实测 4.52:1，现已吸收为
+functional ink。取材来源见 [PROVENANCE.md](../PROVENANCE.md) 与 [FIELD-AUDIT.md](../FIELD-AUDIT.md)。
 
-Token values were verified against the real code implementation; the extra `--color-text-tertiary` found there was adopted per "code wins."
+**文字只有四档**：`heading` / `primary` / `secondary` / `functional`，相邻明度差 ΔL\* ≥ 11。
+AA 底线把可用明度压在 L\* 23.7–46.2 之间，这段距离容不下更多可辨层级 ——
+原先的 `muted` 与 `tertiary` 已在 [D-20](../DECISIONS.md) 中并入与删除。
+
+There are exactly four text tiers. The AA floor bounds the usable lightness range, and that range
+does not hold more distinguishable steps — so `muted` and `tertiary` were merged away rather than
+kept as names that rendered identically.
+
+Token values were verified against both the implementation and four production sites. Field evidence
+exposed 1.68–3.23:1 legacy greys; the independently adopted `#706D68` measures 4.52:1 and is now the
+functional-ink floor.
 
 ---
 
@@ -24,15 +36,15 @@ Token values were verified against the real code implementation; the extra `--co
 
   /* 文字层 Text */
   --color-text-primary:   #3A3837;  /* 主体·深炭色·带暖调·非纯黑 body, warm charcoal, never pure black */
-  --color-text-secondary: #888580;  /* 辅助·日期/元数据 metadata */
-  --color-text-muted:     #B0ABA4;  /* 弱化·版权/占位 muted/placeholder */
-  --color-text-tertiary:  #C8C3BA;  /* 三级弱化，与 --color-border-strong 同值 third-level muted, same value as border-strong */
+  --color-text-secondary:  #55524E;  /* 辅助正文 supporting copy · 6.82:1 */
+  --color-text-functional: #706D68;  /* 日期/元数据/控件/占位符 functional copy · 4.52:1 */
   --color-text-heading:   #2C2B29;  /* 标题·比正文略深 headings, slightly darker than body */
 
   /* 点睛之色 · 全页 ≤ 2 处 The single accent — ≤ 2 occurrences per page */
   --color-accent:        #8B3525;
   --color-accent-hover:  #A84030;
   --color-accent-subtle: #F5E8E5;  /* accent 的极淡背景版 accent's pale background variant */
+  --color-on-accent:     #FFFFFF;  /* 暗色为 #1A1816；保证填充按钮文字 AA */
 
   /* 语义色 Semantic — 不计入 accent 预算 not part of the accent budget */
   --color-danger:         #5C1F2F;  /* 牛血红 oxblood   10.90:1 */
@@ -49,7 +61,7 @@ Token values were verified against the real code implementation; the extra `--co
   /* 交互 Interaction */
   --color-link:       #3A3837;
   --color-link-hover: #8B3525;
-  --color-focus:      rgba(139, 53, 37, 0.4);
+  --color-focus:      #8B3525;
 }
 ```
 
@@ -69,24 +81,24 @@ Not an inverted pure-black theme — the same vellum, dimmed.
 
     --color-text-heading:   #F0EBE3;
     --color-text-primary:   #E8E3DC;  /* 暖象牙白·非纯白 warm ivory, never pure white */
-    --color-text-secondary: #8A857D;
-    --color-text-muted:     #5A5550;
-    --color-text-tertiary:  #403C37;
+    --color-text-secondary:  #B5AFA6;  /* 8.13:1 on night ground */
+    --color-text-functional: #8A857D;  /* 4.83:1 on night ground */
 
     --color-accent:        #CF5F4A;
     --color-accent-hover:  #DE7059;
     --color-accent-subtle: #2E1A16;
+    --color-on-accent:     #1A1816;
 
-    --color-danger:         #C46477;
-    --color-warning:        #A57C18;
-    --color-success:        #678B4B;
+    --color-danger:         #C6697E;
+    --color-warning:        #B3871A;
+    --color-success:        #739B53;
 
     --color-border-subtle: #2E2B27;
     --color-border-strong: #403C37;
 
     --color-link:       #E8E3DC;
     --color-link-hover: #CF5F4A;
-    --color-focus:      rgba(207, 95, 74, 0.45);
+    --color-focus:      #CF5F4A;
   }
 }
 /* [data-theme="dark"] 另有一份等值覆盖，让手动切换在两个方向上都能赢。
@@ -113,6 +125,8 @@ Not an inverted pure-black theme — the same vellum, dimmed.
   Semantic colors are exempt — they are an information channel, not decoration.
 - 正文文字对比度 ≥ 7:1（WCAG AAA），辅助文字 ≥ 4.5:1（WCAG AA）。
   Body text contrast ≥ 7:1 (WCAG AAA); secondary text ≥ 4.5:1 (WCAG AA).
+- 边框色不是文字色。`--color-border-*` 不得拿来排日期、版权、breadcrumb 或 placeholder。
+  Border colours are not text colours. Never use them for metadata, copyright, breadcrumbs, or placeholders.
 
 见 [forbidden.md](./forbidden.md) 完整禁用清单。具体形态下的色彩应用（如海报的 accent 分配策略、文档站的语法高亮方案）见 [形态层 forms](../forms/DECISIONS-MATRIX.md) 对应形态文件。
 
@@ -131,9 +145,9 @@ They are exempt from the accent budget and from the ban on saturated decorative 
 
 | Token | 亮色 | 暗色 | 对暖白对比 |
 |---|---|---|---|
-| `--color-danger` | `#5C1F2F` 牛血红 | `#C46477` | 10.90:1 |
-| `--color-warning` | `#7D5E12` 赭黄 | `#A57C18` | 5.30:1 |
-| `--color-success` | `#4F6B3A` 苔绿 | `#678B4B` | 5.27:1 |
+| `--color-danger` | `#5C1F2F` 牛血红 | `#C6697E` | 10.90:1 / 暗色 subtle 上 4.61:1 |
+| `--color-warning` | `#7D5E12` 赭黄 | `#B3871A` | 5.30:1 / 暗色 subtle 上 4.64:1 |
+| `--color-success` | `#4F6B3A` 苔绿 | `#739B53` | 5.27:1 / 暗色 subtle 上 4.61:1 |
 
 ### 三条使用规则
 

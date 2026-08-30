@@ -3,8 +3,8 @@
     "color": [
       "#2C2B29",
       "#3A3837",
-      "#888580",
-      "#B0ABA4",
+      "#55524E",
+      "#706D68",
       "#C8C3BA"
     ],
     "backgroundColor": "transparent",
@@ -19,7 +19,7 @@
         "fontWeight": 600
       },
       "subtextStyle": {
-        "color": "#888580"
+        "color": "#55524E"
       }
     },
     "legend": {
@@ -44,7 +44,7 @@
         "show": false
       },
       "axisLabel": {
-        "color": "#B0ABA4"
+        "color": "#706D68"
       },
       "splitLine": {
         "show": false
@@ -58,7 +58,7 @@
         "show": false
       },
       "axisLabel": {
-        "color": "#B0ABA4"
+        "color": "#706D68"
       },
       "splitLine": {
         "show": false
@@ -84,8 +84,8 @@
     "color": [
       "#F0EBE3",
       "#E8E3DC",
+      "#B5AFA6",
       "#8A857D",
-      "#5A5550",
       "#403C37"
     ],
     "backgroundColor": "transparent",
@@ -100,7 +100,7 @@
         "fontWeight": 600
       },
       "subtextStyle": {
-        "color": "#8A857D"
+        "color": "#B5AFA6"
       }
     },
     "legend": {
@@ -125,7 +125,7 @@
         "show": false
       },
       "axisLabel": {
-        "color": "#5A5550"
+        "color": "#8A857D"
       },
       "splitLine": {
         "show": false
@@ -139,7 +139,7 @@
         "show": false
       },
       "axisLabel": {
-        "color": "#5A5550"
+        "color": "#8A857D"
       },
       "splitLine": {
         "show": false

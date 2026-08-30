@@ -7,7 +7,7 @@
 @layer wx.components {
   .wx-note {
     padding: var(--space-4) var(--space-5);
-    border-inline-start: 2px solid var(--color-border-strong);
+    border-inline-start: var(--stroke-mark) solid var(--color-border-strong);
     background: var(--color-bg-subtle);
   }
   .wx-note__title {

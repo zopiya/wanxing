@@ -85,7 +85,7 @@ Independent of the body flow, distilling the article's core point with strong ed
 结构 Structure:
   [分类标签]  ·  [子标签]        ← --font-ui, --text-sm, --tracking-wider, 全大写 uppercase
 
-  "（装饰引号，--color-text-muted，纯装饰，无语义 decorative quote mark, no semantic meaning）
+  "（装饰引号，--color-text-functional，纯装饰，无语义 decorative quote mark, no semantic meaning）
 
   [引语正文]                      ← --font-display, --text-3xl, 斜体 italic
 
@@ -94,7 +94,7 @@ Independent of the body flow, distilling the article's core point with strong ed
   [来源说明]                      ← --font-ui, --text-sm, --color-text-secondary
 
   ───────────────────────────     ← 底部分隔线 bottom rule, --color-border-subtle
-  [注释/免责说明]                 ← --font-ui, --text-xs, --color-text-muted
+  [注释/免责说明]                 ← --font-ui, --text-xs, --color-text-functional
 
 背景 background：--color-bg-warm 或 --color-bg-base
 无边框、无阴影，用留白界定区域 no border, no shadow — whitespace defines the region

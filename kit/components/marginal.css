@@ -1,0 +1,11 @@
+/* v2 · Marginal note for the right rail used by documentation and reports. */
+@layer wx.components {
+  .wx-marginal {
+    color: var(--color-text-functional);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    border-inline-start: var(--stroke-hairline) solid var(--color-border-subtle);
+    padding-inline-start: var(--space-4);
+  }
+}

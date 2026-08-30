@@ -1,0 +1,23 @@
+/* v2 · Search. A semantic wrapper around the existing field/input primitives. */
+@layer wx.components {
+  .wx-search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    border-block-end: var(--stroke-hairline) solid var(--color-border-strong);
+  }
+
+  .wx-search:focus-within { border-block-end-color: var(--color-accent); }
+
+  .wx-search__input {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    min-block-size: 44px;
+    padding-block: var(--space-2);
+    border: 0;
+    background: transparent;
+  }
+
+  .wx-search__input:focus-visible { outline-offset: -2px; }
+  .wx-search__status { color: var(--color-text-functional); font-size: var(--text-sm); }
+}

@@ -22,7 +22,8 @@ F1 交付**可浏览、可链接的响应式 HTML 站点**：博客、文章、�
 | `--width-showcase` | `clamp(700px, 72vw, 920px)` | 展示：简历、作品集、着陆页 |
 | `--padding-page-x` | `clamp(20px, 5vw, 72px)` | 页面水平内边距 |
 
-- **单列居中为主。** 侧栏是 F6 的手段，不是 F1 的默认。
+- **单列居中为主。** 侧栏不是 F1 默认；但博客索引可以采用「固定作者栏 + 内容流」的非对称布局，
+  前提是它没有 F6 的全文搜索、版本与知识树负担。`blog.zopiya.com` 证明「有侧栏」本身不足以把页面判成 F6。
 - **Hero 可用 `--color-bg-warm` 全宽底色，但内容仍受宽度约束** —— 底色全宽，文字不全宽。
 - 栅格：12 列，gutter `--space-4`。优先 `auto-fit/auto-fill + minmax()` 而非固定列数
   （[aesthetics.md](../soul/aesthetics.md) **M-7**）。
@@ -37,6 +38,12 @@ F1 交付**可浏览、可链接的响应式 HTML 站点**：博客、文章、�
 衬线正文，无衬线仅用于 UI 标签与元数据。字号阶梯 Major Third 1.250。
 行长控制在拉丁 60–75 字符 / CJK 30–40 字（**P-5**）。
 
+长篇叙事可把阅读宽度提高到 **40em 上限**。生产博客采用 18px 正文与 720px 列宽，正好是
+40 个 CJK 字宽；这是原型 A 的合法适配，不是新的全局 token。默认仍用 `--width-article`。
+
+Long-form narrative may raise the reading measure to a hard **40em ceiling**. The production blog's
+18px/720px pairing lands exactly there; it is an archetype-A adaptation, not a new global default.
+
 ## 色彩与 accent · Color
 
 accent 预算 **≤2 处/页**（图标激活态除外）。**必须支持暗色模式**。
@@ -45,6 +52,9 @@ accent 预算 **≤2 处/页**（图标激活态除外）。**必须支持暗色
 
 **E9-1 春雨**：允许单次进场 fade-up（420ms，位移 ≤8px）、列表 stagger（≤60ms/项，总时长 ≤600ms）、
 hover 色彩过渡（180ms）、主题切换（260ms）。
+
+原型 D 的品牌首页可将合同声明为 `E9-2`，让**唯一一个**品牌标识呼吸；同一循环不得跟进文章内页。
+`zopiya.com` 属合法品牌首页，博客把呼吸循环带进每篇文章则属于漂移。
 
 `<html data-motion="E9-1">`，并引 `kit/components/js/animations-complete.js`。
 
@@ -72,4 +82,4 @@ F1 覆盖全部五种[页面原型](./page-archetypes.md) A–E。
 
 ## 不做 · Out of scope
 
-侧栏 + 搜索 + 版本切换（那是 F6）· 仪表盘 · 电商列表 · 邮件模板
+侧栏 + 搜索 + 版本/知识树同时出现（那是 F6）· 仪表盘 · 电商列表 · 邮件模板

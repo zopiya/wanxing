@@ -12,6 +12,8 @@
 | `toc.js` | `.wx-toc` 滚动高亮 | 否（F6 建议） |
 | `disclosure.js` | 侧栏抽屉等展开/收起 | 否（F6/F2 建议） |
 | `copy.js` | 代码块复制按钮 | 否 |
+| `overlay.js` | `<dialog>` 开关、焦点归还、`wxToast()` | 否（浮层必需） |
+| `tabs.js` | `[role="tablist"]` 的 roving tabindex | 否（用 tabs 时建议） |
 
 引用顺序只有一条要求：**`animations-complete.js` 必须在 `reveal.js` 之前** ——
 后者要向前者登记屏障。
@@ -20,6 +22,21 @@
 <script src="kit/components/js/animations-complete.js"></script>
 <script src="kit/components/js/reveal.js" defer></script>
 ```
+
+## 浮层为什么这么薄 · Why the overlay script is thin
+
+`overlay.js` 不实现焦点陷阱、不实现 `inert`、不实现 Esc —— 这些全部由
+`dialog.showModal()` 提供。脚本只补平台没有给的两件事：**关闭后把焦点还给触发它的按钮**，
+以及一个 toast 队列。
+
+自己实现焦点陷阱几乎总是比原生差：会漏掉浏览器 UI、漏掉 iframe、在动态内容里失效。
+**能交给平台的，就不要自己写。**
+
+`overlay.js` implements neither the focus trap, `inert`, nor Esc — `showModal()` already does.
+It adds only what the platform omits: returning focus to the trigger, and a toast queue.
+
+> **不要用 `[open]` 兜底。** 脚本没加载时，对话框应当保持关闭且触发按钮无反应 ——
+> 一个永远打开、无法关闭的模态框比一个不存在的模态框糟糕得多。
 
 ## 三个贯穿的设计决定
 
