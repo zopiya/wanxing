@@ -72,6 +72,17 @@ function renderNav(currentSlug) {
   }).join("\n");
 }
 
+/** The top bar is the information architecture, not a duplicate of the
+ * detailed sidebar. Each link enters one of the five major reading modes. */
+function renderTopNav(currentSlug) {
+  return nav.map((section) => {
+    const target = section.items[0];
+    const active = section.items.some((item) => item.slug === currentSlug) ? ' aria-current="page"' : "";
+    const label = section.title.split(" · ")[0];
+    return `<a href="./${target.slug}.html"${active}>${label}</a>`;
+  }).join("\n    ");
+}
+
 /** Build the in-page anchor list from the h2s the page actually has. */
 function renderToc(body) {
   const heads = [...body.matchAll(/<h2\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/gi)];
@@ -102,6 +113,7 @@ for (const slug of known) {
   const html = shell
     .replace("{{title}}", slug === "index" ? title : `${title} · 文心 万形`)
     .replace("{{nav}}", renderNav(slug))
+    .replace("{{topnav}}", renderTopNav(slug))
     .replace("{{toc}}", renderToc(body))
     .replace("{{body}}", body)
     .replace(/\{\{slug\}\}/g, slug);

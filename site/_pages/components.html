@@ -1,95 +1,16 @@
 <p class="wx-eyebrow">组件 · Components</p>
-<h1>组件总览</h1>
-<p class="wx-lede">83 个块级类，分布在 39 份样式表和 7 个行为脚本里。
-纯 CSS 优先，状态一律走 ARIA 或原生属性。</p>
+<h1>组件能力地图</h1>
+<p class="wx-lede">组件不是一堆 CSS 类，而是让页面在“阅读、输入、定位、反馈”之间保持同一语言的公开契约。</p>
 
-<h2 id="index">按类别</h2>
-<div class="doc-figure">
-    <div class="wx-cols wx-cols--2">
-      <div>
-        <h3><a href="./c-layout.html">布局与通用</a></h3>
-        <p class="wx-attr">page · container · stack · cluster · rule · spread · cols · measure ·
-        btn · tag · badge · status · kbd · avatar · seal</p>
-      </div>
-      <div>
-        <h3><a href="./c-navigation.html">导航</a></h3>
-        <p class="wx-attr">nav · menu · dropdown · sidebar · toc · anchor · affix ·
-        crumbs · pager · pagination · tabs · steps · skip</p>
-      </div>
-      <div>
-        <h3><a href="./c-entry.html">数据录入</a></h3>
-        <p class="wx-attr">form · field · input · select · check · radio · switch ·
-        number · slider · rate · upload · search</p>
-      </div>
-      <div>
-        <h3><a href="./c-display.html">数据展示</a></h3>
-        <p class="wx-attr">table · list · entry · timeline · tree · desc · stat ·
-        figure · gallery · image · calendar · quote · code · collapse</p>
-      </div>
-      <div>
-        <h3><a href="./c-feedback.html">反馈与浮层</a></h3>
-        <p class="wx-attr">note · alert · toast · empty · result · progress · meter ·
-        modal · drawer · tooltip · popover</p>
-      </div>
-      <div>
-        <h3><a href="./viz.html">数据可视化</a></h3>
-        <p class="wx-attr">墨色编码的图表样式与 SVG 约定</p>
-      </div>
-    </div>
-  </div>
+<h2 id="choose">先按场景选，再进细节</h2>
+<div class="doc-component-map"><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">建立结构</p><h3 class="wx-entry__title"><a href="./c-layout.html">布局与通用</a></h3><p class="wx-entry__desc">页面宽度、节奏、规则、动作、属性和品牌标记。先让信息有秩序，再加任何交互。</p><p class="doc-component-map__items">page · container · stack · cluster · rule · btn · tag · avatar</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">帮助人找到位置</p><h3 class="wx-entry__title"><a href="./c-navigation.html">导航</a></h3><p class="wx-entry__desc">站点、目录、页内锚点、分页、步骤和标签页；状态统一由 ARIA 或原生属性表达。</p><p class="doc-component-map__items">nav · sidebar · anchor · tabs · pagination · steps</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">接受输入</p><h3 class="wx-entry__title"><a href="./c-entry.html">数据录入</a></h3><p class="wx-entry__desc">字段、选择、范围、上传与搜索。输入类无论在哪条轨道都按可用性惯例处理。</p><p class="doc-component-map__items">form · field · input · select · switch · upload · search</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">展示内容与关系</p><h3 class="wx-entry__title"><a href="./c-display.html">数据展示</a></h3><p class="wx-entry__desc">条目、表格、树、图、图集、时间线和代码；用内容结构替代四边封闭的卡片。</p><p class="doc-component-map__items">entry · table · tree · timeline · figure · gallery · code</p></article><article class="wx-entry wx-entry--ruled"><p class="wx-entry__meta">明确反馈</p><h3 class="wx-entry__title"><a href="./c-feedback.html">反馈与浮层</a></h3><p class="wx-entry__desc">提示、进度、结果和 dialog。浮层是有限例外：有边界，但无阴影和渐变。</p><p class="doc-component-map__items">note · toast · progress · modal · drawer · popover</p></article></div>
 
-<h2 id="naming">命名与状态约定</h2>
-<p><code>wx-</code> 前缀，BEM-lite，<strong>只允许一层 <code>__</code></strong>。
-完整 BEM 会产出 <code>wx-article__header__title--large</code>，正是这套系统在别处禁止的"产品味"。</p>
+<h2 id="contract">每一类页面都应回答四件事</h2>
+<div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>你需要的答案</th><th>文档中在哪里</th><th>为什么这比样式截图重要</th></tr></thead><tbody><tr><td>何时使用 / 何时不用</td><td>五个类别页各自的 API 区</td><td>避免把“有一个组件”误解为“任何场景都该用”。</td></tr><tr><td>最小 HTML / ARIA 契约</td><td>运行中的 demo 与自动生成的 Source</td><td>展示代码永远从真实 demo 派生，不会手工漂移。</td></tr><tr><td>是否需要行为脚本</td><td>组件页面和行为脚本表</td><td>没有 JS 时仍可阅读；需要 JS 的地方被明确标出。</td></tr><tr><td>是否经过底线验证</td><td><a href="./accessibility.html">无障碍与 RTL</a></td><td>颜色、静态标签/命名、站点结构和审计器夹具可复现；设备级事项不伪装成自动覆盖。</td></tr></tbody></table></div>
 
-<div class="doc-figure">
-    <pre class="doc-code__body"><code>.wx-note          块 Block
-.wx-note__title   元素 Element —— 只有一层
-.wx-note--warn    修饰 Modifier
+<h2 id="composition">一个真实页面不是组件展柜</h2>
+<div class="doc-demo"><div class="doc-demo__stage"><article class="wx-entry"><p class="wx-entry__meta">项目草稿 · 3 分钟前</p><h3 class="wx-entry__title">整理设计探索入口</h3><p class="wx-entry__desc">把导航、内容层级与组件选择路径连在一起，减少“从组件名猜用途”的成本。</p><div class="wx-cluster"><button class="wx-btn" type="button">继续编辑</button><span class="wx-status">草稿</span></div></article><hr class="wx-rule"><div class="wx-note wx-note--tip"><span class="wx-note__title">组合原则</span><p>一页里先有内容结构，再放操作；反馈靠语义和文字，不靠额外装饰表面。</p></div></div></div>
 
-.wx-toc__link[aria-current]   状态 —— ARIA，不是 class
-.wx-btn[disabled]             状态 —— 原生属性
-.wx-collapse[open]            状态 —— 原生属性</code></pre>
-  </div>
-
-<div class="wx-note wx-note--info">
-  <span class="wx-note__title">为什么状态不用 class</span>
-  <p>这条规则是从"禁止仅用颜色区分状态"推导出来的。把 CSS 状态绑定到无障碍树上，
-  <strong>在结构上不可能出现读屏器感知不到的状态</strong>——因为样式本身就依赖那个属性。
-  用 <code>.is-active</code> 时，视觉状态和无障碍状态是两个可以各自漂移的事实。</p>
-</div>
-
-<h2 id="excluded">明确不做的</h2>
-<p>有两类排除，理由不同，处理方式也不同。</p>
-<div class="doc-figure">
-    <table class="wx-table">
-      <thead><tr><th>组件</th><th>为什么不做</th></tr></thead>
-      <tbody>
-        <tr><td><strong>卡片 Card</strong></td><td>哲学——四边包围的方框不携带信息。用 <code>wx-entry</code></td></tr>
-        <tr><td><strong>加载动画 Spin</strong></td><td>哲学——旋转是被禁的循环动画。用文字说明</td></tr>
-        <tr><td><strong>骨架屏 Skeleton</strong></td><td>哲学——静态占位就是一根线，shimmer 是禁止的循环</td></tr>
-        <tr><td><strong>轮播 Carousel</strong></td><td>哲学——自动轮播移动读者正在读的内容。用 <code>wx-gallery</code>（手动滚动）</td></tr>
-        <tr><td><strong>水印 Watermark</strong></td><td>哲学——纯装饰性叠加</td></tr>
-        <tr><td>颜色选择器 · 级联选择 · 提及</td><td>工程成本——需要大量 JS，且原生替代品可用</td></tr>
-      </tbody>
-    </table>
-  </div>
-<p>哲学性排除<strong>不会</strong>随范围扩大而放开——它们是这套系统的身份。
-工程性排除只是暂时的，有需要时可以做。</p>
-
-<h2 id="js">行为脚本</h2>
-<p>全部是渐进增强：<strong>没有 JS 时页面依然可读可用</strong>。零依赖，无构建步骤。</p>
-<div class="doc-figure">
-    <table class="wx-table doc-api">
-      <thead><tr><th>脚本</th><th>作用</th></tr></thead>
-      <tbody>
-        <tr><td><code>animations-complete.js</code></td><td>动画完成信号（凡有动效的产出都要）</td></tr>
-        <tr><td><code>overlay.js</code></td><td><code>&lt;dialog&gt;</code> 开关、焦点归还、<code>wxToast()</code></td></tr>
-        <tr><td><code>tabs.js</code></td><td>标签页 roving tabindex</td></tr>
-        <tr><td><code>disclosure.js</code></td><td>侧栏抽屉展开收起</td></tr>
-        <tr><td><code>toc.js</code></td><td>目录滚动高亮</td></tr>
-        <tr><td><code>reveal.js</code></td><td>滚动揭示</td></tr>
-        <tr><td><code>copy.js</code></td><td>代码块复制</td></tr>
-      </tbody>
-    </table>
-  </div>
+<h2 id="boundary">当前边界</h2>
+<p>这里有可复用的内容、文档与轻应用组件，不假装覆盖企业后台的全部复杂交互。Card、spinner、骨架屏、自动轮播和水印属于哲学性排除；富文本、复杂级联选择、图标生态与 Figma kit 是尚未建设的真实缺口。</p>
+<p>完整对应关系、成熟度与未完成项见 <a href="../MATURITY.md">MATURITY.md</a>。</p>

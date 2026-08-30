@@ -1,6 +1,7 @@
 [
   { "title": "开始 · Start", "items": [
     { "slug": "index",       "title": "文心 · 万形" },
+    { "slug": "explore",     "title": "设计探索" },
     { "slug": "values",      "title": "设计价值观" },
     { "slug": "tracks",      "title": "双轨仲裁" }
   ]},

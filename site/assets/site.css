@@ -22,6 +22,18 @@
     color: var(--color-text-heading);
     text-decoration: none;
   }
+  .doc-primary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    margin-inline-start: var(--space-8);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+  .doc-primary a { color: var(--color-text-functional); text-decoration: none; }
+  .doc-primary a:hover, .doc-primary a[aria-current] { color: var(--color-text-heading); }
+  .doc-primary a[aria-current] { border-block-end: var(--stroke-mark) solid var(--color-accent); padding-block-end: var(--space-1); }
   .doc-topbar__end { margin-inline-start: auto; }
   .doc-navtoggle { display: none; }
 
@@ -88,6 +100,24 @@
   .doc-api { font-size: var(--text-sm); }
   .doc-api code { white-space: nowrap; }
 
+  /* Hub pages use entries and rules rather than enclosed cards. Their job is
+     to orient a person before they descend into reference detail. */
+  .doc-hero { max-inline-size: 40rem; padding-block: var(--space-10) var(--space-12); }
+  .doc-hero h1 { margin-block-end: var(--space-4); }
+  .doc-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-block-start: var(--space-8); }
+  .doc-route-grid, .doc-component-map, .doc-decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8) var(--space-10); margin-block: var(--space-8); }
+  .doc-route-grid .wx-entry, .doc-component-map .wx-entry, .doc-decision-grid .wx-entry { margin: 0; padding-block-start: var(--space-5); }
+  .doc-route__link, .doc-component-map__items { font-family: var(--font-ui); font-size: var(--text-sm); color: var(--color-text-functional); }
+  .doc-proof { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); margin-block: var(--space-8); padding-block: var(--space-6); border-block: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .doc-proof p { margin: 0; }
+  .doc-proof__value { font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-text-heading); }
+  .doc-proof__label { margin-block-end: var(--space-2) !important; font-family: var(--font-ui); font-size: var(--text-sm); color: var(--color-text-secondary); }
+  .doc-explore-list { margin-block: var(--space-8); }
+  .doc-explore-list section { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: var(--space-4); padding-block: var(--space-6); border-block-start: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .doc-explore-list section:last-child { border-block-end: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .doc-explore-list h3 { margin-block-start: 0; }
+  .doc-explore-list__number { margin: 0; font-family: var(--font-ui); font-size: var(--text-sm); color: var(--color-accent); }
+
   .doc-footer {
     padding: var(--space-10) var(--padding-page-x);
     border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
@@ -99,6 +129,8 @@
   .doc-footer p { margin: 0; }
 
   @media (max-width: 64rem) {
+    .doc-topbar { flex-wrap: wrap; }
+    .doc-primary { order: 3; flex: 1 0 100%; gap: var(--space-4); margin: 0; padding-block-start: var(--space-2); overflow-x: auto; }
     .doc-shell { grid-template-columns: minmax(0, 1fr); }
     .doc-aside { display: none; }
     .doc-navtoggle { display: inline-flex; }
@@ -109,5 +141,6 @@
       border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
     }
     .doc-sidebar[data-open] { display: block; }
+    .doc-route-grid, .doc-component-map, .doc-decision-grid, .doc-proof { grid-template-columns: minmax(0, 1fr); }
   }
 }
