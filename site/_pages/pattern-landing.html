@@ -1,0 +1,75 @@
+<h1>着陆页</h1>
+<p class="wx-lede">原型 D。读者到这一页只有十秒，要做的判断是<strong>接下来去哪</strong>。
+它不是产品说明书，是一个岔路口。</p>
+
+<h2 id="structure">结构</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <main class="wx-landing">
+      <header class="wx-landing__hero">
+        <h3>文字即界面</h3>
+        <p class="wx-lede">十秒内说清它是什么，然后把人送去下一页。</p>
+        <p><a class="wx-btn wx-btn--primary" href="#landing-detail">开始使用</a> <a class="wx-btn wx-btn--text" href="#landing-detail">继续了解 →</a></p>
+      </header>
+      <div class="wx-landing__sections" id="landing-detail">
+        <section><h4>第一件重要的事</h4><p>用内容解释，不用卡片罗列。一段话讲清楚一件事，比三张并排的卡片有效。</p></section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<p class="wx-attr"><span class="wx-attr__meta">上面的 demo 压缩了首屏高度。真实的
+<code>wx-landing__hero</code> 是 <code>min(760px, 88dvh)</code>——占满视野但不超过一屏。</span></p>
+
+<h2 id="ten-seconds">十秒里只能放三件事</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>这是什么</strong>——一句话，不用比喻</li>
+  <li><strong>给谁用</strong>——如果这一句写不出来，说明定位还没想清楚</li>
+  <li><strong>去哪</strong>——至多两个动作，一主一次</li>
+</ul>
+<p><strong>着陆页最常见的失败是想说的太多。</strong>每加一段，前三件事被读到的概率就下降一次。</p>
+
+<h2 id="primary">唯一的填充按钮</h2>
+<p>着陆页是<strong>阅读轨</strong>，但主操作按钮是第三层仲裁规则允许的例外：
+<code>wx-btn--primary</code> 每个视图<strong>至多一个</strong>，其余动作退回线框或文字形式。
+两个并排的填充按钮等于没有主操作。</p>
+<div class="doc-figure">
+  <div class="wx-cluster">
+    <button class="wx-btn wx-btn--primary" type="button">开始使用</button>
+    <button class="wx-btn wx-btn--text" type="button">继续了解 →</button>
+  </div>
+</div>
+
+<h2 id="no-cards">不要用卡片罗列卖点</h2>
+<p>"三张并排的圆角卡片，每张一个图标加一句话"是着陆页最强的惯性，
+也是这套语言明确排除的几何形状（<code>forbidden.md</code>，阅读轨）。
+替代物是<strong>成段的内容加单边分隔线</strong>——同样是三件事，用留白分组：</p>
+<div class="doc-figure">
+  <div class="wx-landing__sections">
+    <section><h3>内容优先</h3><p>信息的层级由字号、字重和留白建立，不由容器建立。</p></section>
+    <hr class="wx-rule">
+    <section><h3>判断有出处</h3><p>每一条视觉规则都能追到一份规范和一个可失败的检查。</p></section>
+  </div>
+</div>
+<p>差别不在好看，在<strong>可扫描性</strong>：三张卡片强迫读者在三个封闭区域之间跳视线，
+一列有分隔的段落让读者顺着一条轴往下走。</p>
+
+<h2 id="motion">动效强度</h2>
+<p>着陆页是全系统<strong>唯一</strong>可以用到 <code>E9-2</code> 的地方——
+首屏入场编排、品牌标记的 4 秒呼吸循环。但这一页之外不继承：
+一篇长文里持续呼吸的标记是干扰，不是品牌。
+<code>prefers-reduced-motion</code> 下全部退化为无动效，这是第一层全局底线，不分轨道。</p>
+
+<h2 id="width">宽度与轨道</h2>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>项</th><th>值</th><th>为什么</th></tr></thead>
+  <tbody>
+    <tr><td>首屏高</td><td><code>min(760px, 88dvh)</code></td><td>占满视野但不超过一屏，<code>dvh</code> 避开移动端地址栏。</td></tr>
+    <tr><td>行长</td><td><code>--width-showcase</code></td><td>标题和 lede 比正文宽，但仍有上限。</td></tr>
+    <tr><td>轨道</td><td>阅读轨（主按钮除外）</td><td>原型 D 不翻转轨道，只有原型 E 会。</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="skeleton">骨架</h2>
+<pre class="doc-code__body"><code>kit/patterns/d-landing.html</code></pre>
+<p>本站首页就是这个原型的一次实现，可以直接对照看。</p>

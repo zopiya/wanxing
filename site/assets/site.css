@@ -127,6 +127,11 @@
     font-size: var(--text-sm);
   }
 
+  /* A landing hero is sized to the viewport. Inside a demo stage that becomes
+     a screenful of empty space, so the stage caps it — the page says as much
+     rather than letting the reader think this is the real height. */
+  .doc-demo__stage .wx-landing__hero { min-block-size: auto; padding-block: var(--space-10); }
+
   /* Markdown and bare HTML are documented as source-beside-render: the point
      is what the renderer emits and what it then looks like, so showing the
      input and the output apart from each other would hide the whole subject. */

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>着陆页 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span class="wx-seal" aria-hidden="true"></span>
+    <span>文心 · 万形</span>
+  </a>
+  <nav class="doc-primary" aria-label="主要导航">
+<a href="./design.html">设计</a>
+    <a href="./content.html">内容</a>
+    <a href="./components.html">组件</a>
+    <a href="./patterns.html" aria-current="page">页面</a>
+    <a href="./logo.html">品牌</a>
+  </nav>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell ">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <p class="doc-sidebar__title">页面</p>
+    <ul class="wx-menu">
+      <li class="wx-menu__group">模式 · Patterns</li>
+        <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+        <li><a class="wx-menu__link" href="./media.html">媒介适配</a></li>
+      <li class="wx-menu__group">页面原型 · Archetypes</li>
+        <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-showcase.html">展示页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-landing.html" aria-current="page">着陆页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<h1>着陆页</h1>
+<p class="wx-lede">原型 D。读者到这一页只有十秒，要做的判断是<strong>接下来去哪</strong>。
+它不是产品说明书，是一个岔路口。</p>
+
+<h2 id="structure">结构</h2>
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <main class="wx-landing">
+      <header class="wx-landing__hero">
+        <h3>文字即界面</h3>
+        <p class="wx-lede">十秒内说清它是什么，然后把人送去下一页。</p>
+        <p><a class="wx-btn wx-btn--primary" href="#landing-detail">开始使用</a> <a class="wx-btn wx-btn--text" href="#landing-detail">继续了解 →</a></p>
+      </header>
+      <div class="wx-landing__sections" id="landing-detail">
+        <section><h4>第一件重要的事</h4><p>用内容解释，不用卡片罗列。一段话讲清楚一件事，比三张并排的卡片有效。</p></section>
+      </div>
+    </main>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;main class="wx-landing"&gt;
+  &lt;header class="wx-landing__hero"&gt;
+    &lt;h3&gt;文字即界面&lt;/h3&gt;
+    &lt;p class="wx-lede"&gt;十秒内说清它是什么，然后把人送去下一页。&lt;/p&gt;
+    &lt;p&gt;&lt;a class="wx-btn wx-btn--primary" href="#landing-detail"&gt;开始使用&lt;/a&gt; &lt;a class="wx-btn wx-btn--text" href="#landing-detail"&gt;继续了解 →&lt;/a&gt;&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;div class="wx-landing__sections" id="landing-detail"&gt;
+    &lt;section&gt;&lt;h4&gt;第一件重要的事&lt;/h4&gt;&lt;p&gt;用内容解释，不用卡片罗列。一段话讲清楚一件事，比三张并排的卡片有效。&lt;/p&gt;&lt;/section&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code></pre></details>
+</div>
+
+<p class="wx-attr"><span class="wx-attr__meta">上面的 demo 压缩了首屏高度。真实的
+<code>wx-landing__hero</code> 是 <code>min(760px, 88dvh)</code>——占满视野但不超过一屏。</span></p>
+
+<h2 id="ten-seconds">十秒里只能放三件事</h2>
+<ul class="wx-list wx-list--ruled">
+  <li><strong>这是什么</strong>——一句话，不用比喻</li>
+  <li><strong>给谁用</strong>——如果这一句写不出来，说明定位还没想清楚</li>
+  <li><strong>去哪</strong>——至多两个动作，一主一次</li>
+</ul>
+<p><strong>着陆页最常见的失败是想说的太多。</strong>每加一段，前三件事被读到的概率就下降一次。</p>
+
+<h2 id="primary">唯一的填充按钮</h2>
+<p>着陆页是<strong>阅读轨</strong>，但主操作按钮是第三层仲裁规则允许的例外：
+<code>wx-btn--primary</code> 每个视图<strong>至多一个</strong>，其余动作退回线框或文字形式。
+两个并排的填充按钮等于没有主操作。</p>
+<div class="doc-figure">
+  <div class="wx-cluster">
+    <button class="wx-btn wx-btn--primary" type="button">开始使用</button>
+    <button class="wx-btn wx-btn--text" type="button">继续了解 →</button>
+  </div>
+</div>
+
+<h2 id="no-cards">不要用卡片罗列卖点</h2>
+<p>"三张并排的圆角卡片，每张一个图标加一句话"是着陆页最强的惯性，
+也是这套语言明确排除的几何形状（<code>forbidden.md</code>，阅读轨）。
+替代物是<strong>成段的内容加单边分隔线</strong>——同样是三件事，用留白分组：</p>
+<div class="doc-figure">
+  <div class="wx-landing__sections">
+    <section><h3>内容优先</h3><p>信息的层级由字号、字重和留白建立，不由容器建立。</p></section>
+    <hr class="wx-rule">
+    <section><h3>判断有出处</h3><p>每一条视觉规则都能追到一份规范和一个可失败的检查。</p></section>
+  </div>
+</div>
+<p>差别不在好看，在<strong>可扫描性</strong>：三张卡片强迫读者在三个封闭区域之间跳视线，
+一列有分隔的段落让读者顺着一条轴往下走。</p>
+
+<h2 id="motion">动效强度</h2>
+<p>着陆页是全系统<strong>唯一</strong>可以用到 <code>E9-2</code> 的地方——
+首屏入场编排、品牌标记的 4 秒呼吸循环。但这一页之外不继承：
+一篇长文里持续呼吸的标记是干扰，不是品牌。
+<code>prefers-reduced-motion</code> 下全部退化为无动效，这是第一层全局底线，不分轨道。</p>
+
+<h2 id="width">宽度与轨道</h2>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>项</th><th>值</th><th>为什么</th></tr></thead>
+  <tbody>
+    <tr><td>首屏高</td><td><code>min(760px, 88dvh)</code></td><td>占满视野但不超过一屏，<code>dvh</code> 避开移动端地址栏。</td></tr>
+    <tr><td>行长</td><td><code>--width-showcase</code></td><td>标题和 lede 比正文宽，但仍有上限。</td></tr>
+    <tr><td>轨道</td><td>阅读轨（主按钮除外）</td><td>原型 D 不翻转轨道，只有原型 E 会。</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="skeleton">骨架</h2>
+<pre class="doc-code__body"><code>kit/patterns/d-landing.html</code></pre>
+<p>本站首页就是这个原型的一次实现，可以直接对照看。</p>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#structure">结构</a></li>
+      <li><a class="wx-anchor__link" href="#ten-seconds">十秒里只能放三件事</a></li>
+      <li><a class="wx-anchor__link" href="#primary">唯一的填充按钮</a></li>
+      <li><a class="wx-anchor__link" href="#no-cards">不要用卡片罗列卖点</a></li>
+      <li><a class="wx-anchor__link" href="#motion">动效强度</a></li>
+      <li><a class="wx-anchor__link" href="#width">宽度与轨道</a></li>
+      <li><a class="wx-anchor__link" href="#skeleton">骨架</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

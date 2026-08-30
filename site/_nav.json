@@ -57,9 +57,11 @@
         { "slug": "media",    "title": "媒介适配" }
       ]},
       { "title": "页面原型 · Archetypes", "items": [
-        { "slug": "pattern-detail", "title": "详情页" },
-        { "slug": "pattern-list",   "title": "列表页" },
-        { "slug": "pattern-form",   "title": "表单页" },
+        { "slug": "pattern-detail",   "title": "详情页" },
+        { "slug": "pattern-list",     "title": "列表页" },
+        { "slug": "pattern-showcase", "title": "展示页" },
+        { "slug": "pattern-landing",  "title": "着陆页" },
+        { "slug": "pattern-form",     "title": "表单页" },
         { "slug": "pattern-result", "title": "结果与异常页" }
       ]}
     ]
