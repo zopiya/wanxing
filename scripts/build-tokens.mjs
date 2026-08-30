@@ -2,7 +2,7 @@
 /**
  * build-tokens — kit/tokens/core.css is the single source of truth.
  *
- * Emits tokens.json / .scss / .ts / .d.ts so that consumers in other languages
+ * Emits JSON / SCSS / TypeScript / DTCG tokens so that consumers in other languages
  * never hand-copy a value out of the CSS (or worse, out of the prose).
  *
  * Also enforces the naming convention at build time rather than at review time:
@@ -98,7 +98,68 @@ writeFileSync(
     "\n};\n\nexport const cssVar = (name: TokenName): string => `var(${cssNames[name]})`;\n"
 );
 
-console.log(`✓ ${core.size} tokens → generated/{tokens.json,tokens.scss,tokens.ts}`);
+// DTCG is the interoperable exchange format used by design tools. CSS has a
+// few values (notably clamp()) that DTCG has no native semantic type for; keep
+// those faithfully as strings rather than inventing a misleading dimension.
+const DTCG_TYPES = {
+  color: "color", font: "fontFamily", text: "dimension", leading: "number",
+  tracking: "dimension", space: "dimension", width: "string", padding: "string",
+  icon: "dimension", radius: "dimension", stroke: "dimension", duration: "duration",
+  ease: "cubicBezier", stagger: "duration",
+};
+const dtcg = {
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "Generated from kit/tokens/core.css. Dark overrides are carried in the Wenxin extension.",
+};
+for (const [name, light] of core) {
+  const group = groupOf(name);
+  const keys = name.slice(2 + group.length + 1).split("-");
+  const leaf = {
+    "$type": DTCG_TYPES[group],
+    "$value": toDtcgValue(light, DTCG_TYPES[group]),
+  };
+  if (dark.has(name)) {
+    leaf.$extensions = {
+      "org.wenxin.mode": { dark: toDtcgValue(dark.get(name), DTCG_TYPES[group]) },
+    };
+  }
+  setPath(dtcg, [group, ...keys], leaf);
+}
+writeFileSync(join(OUT, "tokens.dtcg.json"), JSON.stringify(dtcg, null, 2) + "\n");
+
+function setPath(target, keys, value) {
+  const last = keys.pop();
+  let node = target;
+  for (const key of keys) node = node[key] ??= {};
+  node[last] = value;
+}
+
+function toDtcgValue(value, type) {
+  if (type === "color") return colorValue(value);
+  if (type === "fontFamily") return value.split(",").map((font) => font.trim().replace(/^['\"]|['\"]$/g, ""));
+  if (type === "cubicBezier") {
+    const match = value.match(/^cubic-bezier\(([^)]+)\)$/);
+    return match ? match[1].split(",").map(Number) : value;
+  }
+  if (["dimension", "duration"].includes(type)) {
+    const match = value.match(/^(-?(?:\d+|\d*\.\d+))(px|rem|em|ms)$/);
+    return match ? { value: Number(match[1]), unit: match[2] } : value;
+  }
+  if (type === "number" && /^-?(?:\d+|\d*\.\d+)$/.test(value)) return Number(value);
+  return value;
+}
+
+function colorValue(value) {
+  if (/^#[0-9a-f]{6}$/i.test(value)) {
+    return { colorSpace: "srgb", components: [1, 3, 5].map((i) => Number.parseInt(value.slice(i, i + 2), 16) / 255), "alpha": 1 };
+  }
+  const match = value.match(/^rgb\(\s*(\d+)\s+(\d+)\s+(\d+)\s*\/\s*([\d.]+)\s*\)$/i);
+  return match
+    ? { colorSpace: "srgb", components: match.slice(1, 4).map((channel) => Number(channel) / 255), alpha: Number(match[4]) }
+    : value;
+}
+
+console.log(`✓ ${core.size} tokens → generated/{tokens.json,tokens.scss,tokens.ts,tokens.dtcg.json}`);
 console.log(`  ${dark.size} of them have dark-mode overrides`);
 for (const g of GROUPS) {
   const n = Object.keys(nested[g] ?? {}).length;

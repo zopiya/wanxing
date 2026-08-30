@@ -11,12 +11,15 @@
     "audit": "node scripts/render-audit.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
     "check:forbidden": "node scripts/check-forbidden.mjs",
-    "check": "npm run check:tokens && npm run check:colors && npm run check:forbidden && npm run check:site",
+    "check": "npm run check:tokens && npm run check:colors && npm run check:forbidden && npm run check:site && npm run check:render-audit && npm run check:a11y && npm run check:a11y:selftest",
     "build:themes": "node scripts/build-themes.mjs",
     "build:css": "node scripts/build-css.mjs",
     "check:colors": "node scripts/check-colors.mjs",
     "build:site": "node scripts/build-site.mjs",
-    "check:site": "node scripts/check-site.mjs"
+    "check:site": "node scripts/check-site.mjs",
+    "check:render-audit": "node tests/render-audit-selftest.mjs",
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "check:a11y:selftest": "node tests/a11y-selftest.mjs"
   },
   "engines": {
     "node": ">=18"

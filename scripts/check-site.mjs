@@ -48,7 +48,10 @@ for (const file of built) {
 
   // 3 · internal links resolve
   for (const m of html.matchAll(/href="\.\/([^"#]+)(#[^"]*)?"/g)) {
-    const target = m[1];
+    // Query strings version static assets but are not part of their filesystem
+    // identity. Checking the literal href made cache-busting look like a dead
+    // link, which is a false failure rather than useful evidence.
+    const target = m[1].split("?", 1)[0];
     if (target.startsWith("assets/")) {
       if (!existsSync(join(siteDir, target))) problems.push(`${where}: missing asset ${target}`);
     } else if (!pages.has(target)) {

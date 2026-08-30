@@ -46,4 +46,20 @@
   }
 
   [hidden] { display: none !important; }
+
+  /* Windows High Contrast / forced-colors. Do not freeze warm-earth token
+     colors there: system colors preserve the user's contrast contract. */
+  @media (forced-colors: active) {
+    :root { forced-color-adjust: auto; }
+    :focus-visible { outline-color: Highlight; }
+    a { color: LinkText; text-decoration: underline; }
+    .wx-btn, .wx-input, .wx-select, .wx-number, .wx-search input,
+    .wx-upload, .wx-dropdown__item, .wx-pagination__link {
+      border-color: ButtonText;
+      color: ButtonText;
+      background: Canvas;
+    }
+    .wx-btn--primary, .wx-btn--danger { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
+    .wx-note, .wx-alert, .wx-modal, .wx-drawer, .wx-popover__panel { border-color: CanvasText; background: Canvas; color: CanvasText; }
+  }
 }

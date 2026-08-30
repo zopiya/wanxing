@@ -231,6 +231,26 @@
   --color-focus:      #CF5F4A;
 }
 }
+@layer wx.tokens {
+/* source: kit/tokens/dense.css */
+/* Optional density preset. It changes only spacing variables and is inert until
+   a consumer opts in, so core.css remains the single source of default values. */
+@layer wx.tokens {
+  :root[data-density="dense"], .wx-density--dense {
+    --space-2: 6px;
+    --space-3: 8px;
+    --space-4: 12px;
+    --space-5: 16px;
+    --space-6: 20px;
+    --space-8: 24px;
+    --space-10: 32px;
+    --space-12: 40px;
+    --space-16: 52px;
+    --space-24: 76px;
+    --space-32: 100px;
+  }
+}
+}
 
 /* source: kit/base/fonts.css */
 /* Self-hosted. No third-party font CDN — criterion M-6 (sustainability) and
@@ -488,6 +508,22 @@
   }
 
   [hidden] { display: none !important; }
+
+  /* Windows High Contrast / forced-colors. Do not freeze warm-earth token
+     colors there: system colors preserve the user's contrast contract. */
+  @media (forced-colors: active) {
+    :root { forced-color-adjust: auto; }
+    :focus-visible { outline-color: Highlight; }
+    a { color: LinkText; text-decoration: underline; }
+    .wx-btn, .wx-input, .wx-select, .wx-number, .wx-search input,
+    .wx-upload, .wx-dropdown__item, .wx-pagination__link {
+      border-color: ButtonText;
+      color: ButtonText;
+      background: Canvas;
+    }
+    .wx-btn--primary, .wx-btn--danger { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
+    .wx-note, .wx-alert, .wx-modal, .wx-drawer, .wx-popover__panel { border-color: CanvasText; background: Canvas; color: CanvasText; }
+  }
 }
 /* source: kit/base/motion.css */
 /* Motion. The intensity level is a runtime switch, not a claim in a document:

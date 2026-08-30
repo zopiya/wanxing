@@ -38,7 +38,7 @@ python3 -m http.server 8899
 | `npm run audit <file>` | 用 render contract 审计一个消费者 HTML 页面 |
 | `npm run build:tokens` | 从 `core.css` / `dark.css` 生成 json、scss、ts、DTCG token 交换文件 |
 | `npm run build:site` | 从 `site/_pages/` 生成站点 |
-| `npm run check:a11y` | 检查文档站的表单标签、可访问名、主地标和标题层级 |
+| `npm run check:a11y` | 检查文档站的表单标签、可访问名和主地标 |
 
 ## 版本策略
 

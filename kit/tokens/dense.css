@@ -1,0 +1,17 @@
+/* Optional density preset. It changes only spacing variables and is inert until
+   a consumer opts in, so core.css remains the single source of default values. */
+@layer wx.tokens {
+  :root[data-density="dense"], .wx-density--dense {
+    --space-2: 6px;
+    --space-3: 8px;
+    --space-4: 12px;
+    --space-5: 16px;
+    --space-6: 20px;
+    --space-8: 24px;
+    --space-10: 32px;
+    --space-12: 40px;
+    --space-16: 52px;
+    --space-24: 76px;
+    --space-32: 100px;
+  }
+}

@@ -5,6 +5,7 @@
 
 @import "./tokens/core.css"  layer(wx.tokens);
 @import "./tokens/dark.css"  layer(wx.tokens);
+@import "./tokens/dense.css" layer(wx.tokens);
 
 @import "./base/fonts.css";
 @import "./base/reset.css";
