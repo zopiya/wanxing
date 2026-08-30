@@ -5,6 +5,11 @@
  * The forbidden list is not style advice; it is the system's identity. These are
  * the parts of it a machine can decide. Everything here maps to a specific row
  * in that document, and the message says which.
+ *
+ * The rules a machine CANNOT decide are listed beside these, under
+ * `judgement`, and nothing reads them. That is deliberate: an unmarked
+ * unenforceable rule gets mistaken for an enforced one, which is how a green
+ * run becomes false evidence (D-22).
  */
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
@@ -14,21 +19,16 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SCAN = ["kit", "examples", "site"].map((d) => join(root, d)).filter(existsSync);
 const EXT = /\.(css|html|jsx|tsx)$/;
 
-const RULES = [
-  { id: "shadow", why: "无阴影 — forbidden.md §一",
-    re: /box-shadow\s*:\s*(?!none|0\b|inherit|unset)/i },
-  { id: "gradient", why: "无渐变 — forbidden.md §二",
-    re: /(linear|radial|conic)-gradient\s*\(/i },
-  { id: "outline-none", why: "禁止 outline:none — forbidden.md §三 / A-2",
-    re: /outline\s*:\s*none/i },
-  { id: "bouncy-easing", why: "禁止弹跳类缓动 — motion.md",
-    re: /\b(spring|bounce|elastic)\b|cubic-bezier\([^)]*,\s*-?\d*\.?\d+\s*,\s*[^)]*,\s*1\.[1-9]/i },
-  { id: "thick-border", why: "边框 >1px（1.5px 描边除外）— forbidden.md §一",
-    re: /border(-(top|right|bottom|left|inline|block)(-(start|end))?)?(-width)?\s*:\s*(?:[^;]*\s)?([2-9]|\d{2,})(\.\d+)?px/i,
-    allow: /var\(--stroke-mark\)|1\.5px/ },
-  { id: "spinner", why: "禁止旋转 spinner — motion.md",
-    re: /animation[^;]*\brotate\b|@keyframes\s+[\w-]*spin/i },
-];
+/* The rules live in kit/contracts/forbidden.json, which is also what
+   kit/wenxin.json ships to consumers. Two copies of a rule can disagree and
+   nothing would notice — the same defect that put --code-bg in four places. */
+const ruleSource = JSON.parse(readFileSync(join(root, "kit", "contracts", "forbidden.json"), "utf8"));
+const RULES = ruleSource.checkable.map(({ id, why, spec, pattern, flags, allow }) => ({
+  id,
+  why: `${why} — ${spec}`,
+  re: new RegExp(pattern, flags ?? ""),
+  ...(allow ? { allow: new RegExp(allow) } : {}),
+}));
 
 /**
  * Blank out comment bodies while preserving line count and column offsets, so

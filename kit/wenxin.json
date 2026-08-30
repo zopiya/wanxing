@@ -1,0 +1,1144 @@
+{
+  "name": "wenxin-wanxing",
+  "version": "0.1.0",
+  "summary": "文心 · 万形 — 内容型产品的设计语言。文字即界面，留白即设计，克制即力量。",
+  "invariant": {
+    "note": "不变之魂。改动这三条，产物就不再属于这套语言；要改，先在 spec/DECISIONS.md 立一条待议项。",
+    "axes": [
+      "A9 克制之美",
+      "B9 温暖极简",
+      "D9 暖土调"
+    ]
+  },
+  "arbitration": {
+    "note": "冲突判定，自上而下三层。设计哲学约 60%，主流惯例约 40% — 比例是这三层产生的结果，不是口味。",
+    "layers": [
+      {
+        "layer": 1,
+        "name": "全局底线",
+        "rule": "无障碍与基本可用性，惯例无条件优先，两条轨道都适用。",
+        "covers": [
+          "WCAG 2.2 AA 对比度",
+          "可见焦点态",
+          "键盘可达",
+          "触控目标尺寸",
+          "颜色不作唯一信息载体",
+          "prefers-reduced-motion"
+        ]
+      },
+      {
+        "layer": 2,
+        "name": "按形态分轨",
+        "rule": "阅读轨全量应用视觉约束；应用轨放宽。页面级声明 track。",
+        "note": "采用页面原型 E（工具/表单）的页面会翻转它所在形态的轨道。"
+      },
+      {
+        "layer": 3,
+        "name": "组件类别覆盖",
+        "rule": "数据录入与反馈类组件永远按惯例处理，无论所在轨道。表单就是表单。"
+      }
+    ]
+  },
+  "exclusions": {
+    "note": "两种排除不是一回事（D-23）。理由是「这违反我们相信的东西」的不会回来；理由是「暂时用不上」的，范围扩大后已经实现了。",
+    "philosophy": [
+      "卡片",
+      "spinner",
+      "骨架屏",
+      "自动轮播",
+      "水印"
+    ],
+    "scopeResolved": [
+      "滑块",
+      "上传",
+      "日期",
+      "树",
+      "气泡"
+    ]
+  },
+  "forbidden": {
+    "note": "The executable half of spec/soul/forbidden.md. check-forbidden.mjs reads `checkable`; nothing reads `judgement`, and that is the point — a rule a machine cannot decide must be marked as such, or its silence gets mistaken for a passing check (D-22).",
+    "checkable": [
+      {
+        "id": "shadow",
+        "spec": "forbidden.md §一",
+        "track": "both",
+        "why": "无阴影 — 伪造 z 轴纵深，与平面克制相悖",
+        "pattern": "box-shadow\\s*:\\s*(?!none|0\\b|inherit|unset)",
+        "flags": "i"
+      },
+      {
+        "id": "gradient",
+        "spec": "forbidden.md §二",
+        "track": "both",
+        "why": "无渐变",
+        "pattern": "(linear|radial|conic)-gradient\\s*\\(",
+        "flags": "i"
+      },
+      {
+        "id": "outline-none",
+        "spec": "forbidden.md §三 / A-2",
+        "track": "both",
+        "why": "禁止 outline:none — 焦点可见是第一层全局底线",
+        "pattern": "outline\\s*:\\s*none",
+        "flags": "i"
+      },
+      {
+        "id": "bouncy-easing",
+        "spec": "motion.md",
+        "track": "both",
+        "why": "禁止弹跳类缓动",
+        "pattern": "\\b(spring|bounce|elastic)\\b|cubic-bezier\\([^)]*,\\s*-?\\d*\\.?\\d+\\s*,\\s*[^)]*,\\s*1\\.[1-9]",
+        "flags": "i"
+      },
+      {
+        "id": "thick-border",
+        "spec": "forbidden.md §一",
+        "track": "both",
+        "why": "边框 >1px（--stroke-mark 的 1.5px 描边除外）",
+        "pattern": "border(-(top|right|bottom|left|inline|block)(-(start|end))?)?(-width)?\\s*:\\s*(?:[^;]*\\s)?([2-9]|\\d{2,})(\\.\\d+)?px",
+        "flags": "i",
+        "allow": "var\\(--stroke-mark\\)|1\\.5px"
+      },
+      {
+        "id": "spinner",
+        "spec": "motion.md",
+        "track": "both",
+        "why": "禁止旋转 spinner — 无限循环动画",
+        "pattern": "animation[^;]*\\brotate\\b|@keyframes\\s+[\\w-]*spin",
+        "flags": "i"
+      }
+    ],
+    "judgement": [
+      {
+        "id": "card-geometry",
+        "spec": "forbidden.md §一",
+        "track": "editorial",
+        "why": "四边包围的方框（边框 / 阴影 / 填充底色三者任一 + 圆角），用来把一组内容\"装起来\"",
+        "uncheckable": "静态 CSS 分不出内容容器与控件。按钮、标签、输入框、kbd 以及 D-21 明确许可的浮层都合法地同时具备边框与圆角；一条 naive 规则在本仓库命中 60 次、几乎全是误报。",
+        "instead": "用 wx-entry：单边线 + 留白"
+      },
+      {
+        "id": "background-partition",
+        "spec": "forbidden.md §一（色块背景分区）",
+        "track": "editorial",
+        "why": "用色块背景把内容分区",
+        "uncheckable": "background 的合法用途太多——行内代码、输入框、分组列表、提示块都要用。是否构成\"分区\"取决于轨道与意图。",
+        "instead": "用留白分区"
+      },
+      {
+        "id": "accent-budget",
+        "spec": "aesthetics.md / brand.md",
+        "track": "editorial",
+        "why": "每页至多两处强调色出现",
+        "uncheckable": "需要按渲染后的页面计数，且要区分装饰性出现与状态色。render-audit 的 findAccentOccurrences() 在单页范围内可以执行，全仓库静态扫描不行。",
+        "instead": "npm run audit <file>"
+      },
+      {
+        "id": "decorative-illustration",
+        "spec": "forbidden.md",
+        "track": "editorial",
+        "why": "空态与结果页不用装饰插画",
+        "uncheckable": "机器分不出装饰图与信息图。",
+        "instead": "标题先说明状态，动作是可命名的 button/link"
+      }
+    ]
+  },
+  "tokens": {
+    "color": {
+      "bg-warm": {
+        "light": "#F2F0EB",
+        "dark": "#1A1816"
+      },
+      "bg-base": {
+        "light": "#FAFAF8",
+        "dark": "#201E1B"
+      },
+      "bg-pure": {
+        "light": "#FFFFFF",
+        "dark": "#242220"
+      },
+      "bg-subtle": {
+        "light": "#F0EDE7",
+        "dark": "#2A2724"
+      },
+      "text-primary": {
+        "light": "#3A3837",
+        "dark": "#E8E3DC"
+      },
+      "text-secondary": {
+        "light": "#55524E",
+        "dark": "#B5AFA6"
+      },
+      "text-functional": {
+        "light": "#706D68",
+        "dark": "#8A857D"
+      },
+      "text-heading": {
+        "light": "#2C2B29",
+        "dark": "#F0EBE3"
+      },
+      "accent": {
+        "light": "#8B3525",
+        "dark": "#CF5F4A"
+      },
+      "accent-hover": {
+        "light": "#A84030",
+        "dark": "#DE7059"
+      },
+      "accent-subtle": {
+        "light": "#F5E8E5",
+        "dark": "#2E1A16"
+      },
+      "on-accent": {
+        "light": "#FFFFFF",
+        "dark": "#1A1816"
+      },
+      "danger": {
+        "light": "#5C1F2F",
+        "dark": "#C6697E"
+      },
+      "danger-subtle": {
+        "light": "#F2E8EB",
+        "dark": "#2B171C"
+      },
+      "warning": {
+        "light": "#7D5E12",
+        "dark": "#B3871A"
+      },
+      "warning-subtle": {
+        "light": "#F2EFE8",
+        "dark": "#2B2517"
+      },
+      "success": {
+        "light": "#4F6B3A",
+        "dark": "#739B53"
+      },
+      "success-subtle": {
+        "light": "#ECF2E8",
+        "dark": "#202B17"
+      },
+      "scrim": {
+        "light": "rgb(26 24 22 / 0.55)",
+        "dark": "rgb(10 9 8 / 0.65)"
+      },
+      "border-subtle": {
+        "light": "#E5E1DA",
+        "dark": "#2E2B27"
+      },
+      "border-strong": {
+        "light": "#C8C3BA",
+        "dark": "#403C37"
+      },
+      "link": {
+        "light": "#3A3837",
+        "dark": "#E8E3DC"
+      },
+      "link-hover": {
+        "light": "#8B3525",
+        "dark": "#CF5F4A"
+      },
+      "focus": {
+        "light": "#8B3525",
+        "dark": "#CF5F4A"
+      }
+    },
+    "font": {
+      "display": "\"Lora\", \"Noto Serif SC\", \"Source Han Serif SC\", \"Songti SC\", \"SimSun\", serif",
+      "body": "\"EB Garamond\", \"Noto Serif SC\", \"Source Han Serif SC\", \"Songti SC\", \"SimSun\", serif",
+      "ui": "system-ui, -apple-system, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans SC\", sans-serif",
+      "mono": "\"JetBrains Mono\", \"Fira Code\", \"Cascadia Code\", ui-monospace, monospace"
+    },
+    "text": {
+      "xs": "0.694rem",
+      "sm": "0.833rem",
+      "base": "1rem",
+      "md": "1.0625rem",
+      "lg": "1.25rem",
+      "xl": "1.5rem",
+      "2xl": "1.875rem",
+      "3xl": "2.25rem",
+      "4xl": "3rem",
+      "5xl": "4.5rem",
+      "code": "0.875em"
+    },
+    "leading": {
+      "tight": "1.25",
+      "snug": "1.45",
+      "normal": "1.6",
+      "relaxed": "1.85",
+      "loose": "2.0"
+    },
+    "tracking": {
+      "tight": "-0.02em",
+      "normal": "0",
+      "wide": "0.05em",
+      "wider": "0.15em",
+      "chinese": "0.1em"
+    },
+    "space": {
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "10": "40px",
+      "12": "48px",
+      "16": "64px",
+      "24": "96px",
+      "32": "128px"
+    },
+    "width": {
+      "article": "clamp(520px, 55vw, 640px)",
+      "content": "clamp(620px, 65vw, 760px)",
+      "showcase": "clamp(700px, 72vw, 920px)"
+    },
+    "padding": {
+      "page-x": "clamp(20px, 5vw, 72px)"
+    },
+    "radius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "full": "9999px"
+    },
+    "stroke": {
+      "hairline": "1px",
+      "mark": "1.5px"
+    },
+    "icon": {
+      "sm": "16px",
+      "md": "20px",
+      "lg": "24px"
+    },
+    "duration": {
+      "instant": "80ms",
+      "fast": "180ms",
+      "base": "260ms",
+      "slow": "420ms",
+      "crawl": "600ms",
+      "breath": "4000ms"
+    },
+    "ease": {
+      "default": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+      "out": "cubic-bezier(0, 0, 0.2, 1)",
+      "in": "cubic-bezier(0.4, 0, 1, 1)",
+      "in-out": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "stagger": {
+      "1": "60ms",
+      "2": "120ms",
+      "3": "180ms",
+      "4": "240ms",
+      "5": "300ms",
+      "6": "360ms",
+      "7": "420ms",
+      "8": "480ms"
+    }
+  },
+  "components": [
+    {
+      "family": "通用",
+      "slug": "c-general",
+      "items": [
+        {
+          "name": "Button",
+          "classes": [
+            "wx-btn"
+          ],
+          "base": "button；导航目的用 a",
+          "state": "disabled",
+          "behaviour": "无"
+        },
+        {
+          "name": "Tag",
+          "classes": [
+            "wx-tag"
+          ],
+          "base": "span；可操作时改用 button/a",
+          "state": "文字优先，不只靠颜色",
+          "behaviour": "无"
+        },
+        {
+          "name": "Badge",
+          "classes": [
+            "wx-badge"
+          ],
+          "base": "span",
+          "state": "短计数或提醒",
+          "behaviour": "无"
+        },
+        {
+          "name": "Status",
+          "classes": [
+            "wx-status"
+          ],
+          "base": "span",
+          "state": "必须同时有状态文字",
+          "behaviour": "无"
+        },
+        {
+          "name": "Avatar",
+          "classes": [
+            "wx-avatar"
+          ],
+          "base": "img 或文字 span",
+          "state": "信息头像必须有替代文本",
+          "behaviour": "无"
+        },
+        {
+          "name": "Seal",
+          "classes": [
+            "wx-seal"
+          ],
+          "base": "span",
+          "state": "装饰时 aria-hidden",
+          "behaviour": "仅品牌呼吸动效"
+        },
+        {
+          "name": "Keyboard",
+          "classes": [
+            "wx-kbd"
+          ],
+          "base": "kbd",
+          "state": "文字化键名",
+          "behaviour": "无"
+        },
+        {
+          "name": "Segmented",
+          "classes": [
+            "wx-segmented"
+          ],
+          "base": "radiogroup 或 tablist",
+          "state": "aria-checked / aria-selected",
+          "behaviour": "采用者更新选中项"
+        },
+        {
+          "name": "Toolbar",
+          "classes": [
+            "wx-toolbar"
+          ],
+          "base": "div role=toolbar",
+          "state": "可用按钮状态",
+          "behaviour": "采用者实现箭头键模型"
+        }
+      ]
+    },
+    {
+      "family": "布局",
+      "slug": "c-layout",
+      "items": [
+        {
+          "name": "Page",
+          "classes": [
+            "wx-page"
+          ],
+          "base": "body 或页面根",
+          "state": "无",
+          "behaviour": "无"
+        },
+        {
+          "name": "Container",
+          "classes": [
+            "wx-container"
+          ],
+          "base": "main / article / section",
+          "state": "无",
+          "behaviour": "无"
+        },
+        {
+          "name": "Measure",
+          "classes": [
+            "wx-measure"
+          ],
+          "base": "正文容器",
+          "state": "无",
+          "behaviour": "无"
+        },
+        {
+          "name": "Stack",
+          "classes": [
+            "wx-stack"
+          ],
+          "base": "任意语义容器",
+          "state": "节奏变体",
+          "behaviour": "无"
+        },
+        {
+          "name": "Cluster",
+          "classes": [
+            "wx-cluster"
+          ],
+          "base": "任意语义容器",
+          "state": "节奏变体",
+          "behaviour": "无"
+        },
+        {
+          "name": "Spread",
+          "classes": [
+            "wx-spread"
+          ],
+          "base": "任意语义容器",
+          "state": "无",
+          "behaviour": "无"
+        },
+        {
+          "name": "Columns",
+          "classes": [
+            "wx-cols"
+          ],
+          "base": "任意语义容器",
+          "state": "列数变体",
+          "behaviour": "无"
+        },
+        {
+          "name": "Rule",
+          "classes": [
+            "wx-rule"
+          ],
+          "base": "hr",
+          "state": "strong / short 变体",
+          "behaviour": "无"
+        }
+      ]
+    },
+    {
+      "family": "导航",
+      "slug": "c-navigation",
+      "items": [
+        {
+          "name": "Navigation",
+          "classes": [
+            "wx-nav"
+          ],
+          "base": "nav",
+          "state": "aria-current",
+          "behaviour": "无"
+        },
+        {
+          "name": "Breadcrumb",
+          "classes": [
+            "wx-crumbs"
+          ],
+          "base": "nav + ol",
+          "state": "当前位置不可链接",
+          "behaviour": "无"
+        },
+        {
+          "name": "Pager",
+          "classes": [
+            "wx-pager"
+          ],
+          "base": "nav",
+          "state": "上一页 / 下一页文字化",
+          "behaviour": "无"
+        },
+        {
+          "name": "Menu",
+          "classes": [
+            "wx-menu"
+          ],
+          "base": "ul",
+          "state": "aria-current / aria-disabled",
+          "behaviour": "无"
+        },
+        {
+          "name": "Dropdown",
+          "classes": [
+            "wx-dropdown"
+          ],
+          "base": "details / summary",
+          "state": "open",
+          "behaviour": "原生开合"
+        },
+        {
+          "name": "Sidebar",
+          "classes": [
+            "wx-sidebar"
+          ],
+          "base": "aside 或 nav",
+          "state": "data-open / aria-expanded",
+          "behaviour": "disclosure.js"
+        },
+        {
+          "name": "Table of Contents",
+          "classes": [
+            "wx-toc"
+          ],
+          "base": "nav + list",
+          "state": "aria-current",
+          "behaviour": "toc.js"
+        },
+        {
+          "name": "Anchor",
+          "classes": [
+            "wx-anchor"
+          ],
+          "base": "nav + list",
+          "state": "aria-current",
+          "behaviour": "toc.js"
+        },
+        {
+          "name": "Affix",
+          "classes": [
+            "wx-affix"
+          ],
+          "base": "语义导航容器",
+          "state": "无",
+          "behaviour": "CSS sticky"
+        },
+        {
+          "name": "Pagination",
+          "classes": [
+            "wx-pagination"
+          ],
+          "base": "nav + ul",
+          "state": "aria-current=page / aria-disabled",
+          "behaviour": "无"
+        },
+        {
+          "name": "Tabs",
+          "classes": [
+            "wx-tabs"
+          ],
+          "base": "tablist / tab / tabpanel",
+          "state": "aria-selected / aria-controls",
+          "behaviour": "tabs.js"
+        },
+        {
+          "name": "Steps",
+          "classes": [
+            "wx-steps"
+          ],
+          "base": "ol",
+          "state": "aria-current=step",
+          "behaviour": "无"
+        },
+        {
+          "name": "Skip Link",
+          "classes": [
+            "wx-skip"
+          ],
+          "base": "a",
+          "state": "焦点可见",
+          "behaviour": "无"
+        }
+      ]
+    },
+    {
+      "family": "数据录入",
+      "slug": "c-entry",
+      "items": [
+        {
+          "name": "Form",
+          "classes": [
+            "wx-form"
+          ],
+          "base": "form",
+          "state": "提交 / 错误汇总",
+          "behaviour": "采用者处理提交"
+        },
+        {
+          "name": "Field",
+          "classes": [
+            "wx-field"
+          ],
+          "base": "label + control",
+          "state": "aria-invalid / aria-describedby",
+          "behaviour": "无"
+        },
+        {
+          "name": "Input",
+          "classes": [
+            "wx-input"
+          ],
+          "base": "input / textarea",
+          "state": "required / disabled / invalid",
+          "behaviour": "无"
+        },
+        {
+          "name": "Select",
+          "classes": [
+            "wx-select"
+          ],
+          "base": "select",
+          "state": "required / disabled / invalid",
+          "behaviour": "无"
+        },
+        {
+          "name": "Number Input",
+          "classes": [
+            "wx-number"
+          ],
+          "base": "input type=number",
+          "state": "min / max / step",
+          "behaviour": "无"
+        },
+        {
+          "name": "Checkbox",
+          "classes": [
+            "wx-check"
+          ],
+          "base": "label + input type=checkbox",
+          "state": "checked / disabled",
+          "behaviour": "无"
+        },
+        {
+          "name": "Radio",
+          "classes": [
+            "wx-radio"
+          ],
+          "base": "label + input type=radio",
+          "state": "checked / disabled",
+          "behaviour": "无"
+        },
+        {
+          "name": "Switch",
+          "classes": [
+            "wx-switch"
+          ],
+          "base": "button role=switch",
+          "state": "aria-checked",
+          "behaviour": "采用者更新状态"
+        },
+        {
+          "name": "Slider",
+          "classes": [
+            "wx-slider"
+          ],
+          "base": "input type=range",
+          "state": "可访问名与数值",
+          "behaviour": "无"
+        },
+        {
+          "name": "Rate",
+          "classes": [
+            "wx-rate"
+          ],
+          "base": "radio group",
+          "state": "可访问名与选中项",
+          "behaviour": "采用者更新状态"
+        },
+        {
+          "name": "Upload",
+          "classes": [
+            "wx-upload"
+          ],
+          "base": "label + input type=file",
+          "state": "关联 label",
+          "behaviour": "采用者处理文件"
+        },
+        {
+          "name": "Search",
+          "classes": [
+            "wx-search"
+          ],
+          "base": "input type=search",
+          "state": "关联 label",
+          "behaviour": "采用者处理查询"
+        },
+        {
+          "name": "Autocomplete",
+          "classes": [
+            "wx-autocomplete"
+          ],
+          "base": "input + datalist",
+          "state": "label / list",
+          "behaviour": "原生建议列表"
+        },
+        {
+          "name": "Date Picker",
+          "classes": [
+            "wx-date-picker"
+          ],
+          "base": "input type=date",
+          "state": "min / max / required",
+          "behaviour": "原生日期选择器"
+        },
+        {
+          "name": "Time Picker",
+          "classes": [
+            "wx-time-picker"
+          ],
+          "base": "input type=time",
+          "state": "min / max / required",
+          "behaviour": "原生时间选择器"
+        }
+      ]
+    },
+    {
+      "family": "数据展示",
+      "slug": "c-display",
+      "items": [
+        {
+          "name": "Entry",
+          "classes": [
+            "wx-entry"
+          ],
+          "base": "article",
+          "state": "原生语义",
+          "behaviour": "无"
+        },
+        {
+          "name": "List",
+          "classes": [
+            "wx-list"
+          ],
+          "base": "ul / ol",
+          "state": "原生语义",
+          "behaviour": "无"
+        },
+        {
+          "name": "Descriptions",
+          "classes": [
+            "wx-desc"
+          ],
+          "base": "dl",
+          "state": "原生语义",
+          "behaviour": "无"
+        },
+        {
+          "name": "Table",
+          "classes": [
+            "wx-table"
+          ],
+          "base": "table + caption",
+          "state": "列标题 / scope",
+          "behaviour": "无"
+        },
+        {
+          "name": "Statistic",
+          "classes": [
+            "wx-stat"
+          ],
+          "base": "语义文本",
+          "state": "tabular-nums",
+          "behaviour": "无"
+        },
+        {
+          "name": "Timeline",
+          "classes": [
+            "wx-timeline"
+          ],
+          "base": "ol",
+          "state": "原生语义",
+          "behaviour": "无"
+        },
+        {
+          "name": "Tree",
+          "classes": [
+            "wx-tree"
+          ],
+          "base": "ul + details",
+          "state": "open / aria-current",
+          "behaviour": "原生开合"
+        },
+        {
+          "name": "Collapse",
+          "classes": [
+            "wx-collapse"
+          ],
+          "base": "details",
+          "state": "open",
+          "behaviour": "原生开合"
+        },
+        {
+          "name": "Figure",
+          "classes": [
+            "wx-figure"
+          ],
+          "base": "figure + figcaption",
+          "state": "图像必须有替代文本",
+          "behaviour": "无"
+        },
+        {
+          "name": "Image",
+          "classes": [
+            "wx-image"
+          ],
+          "base": "img",
+          "state": "有意义图像必须有 alt",
+          "behaviour": "无"
+        },
+        {
+          "name": "Gallery",
+          "classes": [
+            "wx-gallery"
+          ],
+          "base": "labelled region",
+          "state": "图片 alt",
+          "behaviour": "无"
+        },
+        {
+          "name": "Calendar",
+          "classes": [
+            "wx-calendar"
+          ],
+          "base": "table + caption",
+          "state": "aria-current / aria-selected",
+          "behaviour": "采用者管理日期"
+        },
+        {
+          "name": "Quote",
+          "classes": [
+            "wx-quote"
+          ],
+          "base": "blockquote",
+          "state": "引用可归属",
+          "behaviour": "无"
+        },
+        {
+          "name": "Code",
+          "classes": [
+            "wx-code"
+          ],
+          "base": "pre + code",
+          "state": "代码语言可标注",
+          "behaviour": "copy.js（可选）"
+        }
+      ]
+    },
+    {
+      "family": "反馈与浮层",
+      "slug": "c-feedback",
+      "items": [
+        {
+          "name": "Note",
+          "classes": [
+            "wx-note"
+          ],
+          "base": "section / div",
+          "state": "语义色与文字同时出现",
+          "behaviour": "无"
+        },
+        {
+          "name": "Alert",
+          "classes": [
+            "wx-alert"
+          ],
+          "base": "section / div",
+          "state": "状态标题与恢复路径",
+          "behaviour": "无"
+        },
+        {
+          "name": "Toast",
+          "classes": [
+            "wx-toast"
+          ],
+          "base": "稳定 aria-live region",
+          "state": "polite / atomic",
+          "behaviour": "overlay.js 的 wxToast()"
+        },
+        {
+          "name": "Progress",
+          "classes": [
+            "wx-progress"
+          ],
+          "base": "progress",
+          "state": "可访问名与值",
+          "behaviour": "采用者更新值"
+        },
+        {
+          "name": "Meter",
+          "classes": [
+            "wx-meter"
+          ],
+          "base": "meter",
+          "state": "可访问名与值",
+          "behaviour": "采用者更新值"
+        },
+        {
+          "name": "Empty",
+          "classes": [
+            "wx-empty"
+          ],
+          "base": "section",
+          "state": "状态标题与下一步",
+          "behaviour": "无"
+        },
+        {
+          "name": "Result",
+          "classes": [
+            "wx-result"
+          ],
+          "base": "section",
+          "state": "状态标题与下一步",
+          "behaviour": "无"
+        },
+        {
+          "name": "Modal",
+          "classes": [
+            "wx-modal"
+          ],
+          "base": "dialog",
+          "state": "aria-labelledby",
+          "behaviour": "overlay.js"
+        },
+        {
+          "name": "Drawer",
+          "classes": [
+            "wx-drawer"
+          ],
+          "base": "dialog",
+          "state": "aria-labelledby",
+          "behaviour": "overlay.js"
+        },
+        {
+          "name": "Tooltip",
+          "classes": [
+            "wx-tooltip"
+          ],
+          "base": "role=tooltip",
+          "state": "aria-describedby",
+          "behaviour": "无"
+        },
+        {
+          "name": "Popover",
+          "classes": [
+            "wx-popover"
+          ],
+          "base": "details",
+          "state": "open",
+          "behaviour": "原生开合"
+        },
+        {
+          "name": "Popconfirm",
+          "classes": [
+            "wx-popconfirm"
+          ],
+          "base": "details",
+          "state": "open",
+          "behaviour": "原生开合；采用者执行确认动作"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D-1",
+      "title": "语义色缺失"
+    },
+    {
+      "id": "D-2",
+      "title": "danger 与 accent-hover 撞色"
+    },
+    {
+      "id": "D-3",
+      "title": "主提交按钮可以填充"
+    },
+    {
+      "id": "D-4",
+      "title": "卡片：保留禁令，但改写措辞"
+    },
+    {
+      "id": "D-5",
+      "title": "F7 海报的 accent 规则与 Web 不同"
+    },
+    {
+      "id": "D-6",
+      "title": "图表不引入分类色板"
+    },
+    {
+      "id": "D-7",
+      "title": "骨架屏不做"
+    },
+    {
+      "id": "D-8",
+      "title": "弃置 opendesign 适配层"
+    },
+    {
+      "id": "D-9",
+      "title": "暗色 accent 不达 AA"
+    },
+    {
+      "id": "D-10",
+      "title": "functional ink 从生产站反哺 token"
+    },
+    {
+      "id": "D-11",
+      "title": "`wx-entry` 增加连续流，不增加卡片"
+    },
+    {
+      "id": "D-12",
+      "title": "真实内容站上的 accent 预算分两种判法"
+    },
+    {
+      "id": "D-13",
+      "title": "暗色触发方式可多样，暗色 accent 不可漂"
+    },
+    {
+      "id": "D-14",
+      "title": "F1 的 40em 长文与作者侧栏"
+    },
+    {
+      "id": "D-15",
+      "title": "F6 允许三轨，不允许缺地标"
+    },
+    {
+      "id": "D-16",
+      "title": "字体策略按成本适配，F6 CDN 不适配"
+    },
+    {
+      "id": "D-17",
+      "title": "上线不豁免目标尺寸、状态树与对比度"
+    },
+    {
+      "id": "D-18",
+      "title": "品牌呼吸按页面任务，不按组件存在"
+    },
+    {
+      "id": "D-19",
+      "title": "F7 社交卡片旧协议不并入现行规范"
+    },
+    {
+      "id": "D-20",
+      "title": "文字灰阶从六档收到四档"
+    },
+    {
+      "id": "D-21",
+      "title": "浮层可以有\"面\"，但只借这一样"
+    },
+    {
+      "id": "D-22",
+      "title": "禁令要能被检查到，否则等于不存在"
+    },
+    {
+      "id": "D-23",
+      "title": "两种排除不是一回事"
+    },
+    {
+      "id": "D-24",
+      "title": "拖放区可以是四边框"
+    },
+    {
+      "id": "D-25",
+      "title": "九形态不再是文档的组织方式"
+    },
+    {
+      "id": "D-26",
+      "title": "删除九份夹具，连同它们喂养的检查"
+    },
+    {
+      "id": "D-27",
+      "title": "删除分媒介整包"
+    },
+    {
+      "id": "D-28",
+      "title": "对比度要按\"面\"测，不是按\"页面底色\"测"
+    }
+  ],
+  "verify": {
+    "note": "别声称合规 — 跑一遍。审计器吃一个 HTML 文件，吐 JSON，hardGates 非空即失败。",
+    "audit": "npx wenxin audit <file>",
+    "gates": [
+      "check:tokens — 每个 var(--x) 都能解析",
+      "check:colors — 每个前景色对它可能落在的每个面测对比度",
+      "check:forbidden — 本文件 forbidden.checkable 的可执行部分",
+      "check:components — 契约解析、契约在文档中可见、每个 wx- 类可解析",
+      "check:site — 标签配平、标题层级、链接与锚点",
+      "check:a11y — main 地标、控件标签、可访问名"
+    ]
+  }
+}

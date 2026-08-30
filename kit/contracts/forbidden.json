@@ -1,0 +1,42 @@
+{
+  "note": "The executable half of spec/soul/forbidden.md. check-forbidden.mjs reads `checkable`; nothing reads `judgement`, and that is the point — a rule a machine cannot decide must be marked as such, or its silence gets mistaken for a passing check (D-22).",
+  "checkable": [
+    { "id": "shadow", "spec": "forbidden.md §一", "track": "both",
+      "why": "无阴影 — 伪造 z 轴纵深，与平面克制相悖",
+      "pattern": "box-shadow\\s*:\\s*(?!none|0\\b|inherit|unset)", "flags": "i" },
+    { "id": "gradient", "spec": "forbidden.md §二", "track": "both",
+      "why": "无渐变",
+      "pattern": "(linear|radial|conic)-gradient\\s*\\(", "flags": "i" },
+    { "id": "outline-none", "spec": "forbidden.md §三 / A-2", "track": "both",
+      "why": "禁止 outline:none — 焦点可见是第一层全局底线",
+      "pattern": "outline\\s*:\\s*none", "flags": "i" },
+    { "id": "bouncy-easing", "spec": "motion.md", "track": "both",
+      "why": "禁止弹跳类缓动",
+      "pattern": "\\b(spring|bounce|elastic)\\b|cubic-bezier\\([^)]*,\\s*-?\\d*\\.?\\d+\\s*,\\s*[^)]*,\\s*1\\.[1-9]", "flags": "i" },
+    { "id": "thick-border", "spec": "forbidden.md §一", "track": "both",
+      "why": "边框 >1px（--stroke-mark 的 1.5px 描边除外）",
+      "pattern": "border(-(top|right|bottom|left|inline|block)(-(start|end))?)?(-width)?\\s*:\\s*(?:[^;]*\\s)?([2-9]|\\d{2,})(\\.\\d+)?px", "flags": "i",
+      "allow": "var\\(--stroke-mark\\)|1\\.5px" },
+    { "id": "spinner", "spec": "motion.md", "track": "both",
+      "why": "禁止旋转 spinner — 无限循环动画",
+      "pattern": "animation[^;]*\\brotate\\b|@keyframes\\s+[\\w-]*spin", "flags": "i" }
+  ],
+  "judgement": [
+    { "id": "card-geometry", "spec": "forbidden.md §一", "track": "editorial",
+      "why": "四边包围的方框（边框 / 阴影 / 填充底色三者任一 + 圆角），用来把一组内容\"装起来\"",
+      "uncheckable": "静态 CSS 分不出内容容器与控件。按钮、标签、输入框、kbd 以及 D-21 明确许可的浮层都合法地同时具备边框与圆角；一条 naive 规则在本仓库命中 60 次、几乎全是误报。",
+      "instead": "用 wx-entry：单边线 + 留白" },
+    { "id": "background-partition", "spec": "forbidden.md §一（色块背景分区）", "track": "editorial",
+      "why": "用色块背景把内容分区",
+      "uncheckable": "background 的合法用途太多——行内代码、输入框、分组列表、提示块都要用。是否构成\"分区\"取决于轨道与意图。",
+      "instead": "用留白分区" },
+    { "id": "accent-budget", "spec": "aesthetics.md / brand.md", "track": "editorial",
+      "why": "每页至多两处强调色出现",
+      "uncheckable": "需要按渲染后的页面计数，且要区分装饰性出现与状态色。render-audit 的 findAccentOccurrences() 在单页范围内可以执行，全仓库静态扫描不行。",
+      "instead": "npm run audit <file>" },
+    { "id": "decorative-illustration", "spec": "forbidden.md", "track": "editorial",
+      "why": "空态与结果页不用装饰插画",
+      "uncheckable": "机器分不出装饰图与信息图。",
+      "instead": "标题先说明状态，动作是可命名的 button/link" }
+  ]
+}
