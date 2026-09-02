@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>动效 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
-<a href="./design.html" aria-current="page">设计</a>
+<a href="./design.html">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html" aria-current="page">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -31,97 +32,117 @@
   </div>
 </header>
 
-<div class="doc-shell ">
+<div class="doc-shell doc-shell--hub">
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
-    <p class="doc-sidebar__title">设计</p>
+    <p class="doc-sidebar__title">动效</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">设计理念 · Principles</li>
-        <li><a class="wx-menu__link" href="./design.html">设计概览</a></li>
-        <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
-        <li><a class="wx-menu__link" href="./tracks.html">设计仲裁</a></li>
-        <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
-      <li class="wx-menu__group">全局样式 · Global</li>
-        <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
-        <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
-        <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
-        <li><a class="wx-menu__link" href="./motion.html" aria-current="page">动效</a></li>
-        <li><a class="wx-menu__link" href="./icons.html">图标</a></li>
-      <li class="wx-menu__group">数据表达 · Data</li>
-        <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
+      <li class="wx-menu__group">动效 · Motion</li>
+        <li><a class="wx-menu__link" href="./motion.html" aria-current="page">动效概览</a></li>
     </ul>
   </nav>
 
   <main class="doc-main" id="main">
     <article class="doc-article">
 <h1>动效</h1>
-<p class="wx-lede">温和流动。动效是为了让状态变化可被理解，不是为了让页面显得有活力。</p>
+<p class="wx-lede">春雨润物，细节有声。动效让状态变化可被理解，让品牌气息被感知；它不负责制造热闹。</p>
 
-<h2 id="levels">四档强度</h2>
-<p>动效强度是<strong>页面级</strong>声明的，写在 <code>data-motion</code> 属性上，
-而不是每个组件各自决定。这让"这个媒介不该有动效"变成结构上的事实而非约定。</p>
-<div class="doc-figure">
-    <table class="wx-table doc-api">
-      <thead><tr><th>等级</th><th>名称</th><th>含义</th><th>典型场景</th></tr></thead>
-      <tbody>
-        <tr><td><code>E8</code></td><td>印刷静止</td><td><strong>完全无动效</strong></td><td>印刷品、PDF</td></tr>
-        <tr><td><code>E9-0</code></td><td>静水</td><td>仅状态反馈，无入场动画</td><td>文档站、报告</td></tr>
-        <tr><td><code>E9-1</code></td><td>春雨（默认）</td><td>入场淡入上浮 + 编排</td><td>网页、文章</td></tr>
-        <tr><td><code>E9-2</code></td><td>微澜</td><td>额外允许一处循环（品牌呼吸）</td><td>品牌首页</td></tr>
-      </tbody>
-    </table>
+<h2 id="lab">在同一内容上感受四档强度</h2>
+<p>切换等级，再重播一次。内容、层级与空间都不变，只有动作的必要程度发生变化。</p>
+
+<section class="doc-motion-lab" data-wx-motion-lab data-motion="E9-1" data-motion-active aria-labelledby="motion-stage-title">
+  <div class="doc-motion-lab__controls">
+    <div class="wx-segmented" role="radiogroup" aria-label="动效强度">
+      <button class="wx-segmented__option" type="button" role="radio" aria-checked="false" tabindex="-1" data-motion-level="E8">E8</button>
+      <button class="wx-segmented__option" type="button" role="radio" aria-checked="false" tabindex="-1" data-motion-level="E9-0">E9-0</button>
+      <button class="wx-segmented__option" type="button" role="radio" aria-checked="true" tabindex="0" data-motion-level="E9-1">E9-1</button>
+      <button class="wx-segmented__option" type="button" role="radio" aria-checked="false" tabindex="-1" data-motion-level="E9-2">E9-2</button>
+    </div>
   </div>
-<pre class="doc-code__body"><code>&lt;body data-motion="E9-1"&gt;</code></pre>
-<p><code>E8</code> 在 CSS 里是硬关闭，不是约定：</p>
-<pre class="doc-code__body"><code>[data-motion="E8"] *,
-[data-motion="E8"] *::before,
-[data-motion="E8"] *::after {
-  animation: none !important;
-  transition: none !important;
-}</code></pre>
+
+  <div class="doc-motion-stage">
+    <div class="doc-motion-stage__statement wx-reveal" data-motion-sample data-stagger="1">
+      <h3 id="motion-stage-title">一次变化，只说明一件事</h3>
+      <p>先让结果清楚，再让到达结果的过程自然。删掉动作以后，如果信息完全没有损失，它就不该存在。</p>
+    </div>
+    <dl class="doc-motion-sequence">
+      <div class="doc-motion-sample wx-reveal" data-motion-sample data-stagger="2">
+        <dt>反馈</dt><dd>操作已被接收，状态立即回应。</dd>
+      </div>
+      <div class="doc-motion-sample wx-reveal" data-motion-sample data-stagger="3">
+        <dt>连续</dt><dd>前后关系清楚，不让版面突然跳变。</dd>
+      </div>
+      <div class="doc-motion-sample wx-reveal" data-motion-sample data-stagger="4">
+        <dt>品牌</dt><dd><span class="doc-motion-signature">文心 · 万形 <span class="wx-seal wx-seal--breathing" aria-hidden="true"></span></span></dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="doc-motion-lab__actions">
+    <button class="wx-btn wx-btn--text" type="button" data-motion-replay>重播当前强度</button>
+    <button class="wx-btn wx-btn--text" type="button" aria-pressed="false" data-motion-reduced>预览减少动效</button>
+    <p class="doc-motion-lab__status" data-motion-status aria-live="polite">当前为 E9-1 春雨：有限入场帮助读者理解编排。</p>
+  </div>
+</section>
+
+<h2 id="levels">四档强度不是四种装饰</h2>
+<p>强度是<strong>页面级</strong>声明，写在 <code>&lt;html&gt;</code> 的 <code>data-motion</code> 属性上，而不是让每个组件各自决定。</p>
+<div class="doc-figure">
+  <table class="wx-table doc-api">
+    <thead><tr><th>等级</th><th>名称</th><th>边界</th><th>典型场景</th></tr></thead>
+    <tbody>
+      <tr><td><code>E8</code></td><td>印刷静止</td><td><strong>完全无动效</strong></td><td>印刷品、PDF</td></tr>
+      <tr><td><code>E9-0</code></td><td>静水</td><td>仅保留必要状态反馈</td><td>报告、强调静读的文档</td></tr>
+      <tr><td><code>E9-1</code></td><td>春雨（默认）</td><td>有限入场、悬停与状态过渡</td><td>网页、文章、本站</td></tr>
+      <tr><td><code>E9-2</code></td><td>微澜</td><td>额外允许一处品牌呼吸</td><td>品牌焦点时刻</td></tr>
+    </tbody>
+  </table>
+</div>
+<pre class="doc-code__body"><code>&lt;html data-motion="E9-1"&gt;
+  &lt;body&gt;…&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 
 <h2 id="tokens">时长与缓动</h2>
 <div class="doc-figure">
-    <table class="wx-table doc-api">
-      <thead><tr><th>Token</th><th>值</th><th>用途</th></tr></thead>
-      <tbody>
-        <tr><td><code>--duration-instant</code></td><td>80ms</td><td>颜色变化</td></tr>
-        <tr><td><code>--duration-fast</code></td><td>180ms</td><td>悬停、焦点</td></tr>
-        <tr><td><code>--duration-base</code></td><td>260ms</td><td>浮层进出</td></tr>
-        <tr><td><code>--duration-slow</code></td><td>420ms</td><td>页面入场</td></tr>
-        <tr><td><code>--duration-crawl</code></td><td>600ms</td><td><strong>总封顶</strong></td></tr>
-        <tr><td><code>--ease-default</code></td><td>cubic-bezier(.25,.1,.25,1)</td><td>通用</td></tr>
-        <tr><td><code>--ease-out</code></td><td>cubic-bezier(0,0,.2,1)</td><td>入场</td></tr>
-        <tr><td><code>--ease-in-out</code></td><td>cubic-bezier(.42,0,.58,1)</td><td><strong>仅限品牌呼吸</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-<p>编排用 <code>--stagger-1</code> 到 <code>--stagger-8</code>，60ms 间隔，最多覆盖 8 个元素。
-超过 8 个还要逐个入场，说明结构本身需要重新分组。</p>
+  <table class="wx-table doc-api">
+    <thead><tr><th>Token</th><th>值</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>--duration-instant</code></td><td>80ms</td><td>颜色变化</td></tr>
+      <tr><td><code>--duration-fast</code></td><td>180ms</td><td>悬停、焦点</td></tr>
+      <tr><td><code>--duration-base</code></td><td>260ms</td><td>浮层进出</td></tr>
+      <tr><td><code>--duration-slow</code></td><td>420ms</td><td>有限入场</td></tr>
+      <tr><td><code>--duration-crawl</code></td><td>600ms</td><td><strong>单次总封顶</strong></td></tr>
+      <tr><td><code>--ease-default</code></td><td>cubic-bezier(.25,.1,.25,1)</td><td>通用</td></tr>
+      <tr><td><code>--ease-out</code></td><td>cubic-bezier(0,0,.2,1)</td><td>到达</td></tr>
+      <tr><td><code>--ease-in-out</code></td><td>cubic-bezier(.42,0,.58,1)</td><td><strong>仅限品牌呼吸</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+<p>编排只用 <code>--stagger-1</code> 到 <code>--stagger-8</code>，每步 60ms。超过八个元素仍要逐项出现，通常说明内容分组本身需要重做。</p>
+
+<h2 id="reduced">减少动效仍然保留结果</h2>
+<p><code>prefers-reduced-motion: reduce</code> 会把空间运动和装饰循环压到近零时长，焦点、选中、成功与错误等信息状态仍然可见。上方的“预览减少动效”只作用于实验场，方便不改系统设置就核对这条路径。</p>
 
 <h2 id="forbidden">动效禁令</h2>
 <ul class="wx-list wx-list--ruled">
-  <li><strong>旋转 spinner、弹跳、回弹、果冻、橡皮筋</strong>——与"温和流动"相悖</li>
-  <li><strong>循环 / 闪烁动效</strong>（品牌标识除外）——分散注意力</li>
-  <li><strong>单次位移 &gt; 16px、时长 &gt; 600ms</strong>——抢夺阅读</li>
+  <li><strong>旋转 spinner、弹跳、回弹、果冻、橡皮筋</strong>——与“温和流动”相悖</li>
+  <li><strong>循环 / 闪烁动效</strong>（品牌标识除外）——持续争夺阅读注意力</li>
+  <li><strong>单次位移 &gt; 16px、时长 &gt; 600ms</strong>——动作开始压过内容</li>
   <li><strong>视差滚动</strong>、滚动驱动的大面积运动</li>
-  <li><strong><code>prefers-reduced-motion</code> 下仍保留装饰动画</strong></li>
+  <li><strong>减少动效下仍保留装饰动画</strong></li>
   <li><strong>用动画掩盖信息结构不清</strong>——动效不是结构问题的解药</li>
 </ul>
 
 <div class="wx-note wx-note--warn">
-  <span class="wx-note__title">没有加载动画，那怎么表示"正在加载"</span>
-  <p>用文字。"正在导出…"比一个转圈提供更多信息，而且不违反循环动画禁令。
-  骨架屏同样不做：静态的发丝线占位本质上就是一根线，而闪烁的 shimmer 是被禁的循环动画。
-  进度条也<strong>没有不确定态</strong>——那是换了个形状的 spinner。</p>
+  <span class="wx-note__title">没有加载动画，怎么表示“正在加载”</span>
+  <p>用文字。“正在导出…”比一个转圈提供更多信息。骨架屏和不确定进度条也不回来：闪烁的 shimmer 与无限循环仍然在制造等待感，而不是解释进展。</p>
 </div>
 
 <h2 id="signal">完成信号</h2>
-<p>需要判断"页面动效是否播完"（截图、导出、自动化测试）时，引入
-<code>animations-complete.js</code>，它会在全部动画结束后给 <code>&lt;html&gt;</code>
-加上 <code>data-animations-complete</code>。</p>
-<p>关键细节：<code>getAnimations()</code> <strong>只看得见已经触发的动画</strong>。
-滚动揭示尚未开始，所以任何延迟触发的动效都要向屏障登记：</p>
+<p>本站加载 <code>animations-complete.js</code>。全部有限动效落定后，<code>&lt;html&gt;</code> 的 <code>data-animations-complete</code> 会变为 <code>true</code>，供截图、导出和自动化判断页面是否稳定。</p>
+<p>品牌呼吸是无限循环，不阻塞完成信号；延迟触发的自定义动效需要主动登记：</p>
 <pre class="doc-code__body"><code>window.__wxMotion.hold(myPromise);</code></pre>
+
+<script type="module" src="./assets/motion-demo.mjs?v=1"></script>
 
     </article>
   </main>
@@ -129,8 +150,10 @@
   <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
-      <li><a class="wx-anchor__link" href="#levels">四档强度</a></li>
+      <li><a class="wx-anchor__link" href="#lab">在同一内容上感受四档强度</a></li>
+      <li><a class="wx-anchor__link" href="#levels">四档强度不是四种装饰</a></li>
       <li><a class="wx-anchor__link" href="#tokens">时长与缓动</a></li>
+      <li><a class="wx-anchor__link" href="#reduced">减少动效仍然保留结果</a></li>
       <li><a class="wx-anchor__link" href="#forbidden">动效禁令</a></li>
       <li><a class="wx-anchor__link" href="#signal">完成信号</a></li>
   </ul>
@@ -145,6 +168,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

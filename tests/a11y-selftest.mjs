@@ -16,7 +16,12 @@ const expected = [
   "duplicate id",
   "missing an explicit type",
   "missing aria-checked",
+  "uses aria-selected; calendar buttons must use aria-pressed",
+  "calendar button is missing aria-pressed",
   "remains keyboard-activatable",
+  "wx-btn uses aria-disabled without native disabled",
+  "table scroll wrapper is not keyboard-focusable",
+  "table scroll wrapper is not a named region",
 ];
 const missed = expected.filter((message) => !output.includes(message));
 if (child.status === 0 || missed.length) {

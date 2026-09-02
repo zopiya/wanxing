@@ -14,10 +14,11 @@
 
 <h2 id="alert">行内提示 Alert</h2>
 <div class="doc-figure">
-    <div class="wx-alert wx-alert--warn"><span>存储空间剩余不足 10%。</span></div>
-    <div class="wx-alert wx-alert--danger" style="margin-block-start:var(--space-3)"><span>连接已断开，正在重试。</span></div>
-    <div class="wx-alert wx-alert--success" style="margin-block-start:var(--space-3)"><span>全部检查通过。</span></div>
+    <div class="wx-alert wx-alert--warn"><strong>存储空间不足。</strong><span>剩余不到 10%；清理不需要的文件后再继续。</span></div>
+    <div class="wx-alert wx-alert--danger" style="margin-block-start:var(--space-3)"><strong>连接已断开。</strong><span>检查网络后重新提交。</span></div>
+    <div class="wx-alert wx-alert--success" style="margin-block-start:var(--space-3)"><strong>导出已完成。</strong><span>文件已保存到所选位置。</span></div>
   </div>
+<p class="wx-field__hint">本示例不自动重连；产品若承诺自动重连，必须实际实现该流程并播报状态。</p>
 
 <h2 id="toast">通知 Toast</h2>
 <p><code>aria-live="polite"</code>——不是 assertive。一条 toast 永远没有紧急到需要打断读者。</p>
@@ -33,7 +34,7 @@
 </div>
 <pre class="doc-code__body"><code>wxToast("草稿已保存", { level: "success", label: "已保存", ms: 5000 });</code></pre>
 <div class="doc-demo"><div class="doc-demo__stage">
-  <div class="wx-toast__region" aria-live="polite" aria-atomic="true" style="position:static;align-items:flex-start">
+  <div class="doc-toast-example">
     <div class="wx-toast wx-toast--success"><span class="wx-toast__label">已保存</span><span>草稿已保存到本机。</span></div>
   </div>
 </div></div>
@@ -54,8 +55,8 @@
 
 <h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约（ARIA / 脚本）</th></tr></thead><tbody>
-<tr><td><code>wx-note / wx-alert</code></td><td>持续说明、上下文状态；瞬时操作结果用 toast。</td><td>文字标签与颜色同时出现；不可逆风险用 danger。</td></tr>
-<tr><td><code>wx-toast</code></td><td>短暂、非阻塞结果；需要确认或读长文的消息改 dialog / note。</td><td>稳定 <code>aria-live="polite"</code> region；由 <code>overlay.js</code> 的 <code>wxToast()</code> 入队。</td></tr>
+<tr><td><code>wx-note / wx-alert</code></td><td>持续说明、上下文状态；瞬时操作结果用 toast。</td><td>alert 先有状态标题；只有阻塞继续时才给明确恢复路径，文字与颜色同时出现；不可逆风险用 danger。</td></tr>
+<tr><td><code>wx-toast</code></td><td>短暂、非阻塞结果；需要确认或读长文的消息改 dialog / note。</td><td>稳定 <code>aria-live="polite" aria-atomic="true"</code> region；由 <code>overlay.js</code> 的 <code>wxToast()</code> 追加消息。</td></tr>
 <tr><td><code>wx-progress / wx-meter</code></td><td>可量化进度、已知量度；未知等待写文字，不做 spinner。</td><td>原生 <code>progress/meter</code> 加可访问名；无 value 不伪造进度。</td></tr>
 <tr><td><code>wx-empty / wx-result</code></td><td>无内容、完成/失败页面；不要用装饰插画填空。</td><td>标题先说明状态，动作是可命名 button/link。</td></tr>
 <tr><td><code>wx-modal / wx-drawer</code></td><td>必须中断的确认、临时上下文；普通详情不要浮层。</td><td>原生 <code>dialog</code>、<code>aria-labelledby</code>；<code>overlay.js</code> 负责开关和焦点归还。</td></tr>
@@ -67,13 +68,14 @@
 <div class="doc-figure">
     <div class="wx-empty">
       <p class="wx-empty__title">还没有内容</p>
-      <p>纯文字说明加一个线框动作，<strong>不用插图</strong>。</p>
+      <p>纯文字说明加一个命名动作，<strong>不用插图</strong>。</p>
+      <p style="margin-block-start:var(--space-6)"><a class="wx-btn wx-btn--text" href="./pattern-list.html">查看条目列表</a></p>
     </div>
   </div>
 
 <h2 id="overlay">浮层 Overlay</h2>
-<p>三者都建在原生 <code>&lt;dialog&gt;</code> 上：焦点陷阱、Esc、<code>inert</code> 背景
-全部来自平台。脚本只补平台没给的两件事——<strong>关闭后把焦点还给触发按钮</strong>，和 toast 队列。</p>
+<p>对话框和抽屉建在原生 <code>&lt;dialog&gt;</code> 上：焦点陷阱、Esc、<code>inert</code> 背景
+全部来自平台。toast 则进入稳定的 <code>aria-live</code> 区域，不夺走焦点。脚本只补平台没给的两件事——<strong>关闭后把焦点还给触发按钮</strong>，和向稳定区域追加 toast。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <div class="wx-cluster">
@@ -99,13 +101,13 @@
 </div>
 
 <h2 id="popconfirm">确认气泡 Popconfirm</h2>
-<p>删除、撤销等就近但可逆的确认可用确认气泡；如果后果复杂、需要解释或有多个字段，改用对话框。</p>
+<p>删除、撤销等就近、后果明确的危险操作可用确认气泡；如果后果复杂、需要解释或有多个字段，改用对话框。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <details class="wx-popconfirm">
     <summary class="wx-btn wx-btn--danger">删除草稿</summary>
     <div class="wx-popconfirm__panel">
       <strong>确认删除这份草稿？</strong><p>删除后无法恢复。</p>
-      <div class="wx-popover__actions"><button class="wx-btn wx-btn--text" type="button">取消</button><button class="wx-btn wx-btn--danger" type="button">删除</button></div>
+      <div class="wx-popover__actions"><button class="wx-btn wx-btn--text" type="button" onclick="this.closest('details').open = false">取消</button><button class="wx-btn wx-btn--danger" type="button" onclick="this.closest('details').open = false; wxToast('草稿已删除（示例）', { level: 'success', label: '已删除' })">确认删除</button></div>
     </div>
   </details>
 </div></div>
@@ -135,8 +137,8 @@
         <span class="wx-popover__title">确认删除？</span>
         <p>此操作不可撤销。</p>
         <div class="wx-popover__actions">
-          <button class="wx-btn wx-btn--text" type="button">取消</button>
-          <button class="wx-btn wx-btn--danger" type="button">删除</button>
+          <button class="wx-btn wx-btn--text" type="button" onclick="this.closest('details').open = false">取消</button>
+          <button class="wx-btn wx-btn--danger" type="button" onclick="this.closest('details').open = false; wxToast('已删除（示例）', { level: 'success', label: '已删除' })">确认删除</button>
         </div>
       </div>
     </details>
@@ -145,16 +147,17 @@
 
 <h2 id="result">结果 Result</h2>
 <p><code>wx-result</code> 用于一次操作结束后的整页反馈：成功、失败、404、无权限。
-它<strong>必须给出下一步</strong>——一个只说"出错了"的页面把读者留在了死路上。</p>
+它<strong>必须给出下一步</strong>——一个只说"出错了"的页面把读者留在了死路上。这里的“回到首页”是反馈收束的安全入口，
+不同于着陆页把读者送往别处的导航 CTA，因此可以成为唯一的主操作。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <section class="wx-result">
     <p class="wx-result__mark">404</p>
     <h3 class="wx-result__title">这个页面不存在</h3>
     <p class="wx-result__body">链接可能已经变更，或者从一开始就写错了。</p>
-    <p class="wx-result__detail">ref: WX-404-8B3525</p>
+    <p class="wx-result__detail">示例编号：WX-404-8B3525</p>
     <div class="wx-result__actions">
-      <a class="wx-btn wx-btn--primary" href="#result">回到首页</a>
-      <a class="wx-btn wx-btn--text" href="#result">查看全部组件 →</a>
+      <a class="wx-btn wx-btn--primary" href="./index.html">回到首页</a>
+      <a class="wx-btn wx-btn--text" href="./components.html">查看全部组件 →</a>
     </div>
   </section>
 </div></div>

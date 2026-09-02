@@ -2,7 +2,7 @@
 <p class="wx-lede">动作、标识与状态的基础组件。它们应服务内容和任务，而不是制造额外的视觉表面。</p>
 
 <h2 id="button">按钮</h2>
-<p>按钮触发动作；去往新页面使用链接。每个视图至多一个填充主按钮，其他动作按优先级退回线框或文字形式。</p>
+<p>按钮触发动作；去往新页面使用链接。不可用的原生按钮必须写 <code>disabled</code>，不用只改变外观的 <code>aria-disabled</code>。每个视图至多一个填充主按钮：真实提交、反馈收束，或应用轨明确推进当前任务的动作；其他动作按优先级退回线框或文字形式。</p>
 <div class="doc-demo"><div class="doc-demo__stage"><div class="wx-cluster"><button class="wx-btn" type="button">默认</button><button class="wx-btn wx-btn--primary" type="button">主操作</button><button class="wx-btn wx-btn--danger" type="button">危险</button><button class="wx-btn wx-btn--text" type="button">文字按钮 →</button><button class="wx-btn" type="button" disabled>禁用</button></div></div></div>
 
 <h2 id="status">标签、计数与状态</h2>
@@ -10,7 +10,7 @@
 <div class="doc-figure"><div class="wx-cluster"><span class="wx-tag">标签</span><span class="wx-tag wx-tag--accent">强调标签</span><span class="wx-badge">12</span><span class="wx-badge wx-badge--accent">3</span></div><div class="wx-cluster" style="margin-block-start:var(--space-4)"><span class="wx-status wx-status--live">运行中</span><span class="wx-status wx-status--warn">降级</span><span class="wx-status wx-status--down">已停止</span><span class="wx-status wx-status--idle">空闲</span></div></div>
 
 <h2 id="identity">头像、按键与标记</h2>
-<div class="doc-figure"><div class="wx-cluster"><span class="wx-avatar wx-avatar--sm">仲</span><span class="wx-avatar">平</span><span class="wx-avatar wx-avatar--round">文</span><span class="wx-avatar wx-avatar--lg">心</span></div><p>按 <kbd class="wx-kbd">Cmd</kbd> + <kbd class="wx-kbd">K</kbd> 打开搜索；<span class="wx-seal" aria-hidden="true"></span> 是装饰性品牌标记。</p></div>
+<div class="doc-figure"><div class="wx-cluster"><span class="wx-avatar wx-avatar--sm">仲</span><span class="wx-avatar">平</span><span class="wx-avatar wx-avatar--round">文</span><span class="wx-avatar wx-avatar--lg">心</span></div><p><kbd class="wx-kbd">Cmd</kbd> + <kbd class="wx-kbd">K</kbd> 是命令搜索可采用的键位提示；只有产品实际绑定了它，才显示这组按键。文字署名可写为“文心 · 万形 <span class="wx-seal" aria-hidden="true"></span>”，不要把标记当游离装饰。</p></div>
 
 <h2 id="command">分段与工具栏</h2>
 <p>分段只在少量互斥视图之间切换；工具栏只承载作用于当前内容的紧凑命令。两者都不用作页面主导航。</p>
@@ -27,8 +27,8 @@
 
 <h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约</th></tr></thead><tbody>
-<tr><td><code>wx-btn</code></td><td>触发动作；导航目的地用 <code>a</code>。</td><td>原生 button；唯一主操作可用 <code>--primary</code>；危险动作仍需确认文案。</td></tr>
+<tr><td><code>wx-btn</code></td><td>触发动作；导航目的地用 <code>a</code>。</td><td>原生 <code>button</code>；不可用状态用 <code>disabled</code>；唯一主操作可用 <code>--primary</code>；危险动作仍需确认文案。</td></tr>
 <tr><td><code>wx-tag / wx-badge / wx-status</code></td><td>短属性、计数、具名状态；长说明改用 note。</td><td>状态必须有文字；可点击时用 button/link，不用 span。</td></tr>
-<tr><td><code>wx-avatar / wx-kbd / wx-seal</code></td><td>人员标识、键盘提示、品牌印记；装饰内容不喧宾夺主。</td><td>信息头像提供 alt/文本；纯装饰 seal 加 <code>aria-hidden</code>。</td></tr>
+<tr><td><code>wx-avatar / wx-kbd / wx-seal</code></td><td>人员标识、键盘提示、品牌印记；装饰内容不喧宾夺主。</td><td>信息头像提供 alt/文本；随品牌文字出现的 seal 加 <code>aria-hidden</code>。</td></tr>
 <tr><td><code>wx-segmented / wx-toolbar</code></td><td>少量互斥视图、上下文命令；不要替代页面导航或堆满所有动作。</td><td>segmented 用 <code>radiogroup</code> 或 <code>tablist</code>；toolbar 要有可访问名，采用者负责键盘模型。</td></tr>
 </tbody></table></div>

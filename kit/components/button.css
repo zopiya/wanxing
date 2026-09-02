@@ -1,6 +1,6 @@
-/* Outline by default. The filled variant exists, is named, and is countable —
-   which is more restrained than leaving it as an unnamed exception in prose.
-   At most one --primary per view; the auditor counts them. */
+/* Outline by default. --primary is reserved for one real data-entry submission
+   or feedback closure; application-track task advance may use that one slot.
+   Editorial navigation CTAs and ordinary jumps use --text. */
 @layer wx.components {
   .wx-btn {
     display: inline-flex;
@@ -26,7 +26,9 @@
     border-color: var(--color-accent);
   }
 
-  /* The one filled button. For a genuinely primary action, once per view. */
+  /* Filled only for a genuine submission or feedback closure, or for the
+     single direct task-advance on an application page. D-type editorial
+     landing navigation is checked by page audit; other pages follow track review. */
   .wx-btn--primary {
     background: var(--color-accent);
     border-color: var(--color-accent);
@@ -53,8 +55,7 @@
     color: var(--color-on-accent);
   }
 
-  .wx-btn[disabled],
-  .wx-btn[aria-disabled="true"] {
+  .wx-btn[disabled] {
     color: var(--color-text-functional);
     border-color: var(--color-border-subtle);
     cursor: not-allowed;

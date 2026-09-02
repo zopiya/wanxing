@@ -10,13 +10,13 @@
     <ol class="wx-list">
       <li><article class="wx-entry">
         <p class="wx-entry__meta">2026-08-30 · 设计</p>
-        <h3 class="wx-entry__title"><a href="#">留白不是空缺</a></h3>
+        <h3 class="wx-entry__title"><a href="./pattern-detail.html">留白不是空缺</a></h3>
         <p>留白是设计的一部分。足够的留白让内容呼吸、让层次清晰、让眼睛休息。</p>
       </article></li>
       <li><article class="wx-entry wx-entry--ruled">
         <p class="wx-entry__meta">2026-08-24 · 排版</p>
-        <h3 class="wx-entry__title"><a href="#">克制即力量</a></h3>
-        <p>频率越低，力量越大。全页只允许一处强调色。</p>
+        <h3 class="wx-entry__title"><a href="./pattern-detail.html">克制即力量</a></h3>
+        <p>频率越低，力量越大。本例只把 accent 留给一个需要行动的节点；阅读轨上限是两处。</p>
       </article></li>
     </ol>
   </div>
@@ -52,7 +52,7 @@
 
 <div class="doc-demo">
   <div class="doc-demo__stage">
-    <div class="wx-toolbar">
+    <div class="wx-toolbar" role="toolbar" aria-label="列表筛选与排序">
       <div class="wx-segmented" role="radiogroup" aria-label="视图">
         <button class="wx-segmented__option" type="button" role="radio" aria-checked="true">全部</button>
         <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">设计</button>
@@ -108,7 +108,7 @@
 <p>只有水平分隔线，<strong>无外框、无竖线</strong>。数字右对齐并使用等宽数字。</p>
 
 <div class="doc-figure">
-    <div class="wx-table-scroll">
+    <div class="wx-table-scroll" tabindex="0" role="region" aria-label="条目统计表">
       <table class="wx-table">
         <thead><tr><th>名称</th><th>状态</th><th style="text-align:end">条目</th></tr></thead>
         <tbody>

@@ -2,7 +2,8 @@
 
    Unlike wx-tooltip, a popover MAY carry information and interactive
    controls, so it must be reachable: built on <details> so it opens by
-   keyboard and closes with Esc without script. The same bounded-surface
+   keyboard without replacing native disclosure behaviour. Escape-to-close
+   needs an explicit script. The same bounded-surface
    exception as overlays applies (D-21) — hairline edge only. */
 @layer wx.components {
   .wx-popover { position: relative; display: inline-block; }

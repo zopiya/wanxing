@@ -133,10 +133,8 @@
   <div class="doc-demo__stage">
     <div class="wx-cluster">
       <button class="wx-btn wx-btn--primary" type="button">提交</button>
-      <button class="wx-btn wx-btn--primary" type="button" disabled>正在提交…</button>
-      <button class="wx-btn" type="button"
-              onclick="wxToast('设置已保存', { level:'success', label:'已保存' })">提交成功 →</button>
     </div>
+    <p class="wx-field__hint">提交中时，同一个按钮改写为“正在提交…”，并设为 <code>disabled</code>；真实请求完成后才显示 toast。这个静态示例不伪造网络过程。</p>
   </div>
 </div>
 

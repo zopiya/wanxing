@@ -20,7 +20,7 @@ const read = (...p) => readFileSync(at(...p), "utf8");
 
 const USAGE = `wenxin — 文心 · 万形
 
-  wenxin audit <file>          审计一个 HTML 页面；输出 JSON，hardGates 非空即不合规
+  wenxin audit <file>          审计合同化输出；<file> 须为 dist/<slug>/index.html 或 app/<slug>/index.html
   wenxin contracts [query]     列出组件契约；query 按名称或 class 过滤
   wenxin tokens [--format F]   输出 token。F: json | dtcg | css | scss | ts（默认 json）
   wenxin skeleton [A-E]        输出页面原型骨架；不带参数则列出五种
@@ -28,7 +28,7 @@ const USAGE = `wenxin — 文心 · 万形
   wenxin --help                这段文字
   wenxin --version             版本号
 
-先读 kit/wenxin.json（wenxin contracts --all）。产出之后跑 wenxin audit，不要声称合规。`;
+先读 kit/wenxin.json（wenxin contracts --all）。产出之后跑 wenxin audit；它只覆盖合同、DOM 与内联样式，不替代浏览器和人工审阅。`;
 
 const [verb, ...rest] = process.argv.slice(2);
 const flag = (name) => {

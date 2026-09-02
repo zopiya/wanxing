@@ -39,7 +39,7 @@ screen reader cannot perceive.
 ## 三条通用规则 · Three Universal Rules
 
 **1 · 描边优先，填充例外**
-默认 `transparent` 背景 + 1px 边框。填充只出现在两处：每视图至多一个主按钮、应用轨的分组表面。
+默认 `transparent` 背景 + 1px 边框。填充只出现在两处：每视图至多一个真实提交或反馈收束的主按钮（应用轨可将其用于直接任务推进）、应用轨的分组表面。
 
 **2 · 分隔靠线与留白，不靠盒子**
 `wx-rule`（发丝线）与 `--space-*` 是这套系统的主要结构手段。
@@ -82,18 +82,19 @@ screen reader cannot perceive.
 ### 数据录入 Data Entry **[惯例]**
 
 `wx-input` · `wx-field`（label / hint / error 三槽）· `wx-select`（原生 `<select>`，不做自定义下拉）·
-`wx-check` · `wx-radio` · `wx-btn`
+`wx-check` · `wx-radio` · `wx-btn`（作为提交控件时）
 
 **这一类无论在哪条轨道都按惯例处理。** 表单就是表单：
 必填用文字标注而非仅颜色，错误同时给颜色与文字，label 在输入框上方。
 
 ```
 wx-btn            默认 ghost 线框，hover 时 border + text → accent
-wx-btn--primary   填充，仅用于真正的主操作，每视图 ≤1 个
-wx-btn--text      纯文字 + 箭头，如「查看更多 →」
+wx-btn--primary   真实提交或反馈收束可用；应用轨可用于直接任务推进；每视图 ≤1
+wx-btn--text      纯文字导航 CTA，如「查看更多 →」
 ```
 
-CTA 优先用 `--text` 变体，而不是按钮。
+阅读轨的页面或区块导航 CTA 用 `<a class="wx-btn wx-btn--text">`。它不因复用 `wx-btn` 的视觉样式而变成
+第三层组件；应用轨只有直接推进当前任务的导航才可使用唯一的 `wx-btn--primary`，普通跳转仍用文字或线框。
 
 ### 数据展示 Data Display
 

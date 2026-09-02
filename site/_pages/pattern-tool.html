@@ -1,0 +1,69 @@
+<h1>工具与查询页</h1>
+<p class="wx-lede">工具页不是“加一个输入框”的阅读页。它要让人清楚知道：可以做什么、正在发生什么、
+没有结果时怎么办、失败后如何继续。</p>
+
+<h2 id="demo">可运行示范</h2>
+<p>这个查询器直接读取已发布的 <code>kit/wenxin.json</code> 组件契约。它不使用手写样例：
+每一条结果都来自真实的组件名称、CSS 类、语义基座、状态与行为归属，并链接到对应分类页。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <section class="wx-tool" data-track="application" data-component-finder aria-labelledby="component-finder-title">
+      <header class="wx-tool__header">
+        <h3 id="component-finder-title">组件契约查询器</h3>
+        <p>按名称、CSS 类或契约原文查找已发布组件。</p>
+      </header>
+
+      <form class="wx-tool__input" data-component-finder-form novalidate>
+        <div class="wx-tool__query-row">
+          <label class="wx-search">
+            <span class="wx-sr-only">搜索组件契约</span>
+            <input id="component-query" class="wx-search__input" data-component-finder-query type="search"
+                   autocomplete="off" required aria-describedby="component-query-hint component-query-error"
+                   placeholder="例如 wx-search、aria、date、导航">
+          </label>
+          <button class="wx-btn wx-btn--primary" type="submit" data-component-finder-submit>查询</button>
+        </div>
+        <p class="wx-field__hint" id="component-query-hint">搜索组件名称、CSS 类、语义基座、状态或行为归属。</p>
+        <p class="wx-field__error" id="component-query-error" data-component-finder-error role="alert" hidden>请输入一个查询关键词。</p>
+      </form>
+
+      <p class="wx-tool__status" data-component-finder-status role="status" aria-live="polite" aria-atomic="true" hidden></p>
+
+      <section class="wx-tool__result" data-component-finder-output aria-busy="false" aria-labelledby="component-results-title">
+        <h4 id="component-results-title">查询结果</h4>
+        <p data-component-finder-idle>输入关键词后开始查询。</p>
+        <ol class="wx-list wx-list--ruled" data-component-finder-list hidden></ol>
+        <section class="wx-empty" data-component-finder-empty hidden>
+          <p class="wx-empty__title">没有匹配的组件</p>
+          <p>试试 CSS 类、英文名或契约中的关键词。</p>
+          <button class="wx-btn wx-btn--text" type="button" data-component-finder-reset>清除查询</button>
+        </section>
+        <div class="wx-alert wx-alert--danger" data-component-finder-failure role="alert" hidden>
+          <span>暂时无法读取组件契约。请确认从本地 HTTP 服务打开后重试。</span>
+          <button class="wx-btn" type="button" data-component-finder-retry>重新查询</button>
+        </div>
+      </section>
+    </section>
+  </div>
+</div>
+<script type="module" src="./assets/pattern-tool.mjs"></script>
+
+<p class="wx-attr"><span class="wx-attr__meta">这段脚本只服务于本页的示范。<code>wx-tool</code> 提供的是
+结构和状态语义；数据源、请求与领域规则仍由采用者负责。</span></p>
+
+<h2 id="states">状态合同</h2>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>状态</th><th>界面必须说清什么</th><th>实现边界</th></tr></thead>
+  <tbody>
+    <tr><td>就绪</td><td>任务、输入标签和可搜索的内容。</td><td>结果区给中性引导，不伪装成“没有结果”。</td></tr>
+    <tr><td>无效输入</td><td>具体问题和恢复动作。</td><td><code>aria-invalid</code>、文字与边框同时出现；输入中不打扰。</td></tr>
+    <tr><td>执行中</td><td>正在读取什么。</td><td><code>aria-busy</code> + 状态文字 + 禁用按钮；不使用 spinner，也不人为延迟。</td></tr>
+    <tr><td>有结果 / 无结果</td><td>找到多少，或没有找到什么。</td><td>结果用 <code>wx-entry</code> 和规则列表；无结果保留具名的清除动作。</td></tr>
+    <tr><td>失败</td><td>哪里不可用，以及下一步。</td><td>保留查询词并给出重试；只有整页无法继续才升级为 <code>wx-result</code>。</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="skeleton">可复制骨架</h2>
+<p>从 <code>kit/patterns/e-tool.html</code> 开始。它只定义 header、输入、状态和结果四个语义区域；
+独立交付时，在渲染合同中声明 <code>track: "application"</code>。</p>

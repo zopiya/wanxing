@@ -9,7 +9,7 @@
  * showModal() is what earns the focus trap, the inert background, the Esc
  * key, and the ::backdrop — all from the platform. We add only what the
  * platform does not give: returning focus to the trigger on close, and a
- * toast queue.
+ * stable region that receives toast messages.
  *
  * Progressive enhancement: without this script the dialog stays closed and
  * the trigger does nothing visible. Never mark up a dialog as [open] to
@@ -54,20 +54,33 @@
     lastTrigger = null;
   }, true);
 
-  /**
-   * wxToast(message, options) — append a toast to the live region.
-   * options: { level: "success"|"warn"|"danger", label: string, ms: number }
-   */
-  window.wxToast = function (message, options) {
-    var opts = options || {};
+  /* The region has to exist before the first message is appended. Creating
+     aria-live and its first child in one mutation can lose that first
+     announcement in assistive technology. Keep this function idempotent so a
+     consumer may also provide a region in its initial HTML. */
+  function ensureToastRegion() {
     var region = document.querySelector(".wx-toast__region");
     if (!region) {
       region = document.createElement("div");
       region.className = "wx-toast__region";
-      /* polite, not assertive: a toast is never urgent enough to interrupt. */
-      region.setAttribute("aria-live", "polite");
       document.body.appendChild(region);
     }
+    /* Polite, not assertive: a toast is never urgent enough to interrupt.
+       Atomic keeps a labelled toast announced as one coherent message. */
+    region.setAttribute("aria-live", "polite");
+    region.setAttribute("aria-atomic", "true");
+    return region;
+  }
+
+  ensureToastRegion();
+
+  /**
+   * wxToast(message, options) — append a toast to the stable live region.
+   * options: { level: "success"|"warn"|"danger", label: string, ms: number }
+   */
+  window.wxToast = function (message, options) {
+    var opts = options || {};
+    var region = ensureToastRegion();
     var toast = document.createElement("output");
     toast.className = "wx-toast" + (opts.level ? " wx-toast--" + opts.level : "");
     if (opts.label) {

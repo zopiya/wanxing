@@ -10,7 +10,7 @@
 
 <h2 id="matrix">决策对照表</h2>
 <div class="doc-figure">
-    <div class="wx-table-scroll">
+    <div class="wx-table-scroll" tabindex="0" role="region" aria-label="形态适配决策对照表">
       <table class="wx-table">
         <thead><tr><th>形态</th><th>轨道</th><th>动效</th><th>被强制的关键决定</th></tr></thead>
         <tbody>
@@ -32,7 +32,7 @@
 <p>无论哪个容器，这些都不变——它们就是<a href="./values.html">不变之魂</a>：</p>
 <ul class="wx-list wx-list--ruled">
   <li>暖土色域与单一 accent（D9）</li>
-  <li>≤2 处 accent</li>
+  <li>阅读轨内容页 ≤2 处 accent；应用轨按页面任务与合同分配强调</li>
   <li>无卡片、无阴影、无渐变（A9）</li>
   <li>WCAG AA 底线</li>
   <li>token 词汇表</li>
@@ -47,24 +47,15 @@
 <strong>形态级</strong>那一层存在的理由。</p>
 
 <h2 id="contract">渲染合同</h2>
-<p>每个产出页面可以携带一份机器可读的合同，声明它的形态、轨道、动效强度和额外检查：</p>
-<pre class="doc-code__body"><code>&lt;html data-wanxing-profile="F6" data-wanxing-contract-version="1" data-motion="E9-0"&gt;
-
-&lt;script type="application/json" id="wanxing-render-contract"&gt;
-{
-  "profile": "F6",
-  "track": "editorial",
-  "theme": { "accentBudget": 2 },
-  "motion": { "intensity": "E9-0", "maxDurationMs": 420 },
-  "structure": { "expectedH1": 1, "requiredRegions": ["main"] }
-}
-&lt;/script&gt;</code></pre>
-<p><code>npm run audit &lt;file&gt;</code> 按合同校验 accent 预算、动效上限、
-禁用图形与结构地标。它是给<strong>使用这套系统的人</strong>检查自己页面的工具。</p>
+<p>需要审计的产出页面携带一份机器可读的合同，声明形态、轨道、动效预算和结构要求。
+<a href="../spec/render-contract.md">渲染合同规范</a>保留<strong>唯一的完整、可运行样例</strong>：
+从那里复制整份 HTML，再替换项目名、slug 与形态；不要把几段 JSON 片段拼成一份“看起来像合同”的页面。</p>
+<pre class="doc-code__body"><code>npm run audit -- dist/&lt;slug&gt;/index.html</code></pre>
+<p>它核验合同、HTML DOM、内联 <code>&lt;style&gt;</code> 与 <code>style</code> 属性中的可执行子集。
+有外链样式表时会明确报告未检查范围；<code>hardGates</code> 为空不是浏览器视觉、辅助技术或人工仲裁都已通过。</p>
 
 <div class="wx-note wx-note--warn">
-  <span class="wx-note__title">这个工具现在没有被 CI 跑</span>
-  <p>原先有九份夹具页面喂养它，随九形态一起删除了。保留审计器是因为它是交付物之一，
-  但这也意味着<strong>没有东西在验证审计器本身还正确</strong>——要重新纳入 <code>npm run check</code>，
-  必须同时恢复一份负控制夹具，否则又会回到"绿色输出被当成证据"的老问题。</p>
+  <span class="wx-note__title">审计器已自测，不等于审计了你的页面</span>
+  <p><code>npm run check:render-audit</code> 运行一份合规夹具，以及缺少主地标、非法轨道和错误阅读轨 CTA 的故意缺陷。
+  这证明审计器会抓这些规则；消费者仍须在自己的输出目录运行它，并完成浏览器与人工检查。</p>
 </div>

@@ -40,7 +40,9 @@
   }
 
   /* Wide tables scroll inside their own container rather than pushing the page
-     sideways. The wrapper is focusable so keyboard users can scroll it. */
+     sideways. Use this wrapper only when a table may overflow, and mark that
+     wrapper tabindex="0" role="region" with an accessible name so keyboard
+     users can intentionally enter and scroll it. */
   .wx-table-scroll {
     overflow-x: auto;
     scrollbar-width: thin;

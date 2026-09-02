@@ -132,15 +132,14 @@ npm run build            # tokens + chart themes + CSS bundles + the docs site
 npm run build:css        # flatten kit into unminified single-file bundles
 npm run build:site       # assemble site/_pages + _nav.json into site/*.html
 npm run check            # tokens + colours + forbidden + site + render-audit selftest + a11y + a11y selftest
-npm run audit <file>     # render-audit one page
+npm run audit -- dist/<slug>/index.html  # render-audit one contract-shaped consumer output
 python3 -m http.server 8899   # examples need http; file:// blocks @import and fonts
 ```
 
-**`npm run check` is currently green: twelve gates, 0 failures.** Nine inspect
-the repository or its artifacts; three are explicit checker self-tests with deliberate defects.
+**`npm run check` is green only when every listed quality gate passes.** The gate set is derived from
+`package.json`, and several gates include explicit self-tests with deliberate defects.
 
-Twelve gates, several of which caught a real defect. Three caught defects in the checking itself,
-which is the failure mode to watch here: **a check that cannot fail is worse than no check**, because
+The gate set has caught real defects, including defects in the checking itself, which is the failure mode to watch here: **a check that cannot fail is worse than no check**, because
 its green output gets cited as evidence. Negative-control anything you are about to call passing.
 
 - `check:tokens` — every `var(--x)` resolves. The pre-rebuild examples referenced 52 tokens that
@@ -172,9 +171,11 @@ its green output gets cited as evidence. Negative-control anything you are about
   valid ARIA references, and native-control contracts. Its negative fixture contains seven distinct
   violations and must reject all seven.
 
-`npm run audit <file>` is a **standalone tool** for checking a consumer's page against a render
-contract. The consumer audit is not run against repository pages, but `check:render-audit` runs its
-own passing and deliberately failing fixtures; an auditor without a negative control is not evidence.
+`npm run audit -- dist/<slug>/index.html` is a **standalone tool** for checking a contract-shaped
+consumer output. It covers the contract, DOM and inline styles; linked CSS, computed visual output and
+assistive-technology behaviour remain outside its evidence boundary. The consumer audit is not run against
+repository pages, but `check:render-audit` runs its own passing and deliberately failing fixtures; an auditor
+without a negative control is not evidence.
 
 ## Status
 

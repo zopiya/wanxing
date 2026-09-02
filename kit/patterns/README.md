@@ -18,3 +18,6 @@ the render contract, and declare archetype E pages as `application` track.
 五份骨架都只用留白和单边线分组，不提供任何四边包围容器。
 
 All five group with whitespace and single-edge rules; none introduces a four-sided container.
+
+`e-tool.html` 只定义工具页的 header、输入、状态和结果区域。查询数据、缓存、失败恢复和领域规则
+由采用者实现；执行时用 `aria-busy`、状态文字、禁用动作与可恢复的空态/失败态表达过程，不使用 spinner。

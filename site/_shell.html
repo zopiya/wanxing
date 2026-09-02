@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,13 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 {{topnav}}
   </nav>
-  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
-          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+{{navToggle}}
   <div class="doc-topbar__end">
     <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
   </div>
@@ -48,6 +47,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

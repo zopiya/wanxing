@@ -6,17 +6,17 @@
 <div class="doc-figure">
     <ul class="wx-menu" style="max-inline-size:16rem">
       <li class="wx-menu__group">灵魂层</li>
-      <li><a class="wx-menu__link" href="#" aria-current="page">设计价值观</a></li>
-      <li><a class="wx-menu__link" href="#">色彩</a></li>
-      <li><a class="wx-menu__link" href="#">字体排版</a></li>
+      <li><a class="wx-menu__link" href="./values.html" aria-current="page">设计价值观</a></li>
+      <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
+      <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
       <li class="wx-menu__group">形态层</li>
-      <li><a class="wx-menu__link" href="#">设计模式</a></li>
+      <li><a class="wx-menu__link" href="./patterns.html">设计模式</a></li>
       <li><span class="wx-menu__link" aria-disabled="true">敬请期待</span></li>
     </ul>
   </div>
 
 <h2 id="dropdown">下拉 Dropdown</h2>
-<p>原生 <code>&lt;details&gt;</code>，<strong>零 JS</strong>。键盘可开合，Esc 关闭都是免费的。</p>
+<p>原生 <code>&lt;details&gt;</code>，<strong>零 JS</strong>。键盘可开合；Esc 关闭和与其他菜单的状态协调并非原生保证，采用者若需要，必须明确实现。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <details class="wx-dropdown">
@@ -51,16 +51,17 @@
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <nav class="wx-crumbs" aria-label="面包屑">
-      <ol><li><a href="#">首页</a></li><li><a href="#">组件</a></li><li>导航</li></ol>
+      <ol><li><a href="./index.html">首页</a></li><li><a href="./components.html">组件</a></li><li>导航</li></ol>
     </nav>
     <nav class="wx-pager" style="margin-block-start:var(--space-6)">
-      <a href="#"><span class="wx-pager__label">上一页</span>布局</a>
-      <a href="#" style="text-align:end"><span class="wx-pager__label">下一页</span>数据录入</a>
+      <a href="./c-layout.html"><span class="wx-pager__label">上一页</span>布局</a>
+      <a href="./c-entry.html" style="text-align:end"><span class="wx-pager__label">下一页</span>数据录入</a>
     </nav>
   </div>
 </div>
 
 <h2 id="pagination">分页 Pagination</h2>
+<p>下面只展示“第 2 页”的静态状态；接入时每个页码必须指向真实的离散结果页，或由应用状态明确接管。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <nav class="wx-pagination" aria-label="分页">
@@ -87,10 +88,11 @@
   </div>
 
 <h2 id="anchor">页内锚点 Anchor</h2>
-<p>本页右侧就是一个（宽屏可见）。配合 <code>wx-affix</code> 吸顶，站点按标题顺序和当前滚动位置更新唯一的 <code>aria-current</code>，避免相邻标题同时高亮。</p>
+<p>本页右侧是文档站私有的 <code>wx-anchor</code> 实例（宽屏可见）。它配合 <code>wx-affix</code> 吸顶，
+由页面脚本按标题顺序和当前滚动位置更新唯一的 <code>aria-current</code>，避免相邻标题同时高亮。<code>wx-anchor</code> 本身不捆绑滚动脚本。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
-  <nav class="wx-nav" aria-label="作品集主导航"><a class="wx-nav__brand" href="#">文心</a><ul class="wx-nav__list"><li><a class="wx-nav__link" aria-current="page" href="#">文章</a></li><li><a class="wx-nav__link" href="#">关于</a></li></ul></nav>
-  <div class="wx-cols wx-cols--2" style="margin-block-start:var(--space-6)"><aside class="wx-sidebar"><p class="wx-sidebar__heading">文档</p><ul class="wx-sidebar__list"><li><a class="wx-sidebar__link" aria-current="page" href="#">导航</a></li><li><a class="wx-sidebar__link" href="#api">API</a></li></ul></aside><nav class="wx-anchor" aria-label="示例文章目录"><ul class="wx-anchor__list"><li><a class="wx-anchor__link" aria-current="location" href="#anchor">当前章节</a></li><li><a class="wx-anchor__link" href="#skip">跳过链接</a></li></ul></nav></div>
+  <nav class="wx-nav" aria-label="作品集主导航"><a class="wx-nav__brand" href="./index.html">文心</a><ul class="wx-nav__list"><li><a class="wx-nav__link" aria-current="page" href="./pattern-detail.html">文章</a></li><li><a class="wx-nav__link" href="./brand.html">关于</a></li></ul></nav>
+  <div class="wx-cols wx-cols--2" style="margin-block-start:var(--space-6)"><aside class="wx-sidebar"><p class="wx-sidebar__heading">文档</p><ul class="wx-sidebar__list"><li><a class="wx-sidebar__link" aria-current="page" href="./c-navigation.html">导航</a></li><li><a class="wx-sidebar__link" href="#api">API</a></li></ul></aside><nav class="wx-anchor" aria-label="示例文章目录"><ul class="wx-anchor__list"><li><a class="wx-anchor__link" aria-current="location" href="#anchor">当前章节</a></li><li><a class="wx-anchor__link" href="#skip">跳过链接</a></li></ul></nav></div>
 </div></div>
 
 <h2 id="api">何时使用、何时不用与 API</h2>
@@ -98,8 +100,9 @@
 <tr><td><code>wx-nav</code></td><td>站点一级导航；局部操作改用 toolbar。</td><td><code>nav aria-label</code>；当前链接用 <code>aria-current</code>。</td></tr>
 <tr><td><code>wx-menu</code></td><td>静态层级菜单；可选择命令集改用原生 select。</td><td><code>ul</code> + 可导航的 <code>a</code>；不可导航项用无 <code>href</code> 的 <code>span aria-disabled="true"</code>。</td></tr>
 <tr><td><code>wx-dropdown</code></td><td>少量二级动作；复杂可交互表单改用 popover。</td><td>原生 <code>details/summary</code>，无脚本。</td></tr>
-<tr><td><code>wx-sidebar</code></td><td>知识库目录；短页不制造侧栏。</td><td><code>aside/nav</code>；窄屏抽屉由 <code>disclosure.js</code> 同步 <code>data-open</code>/<code>aria-expanded</code>。</td></tr>
-<tr><td><code>wx-toc / wx-anchor / wx-affix</code></td><td>长文页内定位；标题少于两项不显示。</td><td><code>nav aria-label</code>；<code>toc.js</code> 更新 <code>aria-current</code>。</td></tr>
+<tr><td><code>wx-sidebar</code></td><td>知识库目录；短页不制造侧栏。</td><td><code>aside/nav</code>；窄屏抽屉由 <code>disclosure.js</code> 同步 <code>data-wx-disclosure-ready</code>/<code>data-open</code>/<code>aria-expanded</code>，无 JS 仍留在文档流。</td></tr>
+<tr><td><code>wx-toc</code></td><td>长文页内定位；标题少于两项不显示。</td><td><code>nav aria-label</code>；可选 <code>toc.js</code> 更新 <code>aria-current="location"</code>。</td></tr>
+<tr><td><code>wx-anchor / wx-affix</code></td><td>页面自有目录与吸附定位；标题少于两项不显示。</td><td><code>nav aria-label</code>；<code>wx-affix</code> 只负责 sticky，采用者或页面脚本更新 <code>aria-current</code>。</td></tr>
 <tr><td><code>wx-crumbs / wx-pager / wx-pagination</code></td><td>层级返回、前后内容、离散分页；无限流不伪装分页。</td><td>外层 <code>nav aria-label</code>；当前页用 <code>aria-current="page"</code>；不可用方向不是带 <code>href</code> 的假禁用链接。</td></tr>
 <tr><td><code>wx-tabs</code></td><td>同一上下文的少量面板；跨页面导航用链接。</td><td><code>tablist/tab/tabpanel</code>、<code>aria-selected</code>、<code>aria-controls</code>；需 <code>tabs.js</code>。</td></tr>
 <tr><td><code>wx-steps</code></td><td>线性流程进度；可任意跳转的导航用 tabs。</td><td>当前项 <code>aria-current="step"</code>，完成项 <code>data-complete</code>。</td></tr>
@@ -108,7 +111,8 @@
 
 <h2 id="toc">目录 Table of Contents</h2>
 <p><code>wx-toc</code> 是长文的页内目录，当前位置用 <code>aria-current</code> 标记——
-<strong>不是 <code>.is-active</code> 类</strong>。本站每一页右侧就是一个实例（窄屏下隐藏）。</p>
+<strong>不是 <code>.is-active</code> 类</strong>。下面这个示例加载 kit 的可选 <code>toc.js</code>；
+本站每页右侧则是由文档站私有脚本驱动的 <code>wx-anchor</code>。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <nav class="wx-toc" aria-label="示例目录">
     <p class="wx-toc__heading">本页</p>
@@ -140,3 +144,5 @@
 <div class="wx-note wx-note--info"><span class="wx-note__title">现在就能试</span>
   <p>点一下页面空白处，按 <kbd class="wx-kbd">Tab</kbd>——本站的跳过链接会出现在左上角。
   它是<strong>第一层全局底线</strong>的一部分：键盘可达不参与哲学取舍，两条轨道都必须有。</p></div>
+
+<script src="../kit/components/js/toc.js"></script>

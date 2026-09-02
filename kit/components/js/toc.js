@@ -27,7 +27,7 @@
 
   function mark(id) {
     links.forEach(function (a) { a.removeAttribute("aria-current"); });
-    if (byId[id]) byId[id].setAttribute("aria-current", "true");
+    if (byId[id]) byId[id].setAttribute("aria-current", "location");
   }
 
   var io = new IntersectionObserver(

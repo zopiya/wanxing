@@ -10,7 +10,7 @@
 | `animations-complete.js` | 动画完成信号 `data-animations-complete` | **是**，凡有动效的产出都要 |
 | `reveal.js` | `[data-reveal]` 滚动揭示 | 否 |
 | `toc.js` | `.wx-toc` 滚动高亮 | 否（F6 建议） |
-| `disclosure.js` | 侧栏抽屉等展开/收起 | 否（F6/F2 建议） |
+| `disclosure.js` | 侧栏抽屉等展开/收起；仅初始化后才启用抽屉 CSS | 否（F6/F2 建议） |
 | `copy.js` | 代码块复制按钮 | 否 |
 | `overlay.js` | `<dialog>` 开关、焦点归还、`wxToast()` | 否（浮层必需） |
 | `tabs.js` | `[role="tablist"]` 的 roving tabindex | 否（用 tabs 时建议） |
@@ -45,6 +45,11 @@ It adds only what the platform omits: returning focus to the trigger, and a toas
 `toc.js` 用 `aria-current` 标记当前项，`disclosure.js` 维护 `aria-expanded`，
 样式表再从这些属性上取。视觉状态与无障碍树是**同一个事实**，无法各自漂移 ——
 这正是这套系统不用 `.is-active` 的原因。
+
+`disclosure.js` 还会在其控制的 target 与 trigger 上加
+`data-wx-disclosure-ready`：窄屏 off-canvas 样式只挂在这个属性上，因此脚本未加载时
+侧栏仍在正常文档流里可读。对关闭的窄屏 <code>.wx-sidebar</code>，脚本同步
+`aria-hidden` 与 `inert`；浏览器未支持 `inert` 时会暂时移出后代的 Tab 顺序。
 
 **2 · 隐藏状态由脚本自己加**
 

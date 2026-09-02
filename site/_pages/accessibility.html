@@ -8,7 +8,7 @@
     <tbody>
       <tr><td>正文、语义色与焦点达到对比度底线</td><td><code>npm run check:colors</code> 测 30 组对比度与 12 组 ΔE</td><td>真实内容叠加、图片文字与第三方嵌入。</td></tr>
       <tr><td>文档页有主地标，控件有标签，交互有名字</td><td><code>npm run check:a11y</code> 扫描生成的站点；自测故意放入无标签输入并确认失败</td><td>键盘焦点顺序、读屏器朗读和动态提示时机。</td></tr>
-      <tr><td>焦点不可被移除，动效尊重减少动效</td><td><code>check:forbidden</code> 拦截 <code>outline:none</code>；render-audit 自测覆盖 contract 结构门槛</td><td>键盘完整走查、原生 dialog 焦点归还、触控目标。</td></tr>
+      <tr><td>焦点不可被移除，动效尊重减少动效</td><td><code>check:forbidden</code> 拦截 <code>outline:none</code>；<code>check:a11y</code> 拒绝不可聚焦、无名称的宽表滚动区；render-audit 自测覆盖 contract 结构门槛</td><td>键盘完整走查、原生 dialog 焦点归还、触控目标。</td></tr>
       <tr><td>Windows 高对比模式不被暖土 token 覆盖</td><td><code>kit/base/a11y.css</code> 用 <code>forced-colors: active</code> 映射系统色</td><td>Windows + Edge / Firefox 实机高对比主题。</td></tr>
     </tbody>
   </table>

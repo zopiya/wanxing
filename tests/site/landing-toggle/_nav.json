@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "design",
+    "title": "设计",
+    "groups": [
+      {
+        "title": "基础",
+        "items": [{ "slug": "design", "title": "设计" }]
+      }
+    ]
+  }
+]

@@ -9,6 +9,13 @@
 
   .wx-search:focus-within { border-block-end-color: var(--color-accent); }
 
+  /* Search is an input component too: an error keeps its semantic border even
+     while focused, alongside the linked error text. */
+  .wx-search:has(.wx-search__input[aria-invalid="true"]) {
+    border-block-end-color: var(--color-danger);
+    border-block-end-width: var(--stroke-mark);
+  }
+
   .wx-search__input {
     flex: 1 1 auto;
     min-inline-size: 0;

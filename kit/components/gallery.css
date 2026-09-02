@@ -22,6 +22,10 @@
     flex: 0 0 min(28rem, 80%);
     scroll-snap-align: start;
   }
+  /* A gallery item can itself be a Figure. Its caption still belongs to that
+     image, but gallery items sit in one horizontal rhythm rather than adding
+     the standalone Figure's vertical outer margin. */
+  .wx-gallery__item.wx-figure { margin-block: 0; }
   .wx-gallery__item img { inline-size: 100%; block-size: auto; }
   .wx-gallery__caption {
     margin-block-start: var(--space-2);

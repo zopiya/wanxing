@@ -30,13 +30,13 @@
 
 <h2 id="accent">强调色</h2>
 
-<p>砖红 <code>#8B3525</code>，全页 <strong>≤ 2 处</strong>。这是整套系统被引用最多的约束。</p>
+<p>砖红 <code>#8B3525</code>。阅读轨的静态内容页 <strong>≤ 2 处</strong>；数据录入提交与反馈收束按第三层，适用于两条轨道；应用轨其余强调按页面任务与契约判定。语义色不计入该预算。</p>
 
 <div class="doc-demo">
   <div class="doc-demo__stage">
-    <p><span class="wx-seal" aria-hidden="true"></span> 品牌标记 · <code>--color-accent</code></p>
+    <p>文心 · 万形 <span class="wx-seal" aria-hidden="true"></span> · 品牌标记 · <code>--color-accent</code></p>
     <p><a href="#accent">悬停链接时变为 accent</a> · <code>--color-link-hover</code></p>
-    <p><button class="wx-btn wx-btn--primary" type="button">每视图至多一个填充主按钮</button></p>
+    <p>应用轨的工具提交：<button class="wx-btn wx-btn--primary" type="button">提交查询</button>；直接推进当前任务的导航也可占用这一处，普通跳转仍用线框或文字。</p>
   </div>
 </div>
 
@@ -77,7 +77,7 @@
   <table class="wx-table doc-api">
     <thead><tr><th>想改什么</th><th>覆盖什么</th><th>影响与边界</th></tr></thead>
     <tbody>
-      <tr><td>点睛色</td><td><code>--color-accent</code>、<code>--color-accent-hover</code>、<code>--color-focus</code></td><td>链接悬停、品牌印记、焦点与唯一主操作；仍遵守每页 ≤2 次 accent。</td></tr>
+      <tr><td>点睛色</td><td><code>--color-accent</code>、<code>--color-accent-hover</code>、<code>--color-focus</code></td><td>链接悬停、品牌印记、焦点与一项合乎提交/反馈边界的主操作；应用轨可将该主操作用于直接任务推进。阅读轨静态内容仍 ≤2 次。</td></tr>
       <tr><td>字族</td><td><code>--font-display</code>、<code>--font-body</code>、<code>--font-ui</code>、<code>--font-mono</code></td><td>分别影响标题、正文、界面与代码；保留 CJK fallback，避免只换拉丁字体造成中文回退失控。</td></tr>
       <tr><td>信息密度</td><td>根元素加 <code>data-density="dense"</code></td><td>启用 <code>kit/tokens/dense.css</code> 的间距预设；只压缩间距，不压触控目标或文字等级。</td></tr>
     </tbody>

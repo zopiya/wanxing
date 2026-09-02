@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "pattern-landing",
+    "title": "页面",
+    "groups": [
+      {
+        "title": "原型",
+        "items": [{ "slug": "pattern-landing", "title": "着陆页" }]
+      }
+    ]
+  }
+]

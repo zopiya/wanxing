@@ -11,7 +11,8 @@
   .wx-input.wx-time-picker { font-variant-numeric: tabular-nums; }
 
   /* Popconfirm is a decision, not a modal: native details keeps the trigger
-     keyboard-operable and gives Escape-to-close without a runtime dependency. */
+     keyboard-operable. Escape-to-close is not a native details guarantee;
+     products that require it add an explicit script. */
   .wx-popconfirm { position: relative; display: inline-block; }
   .wx-popconfirm > summary { display: inline-flex; cursor: pointer; list-style: none; }
   .wx-popconfirm > summary::-webkit-details-marker { display: none; }

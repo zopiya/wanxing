@@ -52,7 +52,21 @@
     width: min(100%, var(--width-content));
     margin-inline: auto;
   }
-  .wx-tool__input { margin-block-end: var(--space-12); }
+  .wx-tool__header { margin-block-end: var(--space-8); }
+  .wx-tool__input { margin-block-end: var(--space-6); }
+  .wx-tool__query-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+  .wx-tool__query-row > .wx-btn { align-self: stretch; }
+  .wx-tool__status {
+    margin-block: var(--space-4);
+    color: var(--color-text-functional);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
   .wx-tool__result {
     border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
     padding-block-start: var(--space-8);
@@ -64,5 +78,10 @@
       grid-template-columns: minmax(120px, 0.28fr) minmax(0, 1fr);
       gap: var(--space-8);
     }
+  }
+
+  @media (max-width: 40rem) {
+    .wx-tool__query-row { grid-template-columns: minmax(0, 1fr); }
+    .wx-tool__query-row > .wx-btn { inline-size: 100%; }
   }
 }

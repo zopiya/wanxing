@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>工具与查询页 · 文心 万形</title>
+<link rel="stylesheet" href="../kit/index.css">
+<link rel="stylesheet" href="./assets/site.css?v=7">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="wx-page">
+<a class="wx-skip" href="#main">跳到主要内容</a>
+
+<header class="doc-topbar">
+  <a class="doc-brand" href="./index.html">
+    <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
+  </a>
+  <nav class="doc-primary" aria-label="主要导航">
+<a href="./design.html">设计</a>
+    <a href="./content.html">内容</a>
+    <a href="./components.html">组件</a>
+    <a href="./patterns.html" aria-current="page">页面</a>
+    <a href="./motion.html">动效</a>
+    <a href="./brand.html">品牌</a>
+    <a href="./adopt.html">接入</a>
+  </nav>
+  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
+          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+  <div class="doc-topbar__end">
+    <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
+  </div>
+</header>
+
+<div class="doc-shell ">
+  <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
+    <p class="doc-sidebar__title">页面</p>
+    <ul class="wx-menu">
+      <li class="wx-menu__group">模式 · Patterns</li>
+        <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
+        <li><a class="wx-menu__link" href="./media.html">媒介适配</a></li>
+      <li class="wx-menu__group">页面原型 · Archetypes</li>
+        <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-showcase.html">展示页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-landing.html">着陆页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-tool.html" aria-current="page">工具与查询页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-main" id="main">
+    <article class="doc-article">
+<h1>工具与查询页</h1>
+<p class="wx-lede">工具页不是“加一个输入框”的阅读页。它要让人清楚知道：可以做什么、正在发生什么、
+没有结果时怎么办、失败后如何继续。</p>
+
+<h2 id="demo">可运行示范</h2>
+<p>这个查询器直接读取已发布的 <code>kit/wenxin.json</code> 组件契约。它不使用手写样例：
+每一条结果都来自真实的组件名称、CSS 类、语义基座、状态与行为归属，并链接到对应分类页。</p>
+
+<div class="doc-demo">
+  <div class="doc-demo__stage">
+    <section class="wx-tool" data-track="application" data-component-finder aria-labelledby="component-finder-title">
+      <header class="wx-tool__header">
+        <h3 id="component-finder-title">组件契约查询器</h3>
+        <p>按名称、CSS 类或契约原文查找已发布组件。</p>
+      </header>
+
+      <form class="wx-tool__input" data-component-finder-form novalidate>
+        <div class="wx-tool__query-row">
+          <label class="wx-search">
+            <span class="wx-sr-only">搜索组件契约</span>
+            <input id="component-query" class="wx-search__input" data-component-finder-query type="search"
+                   autocomplete="off" required aria-describedby="component-query-hint component-query-error"
+                   placeholder="例如 wx-search、aria、date、导航">
+          </label>
+          <button class="wx-btn wx-btn--primary" type="submit" data-component-finder-submit>查询</button>
+        </div>
+        <p class="wx-field__hint" id="component-query-hint">搜索组件名称、CSS 类、语义基座、状态或行为归属。</p>
+        <p class="wx-field__error" id="component-query-error" data-component-finder-error role="alert" hidden>请输入一个查询关键词。</p>
+      </form>
+
+      <p class="wx-tool__status" data-component-finder-status role="status" aria-live="polite" aria-atomic="true" hidden></p>
+
+      <section class="wx-tool__result" data-component-finder-output aria-busy="false" aria-labelledby="component-results-title">
+        <h4 id="component-results-title">查询结果</h4>
+        <p data-component-finder-idle>输入关键词后开始查询。</p>
+        <ol class="wx-list wx-list--ruled" data-component-finder-list hidden></ol>
+        <section class="wx-empty" data-component-finder-empty hidden>
+          <p class="wx-empty__title">没有匹配的组件</p>
+          <p>试试 CSS 类、英文名或契约中的关键词。</p>
+          <button class="wx-btn wx-btn--text" type="button" data-component-finder-reset>清除查询</button>
+        </section>
+        <div class="wx-alert wx-alert--danger" data-component-finder-failure role="alert" hidden>
+          <span>暂时无法读取组件契约。请确认从本地 HTTP 服务打开后重试。</span>
+          <button class="wx-btn" type="button" data-component-finder-retry>重新查询</button>
+        </div>
+      </section>
+    </section>
+  </div>
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;section class="wx-tool" data-track="application" data-component-finder aria-labelledby="component-finder-title"&gt;
+  &lt;header class="wx-tool__header"&gt;
+    &lt;h3 id="component-finder-title"&gt;组件契约查询器&lt;/h3&gt;
+    &lt;p&gt;按名称、CSS 类或契约原文查找已发布组件。&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;form class="wx-tool__input" data-component-finder-form novalidate&gt;
+    &lt;div class="wx-tool__query-row"&gt;
+      &lt;label class="wx-search"&gt;
+        &lt;span class="wx-sr-only"&gt;搜索组件契约&lt;/span&gt;
+        &lt;input id="component-query" class="wx-search__input" data-component-finder-query type="search"
+               autocomplete="off" required aria-describedby="component-query-hint component-query-error"
+               placeholder="例如 wx-search、aria、date、导航"&gt;
+      &lt;/label&gt;
+      &lt;button class="wx-btn wx-btn--primary" type="submit" data-component-finder-submit&gt;查询&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;p class="wx-field__hint" id="component-query-hint"&gt;搜索组件名称、CSS 类、语义基座、状态或行为归属。&lt;/p&gt;
+    &lt;p class="wx-field__error" id="component-query-error" data-component-finder-error role="alert" hidden&gt;请输入一个查询关键词。&lt;/p&gt;
+  &lt;/form&gt;
+
+  &lt;p class="wx-tool__status" data-component-finder-status role="status" aria-live="polite" aria-atomic="true" hidden&gt;&lt;/p&gt;
+
+  &lt;section class="wx-tool__result" data-component-finder-output aria-busy="false" aria-labelledby="component-results-title"&gt;
+    &lt;h4 id="component-results-title"&gt;查询结果&lt;/h4&gt;
+    &lt;p data-component-finder-idle&gt;输入关键词后开始查询。&lt;/p&gt;
+    &lt;ol class="wx-list wx-list--ruled" data-component-finder-list hidden&gt;&lt;/ol&gt;
+    &lt;section class="wx-empty" data-component-finder-empty hidden&gt;
+      &lt;p class="wx-empty__title"&gt;没有匹配的组件&lt;/p&gt;
+      &lt;p&gt;试试 CSS 类、英文名或契约中的关键词。&lt;/p&gt;
+      &lt;button class="wx-btn wx-btn--text" type="button" data-component-finder-reset&gt;清除查询&lt;/button&gt;
+    &lt;/section&gt;
+    &lt;div class="wx-alert wx-alert--danger" data-component-finder-failure role="alert" hidden&gt;
+      &lt;span&gt;暂时无法读取组件契约。请确认从本地 HTTP 服务打开后重试。&lt;/span&gt;
+      &lt;button class="wx-btn" type="button" data-component-finder-retry&gt;重新查询&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/section&gt;</code></pre></details>
+</div>
+<script type="module" src="./assets/pattern-tool.mjs"></script>
+
+<p class="wx-attr"><span class="wx-attr__meta">这段脚本只服务于本页的示范。<code>wx-tool</code> 提供的是
+结构和状态语义；数据源、请求与领域规则仍由采用者负责。</span></p>
+
+<h2 id="states">状态合同</h2>
+<div class="doc-figure"><table class="wx-table doc-api">
+  <thead><tr><th>状态</th><th>界面必须说清什么</th><th>实现边界</th></tr></thead>
+  <tbody>
+    <tr><td>就绪</td><td>任务、输入标签和可搜索的内容。</td><td>结果区给中性引导，不伪装成“没有结果”。</td></tr>
+    <tr><td>无效输入</td><td>具体问题和恢复动作。</td><td><code>aria-invalid</code>、文字与边框同时出现；输入中不打扰。</td></tr>
+    <tr><td>执行中</td><td>正在读取什么。</td><td><code>aria-busy</code> + 状态文字 + 禁用按钮；不使用 spinner，也不人为延迟。</td></tr>
+    <tr><td>有结果 / 无结果</td><td>找到多少，或没有找到什么。</td><td>结果用 <code>wx-entry</code> 和规则列表；无结果保留具名的清除动作。</td></tr>
+    <tr><td>失败</td><td>哪里不可用，以及下一步。</td><td>保留查询词并给出重试；只有整页无法继续才升级为 <code>wx-result</code>。</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="skeleton">可复制骨架</h2>
+<p>从 <code>kit/patterns/e-tool.html</code> 开始。它只定义 header、输入、状态和结果四个语义区域；
+独立交付时，在渲染合同中声明 <code>track: "application"</code>。</p>
+
+    </article>
+  </main>
+
+  <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
+  <p class="doc-toc__title">本页</p>
+  <ul class="wx-anchor__list">
+      <li><a class="wx-anchor__link" href="#demo">可运行示范</a></li>
+      <li><a class="wx-anchor__link" href="#states">状态合同</a></li>
+      <li><a class="wx-anchor__link" href="#skeleton">可复制骨架</a></li>
+  </ul>
+</nav></div>
+</div>
+
+<footer class="doc-footer">
+  <p>文字即界面，留白即设计，克制即力量。</p>
+  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
+</footer>
+
+<script src="../kit/components/js/disclosure.js"></script>
+<script src="../kit/components/js/overlay.js"></script>
+<script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
+<script src="./assets/site.js"></script>
+</body>
+</html>

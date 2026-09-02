@@ -57,8 +57,8 @@ const bundle = {
   components: manifest,
   decisions,
   verify: {
-    note: "别声称合规 — 跑一遍。审计器吃一个 HTML 文件，吐 JSON，hardGates 非空即失败。",
-    audit: "npx wenxin audit <file>",
+    note: "别声称合规 — 跑一遍。审计器检查合同化输出的 DOM 与内联样式；hardGates 非空即失败，外链 CSS 与浏览器验证另行人工处理。",
+    audit: "npm exec --no -- wenxin audit dist/<slug>/index.html",
     gates: [
       "check:tokens — 每个 var(--x) 都能解析",
       "check:colors — 每个前景色对它可能落在的每个面测对比度",

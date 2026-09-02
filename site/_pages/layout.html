@@ -1,8 +1,8 @@
 <h1>布局与间距</h1>
-<p class="wx-lede">4px 网格，三档内容宽度，用留白和单边线分组——不用方框。</p>
+<p class="wx-lede">默认 4px 网格，三档内容宽度，用留白和单边线分组——不用方框。</p>
 
 <h2 id="grid">间距网格</h2>
-<p>全部间距落在 <strong>4px 网格</strong>上。<code>--space-1</code> 到 <code>--space-32</code>
+<p>默认密度下，全部间距落在 <strong>4px 网格</strong>上。<code>--space-1</code> 到 <code>--space-32</code>
 共 12 档，跳跃式而非线性，因为视觉上有意义的间距差需要成比例增长。</p>
 <div class="doc-figure">
     <table class="wx-table doc-api">
@@ -73,4 +73,5 @@
 
 <h2 id="density">高密度预设</h2>
 <p>需要更紧凑的知识工具或列表时，在根节点加 <code>data-density="dense"</code>。它只覆盖
-<code>--space-*</code>，不会偷偷缩小字号、边框或触控目标；这是可逆的密度选择，不是第二套视觉语言。</p>
+<code>--space-*</code>，不会偷偷缩小字号、边框或触控目标；dense 为更紧凑的节奏有意使用非 4px 的值，
+所以不继承默认网格承诺。这是可逆的密度选择，不是第二套视觉语言。</p>

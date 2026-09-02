@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>模式总览 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html" aria-current="page">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -43,6 +44,7 @@
         <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
         <li><a class="wx-menu__link" href="./pattern-showcase.html">展示页</a></li>
         <li><a class="wx-menu__link" href="./pattern-landing.html">着陆页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-tool.html">工具与查询页</a></li>
         <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
         <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
     </ul>
@@ -62,8 +64,8 @@
         <tr><td><strong>A</strong></td><td><a href="./pattern-detail.html">阅读 / 详情</a></td><td>从头读到尾</td><td>阅读轨</td></tr>
         <tr><td><strong>B</strong></td><td><a href="./pattern-list.html">索引 / 列表</a></td><td>扫描并挑选</td><td>阅读轨</td></tr>
         <tr><td><strong>C</strong></td><td><a href="./pattern-showcase.html">展示 / 作品集</a></td><td>快速判断此人此物</td><td>阅读轨</td></tr>
-        <tr><td><strong>D</strong></td><td><a href="./pattern-landing.html">着陆 / 首页</a></td><td>十秒内决定去哪</td><td>阅读轨</td></tr>
-        <tr><td><strong>E</strong></td><td><a href="./pattern-form.html">工具 / 表单</a></td><td>完成一件明确的事</td><td><strong>应用轨</strong></td></tr>
+        <tr><td><strong>D</strong></td><td><a href="./pattern-landing.html">着陆 / 首页</a></td><td>十秒内判断是什么、是否继续</td><td>阅读轨</td></tr>
+        <tr><td><strong>E</strong></td><td><a href="./pattern-tool.html">工具 / 查询</a><br><a href="./pattern-form.html">提交表单</a></td><td>完成一件明确的事</td><td><strong>应用轨</strong></td></tr>
       </tbody>
     </table>
   </div>
@@ -71,7 +73,7 @@
 <div class="wx-note wx-note--info">
   <span class="wx-note__title">原型 E 会翻转轨道</span>
   <p>一个工具型页面，即使住在一个纯阅读轨的站点里，也按<strong>应用轨</strong>判定——
-  可以有分组表面、填充主按钮、完整语义色。读者在这一页的任务不是阅读，是完成操作。</p>
+  可以有分组表面、一个直接推进任务的填充主按钮、完整语义色。读者在这一页的任务不是阅读，是完成操作。</p>
 </div>
 
 <h2 id="method">怎么选</h2>
@@ -95,7 +97,8 @@ kit/patterns/e-tool.html       输入 / 查询工具</code></pre>
   <li><a href="./pattern-detail.html"><strong>详情页</strong></a>（A）—— 长文结构、目录、旁注</li>
   <li><a href="./pattern-list.html"><strong>列表页</strong></a>（B）—— 筛选、排序、分页、空态</li>
   <li><a href="./pattern-showcase.html"><strong>展示页</strong></a>（C）—— 判断顺序、时间线、印章预算</li>
-  <li><a href="./pattern-landing.html"><strong>着陆页</strong></a>（D）—— 十秒三件事、唯一主按钮、不用卡片罗列</li>
+  <li><a href="./pattern-landing.html"><strong>着陆页</strong></a>（D）—— 十秒三件事、文字 CTA、不用卡片罗列</li>
+  <li><a href="./pattern-tool.html"><strong>工具与查询页</strong></a>（E）—— 输入、执行、结果、空态与恢复路径</li>
   <li><a href="./pattern-form.html"><strong>表单页</strong></a>（E）—— 布局、校验时机、错误汇总、提交状态</li>
   <li><a href="./pattern-result.html"><strong>结果与异常页</strong></a> —— 成功、失败、404、无权限。不是一种原型，是每种原型都会遇到的状态。</li>
 </ul>
@@ -122,6 +125,7 @@ kit/patterns/e-tool.html       输入 / 查询工具</code></pre>
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

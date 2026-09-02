@@ -4,7 +4,7 @@
    headers. Screen readers announce the weekday and week from the table
    structure, which a grid of <div>s cannot do.
 
-   Selection is aria-selected and today is aria-current="date" — the ring
+   Selection is aria-pressed and today is aria-current="date" — the ring
    and the weight, not colour alone. */
 @layer wx.components {
   .wx-calendar {
@@ -54,7 +54,7 @@
     outline: var(--stroke-hairline) solid var(--color-border-strong);
     outline-offset: -4px;
   }
-  .wx-calendar__day[aria-selected="true"] {
+  .wx-calendar__day[aria-pressed="true"] {
     outline: var(--stroke-mark) solid var(--color-accent);
     outline-offset: -4px;
     color: var(--color-text-heading);

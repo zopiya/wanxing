@@ -79,7 +79,8 @@ Used by: [`f1-web.md`](./media.md) (résumé/portfolio/About). 源材料中未�
 - 背景 Background：`--color-bg-warm`
 - 标题 Title：`--font-display` · `--text-5xl`/`--text-4xl` · `--tracking-chinese` 或 `--tracking-tight`
 - 导航 Nav：透明背景 transparent, `--font-ui` · `--text-sm` · 全大写 uppercase · `--tracking-wider`
-- CTA：纯文字链接型，非填充按钮 plain text link, never a filled button
+- CTA：纯文字链接型，非填充按钮 plain text link, never a filled button。D 型 CTA 是页面或区块间的导航，
+  不属于第三层的数据录入或反馈例外。
 - 区块间距 Section gap：`--space-24` 以上 and above
 
 Used by: [`f1-web.md`](./media.md) (landing page / home).
@@ -95,9 +96,11 @@ Used by: [`f1-web.md`](./media.md) (landing page / home).
 遵循惯例 Follows convention：输入区突出，操作路径清晰，结果区简洁。Prominent input area, clear action path, simple results area.
 
 **灵魂注入 Soul injection:**
-- 输入框 Input：见 [`soul/components.md`](./soul/components.md) 表单规范 form spec
-- 按钮 Button：线框型 outline, hover → `--color-accent`
-- 结果文字 Result text：`--font-body` · `--leading-relaxed`
+- 输入框 Input：见 [`soul/components.md`](./soul/components.md) 表单规范 form spec；始终有可见或可访问标签
+- 按钮 Button：提交工具任务时可用一个 `wx-btn--primary`；应用轨直接推进当前任务的下一步也可占用这一处。
+  其余动作用线框或文字，普通页面导航仍用 `<a>`
+- 状态 Status：就绪、无效、执行中、有结果、无结果、失败都要有文字与恢复路径；执行中用 `aria-busy` + 禁用按钮，不用 spinner
+- 结果文字 Result text：`--font-body` · `--leading-relaxed`；结果按 `wx-entry` / 规则列表展开，不堆卡片
 - 图标 Icon：`--icon-md`, `--color-text-secondary`
 
 Used by: [`f6-documentation.md`](./media.md) 的搜索/查询交互界面。源材料中未见独立的纯工具型页面实例。No dedicated instance in the source material for a pure tool page — build from the rules above.

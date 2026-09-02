@@ -143,13 +143,14 @@ H&lt;sub&gt;2&lt;/sub&gt;O E=mc&lt;sup&gt;2&lt;/sup&gt;
 &lt;img&gt; &lt;picture&gt; &lt;svg&gt;
 &lt;video&gt; &lt;audio&gt; &lt;iframe&gt; &lt;canvas&gt;</code></pre>
   <div class="doc-pair__out" lang="zh-CN">
-    <details><summary>折叠标题（原生 details，零 JS）</summary><p>展开后的内容。Esc 与键盘操作由浏览器提供，不需要脚本。</p></details>
-    <p><img src="../kit/assets/brand/logo-mono.svg" alt="文心单色标记" width="32" height="32" style="max-inline-size:4rem"></p>
+    <details><summary>折叠标题（原生 details，零 JS）</summary><p>Enter / Space 开合，<code>open</code> 状态由浏览器维护；裸元素不承诺 Esc 关闭。</p></details>
+    <p><img src="../kit/assets/brand/logo-wenxin.svg" alt="文心朱砂印章" width="64" height="64" style="inline-size:var(--space-16);block-size:var(--space-16)"></p>
   </div>
 </div>
 <p>所有嵌入元素——<code>img</code> <code>picture</code> <code>svg</code> <code>video</code> <code>canvas</code>
 <code>iframe</code> <code>audio</code> <code>embed</code> <code>object</code>——都受 <code>max-width: 100%</code> 约束。
 少了这一条，一个 <code>iframe</code> 就能把整页推宽。</p>
+<p>原生 <code>details</code> 适合补充内容；若任务要求 Escape 关闭或受控状态，使用<a href="./c-navigation.html#dropdown">带契约的展开组件</a>，不要把浏览器未承诺的行为写进裸元素示例。</p>
 
 <h2 id="sections">分节元素</h2>
 <p><code>article</code> <code>section</code> <code>nav</code> <code>aside</code> <code>header</code> <code>footer</code>

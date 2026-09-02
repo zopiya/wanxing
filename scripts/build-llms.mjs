@@ -14,14 +14,16 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { readPageFacts, renderPageFacts } from "./page-facts.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const nav = JSON.parse(readFileSync(join(root, "site", "_nav.json"), "utf8"));
 const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
+const pageFacts = readPageFacts(root);
 
 /** The lede of each page is the page's own answer to "what is this for". */
 function lede(slug) {
-  const html = readFileSync(join(root, "site", "_pages", `${slug}.html`), "utf8");
+  const html = renderPageFacts(readFileSync(join(root, "site", "_pages", `${slug}.html`), "utf8"), pageFacts);
   const m = html.match(/class="(?:wx-lede|doc-screen__lede)"[^>]*>([\s\S]*?)<\/p>/);
   return m ? m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim() : "";
 }
@@ -40,11 +42,11 @@ const index = `# ${pkg.name} · 文心 · 万形
 > 两层：文心是不变的魂（token、原则），万形是它在不同容器里取的形。
 
 **先读这一个文件**：[kit/wenxin.json](../kit/wenxin.json) —— 不变之魂、三层仲裁规则、
-两种排除、禁令（可检查的与需判断的）、全部 token、71 条组件契约、判定索引、以及如何验证。
+两种排除、禁令（可检查的与需判断的）、全部 token、${pageFacts.componentContractCount} 条组件契约、判定索引、以及如何验证。
 它完全由来源派生，不会与来源不一致。
 
-**不要声称合规，跑一遍**：\`npx wenxin audit <file>\` 吃一个 HTML 文件，吐 JSON；
-\`hardGates\` 非空即不合规。
+**不要声称合规，跑一遍**：\`npm exec --no -- wenxin audit dist/<slug>/index.html\` 审计合同化输出的 DOM 与内联样式；
+\`hardGates\` 非空即该可执行子集不合规。外链 CSS、浏览器与人工仲裁仍需另行验证。
 
 **三条不可改**：A9 克制之美 / B9 温暖极简 / D9 暖土调。要改先在
 [spec/DECISIONS.md](../spec/DECISIONS.md) 立待议项。

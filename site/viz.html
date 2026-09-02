@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数据可视化 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html" aria-current="page">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -44,7 +45,6 @@
         <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
         <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
         <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
-        <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
         <li><a class="wx-menu__link" href="./icons.html">图标</a></li>
       <li class="wx-menu__group">数据表达 · Data</li>
         <li><a class="wx-menu__link" href="./viz.html" aria-current="page">数据可视化</a></li>
@@ -66,7 +66,8 @@
 
 <h3>R2 · accent 标记论点，不标记类别</h3>
 <p>全图<strong>只有一个</strong>序列 / 柱 / 点可以是 accent —— caption 正在讲的那一个。
-图表消耗页面两处 accent 预算中的一处。</p>
+在阅读轨内容页，它消耗两处 accent 预算中的一处；应用轨按页面契约分配强调，
+但图表本身仍不把 accent 降格为普通分类色。</p>
 
 <h3>R3 · 直接标注，不用图例</h3>
 <p>在序列右端直接写名字，而不是让读者在图例和曲线之间来回对照。
@@ -76,11 +77,13 @@
 <p><strong>无网格线</strong>（只留一根基线）、<strong>无坐标框</strong>、
 <strong>无刻度线</strong>（标签即刻度）、<strong>无背景填充</strong>。</p>
 
-<h2 id="allowed">可用的图表</h2>
+<h2 id="allowed">适用的图形类型（不是预制组件）</h2>
 <div class="doc-figure">
     <p class="wx-attr">折线（≤4 序列）· 面积（单序列）· 柱 · 排行条 · 点 / 棒棒糖 · 斜率 ·
     迷你图 · 小倍数 · 分布带 · 占比堆叠（≤3 段）· 表内条 · 时间线</p>
   </div>
+<p>当前交付的是图表样式、静态 SVG 输出约定与三份主题配置；不附带数据、图表运行时或成品图库。
+本页不拿虚构数据伪造图例。实际项目应从真实数据、来源与 caption 开始，再选择下方对应的消费方式。</p>
 
 <h2 id="forbidden">新增禁令</h2>
 <div class="doc-figure">
@@ -105,17 +108,17 @@
   而不是引入分类色板破坏 D9。<strong>把限制说出来，比假装没有限制诚实。</strong></p>
 </div>
 
-<h2 id="svg">SVG 约定</h2>
-<p>手写 SVG 时有一条关键约定：</p>
+<h2 id="svg">静态 SVG 输出约定</h2>
+<p>当内容流程或图表工具输出静态 SVG 时，有一条关键约定：</p>
 <pre class="doc-code__body"><code>vector-effect: non-scaling-stroke;</code></pre>
 <p>这是 1.5px 描边在海报尺度下<strong>仍然是 1.5px</strong> 的关键——
 没有它，放大十倍的图里线条会粗到破坏整个系统的气质。</p>
 
 <h2 id="themes">三种消费方式</h2>
 <ul class="wx-list wx-list--ruled">
-  <li><strong>手写 SVG</strong> —— <code>kit/charts/</code> 的样式 + SVG 约定</li>
-  <li><strong>Mermaid 主题</strong> —— 由 token 生成，取代手写转换表</li>
-  <li><strong>ECharts / Vega 主题 JSON</strong> —— 生成物，不引入运行时依赖</li>
+  <li><strong>静态 SVG 输出</strong> —— <code>kit/charts/</code> 的样式 + SVG 约定</li>
+  <li><strong>Mermaid 主题</strong> —— 由 token 生成，导入已有 Mermaid 项目，取代手写转换表</li>
+  <li><strong>ECharts / Vega 主题 JSON</strong> —— 给已有项目导入的生成物；本包不引入运行时依赖</li>
 </ul>
 <pre class="doc-code__body"><code>kit/tokens/generated/mermaid-wenxin.json
 kit/tokens/generated/echarts-wenxin.json
@@ -130,10 +133,10 @@ kit/tokens/generated/vega-wenxin.json</code></pre>
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
       <li><a class="wx-anchor__link" href="#rules">四条规则</a></li>
-      <li><a class="wx-anchor__link" href="#allowed">可用的图表</a></li>
+      <li><a class="wx-anchor__link" href="#allowed">适用的图形类型（不是预制组件）</a></li>
       <li><a class="wx-anchor__link" href="#forbidden">新增禁令</a></li>
       <li><a class="wx-anchor__link" href="#honest">一个诚实的代价</a></li>
-      <li><a class="wx-anchor__link" href="#svg">SVG 约定</a></li>
+      <li><a class="wx-anchor__link" href="#svg">静态 SVG 输出约定</a></li>
       <li><a class="wx-anchor__link" href="#themes">三种消费方式</a></li>
   </ul>
 </nav></div>
@@ -147,6 +150,7 @@ kit/tokens/generated/vega-wenxin.json</code></pre>
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

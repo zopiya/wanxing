@@ -32,6 +32,12 @@ if (stale.length) {
 /* Every link in the index has to resolve, or the door opens onto a wall. */
 const index = after[0];
 const problems = [];
+const leakedTemplates = files.flatMap((file, i) =>
+  [...after[i].matchAll(/\{\{[^}]+\}\}/g)].map((match) => `${file.split("/").pop()}: ${match[0]}`)
+);
+if (leakedTemplates.length) {
+  problems.push(...leakedTemplates.map((template) => `unexpanded template ${template}`));
+}
 for (const [, , target] of index.matchAll(/\[([^\]]+)\]\((\.\.?\/[^)]+)\)/g)) {
   const abs = join(root, "site", target);
   try { readFileSync(abs); } catch {
@@ -39,7 +45,7 @@ for (const [, , target] of index.matchAll(/\[([^\]]+)\]\((\.\.?\/[^)]+)\)/g)) {
   }
 }
 if (problems.length) {
-  console.error(`✗ llms: ${problems.length} dead link(s) in llms.txt:\n    ${problems.join("\n    ")}`);
+  console.error(`✗ llms: ${problems.length} problem(s):\n    ${problems.join("\n    ")}`);
   process.exit(1);
 }
 console.log(`✓ llms: index is current and its ${[...index.matchAll(/\]\(\.\.?\//g)].length} link(s) resolve`);

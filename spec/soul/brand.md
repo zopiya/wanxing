@@ -23,18 +23,18 @@ This is the single most defining element in the whole language.
 ```
 
 **使用约束 Constraints**
-- ✅ 必须出现在品牌 Logo / 署名区。Must appear in the brand logo/signature area.
-- ✅ 可在全页追加出现 1 次（可选，慎用）。May appear once more elsewhere on the page (optional, use sparingly).
-- ❌ 不可出现在正文段落、按钮、列表项中。Never in body paragraphs, buttons, or list items.
-- ❌ 不可复制多个分散页面各处。Never scattered in multiple places across a page.
+- ✅ 只作为品牌文字/署名的一部分，紧随名称之后。Only as part of a textual brand name or signature, immediately after the name.
+- ❌ 不可作为游离 accent 出现在正文段落、按钮、列表项中。Never as a free-standing accent in body paragraphs, buttons, or list items.
+- ❌ 不可与图形 Logo 在同一品牌锁定中并列。Never pair it with a graphical logo in the same brand lockup.
+- ❌ 不可复制多个分散页面各处。Never scatter it across a page.
 
 它是签名，不是装饰。出现越少，力量越大。
 
 It is a signature, not decoration. The rarer it appears, the more power it holds.
 
-Logo 用于品牌展示/标题区，■ 符号紧随品牌名后用于署名，二者各司其职。
+Logo 用于品牌展示/标题区，■ 符号紧随品牌名后用于文字署名，二者各司其职且不在同一品牌锁定中并列。
 
-The logo is for brand display/title areas; the ■ mark follows the brand name for signatures — each has its own job.
+The logo is for brand display/title areas; the ■ mark follows the brand name for textual signatures — each has its own job and they do not sit together in one brand lockup.
 
 ---
 
@@ -118,6 +118,6 @@ The logo is brand identity — it **is allowed and required** to deviate from no
 
 ## 与形态层的边界 · Boundary with the Form Layer
 
-品牌标识符 ■ 与 Logo 的**定义**（形态、色彩、圆角、线宽、动效）属于这里（灵魂层）。Logo/■ 在某个具体产出（网页头部、印刷品信头、名片、海报角落）里**放在哪里、多大**，属于形态层，见 [形态层 forms](../media.md) 的 `f3-brand.md`（品牌应用形态）以及各 F1–F9 文件里对品牌元素位置的说明。
+品牌标识符 ■ 与 Logo 的**定义**（形态、色彩、圆角、线宽、动效）属于这里（灵魂层）。Logo/■ 在某个具体产出（网页头部、印刷品信头、名片、海报角落）里**放在哪里、多大**，属于形态层；媒介约束见 [media.md](../media.md)，可执行的网页摆放示例见 [`site/brand-usage.html`](../../site/brand-usage.html)。
 
-The **definition** of the ■ mark and the logo (shape, color, radius, stroke, motion) lives here. **Where and how large** it sits in a specific output (a webpage header, letterhead, business card, poster corner) is a form-layer decision — see wanxing's `f3-brand.md` and the placement notes in each F1–F9 file.
+The **definition** of the ■ mark and the logo (shape, color, radius, stroke, motion) lives here. **Where and how large** it sits in a specific output (a webpage header, letterhead, business card, poster corner) is a form-layer decision — see [media.md](../media.md) for medium constraints and [`site/brand-usage.html`](../../site/brand-usage.html) for executable web placement examples.

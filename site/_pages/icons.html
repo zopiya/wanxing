@@ -1,6 +1,6 @@
 <h1>图标</h1>
-<p class="wx-lede">线条型图标，1.5px 描边，三档尺寸。它们是全局样式里的一条规则，不是品牌资产——
-<a href="./seal.html">署名标记</a>与<a href="./logo.html">朱砂印章</a>归<a href="./brand.html">品牌</a>。</p>
+<p class="wx-lede">线条型图标，1.5px 描边，三档尺寸。这是图标使用规范，不是随包附送的通用图标库——
+当前只交付尺寸与描边 token。<a href="./seal.html">署名标记</a>与<a href="./logo.html">朱砂印章</a>归<a href="./brand.html">品牌</a>。</p>
 
 <h2 id="tokens">尺寸与描边</h2>
 <div class="doc-figure">
@@ -24,19 +24,15 @@
   <li><strong>SVG 缩放时用 <code>vector-effect: non-scaling-stroke</code></strong>——
   这是 1.5px 在海报尺度下仍然是 1.5px 的关键</li>
 </ul>
+<p>采用者在自己的项目中选择一个符合以上规则的图标库；本包不临时混入 CDN 图标，
+也不把品牌 SVG 伪装成 UI 图标。</p>
 
 <h2 id="hit">命中区域</h2>
 <p>图标的<strong>视觉尺寸</strong>和<strong>命中盒</strong>是两件事。
 一个 16px 的图标按钮仍然需要 ≥24px 的可点击区域（移动端 44/48）。
 扩命中盒，不必放大文字——这是田野审计在三个生产站上都发现的问题。</p>
-<div class="doc-demo">
-  <div class="doc-demo__stage">
-    <div class="wx-cluster">
-      <button class="wx-btn wx-btn--text" type="button" style="min-block-size:24px;min-inline-size:24px">↗</button>
-      <span class="wx-attr">视觉 16px，命中盒 24px</span>
-    </div>
-  </div>
-</div>
+<p>本包没有随附 UI 图标资产，因此这里不拿字符或临时图形冒充图标。采用者选定单一图标库后，
+让视觉尺寸为 16px 的实际图标落在 ≥24px 的可点击元素内即可。</p>
 
 <h2 id="brand-boundary">与品牌的分界</h2>
 <p>图标和 Logo 的线宽<strong>刻意不同</strong>：图标 <code>--stroke-mark</code> 1.5px，
