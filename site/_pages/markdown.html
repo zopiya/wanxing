@@ -39,9 +39,9 @@
 [^1]: 脚注正文。</code></pre>
   <div class="doc-pair__out wx-md" lang="zh-CN">
     <p><em>强调</em> 与 <strong>加粗</strong>，<del>删除线</del>，<code>行内代码</code>，<mark>高亮</mark>（扩展语法）。</p>
-    <p>链接 <a href="#inline">文心</a>、自动链接 <a href="https://example.com">https://example.com</a>、脚注引用<sup><a href="#fn-md-1">1</a></sup>。</p>
+    <p>链接 <a href="#inline">文心</a>、自动链接 <a href="https://example.com">https://example.com</a>、脚注引用<sup><a href="#fn-md-1" id="fnref-md-1" data-footnote-ref aria-label="脚注 1">1</a></sup>。</p>
     <p>转义 *不是强调*。</p>
-    <div class="footnotes"><ol><li id="fn-md-1">脚注正文。</li></ol></div>
+    <div class="footnotes"><ol><li id="fn-md-1">脚注正文。<a class="data-footnote-backref" data-footnote-backref href="#fnref-md-1" aria-label="返回脚注 1 的正文位置">↩</a></li></ol></div>
   </div>
 </div>
 <div class="wx-note wx-note--info"><span class="wx-note__title">中文没有真正的斜体</span><p>浏览器为中文合成的伪斜体读起来像渲染故障，所以 <code>:lang(zh)</code> 下的 <code>em</code> 渲染为<strong>加重</strong>而不是倾斜。<code>i</code>、<code>cite</code>、<code>dfn</code>、<code>var</code> 同理。</p></div>
@@ -101,19 +101,34 @@
     <dl><dt>术语</dt><dd>定义列表是扩展语法。</dd><dt>另一个术语</dt><dd>它的解释。</dd></dl>
   </div>
 </div>
+<p>嵌套引用沿用同一条单边线，只缩进一级并降低线条对比度；层级可见，但不会叠成装饰性的套框。</p>
+
+<h2 id="disclosure">折叠内容</h2>
+<div class="doc-pair">
+  <p class="doc-pair__label"><span>Markdown · 内联 HTML</span><span>渲染结果</span></p>
+  <pre class="doc-pair__src"><code>&lt;details open&gt;
+  &lt;summary&gt;查看补充说明&lt;/summary&gt;
+
+  这里放补充正文。
+&lt;/details&gt;</code></pre>
+  <div class="doc-pair__out wx-md" lang="zh-CN">
+    <details open><summary>查看补充说明</summary><p>这里放补充正文。</p></details>
+  </div>
+</div>
+<p>内容层只处理<strong>没有 class 的</strong>原生 <code>details/summary</code>：浏览器负责键盘开合与 <code>open</code> 状态，样式只补正文节奏。带有 <code>.wx-collapse</code> 等 class 的组件继续遵守自己的契约。</p>
 
 <h2 id="table">表格</h2>
 <div class="doc-pair">
   <p class="doc-pair__label"><span>Markdown</span><span>渲染结果</span></p>
   <pre class="doc-pair__src"><code>| 左对齐 | 居中 | 右对齐 |
 | :----- | :--: | -----: |
-| 文心   | 万形 |   1.5px |
+| [文心](#table) | 万形 |   1.5px |
 | 留白   | 克制 |    36em |</code></pre>
   <div class="doc-pair__out wx-md" lang="zh-CN">
     <div class="table-scroll"><table>
       <thead><tr><th style="text-align:start">左对齐</th><th style="text-align:center">居中</th><th style="text-align:end">右对齐</th></tr></thead>
       <tbody>
-        <tr><td style="text-align:start">文心</td><td style="text-align:center">万形</td><td style="text-align:end">1.5px</td></tr>
+        <tr><td style="text-align:start"><a href="#table">文心</a></td><td style="text-align:center">万形</td><td style="text-align:end">1.5px</td></tr>
         <tr><td style="text-align:start">留白</td><td style="text-align:center">克制</td><td style="text-align:end">36em</td></tr>
       </tbody>
     </table></div>
@@ -130,11 +145,11 @@
 
 &lt;figure&gt;
   &lt;img src="…" alt="…"&gt;
-  &lt;figcaption&gt;图注&lt;/figcaption&gt;
+  &lt;figcaption&gt;图注：&lt;a href="#media"&gt;文心&lt;/a&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
   <div class="doc-pair__out wx-md" lang="zh-CN">
     <p><img src="../kit/assets/brand/logo-wanxing.svg" alt="万形朱砂印章" width="64" height="64" style="max-inline-size:5rem"></p>
-    <figure><img src="../kit/assets/brand/logo-wenxin.svg" alt="文心朱砂印章" width="64" height="64" style="max-inline-size:5rem"><figcaption>图注：文心，知识与生长。</figcaption></figure>
+    <figure><img src="../kit/assets/brand/logo-wenxin.svg" alt="文心朱砂印章" width="64" height="64" style="max-inline-size:5rem"><figcaption>图注：<a href="#media">文心</a>，知识与生长。</figcaption></figure>
   </div>
 </div>
 <p><strong>渲染器不该凭空造图注。</strong>一个没有 <code>figcaption</code> 的 <code>img</code> 就是没有图注，把 alt 文本搬去当图注是伪造语义——alt 是给读不到图的人的，图注是给所有人的。</p>
@@ -193,7 +208,7 @@
     <tr><td>列表（有序 / 无序 / 嵌套 / 起始序号 / 松散紧凑）</td><td>CommonMark</td><td>✓</td></tr>
     <tr><td>引用（含嵌套）、分隔线</td><td>CommonMark</td><td>✓</td></tr>
     <tr><td>代码块（围栏 / 缩进 / 语言标注）</td><td>CommonMark</td><td>✓</td></tr>
-    <tr><td>内联 HTML</td><td>CommonMark</td><td>✓ 按裸元素样式呈现</td></tr>
+    <tr><td>内联 HTML（含原生 <code>details/summary</code>）</td><td>CommonMark</td><td>✓ 按裸元素样式呈现</td></tr>
     <tr><td>表格（含对齐）、删除线、任务列表</td><td>GFM</td><td>✓</td></tr>
     <tr><td>脚注</td><td>GFM / 扩展</td><td>✓</td></tr>
     <tr><td>提示块 alerts</td><td>GFM / 扩展</td><td>✓ 三家 class 同时认</td></tr>

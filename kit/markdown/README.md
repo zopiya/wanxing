@@ -33,10 +33,23 @@ class attribute. Conflating the two is how a design system rots.
 
 | 文件 | 作用 |
 |---|---|
-| `markdown.css` | 正文排版：标题节奏、列表、引用、表格、图、脚注、任务列表、代码块 |
+| `markdown.css` | 正文排版：标题节奏、列表、引用、表格、图、脚注、原生折叠、任务列表、代码块 |
 | `syntax.css` | 语法高亮。暖调、低对比、只用四个相近色 —— 文章里的代码仍然是文章 |
 | `admonitions.css` | `:::note` / GitHub alerts 等渲染产物的样式 |
 | `hugo/` | Hugo 渲染钩子与 shortcode，见下 |
+
+## 提炼边界 · Extraction boundary
+
+这一层可以吸收其他 Markdown 主题里经得起迁移的阅读经验，但不会复制某个编辑器或作者的视觉习惯：
+
+- 中文正文使用严格换行规则；嵌套引用只用缩进与更轻的单边线表达层级。
+- 表格与图注里的正文链接保持可见下划线；脚注兼容常见的 `footnote-*` / `data-footnote-*` 输出。
+- 没有 class 的原生 `details/summary` 获得正文节奏；有 class 的组件不受影响。
+- 列表继续使用标准标记与现有间距，不改造计数器、项目符号或复选框外形。
+
+The portable layer keeps reading behavior and semantic HTML, not editor chrome
+or a theme author's ornamental preferences. There is no import or sync
+relationship with an upstream theme.
 
 ## Hugo 接入 · Hugo integration
 

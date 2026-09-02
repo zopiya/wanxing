@@ -20,6 +20,10 @@
     color: var(--color-text-primary);
   }
 
+  /* Keep punctuation from starting or ending a Chinese line where the stricter
+     CJK rules forbid it. Other languages keep their browser defaults. */
+  .wx-md:lang(zh) { line-break: strict; }
+
   /* Vertical rhythm. Set once here rather than on every element, so that any
      tag the renderer happens to emit still lands on the scale. */
   .wx-md > * + * { margin-block-start: var(--space-6); }
@@ -46,6 +50,18 @@
   .wx-md :is(h2, h3, h4):hover .heading-anchor,
   .wx-md .heading-anchor:focus-visible { opacity: 1; }
 
+  /* A renderer can put prose links outside p/li/dd — notably in captions and
+     table cells. Keep those links visible without spending the accent color. */
+  .wx-md :is(figcaption, th, td) a:not([class^="wx-"]):not([class*=" wx-"]) {
+    text-decoration: underline;
+    text-decoration-thickness: var(--stroke-hairline);
+    text-underline-offset: 0.18em;
+    text-decoration-color: var(--color-border-strong);
+  }
+  .wx-md :is(figcaption, th, td) a:not([class^="wx-"]):not([class*=" wx-"]):hover {
+    text-decoration-color: currentColor;
+  }
+
   .wx-md ul, .wx-md ol { padding-inline-start: var(--space-6); }
   .wx-md li + li { margin-block-start: var(--space-2); }
   .wx-md li > ul, .wx-md li > ol { margin-block-start: var(--space-2); }
@@ -55,6 +71,11 @@
     padding-inline-start: var(--space-6);
     border-inline-start: var(--stroke-hairline) solid var(--color-border-strong);
     color: var(--color-text-secondary);
+  }
+  .wx-md blockquote blockquote {
+    margin-block-start: var(--space-4);
+    padding-inline-start: var(--space-4);
+    border-inline-start-color: var(--color-border-subtle);
   }
 
   .wx-md hr {
@@ -127,7 +148,32 @@
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
   }
-  .wx-md sup a { color: var(--color-accent); text-decoration: none; }
+  .wx-md :is(a.footnote-ref, .footnote-ref > a, [data-footnote-ref], sup > a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: var(--stroke-hairline);
+    text-underline-offset: 0.18em;
+  }
+  .wx-md :is(.footnote-backref, .data-footnote-backref, [data-footnote-backref]) {
+    margin-inline-start: var(--space-1);
+    color: var(--color-text-functional);
+    text-decoration: underline;
+    text-decoration-thickness: var(--stroke-hairline);
+    text-underline-offset: 0.18em;
+  }
+  /* remark/rehype emits this unprefixed helper for its accessible section
+     label. Keep the alias scoped to rendered Markdown. */
+  .wx-md .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
 
   /* Task lists. */
   .wx-md .task-list-item { list-style: none; margin-inline-start: calc(-1 * var(--space-6)); }
@@ -136,6 +182,20 @@
   /* Definition lists. */
   .wx-md dt { font-weight: 600; color: var(--color-text-heading); }
   .wx-md dd { margin-inline-start: var(--space-6); color: var(--color-text-secondary); }
+
+  /* Inline HTML disclosures are common in Markdown pipelines. Style only bare
+     details so a real wx-collapse or popover keeps its component contract. */
+  .wx-md details:not([class]) {
+    padding-block: var(--space-3);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .wx-md details:not([class]) > summary {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    color: var(--color-text-heading);
+  }
+  .wx-md details:not([class]) > summary::marker { color: var(--color-text-functional); }
+  .wx-md details:not([class])[open] > summary { margin-block-end: var(--space-3); }
 
   /* CJK: no italic emphasis — weight instead (criterion G2). */
   .wx-md :lang(zh) em { font-style: normal; font-weight: 600; }
