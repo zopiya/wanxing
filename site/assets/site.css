@@ -123,12 +123,34 @@
 
   /* Demo — a live example above its own generated source. Separated from
      the prose by rules and whitespace, not by a card. */
-  .doc-demo { margin-block: var(--space-8); }
+  .doc-demo { margin: var(--space-8) 0; }
   .doc-demo__stage {
     padding: var(--space-8) var(--space-6);
     border-block: var(--stroke-hairline) solid var(--color-border-subtle);
   }
   .doc-demo__stage--tight { padding-block: var(--space-5); }
+  /* A page prototype needs a boundary from the documentation explaining it.
+     This is a viewport cue, not a card: the sides stay open, there is no
+     radius or shadow, and the specimen keeps its real type and interactions. */
+  .doc-demo--prototype .doc-demo__bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin: 0;
+    padding-block: var(--space-2);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-strong);
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-functional);
+  }
+  .doc-demo--prototype .doc-demo__meta { white-space: nowrap; }
+  .doc-demo--prototype .doc-demo__stage {
+    border-block-start-color: var(--color-border-subtle);
+    border-block-end-color: var(--color-border-strong);
+    background: var(--color-bg-pure);
+  }
   .doc-toast-example {
     display: flex;
     flex-direction: column;
@@ -371,5 +393,10 @@
     .doc-pair > * + * { border-inline-start: 0; border-block-start: var(--stroke-hairline) solid var(--color-border-subtle); }
     .doc-product-paths { gap: var(--space-6); }
     .doc-component-groups section:nth-last-child(2) { border-block-end: 0; }
+    .doc-demo--prototype .doc-demo__bar {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0;
+    }
   }
 }
