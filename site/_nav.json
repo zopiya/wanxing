@@ -27,7 +27,6 @@
       ]},
       { "title": "渲染参考", "items": [
         { "slug": "markdown",      "title": "Markdown 全量" },
-        { "slug": "html-elements", "title": "HTML 元素" },
         { "slug": "code",          "title": "代码与语法高亮" }
       ]}
     ]

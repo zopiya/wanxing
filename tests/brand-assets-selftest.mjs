@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(new URL("..", import.meta.url).pathname);
 const page = (name) => readFileSync(resolve(root, `site/_pages/${name}.html`), "utf8");
-const allPages = ["logo", "brand-usage", "html-elements"].map(page).join("\n");
+const allPages = ["logo", "brand-usage"].map(page).join("\n");
 const siteCss = readFileSync(resolve(root, "site/assets/site.css"), "utf8");
 
 assert.doesNotMatch(allPages, /<img\b[^>]*\bsrc="[^\"]*logo-mono\.svg"/i, "currentColor mono source must not be embedded through <img>");
