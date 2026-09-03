@@ -40,7 +40,7 @@ functional-ink floor.
   --color-text-functional: #706D68;  /* 日期/元数据/控件/占位符 functional copy · 4.52:1 */
   --color-text-heading:   #2C2B29;  /* 标题·比正文略深 headings, slightly darker than body */
 
-  /* 点睛之色 · 全页 ≤ 2 处 The single accent — ≤ 2 occurrences per page */
+  /* 点睛之色 · 阅读轨内容页 ≤ 2 处 Editorial content pages: ≤ 2 occurrences */
   --color-accent:        #8B3525;
   --color-accent-hover:  #A84030;
   --color-accent-subtle: #F5E8E5;  /* accent 的极淡背景版 accent's pale background variant */
@@ -117,8 +117,10 @@ Not an inverted pure-black theme — the same vellum, dimmed.
 
 ## 色彩约束 · Constraints
 
-- Accent 全页出现 **≤ 2 处**；图标激活/选中态使用 Accent 不计入此限制。
-  Accent appears **≤ 2 times** per page; icon active/selected states are exempt.
+- 阅读轨内容页的 Accent 出现 **≤ 2 处**；图标激活/选中态使用 Accent 不计入此限制。
+  数据录入提交与反馈收束按第三层；应用轨的其余强调按页面合同。
+  Editorial content pages use Accent **≤ 2 times**; icon active/selected states are exempt.
+  Data-entry submit and feedback closure follow layer three; other application emphasis follows the page contract.
 - 禁止：高饱和蓝、绿、紫、橙作为**装饰或强调**；任何渐变色背景。
   **语义色不在此列** —— danger / warning / success 是信息通道，见下一节。
   Forbidden as *decoration or emphasis*: high-saturation blue/green/purple/orange; any gradient.

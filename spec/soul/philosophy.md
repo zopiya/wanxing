@@ -45,8 +45,10 @@ Any element that fails to make content clearer should not exist.
 Motion should feel like the resistance of a turning page — you sense the care, but never stop to admire it.
 
 **点睛之色 · The Single Accent**
-全页只允许一处强调色，它是整个设计的签名。就像水墨画上的朱砂印 ——
-其余一切是黑白灰，它是唯一有温度的存在。**频率越低，力量越大。**
+阅读轨的内容页把强调色视为整页的签名；它应当稀少，默认预算见
+[双轨仲裁](../tracks.md)。就像水墨画上的朱砂印 —— 其余一切是黑白灰，
+它是唯一有温度的存在。应用轨的任务状态与提交边界由同一仲裁规则单列，
+不把这条审美原则误解为对所有交互的盲目禁令。**频率越低，力量越大。**
 Like the cinnabar seal on an ink painting: the rarer it appears, the more power it holds.
 
 ---
@@ -62,7 +64,7 @@ Wenxin is not a *style*; it is a specific point in a design space. Seven dimensi
 
 | 维度 | 值 | 含义 | 在 token 中的体现 |
 |---|---|---|---|
-| **A · 设计哲学** | **A9 克制之美** | 力量来自克制而非张扬 | 无阴影/渐变/填充按钮；大区块间距从 `--space-24`(96px) 起步 |
+| **A · 设计哲学** | **A9 克制之美** | 力量来自克制而非张扬 | 无阴影/渐变；阅读轨导航不用填充按钮；大区块间距从 `--space-24`(96px) 起步 |
 | **B · 视觉性格** | **B9 温暖极简** | 极简但不冰冷 | 底色暖白 `#F2F0EB` 而非纯白；文字深炭 `#3A3837` 而非纯黑；边框 1px 暖灰 |
 | **C · 排版节奏** | **C9 温暖衬线** | 衬线的笔画有起伏、有呼吸 | 正文 EB Garamond + Noto Serif SC；中文行高 1.85，英文 2.0 |
 | **D · 色彩基调** | **D9 暖土调** | 色彩来自泥土、陶器、茶叶、宣纸 | 暖白底 + 砖红 `#8B3525` accent + 深炭文字；禁高饱和蓝绿紫橙 |

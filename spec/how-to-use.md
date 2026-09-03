@@ -3,7 +3,7 @@
 > 跨层 Cross-cutting — 写给执行设计任务的 AI written for an AI agent doing design work
 > 取材来源见 [PROVENANCE.md](./PROVENANCE.md)。原多智能体流水线专属的部分（Meta Agent 交接、`dist/`/`app/` 目录约定）已剥离，只保留通用操作闭环。
 
-[灵魂层 `soul/`](./soul/philosophy.md) 与[形态层 `forms/`](./media.md) 回答的是「规则是什么」。
+[灵魂层 `soul/`](./soul/philosophy.md) 与[形态层 `media.md`](./media.md) 回答的是「规则是什么」。
 这份文件回答另一个问题：**收到一个设计请求时，按什么流程走，才能保证产出真的落地了这些规则**。
 
 遇到哲学与主流惯例冲突时，不要临场判断 —— 走 [tracks.md](./tracks.md) 的三层规则，判定结果记入 [DECISIONS.md](./DECISIONS.md)。
@@ -28,7 +28,7 @@ Stage 1 Understand → Stage 2 Confirm → Stage 3 Execute → Stage 4 Self-audi
 Clarify the following through conversation — ask only 1–2 questions at a time, and judge from context what's already clear versus what needs asking:
 
 **必须确认 Must confirm：**
-- **页面/产出类型是什么？** 判断对应哪个形态（F1–F9，见 [`wanxing/README.md`](./README.md)）以及哪个页面原型（见 [`page-archetypes.md`](./page-archetypes.md)）
+- **页面/产出类型是什么？** 判断对应哪个形态（F1–F9，见 [`media.md`](./media.md)）以及哪个页面原型（见 [`page-archetypes.md`](./page-archetypes.md)）
   What type of output is this? Determine the form (F1–F9) and, if applicable, the page archetype.
 - **核心内容与用户目标是什么？** 用户来这个产出要完成什么
   What's the core content and the end-user's goal here?
@@ -54,7 +54,8 @@ After understanding the request, **state the design decisions out loud** before 
 - 选用哪个形态 / 哪个页面原型，理由是什么 Which form/archetype, and why
 - 内容宽度选择 Content width choice
 - 背景色选择（暖白/内页白）Background color choice
-- Accent 点睛色出现在哪里（不超过 2 处）Where the accent appears (≤ 2 places)
+- 阅读轨内容页的 Accent 点睛色出现在哪里（不超过 2 处）；应用轨说明任务状态与唯一主操作的边界
+  Where the editorial accent appears (≤ 2 places); for application pages, state the task-state and one-primary-action boundary
 - 品牌标识符 ■ 的位置（如涉及）Where the ■ mark sits, if relevant
 - 有无特殊处理 Any special handling
 
@@ -62,17 +63,21 @@ After understanding the request, **state the design decisions out loud** before 
 
 ## 阶段三 · 执行设计 · Execute
 
-**灵魂层不可妥协** — 色彩、字体、留白、动效、品牌标识符五项规则见 [`wenxin/README.md`](./soul/philosophy.md) 及其下属文件，任何场景都不打折扣。
+**先走三层仲裁，不要把“灵魂”与“惯例”做成二选一。** 第一层（无障碍与基本可用性）无条件优先；
+第二层按阅读轨 / 应用轨选择视觉约束；第三层让数据录入与反馈组件遵循成熟交互惯例。完整顺序只以
+[`tracks.md`](./tracks.md) 为准，原则正文见 [`soul/`](./soul/)，媒介选择见 [`media.md`](./media.md)，页面骨架见 [`page-archetypes.md`](./page-archetypes.md)。
 
-**The soul layer is non-negotiable** — color, type, whitespace, motion, brand identity. See wenxin's files; no scenario discounts them.
+**Walk the three-layer arbitration; do not reduce it to “soul versus convention.”** Layer 1 is non-negotiable
+accessibility and basic usability; Layer 2 selects the editorial or application visual rule set; Layer 3 gives
+data-entry and feedback components their established interaction conventions. [`tracks.md`](./tracks.md) is the
+only ordering authority; use [`soul/`](./soul/), [`media.md`](./media.md), and [`page-archetypes.md`](./page-archetypes.md)
+for the underlying rules and structure.
 
-**形态层跟随行业惯例** — 根据形态（F1–F9）和页面原型选择对应的标准结构，见对应的 `wanxing/fN-*.md`。**不要为了「风格统一」改变该类型产品用户熟悉的结构** — 形态层的职责就是像普通产品一样好用，灵魂层负责让它带上文心的气质。
+如果产出是 HTML，按 [`render-contract.md`](./render-contract.md) 的完整样例声明合同；它让合同、DOM 与内联样式的自审可查，
+不替代浏览器与人工复核。
 
-**The form layer follows industry convention** — pick the standard structure for the form and archetype from the matching `wanxing/fN-*.md` file. **Don't distort a familiar structure in the name of "stylistic consistency"** — the form layer's job is to be as usable as any normal product; the soul layer is what gives it Wenxin's temperament.
-
-如果产出是 HTML，声明一份 [`render-contract.md`](./render-contract.md) 里定义的合同 JSON——这一步不是可选的装饰，而是让第四阶段的自审有据可查。
-
-If the output is HTML, declare a render-contract JSON as defined in `render-contract.md` — this isn't optional decoration, it's what makes Stage 4's self-audit checkable.
+If the output is HTML, declare a contract from the complete `render-contract.md` example. It makes contract, DOM,
+and inline-style checks reproducible; it does not replace browser or human review.
 
 ---
 
@@ -83,7 +88,8 @@ If the output is HTML, declare a render-contract JSON as defined in `render-cont
 **After finishing, before delivering, check your own output against this list. Fix problems immediately — never deliver with a known issue outstanding.**
 
 **色彩 Color**
-- [ ] Accent 色在全页出现次数是否 **≤ 2**？是否只用于品牌标记区域，没有用于正文段落强调？
+- [ ] 若是阅读轨内容页，Accent 色在全页出现次数是否 **≤ 2**？是否只用于品牌标记区域，没有用于正文段落强调？
+- [ ] 若是应用轨，是否说明了任务状态与唯一主操作的边界，而非把 accent 当普通分类色？
 - [ ] 背景色选择是否正确（展示型暖白 / 内容型接近白）？
 - [ ] 有无使用高饱和蓝/绿/紫/橙？有无渐变色背景？
 
@@ -106,7 +112,7 @@ If the output is HTML, declare a render-contract JSON as defined in `render-cont
 
 **组件 Components**
 - [ ] 图标是否为线条型、1.5px？有无填充型图标、两个图标库混用？
-- [ ] 有无卡片 + 阴影（禁止）？按钮是否为线框型，无填充色？
+- [ ] 有无卡片 + 阴影（禁止）？除真实提交、反馈收束或应用轨直接任务推进外，按钮是否为线框或文字形式？
 - [ ] Blockquote 左侧线是否为 accent 色，而不是灰色或黑色？
 
 **形态层 Form layer**
@@ -114,9 +120,10 @@ If the output is HTML, declare a render-contract JSON as defined in `render-cont
 - [ ] 内容宽度是否与页面原型匹配？
 - [ ] 标题与正文间距是否明显大于段落间距（层级清晰）？
 
-完整禁用清单见 [`wenxin/forbidden.md`](./soul/forbidden.md)；各形态的专项自审项见对应 `wanxing/fN-*.md` 的禁止清单/交付物清单。
+完整禁用清单见 [`soul/forbidden.md`](./soul/forbidden.md)；媒介强制项见 [`media.md`](./media.md)，页面结构自审见 [`page-archetypes.md`](./page-archetypes.md)。
 
-The complete forbidden list is in wenxin's forbidden.md; form-specific audit items are in each `wanxing/fN-*.md`'s own forbidden/deliverables list.
+The complete forbidden list is in [`soul/forbidden.md`](./soul/forbidden.md); medium-specific constraints live in
+[`media.md`](./media.md), and page-structure review lives in [`page-archetypes.md`](./page-archetypes.md).
 
 ---
 

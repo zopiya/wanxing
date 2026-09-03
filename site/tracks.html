@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>双轨仲裁 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html" aria-current="page">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -44,7 +45,6 @@
         <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
         <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
         <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
-        <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
         <li><a class="wx-menu__link" href="./icons.html">图标</a></li>
       <li class="wx-menu__group">数据表达</li>
         <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
@@ -55,7 +55,7 @@
     <article class="doc-article">
 <h1>双轨仲裁</h1>
 <p class="wx-lede">哲学与主流惯例冲突时，听谁的？三层规则自上而下检查，
-让"60% 哲学 + 40% 惯例"变成可执行的判定，而不是每次临时争论。</p>
+让"60% 哲学 + 40% 惯例"变成可执行的判定；暂时不能机械判定的边界也要明确写出，而不是每次临时争论。</p>
 
 <h2 id="layer1">第一层 · 全局底线</h2>
 <p><strong>无障碍与基本可用性不参与哲学取舍。</strong>惯例无条件优先，在每一个形态、每一条轨道上都成立。</p>
@@ -80,12 +80,12 @@
         <tr>
           <td><strong>阅读轨</strong><br><span class="wx-attr">editorial</span></td>
           <td>文章、文档、品牌、报告、幻灯、海报</td>
-          <td>哲学全量生效：无卡片容器、无填充按钮、≤2 accent、灰阶图表、极简动效</td>
+          <td>哲学全量生效：无卡片容器、导航 CTA 不用填充按钮、≤2 accent、灰阶图表、极简动效</td>
         </tr>
         <tr>
           <td><strong>应用轨</strong><br><span class="wx-attr">application</span></td>
           <td>移动端；<strong>任何工具型页面</strong></td>
-          <td>放宽视觉约束：允许分组表面、允许填充主按钮、完整语义色、明确的交互反馈</td>
+          <td>放宽视觉约束：允许分组表面、一个直接推进任务的填充主按钮、完整语义色、明确的交互反馈</td>
         </tr>
       </tbody>
     </table>
@@ -108,12 +108,16 @@
     <ol class="wx-list">
       <li><strong>补齐语义色</strong>（第一层要求）—— danger / warning / success 及其淡色变体，
       不计入 accent 预算，因为它们回答的是不同的问题：accent 说"看这里"，语义色说"这是什么状态"。</li>
-      <li><strong>主按钮升格</strong>（第三层要求）—— 填充主按钮从"括号里的例外"变成一等变体，
-      约束从"禁止"改为"<strong>限量</strong>"：每视图至多一个。</li>
+      <li><strong>主按钮有了边界</strong>（第三层 + 应用轨）——提交与反馈收束在任一轨道可用；应用轨还可用一处直接推进当前任务，
+      每视图至多一个。</li>
       <li><strong>分组表面合法化</strong>（第二层要求）—— iOS 分组列表是真实平台惯例，
       在应用轨可用，走边框实现，<strong>仍然禁止阴影</strong>。</li>
     </ol>
-  </div>
+</div>
+
+<p><strong>自动检查的边界：</strong><code>render-audit</code> 当前只识别阅读轨 <code>main.wx-landing</code> 中的 <code>a.wx-btn--primary</code>，
+<code>check:site</code> 再覆盖本站首页与 D 型模式页。其他页面的业务语义、视图边界和应用轨任务推进无法由静态检查可靠推断，
+因此它们仍须按本页规则人工审阅，不能把任一绿灯当作该类别已合规的证据。</p>
 
 <h2 id="summary">一句话</h2>
 <p class="wx-pullquote">第一层保证它能用，第二层保证它像文心，第三层保证表单还是表单。</p>
@@ -140,6 +144,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

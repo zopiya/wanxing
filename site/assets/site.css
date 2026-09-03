@@ -22,6 +22,27 @@
     color: var(--color-text-heading);
     text-decoration: none;
   }
+  /* A seal specimen is an intrinsic brand asset, not editorial media. Keep
+     its documented 64px scale even inside the Figure component, whose normal
+     image rule intentionally expands photographs to the reading measure. */
+  .doc-brand-logo {
+    display: block;
+    inline-size: var(--space-16);
+    block-size: var(--space-16);
+  }
+  .wx-figure .doc-brand-logo {
+    width: var(--space-16);
+    height: var(--space-16);
+  }
+  /* These are two comparable source marks, not broad editorial media. Let
+     them share a quiet grid at the reading measure, then stack only when
+     even two 64px seals and their captions would no longer fit. */
+  .doc-brand-assets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
+    gap: var(--space-8);
+  }
+  .doc-brand-assets .wx-figure { margin-block: 0; }
   .doc-primary {
     display: flex;
     align-items: center;
@@ -31,9 +52,17 @@
     font-size: var(--text-sm);
     white-space: nowrap;
   }
-  .doc-primary a { color: var(--color-text-functional); text-decoration: none; }
+  .doc-primary a {
+    padding-block-end: var(--space-1);
+    border-block-end: var(--stroke-mark) solid transparent;
+    color: var(--color-text-functional);
+    text-decoration: none;
+    transition:
+      color var(--duration-instant) var(--ease-default),
+      border-color var(--duration-instant) var(--ease-default);
+  }
   .doc-primary a:hover, .doc-primary a[aria-current] { color: var(--color-text-heading); }
-  .doc-primary a[aria-current] { border-block-end: var(--stroke-mark) solid var(--color-accent); padding-block-end: var(--space-1); }
+  .doc-primary a[aria-current] { border-block-end-color: var(--color-accent); }
   /* A block container puts its inline-block child on a text baseline, which
      left the theme switch 3.2px above the centre line the brand and nav share.
      The bar is a flex row; its end should be one too. */
@@ -100,6 +129,12 @@
     border-block: var(--stroke-hairline) solid var(--color-border-subtle);
   }
   .doc-demo__stage--tight { padding-block: var(--space-5); }
+  .doc-toast-example {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
 
   /* doc-figure — framed content with no source listing. A token table is
      content, not a component demo; offering to show its markup is noise. */
@@ -185,6 +220,26 @@
   }
   .doc-screen__lede { max-inline-size: 34rem; margin-block: var(--space-6) 0; font-size: var(--text-lg); color: var(--color-text-secondary); }
   .doc-screen__scroll { margin-block: var(--space-16) 0; font-family: var(--font-ui); color: var(--color-text-functional); }
+  @keyframes doc-scroll-cue-arrive {
+    from { opacity: 0.35; transform: translateY(-8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .doc-scroll-cue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: var(--space-12);
+    min-block-size: var(--space-12);
+    color: inherit;
+    text-decoration: none;
+  }
+  .doc-scroll-cue > span {
+    animation: doc-scroll-cue-arrive var(--duration-slow) var(--ease-out) both;
+    transition: transform var(--duration-fast) var(--ease-out), color var(--duration-instant) var(--ease-default);
+  }
+  .doc-scroll-cue:hover > span,
+  .doc-scroll-cue:focus-visible > span { transform: translateY(var(--space-1)); color: var(--color-accent); }
+  [data-motion="E9-0"] .doc-scroll-cue > span { animation: none; }
 
   .doc-screen--hero { justify-items: center; text-align: center; }
   .doc-screen--hero h1 { max-inline-size: none; margin: 0; font-size: clamp(3.4rem, 9vw, 6.4rem); line-height: 1; }
@@ -219,10 +274,61 @@
   .doc-section-index p { margin-block-end: 0; color: var(--color-text-secondary); }
   .doc-section-index > div:last-child { display: flex; flex-wrap: wrap; align-content: start; gap: var(--space-3) var(--space-5); padding-block-start: var(--space-2); font-family: var(--font-ui); }
 
+  /* Motion lab — one piece of content under four intensities. It uses rules,
+     rhythm and the existing brand mark instead of turning the demo into a
+     separate card-shaped product. */
+  .doc-motion-lab {
+    margin-block: var(--space-10) var(--space-16);
+    padding-block: var(--space-6);
+    border-block: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .doc-motion-lab__controls,
+  .doc-motion-lab__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+  }
+  .doc-motion-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(15rem, .85fr);
+    gap: var(--space-10);
+    align-items: center;
+    min-block-size: 20rem;
+    margin-block: var(--space-6);
+    padding-block: var(--space-10);
+    border-block: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .doc-motion-stage__statement { max-inline-size: 32rem; }
+  .doc-motion-stage__statement > :first-child { margin-block-start: 0; }
+  .doc-motion-stage__statement > :last-child { margin-block-end: 0; }
+  .doc-motion-sequence { margin: 0; }
+  .doc-motion-sample {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
+  }
+  .doc-motion-sample:last-child { border-block-end: var(--stroke-hairline) solid var(--color-border-subtle); }
+  .doc-motion-sample dt { font-family: var(--font-ui); color: var(--color-text-functional); }
+  .doc-motion-sample dd { margin: 0; }
+  .doc-motion-signature { display: inline-flex; align-items: baseline; gap: var(--space-2); }
+  .doc-motion-lab__status { flex-basis: 100%; margin: 0; color: var(--color-text-functional); }
+  .doc-motion-lab:not([data-motion-active]) .wx-seal--breathing { animation-play-state: paused; }
+  .doc-motion-lab[data-motion-preview="reduced"] *,
+  .doc-motion-lab[data-motion-preview="reduced"] *::before,
+  .doc-motion-lab[data-motion-preview="reduced"] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
   .doc-component-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--space-10); margin-block: var(--space-10); }
   .doc-component-groups section { padding-block: var(--space-6); border-block-start: var(--stroke-hairline) solid var(--color-border-subtle); }
   .doc-component-groups section:nth-last-child(-n + 2) { border-block-end: var(--stroke-hairline) solid var(--color-border-subtle); }
   .doc-component-groups h2 { margin: 0; font-size: var(--text-xl); }
+  .doc-component-count { margin-inline-start: var(--space-2); font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 400; color: var(--color-text-functional); white-space: nowrap; }
   .doc-component-groups p { min-block-size: 3rem; margin-block: var(--space-3); color: var(--color-text-secondary); }
   .doc-component-groups a { font-family: var(--font-ui); font-size: var(--text-sm); }
   .doc-component-directory { margin-block: var(--space-8); border-block: var(--stroke-hairline) solid var(--color-border-subtle); }
@@ -244,22 +350,24 @@
   @media (max-width: 64rem) {
     .doc-topbar { flex-wrap: wrap; }
     .doc-primary { order: 3; flex: 1 0 100%; gap: var(--space-4); margin: 0; padding-block-start: var(--space-2); overflow-x: auto; }
+    .doc-brand, .doc-topbar__end, .doc-navtoggle[data-wx-disclosure-ready] { min-block-size: var(--space-12); }
+    .doc-navtoggle[data-wx-disclosure-ready] { padding-block: 0; }
     .doc-shell { grid-template-columns: minmax(0, 1fr); }
     .doc-aside { display: none; }
-    .doc-navtoggle { display: inline-flex; }
-    .doc-sidebar {
+    .doc-navtoggle[data-wx-disclosure-ready] { display: inline-flex; }
+    .doc-sidebar[data-wx-disclosure-ready] {
       display: none;
       position: static;
       padding-block-end: var(--space-6);
       border-block-end: var(--stroke-hairline) solid var(--color-border-subtle);
     }
-    .doc-sidebar[data-open] { display: block; }
+    .doc-sidebar[data-wx-disclosure-ready][data-open] { display: block; }
     .doc-shell--landing { padding-inline: var(--padding-page-x); }
     /* Three stacked full screens become a very long scroll on a phone; the
        claim screen carries two blocks, so it is allowed to grow instead. */
     .doc-screen { min-block-size: auto; padding-block: var(--space-16); }
     .doc-screen--hero { min-block-size: 100dvh; }
-    .doc-screen--claim, .doc-product-paths, .doc-section-index, .doc-component-groups, .doc-pair { grid-template-columns: minmax(0, 1fr); }
+    .doc-screen--claim, .doc-product-paths, .doc-section-index, .doc-component-groups, .doc-pair, .doc-motion-stage { grid-template-columns: minmax(0, 1fr); }
     .doc-pair > * + * { border-inline-start: 0; border-block-start: var(--stroke-hairline) solid var(--color-border-subtle); }
     .doc-product-paths { gap: var(--space-6); }
     .doc-component-groups section:nth-last-child(2) { border-block-end: 0; }

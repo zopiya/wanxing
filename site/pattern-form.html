@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>表单页 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html" aria-current="page">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -43,6 +44,7 @@
         <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
         <li><a class="wx-menu__link" href="./pattern-showcase.html">展示页</a></li>
         <li><a class="wx-menu__link" href="./pattern-landing.html">着陆页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-tool.html">工具与查询页</a></li>
         <li><a class="wx-menu__link" href="./pattern-form.html" aria-current="page">表单页</a></li>
         <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
     </ul>
@@ -256,17 +258,13 @@
   <div class="doc-demo__stage">
     <div class="wx-cluster">
       <button class="wx-btn wx-btn--primary" type="button">提交</button>
-      <button class="wx-btn wx-btn--primary" type="button" disabled>正在提交…</button>
-      <button class="wx-btn" type="button"
-              onclick="wxToast('设置已保存', { level:'success', label:'已保存' })">提交成功 →</button>
     </div>
+    <p class="wx-field__hint">提交中时，同一个按钮改写为“正在提交…”，并设为 <code>disabled</code>；真实请求完成后才显示 toast。这个静态示例不伪造网络过程。</p>
   </div>
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;
   &lt;button class="wx-btn wx-btn--primary" type="button"&gt;提交&lt;/button&gt;
-  &lt;button class="wx-btn wx-btn--primary" type="button" disabled&gt;正在提交…&lt;/button&gt;
-  &lt;button class="wx-btn" type="button"
-          onclick="wxToast('设置已保存', { level:'success', label:'已保存' })"&gt;提交成功 →&lt;/button&gt;
-&lt;/div&gt;</code></pre></details>
+&lt;/div&gt;
+&lt;p class="wx-field__hint"&gt;提交中时，同一个按钮改写为“正在提交…”，并设为 &lt;code&gt;disabled&lt;/code&gt;；真实请求完成后才显示 toast。这个静态示例不伪造网络过程。&lt;/p&gt;</code></pre></details>
 </div>
 
 <h2 id="checklist">表单检查清单</h2>
@@ -303,6 +301,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

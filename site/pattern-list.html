@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>列表页 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html" aria-current="page">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -43,6 +44,7 @@
         <li><a class="wx-menu__link" href="./pattern-list.html" aria-current="page">列表页</a></li>
         <li><a class="wx-menu__link" href="./pattern-showcase.html">展示页</a></li>
         <li><a class="wx-menu__link" href="./pattern-landing.html">着陆页</a></li>
+        <li><a class="wx-menu__link" href="./pattern-tool.html">工具与查询页</a></li>
         <li><a class="wx-menu__link" href="./pattern-form.html">表单页</a></li>
         <li><a class="wx-menu__link" href="./pattern-result.html">结果与异常页</a></li>
     </ul>
@@ -62,13 +64,13 @@
     <ol class="wx-list">
       <li><article class="wx-entry">
         <p class="wx-entry__meta">2026-08-30 · 设计</p>
-        <h3 class="wx-entry__title"><a href="#">留白不是空缺</a></h3>
+        <h3 class="wx-entry__title"><a href="./pattern-detail.html">留白不是空缺</a></h3>
         <p>留白是设计的一部分。足够的留白让内容呼吸、让层次清晰、让眼睛休息。</p>
       </article></li>
       <li><article class="wx-entry wx-entry--ruled">
         <p class="wx-entry__meta">2026-08-24 · 排版</p>
-        <h3 class="wx-entry__title"><a href="#">克制即力量</a></h3>
-        <p>频率越低，力量越大。全页只允许一处强调色。</p>
+        <h3 class="wx-entry__title"><a href="./pattern-detail.html">克制即力量</a></h3>
+        <p>频率越低，力量越大。本例只把 accent 留给一个需要行动的节点；阅读轨上限是两处。</p>
       </article></li>
     </ol>
   </div>
@@ -120,7 +122,7 @@
 
 <div class="doc-demo">
   <div class="doc-demo__stage">
-    <div class="wx-toolbar">
+    <div class="wx-toolbar" role="toolbar" aria-label="列表筛选与排序">
       <div class="wx-segmented" role="radiogroup" aria-label="视图">
         <button class="wx-segmented__option" type="button" role="radio" aria-checked="true">全部</button>
         <button class="wx-segmented__option" type="button" role="radio" aria-checked="false">设计</button>
@@ -137,7 +139,7 @@
       </details>
     </div>
   </div>
-<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-toolbar"&gt;
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-toolbar" role="toolbar" aria-label="列表筛选与排序"&gt;
   &lt;div class="wx-segmented" role="radiogroup" aria-label="视图"&gt;
     &lt;button class="wx-segmented__option" type="button" role="radio" aria-checked="true"&gt;全部&lt;/button&gt;
     &lt;button class="wx-segmented__option" type="button" role="radio" aria-checked="false"&gt;设计&lt;/button&gt;
@@ -209,7 +211,7 @@
 <p>只有水平分隔线，<strong>无外框、无竖线</strong>。数字右对齐并使用等宽数字。</p>
 
 <div class="doc-figure">
-    <div class="wx-table-scroll">
+    <div class="wx-table-scroll" tabindex="0" role="region" aria-label="条目统计表">
       <table class="wx-table">
         <thead><tr><th>名称</th><th>状态</th><th style="text-align:end">条目</th></tr></thead>
         <tbody>
@@ -244,6 +246,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

@@ -18,16 +18,16 @@ A red square base with a white negative-space stamp punched through it. The syst
 |---|---|
 | `logo-wanxing.svg` | Generic Wanxing seal — square inside square + cross + center dot. The "origin / convergence" mark used on the F1 reference site. |
 | `logo-wenxin.svg` | Wenxin variant — branching tree (roots → trunk → limbs). Knowledge / growth metaphor. |
-| `logo-mono.svg` | Monochrome version, `fill: currentColor`. Use only when the page already has its 1 accent occurrence elsewhere — keeps Wenxin within budget. |
+| `logo-mono.svg` | A `currentColor` source file. An external `<img>` cannot inherit the page colour, so a consumer must resolve its colour in its own delivery pipeline before using it; the web docs do not embed it directly. |
 
 ## 2. The brand mark `■`
 
 A solid 8 px (desktop) / 6 px (mobile) cinnabar square that sits at the baseline of the brand name like a signature seal. It breathes — `opacity 1 → 0.6 → 1` on a 4-second `ease-in-out` cycle. It is the **only** looping animation the system allows.
 
-Implementation lives in `colors_and_type.css` as `.brand-mark`:
+The web implementation lives in `kit/components/seal.css` as `.wx-seal`:
 
 ```html
-<span class="brand-mark" aria-hidden="true"></span>
+<span class="wx-seal" aria-hidden="true"></span>
 ```
 
 `brand-mark.svg` is included for static contexts (print, slides, mock thumbnails) where the CSS animation cannot run.

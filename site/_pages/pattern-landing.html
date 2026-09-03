@@ -9,7 +9,7 @@
       <header class="wx-landing__hero">
         <h3>文字即界面</h3>
         <p class="wx-lede">十秒内说清它是什么，然后把人送去下一页。</p>
-        <p><a class="wx-btn wx-btn--primary" href="#landing-detail">开始使用</a> <a class="wx-btn wx-btn--text" href="#landing-detail">继续了解 →</a></p>
+        <p><a class="wx-btn wx-btn--text" href="#landing-detail">浏览组件 →</a> <a class="wx-btn wx-btn--text" href="#landing-detail">继续了解 →</a></p>
       </header>
       <div class="wx-landing__sections" id="landing-detail">
         <section><h4>第一件重要的事</h4><p>用内容解释，不用卡片罗列。一段话讲清楚一件事，比三张并排的卡片有效。</p></section>
@@ -23,10 +23,9 @@
 用 <code>dvh</code> 而不是 <code>vh</code>：移动端地址栏会让 <code>vh</code> 比实际屏幕高。</span></p>
 
 <h2 id="one-screen">一屏一件事</h2>
-<p>着陆页的每个区块各占满一屏，读者一次只面对一件事。代价是
-<strong>首屏之下什么都看不见</strong>，所以必须给一个明确的下滚提示
-（<code>wx-landing__cue</code>）——早先的 <code>88dvh</code> 靠露出一线内容来暗示，
-那既是更弱的信号，又白白花掉读者一屏的高度。</p>
+<p>本站首页把三段排成一屏一件事；D 型骨架只保证英雄区占满一屏，首屏之下是否逐屏展开要由内容决定。
+无论怎样，首屏都必须给一个明确的下滚提示（<code>wx-landing__cue</code>）——早先的 <code>88dvh</code>
+靠露出一线内容来暗示，那既是更弱的信号，又白白花掉读者一屏的高度。</p>
 <p><a href="./index.html">本站首页</a>就是这个原型的实现：三屏，各占满一屏，第一屏带下滚提示。</p>
 
 <h2 id="ten-seconds">十秒里只能放三件事</h2>
@@ -37,14 +36,14 @@
 </ul>
 <p><strong>着陆页最常见的失败是想说的太多。</strong>每加一段，前三件事被读到的概率就下降一次。</p>
 
-<h2 id="primary">唯一的填充按钮</h2>
-<p>着陆页是<strong>阅读轨</strong>，但主操作按钮是第三层仲裁规则允许的例外：
-<code>wx-btn--primary</code> 每个视图<strong>至多一个</strong>，其余动作退回线框或文字形式。
-两个并排的填充按钮等于没有主操作。</p>
+<h2 id="primary">文字 CTA，不是填充按钮</h2>
+<p>着陆页是<strong>阅读轨</strong>。D 型 CTA 是导航，不是数据录入或反馈组件：
+用 <code>a.wx-btn.wx-btn--text</code>；此处不适用第三层例外，不能使用
+<code>wx-btn--primary</code>。有两个动作时，靠文案与顺序表达主次，不靠填充色。</p>
 <div class="doc-figure">
   <div class="wx-cluster">
-    <button class="wx-btn wx-btn--primary" type="button">开始使用</button>
-    <button class="wx-btn wx-btn--text" type="button">继续了解 →</button>
+    <a class="wx-btn wx-btn--text" href="#landing-detail">浏览组件 →</a>
+    <a class="wx-btn wx-btn--text" href="#landing-detail">继续了解 →</a>
   </div>
 </div>
 
@@ -74,7 +73,7 @@
   <tbody>
     <tr><td>首屏高</td><td><code>100dvh</code> + 下滚提示</td><td>正好一屏；<code>dvh</code> 避开移动端地址栏。</td></tr>
     <tr><td>行长</td><td><code>--width-showcase</code></td><td>标题和 lede 比正文宽，但仍有上限。</td></tr>
-    <tr><td>轨道</td><td>阅读轨（主按钮除外）</td><td>原型 D 不翻转轨道，只有原型 E 会。</td></tr>
+    <tr><td>轨道</td><td>阅读轨</td><td>原型 D 不翻转轨道；导航 CTA 不借用提交/反馈收束的第三层例外。</td></tr>
   </tbody>
 </table></div>
 

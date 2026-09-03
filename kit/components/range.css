@@ -101,10 +101,16 @@
      Implemented as radio inputs in reverse DOM order so the CSS sibling
      selector can fill everything up to the checked one. */
   .wx-rate {
+    /* The mark remains a compact 16px data mark. Its label owns the actual
+       pointer target, so F2 can raise that target to 48px without turning a
+       five-point rating into five oversized blocks. */
+    --wx-rate-hit-size: var(--touch-target-min, 24px);
     display: inline-flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    gap: var(--space-2);
+    /* 24px hit boxes keep the old 24px centre-to-centre rhythm: a 16px mark
+       plus the original 8px gap. */
+    gap: 0;
   }
   .wx-rate input {
     position: absolute;
@@ -114,14 +120,22 @@
     clip-path: inset(50%);
   }
   .wx-rate label {
+    position: relative;
+    display: grid;
+    place-items: center;
+    inline-size: var(--wx-rate-hit-size);
+    block-size: var(--wx-rate-hit-size);
+    cursor: pointer;
+  }
+  .wx-rate label::before {
+    content: "";
     inline-size: var(--space-4);
     block-size: var(--space-4);
     border: var(--stroke-mark) solid var(--color-border-strong);
-    cursor: pointer;
   }
-  .wx-rate input:checked ~ label,
-  .wx-rate label:hover,
-  .wx-rate label:hover ~ label {
+  .wx-rate input:checked ~ label::before,
+  .wx-rate label:hover::before,
+  .wx-rate label:hover ~ label::before {
     border-color: var(--color-accent);
     background: var(--color-accent);
   }

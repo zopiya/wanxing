@@ -1,7 +1,7 @@
 <h1>字体排版</h1>
 <p class="wx-lede">正文衬线，界面无衬线，代码等宽。中文优先的行长与留白。</p>
 
-<h2 id="families">三个字族</h2>
+<h2 id="families">四个字族</h2>
 <div class="doc-figure">
     <p style="font-family:var(--font-display); font-size:var(--text-2xl)">显示体 —— Lora + 思源宋体</p>
     <p style="font-family:var(--font-body)">正文字体 —— EB Garamond + 思源宋体。长文阅读的默认字体；衬线让长段落里的字形更易分辨。</p>
@@ -49,6 +49,6 @@
 <ul class="wx-list wx-list--ruled">
   <li><strong>字间距</strong> <code>--tracking-chinese: 0.1em</code>——中文标题需要比拉丁文更松的字距</li>
   <li><strong>标点</strong>——使用全角标点，不在行首出现闭合标点</li>
-  <li><strong>中西文混排</strong>——数字与拉丁词两侧留出空隙，由 <code>text-spacing</code> 或手工空格处理</li>
+  <li><strong>中西文混排</strong>——数字与拉丁词两侧留出空隙；本包不自动插字距，内容编辑手动处理，或先在目标浏览器与内容中验证 <code>text-spacing</code> 后再启用</li>
   <li><strong>禁止</strong>大段正文居中对齐——伤害可读性</li>
 </ul>

@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>设计 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html" aria-current="page">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -44,7 +45,6 @@
         <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
         <li><a class="wx-menu__link" href="./typography.html">字体排版</a></li>
         <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
-        <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
         <li><a class="wx-menu__link" href="./icons.html">图标</a></li>
       <li class="wx-menu__group">数据表达</li>
         <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
@@ -60,7 +60,7 @@
   <section class="doc-section-index" aria-labelledby="design-philosophy"><div><h2 id="design-philosophy">设计理念</h2><p>文心定义克制、温暖与内容优先的边界；设计仲裁决定它们何时让位于可用性与行业惯例，无障碍是两条轨道共同的底线。</p></div><div><a href="./values.html">设计价值观</a><a href="./tracks.html">设计仲裁</a><a href="./accessibility.html">无障碍与 RTL</a></div></section>
   <section class="doc-section-index" aria-labelledby="design-global"><div><h2 id="design-global">全局样式</h2><p>以 token 统一色彩、排版、空间、动效和图标；同一套基础规则，才能持续产出不同页面。</p></div><div><a href="./color.html">色彩</a><a href="./typography.html">字体排版</a><a href="./layout.html">布局与间距</a><a href="./motion.html">动效</a><a href="./icons.html">图标</a></div></section>
   <section class="doc-section-index" aria-labelledby="design-data"><div><h2 id="design-data">数据表达</h2><p>用墨色而不是色相编码序列，用强调色标记论点而不是标记类别。图表是文章里的插图，不是仪表盘上的控件。</p></div><div><a href="./viz.html">数据可视化</a></div></section>
-  <section class="doc-section-index" aria-labelledby="design-next"><div><h2 id="design-next">接下来</h2><p>设计决定"用什么规则"；内容决定"文字如何呈现"，组件决定"这个东西长什么样"，页面决定"这一页如何组织"。</p></div><div><a href="./markdown.html">内容 →</a><a href="./components.html">组件 →</a><a href="./patterns.html">页面 →</a></div></section>
+  <section class="doc-section-index" aria-labelledby="design-next"><div><h2 id="design-next">接下来</h2><p>设计决定"用什么规则"；内容决定"文字如何呈现"，组件决定"这个东西长什么样"，页面决定"这一页如何组织"。</p></div><div><a href="./content.html">内容 →</a><a href="./components.html">组件 →</a><a href="./patterns.html">页面 →</a></div></section>
 </div>
 
     </article>
@@ -84,6 +84,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

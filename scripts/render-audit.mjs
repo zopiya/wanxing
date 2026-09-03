@@ -26,8 +26,8 @@ try {
 }
 
 if (!input) {
-  console.error("Usage: node .opencode/tools/render-audit/render-audit.mjs dist/<project-slug>/index.html");
-  console.error("   or: node .opencode/tools/render-audit/render-audit.mjs app/<project-slug>/index.html");
+  console.error("Usage: node ./scripts/render-audit.mjs dist/<project-slug>/index.html");
+  console.error("   or: node ./scripts/render-audit.mjs app/<project-slug>/index.html");
   process.exit(2);
 }
 
@@ -63,12 +63,29 @@ const report = {
   warnings: []
 };
 
+report.metrics.coverage = {
+  inlineStyleBlocks: styles.styleBlockCount,
+  inlineStyleAttributes: styles.inlineStyles.length,
+  linkedStylesheetsUninspected: styles.linkedStylesheets
+};
+if (styles.linkedStylesheets.length) {
+  warn(
+    "coverage.linked_stylesheet_uninspected",
+    "Linked stylesheets are not inspected; this report covers the contract, DOM, <style> blocks, and style attributes only.",
+    { hrefs: styles.linkedStylesheets }
+  );
+}
+
 if (contractResult.error) {
   fail("contract.invalid_json", contractResult.error);
 }
 
 if (!contract) {
   fail("contract.missing", "Missing <script type=\"application/json\" id=\"wanxing-render-contract\">.");
+}
+
+if (contract && contract.track !== undefined && !["editorial", "application"].includes(contract.track)) {
+  fail("contract.track_invalid", "Render Contract track must be editorial or application; omitted tracks default to editorial.");
 }
 
 const htmlProfile = htmlAttrs["data-wanxing-profile"];
@@ -183,13 +200,18 @@ function extractContract(source) {
 function collectStyles(source) {
   const css = [];
   const inlineStyles = [];
+  const linkedStylesheets = [];
   for (const match of source.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
     css.push(match[1]);
   }
   for (const match of source.matchAll(/\sstyle=(["'])([\s\S]*?)\1/gi)) {
     inlineStyles.push(decodeHtml(match[2]));
   }
-  return { css: css.join("\n"), inlineStyles };
+  for (const match of source.matchAll(/<link\b([^>]*)>/gi)) {
+    const attrs = parseAttrs(match[1]);
+    if (attrs.rel?.split(/\s+/).includes("stylesheet") && attrs.href) linkedStylesheets.push(attrs.href);
+  }
+  return { css: css.join("\n"), inlineStyles, linkedStylesheets, styleBlockCount: css.length };
 }
 
 function extractHtmlAttrs(source) {
@@ -203,6 +225,12 @@ function parseAttrs(raw) {
     attrs[match[1].toLowerCase()] = match[3] ?? match[4] ?? "";
   }
   return attrs;
+}
+
+/* Only the exact application value relaxes the reading-track baseline. An
+   omitted or malformed value cannot silently buy a weaker rule set. */
+function effectiveTrack(value) {
+  return value === "application" ? "application" : "editorial";
 }
 
 function auditStructure() {
@@ -258,7 +286,7 @@ function auditColors() {
   const shadows = findDeclarations(/(?:box-shadow|text-shadow)\s*:\s*(?!none\b)[^;]+/gi);
   const filters = findDeclarations(/(?:backdrop-filter|filter)\s*:\s*(?!none\b)[^;]+/gi);
   const accentOccurrences = findAccentOccurrences(cssAndInline);
-  const track = contract?.track ?? "editorial";
+  const track = effectiveTrack(contract?.track);
   // The application track relaxes visual constraints but never the floor.
   // See spec/tracks.md — layer two.
   const accentBudget = Number(
@@ -272,6 +300,7 @@ function auditColors() {
     accentOccurrences,
     accentBudget,
     track,
+    declaredTrack: contract?.track ?? null,
     gradients: gradients.length,
     shadows: shadows.length,
     filters: filters.length,
@@ -485,6 +514,24 @@ function auditProfileFit() {
      machinery that looked alive. What remains is what any page can be held
      to regardless of medium. See spec/media.md for the rules themselves. */
   const motion = contract?.motion;
+  const landingContent = mainContentWithClass("wx-landing");
+  const editorialLanding = effectiveTrack(contract?.track) === "editorial" && landingContent !== null;
+  const primaryNavigationLinks = [...(landingContent ?? "").matchAll(/<a\b([^>]*)>/gi)]
+    .map((m) => parseAttrs(m[1]))
+    .filter((attrs) => attrs.href && (attrs.class ?? "").split(/\s+/).includes("wx-btn--primary"));
+
+  report.metrics.profileFit = {
+    editorialLanding,
+    primaryNavigationLinkCount: primaryNavigationLinks.length
+  };
+
+  if (editorialLanding && primaryNavigationLinks.length) {
+    fail(
+      "soul.editorial_landing_filled_cta",
+      "Editorial wx-landing navigation must use wx-btn--text, not wx-btn--primary.",
+      primaryNavigationLinks.slice(0, 12)
+    );
+  }
   if (motion?.intensity === "E8") {
     const animated = /@keyframes|animation\s*:|transition\s*:/i.test(cssAndInline);
     if (animated) fail("motion.e8_violation", "E8 declares print stillness; no animation or transition may be defined.");
@@ -492,6 +539,21 @@ function auditProfileFit() {
   if (motion && Number(motion.maxDurationMs) > 600) {
     fail("motion.over_cap", `maxDurationMs ${motion.maxDurationMs} exceeds the 600ms system cap.`);
   }
+}
+
+/** A document may contain a legitimate feedback recovery action after its
+ * landing region. The semantic <main> cannot nest, so its matching end tag
+ * gives this audit a reliable, deliberately narrow scope. */
+function mainContentWithClass(className) {
+  for (const opening of html.matchAll(/<main\b([^>]*)>/gi)) {
+    if (!(parseAttrs(opening[1]).class ?? "").split(/\s+/).includes(className)) continue;
+    const start = opening.index + opening[0].length;
+    const close = /<\/main\s*>/gi;
+    close.lastIndex = start;
+    const match = close.exec(html);
+    return match ? html.slice(start, match.index) : null;
+  }
+  return null;
 }
 
 function countTag(tag) {

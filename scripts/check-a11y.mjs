@@ -55,8 +55,28 @@ function inspect(file, source) {
     if (item.tag === "button" && !item.attrs.type) {
       report("<button> is missing an explicit type", item.at);
     }
+    if (item.tag === "button" && item.attrs.class?.split(/\s+/).includes("wx-calendar__day")) {
+      if (Object.hasOwn(item.attrs, "aria-selected")) {
+        report("calendar button uses aria-selected; calendar buttons must use aria-pressed", item.at);
+      }
+      if (!Object.hasOwn(item.attrs, "aria-pressed")) {
+        report("calendar button is missing aria-pressed", item.at);
+      }
+    }
     if (item.tag === "a" && item.attrs["aria-disabled"] === "true" && Object.hasOwn(item.attrs, "href")) {
       report("disabled <a> still has href and remains keyboard-activatable; use a non-link element", item.at);
+    }
+    if (item.tag === "button" && item.attrs.class?.split(/\s+/).includes("wx-btn") &&
+        item.attrs["aria-disabled"] === "true" && !Object.hasOwn(item.attrs, "disabled")) {
+      report("wx-btn uses aria-disabled without native disabled; use <button disabled>", item.at);
+    }
+    if (item.attrs.class?.split(/\s+/).includes("wx-table-scroll")) {
+      if (item.attrs.tabindex !== "0") {
+        report("table scroll wrapper is not keyboard-focusable (use tabindex=\"0\")", item.at);
+      }
+      if (item.attrs.role !== "region" || !hasName(item.attrs)) {
+        report("table scroll wrapper is not a named region (use role=\"region\" with an accessible name)", item.at);
+      }
     }
     if (item.attrs.role === "switch" && !Object.hasOwn(item.attrs, "aria-checked")) {
       report('role="switch" is missing aria-checked', item.at);

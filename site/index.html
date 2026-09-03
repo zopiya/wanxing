@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>文心 · 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,19 +13,19 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
-  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"
-          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>
+
   <div class="doc-topbar__end">
     <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="切换暗色模式"></button>
   </div>
@@ -42,8 +42,8 @@
   <section class="doc-screen doc-screen--hero" aria-labelledby="landing-title">
     <h1 id="landing-title">文心 · 万形</h1>
     <p class="doc-screen__lede">面向内容型产品的设计系统。<br>让判断有出处，让界面能落地。</p>
-    <div class="doc-landing__actions"><a class="wx-btn wx-btn--primary" href="./components.html">开始使用</a><a class="wx-btn wx-btn--text" href="./design.html">探索设计 →</a></div>
-    <p class="doc-screen__scroll" aria-hidden="true">↓</p>
+    <div class="doc-landing__actions"><a class="wx-btn wx-btn--text" href="./components.html">浏览组件 →</a><a class="wx-btn wx-btn--text" href="./design.html">了解设计原则 →</a></div>
+    <p class="doc-screen__scroll"><a class="doc-scroll-cue" href="#landing-claim" aria-label="继续阅读"><span aria-hidden="true">↓</span></a></p>
   </section>
 
   <section class="doc-screen doc-screen--claim" aria-labelledby="landing-claim">
@@ -54,21 +54,19 @@
       不靠又一个容器把它们框起来。</p>
     </div>
     <dl class="doc-screen__stats">
-      <div><dt class="wx-stat__label">组件契约</dt><dd class="wx-stat__value">71</dd><dd class="wx-stat__note">每一条都在文档里有可运行的实例</dd></div>
+      <div><dt class="wx-stat__label">组件契约</dt><dd class="wx-stat__value">71</dd><dd class="wx-stat__note">每一条都有文档实例与可核验契约</dd></div>
       <div><dt class="wx-stat__label">对比度实测</dt><dd class="wx-stat__value">94</dd><dd class="wx-stat__note">按"面"逐对测量，全部达到 WCAG AA</dd></div>
-      <div><dt class="wx-stat__label">质量门禁</dt><dd class="wx-stat__value">12</dd><dd class="wx-stat__note">九门查产物，三门用仓内故障夹具持续反证</dd></div>
+      <div><dt class="wx-stat__label">质量门禁</dt><dd class="wx-stat__value">24</dd><dd class="wx-stat__note">仓库与产物、故障夹具与真实查询共同验收</dd></div>
     </dl>
   </section>
 
   <section class="doc-screen doc-screen--paths" aria-labelledby="landing-paths">
-    <h2 id="landing-paths" class="wx-sr-only">产品入口</h2>
+    <h2 id="landing-paths" class="wx-sr-only">从一件真实的事开始</h2>
     <div class="doc-product-paths">
-      <a class="doc-product-path" href="./design.html"><span>设计</span><strong>理念、仲裁与全局样式</strong><i>进入设计 →</i></a>
-      <a class="doc-product-path" href="./markdown.html"><span>内容</span><strong>Markdown 与 HTML 的呈现</strong><i>查看内容 →</i></a>
-      <a class="doc-product-path" href="./components.html"><span>组件</span><strong>分类、契约与使用边界</strong><i>浏览组件 →</i></a>
-      <a class="doc-product-path" href="./patterns.html"><span>页面</span><strong>页面原型与可复用骨架</strong><i>查看页面 →</i></a>
-      <a class="doc-product-path" href="./brand.html"><span>品牌</span><strong>印章、Logo 与品牌应用边界</strong><i>了解品牌 →</i></a>
-      <a class="doc-product-path" href="./adopt.html"><span>接入</span><strong>安装、骨架、契约和校验</strong><i>开始接入 →</i></a>
+      <a class="doc-product-path" href="./design.html"><span>先定规则</span><strong>把设计哲学、三层仲裁与基础样式放进同一套判断里</strong><i>理解设计底线 →</i></a>
+      <a class="doc-product-path" href="./components.html"><span>选择构件</span><strong>在正确的语义、状态与行为边界上搭建界面</strong><i>浏览组件契约 →</i></a>
+      <a class="doc-product-path" href="./patterns.html"><span>复制页面骨架</span><strong>从阅读、索引、着陆到工具，先选读者要完成的事</strong><i>查看页面原型 →</i></a>
+      <a class="doc-product-path" href="./adopt.html"><span>接入并交付</span><strong>安装、给 agent 明确契约，再用校验把实现收口</strong><i>开始接入 →</i></a>
     </div>
   </section>
 </div>
@@ -80,7 +78,7 @@
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
       <li><a class="wx-anchor__link" href="#landing-claim">让信息有秩序，让交互有分寸。</a></li>
-      <li><a class="wx-anchor__link" href="#landing-paths">产品入口</a></li>
+      <li><a class="wx-anchor__link" href="#landing-paths">从一件真实的事开始</a></li>
   </ul>
 </nav></div>
 </div>
@@ -92,6 +90,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

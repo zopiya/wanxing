@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>内容 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./content.html" aria-current="page">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -50,7 +51,7 @@
   <h1>内容</h1>
   <p class="wx-lede">作者只写 Markdown 和标准 HTML。渲染层负责排版、代码、表格和提示块的呈现，无须作者了解组件类名。</p>
 
-  <section class="doc-section-index" aria-labelledby="content-render"><div><h2 id="content-render">渲染参考</h2><p>每一条标记的输入与输出并排放，看得见渲染器吐出什么、它随后长什么样。</p></div><div><a href="./markdown.html">Markdown 全量</a><a href="./html-elements.html">HTML 元素</a><a href="./code.html">代码与语法高亮</a></div></section>
+  <section class="doc-section-index" aria-labelledby="content-render"><div><h2 id="content-render">渲染参考</h2><p>每一条标记的输入与代表性 HTML 结构并排放，能看见这类结构在文心中如何呈现；它不是某一渲染器的兼容性证明。</p></div><div><a href="./markdown.html">Markdown 全量</a><a href="./html-elements.html">HTML 元素</a><a href="./code.html">代码与语法高亮</a></div></section>
 
   <h2 id="contract">三方契约</h2>
   <p>内容呈现出问题时，先判断是谁的责任。这张表就是分界线。</p>
@@ -76,8 +77,8 @@
   <p><code>wx-md</code> 提供正文节奏，<code>wx-md--measured</code> 限制行长（中文 36em，西文 68ch）。
   两者都不要求作者改动一个字。</p>
   <p>Hugo、remark/rehype、markdown-it、VitePress 和 Docusaurus 都可以接入；
-  区别只在渲染器如何产出锚点和提示块，样式层不绑定某一种工具。
-  <code>kit/markdown/hugo/</code> 下有一份 Hugo 渲染钩子作为参考实现。</p>
+  差异不只在锚点和提示块，还包括图片与图注、外链告知、宽表格的可聚焦滚动等输出结构。
+  样式层不绑定某一种工具；<code>kit/markdown/hugo/</code> 下有一份 Hugo 渲染钩子作为参考实现。</p>
 
 <h2 id="bare">没有 wx-md 的时候</h2>
 <p>裸 HTML——完全没有类名的页面——也必须是可读的。这是 <code>kit/base/</code> 的职责判据：
@@ -109,6 +110,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

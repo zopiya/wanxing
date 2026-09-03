@@ -19,8 +19,8 @@
 
 ```sh
 npm run build     # tokens + 图表主题 + 契约包 + CSS 包 + 文档站 + llms.txt
-npm run check     # 十门检查
-npm run audit <file>   # 用 render contract 审计一个消费者页面
+npm run check     # 全套质量门
+npm run audit -- dist/<slug>/index.html   # 审计合同化消费者输出；路径和合同均须匹配
 python3 -m http.server 8899   # 示例需要 http；file:// 会挡住 @import 和字体
 ```
 

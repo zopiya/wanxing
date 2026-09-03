@@ -1,4 +1,5 @@
-/* F6's defining component. On narrow screens it becomes a drawer; the open
+/* F6's defining component. On narrow screens a JS-wired sidebar becomes a
+   drawer; without that script it remains a normal readable column. The open
    state lives on the element as a data attribute, never as a class, so the
    JS toggling it also has to set aria-expanded on the trigger. */
 @layer wx.components {
@@ -36,7 +37,7 @@
   }
 
   @media (max-width: 1024px) {
-    .wx-sidebar {
+    .wx-sidebar[data-wx-disclosure-ready] {
       --wx-sidebar-shift: -100%;
       position: fixed;
       inset-block: 0;
@@ -49,7 +50,7 @@
       transition: transform var(--duration-slow) var(--ease-out);
       overflow-y: auto;
     }
-    .wx-sidebar:dir(rtl) { --wx-sidebar-shift: 100%; }
-    .wx-sidebar[data-open] { transform: none; }
+    .wx-sidebar[data-wx-disclosure-ready]:dir(rtl) { --wx-sidebar-shift: 100%; }
+    .wx-sidebar[data-wx-disclosure-ready][data-open] { transform: none; }
   }
 }

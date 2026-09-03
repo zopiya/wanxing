@@ -44,12 +44,12 @@
 
 | 禁止 | 原因 | 轨 |
 |---|---|---|
-| 填充色按钮 —— **每视图至多一个 `wx-btn--primary` 例外** | 引入过多产品感 | **[限量]** |
+| 填充色按钮 —— 真实数据录入提交或反馈收束在任一轨道可使用；应用轨另可用一处直接任务推进；每视图至多一个，普通跳转用 `wx-btn--text` | 引入过多产品感 | **[第三层 + 应用轨第二层例外]** |
 | `outline: none` | 破坏键盘可访问性 | **[双轨]** |
 | 链接文字为「点击这里」 | 无语义，屏幕阅读器无法理解 | **[双轨]** |
 
-> 旧规范把主提交按钮写成括号里的例外。现在它是一等变体，
-> 约束从"禁止"改为"**限量**"：默认 ghost 线框，每视图至多一个填充主按钮。
+> 默认 ghost 线框。`wx-btn--primary` 在任一轨道仅用于真实提交或反馈收束；应用轨还可用于
+> 一项直接推进当前任务的动作。每视图至多一个；阅读轨导航 CTA 与应用轨普通跳转不适用该例外。
 
 ## 四、图标与图像 · Icons & Imagery
 
@@ -105,9 +105,9 @@
 
 额外强调，因为模型在无约束时几乎必然产出它们：
 
-**无阴影。无填充按钮。无渐变。无「圆角卡片 + 彩色左边框 + 图标」组合。**
+**无阴影。默认无填充按钮。无渐变。无「圆角卡片 + 彩色左边框 + 图标」组合。**
 
-**No shadows. No filled buttons. No gradients. No rounded-card-with-colored-left-border-and-icon.**
+**No shadows. No filled buttons by default. No gradients. No rounded-card-with-colored-left-border-and-icon.**
 
 ---
 
@@ -115,6 +115,9 @@
 
 `npm run check:forbidden` 对 `kit/`、`site/` 与（如存在的）历史示例做静态检查：
 `box-shadow`（非 `none`）、`linear-gradient` / `radial-gradient`、
-超出 `--stroke-mark` 的边框宽度、弹跳类缓动、填充按钮计数。
+超出 `--stroke-mark` 的边框宽度、弹跳类缓动等可机械判断的规则。
+
+填充按钮的类别与轨道约束当前只由 D 型页面审计覆盖；其他阅读页在对应检查落地前，
+不能把 `check:forbidden` 或页面审计的通过当作这条规则的证据。
 
 **这份清单不是风格建议，是构建会失败的检查项。**

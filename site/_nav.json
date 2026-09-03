@@ -12,7 +12,6 @@
         { "slug": "color",      "title": "色彩" },
         { "slug": "typography", "title": "字体排版" },
         { "slug": "layout",     "title": "布局与间距" },
-        { "slug": "motion",     "title": "动效" },
         { "slug": "icons",      "title": "图标" }
       ]},
       { "title": "数据表达", "items": [
@@ -61,8 +60,17 @@
         { "slug": "pattern-list",     "title": "列表页" },
         { "slug": "pattern-showcase", "title": "展示页" },
         { "slug": "pattern-landing",  "title": "着陆页" },
+        { "slug": "pattern-tool",     "title": "工具与查询页" },
         { "slug": "pattern-form",     "title": "表单页" },
         { "slug": "pattern-result", "title": "结果与异常页" }
+      ]}
+    ]
+  },
+  {
+    "slug": "motion", "title": "动效", "hub": true,
+    "groups": [
+      { "title": "动效 · Motion", "items": [
+        { "slug": "motion", "title": "动效概览" }
       ]}
     ]
   },

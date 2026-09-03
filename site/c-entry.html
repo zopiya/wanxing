@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数据录入 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./content.html">内容</a>
     <a href="./components.html" aria-current="page">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -67,7 +68,7 @@
     </label>
     <label class="wx-field">
       <span class="wx-field__label">邮箱</span>
-      <input class="wx-input" value="zopiya@" aria-invalid="true" aria-describedby="err-1">
+      <input class="wx-input" type="email" value="zopiya@" aria-invalid="true" aria-describedby="err-1">
       <span class="wx-field__error" id="err-1">邮箱格式不正确——缺少域名部分。</span>
     </label>
   </div>
@@ -82,7 +83,7 @@
 &lt;/label&gt;
 &lt;label class="wx-field"&gt;
   &lt;span class="wx-field__label"&gt;邮箱&lt;/span&gt;
-  &lt;input class="wx-input" value="zopiya@" aria-invalid="true" aria-describedby="err-1"&gt;
+  &lt;input class="wx-input" type="email" value="zopiya@" aria-invalid="true" aria-describedby="err-1"&gt;
   &lt;span class="wx-field__error" id="err-1"&gt;邮箱格式不正确——缺少域名部分。&lt;/span&gt;
 &lt;/label&gt;</code></pre></details>
 </div>
@@ -92,7 +93,7 @@
 <tr><td><code>wx-form / wx-field</code></td><td>有提交目标的字段组；单一搜索框不必包完整 form 布局。</td><td><code>form</code>、<code>fieldset/legend</code>；每个控件有嵌套或 <code>for</code> label，错误用 <code>aria-invalid</code> + <code>aria-describedby</code>。</td></tr>
 <tr><td><code>wx-input / wx-select / wx-number</code></td><td>文字、有限选项和数值；复杂选择优先原生能力，不造 div 下拉。</td><td>原生 <code>input/select</code>；select 外层 <code>wx-select-wrap</code> 只画箭头。</td></tr>
 <tr><td><code>wx-check / wx-radio / wx-switch</code></td><td>独立多选、互斥选择、即时开关；提交型布尔值仍可用 checkbox。</td><td>原生 checkbox/radio；switch 是 button <code>role="switch" aria-checked</code>，状态不得用 class。</td></tr>
-<tr><td><code>wx-slider-field / wx-slider / wx-rate</code></td><td>连续范围、可读数评分；精确输入同时给 number，不让位置成为唯一信息。</td><td>原生 <code>range</code> 有可访问名和文字值；rate 的 radio 必有 label。</td></tr>
+<tr><td><code>wx-slider-field / wx-slider / wx-rate</code></td><td>连续范围、可读数评分；精确输入同时给 number，不让位置成为唯一信息。</td><td>原生 <code>range</code> 有可访问名和文字值；rate 的每个 radio 有含文字的 native label，点击框由 <code>--touch-target-min</code> 决定。</td></tr>
 <tr><td><code>wx-upload / wx-upload-list</code></td><td>需要文件选择；普通附件链接不是上传区。</td><td>原生 <code>input type=file</code> 保留可点击 label；文件状态文字化。</td></tr>
 <tr><td><code>wx-search</code></td><td>站内/列表检索；短页面不放装饰性搜索。</td><td><code>input type=search</code> 有 label（可 sr-only）；查询与结果状态由采用者脚本管理。</td></tr>
 <tr><td><code>wx-autocomplete / wx-date-picker / wx-time-picker</code></td><td>有限建议、日期、时间；跨时区、复杂排期仍需专门产品方案。</td><td>分别基于 <code>datalist</code>、<code>input type=date</code>、<code>input type=time</code>；保留 label 和原生校验。</td></tr>
@@ -160,12 +161,12 @@
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <div class="wx-cluster">
-      <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="离线可读"></button>
+      <button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="离线可读" data-wx-entry-switch></button>
       <span>离线可读</span>
     </div>
   </div>
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;
-  &lt;button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="离线可读"&gt;&lt;/button&gt;
+  &lt;button class="wx-switch" type="button" role="switch" aria-checked="false" aria-label="离线可读" data-wx-entry-switch&gt;&lt;/button&gt;
   &lt;span&gt;离线可读&lt;/span&gt;
 &lt;/div&gt;</code></pre></details>
 </div>
@@ -179,8 +180,8 @@
       <input class="wx-number" type="number" value="20" min="10" max="100" step="10">
     </label>
     <div class="wx-slider-field" style="margin-block-start:var(--space-6)">
-      <div class="wx-slider-field__row"><span>行长上限</span><span class="wx-slider-field__value">36 em</span></div>
-      <input class="wx-slider" type="range" min="28" max="48" value="36" aria-label="行长上限">
+      <div class="wx-slider-field__row"><span>行长上限</span><output class="wx-slider-field__value" id="entry-demo-line-length-output" for="entry-demo-line-length">36 em</output></div>
+      <input class="wx-slider" id="entry-demo-line-length" type="range" min="28" max="48" value="36" aria-label="行长上限" data-wx-entry-slider data-wx-output="entry-demo-line-length-output" data-wx-unit="em">
       <div class="wx-slider-field__scale"><span>28</span><span>48</span></div>
     </div>
   </div>
@@ -189,8 +190,8 @@
   &lt;input class="wx-number" type="number" value="20" min="10" max="100" step="10"&gt;
 &lt;/label&gt;
 &lt;div class="wx-slider-field" style="margin-block-start:var(--space-6)"&gt;
-  &lt;div class="wx-slider-field__row"&gt;&lt;span&gt;行长上限&lt;/span&gt;&lt;span class="wx-slider-field__value"&gt;36 em&lt;/span&gt;&lt;/div&gt;
-  &lt;input class="wx-slider" type="range" min="28" max="48" value="36" aria-label="行长上限"&gt;
+  &lt;div class="wx-slider-field__row"&gt;&lt;span&gt;行长上限&lt;/span&gt;&lt;output class="wx-slider-field__value" id="entry-demo-line-length-output" for="entry-demo-line-length"&gt;36 em&lt;/output&gt;&lt;/div&gt;
+  &lt;input class="wx-slider" id="entry-demo-line-length" type="range" min="28" max="48" value="36" aria-label="行长上限" data-wx-entry-slider data-wx-output="entry-demo-line-length-output" data-wx-unit="em"&gt;
   &lt;div class="wx-slider-field__scale"&gt;&lt;span&gt;28&lt;/span&gt;&lt;span&gt;48&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre></details>
 </div>
@@ -198,62 +199,64 @@
 <h2 id="rate">评分</h2>
 <p>用 ■ 方块而不是星形图标——填充与描边的差别在灰度下依然可读。
 "禁止填充型图标"针对的是图标集风格，评分标记是<strong>数据标记</strong>，和图表里的柱子同类。</p>
+<p>视觉方块保持 16px；每一项的可点击区域由 <code>--touch-target-min</code> 控制，紧凑界面至少 24px，
+F2 表单轨会升至 48px。名称仍写在原生 label 里，不能只把分数藏在 <code>title</code> 属性。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <fieldset style="border:0;padding:0;margin:0">
       <legend class="wx-field__label">评分</legend>
       <span class="wx-rate">
-        <input type="radio" name="r" id="r5"><label for="r5" title="5 分"></label>
-        <input type="radio" name="r" id="r4" checked><label for="r4" title="4 分"></label>
-        <input type="radio" name="r" id="r3"><label for="r3" title="3 分"></label>
-        <input type="radio" name="r" id="r2"><label for="r2" title="2 分"></label>
-        <input type="radio" name="r" id="r1"><label for="r1" title="1 分"></label>
+        <input type="radio" name="r" id="r5"><label for="r5"><span class="wx-sr-only">5 分</span></label>
+        <input type="radio" name="r" id="r4" checked><label for="r4"><span class="wx-sr-only">4 分</span></label>
+        <input type="radio" name="r" id="r3"><label for="r3"><span class="wx-sr-only">3 分</span></label>
+        <input type="radio" name="r" id="r2"><label for="r2"><span class="wx-sr-only">2 分</span></label>
+        <input type="radio" name="r" id="r1"><label for="r1"><span class="wx-sr-only">1 分</span></label>
       </span>
     </fieldset>
   </div>
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;fieldset style="border:0;padding:0;margin:0"&gt;
   &lt;legend class="wx-field__label"&gt;评分&lt;/legend&gt;
   &lt;span class="wx-rate"&gt;
-    &lt;input type="radio" name="r" id="r5"&gt;&lt;label for="r5" title="5 分"&gt;&lt;/label&gt;
-    &lt;input type="radio" name="r" id="r4" checked&gt;&lt;label for="r4" title="4 分"&gt;&lt;/label&gt;
-    &lt;input type="radio" name="r" id="r3"&gt;&lt;label for="r3" title="3 分"&gt;&lt;/label&gt;
-    &lt;input type="radio" name="r" id="r2"&gt;&lt;label for="r2" title="2 分"&gt;&lt;/label&gt;
-    &lt;input type="radio" name="r" id="r1"&gt;&lt;label for="r1" title="1 分"&gt;&lt;/label&gt;
+    &lt;input type="radio" name="r" id="r5"&gt;&lt;label for="r5"&gt;&lt;span class="wx-sr-only"&gt;5 分&lt;/span&gt;&lt;/label&gt;
+    &lt;input type="radio" name="r" id="r4" checked&gt;&lt;label for="r4"&gt;&lt;span class="wx-sr-only"&gt;4 分&lt;/span&gt;&lt;/label&gt;
+    &lt;input type="radio" name="r" id="r3"&gt;&lt;label for="r3"&gt;&lt;span class="wx-sr-only"&gt;3 分&lt;/span&gt;&lt;/label&gt;
+    &lt;input type="radio" name="r" id="r2"&gt;&lt;label for="r2"&gt;&lt;span class="wx-sr-only"&gt;2 分&lt;/span&gt;&lt;/label&gt;
+    &lt;input type="radio" name="r" id="r1"&gt;&lt;label for="r1"&gt;&lt;span class="wx-sr-only"&gt;1 分&lt;/span&gt;&lt;/label&gt;
   &lt;/span&gt;
 &lt;/fieldset&gt;</code></pre></details>
 </div>
 
 <h2 id="upload">上传</h2>
-<p>拖放区是一个四边虚线框——这是<strong>卡片禁令的一个有理由的例外</strong>：
-边界不是装饰，它<strong>就是信息</strong>，标示可拖放区域到哪里为止。
-让步是有限度的：虚线发丝、无填充、无阴影。</p>
+<p>这套系统提供的是<strong>原生文件选择</strong>的语义与外观骨架。产品确实需要拖放时，
+四边虚线框是卡片禁令的一个有理由的例外：边界不是装饰，它<strong>就是信息</strong>，
+标示可放置区域到哪里为止。让步仍有限度：虚线发丝、无填充、无阴影；拖放与校验逻辑不由 kit 假装提供。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <label class="wx-upload">
       <input type="file" multiple>
-      <span class="wx-upload__prompt">拖放文件到这里，或点击选择</span>
-      <span class="wx-upload__hint">支持 PDF / PNG / SVG，单个不超过 20 MB</span>
+      <span class="wx-upload__prompt">点击选择文件</span>
+      <span class="wx-upload__hint">拖放、格式/大小校验、文件列表与服务端复核由采用者按产品规则实现。</span>
     </label>
-    <ul class="wx-upload-list">
+    <ul class="wx-upload-list" aria-label="静态文件列表结构示例">
       <li class="wx-upload-list__item">
         <span class="wx-upload-list__name">design-spec.pdf</span>
-        <span class="wx-upload-list__size">2.4 MB</span>
-        <button class="wx-btn wx-btn--text" type="button">移除</button>
+        <span class="wx-upload-list__size">2.4 MB · 静态示例</span>
       </li>
     </ul>
+    <p class="wx-field__hint">这里仅展示文件列表结构，不模拟选择或移除行为。</p>
   </div>
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;label class="wx-upload"&gt;
   &lt;input type="file" multiple&gt;
-  &lt;span class="wx-upload__prompt"&gt;拖放文件到这里，或点击选择&lt;/span&gt;
-  &lt;span class="wx-upload__hint"&gt;支持 PDF / PNG / SVG，单个不超过 20 MB&lt;/span&gt;
+  &lt;span class="wx-upload__prompt"&gt;点击选择文件&lt;/span&gt;
+  &lt;span class="wx-upload__hint"&gt;拖放、格式/大小校验、文件列表与服务端复核由采用者按产品规则实现。&lt;/span&gt;
 &lt;/label&gt;
-&lt;ul class="wx-upload-list"&gt;
+&lt;ul class="wx-upload-list" aria-label="静态文件列表结构示例"&gt;
   &lt;li class="wx-upload-list__item"&gt;
     &lt;span class="wx-upload-list__name"&gt;design-spec.pdf&lt;/span&gt;
-    &lt;span class="wx-upload-list__size"&gt;2.4 MB&lt;/span&gt;
-    &lt;button class="wx-btn wx-btn--text" type="button"&gt;移除&lt;/button&gt;
+    &lt;span class="wx-upload-list__size"&gt;2.4 MB · 静态示例&lt;/span&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</code></pre></details>
+&lt;/ul&gt;
+&lt;p class="wx-field__hint"&gt;这里仅展示文件列表结构，不模拟选择或移除行为。&lt;/p&gt;</code></pre></details>
 </div>
 
 <h2 id="search">搜索</h2>
@@ -261,12 +264,12 @@
   <div class="doc-demo__stage">
     <label class="wx-search">
       <span class="wx-sr-only">搜索</span>
-      <input type="search" placeholder="搜索组件…">
+      <input class="wx-search__input" type="search" placeholder="搜索组件…">
     </label>
   </div>
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;label class="wx-search"&gt;
   &lt;span class="wx-sr-only"&gt;搜索&lt;/span&gt;
-  &lt;input type="search" placeholder="搜索组件…"&gt;
+  &lt;input class="wx-search__input" type="search" placeholder="搜索组件…"&gt;
 &lt;/label&gt;</code></pre></details>
 </div>
 
@@ -287,8 +290,8 @@
       </label>
     </fieldset>
     <div class="wx-form__actions">
-      <button class="wx-btn wx-btn--primary" type="submit">提交</button>
       <button class="wx-btn wx-btn--text" type="button">取消</button>
+      <button class="wx-btn wx-btn--primary" type="submit">提交</button>
     </div>
   </form>
 </div>
@@ -305,8 +308,8 @@
     &lt;/label&gt;
   &lt;/fieldset&gt;
   &lt;div class="wx-form__actions"&gt;
-    &lt;button class="wx-btn wx-btn--primary" type="submit"&gt;提交&lt;/button&gt;
     &lt;button class="wx-btn wx-btn--text" type="button"&gt;取消&lt;/button&gt;
+    &lt;button class="wx-btn wx-btn--primary" type="submit"&gt;提交&lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;</code></pre></details></div>
 <div class="doc-figure"><table class="wx-table doc-api">
@@ -314,12 +317,14 @@
   <tbody>
     <tr><td><code>wx-form__errors</code></td><td>提交失败后的汇总，每条链到出错字段。</td><td><code>role="alert"</code> + <code>tabindex="-1"</code>，提交后把焦点移过来。</td></tr>
     <tr><td><code>wx-form__section</code></td><td>相关字段分组。</td><td>原生 <code>fieldset</code> + <code>legend</code>，不是 div 加标题。</td></tr>
-    <tr><td><code>wx-form__actions</code></td><td>动作区，主操作在前。</td><td>至多一个 <code>wx-btn--primary</code>。</td></tr>
+    <tr><td><code>wx-form__actions</code></td><td>动作区，主操作在最后，取消在它之前。</td><td>至多一个 <code>wx-btn--primary</code>。</td></tr>
   </tbody>
 </table></div>
 <p>表单属于<strong>第三层仲裁规则</strong>：数据录入与反馈类组件<strong>永远按惯例处理</strong>，
 无论所在轨道。一个纯阅读轨的文档站里，它的搜索框和表单同样使用完整语义色、清晰可供性与标准交互反馈。
 <a href="./pattern-form.html">表单页</a>讲的是校验时机与整页编排。</p>
+
+<script type="module" src="./assets/entry-demo.mjs"></script>
 
     </article>
   </main>
@@ -349,6 +354,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

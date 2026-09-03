@@ -8,8 +8,7 @@
  * indistinguishable from a working one until a consumer runs it.
  */
 import { spawnSync } from "node:child_process";
-import { existsSync, readFileSync, mkdtempSync, writeFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -34,9 +33,8 @@ for (const target of Object.values(pkg.bin ?? {})) {
 
 /* Every verb runs. A CLI nobody exercised is a CLI that throws on first use. */
 const cli = join(root, "bin", "wenxin.mjs");
-const scratch = mkdtempSync(join(tmpdir(), "wenxin-cli-"));
-const page = join(scratch, "page.html");
-writeFileSync(page, '<!doctype html><html lang="zh-CN"><body><main><h1>探针</h1></main></body></html>');
+const validAuditCwd = join(root, "tests", "render-audit", "valid");
+const invalidAuditCwd = join(root, "tests", "render-audit", "invalid");
 
 const cases = [
   { args: ["--version"], expect: /^\d+\.\d+\.\d+/ },
@@ -45,24 +43,26 @@ const cases = [
   { args: ["tokens", "--format", "dtcg"], expect: /"\$value"|\$type/ },
   { args: ["skeleton"], expect: /A–E/ },
   { args: ["skeleton", "e"], expect: /wx-tool/ },
-  { args: ["audit", page], expect: /"audit"/, allowExit: [0, 1] },
+  { args: ["audit", "dist/compliant/index.html"], cwd: validAuditCwd, expect: /"hardGates": \[\]/ },
+  { args: ["audit", "dist/violating/index.html"], cwd: invalidAuditCwd, expectFail: true, expect: /"code": "structure.main_missing"/ },
   { args: ["contracts", "definitely-not-a-component"], expectFail: true },
   { args: ["tokens", "--format", "wat"], expectFail: true },
   { args: ["audit"], expectFail: true },
 ];
 
-for (const { args, expect, expectFail, allowExit } of cases) {
-  const run = spawnSync(process.execPath, [cli, ...args], { encoding: "utf8" });
-  const label = `wenxin ${args.map((a) => (a === page ? "<file>" : a)).join(" ")}`;
+for (const { args, cwd, expect, expectFail, allowExit } of cases) {
+  const run = spawnSync(process.execPath, [cli, ...args], { cwd, encoding: "utf8" });
+  const output = `${run.stdout}${run.stderr}`;
+  const label = `wenxin ${args.join(" ")}`;
   if (expectFail) {
     if (run.status === 0) problems.push(`${label} should have failed but exited 0`);
+    else if (expect && !expect.test(output)) problems.push(`${label} failed without its expected evidence`);
     continue;
   }
   const ok = (allowExit ?? [0]).includes(run.status);
   if (!ok) problems.push(`${label} exited ${run.status}: ${(run.stderr || "").trim().slice(0, 120)}`);
-  else if (expect && !expect.test(run.stdout)) problems.push(`${label} produced unexpected output`);
+  else if (expect && !expect.test(output)) problems.push(`${label} produced unexpected output`);
 }
-rmSync(scratch, { recursive: true, force: true });
 
 if (problems.length) {
   console.error(`✗ cli: ${problems.length} problem(s):\n    ${problems.join("\n    ")}`);

@@ -70,9 +70,9 @@
   }
 
   /* ---- Toast --------------------------------------------------------- */
-  /* The region is always present and always announced; toasts are appended
-     into it. An empty region costs nothing and gives aria-live somewhere
-     stable to observe. */
+  /* overlay.js creates the region before the first message; toasts are
+     appended into it. An empty region costs nothing and gives aria-live
+     somewhere stable to observe. */
   .wx-toast__region {
     position: fixed;
     inset-block-end: var(--space-6);

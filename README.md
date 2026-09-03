@@ -35,13 +35,17 @@ import tokens from "wenxin-wanxing/tokens/dtcg";       // W3C DTCG 交换格式
 ## 命令行
 
 ```sh
-npx wenxin audit <file>        # 审计一个 HTML 页面；hardGates 非空即不合规
-npx wenxin contracts toast     # 查一条组件契约
-npx wenxin tokens --format dtcg
-npx wenxin skeleton e          # 输出页面原型 E 的骨架
+npm exec --no -- wenxin audit dist/<slug>/index.html
+                                  # 审计合同化输出；hardGates 非空即该可执行子集失败
+npm exec --no -- wenxin contracts toast
+                                  # 查一条组件契约
+npm exec --no -- wenxin tokens --format dtcg
+npm exec --no -- wenxin skeleton e
+                                  # 输出页面原型 E 的骨架
 ```
 
-**不要声称合规，跑一遍 `audit`。**
+审计输入必须符合 render contract 的输出路径约定；它检查合同、DOM 与内联样式，
+并会明示外链 CSS 未检查范围。**不要把 `hardGates` 为空说成完整合规**：视觉、辅助技术与需判断的规则仍要走人工复核。
 
 ## 给 AI agent
 
@@ -60,7 +64,7 @@ npx wenxin skeleton e          # 输出页面原型 E 的骨架
 | --- | --- |
 | `spec/` | 双语规范、设计哲学与裁决记录 |
 | `kit/` | tokens、基础 CSS、组件、模式与图表主题 |
-| `site/` | 生成的文档站（38 页，六个分区）；源页在 `site/_pages/` |
+| `site/` | 生成的文档站（六个分区）；源页在 `site/_pages/` |
 | `scripts/` | 构建与可执行检查 |
 | `tests/` | 检查器的正反向夹具与自测 |
 
@@ -75,8 +79,8 @@ npx wenxin skeleton e          # 输出页面原型 E 的骨架
 | 命令 | 作用 |
 | --- | --- |
 | `npm run build` | 生成 tokens、图表主题、契约包、CSS 包、文档站与 llms.txt |
-| `npm run check` | 十二门检查：九门仓库/产物检查，加三门带故障夹具的检查器自测 |
-| `npm run audit <file>` | 用 render contract 审计一个消费者 HTML 页面 |
+| `npm run check` | 仓库/产物检查、故障夹具反证与真实契约查询自测；完整清单见校验页 |
+| `npm run audit -- dist/<slug>/index.html` | 用 render contract 审计一个消费者输出（合同 / DOM / 内联样式） |
 | `npm run build:tokens` | 从 `core.css` / `dark.css` 生成 json、scss、ts、DTCG token 交换文件 |
 | `npm run build:site` | 从 `site/_pages/` 生成站点 |
 | `npm run check:a11y` | 检查文档站的表单标签、可访问名和主地标 |

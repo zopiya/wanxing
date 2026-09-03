@@ -1,10 +1,10 @@
-<h1><span class="wx-seal wx-seal--lg" aria-hidden="true"></span> 署名标记</h1>
+<h1>署名标记</h1>
 <p class="wx-lede">一个 8×8px 的实心朱砂方块，紧随品牌名之后。它是签名，不是装饰——<strong>出现越少，力量越大</strong>。</p>
 
 <h2 id="form">形态</h2>
 <div class="doc-figure">
-  <p><span class="wx-seal" aria-hidden="true"></span> 默认尺寸，用于署名与页脚</p>
-  <p><span class="wx-seal wx-seal--lg" aria-hidden="true"></span> 大号，用于页头品牌区</p>
+  <p>文心 · 万形 <span class="wx-seal" aria-hidden="true"></span> 默认尺寸，用于署名与页脚</p>
+  <p>文心 · 万形 <span class="wx-seal wx-seal--lg" aria-hidden="true"></span> 大号变体，用于页头品牌区</p>
   <p>文心 · 万形 <span class="wx-seal" aria-hidden="true"></span> ——这是它唯一的标准位置：紧跟名字之后。</p>
 </div>
 <div class="doc-figure"><table class="wx-table doc-api">
@@ -14,20 +14,20 @@
     <tr><th scope="row">尺寸</th><td>8×8px 桌面 / 6×6px 移动端</td><td>小到不抢正文，大到不像脏点。</td></tr>
     <tr><th scope="row">颜色</th><td><code>--color-accent</code></td><td>随主题切换，与 Logo 相反——它活在界面里，Logo 不。</td></tr>
     <tr><th scope="row">位置</th><td>紧随品牌名，基线对齐或高 2px</td><td>它属于那个名字，不是独立元素。</td></tr>
-    <tr><th scope="row">实现</th><td>CSS <code>.wx-seal</code>，不是图片</td><td>随文字缩放、随主题变色、零请求。</td></tr>
+    <tr><th scope="row">实现</th><td>CSS <code>.wx-seal</code>，不是图片</td><td>桌面/移动有固定默认尺寸，页头可显式使用大号变体；随主题变色、零请求。</td></tr>
   </tbody>
 </table></div>
 
 <h2 id="budget">它消耗强调预算</h2>
-<p>整页至多两处强调色，<strong>■ 占掉其中一处</strong>。剩下的一处留给真正需要被点击的动作，
-或者一张图里要被指出来的那条线。这不是建议，是可审计的约束——
-<code>render-audit</code> 的 <code>findAccentOccurrences()</code> 会数它。</p>
+<p>阅读轨内容页至多两处强调色，<strong>■ 占掉其中一处</strong>。剩下的一处留给真正需要被点击的动作，
+或者一张图里要被指出来的那条线。合同审计只能统计内联样式中的可执行出现；外链 CSS 与动作语义仍须人工判断。
+应用轨的任务状态仍按页面合同判定。</p>
 
 <h2 id="rules">四条边界</h2>
 <ul class="wx-list wx-list--ruled">
-  <li><strong>必须</strong>出现在品牌 Logo / 署名区</li>
-  <li><strong>可以</strong>在全页再追加出现一次——可选，慎用</li>
-  <li><strong>不可</strong>出现在正文段落、按钮、列表项中</li>
+  <li><strong>必须</strong>作为品牌文字/署名的一部分，紧随名称之后</li>
+  <li><strong>不可</strong>与图形 Logo 在同一品牌锁定中并列</li>
+  <li><strong>不可</strong>作为游离 accent 出现在正文段落、按钮、列表项中</li>
   <li><strong>不可</strong>在一页里散落多处</li>
 </ul>
 <div class="wx-note wx-note--warn"><span class="wx-note__title">最常见的误用</span>

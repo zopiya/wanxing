@@ -2,11 +2,11 @@
 <p class="wx-lede">Logo 和 ■ 的<strong>定义</strong>属于灵魂层，<strong>放在哪里、多大</strong>属于形态层。这一页是后者。</p>
 
 <h2 id="web">网页页头</h2>
-<p>本站页头就是标准实现：<span class="wx-seal" aria-hidden="true"></span> 加品牌名，
+<p>本站页头就是标准实现：品牌名后紧随 <span class="wx-seal" aria-hidden="true"></span>，
 一行，与主导航同高，<strong>不用 Logo 图片</strong>。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <div class="wx-spread" style="padding-block:var(--space-3);border-block-end:var(--stroke-hairline) solid var(--color-border-subtle)">
-    <a href="#web" style="display:inline-flex;align-items:center;gap:var(--space-3);font-family:var(--font-display);text-decoration:none"><span class="wx-seal" aria-hidden="true"></span><span>文心 · 万形</span></a>
+    <a href="#web" style="display:inline-flex;align-items:center;gap:var(--space-3);font-family:var(--font-display);text-decoration:none"><span>文心 · 万形</span><span class="wx-seal" aria-hidden="true"></span></a>
     <nav class="wx-cluster" aria-label="示例导航"><a href="#web">设计</a><a href="#web">内容</a><a href="#web">组件</a></nav>
   </div>
 </div></div>
@@ -22,18 +22,18 @@
 
 <h2 id="display">品牌展示区</h2>
 <p>需要 Logo 本身的场合——产品入口、关于页、演示封面、印刷品——用 SVG 原件，不用缩放的 PNG。</p>
-<div class="doc-figure"><div class="wx-cols">
-  <figure class="wx-figure"><img class="wx-image" src="../kit/assets/brand/logo-wanxing.svg" alt="万形朱砂印章，中心交汇图形" width="64" height="64"><figcaption>万形：起源与交汇。</figcaption></figure>
-  <figure class="wx-figure"><img class="wx-image" src="../kit/assets/brand/logo-wenxin.svg" alt="文心朱砂印章，向上分叉图形" width="64" height="64"><figcaption>文心：知识与生长。</figcaption></figure>
-  <figure class="wx-figure"><img class="wx-image" src="../kit/assets/brand/logo-mono.svg" alt="文心单色 Logo" width="32" height="32"><figcaption>单色版：页面已用掉强调色时。</figcaption></figure>
+<div class="doc-figure"><div class="doc-brand-assets">
+  <figure class="wx-figure"><img class="doc-brand-logo" src="../kit/assets/brand/logo-wanxing.svg" alt="万形朱砂印章，中心交汇图形" width="64" height="64"><figcaption class="wx-figure__caption">万形：起源与交汇。</figcaption></figure>
+  <figure class="wx-figure"><img class="doc-brand-logo" src="../kit/assets/brand/logo-wenxin.svg" alt="文心朱砂印章，向上分叉图形" width="64" height="64"><figcaption class="wx-figure__caption">文心：知识与生长。</figcaption></figure>
 </div></div>
+<p><code>logo-mono.svg</code> 是保留 <code>currentColor</code> 的源文件，不能直接作为外链 <code>img</code> 使用；使用方若需要它，须先在自己的交付链中解析颜色。本站网页只展示可独立呈现的朱砂印章。</p>
 
 <h2 id="scale">尺度决定用哪一个</h2>
 <div class="doc-figure"><table class="wx-table doc-api">
   <thead><tr><th>尺度</th><th>用什么</th><th>为什么</th></tr></thead>
   <tbody>
     <tr><td>≥ 64px</td><td>朱砂印章 SVG</td><td>负空间里的几何关系读得出来。</td></tr>
-    <tr><td>24–48px</td><td>单色版或文字署名 + ■</td><td>2.5px 线宽在这个尺度开始糊。</td></tr>
+    <tr><td>24–48px</td><td>文字署名 + ■</td><td>2.5px 线宽在这个尺度开始糊。</td></tr>
     <tr><td>&lt; 24px</td><td>只用文字署名 + ■</td><td>印章缩到这里就只是一个红方块，不如直接用方块。</td></tr>
     <tr><td>印刷 / 海报</td><td>SVG 原件，<code>vector-effect: non-scaling-stroke</code></td><td>放大到海报尺度时线宽不跟着放大。</td></tr>
   </tbody>
@@ -52,8 +52,8 @@
   <tbody>
     <tr><td><code>kit/assets/brand/logo-wanxing.svg</code></td><td>万形印章，交汇几何。</td></tr>
     <tr><td><code>kit/assets/brand/logo-wenxin.svg</code></td><td>文心印章，分叉几何。</td></tr>
-    <tr><td><code>kit/assets/brand/logo-mono.svg</code></td><td>单色版，用于已有强调色的页面。</td></tr>
+    <tr><td><code>kit/assets/brand/logo-mono.svg</code></td><td>保留 <code>currentColor</code> 的源文件；外链 <code>img</code> 不继承页面颜色，需由使用方先解析颜色后交付。</td></tr>
     <tr><td><code>kit/assets/brand/brand-mark.svg</code></td><td>静态 ■，用于无法执行 CSS 的场合（邮件、印刷）。</td></tr>
-    <tr><td><code>.wx-seal</code>（CSS）</td><td>网页上的 ■，随文字缩放、随主题变色。页面上用这个，不用 SVG。</td></tr>
+    <tr><td><code>.wx-seal</code>（CSS）</td><td>网页上的 ■：桌面/移动有固定默认尺寸，页头可显式加 <code>--lg</code> 变体，并随主题变色。页面上用这个，不用 SVG。</td></tr>
   </tbody>
 </table></div>

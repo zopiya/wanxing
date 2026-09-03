@@ -38,7 +38,7 @@ documentation site rather than being duplicated here.
 无论哪个容器，这些都不变 —— 它们就是[不变之魂](./soul/philosophy.md)：
 
 - 暖土色域与单一 accent（**D9**）
-- accent 全页 ≤ 2 处
+- 阅读轨内容页 accent ≤ 2 处；应用轨按页面合同分配任务强调
 - 无卡片、无阴影、无渐变（**A9**）
 - WCAG 2.2 AA 底线
 - token 词汇表

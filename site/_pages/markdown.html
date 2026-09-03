@@ -1,5 +1,5 @@
 <h1>Markdown 全量</h1>
-<p class="wx-lede">CommonMark 与 GFM 的全部常用标记，左边是作者写的源码，右边是渲染后的样子。每一条都是真渲染，不是截图。</p>
+<p class="wx-lede">CommonMark 与 GFM 的常用标记。左边是作者写的输入，右边是对应 HTML 结构的实时样式预览，不是截图；示例说明文心如何呈现结构，不代替具体 Markdown 渲染器的兼容性测试。</p>
 
 <h2 id="headings">标题与段落</h2>
 <div class="doc-pair">
@@ -170,10 +170,10 @@
 &gt; [!CAUTION]
 &gt; 危险操作。</code></pre>
   <div class="doc-pair__out wx-md" lang="zh-CN">
-    <div class="admonition note"><span class="admonition-title">说明</span><p>一般说明。</p></div>
-    <div class="admonition tip"><span class="admonition-title">建议</span><p>建议。</p></div>
-    <div class="admonition warning"><span class="admonition-title">警告</span><p>警告。</p></div>
-    <div class="admonition danger"><span class="admonition-title">危险</span><p>危险操作。</p></div>
+    <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title">说明</p><p>一般说明。</p></div>
+    <div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title">建议</p><p>建议。</p></div>
+    <div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title">警告</p><p>警告。</p></div>
+    <div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title">危险</p><p>危险操作。</p></div>
   </div>
 </div>
 <p>认得的 class：<code>.admonition.tip</code>、<code>.alert-tip</code>、<code>.markdown-alert-tip</code>——

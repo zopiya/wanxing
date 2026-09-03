@@ -972,7 +972,9 @@
   }
 
   /* Wide tables scroll inside their own container rather than pushing the page
-     sideways. The wrapper is focusable so keyboard users can scroll it. */
+     sideways. Use this wrapper only when a table may overflow, and mark that
+     wrapper tabindex="0" role="region" with an accessible name so keyboard
+     users can intentionally enter and scroll it. */
   .wx-table-scroll {
     overflow-x: auto;
     scrollbar-width: thin;
@@ -1168,9 +1170,9 @@
   .wx-seal--lg { inline-size: 12px; block-size: 12px; }
 }
 /* source: kit/components/button.css */
-/* Outline by default. The filled variant exists, is named, and is countable —
-   which is more restrained than leaving it as an unnamed exception in prose.
-   At most one --primary per view; the auditor counts them. */
+/* Outline by default. --primary is reserved for one real data-entry submission
+   or feedback closure; application-track task advance may use that one slot.
+   Editorial navigation CTAs and ordinary jumps use --text. */
 @layer wx.components {
   .wx-btn {
     display: inline-flex;
@@ -1196,7 +1198,9 @@
     border-color: var(--color-accent);
   }
 
-  /* The one filled button. For a genuinely primary action, once per view. */
+  /* Filled only for a genuine submission or feedback closure, or for the
+     single direct task-advance on an application page. D-type editorial
+     landing navigation is checked by page audit; other pages follow track review. */
   .wx-btn--primary {
     background: var(--color-accent);
     border-color: var(--color-accent);
@@ -1223,8 +1227,7 @@
     color: var(--color-on-accent);
   }
 
-  .wx-btn[disabled],
-  .wx-btn[aria-disabled="true"] {
+  .wx-btn[disabled] {
     color: var(--color-text-functional);
     border-color: var(--color-border-subtle);
     cursor: not-allowed;
@@ -1459,7 +1462,8 @@
   .wx-pager__label { display: block; font-size: var(--text-xs); color: var(--color-text-functional); }
 }
 /* source: kit/components/sidebar.css */
-/* F6's defining component. On narrow screens it becomes a drawer; the open
+/* F6's defining component. On narrow screens a JS-wired sidebar becomes a
+   drawer; without that script it remains a normal readable column. The open
    state lives on the element as a data attribute, never as a class, so the
    JS toggling it also has to set aria-expanded on the trigger. */
 @layer wx.components {
@@ -1497,7 +1501,7 @@
   }
 
   @media (max-width: 1024px) {
-    .wx-sidebar {
+    .wx-sidebar[data-wx-disclosure-ready] {
       --wx-sidebar-shift: -100%;
       position: fixed;
       inset-block: 0;
@@ -1510,8 +1514,8 @@
       transition: transform var(--duration-slow) var(--ease-out);
       overflow-y: auto;
     }
-    .wx-sidebar:dir(rtl) { --wx-sidebar-shift: 100%; }
-    .wx-sidebar[data-open] { transform: none; }
+    .wx-sidebar[data-wx-disclosure-ready]:dir(rtl) { --wx-sidebar-shift: 100%; }
+    .wx-sidebar[data-wx-disclosure-ready][data-open] { transform: none; }
   }
 }
 /* source: kit/components/toc.css */
@@ -1700,6 +1704,13 @@
 
   .wx-search:focus-within { border-block-end-color: var(--color-accent); }
 
+  /* Search is an input component too: an error keeps its semantic border even
+     while focused, alongside the linked error text. */
+  .wx-search:has(.wx-search__input[aria-invalid="true"]) {
+    border-block-end-color: var(--color-danger);
+    border-block-end-width: var(--stroke-mark);
+  }
+
   .wx-search__input {
     flex: 1 1 auto;
     min-inline-size: 0;
@@ -1850,9 +1861,9 @@
   }
 
   /* ---- Toast --------------------------------------------------------- */
-  /* The region is always present and always announced; toasts are appended
-     into it. An empty region costs nothing and gives aria-live somewhere
-     stable to observe. */
+  /* overlay.js creates the region before the first message; toasts are
+     appended into it. An empty region costs nothing and gives aria-live
+     somewhere stable to observe. */
   .wx-toast__region {
     position: fixed;
     inset-block-end: var(--space-6);
@@ -2602,10 +2613,16 @@
      Implemented as radio inputs in reverse DOM order so the CSS sibling
      selector can fill everything up to the checked one. */
   .wx-rate {
+    /* The mark remains a compact 16px data mark. Its label owns the actual
+       pointer target, so F2 can raise that target to 48px without turning a
+       five-point rating into five oversized blocks. */
+    --wx-rate-hit-size: var(--touch-target-min, 24px);
     display: inline-flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    gap: var(--space-2);
+    /* 24px hit boxes keep the old 24px centre-to-centre rhythm: a 16px mark
+       plus the original 8px gap. */
+    gap: 0;
   }
   .wx-rate input {
     position: absolute;
@@ -2615,14 +2632,22 @@
     clip-path: inset(50%);
   }
   .wx-rate label {
+    position: relative;
+    display: grid;
+    place-items: center;
+    inline-size: var(--wx-rate-hit-size);
+    block-size: var(--wx-rate-hit-size);
+    cursor: pointer;
+  }
+  .wx-rate label::before {
+    content: "";
     inline-size: var(--space-4);
     block-size: var(--space-4);
     border: var(--stroke-mark) solid var(--color-border-strong);
-    cursor: pointer;
   }
-  .wx-rate input:checked ~ label,
-  .wx-rate label:hover,
-  .wx-rate label:hover ~ label {
+  .wx-rate input:checked ~ label::before,
+  .wx-rate label:hover::before,
+  .wx-rate label:hover ~ label::before {
     border-color: var(--color-accent);
     background: var(--color-accent);
   }
@@ -2823,7 +2848,8 @@
 
    Unlike wx-tooltip, a popover MAY carry information and interactive
    controls, so it must be reachable: built on <details> so it opens by
-   keyboard and closes with Esc without script. The same bounded-surface
+   keyboard without replacing native disclosure behaviour. Escape-to-close
+   needs an explicit script. The same bounded-surface
    exception as overlays applies (D-21) — hairline edge only. */
 @layer wx.components {
   .wx-popover { position: relative; display: inline-block; }
@@ -2871,7 +2897,7 @@
    headers. Screen readers announce the weekday and week from the table
    structure, which a grid of <div>s cannot do.
 
-   Selection is aria-selected and today is aria-current="date" — the ring
+   Selection is aria-pressed and today is aria-current="date" — the ring
    and the weight, not colour alone. */
 @layer wx.components {
   .wx-calendar {
@@ -2921,7 +2947,7 @@
     outline: var(--stroke-hairline) solid var(--color-border-strong);
     outline-offset: -4px;
   }
-  .wx-calendar__day[aria-selected="true"] {
+  .wx-calendar__day[aria-pressed="true"] {
     outline: var(--stroke-mark) solid var(--color-accent);
     outline-offset: -4px;
     color: var(--color-text-heading);
@@ -2955,6 +2981,10 @@
     flex: 0 0 min(28rem, 80%);
     scroll-snap-align: start;
   }
+  /* A gallery item can itself be a Figure. Its caption still belongs to that
+     image, but gallery items sit in one horizontal rhythm rather than adding
+     the standalone Figure's vertical outer margin. */
+  .wx-gallery__item.wx-figure { margin-block: 0; }
   .wx-gallery__item img { inline-size: 100%; block-size: auto; }
   .wx-gallery__caption {
     margin-block-start: var(--space-2);
@@ -2993,7 +3023,8 @@
   .wx-input.wx-time-picker { font-variant-numeric: tabular-nums; }
 
   /* Popconfirm is a decision, not a modal: native details keeps the trigger
-     keyboard-operable and gives Escape-to-close without a runtime dependency. */
+     keyboard-operable. Escape-to-close is not a native details guarantee;
+     products that require it add an explicit script. */
   .wx-popconfirm { position: relative; display: inline-block; }
   .wx-popconfirm > summary { display: inline-flex; cursor: pointer; list-style: none; }
   .wx-popconfirm > summary::-webkit-details-marker { display: none; }
@@ -3069,7 +3100,21 @@
     width: min(100%, var(--width-content));
     margin-inline: auto;
   }
-  .wx-tool__input { margin-block-end: var(--space-12); }
+  .wx-tool__header { margin-block-end: var(--space-8); }
+  .wx-tool__input { margin-block-end: var(--space-6); }
+  .wx-tool__query-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+  .wx-tool__query-row > .wx-btn { align-self: stretch; }
+  .wx-tool__status {
+    margin-block: var(--space-4);
+    color: var(--color-text-functional);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+  }
   .wx-tool__result {
     border-block-start: var(--stroke-hairline) solid var(--color-border-subtle);
     padding-block-start: var(--space-8);
@@ -3081,6 +3126,11 @@
       grid-template-columns: minmax(120px, 0.28fr) minmax(0, 1fr);
       gap: var(--space-8);
     }
+  }
+
+  @media (max-width: 40rem) {
+    .wx-tool__query-row { grid-template-columns: minmax(0, 1fr); }
+    .wx-tool__query-row > .wx-btn { inline-size: 100%; }
   }
 }
 /* source: kit/markdown/index.css */
@@ -3387,15 +3437,15 @@
    separate because here we match on renderer-produced classes rather than on
    classes we wrote ourselves. */
 @layer wx.markdown {
-  .wx-md :is(.admonition, .alert, blockquote.note) {
+  .wx-md :is(.admonition, .alert, .markdown-alert, blockquote.note) {
     padding: var(--space-4) var(--space-5);
     border-inline-start: var(--stroke-mark) solid var(--color-border-strong);
     background: var(--color-bg-subtle);
   }
-  .wx-md :is(.admonition, .alert) > :first-child { margin-block-start: 0; }
-  .wx-md :is(.admonition, .alert) > :last-child  { margin-block-end: 0; }
+  .wx-md :is(.admonition, .alert, .markdown-alert) > :first-child { margin-block-start: 0; }
+  .wx-md :is(.admonition, .alert, .markdown-alert) > :last-child  { margin-block-end: 0; }
 
-  .wx-md :is(.admonition-title, .alert-title) {
+  .wx-md :is(.admonition-title, .alert-title, .markdown-alert-title) {
     display: block;
     margin-block-end: var(--space-2);
     font-family: var(--font-ui);

@@ -1,18 +1,19 @@
 <h1>组件</h1>
-<p class="wx-lede">一套面向内容、文档与轻应用的基础组件。按使用目的组织，而不是按视觉外形堆放。</p>
+<p class="wx-lede">一套面向内容、文档与轻应用的基础组件。按使用目的组织，而不是按视觉外形堆放；六个家族的总数与公开契约同步生成。</p>
 
 <div class="doc-component-groups">
-  <section id="general"><h2>通用</h2><p>动作、标识与状态的基础表达。</p><a href="./c-general.html">Button、Tag、Badge、Status、Avatar →</a></section>
-  <section id="layout"><h2>布局</h2><p>页面宽度、间距、分栏与内容节奏。</p><a href="./c-layout.html">Container、Stack、Cluster、Grid、Rule →</a></section>
-  <section id="navigation"><h2>导航</h2><p>帮助人确认位置、层级和前进路径。</p><a href="./c-navigation.html">Menu、Tabs、Pagination、Steps、Anchor →</a></section>
-  <section id="entry"><h2>数据录入</h2><p>输入、选择、校验与任务提交。</p><a href="./c-entry.html">Form、Input、Select、Switch、Upload →</a></section>
-  <section id="display"><h2>数据展示</h2><p>内容、关系、数据和时间的清晰呈现。</p><a href="./c-display.html">Table、List、Tree、Timeline、Calendar →</a></section>
-  <section id="feedback"><h2>反馈</h2><p>让状态、结果和必要的打断可被理解。</p><a href="./c-feedback.html">Alert、Toast、Progress、Modal、Popover →</a></section>
-  <section id="other"><h2>其他</h2><p>主题、密度、RTL、无障碍和交付检查属于系统能力，不伪装成一个 UI 控件。</p><a href="./accessibility.html">查看开发支持与无障碍 →</a></section>
+  <section id="general"><h2>通用 <span class="doc-component-count">{{componentCount:c-general}} 条</span></h2><p>动作、标识与状态的基础表达。</p><a href="./c-general.html">选择通用构件 →</a></section>
+  <section id="layout"><h2>布局 <span class="doc-component-count">{{componentCount:c-layout}} 条</span></h2><p>页面宽度、间距、分栏与内容节奏。</p><a href="./c-layout.html">搭好内容骨架 →</a></section>
+  <section id="navigation"><h2>导航 <span class="doc-component-count">{{componentCount:c-navigation}} 条</span></h2><p>帮助人确认位置、层级和前进路径。</p><a href="./c-navigation.html">组织路径与位置 →</a></section>
+  <section id="entry"><h2>数据录入 <span class="doc-component-count">{{componentCount:c-entry}} 条</span></h2><p>输入、选择、校验与任务提交。</p><a href="./c-entry.html">完成表单与输入 →</a></section>
+  <section id="display"><h2>数据展示 <span class="doc-component-count">{{componentCount:c-display}} 条</span></h2><p>内容、关系、数据和时间的清晰呈现。</p><a href="./c-display.html">呈现内容与数据 →</a></section>
+  <section id="feedback"><h2>反馈与浮层 <span class="doc-component-count">{{componentCount:c-feedback}} 条</span></h2><p>让状态、结果和必要的打断可被理解。</p><a href="./c-feedback.html">处理结果与打断 →</a></section>
 </div>
+
+<div class="wx-note wx-note--info"><span class="wx-note__title">系统能力，不是第七个组件家族</span><p><a href="./color.html">主题与色彩</a>、<a href="./layout.html#density">密度</a>、<a href="./accessibility.html">RTL 与无障碍</a>、<a href="./adopt-verify.html">接入与交付校验</a>横跨全部组件；把它们塞进“其他”会遮住它们真正的作用范围。</p></div>
 
 <h2 id="contract">组件如何成为可靠接口</h2>
 <p>每个组件都有语义基座、状态契约与行为归属。示例源码从实际标记生成；无脚本时，内容和基础任务仍必须成立。</p>
-<details class="doc-component-directory"><summary>查看全部 71 条组件契约</summary>{{componentCatalog}}</details>
+<details class="doc-component-directory"><summary>查看全部 {{componentContractCount}} 条组件契约</summary>{{componentCatalog}}</details>
 
-<div class="wx-note wx-note--info"><span class="wx-note__title">范围</span><p>71 条是按可单独采用的公开契约逐项计数，不把同一 class 的修饰符重复充数。富文本、复杂级联和通用图标生态仍是明确缺口；Card、Spinner、Skeleton、Carousel 与 Watermark 属于设计语言的有意排除。</p></div>
+<div class="wx-note wx-note--info"><span class="wx-note__title">范围</span><p>{{componentContractCount}} 条是按可单独采用的公开契约逐项计数，不把同一 class 的修饰符重复充数。富文本、复杂级联和通用图标生态仍是明确缺口；Card、Spinner、Skeleton、Carousel 与 Watermark 属于设计语言的有意排除。</p></div>

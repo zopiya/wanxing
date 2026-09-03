@@ -132,7 +132,15 @@
         "track": "editorial",
         "why": "每页至多两处强调色出现",
         "uncheckable": "需要按渲染后的页面计数，且要区分装饰性出现与状态色。render-audit 的 findAccentOccurrences() 在单页范围内可以执行，全仓库静态扫描不行。",
-        "instead": "npm run audit <file>"
+        "instead": "对合同化输出运行 npm exec --no -- wenxin audit dist/<slug>/index.html；外链 CSS 与动作语义仍需人工审阅"
+      },
+      {
+        "id": "filled-primary-semantics",
+        "spec": "forbidden.md §三 / DECISIONS.md D-3",
+        "track": "both",
+        "why": "真实数据录入提交或反馈收束可使用一处填充主按钮；应用轨还可将这一处用于直接推进当前任务，阅读轨导航 CTA 用文字链接",
+        "uncheckable": "静态 HTML 无法可靠判断一个链接是在导航、反馈后的安全出口，还是应用轨的任务推进；全页数 wx-btn--primary 会误杀合法的反馈收束与组件示例。自动门当前只覆盖阅读轨 D 型着陆，不能外推为所有页面的动作分类或视图边界。",
+        "instead": "声明页面轨道与原型；按 D-3 人工审阅动作语义，并保留 D 型页面的自动审计"
       },
       {
         "id": "decorative-illustration",
@@ -349,7 +357,7 @@
             "wx-btn"
           ],
           "base": "button；导航目的用 a",
-          "state": "disabled",
+          "state": "原生 disabled（不用 aria-disabled 伪装）",
           "behaviour": "无"
         },
         {
@@ -559,8 +567,8 @@
             "wx-sidebar"
           ],
           "base": "aside 或 nav",
-          "state": "data-open / aria-expanded",
-          "behaviour": "disclosure.js"
+          "state": "data-wx-disclosure-ready / data-open / aria-expanded",
+          "behaviour": "disclosure.js；无 JS 保持文档流"
         },
         {
           "name": "Table of Contents",
@@ -578,7 +586,7 @@
           ],
           "base": "nav + list",
           "state": "aria-current",
-          "behaviour": "toc.js"
+          "behaviour": "采用者或页面脚本更新状态"
         },
         {
           "name": "Affix",
@@ -718,8 +726,8 @@
             "wx-rate"
           ],
           "base": "radio group",
-          "state": "可访问名与选中项",
-          "behaviour": "采用者更新状态"
+          "state": "可访问名、选中项与 token-backed 点击框",
+          "behaviour": "原生单选；采用者读取状态"
         },
         {
           "name": "Upload",
@@ -804,7 +812,7 @@
           "classes": [
             "wx-table"
           ],
-          "base": "table + caption",
+          "base": "table + caption；宽表用具名、tabindex=0 的 wx-table-scroll region",
           "state": "列标题 / scope",
           "behaviour": "无"
         },
@@ -877,7 +885,7 @@
             "wx-calendar"
           ],
           "base": "table + caption",
-          "state": "aria-current / aria-selected",
+          "state": "aria-current / aria-pressed",
           "behaviour": "采用者管理日期"
         },
         {
@@ -919,7 +927,7 @@
             "wx-alert"
           ],
           "base": "section / div",
-          "state": "状态标题与恢复路径",
+          "state": "状态标题；阻塞时有明确恢复路径",
           "behaviour": "无"
         },
         {
@@ -1026,7 +1034,7 @@
     },
     {
       "id": "D-3",
-      "title": "主提交按钮可以填充"
+      "title": "主提交与反馈收束按钮可以填充"
     },
     {
       "id": "D-4",
@@ -1127,11 +1135,15 @@
     {
       "id": "D-28",
       "title": "对比度要按\"面\"测，不是按\"页面底色\"测"
+    },
+    {
+      "id": "D-29",
+      "title": "■ 是文字署名的一部分，不是游离 accent"
     }
   ],
   "verify": {
-    "note": "别声称合规 — 跑一遍。审计器吃一个 HTML 文件，吐 JSON，hardGates 非空即失败。",
-    "audit": "npx wenxin audit <file>",
+    "note": "别声称合规 — 跑一遍。审计器检查合同化输出的 DOM 与内联样式；hardGates 非空即失败，外链 CSS 与浏览器验证另行人工处理。",
+    "audit": "npm exec --no -- wenxin audit dist/<slug>/index.html",
     "gates": [
       "check:tokens — 每个 var(--x) 都能解析",
       "check:colors — 每个前景色对它可能落在的每个面测对比度",

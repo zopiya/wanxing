@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { readPageFacts, renderPageFacts } from "./page-facts.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const siteDir = join(root, "site");
@@ -25,6 +26,7 @@ const nav = JSON.parse(readFileSync(join(siteDir, "_nav.json"), "utf8"));
 const sectionItems = (section) => section.groups.flatMap((g) => g.items);
 const sectionOf = (slug) => nav.find((s) => sectionItems(s).some((i) => i.slug === slug));
 const componentManifest = JSON.parse(readFileSync(join(root, "kit", "components", "manifest.json"), "utf8"));
+const pageFacts = readPageFacts(root);
 
 const escapeHtml = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -87,6 +89,14 @@ function renderNav(currentSlug) {
   }).join("\n");
   return `    <p class="doc-sidebar__title">${section.title}</p>\n` +
          `    <ul class="wx-menu">\n${groups}\n    </ul>`;
+}
+
+/** The product landing deliberately has no scoped sidebar, so it must not
+ * expose a mobile trigger for an empty navigation region. */
+function renderNavToggle(navHtml) {
+  if (!navHtml) return "";
+  return `  <button class="doc-navtoggle wx-btn wx-btn--text" type="button"\n` +
+         `          data-wx-toggle="#doc-sidebar" aria-expanded="false" aria-controls="doc-sidebar">目录</button>`;
 }
 
 /** The top bar is the section list. Each link enters one reading mode and
@@ -173,11 +183,13 @@ verifyComponentManifest();
 let count = 0;
 for (const slug of known) {
   const raw = readFileSync(join(siteDir, "_pages", `${slug}.html`), "utf8");
-  const body = expandDemos(raw.replace("{{componentCatalog}}", renderComponentCatalog()), slug);
+  const body = expandDemos(renderPageFacts(raw, pageFacts).replace("{{componentCatalog}}", renderComponentCatalog()), slug);
+  const navHtml = renderNav(slug);
   const title = (raw.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || slug).replace(/<[^>]+>/g, "").trim();
   const html = shell
     .replace("{{title}}", slug === "index" ? title : `${title} · 文心 万形`)
-    .replace("{{nav}}", renderNav(slug))
+    .replace("{{nav}}", navHtml)
+    .replace("{{navToggle}}", renderNavToggle(navHtml))
     .replace("{{topnav}}", renderTopNav(slug))
     .replace("{{toc}}", renderToc(body))
     .replace("{{shellClass}}", landingPages.has(slug) ? "doc-shell--landing" : hubPages.has(slug) ? "doc-shell--hub" : "")

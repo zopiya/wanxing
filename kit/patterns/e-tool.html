@@ -1,5 +1,20 @@
-<main class="wx-tool" data-track="application">
-  <header><h1>查询工具</h1><p class="wx-lede">完成一个明确任务。</p></header>
-  <form class="wx-tool__input"><label class="wx-field"><span class="wx-field__label">输入</span><input class="wx-input" name="query" required></label><button class="wx-btn wx-btn--primary" type="submit">查询</button></form>
-  <section class="wx-tool__result" aria-live="polite" aria-label="查询结果"><p>结果在这里。</p></section>
+<main class="wx-tool" data-track="application" aria-labelledby="tool-title">
+  <header class="wx-tool__header"><h1 id="tool-title">查询工具</h1><p class="wx-lede">完成一个明确任务。</p></header>
+  <form class="wx-tool__input" novalidate>
+    <div class="wx-tool__query-row">
+      <label class="wx-search"><span class="wx-sr-only">查询内容</span><input id="tool-query" class="wx-search__input" name="query" type="search" required aria-describedby="tool-query-hint tool-query-error"></label>
+      <button class="wx-btn wx-btn--primary" type="submit">查询</button>
+    </div>
+    <p class="wx-field__hint" id="tool-query-hint">说明可以查询什么；不要让 placeholder 代替标签。</p>
+    <p class="wx-field__error" id="tool-query-error" role="alert" hidden>请输入一个查询关键词。</p>
+  </form>
+  <p class="wx-tool__status" role="status" hidden>正在查询…</p>
+  <section class="wx-tool__result" aria-busy="false" aria-labelledby="tool-result-title">
+    <h2 id="tool-result-title">查询结果</h2>
+    <p>输入关键词后开始查询。</p>
+    <ol class="wx-list wx-list--ruled" hidden></ol>
+    <div class="wx-empty" hidden><p class="wx-empty__title">没有匹配的结果</p><p>换一个关键词，或清除查询后重新开始。</p><button class="wx-btn wx-btn--text" type="button">清除查询</button></div>
+    <div class="wx-alert wx-alert--danger" role="alert" hidden><span>暂时无法完成查询。请检查数据源后重试。</span><button class="wx-btn" type="button">重新查询</button></div>
+  </section>
+  <!-- 保留 novalidate 时，控制器必须设置 aria-invalid、显示错误文字，并在就绪/执行中/结果/无结果/失败之间切换。 -->
 </main>

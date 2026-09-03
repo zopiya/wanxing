@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-motion="E9-1" data-animations-complete="false">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Markdown 全量 · 文心 万形</title>
 <link rel="stylesheet" href="../kit/index.css">
-<link rel="stylesheet" href="./assets/site.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="wx-page">
@@ -13,14 +13,15 @@
 
 <header class="doc-topbar">
   <a class="doc-brand" href="./index.html">
-    <span class="wx-seal" aria-hidden="true"></span>
     <span>文心 · 万形</span>
+    <span class="wx-seal" aria-hidden="true"></span>
   </a>
   <nav class="doc-primary" aria-label="主要导航">
 <a href="./design.html">设计</a>
     <a href="./content.html" aria-current="page">内容</a>
     <a href="./components.html">组件</a>
     <a href="./patterns.html">页面</a>
+    <a href="./motion.html">动效</a>
     <a href="./brand.html">品牌</a>
     <a href="./adopt.html">接入</a>
   </nav>
@@ -47,7 +48,7 @@
   <main class="doc-main" id="main">
     <article class="doc-article">
 <h1>Markdown 全量</h1>
-<p class="wx-lede">CommonMark 与 GFM 的全部常用标记，左边是作者写的源码，右边是渲染后的样子。每一条都是真渲染，不是截图。</p>
+<p class="wx-lede">CommonMark 与 GFM 的常用标记。左边是作者写的输入，右边是对应 HTML 结构的实时样式预览，不是截图；示例说明文心如何呈现结构，不代替具体 Markdown 渲染器的兼容性测试。</p>
 
 <h2 id="headings">标题与段落</h2>
 <div class="doc-pair">
@@ -218,10 +219,10 @@
 &gt; [!CAUTION]
 &gt; 危险操作。</code></pre>
   <div class="doc-pair__out wx-md" lang="zh-CN">
-    <div class="admonition note"><span class="admonition-title">说明</span><p>一般说明。</p></div>
-    <div class="admonition tip"><span class="admonition-title">建议</span><p>建议。</p></div>
-    <div class="admonition warning"><span class="admonition-title">警告</span><p>警告。</p></div>
-    <div class="admonition danger"><span class="admonition-title">危险</span><p>危险操作。</p></div>
+    <div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title">说明</p><p>一般说明。</p></div>
+    <div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title">建议</p><p>建议。</p></div>
+    <div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title">警告</p><p>警告。</p></div>
+    <div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title">危险</p><p>危险操作。</p></div>
   </div>
 </div>
 <p>认得的 class：<code>.admonition.tip</code>、<code>.alert-tip</code>、<code>.markdown-alert-tip</code>——
@@ -295,6 +296,7 @@
 <script src="../kit/components/js/disclosure.js"></script>
 <script src="../kit/components/js/overlay.js"></script>
 <script src="../kit/components/js/tabs.js"></script>
+<script src="../kit/components/js/animations-complete.js"></script>
 <script src="./assets/site.js"></script>
 </body>
 </html>

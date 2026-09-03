@@ -126,7 +126,7 @@ F6 Documentation · F7 Poster · F8 Diagram · F9 Report
 
 ## 为什么需要这份文件 · Why this exists
 
-文心是一套有强烈主张的设计语言：无卡片、无阴影、无渐变、无填充按钮、全页 accent ≤2 处。
+文心是一套有强烈主张的设计语言：无卡片、无阴影、无渐变、阅读轨无填充导航 CTA、阅读轨内容页 accent ≤2 处。
 这些主张让它有识别度，也让它在某些地方与主流社区的约定俗成正面相撞 ——
 一个没有语义色的系统无法表达"这个操作有破坏性"；一个只有线框按钮的表单让用户找不到主操作。
 
@@ -169,8 +169,8 @@ Walk the layers top-down; the first one that matches decides.
 
 | 轨道 | 形态 | 视觉约束 |
 |---|---|---|
-| **阅读轨 Editorial** | F1 Web · F3 Brand · F4 Print · F5 Presentation · F6 Documentation · F7 Poster · F8 Diagram · F9 Report | 哲学全量生效：无卡片容器、无填充按钮、accent ≤2 处、灰阶图表、极简动效 |
-| **应用轨 Application** | F2 Mobile；**任何形态中采用[原型 E 工具型](./page-archetypes.md)的页面** | 放宽视觉约束：允许分组表面、允许填充主按钮、完整语义色、明确的交互与触控反馈 |
+| **阅读轨 Editorial** | F1 Web · F3 Brand · F4 Print · F5 Presentation · F6 Documentation · F7 Poster · F8 Diagram · F9 Report | 哲学全量生效：无卡片容器、无填充导航 CTA、accent ≤2 处、灰阶图表、极简动效 |
+| **应用轨 Application** | F2 Mobile；**任何形态中采用[原型 E 工具型](./page-archetypes.md)的页面** | 放宽视觉约束：允许分组表面、每视图一个直接推进任务的填充主按钮、完整语义色、明确的交互与触控反馈 |
 
 **轨道在页面级声明**，写进渲染契约：
 
@@ -192,6 +192,9 @@ Data-entry and feedback components always follow convention, in either track.
 
 也就是说：一个纯阅读轨的 F6 文档页，其中的搜索框、订阅表单、错误提示，
 仍然使用完整语义色、清晰的可供性、标准的交互反馈。**表单就是表单，可用性在这里不可妥协。**
+
+这里的例外只覆盖数据录入的提交，以及反馈组件中的收束动作（如确认、重试、回到安全入口）；
+页面或区块间的导航 CTA 仍按第二层所在轨道处理。
 
 理由：这类组件的功能是**接收输入与传达结果**。一个看不出是错误的错误提示，
 不是克制，是失败。哲学在这里没有可表达的东西 —— 它该表达的地方在排版、留白与色彩基调上。
@@ -215,14 +218,14 @@ warning）只用于其语义目的」。准则假设它们存在，token 里却�
 
 新增 `--color-danger` `--color-success` `--color-warning` 及 `-subtle` 变体，取低饱和暖调。
 
-### 2. 主按钮升格（第三层要求）
+### 2. 主提交、反馈收束与应用轨任务推进有了边界
 
-现行规范写的是「禁止填充背景（**除表单绝对必要的主提交按钮**）」——
-系统本就预见了这个妥协，只是把它写成了括号里的例外。
+现行规范把「除表单绝对必要的主提交按钮」藏在括号里。真实的数据录入提交与反馈收束在任一轨道都可使用；
+应用轨还可把唯一主按钮用于直接推进当前任务。页面或区块间的导航 CTA 仍按第二层轨道处理。
 
-现在把它升格为一等变体 `wx-btn--primary`：默认仍是 ghost 线框，
-填充仅用于真正的主操作，**且每视图至多一个**。约束从"禁止"变成"限量"，
-这既保住了克制，也让用户找得到主操作。
+现在把这个边界升格为一等变体 `wx-btn--primary`：默认仍是 ghost 线框，每视图至多一个。
+阅读轨导航 CTA 使用 `wx-btn--text`；应用轨的直接任务推进可使用唯一主按钮。
+约束从含糊的“例外”变成有轨道与动作类别的限量。
 
 ### 3. F2 分组表面合法化（第二层要求）
 
@@ -239,13 +242,17 @@ iOS 分组列表是真实的平台惯例，不是设计偷懒。作为 `.wx-list
 |---|---|---|
 | 第一层全部底线 | **强制** | **强制** |
 | accent ≤2 处 | 强制 | 放宽（语义色不计入 accent 预算） |
-| 无填充按钮 | 强制 | 每视图 ≤1 个 `--primary` |
+| 填充色主按钮 | 真实数据录入提交或反馈收束时，每视图 ≤1；导航 CTA 用文字链接。自动门当前只覆盖 D 型着陆 CTA | 每视图 ≤1 个直接推进当前任务的 `--primary`；普通跳转用线框或文字 |
 | 无四边包围容器 | 强制 | 允许 `--grouped`，但仍禁阴影 |
 | 图表灰阶编码 | 强制 | 强制（这条不分轨） |
 | 无渐变 / 无阴影 | 强制 | 强制（这条不分轨） |
 
 **注意最后两行**：分组表面走边框，不走阴影；图表编码规则两轨相同。
 放宽的是"容器与强调的用法"，不是"暖土极简的底色"。灵魂不因轨道而变。
+
+**覆盖边界**：`render-audit` 当前只识别阅读轨 `main.wx-landing` 内的 `a.wx-btn--primary`；
+`check:site` 再覆盖本站首页与 D 型模式页。它们不判断其他页面的业务语义、视图边界或应用轨任务推进，
+因此其他页面不能引用这些检查或 `check:forbidden` 的通过作为该类别规则的合规证明。
 
 What relaxes is how containers and emphasis may be used — never the warm-minimal ground itself.
 
@@ -313,18 +320,27 @@ warning）只用于其语义目的」—— 准则假设它们存在。同时[�
 
 ---
 
-## D-3 · 主提交按钮可以填充
+## D-3 · 主提交与反馈收束按钮可以填充
 
-**冲突**　[forbidden.md](./soul/forbidden.md) 禁止填充按钮；但表单需要一个视觉上找得到的主操作，
-这是普遍的可用性惯例。
+**冲突**　[forbidden.md](./soul/forbidden.md) 禁止填充按钮；但真实的数据录入提交，以及反馈组件中帮助用户完成、
+重试或回到安全入口的收束动作，需要一个可立即辨认的主操作。应用轨还需要一个直接推进当前任务的主动作；
+阅读轨的普通页面或区块导航 CTA 则不属于这些例外。
 
-**判定**　`wx-btn--primary` 升格为一等变体。默认仍是 ghost 线框，
-**填充仅用于真正的主操作，每视图至多一个**。约束从"禁止"改为"限量"。
+**判定**　`wx-btn--primary` 升格为一等变体。默认仍是 ghost 线框；真实提交或反馈收束在任一轨道可使用，
+每视图至多一个。应用轨还可将这一处用于直接推进当前任务的动作（包括任务流程中的下一步）；
+普通跳转仍用线框或文字。阅读轨的页面或区块导航 CTA 使用 `wx-btn--text`，包括原型 D 着陆页。
 
-**层级**　第三层（数据录入组件按惯例处理）
+**层级**　第三层（数据录入与反馈组件按惯例处理）+ 第二层（应用轨的一项直接任务推进）；
+导航 CTA 仍由第二层决定。
 
-**理由**　旧规范其实已经写了「除表单绝对必要的主提交按钮」—— 系统本就预见了这个妥协，
-只是把它写成括号里的例外。升格为命名变体后，它变得可数、可审计，比藏在括号里更克制。
+**理由**　旧规范已经预见“表单绝对必要的主提交按钮”，但没有划清它与导航 CTA 的边界。
+命名变体使提交、反馈收束和应用轨任务推进可数、可审计；不把“重要”或“去另一个页面”本身变成填充色授权，
+才能保住阅读轨的克制。
+
+**覆盖边界（2026-09-02）**　当前自动检查只识别阅读轨 `main.wx-landing` 内的
+`a.wx-btn--primary`，并覆盖本站首页与 D 型模式页；它不能从任意页面的 `<a>` 推断业务语义、
+视图边界或应用轨任务推进。其余页面仍须按本判定人工审阅，不能把 `check:forbidden` 或
+`render-audit` 绿灯误作类别合规证明。
 
 ---
 
@@ -762,6 +778,24 @@ F6 长期文档站字体 CDN 是 **C · 漂移**，回归自托管 + `unicode-ra
 三条负控都验过：恢复旧 comment 值、把代码底退回 `bg-subtle`、调淡 `text-secondary`，
 分别在预期位置失败。
 
+---
+
+## D-29 · ■ 是文字署名的一部分，不是游离 accent
+
+**冲突**　品牌正文一面说 ■ 是紧随品牌名的签名，另一面又允许把它在页面任何位置追加一次；
+这会让同一页的 Logo、署名和强调色之间没有清晰边界，也与“Logo 与 ■ 不在同一处并列”的
+品牌应用规则相撞。
+
+**判定**　`wx-seal` 只作为文字品牌名或署名的一部分，紧随名称之后。它不作为正文、按钮、
+列表中的游离 accent，也不与图形 Logo 组成同一品牌锁定。组件文档可以把它作为带标签的构件
+样本展示，但那不是一份页面的第二个品牌署名。
+
+**层级**　灵魂层的身份语义澄清，不改变 A9 / B9 / D9
+
+**理由**　■ 的力量来自“签名”这一关系，而不是朱砂色本身。把它从名称旁边抽离出来，
+就会把署名降格成装饰符号；再和图形 Logo 叠放，则让两个本应不同尺度承担同一身份任务。
+限制位置不是减少表达，而是让每一次出现仍有可读的归属。
+
 
 <!-- spec/media.md -->
 
@@ -805,7 +839,7 @@ documentation site rather than being duplicated here.
 无论哪个容器，这些都不变 —— 它们就是[不变之魂](./soul/philosophy.md)：
 
 - 暖土色域与单一 accent（**D9**）
-- accent 全页 ≤ 2 处
+- 阅读轨内容页 accent ≤ 2 处；应用轨按页面合同分配任务强调
 - 无卡片、无阴影、无渐变（**A9**）
 - WCAG 2.2 AA 底线
 - token 词汇表
@@ -943,7 +977,8 @@ Used by: [`f1-web.md`](./media.md) (résumé/portfolio/About). 源材料中未�
 - 背景 Background：`--color-bg-warm`
 - 标题 Title：`--font-display` · `--text-5xl`/`--text-4xl` · `--tracking-chinese` 或 `--tracking-tight`
 - 导航 Nav：透明背景 transparent, `--font-ui` · `--text-sm` · 全大写 uppercase · `--tracking-wider`
-- CTA：纯文字链接型，非填充按钮 plain text link, never a filled button
+- CTA：纯文字链接型，非填充按钮 plain text link, never a filled button。D 型 CTA 是页面或区块间的导航，
+  不属于第三层的数据录入或反馈例外。
 - 区块间距 Section gap：`--space-24` 以上 and above
 
 Used by: [`f1-web.md`](./media.md) (landing page / home).
@@ -959,9 +994,11 @@ Used by: [`f1-web.md`](./media.md) (landing page / home).
 遵循惯例 Follows convention：输入区突出，操作路径清晰，结果区简洁。Prominent input area, clear action path, simple results area.
 
 **灵魂注入 Soul injection:**
-- 输入框 Input：见 [`soul/components.md`](./soul/components.md) 表单规范 form spec
-- 按钮 Button：线框型 outline, hover → `--color-accent`
-- 结果文字 Result text：`--font-body` · `--leading-relaxed`
+- 输入框 Input：见 [`soul/components.md`](./soul/components.md) 表单规范 form spec；始终有可见或可访问标签
+- 按钮 Button：提交工具任务时可用一个 `wx-btn--primary`；应用轨直接推进当前任务的下一步也可占用这一处。
+  其余动作用线框或文字，普通页面导航仍用 `<a>`
+- 状态 Status：就绪、无效、执行中、有结果、无结果、失败都要有文字与恢复路径；执行中用 `aria-busy` + 禁用按钮，不用 spinner
+- 结果文字 Result text：`--font-body` · `--leading-relaxed`；结果按 `wx-entry` / 规则列表展开，不堆卡片
 - 图标 Icon：`--icon-md`, `--color-text-secondary`
 
 Used by: [`f6-documentation.md`](./media.md) 的搜索/查询交互界面。源材料中未见独立的纯工具型页面实例。No dedicated instance in the source material for a pure tool page — build from the rules above.
@@ -988,51 +1025,56 @@ not a form profile or render contract.
 
 > 属于 [spec](./README.md) 形态层 — Form layer
 >
-> **状态 · Status：`npm run check` 不再运行渲染审计。** 九份夹具页面已随
-> [DECISIONS](./DECISIONS.md) **D-26** 一并删除；审计器保留为**独立工具**，
-> 供使用者检查自己的页面：`npm run audit <file>`。
-> 声明式的 `profileSpecificChecks` 随夹具移除 —— 没有页面声明它们时，
-> 那套分派就是**看起来活着的死代码**。
+> **状态 · Status：`npm run check` 包含 `check:render-audit`。** 它用一份可通过夹具，
+> 加上缺少主地标、非法轨道和阅读轨着陆页错误主 CTA 等故意缺陷验证审计器本身；
+> 它**不会自动审计每个消费者页面**。消费者仍须在自己的输出目录显式运行审计。
 
 一段内嵌在 `<head>` 里的 JSON，声明页面的媒介、轨道、动效预算与结构要求，
-让"这份产出是否合规"从人工判断变成可以程序核对的问题。
+让一部分明确的合同与 DOM 约束可以程序核对，而不是把所有视觉和交互判断伪装成自动结论。
 
 A JSON block in `<head>` declaring the page's medium, track, motion budget, and structural
-requirements — turning "is this compliant" from a judgment call into something a script checks.
+requirements — making explicit contract and DOM obligations checkable, without pretending to replace
+browser, assistive-technology, or design review.
 
 ---
 
 ## 格式 · Shape
 
-版本与 profile 走 **HTML 属性**，JSON 里再声明一次 profile 供交叉核对：
+版本与 profile 走 **HTML 属性**，JSON 里再声明一次 profile 供交叉核对。下面是一份可直接
+放在 `dist/on-restraint/index.html` 的最小完整文件；它的路径与合同字段彼此匹配，运行审计时没有
+硬失败。
 
 ```html
+<!doctype html>
 <html lang="zh-CN"
       data-wanxing-profile="F1"
       data-wanxing-contract-version="1"
-      data-motion="E9-1">
-```
-
-```html
-<script type="application/json" id="wanxing-render-contract">
-{
-  "profile": "F1",
-  "track": "editorial",
-  "project": { "name": "论克制", "slug": "on-restraint" },
-  "language": "zh-CN",
-  "output": { "entry": "dist/on-restraint/index.html", "tmpDir": ".tmp/on-restraint" },
-  "theme": { "accentBudget": 2 },
-  "motion": {
-    "intensity": "E9-1",
-    "maxDurationMs": 420,
-    "completionSignal": "data-animations-complete"
-  },
-  "structure": {
-    "expectedH1": 1,
-    "requiredRegions": ["main"]
+      data-motion="E8"
+      data-animations-complete>
+<head>
+  <meta charset="utf-8">
+  <script type="application/json" id="wanxing-render-contract">
+  {
+    "profile": "F1",
+    "track": "editorial",
+    "project": { "name": "论克制", "slug": "on-restraint" },
+    "language": "zh-CN",
+    "output": {
+      "entry": "dist/on-restraint/index.html",
+      "tmpDir": "dist/on-restraint/tmp"
+    },
+    "theme": { "accentBudget": 2 },
+    "motion": {
+      "intensity": "E8",
+      "maxDurationMs": 0,
+      "completionSignal": "data-animations-complete"
+    },
+    "structure": { "expectedH1": 1, "requiredRegions": ["main"] }
   }
-}
-</script>
+  </script>
+</head>
+<body><main><h1>论克制</h1></main></body>
+</html>
 ```
 
 ## 字段 · Fields
@@ -1043,12 +1085,12 @@ requirements — turning "is this compliant" from a judgment call into something
 | `<html data-wanxing-profile>` | 媒介代号，须与 JSON 的 `profile` 一致 | 硬失败 |
 | `profile` | 同上，JSON 侧的副本，用于交叉核对 | 硬失败 |
 | `output.entry` `output.tmpDir` | 须与页面实际路径一致（`dist/<slug>/index.html`） | 硬失败 |
-| `track` | `editorial` / `application`，决定视觉约束严格程度 | 按 editorial 处理 |
+| `track` | 仅 `editorial` / `application`，决定视觉约束严格程度 | 缺失按 editorial；其他值硬失败，且仍按 editorial 收紧 |
 | `project.name` `project.slug` | 输出路径与命名核对 | 硬失败 |
 | `theme.accentBudget` | accent 出现次数上限；阅读轨默认 2，应用轨默认 4 | 用默认值 |
 | `motion.intensity` | `E8` / `E9-0` / `E9-1` / `E9-2`，见 [motion.md](./soul/motion.md) | 硬失败 |
 | `motion.maxDurationMs` | 单次动效上限，系统封顶 600ms | 硬失败 |
-| `motion.completionSignal` | 动画完成信号属性名 | 有动效时硬失败 |
+| `motion.completionSignal` | 动画完成信号属性名；当前实现要求所有输出都暴露它（即使是 `E8`） | 硬失败 |
 | `structure.requiredRegions` | 必需的地标元素 | 不检查 |
 
 轨道判定规则见 [tracks.md](./tracks.md)，媒介取值见 [media.md](./media.md)。
@@ -1058,22 +1100,27 @@ requirements — turning "is this compliant" from a judgment call into something
 与媒介无关的通用项，分四组：
 
 - **合同自身** —— JSON 可解析、版本存在、profile 与 DOM 一致、项目名与 slug 匹配
-- **灵魂约束** —— accent 预算、禁用的阴影 / 渐变 / 拟物滤镜 / 高饱和色
+- **灵魂约束** —— 在内联 `<style>` 与 `style` 属性里检查 accent 预算、禁用的阴影 / 渐变 / 拟物滤镜 / 高饱和色
 - **动效** —— `E8` 下不得定义任何动画或过渡；时长封顶；禁止旋转与弹跳缓动；
   位移 ≤16px；必须响应 `prefers-reduced-motion`；有动效时必须有完成信号
 - **结构与无障碍** —— `<main>` 存在、标题层级、焦点可见、图片 `alt`、交互元素可访问名
 
 ```sh
-npm run audit dist/<slug>/index.html   # 输出 JSON 报告，非零退出表示有硬失败
+npm run audit -- dist/<slug>/index.html   # 输出 JSON 报告，非零退出表示有硬失败
 ```
 
-审计器假定一套输出约定：页面位于 `dist/<slug>/index.html`，slug 为小写 ASCII。
+审计器假定一套输出约定：页面位于 `dist/<slug>/index.html` 或 `app/<slug>/index.html`，slug 为小写 ASCII。
 这是它从原有生成流水线继承的前提，路径不符会直接判失败。
 
-> **它现在没有被 CI 跑。** 保留它是因为它是这套系统交付的**产物之一** ——
-> 使用者可以拿它检查自己的页面。但这也意味着：**没有东西在验证审计器本身还正确。**
-> 如果要重新把它纳入 `npm run check`，需要同时恢复一份负控制夹具，
-> 否则就会回到"绿色输出被当成证据"的老问题。
+## 覆盖边界 · Coverage Boundary
+
+`hardGates` 为空只表示**合同、HTML DOM、内联 `<style>` 与 `style` 属性**通过了当前可执行门槛。
+它不读取 `<link rel="stylesheet">` 指向的 CSS，也不执行浏览器来获得计算后样式；发现外链样式表时，
+报告会给出 `coverage.linked_stylesheet_uninspected` 警告。这不是失败的替代品，而是证据边界。
+
+因此消费者交付前仍需做三件事：按 [tracks.md](./tracks.md) 人工判定不可机械化规则、在浏览器检查
+视觉与窄屏、用真实辅助技术走关键交互。`check:render-audit` 已验证审计器自身的正反夹具；它不替你验证
+你的产品页面。
 
 
 <!-- spec/PROVENANCE.md -->
@@ -1320,18 +1367,18 @@ This is the single most defining element in the whole language.
 ```
 
 **使用约束 Constraints**
-- ✅ 必须出现在品牌 Logo / 署名区。Must appear in the brand logo/signature area.
-- ✅ 可在全页追加出现 1 次（可选，慎用）。May appear once more elsewhere on the page (optional, use sparingly).
-- ❌ 不可出现在正文段落、按钮、列表项中。Never in body paragraphs, buttons, or list items.
-- ❌ 不可复制多个分散页面各处。Never scattered in multiple places across a page.
+- ✅ 只作为品牌文字/署名的一部分，紧随名称之后。Only as part of a textual brand name or signature, immediately after the name.
+- ❌ 不可作为游离 accent 出现在正文段落、按钮、列表项中。Never as a free-standing accent in body paragraphs, buttons, or list items.
+- ❌ 不可与图形 Logo 在同一品牌锁定中并列。Never pair it with a graphical logo in the same brand lockup.
+- ❌ 不可复制多个分散页面各处。Never scatter it across a page.
 
 它是签名，不是装饰。出现越少，力量越大。
 
 It is a signature, not decoration. The rarer it appears, the more power it holds.
 
-Logo 用于品牌展示/标题区，■ 符号紧随品牌名后用于署名，二者各司其职。
+Logo 用于品牌展示/标题区，■ 符号紧随品牌名后用于文字署名，二者各司其职且不在同一品牌锁定中并列。
 
-The logo is for brand display/title areas; the ■ mark follows the brand name for signatures — each has its own job.
+The logo is for brand display/title areas; the ■ mark follows the brand name for textual signatures — each has its own job and they do not sit together in one brand lockup.
 
 ---
 
@@ -1415,9 +1462,9 @@ The logo is brand identity — it **is allowed and required** to deviate from no
 
 ## 与形态层的边界 · Boundary with the Form Layer
 
-品牌标识符 ■ 与 Logo 的**定义**（形态、色彩、圆角、线宽、动效）属于这里（灵魂层）。Logo/■ 在某个具体产出（网页头部、印刷品信头、名片、海报角落）里**放在哪里、多大**，属于形态层，见 [形态层 forms](../media.md) 的 `f3-brand.md`（品牌应用形态）以及各 F1–F9 文件里对品牌元素位置的说明。
+品牌标识符 ■ 与 Logo 的**定义**（形态、色彩、圆角、线宽、动效）属于这里（灵魂层）。Logo/■ 在某个具体产出（网页头部、印刷品信头、名片、海报角落）里**放在哪里、多大**，属于形态层；媒介约束见 [media.md](../media.md)，可执行的网页摆放示例见 [`site/brand-usage.html`](../../site/brand-usage.html)。
 
-The **definition** of the ■ mark and the logo (shape, color, radius, stroke, motion) lives here. **Where and how large** it sits in a specific output (a webpage header, letterhead, business card, poster corner) is a form-layer decision — see wanxing's `f3-brand.md` and the placement notes in each F1–F9 file.
+The **definition** of the ■ mark and the logo (shape, color, radius, stroke, motion) lives here. **Where and how large** it sits in a specific output (a webpage header, letterhead, business card, poster corner) is a form-layer decision — see [media.md](../media.md) for medium constraints and [`site/brand-usage.html`](../../site/brand-usage.html) for executable web placement examples.
 
 
 <!-- spec/soul/color.md -->
@@ -1464,7 +1511,7 @@ functional-ink floor.
   --color-text-functional: #706D68;  /* 日期/元数据/控件/占位符 functional copy · 4.52:1 */
   --color-text-heading:   #2C2B29;  /* 标题·比正文略深 headings, slightly darker than body */
 
-  /* 点睛之色 · 全页 ≤ 2 处 The single accent — ≤ 2 occurrences per page */
+  /* 点睛之色 · 阅读轨内容页 ≤ 2 处 Editorial content pages: ≤ 2 occurrences */
   --color-accent:        #8B3525;
   --color-accent-hover:  #A84030;
   --color-accent-subtle: #F5E8E5;  /* accent 的极淡背景版 accent's pale background variant */
@@ -1541,8 +1588,10 @@ Not an inverted pure-black theme — the same vellum, dimmed.
 
 ## 色彩约束 · Constraints
 
-- Accent 全页出现 **≤ 2 处**；图标激活/选中态使用 Accent 不计入此限制。
-  Accent appears **≤ 2 times** per page; icon active/selected states are exempt.
+- 阅读轨内容页的 Accent 出现 **≤ 2 处**；图标激活/选中态使用 Accent 不计入此限制。
+  数据录入提交与反馈收束按第三层；应用轨的其余强调按页面合同。
+  Editorial content pages use Accent **≤ 2 times**; icon active/selected states are exempt.
+  Data-entry submit and feedback closure follow layer three; other application emphasis follows the page contract.
 - 禁止：高饱和蓝、绿、紫、橙作为**装饰或强调**；任何渐变色背景。
   **语义色不在此列** —— danger / warning / success 是信息通道，见下一节。
   Forbidden as *decoration or emphasis*: high-saturation blue/green/purple/orange; any gradient.
@@ -1643,7 +1692,7 @@ screen reader cannot perceive.
 ## 三条通用规则 · Three Universal Rules
 
 **1 · 描边优先，填充例外**
-默认 `transparent` 背景 + 1px 边框。填充只出现在两处：每视图至多一个主按钮、应用轨的分组表面。
+默认 `transparent` 背景 + 1px 边框。填充只出现在两处：每视图至多一个真实提交或反馈收束的主按钮（应用轨可将其用于直接任务推进）、应用轨的分组表面。
 
 **2 · 分隔靠线与留白，不靠盒子**
 `wx-rule`（发丝线）与 `--space-*` 是这套系统的主要结构手段。
@@ -1686,18 +1735,19 @@ screen reader cannot perceive.
 ### 数据录入 Data Entry **[惯例]**
 
 `wx-input` · `wx-field`（label / hint / error 三槽）· `wx-select`（原生 `<select>`，不做自定义下拉）·
-`wx-check` · `wx-radio` · `wx-btn`
+`wx-check` · `wx-radio` · `wx-btn`（作为提交控件时）
 
 **这一类无论在哪条轨道都按惯例处理。** 表单就是表单：
 必填用文字标注而非仅颜色，错误同时给颜色与文字，label 在输入框上方。
 
 ```
 wx-btn            默认 ghost 线框，hover 时 border + text → accent
-wx-btn--primary   填充，仅用于真正的主操作，每视图 ≤1 个
-wx-btn--text      纯文字 + 箭头，如「查看更多 →」
+wx-btn--primary   真实提交或反馈收束可用；应用轨可用于直接任务推进；每视图 ≤1
+wx-btn--text      纯文字导航 CTA，如「查看更多 →」
 ```
 
-CTA 优先用 `--text` 变体，而不是按钮。
+阅读轨的页面或区块导航 CTA 用 `<a class="wx-btn wx-btn--text">`。它不因复用 `wx-btn` 的视觉样式而变成
+第三层组件；应用轨只有直接推进当前任务的导航才可使用唯一的 `wx-btn--primary`，普通跳转仍用文字或线框。
 
 ### 数据展示 Data Display
 
@@ -1882,8 +1932,9 @@ Whitespace *is* the grouping signal. A box outsources the problem to a border; s
 全图**只有一个**序列、一根柱或一个点可以是 `--color-accent` ——
 就是 caption 正在讲的那一个。其余全部是墨色。
 
-这是"克制即力量"在数据上的表达，也和全页 accent 预算天然咬合：
-**一张图消耗页面两处 accent 预算中的一处**，审计器可直接统计。
+这是"克制即力量"在数据上的表达。阅读轨内容页中，**一张图消耗页面两处 accent 预算中的一处**；
+应用轨按页面合同分配强调，但图表本身仍不把 accent 变成普通分类色。审计器可统计声明产物中的出现次数，
+不能代替动作与业务语义的人工判断。
 
 ### R3 · 直接标注，不用图例
 **Direct labeling. No legends.**
@@ -2025,12 +2076,12 @@ the better chart anyway.
 
 | 禁止 | 原因 | 轨 |
 |---|---|---|
-| 填充色按钮 —— **每视图至多一个 `wx-btn--primary` 例外** | 引入过多产品感 | **[限量]** |
+| 填充色按钮 —— 真实数据录入提交或反馈收束在任一轨道可使用；应用轨另可用一处直接任务推进；每视图至多一个，普通跳转用 `wx-btn--text` | 引入过多产品感 | **[第三层 + 应用轨第二层例外]** |
 | `outline: none` | 破坏键盘可访问性 | **[双轨]** |
 | 链接文字为「点击这里」 | 无语义，屏幕阅读器无法理解 | **[双轨]** |
 
-> 旧规范把主提交按钮写成括号里的例外。现在它是一等变体，
-> 约束从"禁止"改为"**限量**"：默认 ghost 线框，每视图至多一个填充主按钮。
+> 默认 ghost 线框。`wx-btn--primary` 在任一轨道仅用于真实提交或反馈收束；应用轨还可用于
+> 一项直接推进当前任务的动作。每视图至多一个；阅读轨导航 CTA 与应用轨普通跳转不适用该例外。
 
 ## 四、图标与图像 · Icons & Imagery
 
@@ -2086,9 +2137,9 @@ the better chart anyway.
 
 额外强调，因为模型在无约束时几乎必然产出它们：
 
-**无阴影。无填充按钮。无渐变。无「圆角卡片 + 彩色左边框 + 图标」组合。**
+**无阴影。默认无填充按钮。无渐变。无「圆角卡片 + 彩色左边框 + 图标」组合。**
 
-**No shadows. No filled buttons. No gradients. No rounded-card-with-colored-left-border-and-icon.**
+**No shadows. No filled buttons by default. No gradients. No rounded-card-with-colored-left-border-and-icon.**
 
 ---
 
@@ -2096,7 +2147,10 @@ the better chart anyway.
 
 `npm run check:forbidden` 对 `kit/`、`site/` 与（如存在的）历史示例做静态检查：
 `box-shadow`（非 `none`）、`linear-gradient` / `radial-gradient`、
-超出 `--stroke-mark` 的边框宽度、弹跳类缓动、填充按钮计数。
+超出 `--stroke-mark` 的边框宽度、弹跳类缓动等可机械判断的规则。
+
+填充按钮的类别与轨道约束当前只由 D 型页面审计覆盖；其他阅读页在对应检查落地前，
+不能把 `check:forbidden` 或页面审计的通过当作这条规则的证据。
 
 **这份清单不是风格建议，是构建会失败的检查项。**
 
@@ -2400,8 +2454,10 @@ Any element that fails to make content clearer should not exist.
 Motion should feel like the resistance of a turning page — you sense the care, but never stop to admire it.
 
 **点睛之色 · The Single Accent**
-全页只允许一处强调色，它是整个设计的签名。就像水墨画上的朱砂印 ——
-其余一切是黑白灰，它是唯一有温度的存在。**频率越低，力量越大。**
+阅读轨的内容页把强调色视为整页的签名；它应当稀少，默认预算见
+[双轨仲裁](../tracks.md)。就像水墨画上的朱砂印 —— 其余一切是黑白灰，
+它是唯一有温度的存在。应用轨的任务状态与提交边界由同一仲裁规则单列，
+不把这条审美原则误解为对所有交互的盲目禁令。**频率越低，力量越大。**
 Like the cinnabar seal on an ink painting: the rarer it appears, the more power it holds.
 
 ---
@@ -2417,7 +2473,7 @@ Wenxin is not a *style*; it is a specific point in a design space. Seven dimensi
 
 | 维度 | 值 | 含义 | 在 token 中的体现 |
 |---|---|---|---|
-| **A · 设计哲学** | **A9 克制之美** | 力量来自克制而非张扬 | 无阴影/渐变/填充按钮；大区块间距从 `--space-24`(96px) 起步 |
+| **A · 设计哲学** | **A9 克制之美** | 力量来自克制而非张扬 | 无阴影/渐变；阅读轨导航不用填充按钮；大区块间距从 `--space-24`(96px) 起步 |
 | **B · 视觉性格** | **B9 温暖极简** | 极简但不冰冷 | 底色暖白 `#F2F0EB` 而非纯白；文字深炭 `#3A3837` 而非纯黑；边框 1px 暖灰 |
 | **C · 排版节奏** | **C9 温暖衬线** | 衬线的笔画有起伏、有呼吸 | 正文 EB Garamond + Noto Serif SC；中文行高 1.85，英文 2.0 |
 | **D · 色彩基调** | **D9 暖土调** | 色彩来自泥土、陶器、茶叶、宣纸 | 暖白底 + 砖红 `#8B3525` accent + 深炭文字；禁高饱和蓝绿紫橙 |
