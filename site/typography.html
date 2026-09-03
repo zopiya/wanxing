@@ -35,18 +35,18 @@
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <p class="doc-sidebar__title">设计</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">设计理念 · Principles</li>
+      <li class="wx-menu__group">设计理念</li>
         <li><a class="wx-menu__link" href="./design.html">设计概览</a></li>
         <li><a class="wx-menu__link" href="./values.html">设计价值观</a></li>
         <li><a class="wx-menu__link" href="./tracks.html">设计仲裁</a></li>
         <li><a class="wx-menu__link" href="./accessibility.html">无障碍与 RTL</a></li>
-      <li class="wx-menu__group">全局样式 · Global</li>
+      <li class="wx-menu__group">全局样式</li>
         <li><a class="wx-menu__link" href="./color.html">色彩</a></li>
         <li><a class="wx-menu__link" href="./typography.html" aria-current="page">字体排版</a></li>
         <li><a class="wx-menu__link" href="./layout.html">布局与间距</a></li>
         <li><a class="wx-menu__link" href="./motion.html">动效</a></li>
         <li><a class="wx-menu__link" href="./icons.html">图标</a></li>
-      <li class="wx-menu__group">数据表达 · Data</li>
+      <li class="wx-menu__group">数据表达</li>
         <li><a class="wx-menu__link" href="./viz.html">数据可视化</a></li>
     </ul>
   </nav>
@@ -58,10 +58,10 @@
 
 <h2 id="families">三个字族</h2>
 <div class="doc-figure">
-    <p style="font-family:var(--font-display); font-size:var(--text-2xl)">显示体 Display —— Lora + 思源宋体</p>
-    <p style="font-family:var(--font-body)">正文体 Body —— EB Garamond + 思源宋体。长文阅读的默认，衬线在长段落里提供字形辨识度。</p>
-    <p style="font-family:var(--font-ui)">界面体 UI —— system-ui + 苹方 / 微软雅黑。标签、按钮、表单、元数据。</p>
-    <p style="font-family:var(--font-mono)">等宽体 Mono —— JetBrains Mono。代码与数字。</p>
+    <p style="font-family:var(--font-display); font-size:var(--text-2xl)">显示体 —— Lora + 思源宋体</p>
+    <p style="font-family:var(--font-body)">正文字体 —— EB Garamond + 思源宋体。长文阅读的默认字体；衬线让长段落里的字形更易分辨。</p>
+    <p style="font-family:var(--font-ui)">界面字体 —— system-ui + 苹方 / 微软雅黑。用于标签、按钮、表单和元数据。</p>
+    <p style="font-family:var(--font-mono)">等宽字体 —— JetBrains Mono。用于代码和数字。</p>
   </div>
 <p>拉丁字体自托管并带 <code>unicode-range</code> 子集；中文回退到系统字体，
 不通过 CDN 加载——一个中文字体家族动辄数 MB，长期访问与离线复现的成本都太高。</p>
@@ -125,7 +125,6 @@
 
 <footer class="doc-footer">
   <p>文字即界面，留白即设计，克制即力量。</p>
-  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
 </footer>
 
 <script src="../kit/components/js/disclosure.js"></script>

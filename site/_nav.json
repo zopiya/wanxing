@@ -2,20 +2,20 @@
   {
     "slug": "design", "title": "设计", "hub": true,
     "groups": [
-      { "title": "设计理念 · Principles", "items": [
+      { "title": "设计理念", "items": [
         { "slug": "design",        "title": "设计概览" },
         { "slug": "values",        "title": "设计价值观" },
         { "slug": "tracks",        "title": "设计仲裁" },
         { "slug": "accessibility", "title": "无障碍与 RTL" }
       ]},
-      { "title": "全局样式 · Global", "items": [
+      { "title": "全局样式", "items": [
         { "slug": "color",      "title": "色彩" },
         { "slug": "typography", "title": "字体排版" },
         { "slug": "layout",     "title": "布局与间距" },
         { "slug": "motion",     "title": "动效" },
         { "slug": "icons",      "title": "图标" }
       ]},
-      { "title": "数据表达 · Data", "items": [
+      { "title": "数据表达", "items": [
         { "slug": "viz", "title": "数据可视化" }
       ]}
     ]
@@ -23,10 +23,10 @@
   {
     "slug": "content", "title": "内容", "hub": true,
     "groups": [
-      { "title": "内容 · Content", "items": [
+      { "title": "内容", "items": [
         { "slug": "content", "title": "内容概览" }
       ]},
-      { "title": "渲染参考 · Reference", "items": [
+      { "title": "渲染参考", "items": [
         { "slug": "markdown",      "title": "Markdown 全量" },
         { "slug": "html-elements", "title": "HTML 元素" },
         { "slug": "code",          "title": "代码与语法高亮" }
@@ -36,10 +36,10 @@
   {
     "slug": "components", "title": "组件", "hub": true,
     "groups": [
-      { "title": "总览 · Overview", "items": [
+      { "title": "总览", "items": [
         { "slug": "components", "title": "组件总览" }
       ]},
-      { "title": "分类 · Categories", "items": [
+      { "title": "分类", "items": [
         { "slug": "c-general",    "title": "通用" },
         { "slug": "c-layout",     "title": "布局" },
         { "slug": "c-navigation", "title": "导航" },
@@ -52,11 +52,11 @@
   {
     "slug": "patterns", "title": "页面",
     "groups": [
-      { "title": "模式 · Patterns", "items": [
+      { "title": "模式", "items": [
         { "slug": "patterns", "title": "模式总览" },
         { "slug": "media",    "title": "媒介适配" }
       ]},
-      { "title": "页面原型 · Archetypes", "items": [
+      { "title": "页面原型", "items": [
         { "slug": "pattern-detail",   "title": "详情页" },
         { "slug": "pattern-list",     "title": "列表页" },
         { "slug": "pattern-showcase", "title": "展示页" },
@@ -69,10 +69,10 @@
   {
     "slug": "brand", "title": "品牌", "hub": true,
     "groups": [
-      { "title": "品牌 · Brand", "items": [
+      { "title": "品牌", "items": [
         { "slug": "brand", "title": "品牌概览" }
       ]},
-      { "title": "品牌资产 · Assets", "items": [
+      { "title": "品牌资产", "items": [
         { "slug": "logo",        "title": "Logo 设计规范" },
         { "slug": "seal",        "title": "署名标记" },
         { "slug": "brand-usage", "title": "品牌应用" }
@@ -82,10 +82,10 @@
   {
     "slug": "adopt", "title": "接入", "hub": true,
     "groups": [
-      { "title": "接入 · Adopt", "items": [
+      { "title": "接入", "items": [
         { "slug": "adopt", "title": "接入概览" }
       ]},
-      { "title": "路径 · Paths", "items": [
+      { "title": "路径", "items": [
         { "slug": "adopt-human",  "title": "给人用" },
         { "slug": "adopt-agent",  "title": "给 agent 用" },
         { "slug": "adopt-verify", "title": "校验" }

@@ -35,9 +35,9 @@
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <p class="doc-sidebar__title">组件</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">总览 · Overview</li>
+      <li class="wx-menu__group">总览</li>
         <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
-      <li class="wx-menu__group">分类 · Categories</li>
+      <li class="wx-menu__group">分类</li>
         <li><a class="wx-menu__link" href="./c-general.html">通用</a></li>
         <li><a class="wx-menu__link" href="./c-layout.html">布局</a></li>
         <li><a class="wx-menu__link" href="./c-navigation.html" aria-current="page">导航</a></li>
@@ -53,7 +53,7 @@
 <p class="wx-lede">当前位置一律用 <code>aria-current</code> 表达，样式从属性上取——
 视觉状态与无障碍树是同一个事实。</p>
 
-<h2 id="menu">菜单 Menu</h2>
+<h2 id="menu">菜单</h2>
 <div class="doc-figure">
     <ul class="wx-menu" style="max-inline-size:16rem">
       <li class="wx-menu__group">灵魂层</li>
@@ -66,7 +66,7 @@
     </ul>
   </div>
 
-<h2 id="dropdown">下拉 Dropdown</h2>
+<h2 id="dropdown">下拉菜单</h2>
 <p>原生 <code>&lt;details&gt;</code>，<strong>零 JS</strong>。键盘可开合，Esc 关闭都是免费的。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
@@ -91,7 +91,7 @@
 &lt;/details&gt;</code></pre></details>
 </div>
 
-<h2 id="tabs">标签页 Tabs</h2>
+<h2 id="tabs">标签页</h2>
 <p>需要 <code>tabs.js</code> 提供 roving tabindex——只有选中的标签在 tab 序列里，
 这是标签页与一排链接对键盘用户的根本区别。</p>
 <div class="doc-demo">
@@ -135,7 +135,7 @@
 &lt;/nav&gt;</code></pre></details>
 </div>
 
-<h2 id="pagination">分页 Pagination</h2>
+<h2 id="pagination">分页</h2>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <nav class="wx-pagination" aria-label="分页">
@@ -163,7 +163,7 @@
 &lt;/nav&gt;</code></pre></details>
 </div>
 
-<h2 id="steps">步骤 Steps</h2>
+<h2 id="steps">步骤</h2>
 <div class="doc-figure">
     <ol class="wx-steps">
       <li class="wx-steps__item" data-complete><span class="wx-steps__title">填写信息</span>已完成</li>
@@ -172,7 +172,7 @@
     </ol>
   </div>
 
-<h2 id="anchor">页内锚点 Anchor</h2>
+<h2 id="anchor">页内锚点</h2>
 <p>本页右侧就是一个（宽屏可见）。配合 <code>wx-affix</code> 吸顶，站点按标题顺序和当前滚动位置更新唯一的 <code>aria-current</code>，避免相邻标题同时高亮。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <nav class="wx-nav" aria-label="作品集主导航"><a class="wx-nav__brand" href="#">文心</a><ul class="wx-nav__list"><li><a class="wx-nav__link" aria-current="page" href="#">文章</a></li><li><a class="wx-nav__link" href="#">关于</a></li></ul></nav>
@@ -194,7 +194,7 @@
 <tr><td><code>wx-skip</code></td><td>每个页面第一可聚焦元素；绝不因“页面短”删除。</td><td><code>href="#main"</code> 指向唯一 <code>main</code>，无脚本。</td></tr>
 </tbody></table></div>
 
-<h2 id="toc">目录 Table of Contents</h2>
+<h2 id="toc">目录</h2>
 <p><code>wx-toc</code> 是长文的页内目录，当前位置用 <code>aria-current</code> 标记——
 <strong>不是 <code>.is-active</code> 类</strong>。本站每一页右侧就是一个实例（窄屏下隐藏）。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
@@ -219,7 +219,7 @@
 也让读屏器知道读者在哪一节。<strong>一个类做不到第二件事，于是"看得见但读不到"的状态在结构上不可能出现。</strong>
 高亮由 <code>toc.js</code> 的 IntersectionObserver 更新。</p>
 
-<h2 id="affix">吸附 Affix</h2>
+<h2 id="affix">吸附</h2>
 <p><code>wx-affix</code> 让一个导航容器在滚动时停靠。它是纯 CSS <code>position: sticky</code>，没有脚本、
 没有滚动监听、没有布局抖动。</p>
 <div class="doc-figure"><pre class="doc-code__body"><code>&lt;nav class="wx-toc wx-affix" aria-label="本页目录"&gt;…&lt;/nav&gt;</code></pre></div>
@@ -227,7 +227,7 @@
 <strong>吸附的东西必须能滚动</strong>：目录比视口高时要有自己的 <code>overflow-y</code>，
 否则底部条目永远够不到。</p>
 
-<h2 id="skip">跳过链接 Skip Link</h2>
+<h2 id="skip">跳过链接</h2>
 <p><code>wx-skip</code> 平时不可见，获得焦点时出现在页面左上角。键盘用户按下第一个 Tab 就能跳过整个页头。</p>
 <div class="doc-figure"><pre class="doc-code__body"><code>&lt;body class="wx-page"&gt;
   &lt;a class="wx-skip" href="#main"&gt;跳到主要内容&lt;/a&gt;
@@ -243,24 +243,23 @@
   <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
-      <li><a class="wx-anchor__link" href="#menu">菜单 Menu</a></li>
-      <li><a class="wx-anchor__link" href="#dropdown">下拉 Dropdown</a></li>
-      <li><a class="wx-anchor__link" href="#tabs">标签页 Tabs</a></li>
+      <li><a class="wx-anchor__link" href="#menu">菜单</a></li>
+      <li><a class="wx-anchor__link" href="#dropdown">下拉菜单</a></li>
+      <li><a class="wx-anchor__link" href="#tabs">标签页</a></li>
       <li><a class="wx-anchor__link" href="#crumbs">面包屑与翻页</a></li>
-      <li><a class="wx-anchor__link" href="#pagination">分页 Pagination</a></li>
-      <li><a class="wx-anchor__link" href="#steps">步骤 Steps</a></li>
-      <li><a class="wx-anchor__link" href="#anchor">页内锚点 Anchor</a></li>
+      <li><a class="wx-anchor__link" href="#pagination">分页</a></li>
+      <li><a class="wx-anchor__link" href="#steps">步骤</a></li>
+      <li><a class="wx-anchor__link" href="#anchor">页内锚点</a></li>
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
-      <li><a class="wx-anchor__link" href="#toc">目录 Table of Contents</a></li>
-      <li><a class="wx-anchor__link" href="#affix">吸附 Affix</a></li>
-      <li><a class="wx-anchor__link" href="#skip">跳过链接 Skip Link</a></li>
+      <li><a class="wx-anchor__link" href="#toc">目录</a></li>
+      <li><a class="wx-anchor__link" href="#affix">吸附</a></li>
+      <li><a class="wx-anchor__link" href="#skip">跳过链接</a></li>
   </ul>
 </nav></div>
 </div>
 
 <footer class="doc-footer">
   <p>文字即界面，留白即设计，克制即力量。</p>
-  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
 </footer>
 
 <script src="../kit/components/js/disclosure.js"></script>

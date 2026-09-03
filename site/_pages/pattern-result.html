@@ -48,15 +48,15 @@
 <p>不是所有结果都需要整页。三种粒度，按干扰程度递增：</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
-    <p><strong>Toast</strong>——非阻塞、自动消失、<code>aria-live="polite"</code>：</p>
+    <p><strong>通知</strong>——非阻塞、自动消失、<code>aria-live="polite"</code>：</p>
     <div class="wx-cluster">
       <button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')">普通</button>
       <button class="wx-btn" type="button" onclick="wxToast('已保存', {level:'success', label:'成功'})">成功</button>
       <button class="wx-btn" type="button" onclick="wxToast('网络连接中断', {level:'danger', label:'失败'})">失败</button>
     </div>
-    <p style="margin-block-start:var(--space-6)"><strong>Alert</strong>——常驻页内，说明当前状态：</p>
+    <p style="margin-block-start:var(--space-6)"><strong>行内提示</strong>——常驻页内，说明当前状态：</p>
     <div class="wx-alert wx-alert--warn"><span>存储空间剩余不足 10%，请及时清理。</span></div>
-    <p style="margin-block-start:var(--space-6)"><strong>Modal</strong>——阻塞，仅用于不可逆操作确认：</p>
+    <p style="margin-block-start:var(--space-6)"><strong>对话框</strong>——阻塞，仅用于不可逆操作确认：</p>
     <button class="wx-btn wx-btn--danger" type="button" data-wx-open="#confirm-del">删除项目</button>
     <dialog class="wx-modal" id="confirm-del" aria-labelledby="cd-t">
       <h3 class="wx-modal__title" id="cd-t">删除这个项目？</h3>
@@ -71,6 +71,6 @@
 
 <div class="wx-note wx-note--warn">
   <span class="wx-note__title">选择粒度的判据</span>
-  <p>问一句：<strong>读者不看到这条消息会有什么后果？</strong>没后果 → toast；
-  影响后续操作 → alert；不可逆 → modal。默认用 toast，modal 是最后手段。</p>
+  <p>问一句：<strong>读者不看到这条消息会有什么后果？</strong>没后果 → 通知；
+  影响后续操作 → 行内提示；不可逆 → 对话框。默认用通知，对话框是最后手段。</p>
 </div>

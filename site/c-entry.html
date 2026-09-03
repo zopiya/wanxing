@@ -35,9 +35,9 @@
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <p class="doc-sidebar__title">组件</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">总览 · Overview</li>
+      <li class="wx-menu__group">总览</li>
         <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
-      <li class="wx-menu__group">分类 · Categories</li>
+      <li class="wx-menu__group">分类</li>
         <li><a class="wx-menu__link" href="./c-general.html">通用</a></li>
         <li><a class="wx-menu__link" href="./c-layout.html">布局</a></li>
         <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
@@ -99,7 +99,7 @@
 </tbody></table></div>
 <p>错误态<strong>同时</strong>改变颜色、加粗边框、并给出文字说明。三重编码是第一层底线。</p>
 
-<h2 id="select">选择 Select</h2>
+<h2 id="select">选择</h2>
 <p><strong>只用原生 <code>&lt;select&gt;</code></strong>。自定义下拉是键盘与读屏器的负债，
 这套系统没有理由去背。箭头用旋转边框画，不用渐变。</p>
 <div class="doc-demo">
@@ -154,7 +154,7 @@
 &lt;label class="wx-radio"&gt;&lt;input type="radio" name="lic"&gt; 署名 4.0&lt;/label&gt;</code></pre></details>
 </div>
 
-<h2 id="switch">开关 Switch</h2>
+<h2 id="switch">开关</h2>
 <p>状态由<strong>位置 + 边框</strong>表达，不只靠颜色。<code>role="switch"</code> +
 <code>aria-checked</code>，绝不用 <code>.is-on</code>。</p>
 <div class="doc-demo">
@@ -195,7 +195,7 @@
 &lt;/div&gt;</code></pre></details>
 </div>
 
-<h2 id="rate">评分 Rate</h2>
+<h2 id="rate">评分</h2>
 <p>用 ■ 方块而不是星形图标——填充与描边的差别在灰度下依然可读。
 "禁止填充型图标"针对的是图标集风格，评分标记是<strong>数据标记</strong>，和图表里的柱子同类。</p>
 <div class="doc-demo">
@@ -223,7 +223,7 @@
 &lt;/fieldset&gt;</code></pre></details>
 </div>
 
-<h2 id="upload">上传 Upload</h2>
+<h2 id="upload">上传</h2>
 <p>拖放区是一个四边虚线框——这是<strong>卡片禁令的一个有理由的例外</strong>：
 边界不是装饰，它<strong>就是信息</strong>，标示可拖放区域到哪里为止。
 让步是有限度的：虚线发丝、无填充、无阴影。</p>
@@ -256,7 +256,7 @@
 &lt;/ul&gt;</code></pre></details>
 </div>
 
-<h2 id="search">搜索 Search</h2>
+<h2 id="search">搜索</h2>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <label class="wx-search">
@@ -270,7 +270,7 @@
 &lt;/label&gt;</code></pre></details>
 </div>
 
-<h2 id="form">表单 Form</h2>
+<h2 id="form">表单</h2>
 <p><code>wx-form</code> 是字段的容器与提交上下文。它不接管提交——<strong>提交由采用者处理</strong>，
 组件负责的是布局、分组、错误汇总与状态区的位置。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
@@ -329,22 +329,21 @@
   <ul class="wx-anchor__list">
       <li><a class="wx-anchor__link" href="#text">文本输入</a></li>
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
-      <li><a class="wx-anchor__link" href="#select">选择 Select</a></li>
+      <li><a class="wx-anchor__link" href="#select">选择</a></li>
       <li><a class="wx-anchor__link" href="#native">原生增强输入</a></li>
       <li><a class="wx-anchor__link" href="#choice">勾选与单选</a></li>
-      <li><a class="wx-anchor__link" href="#switch">开关 Switch</a></li>
+      <li><a class="wx-anchor__link" href="#switch">开关</a></li>
       <li><a class="wx-anchor__link" href="#number">数字与滑块</a></li>
-      <li><a class="wx-anchor__link" href="#rate">评分 Rate</a></li>
-      <li><a class="wx-anchor__link" href="#upload">上传 Upload</a></li>
-      <li><a class="wx-anchor__link" href="#search">搜索 Search</a></li>
-      <li><a class="wx-anchor__link" href="#form">表单 Form</a></li>
+      <li><a class="wx-anchor__link" href="#rate">评分</a></li>
+      <li><a class="wx-anchor__link" href="#upload">上传</a></li>
+      <li><a class="wx-anchor__link" href="#search">搜索</a></li>
+      <li><a class="wx-anchor__link" href="#form">表单</a></li>
   </ul>
 </nav></div>
 </div>
 
 <footer class="doc-footer">
   <p>文字即界面，留白即设计，克制即力量。</p>
-  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
 </footer>
 
 <script src="../kit/components/js/disclosure.js"></script>

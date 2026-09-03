@@ -35,9 +35,9 @@
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <p class="doc-sidebar__title">组件</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">总览 · Overview</li>
+      <li class="wx-menu__group">总览</li>
         <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
-      <li class="wx-menu__group">分类 · Categories</li>
+      <li class="wx-menu__group">分类</li>
         <li><a class="wx-menu__link" href="./c-general.html">通用</a></li>
         <li><a class="wx-menu__link" href="./c-layout.html">布局</a></li>
         <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
@@ -53,7 +53,7 @@
 <p class="wx-lede">反馈类按惯例处理。浮层是全系统<strong>唯一</strong>允许有"面"的地方，
 这个例外是论证出来的，不是图方便。</p>
 
-<h2 id="note">提示块 Note</h2>
+<h2 id="note">提示块</h2>
 <p>每一级都<strong>同时</strong>有颜色和文字标签。标签不是装饰——
 它是让级别在无色觉条件下依然可感知的东西。</p>
 <div class="doc-figure">
@@ -63,15 +63,15 @@
     <div class="wx-note wx-note--danger"><span class="wx-note__title">危险</span><p>会造成不可逆后果。</p></div>
   </div>
 
-<h2 id="alert">行内提示 Alert</h2>
+<h2 id="alert">行内提示</h2>
 <div class="doc-figure">
     <div class="wx-alert wx-alert--warn"><span>存储空间剩余不足 10%。</span></div>
     <div class="wx-alert wx-alert--danger" style="margin-block-start:var(--space-3)"><span>连接已断开，正在重试。</span></div>
     <div class="wx-alert wx-alert--success" style="margin-block-start:var(--space-3)"><span>全部检查通过。</span></div>
   </div>
 
-<h2 id="toast">通知 Toast</h2>
-<p><code>aria-live="polite"</code>——不是 assertive。一条 toast 永远没有紧急到需要打断读者。</p>
+<h2 id="toast">通知</h2>
+<p><code>aria-live="polite"</code>——不是 assertive。一条通知永远没有紧急到需要打断读者。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <div class="wx-cluster">
@@ -137,7 +137,7 @@
     </div>
   </div>
 
-<h2 id="overlay">浮层 Overlay</h2>
+<h2 id="overlay">浮层</h2>
 <p>三者都建在原生 <code>&lt;dialog&gt;</code> 上：焦点陷阱、Esc、<code>inert</code> 背景
 全部来自平台。脚本只补平台没给的两件事——<strong>关闭后把焦点还给触发按钮</strong>，和 toast 队列。</p>
 <div class="doc-demo">
@@ -183,7 +183,7 @@
 &lt;/dialog&gt;</code></pre></details>
 </div>
 
-<h2 id="popconfirm">确认气泡 Popconfirm</h2>
+<h2 id="popconfirm">确认气泡</h2>
 <p>删除、撤销等就近但可逆的确认可用确认气泡；如果后果复杂、需要解释或有多个字段，改用对话框。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <details class="wx-popconfirm">
@@ -253,7 +253,7 @@
 &lt;/details&gt;</code></pre></details>
 </div>
 
-<h2 id="result">结果 Result</h2>
+<h2 id="result">结果</h2>
 <p><code>wx-result</code> 用于一次操作结束后的整页反馈：成功、失败、404、无权限。
 它<strong>必须给出下一步</strong>——一个只说"出错了"的页面把读者留在了死路上。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
@@ -296,23 +296,22 @@
   <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
-      <li><a class="wx-anchor__link" href="#note">提示块 Note</a></li>
-      <li><a class="wx-anchor__link" href="#alert">行内提示 Alert</a></li>
-      <li><a class="wx-anchor__link" href="#toast">通知 Toast</a></li>
+      <li><a class="wx-anchor__link" href="#note">提示块</a></li>
+      <li><a class="wx-anchor__link" href="#alert">行内提示</a></li>
+      <li><a class="wx-anchor__link" href="#toast">通知</a></li>
       <li><a class="wx-anchor__link" href="#progress">进度与量度</a></li>
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
       <li><a class="wx-anchor__link" href="#empty">空态与结果</a></li>
-      <li><a class="wx-anchor__link" href="#overlay">浮层 Overlay</a></li>
-      <li><a class="wx-anchor__link" href="#popconfirm">确认气泡 Popconfirm</a></li>
+      <li><a class="wx-anchor__link" href="#overlay">浮层</a></li>
+      <li><a class="wx-anchor__link" href="#popconfirm">确认气泡</a></li>
       <li><a class="wx-anchor__link" href="#tooltip">提示与气泡</a></li>
-      <li><a class="wx-anchor__link" href="#result">结果 Result</a></li>
+      <li><a class="wx-anchor__link" href="#result">结果</a></li>
   </ul>
 </nav></div>
 </div>
 
 <footer class="doc-footer">
   <p>文字即界面，留白即设计，克制即力量。</p>
-  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
 </footer>
 
 <script src="../kit/components/js/disclosure.js"></script>

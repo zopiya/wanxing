@@ -35,9 +35,9 @@
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <p class="doc-sidebar__title">组件</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">总览 · Overview</li>
+      <li class="wx-menu__group">总览</li>
         <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
-      <li class="wx-menu__group">分类 · Categories</li>
+      <li class="wx-menu__group">分类</li>
         <li><a class="wx-menu__link" href="./c-general.html" aria-current="page">通用</a></li>
         <li><a class="wx-menu__link" href="./c-layout.html">布局</a></li>
         <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
@@ -50,7 +50,7 @@
   <main class="doc-main" id="main">
     <article class="doc-article">
 <h1>通用</h1>
-<p class="wx-lede">动作、标识与状态的基础组件。它们应服务内容和任务，而不是制造额外的视觉表面。</p>
+<p class="wx-lede">动作、标识和状态的基础组件。服务内容与任务，不制造额外的视觉表面。</p>
 
 <h2 id="button">按钮</h2>
 <p>按钮触发动作；去往新页面使用链接。每个视图至多一个填充主按钮，其他动作按优先级退回线框或文字形式。</p>
@@ -58,7 +58,7 @@
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;div class="wx-cluster"&gt;&lt;button class="wx-btn" type="button"&gt;默认&lt;/button&gt;&lt;button class="wx-btn wx-btn--primary" type="button"&gt;主操作&lt;/button&gt;&lt;button class="wx-btn wx-btn--danger" type="button"&gt;危险&lt;/button&gt;&lt;button class="wx-btn wx-btn--text" type="button"&gt;文字按钮 →&lt;/button&gt;&lt;button class="wx-btn" type="button" disabled&gt;禁用&lt;/button&gt;&lt;/div&gt;</code></pre></details></div>
 
 <h2 id="status">标签、计数与状态</h2>
-<p>状态必须带文字标签；只有颜色的状态对部分用户等于不存在。长解释使用 note，不把标签拉成长段文案。</p>
+<p>状态必须带文字标签；只有颜色的状态对部分用户等于不存在。长解释放进提示块，不把标签拉成长段文案。</p>
 <div class="doc-figure"><div class="wx-cluster"><span class="wx-tag">标签</span><span class="wx-tag wx-tag--accent">强调标签</span><span class="wx-badge">12</span><span class="wx-badge wx-badge--accent">3</span></div><div class="wx-cluster" style="margin-block-start:var(--space-4)"><span class="wx-status wx-status--live">运行中</span><span class="wx-status wx-status--warn">降级</span><span class="wx-status wx-status--down">已停止</span><span class="wx-status wx-status--idle">空闲</span></div></div>
 
 <h2 id="identity">头像、按键与标记</h2>
@@ -110,7 +110,6 @@
 
 <footer class="doc-footer">
   <p>文字即界面，留白即设计，克制即力量。</p>
-  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
 </footer>
 
 <script src="../kit/components/js/disclosure.js"></script>

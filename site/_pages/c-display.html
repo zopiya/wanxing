@@ -1,7 +1,7 @@
 <h1>数据展示</h1>
 <p class="wx-lede">表格只有横线，条目没有方框，树是嵌套的原生折叠。</p>
 
-<h2 id="table">表格 Table</h2>
+<h2 id="table">表格</h2>
 <p><strong>只有水平分隔线，无外框、无竖线。</strong>数字右对齐并用等宽数字，
 这样一列数字的位数能对齐——这是可读性，不是风格。</p>
 <div class="doc-figure">
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-<h2 id="entry">条目 Entry</h2>
+<h2 id="entry">条目</h2>
 <p><strong>卡片的替代品。</strong>无边框、无阴影、无填充，靠留白或单边线分隔。</p>
 <div class="doc-figure">
     <article class="wx-entry">
@@ -33,7 +33,7 @@
     </article>
   </div>
 
-<h2 id="timeline">时间线 Timeline</h2>
+<h2 id="timeline">时间线</h2>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <ol class="wx-timeline">
@@ -62,7 +62,7 @@
   </div>
 </div>
 
-<h2 id="tree">树 Tree</h2>
+<h2 id="tree">树</h2>
 <p>嵌套 <code>&lt;ul&gt;</code> + <code>&lt;details&gt;</code>，<strong>零 JS、零自定义 role</strong>。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
@@ -81,7 +81,7 @@
   </div>
 </div>
 
-<h2 id="collapse">折叠 Collapse</h2>
+<h2 id="collapse">折叠</h2>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <details class="wx-collapse"><summary>为什么没有卡片？</summary>
@@ -108,7 +108,7 @@
     </div>
   </div>
 
-<h2 id="calendar">日历 Calendar</h2>
+<h2 id="calendar">日历</h2>
 <p>用 <code>&lt;table&gt;</code>，因为它<strong>就是</strong>表格——读屏器能从表结构里播报星期几。
 一堆 <code>&lt;div&gt;</code> 做不到这件事。</p>
 <div class="doc-demo">
@@ -133,7 +133,7 @@
   </div>
 </div>
 
-<h2 id="gallery">图集 Gallery</h2>
+<h2 id="gallery">图集</h2>
 <p>轮播的诚实替代：<strong>读者驱动的横向滚动</strong>，原生 scroll-snap，
 不自动播放，不用箭头盖在内容上。</p>
 <div class="doc-figure">
@@ -147,14 +147,14 @@
     </div>
   </div>
 
-<h2 id="figure">图与图注 Figure / Image</h2>
+<h2 id="figure">图与图注</h2>
 <p>有信息的图像必须有替代文字；<code>wx-figure</code> 负责“图与说明是一件事”，
 <code>wx-image--ratio</code> 在加载前保留比例，避免正文跳动。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <figure class="wx-figure"><img class="wx-image wx-image--ratio" style="--wx-image-ratio:1 / 1" src="../kit/assets/brand/logo-wanxing.svg" alt="万形朱砂印章，中心交汇图形" width="64" height="64"><figcaption class="wx-figure__caption"><span class="wx-figure__number">图 1</span>方形品牌印章保留 1:1 占位，加载前后正文不跳动。</figcaption></figure>
 </div></div>
 
-<h2 id="code">代码 Code</h2>
+<h2 id="code">代码</h2>
 <div class="doc-figure">
     <div class="wx-code">
       <div class="wx-code__header">kit/index.css</div>
@@ -174,7 +174,7 @@
 <tr><td><code>wx-code / wx-quote</code></td><td>需要保留格式的代码、可归属的引用；普通段落不用。</td><td><code>pre/code</code> 或 <code>blockquote/cite</code>；复制需 <code>copy.js</code>。</td></tr>
 </tbody></table></div>
 
-<h2 id="list">列表 List</h2>
+<h2 id="list">列表</h2>
 <p>列表是内容，不是控件。<code>wx-list</code> 只调节节奏，语义完全交给原生 <code>ul</code> / <code>ol</code>。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <ul class="wx-list">
@@ -190,7 +190,7 @@
 <p><code>wx-list--grouped</code> 是应用轨的分组表面（iOS 分组列表惯例），走边框实现，仍然禁止阴影——
 它是 <strong>D-21</strong> 之外唯一被有条件放宽的"面"。</p>
 
-<h2 id="quote">引用 Quote</h2>
+<h2 id="quote">引用</h2>
 <p>引用用单边线，不用方框，也不用巨大的装饰引号。归属信息放在 <code>cite</code> 里。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <blockquote class="wx-quote">

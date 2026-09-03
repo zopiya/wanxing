@@ -1,11 +1,11 @@
 <h1>布局</h1>
-<p class="wx-lede">布局组件只处理空间关系，不替业务内容命名，也不改变 HTML 的语义。</p>
+<p class="wx-lede">布局组件只处理空间关系，不替内容命名，也不改变 HTML 语义。</p>
 
 <h2 id="container">页面与内容宽度</h2>
-<div class="doc-demo"><div class="doc-demo__stage"><article class="wx-container wx-container--article"><p class="wx-attr">wx-container · --article</p><h3>可读的内容宽度</h3><p class="wx-measure">页面容器控制画布，measure 控制行长；语义仍由 main、article 和 section 承担。</p></article></div></div>
+<div class="doc-demo"><div class="doc-demo__stage"><article class="wx-container wx-container--article"><p class="wx-attr">wx-container · --article</p><h3>可读的内容宽度</h3><p class="wx-measure">页面容器控制画布，阅读宽度控制行长；语义仍由 main、article 和 section 承担。</p></article></div></div>
 
 <h2 id="rhythm">堆叠、簇与分栏</h2>
-<div class="doc-demo"><div class="doc-demo__stage"><div class="wx-stack wx-stack--tight"><p>wx-stack 管理垂直节奏。</p><p>紧密内容共享更小间距。</p></div><hr class="wx-rule"><div class="wx-cluster wx-cluster--tight"><span class="wx-tag">横向</span><span class="wx-tag">换行</span><span class="wx-tag">共享 gap</span></div><div class="wx-cols wx-cols--2" style="margin-block-start:var(--space-6)"><p>第一列内容</p><p>第二列内容</p></div></div></div>
+<div class="doc-demo"><div class="doc-demo__stage"><div class="wx-stack wx-stack--tight"><p>wx-stack 管理垂直节奏。</p><p>紧密内容共享更小间距。</p></div><hr class="wx-rule"><div class="wx-cluster wx-cluster--tight"><span class="wx-tag">横向</span><span class="wx-tag">换行</span><span class="wx-tag">共享间距</span></div><div class="wx-cols wx-cols--2" style="margin-block-start:var(--space-6)"><p>第一列内容</p><p>第二列内容</p></div></div></div>
 
 <h2 id="api">何时使用、何时不用与 API</h2>
 <div class="doc-figure"><table class="wx-table doc-api"><thead><tr><th>组件</th><th>何时使用 · 不用</th><th>契约</th></tr></thead><tbody>
@@ -14,7 +14,7 @@
 <tr><td><code>wx-rule</code></td><td>章节或条目边界；能靠邻近表达时不加线。</td><td>使用 <code>hr</code>；<code>--short/strong</code> 只用于明确层级。</td></tr>
 </tbody></table></div>
 
-<h2 id="page">页面根 Page</h2>
+<h2 id="page">页面根</h2>
 <p><code>wx-page</code> 放在 <code>body</code> 或页面根上，负责页面级的左右留白与最小高度。
 它是<strong>唯一允许出现在 <code>body</code> 上的 wx- 类</strong>——本站每一页都用它。</p>
 <div class="doc-figure"><pre class="doc-code__body"><code>&lt;body class="wx-page"&gt;

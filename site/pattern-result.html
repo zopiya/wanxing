@@ -35,10 +35,10 @@
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <p class="doc-sidebar__title">页面</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">模式 · Patterns</li>
+      <li class="wx-menu__group">模式</li>
         <li><a class="wx-menu__link" href="./patterns.html">模式总览</a></li>
         <li><a class="wx-menu__link" href="./media.html">媒介适配</a></li>
-      <li class="wx-menu__group">页面原型 · Archetypes</li>
+      <li class="wx-menu__group">页面原型</li>
         <li><a class="wx-menu__link" href="./pattern-detail.html">详情页</a></li>
         <li><a class="wx-menu__link" href="./pattern-list.html">列表页</a></li>
         <li><a class="wx-menu__link" href="./pattern-showcase.html">展示页</a></li>
@@ -100,15 +100,15 @@
 <p>不是所有结果都需要整页。三种粒度，按干扰程度递增：</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
-    <p><strong>Toast</strong>——非阻塞、自动消失、<code>aria-live="polite"</code>：</p>
+    <p><strong>通知</strong>——非阻塞、自动消失、<code>aria-live="polite"</code>：</p>
     <div class="wx-cluster">
       <button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')">普通</button>
       <button class="wx-btn" type="button" onclick="wxToast('已保存', {level:'success', label:'成功'})">成功</button>
       <button class="wx-btn" type="button" onclick="wxToast('网络连接中断', {level:'danger', label:'失败'})">失败</button>
     </div>
-    <p style="margin-block-start:var(--space-6)"><strong>Alert</strong>——常驻页内，说明当前状态：</p>
+    <p style="margin-block-start:var(--space-6)"><strong>行内提示</strong>——常驻页内，说明当前状态：</p>
     <div class="wx-alert wx-alert--warn"><span>存储空间剩余不足 10%，请及时清理。</span></div>
-    <p style="margin-block-start:var(--space-6)"><strong>Modal</strong>——阻塞，仅用于不可逆操作确认：</p>
+    <p style="margin-block-start:var(--space-6)"><strong>对话框</strong>——阻塞，仅用于不可逆操作确认：</p>
     <button class="wx-btn wx-btn--danger" type="button" data-wx-open="#confirm-del">删除项目</button>
     <dialog class="wx-modal" id="confirm-del" aria-labelledby="cd-t">
       <h3 class="wx-modal__title" id="cd-t">删除这个项目？</h3>
@@ -119,15 +119,15 @@
       </div>
     </dialog>
   </div>
-<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;p&gt;&lt;strong&gt;Toast&lt;/strong&gt;——非阻塞、自动消失、&lt;code&gt;aria-live="polite"&lt;/code&gt;：&lt;/p&gt;
+<details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;p&gt;&lt;strong&gt;通知&lt;/strong&gt;——非阻塞、自动消失、&lt;code&gt;aria-live="polite"&lt;/code&gt;：&lt;/p&gt;
 &lt;div class="wx-cluster"&gt;
   &lt;button class="wx-btn" type="button" onclick="wxToast('已复制到剪贴板')"&gt;普通&lt;/button&gt;
   &lt;button class="wx-btn" type="button" onclick="wxToast('已保存', {level:'success', label:'成功'})"&gt;成功&lt;/button&gt;
   &lt;button class="wx-btn" type="button" onclick="wxToast('网络连接中断', {level:'danger', label:'失败'})"&gt;失败&lt;/button&gt;
 &lt;/div&gt;
-&lt;p style="margin-block-start:var(--space-6)"&gt;&lt;strong&gt;Alert&lt;/strong&gt;——常驻页内，说明当前状态：&lt;/p&gt;
+&lt;p style="margin-block-start:var(--space-6)"&gt;&lt;strong&gt;行内提示&lt;/strong&gt;——常驻页内，说明当前状态：&lt;/p&gt;
 &lt;div class="wx-alert wx-alert--warn"&gt;&lt;span&gt;存储空间剩余不足 10%，请及时清理。&lt;/span&gt;&lt;/div&gt;
-&lt;p style="margin-block-start:var(--space-6)"&gt;&lt;strong&gt;Modal&lt;/strong&gt;——阻塞，仅用于不可逆操作确认：&lt;/p&gt;
+&lt;p style="margin-block-start:var(--space-6)"&gt;&lt;strong&gt;对话框&lt;/strong&gt;——阻塞，仅用于不可逆操作确认：&lt;/p&gt;
 &lt;button class="wx-btn wx-btn--danger" type="button" data-wx-open="#confirm-del"&gt;删除项目&lt;/button&gt;
 &lt;dialog class="wx-modal" id="confirm-del" aria-labelledby="cd-t"&gt;
   &lt;h3 class="wx-modal__title" id="cd-t"&gt;删除这个项目？&lt;/h3&gt;
@@ -141,8 +141,8 @@
 
 <div class="wx-note wx-note--warn">
   <span class="wx-note__title">选择粒度的判据</span>
-  <p>问一句：<strong>读者不看到这条消息会有什么后果？</strong>没后果 → toast；
-  影响后续操作 → alert；不可逆 → modal。默认用 toast，modal 是最后手段。</p>
+  <p>问一句：<strong>读者不看到这条消息会有什么后果？</strong>没后果 → 通知；
+  影响后续操作 → 行内提示；不可逆 → 对话框。默认用通知，对话框是最后手段。</p>
 </div>
 
     </article>
@@ -161,7 +161,6 @@
 
 <footer class="doc-footer">
   <p>文字即界面，留白即设计，克制即力量。</p>
-  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
 </footer>
 
 <script src="../kit/components/js/disclosure.js"></script>

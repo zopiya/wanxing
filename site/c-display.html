@@ -35,9 +35,9 @@
   <nav class="doc-sidebar" id="doc-sidebar" aria-label="站点导航">
     <p class="doc-sidebar__title">组件</p>
     <ul class="wx-menu">
-      <li class="wx-menu__group">总览 · Overview</li>
+      <li class="wx-menu__group">总览</li>
         <li><a class="wx-menu__link" href="./components.html">组件总览</a></li>
-      <li class="wx-menu__group">分类 · Categories</li>
+      <li class="wx-menu__group">分类</li>
         <li><a class="wx-menu__link" href="./c-general.html">通用</a></li>
         <li><a class="wx-menu__link" href="./c-layout.html">布局</a></li>
         <li><a class="wx-menu__link" href="./c-navigation.html">导航</a></li>
@@ -52,7 +52,7 @@
 <h1>数据展示</h1>
 <p class="wx-lede">表格只有横线，条目没有方框，树是嵌套的原生折叠。</p>
 
-<h2 id="table">表格 Table</h2>
+<h2 id="table">表格</h2>
 <p><strong>只有水平分隔线，无外框、无竖线。</strong>数字右对齐并用等宽数字，
 这样一列数字的位数能对齐——这是可读性，不是风格。</p>
 <div class="doc-figure">
@@ -69,7 +69,7 @@
     </div>
   </div>
 
-<h2 id="entry">条目 Entry</h2>
+<h2 id="entry">条目</h2>
 <p><strong>卡片的替代品。</strong>无边框、无阴影、无填充，靠留白或单边线分隔。</p>
 <div class="doc-figure">
     <article class="wx-entry">
@@ -84,7 +84,7 @@
     </article>
   </div>
 
-<h2 id="timeline">时间线 Timeline</h2>
+<h2 id="timeline">时间线</h2>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <ol class="wx-timeline">
@@ -136,7 +136,7 @@
 &lt;/ol&gt;</code></pre></details>
 </div>
 
-<h2 id="tree">树 Tree</h2>
+<h2 id="tree">树</h2>
 <p>嵌套 <code>&lt;ul&gt;</code> + <code>&lt;details&gt;</code>，<strong>零 JS、零自定义 role</strong>。</p>
 <div class="doc-demo">
   <div class="doc-demo__stage">
@@ -167,7 +167,7 @@
 &lt;/ul&gt;</code></pre></details>
 </div>
 
-<h2 id="collapse">折叠 Collapse</h2>
+<h2 id="collapse">折叠</h2>
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <details class="wx-collapse"><summary>为什么没有卡片？</summary>
@@ -200,7 +200,7 @@
     </div>
   </div>
 
-<h2 id="calendar">日历 Calendar</h2>
+<h2 id="calendar">日历</h2>
 <p>用 <code>&lt;table&gt;</code>，因为它<strong>就是</strong>表格——读屏器能从表结构里播报星期几。
 一堆 <code>&lt;div&gt;</code> 做不到这件事。</p>
 <div class="doc-demo">
@@ -242,7 +242,7 @@
 &lt;/table&gt;</code></pre></details>
 </div>
 
-<h2 id="gallery">图集 Gallery</h2>
+<h2 id="gallery">图集</h2>
 <p>轮播的诚实替代：<strong>读者驱动的横向滚动</strong>，原生 scroll-snap，
 不自动播放，不用箭头盖在内容上。</p>
 <div class="doc-figure">
@@ -256,7 +256,7 @@
     </div>
   </div>
 
-<h2 id="figure">图与图注 Figure / Image</h2>
+<h2 id="figure">图与图注</h2>
 <p>有信息的图像必须有替代文字；<code>wx-figure</code> 负责“图与说明是一件事”，
 <code>wx-image--ratio</code> 在加载前保留比例，避免正文跳动。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
@@ -264,7 +264,7 @@
 </div>
 <details class="doc-code"><summary>查看代码 · Source</summary><pre class="doc-code__body"><code>&lt;figure class="wx-figure"&gt;&lt;img class="wx-image wx-image--ratio" style="--wx-image-ratio:1 / 1" src="../kit/assets/brand/logo-wanxing.svg" alt="万形朱砂印章，中心交汇图形" width="64" height="64"&gt;&lt;figcaption class="wx-figure__caption"&gt;&lt;span class="wx-figure__number"&gt;图 1&lt;/span&gt;方形品牌印章保留 1:1 占位，加载前后正文不跳动。&lt;/figcaption&gt;&lt;/figure&gt;</code></pre></details></div>
 
-<h2 id="code">代码 Code</h2>
+<h2 id="code">代码</h2>
 <div class="doc-figure">
     <div class="wx-code">
       <div class="wx-code__header">kit/index.css</div>
@@ -284,7 +284,7 @@
 <tr><td><code>wx-code / wx-quote</code></td><td>需要保留格式的代码、可归属的引用；普通段落不用。</td><td><code>pre/code</code> 或 <code>blockquote/cite</code>；复制需 <code>copy.js</code>。</td></tr>
 </tbody></table></div>
 
-<h2 id="list">列表 List</h2>
+<h2 id="list">列表</h2>
 <p>列表是内容，不是控件。<code>wx-list</code> 只调节节奏，语义完全交给原生 <code>ul</code> / <code>ol</code>。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <ul class="wx-list">
@@ -309,7 +309,7 @@
 <p><code>wx-list--grouped</code> 是应用轨的分组表面（iOS 分组列表惯例），走边框实现，仍然禁止阴影——
 它是 <strong>D-21</strong> 之外唯一被有条件放宽的"面"。</p>
 
-<h2 id="quote">引用 Quote</h2>
+<h2 id="quote">引用</h2>
 <p>引用用单边线，不用方框，也不用巨大的装饰引号。归属信息放在 <code>cite</code> 里。</p>
 <div class="doc-demo"><div class="doc-demo__stage">
   <blockquote class="wx-quote">
@@ -330,26 +330,25 @@
   <div class="doc-aside"><nav class="wx-anchor wx-affix doc-toc" aria-label="本页目录">
   <p class="doc-toc__title">本页</p>
   <ul class="wx-anchor__list">
-      <li><a class="wx-anchor__link" href="#table">表格 Table</a></li>
-      <li><a class="wx-anchor__link" href="#entry">条目 Entry</a></li>
-      <li><a class="wx-anchor__link" href="#timeline">时间线 Timeline</a></li>
-      <li><a class="wx-anchor__link" href="#tree">树 Tree</a></li>
-      <li><a class="wx-anchor__link" href="#collapse">折叠 Collapse</a></li>
+      <li><a class="wx-anchor__link" href="#table">表格</a></li>
+      <li><a class="wx-anchor__link" href="#entry">条目</a></li>
+      <li><a class="wx-anchor__link" href="#timeline">时间线</a></li>
+      <li><a class="wx-anchor__link" href="#tree">树</a></li>
+      <li><a class="wx-anchor__link" href="#collapse">折叠</a></li>
       <li><a class="wx-anchor__link" href="#desc">描述列表与统计</a></li>
-      <li><a class="wx-anchor__link" href="#calendar">日历 Calendar</a></li>
-      <li><a class="wx-anchor__link" href="#gallery">图集 Gallery</a></li>
-      <li><a class="wx-anchor__link" href="#figure">图与图注 Figure / Image</a></li>
-      <li><a class="wx-anchor__link" href="#code">代码 Code</a></li>
+      <li><a class="wx-anchor__link" href="#calendar">日历</a></li>
+      <li><a class="wx-anchor__link" href="#gallery">图集</a></li>
+      <li><a class="wx-anchor__link" href="#figure">图与图注</a></li>
+      <li><a class="wx-anchor__link" href="#code">代码</a></li>
       <li><a class="wx-anchor__link" href="#api">何时使用、何时不用与 API</a></li>
-      <li><a class="wx-anchor__link" href="#list">列表 List</a></li>
-      <li><a class="wx-anchor__link" href="#quote">引用 Quote</a></li>
+      <li><a class="wx-anchor__link" href="#list">列表</a></li>
+      <li><a class="wx-anchor__link" href="#quote">引用</a></li>
   </ul>
 </nav></div>
 </div>
 
 <footer class="doc-footer">
   <p>文字即界面，留白即设计，克制即力量。</p>
-  <p>Text is the interface. Whitespace is the design. Restraint is the power.</p>
 </footer>
 
 <script src="../kit/components/js/disclosure.js"></script>

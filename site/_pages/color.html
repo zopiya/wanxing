@@ -35,7 +35,7 @@
 <div class="doc-demo">
   <div class="doc-demo__stage">
     <p><span class="wx-seal" aria-hidden="true"></span> 品牌标记 · <code>--color-accent</code></p>
-    <p><a href="#accent">悬停链接时变为 accent</a> · <code>--color-link-hover</code></p>
+    <p><a href="#accent">悬停链接时变为强调色</a> · <code>--color-link-hover</code></p>
     <p><button class="wx-btn wx-btn--primary" type="button">每视图至多一个填充主按钮</button></p>
   </div>
 </div>
@@ -47,15 +47,15 @@
 
 <div class="doc-figure">
     <div class="wx-note wx-note--danger">
-      <span class="wx-note__title">危险 danger · #5C1F2F</span>
+      <span class="wx-note__title">危险 · #5C1F2F</span>
       <p>牛血红，对暖白 10.90:1。</p>
     </div>
     <div class="wx-note wx-note--warn">
-      <span class="wx-note__title">警告 warning · #7D5E12</span>
+      <span class="wx-note__title">警告 · #7D5E12</span>
       <p>赭黄，5.30:1。</p>
     </div>
     <div class="wx-note wx-note--tip">
-      <span class="wx-note__title">成功 success · #4F6B3A</span>
+      <span class="wx-note__title">成功 · #4F6B3A</span>
       <p>苔绿，5.27:1。</p>
     </div>
   </div>
@@ -70,14 +70,14 @@
 [data-theme="dark"] { … }</code></pre>
 <p>右上角的开关可以实时验证——本站每一页都跟随它。</p>
 
-<h2 id="customize">定制路径 · Customization</h2>
+<h2 id="customize">定制路径</h2>
 <p><code>kit/tokens/core.css</code> 是默认值的唯一真源；使用者应在<strong>自己的覆盖文件</strong>中改变量，
 不 fork 组件 CSS。每次换色都运行 <code>npm run check:colors</code>，它会测亮/暗对比度和语义色 ΔE。</p>
 <div class="doc-figure">
   <table class="wx-table doc-api">
     <thead><tr><th>想改什么</th><th>覆盖什么</th><th>影响与边界</th></tr></thead>
     <tbody>
-      <tr><td>点睛色</td><td><code>--color-accent</code>、<code>--color-accent-hover</code>、<code>--color-focus</code></td><td>链接悬停、品牌印记、焦点与唯一主操作；仍遵守每页 ≤2 次 accent。</td></tr>
+      <tr><td>点睛色</td><td><code>--color-accent</code>、<code>--color-accent-hover</code>、<code>--color-focus</code></td><td>链接悬停、品牌印记、焦点与唯一主操作；仍遵守每页至多两处强调色。</td></tr>
       <tr><td>字族</td><td><code>--font-display</code>、<code>--font-body</code>、<code>--font-ui</code>、<code>--font-mono</code></td><td>分别影响标题、正文、界面与代码；保留 CJK fallback，避免只换拉丁字体造成中文回退失控。</td></tr>
       <tr><td>信息密度</td><td>根元素加 <code>data-density="dense"</code></td><td>启用 <code>kit/tokens/dense.css</code> 的间距预设；只压缩间距，不压触控目标或文字等级。</td></tr>
     </tbody>
@@ -91,7 +91,7 @@
   --font-ui: "Source Han Sans SC", system-ui, sans-serif;
 }</code></pre>
 
-<h2 id="exchange">Token 交换 · Token exchange</h2>
+<h2 id="exchange">Token 交换</h2>
 <p><code>npm run build:tokens</code> 从同一真源生成 JSON、SCSS、TypeScript 及
 <code>kit/tokens/generated/tokens.dtcg.json</code>。后者采用 W3C Design Tokens Community Group 格式；
 默认值在 <code>$value</code>，暗色覆盖在明确命名的 <code>org.wenxin.mode</code> extension，
@@ -102,6 +102,6 @@
   <li><strong>渐变色背景</strong>——任何形式，双轨都禁</li>
   <li><strong>高饱和蓝 / 绿 / 紫 / 橙</strong>作为装饰或强调（语义色不在此列）</li>
   <li><strong>仅用颜色区分状态</strong>——色盲用户无法感知</li>
-  <li><strong>把 accent 复用为 error 色</strong>——一个语义 token 只有一个用途</li>
+  <li><strong>把强调色复用为错误色</strong>——一个语义变量只有一个用途</li>
   <li><strong>边框色当文字色用</strong>——<code>--color-border-*</code> 不得排日期、版权、面包屑</li>
 </ul>
