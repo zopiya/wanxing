@@ -9,7 +9,7 @@
 </main>
 ```
 
-零运行时依赖、无构建步骤；只需要 CSS。完整文档从 [site/index.html](./site/index.html) 开始（请通过 HTTP 服务打开，避免 `file://` 阻断字体和 `@import`）：
+零运行时依赖、无构建步骤；只需要 CSS。在线预览：[GitHub Pages](https://zopiya.github.io/wanxing/)；完整文档也可从 [site/index.html](./site/index.html) 本地查看（请通过 HTTP 服务打开，避免 `file://` 阻断字体和 `@import`）：
 
 ```sh
 python3 -m http.server 8899
@@ -18,11 +18,12 @@ python3 -m http.server 8899
 
 ## 安装
 
-当前 `0.1.0` **尚未发布到 npm registry**。仓库已经具备可装箱的包结构，但在正式发布前，
-请从本地检出目录安装；不要把下面这一步误写成已经公开可用的 registry 安装。
+当前 `0.1.0` **尚未发布到 npm registry**。可从本地检出目录或直接通过 GitHub 仓库安装：
 
 ```sh
-npm install /absolute/path/to/wanxing
+npm install github:zopiya/wanxing
+# 或从本地检出目录安装：
+# npm install /absolute/path/to/wanxing
 ```
 
 ```js

@@ -1,0 +1,29 @@
+name: Quality Gates & CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: Build & Verify Quality Gates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build artifacts & documentation
+        run: npm run build
+
+      - name: Run complete quality gate suite
+        run: npm run check
+
+      - name: Verify no uncommitted build artifact drift
+        run: git diff --exit-code

@@ -2,6 +2,15 @@
   "name": "wenxin-wanxing",
   "version": "0.1.0",
   "description": "文心 · 万形 — 内容型产品的设计语言与前端组件库。零运行时依赖。",
+  "homepage": "https://zopiya.github.io/wanxing/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zopiya/wanxing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zopiya/wanxing/issues"
+  },
+  "author": "Zopiya <i@zopiya.com>",
   "keywords": [
     "design-system",
     "css",
